@@ -1,0 +1,36 @@
+# Optioneel: publiceert de site automatisch bij elke push naar main.
+# Gebruik dit ALLEEN als je bij Settings > Pages kiest voor Source = "GitHub Actions".
+# Kies je voor "Deploy from a branch" (de eenvoudigste manier), dan doet dit
+# bestand niets en kun je het laten staan of verwijderen.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
