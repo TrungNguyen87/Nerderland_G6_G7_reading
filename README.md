@@ -1,114 +1,115 @@
 # 📚 Leeskampioen
 
-Een interactief leesspel voor **groep 6 en 7** van de Nederlandse basisschool.
-Nederlandse teksten met een knop om alles naar het Engels te vertalen, en een
-oudergedeelte waar je aan het eind van de dag een rapport kunt downloaden.
+An interactive reading game for **Dutch primary school groups 6 and 7**
+(ages 9–11). The stories are in Dutch, with one button that translates
+everything into English, plus a parent area where you can download a report at
+the end of the day.
 
-> **Direct proberen:** download de map en dubbelklik op `index.html`.
-> **Online zetten:** zie **[DEPLOY.md](DEPLOY.md)** voor een stap-voor-stap uitleg.
+> **Try it now:** download the folder and double-click `index.html`.
+> **Put it online:** see **[DEPLOY.md](DEPLOY.md)** for step-by-step instructions.
 
 ---
 
-## Wat zit erin
+## What is in it
 
-**18 verhalen · 90 vragen · 6 onderwerpen · 3 niveaus**
+**18 stories · 90 questions · 6 topics · 3 levels**
 
-| Wereld | Onderwerp |
+| World | Topic |
 |---|---|
-| 🦊 | Dieren & Natuur — de stadsvos, het lied van de bultrug, de terugkeer van de wolf |
-| 🚀 | Ruimte & Sterren — slapen in het ruimtestation, de Marsrover, waarom Mars zo moeilijk is |
-| ⚽ | Sport & Spanning — de laatste penalty, de Elfstedentocht, zenuwen voor de start |
-| 🏰 | Ridders & Vroeger — schildknaap Joris, koud in het kasteel, twee kanten van de Gouden Eeuw |
-| 🔬 | Techniek & Ontdekking — de uitvinding van klittenband, dijken en Deltawerken, de lerende robot |
-| 🔍 | Mysterie & Detective — de lege koektrommel, de code van opa, de diefstal die niemand zag |
+| 🦊 | Animals & Nature — the city fox, the humpback's song, the return of the wolf |
+| 🚀 | Space & Stars — sleeping on the space station, the Mars rover, why Mars is so hard |
+| ⚽ | Sport & Excitement — the last penalty, the Elfstedentocht, nerves at the start |
+| 🏰 | Knights & History — Joris the squire, cold in the castle, two sides of the Golden Age |
+| 🔬 | Tech & Discovery — how velcro was invented, dikes and the Delta Works, the robot that learned to fall |
+| 🔍 | Mystery & Detective — the empty biscuit tin, grandpa's code, the theft nobody saw |
 
-Elk onderwerp heeft drie niveaus die oplopen in moeilijkheid en **stoppen bij
-groep 7**:
+Each topic has three levels that rise in difficulty and **stop at group 7**:
 
-| Niveau | Leesniveau | Lengte |
+| Level | Reading level | Length |
 |---|---|---|
-| ⭐ Startklaar | AVI M6 | ± 150 woorden, korte zinnen |
-| ⭐⭐ Doorzetter | AVI E6 | ± 190 woorden |
-| ⭐⭐⭐ Kampioen | AVI M7 | ± 250 woorden, meer inzichtvragen |
+| ⭐ Startklaar | AVI M6 | ± 150 words, short sentences |
+| ⭐⭐ Doorzetter | AVI E6 | ± 190 words |
+| ⭐⭐⭐ Kampioen | AVI M7 | ± 250 words, more inference questions |
 
-Niveau 2 gaat pas open als niveau 1 gehaald is.
+Level 2 only unlocks once level 1 is passed.
 
-## Vijf soorten vragen
+## Five kinds of questions
 
-Niet alleen meerkeuze, zodat het niet saai wordt:
+Not just multiple choice, so it does not get boring:
 
-- **Meerkeuze** — het antwoord opzoeken in de tekst
-- **Waar / niet waar** — snel en spannend
-- **Invulzin** — het juiste woord in de zin klikken
-- **Volgorde** — de gebeurtenissen op een rij zetten
-- **Koppelen** — woord aan betekenis verbinden
+- **Multiple choice** — find the answer in the text
+- **True / false** — quick and tense
+- **Fill the gap** — click the right word into the sentence
+- **Sequencing** — put the events in the right order
+- **Matching** — connect a word to its meaning
 
-Elke vraag traint één van de vijf leesvaardigheden: **letterlijk lezen,
-conclusie trekken, woordenschat, volgorde en hoofdgedachte**. Daardoor laat het
-rapport precies zien wáár het misgaat.
+Every question trains one of five reading skills: **literal reading, inference,
+vocabulary, sequencing and main idea**. That is what lets the report show
+*where* things go wrong, instead of just a score.
 
-## Wat het leuk houdt
+## What keeps him going
 
-- ⏱ **Missie van 30 minuten** — een ring in de balk vult zich; bij een half uur
-  volgt een trofee met confetti
-- ⚡ **XP, levels en een reeksteller** — hoe langer de reeks goede antwoorden,
-  hoe meer punten
-- 🦉 **Oscar de uil** reageert op elk antwoord en geeft hints
-- 🎉 Confetti, sterren, geluidjes en tien verzamelbadges
-- ⚡ **Bonusronde Flitswoorden** — een woord flitst kort in beeld; welk woord was
-  het? Traint het snel herkennen van woorden, wat het leestempo helpt
+- ⏱ **30-minute mission** — a ring in the top bar fills up; at half an hour he
+  gets a trophy and confetti
+- ⚡ **XP, levels and a streak counter** — the longer the run of correct answers,
+  the more points per answer
+- 🦉 **Oscar the owl** reacts to every answer and gives hints
+- 🎉 Confetti, stars, sound effects and ten collectable badges
+- ⚡ **Flash-words bonus round** — a word flashes briefly; which word was it?
+  Trains fast word recognition, which is what lifts reading pace
 
-## Hulp bij het lezen
+## Reading support
 
-Speciaal voor een kind dat lezen lastig vindt:
+Specifically for a child who finds reading hard:
 
-| Knop | Wat het doet |
+| Button | What it does |
 |---|---|
-| 🔈 **Voorlezen** | Het apparaat leest het verhaal hardop voor, in het Nederlands of Engels |
-| ✨ **Meelezen** | Markeert woord voor woord mee, op rustig leestempo |
-| 🔠 **Groter** | Drie letterformaten |
-| 📏 **Liniaal** | Dimt alle regels behalve die waar je bent |
-| 🅰 **Leeshulp** | Ronder lettertype met extra ruimte tussen de letters |
-| 👀 **Tekst** | Tijdens de vragen het verhaal er nog eens bij pakken |
-| 📌 Woordkaartjes | Moeilijke woorden met uitleg, klik om te horen |
+| 🔈 **Voorlezen** | The device reads the story out loud, in Dutch or English |
+| ✨ **Meelezen** | Highlights word by word at a calm pace |
+| 🔠 **Groter** | Three text sizes |
+| 📏 **Liniaal** | Dims every line except the one he is on |
+| 🅰 **Leeshulp** | Rounder font with extra letter spacing |
+| 👀 **Tekst** | Pull the story back up while answering questions |
+| 📌 Word cards | Hard words with a plain explanation; click to hear them |
 
-## 🇳🇱 / 🇬🇧 Vertaalknop
+## 🇳🇱 / 🇬🇧 The translate button
 
-Eén klik op de vlag zet **alles** om: verhaal, vragen, antwoorden, uitleg en
-knoppen. Ook midden in een vraag. Handig om te controleren of hij het echt
-begrepen heeft, of om een moeilijk woord even na te kijken.
+One click on the flag switches **everything**: story, questions, answers,
+explanations and interface — even in the middle of a question. Useful to check
+whether he really understood it, or to look up one hard word without leaving the
+Dutch text behind.
 
-## 📊 Voor ouders
+## 📊 For parents
 
-Achter een klein rekensommetje (zodat je zoon er niet zomaar in komt):
+Behind a small multiplication sum, so he cannot wander in:
 
-- Aantal verhalen, vragen, percentage goed, leestijd en **leestempo (wpm)**
-- Een balk per leesvaardigheid — meteen zichtbaar wat de zwakke plek is
-- Tabel per onderwerp en niveau
-- **Concreet advies** voor thuis, gebaseerd op de cijfers
-- De laatste 20 antwoorden, met de vraag erbij
-- Signaal als er **doorgeklikt** is zonder echt te lezen
+- Stories, questions, percentage correct, reading time and **reading pace (wpm)**
+- A bar per reading skill — the weak spot is visible at a glance
+- A table per topic and level
+- **Concrete advice** for home, derived from the actual numbers
+- The last 20 answers, with the question itself
+- A warning if he **clicked through** without really reading
 
-### Rapport downloaden
+### Downloading the report
 
-| Knop | Bestand | Waarvoor |
+| Button | File | For |
 |---|---|---|
-| **CSV** | `leeskampioen_datum.csv` | Openen in Excel of Numbers; elke vraag een regel |
-| **JSON** | `leeskampioen_datum.json` | Alle ruwe gegevens |
-| **Rapport** | `leesrapport_datum.html` | Nette pagina om te bekijken of af te drukken |
+| **CSV** | `leeskampioen_date.csv` | Open in Excel or Numbers; one row per question |
+| **JSON** | `leeskampioen_date.json` | All raw data |
+| **Rapport** | `leesrapport_date.html` | A tidy page to read or print |
 
-De CSV bevat per antwoord: datum, tijd, onderwerp, niveau, verhaal, vraagtype,
-leesvaardigheid, goed/fout, wat hij antwoordde, wat juist was, hoeveel seconden
-hij erover deed, of hij een hint gebruikte en in welke taal. Onderaan staan de
-leestijden en het leestempo per verhaal.
+The CSV holds, per answer: date, time, topic, level, story, question type,
+reading skill, right/wrong, what he answered, what was correct, how many seconds
+he took, whether he used a hint, and which language. Reading times and pace per
+story are appended at the bottom.
 
-> **Privacy:** alles blijft in de browser van het apparaat (`localStorage`).
-> Er gaat niets naar internet. Het logboek blijft bewaard tot je op *Wis alles*
-> drukt — dus je kunt ook aan het eind van de week downloaden.
+> **Privacy:** everything stays in that device's browser (`localStorage`).
+> Nothing is sent anywhere. The log is kept until you press *Wis alles*, so you
+> can just as easily download at the end of the week.
 
-## Zelf verhalen toevoegen
+## Adding your own stories
 
-Open een bestand in `data/` en plak er een verhaal bij. Het patroon:
+Open a file in `data/` and paste in another story. The pattern:
 
 ```js
 {
@@ -129,24 +130,26 @@ Open een bestand in `data/` en plak er een verhaal bij. Het patroon:
 }
 ```
 
-De vraagtypen zijn `mc`, `tf`, `gap`, `order` en `match`; de vaardigheden
-`letterlijk`, `gevolgtrekking`, `woordenschat`, `volgorde` en `hoofdgedachte`.
-Een nieuw onderwerp voeg je toe in `data/bootstrap.js` en als `<script>` in
+Question types are `mc`, `tf`, `gap`, `order` and `match`; skills are
+`letterlijk`, `gevolgtrekking`, `woordenschat`, `volgorde` and `hoofdgedachte`.
+A new topic goes into `data/bootstrap.js` plus one `<script>` line in
 `index.html`.
 
-## Techniek
+## Technical
 
-Gewoon HTML, CSS en JavaScript. Geen framework, geen build-stap, geen
-afhankelijkheden. Werkt ook offline en rechtstreeks vanaf `file://`.
+Plain HTML, CSS and JavaScript. No framework, no build step, no dependencies.
+Works offline and straight from `file://`.
 
 ```
-index.html            de hele opbouw van het scherm
-css/style.css         vormgeving en animaties
-js/i18n.js            alle interfaceteksten in NL en EN
-js/audio.js           geluidjes (WebAudio) en voorlezen (SpeechSynthesis)
-js/fx.js              confetti, achtergrond, de uil
-js/log.js             opslag, statistiek en de exportknoppen
-js/app.js             spellogica: schermen, vragen, punten, dashboard
-data/bootstrap.js     werelden, niveaus en leesvaardigheden
-data/stories.*.js     de verhalen, per onderwerp
+index.html            the whole screen structure
+css/style.css         styling and animation
+js/i18n.js            every interface string, in NL and EN
+js/audio.js           sound effects (WebAudio) and read-aloud (SpeechSynthesis)
+js/fx.js              confetti, background, the owl
+js/log.js             storage, statistics and the export buttons
+js/app.js             game logic: screens, questions, scoring, dashboard
+data/bootstrap.js     worlds, levels and reading skills
+data/stories.*.js     the stories, one file per topic
 ```
+
+The in-game language stays Dutch by default; these docs are in English.

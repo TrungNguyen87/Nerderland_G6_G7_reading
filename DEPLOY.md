@@ -1,162 +1,187 @@
-# 🚀 Leeskampioen op GitHub Pages zetten
+# 🚀 Deploying Leeskampioen to GitHub Pages
 
-Deze site is **statisch**: alleen HTML, CSS en JavaScript. Er is geen server,
-geen database en geen build-stap nodig. Daarom is GitHub Pages ideaal: gratis,
-snel, en het werkt op elke tablet of telefoon.
+This site is **static** — only HTML, CSS and JavaScript. No server, no database,
+no build step. That is why GitHub Pages is the right fit: free, fast, and it
+works on any tablet or phone.
 
-Je krijgt uiteindelijk een adres als:
+Your final address will be:
 
 ```
 https://trungnguyen87.github.io/Nerderland_G6_G7_reading/
 ```
 
-Kies één van de twee routes hieronder. **Route A** is het makkelijkst als je
-niet met de terminal wilt werken.
+Pick one of the two routes below. **Route A** needs no terminal at all.
 
 ---
 
-## ⚡ Eerst even testen zonder GitHub
+## ⚡ First: try it without deploying anything
 
-Je hoeft niet te publiceren om het te proberen. Download de map en
-**dubbelklik op `index.html`**. De site werkt volledig lokaal — inclusief de
-downloads van het rapport. Alleen het lettertype ziet er iets anders uit als je
-offline bent.
-
----
-
-## Route A — Via de website van GitHub (geen terminal nodig)
-
-### Stap 1. Zet de bestanden op de `main`-branch
-
-De code staat nu op de branch `claude/dutch-reading-game-kids-j7ekss`.
-GitHub Pages publiceert het makkelijkst vanaf `main`.
-
-1. Ga naar je repository: `https://github.com/TrungNguyen87/Nerderland_G6_G7_reading`
-2. Klik bovenin op **Pull requests** → **New pull request**.
-3. Zet **base:** op `main` en **compare:** op `claude/dutch-reading-game-kids-j7ekss`.
-4. Klik **Create pull request** → **Merge pull request** → **Confirm merge**.
-
-> Heeft je repo nog geen `main`-branch? Dan kun je in stap 2 gewoon de branch
-> `claude/dutch-reading-game-kids-j7ekss` kiezen. Dat werkt net zo goed.
-
-### Stap 2. Zet GitHub Pages aan
-
-1. Ga in je repository naar **Settings** (tandwiel, bovenin rechts).
-2. Klik links in het menu op **Pages**.
-3. Bij **Source** kies je: **Deploy from a branch**.
-4. Bij **Branch** kies je: **`main`** en map **`/ (root)`**.
-5. Klik op **Save**.
-
-![instelling] Branch: `main` · Folder: `/ (root)` · Save
-
-### Stap 3. Wachten en openen
-
-- Ververs de Pages-pagina na **1 tot 3 minuten**.
-- Bovenaan verschijnt een groen kader:
-  *"Your site is live at https://trungnguyen87.github.io/Nerderland_G6_G7_reading/"*
-- Klik op **Visit site**.
-
-De eerste keer kan het tot 10 minuten duren. Krijg je een 404, wacht dan even
-en ververs met **Ctrl+F5** (Windows) of **Cmd+Shift+R** (Mac).
+You do not have to publish it to test it. Download the folder and
+**double-click `index.html`**. Everything works locally, including the report
+downloads. Only the font looks slightly different when you are offline.
 
 ---
 
-## Route B — Via de terminal (git)
+## Route A — Through the GitHub website (no terminal)
+
+> **Important for your repository:** right now there is only **one** branch,
+> `claude/dutch-reading-game-kids-j7ekss`. There is **no `main` branch**.
+> You can publish straight from that branch — it works exactly the same. If you
+> prefer a cleaner name, see *"Would you rather use `main`?"* at the end of this
+> route.
+
+### Step 1. Turn on GitHub Pages
+
+1. Go to your repository:
+   `https://github.com/TrungNguyen87/Nerderland_G6_G7_reading`
+2. Click **Settings** in the top bar (the gear icon).
+3. In the left menu, click **Pages**.
+4. Under **Source**, choose: **Deploy from a branch**.
+5. Under **Branch**, in the first dropdown choose:
+   **`claude/dutch-reading-game-kids-j7ekss`**
+6. In the second dropdown (the folder), choose: **`/ (root)`**.
+7. Click **Save**.
+
+```
+Source:  Deploy from a branch
+Branch:  claude/dutch-reading-game-kids-j7ekss   /  (root)     [ Save ]
+```
+
+### Step 2. Make sure the repository is public
+
+Free GitHub Pages only works on a **public** repository.
+
+1. Still in **Settings**, scroll all the way down to **Danger Zone**.
+2. If it says *"Change repository visibility → Make public"*, click it and
+   confirm.
+3. If it says *"Make private"*, it is already public. Do nothing.
+
+The site contains no personal data, and your son's scores never leave his own
+device, so public is fine here.
+
+### Step 3. Wait, then open it
+
+- Refresh the Pages settings screen after **1 to 3 minutes**.
+- A green box appears at the top: *"Your site is live at ..."*
+- Your address will be:
+
+```
+https://trungnguyen87.github.io/Nerderland_G6_G7_reading/
+```
+
+- Click **Visit site**.
+
+The very first deploy can take up to 10 minutes. If you get a 404, wait a little
+and refresh with **Ctrl+F5** (Windows) or **Cmd+Shift+R** (Mac).
+
+### Would you rather use `main`?
+
+A branch name with slashes works fine but looks messy. Here is how to rename it,
+entirely in the browser:
+
+1. Go to **Settings** → **General** (the first menu item).
+2. Scroll to **Default branch** and click the ⇄ arrows next to the branch name.
+3. Choose **Rename branch**, type `main`, and confirm.
+4. Then go to **Settings → Pages** and set **Branch** to `main`.
+
+---
+
+## Route B — Through the terminal (git)
+
+The code is already online, so you only need this if you prefer working locally.
 
 ```bash
-# 1. Repo binnenhalen (eenmalig)
+# Get the repository
 git clone https://github.com/TrungNguyen87/Nerderland_G6_G7_reading.git
 cd Nerderland_G6_G7_reading
-
-# 2. De branch met het spel ophalen
-git fetch origin claude/dutch-reading-game-kids-j7ekss
 git checkout claude/dutch-reading-game-kids-j7ekss
 
-# 3. Samenvoegen met main
-git checkout main
-git merge claude/dutch-reading-game-kids-j7ekss
+# View the site locally (pick one)
+open index.html               # macOS
+start index.html              # Windows
+python3 -m http.server 8000   # then visit http://localhost:8000
+```
+
+To rename the branch to `main`:
+
+```bash
+git branch -m claude/dutch-reading-game-kids-j7ekss main
 git push -u origin main
 ```
 
-Zet daarna GitHub Pages aan zoals in **Route A, stap 2**.
-
-### Alternatief: publiceren vanaf de huidige branch
-
-Wil je `main` niet aanraken, kies dan bij **Settings → Pages → Branch** gewoon
-`claude/dutch-reading-game-kids-j7ekss` in plaats van `main`. Verder verandert er niets.
+Then set **Settings → Pages → Branch** to `main`, and delete the old branch on
+GitHub if you like.
 
 ---
 
-## 🔄 Later iets aanpassen
+## 🔄 Changing something later
 
-Elke push naar de gekozen branch publiceert automatisch opnieuw, meestal binnen
-een minuut.
+Every push to the selected branch republishes automatically, usually within a
+minute.
 
-**Een verhaal toevoegen of aanpassen via de website:**
+**To add or edit a story from the website:**
 
-1. Ga naar de map `data/` in je repository.
-2. Klik op bijvoorbeeld `stories.dieren.js`.
-3. Klik op het **potloodje** (✏️ Edit this file).
-4. Pas de tekst aan.
-5. Onderaan: **Commit changes**.
+1. Open the `data/` folder in your repository.
+2. Click a file, for example `stories.dieren.js`.
+3. Click the **pencil** icon (✏️ Edit this file).
+4. Change the text.
+5. At the bottom: **Commit changes**.
 
-Klaar. Ververs de site na een minuut.
+Done. Refresh the site after a minute.
 
-> ⚠️ Let op de komma's en accolades in het bestand. Klopt er iets niet, dan
-> blijft het scherm leeg. Druk dan op **F12** in de browser; onder *Console*
-> staat precies op welke regel de fout zit.
+> ⚠️ Mind the commas and braces in the file. If something is off, the screen
+> stays blank. Press **F12** in the browser; the *Console* tab tells you exactly
+> which line is wrong.
 
 ---
 
-## 📱 Op de tablet zetten als "app"
+## 📱 Putting it on the tablet as an "app"
 
-Zo krijgt je zoon een icoontje op het startscherm, zonder browserbalk:
+This gives your son an icon on the home screen, with no browser bar:
 
 **iPad / iPhone (Safari)**
-1. Open de site in Safari.
-2. Tik op het deel-icoon (vierkantje met pijltje omhoog).
-3. Tik op **Zet op beginscherm**.
+1. Open the site in Safari.
+2. Tap the share icon (square with an arrow pointing up).
+3. Tap **Add to Home Screen**.
 
 **Android (Chrome)**
-1. Open de site in Chrome.
-2. Tik op de drie puntjes rechtsboven.
-3. Tik op **Toevoegen aan startscherm**.
+1. Open the site in Chrome.
+2. Tap the three dots at the top right.
+3. Tap **Add to Home screen**.
 
 ---
 
-## 🧯 Problemen oplossen
+## 🧯 Troubleshooting
 
-| Wat je ziet | Wat er aan de hand is | Oplossing |
+| What you see | What is going on | Fix |
 |---|---|---|
-| **404 – niet gevonden** | Pages staat nog uit, of de verkeerde branch is gekozen | Settings → Pages → controleer Branch en `/ (root)`. Wacht 2 minuten. |
-| **Witte/lege pagina** | Een JavaScript-bestand wordt niet gevonden | Druk F12 → tabblad *Console*. Staat er `404` bij een `.js`-bestand? Controleer of de map `data/` en `js/` echt zijn geüpload. |
-| **Oude versie blijft staan** | De browser onthoudt de site | Ververs met **Ctrl+F5** / **Cmd+Shift+R**, of open een privévenster. |
-| **Werkt op laptop, niet op tablet** | Cache van de tablet | Sluit het tabblad helemaal en open opnieuw. |
-| **Voorlezen doet niets** | Het apparaat heeft geen Nederlandse stem | Chrome op Android/Windows en Safari op iPad hebben die wél. Op Linux vaak niet. De rest van het spel werkt gewoon. |
-| **Geen geluid** | Browsers blokkeren geluid tot de eerste klik | Klik eerst ergens op de pagina. Of zet het aan met de 🔊-knop. |
-| **Vreemde letters (Ã©, â€™)** | Bestand niet als UTF-8 opgeslagen | Bewerk het bestand via GitHub zelf, dan gaat het automatisch goed. |
+| **404 – not found** | Pages is still off, or the wrong branch is selected | Settings → Pages → check Branch and `/ (root)`. Wait 2 minutes. |
+| **Blank white page** | A JavaScript file is not being found | Press F12 → *Console* tab. Any `404` on a `.js` file? Check that the `data/` and `js/` folders were really uploaded. |
+| **Old version keeps showing** | The browser cached the site | Refresh with **Ctrl+F5** / **Cmd+Shift+R**, or open a private window. |
+| **Works on laptop, not on tablet** | Tablet cache | Close the tab completely and reopen it. |
+| **Read-aloud does nothing** | The device has no Dutch voice installed | Chrome on Android/Windows and Safari on iPad do have one. Linux often does not. The rest of the game still works. |
+| **No sound** | Browsers block audio until the first click | Click anywhere on the page first, or toggle the 🔊 button. |
+| **Odd characters (Ã©, â€™)** | File not saved as UTF-8 | Edit the file through GitHub itself; it handles this automatically. |
 
 ---
 
-## 🔐 Belangrijk om te weten
+## 🔐 Worth knowing
 
-- **De repository moet openbaar (public) zijn** voor gratis GitHub Pages.
-  Een privé-repo kan alleen met een betaald GitHub-abonnement.
-  De site bevat geen persoonlijke gegevens, dus openbaar is prima.
-- **De resultaten van je zoon staan nooit op internet.** Alles blijft in de
-  browser van het apparaat zelf (`localStorage`). Wie de link opent, ziet een
-  leeg spel — niet zijn scores.
-- **Gevolg daarvan:** de scores staan per apparaat. Speelt hij op de tablet,
-  download het rapport dan óók op die tablet.
-- Het bestand `.nojekyll` moet blijven staan. Zonder dat bestand negeert
-  GitHub Pages sommige mappen.
+- **The repository must be public** for free GitHub Pages. A private repo
+  requires a paid GitHub plan. The site holds no personal data, so public is
+  fine.
+- **Your son's results never go online.** Everything stays in that device's
+  browser (`localStorage`). Anyone opening the link sees an empty game — not his
+  scores.
+- **Consequence:** scores are per device. If he plays on the tablet, download the
+  report on that tablet too.
+- Keep the `.nojekyll` file. Without it, GitHub Pages skips some folders.
 
 ---
 
-## Optioneel: publiceren via GitHub Actions
+## Optional: deploying via GitHub Actions
 
-In `.github/workflows/pages.yml` staat een kant-en-klare workflow. Die heb je
-**niet nodig** voor de gewone route. Gebruik hem alleen als je bij
-**Settings → Pages → Source** kiest voor **GitHub Actions** in plaats van
-*Deploy from a branch*. Je ziet dan bij het tabblad **Actions** van elke
-publicatie of die geslaagd is.
+`.github/workflows/pages.yml` contains a ready-made workflow. You do **not**
+need it for the normal route. Use it only if you set **Settings → Pages →
+Source** to **GitHub Actions** instead of *Deploy from a branch*. The **Actions**
+tab then shows whether each deploy succeeded.
