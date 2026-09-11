@@ -236,3 +236,274 @@ addStories([
   ]
 }
 ]);
+
+/* --- Niveau 4 en 5: langere teksten met Cito-achtige vragen --- */
+addStories([
+{
+  id: 'mysterie-4', topic: 'mysterie', level: 4, emoji: '👟', scene: 'night',
+  title: { nl: 'Het spoor dat te netjes was', en: 'The trail that was too tidy' },
+  text: {
+    nl: [
+      "Op maandagochtend stond de deur van de fietsenstalling open en was de nieuwe bakfiets van school verdwenen. Conciërge Bram belde de wijkagent, en agent Nour kwam kijken. Ze deed wat ze altijd deed: eerst rondlopen, niets aanraken, alleen kijken.",
+      "Bij de deur lag een spoor van modderige schoenafdrukken, van buiten naar binnen. Ze waren zo duidelijk dat je de ribbels van de zool kon tellen. Bram wees er trots op. \"Die hebben we tenminste,\" zei hij.",
+      "Nour knikte langzaam. Precies die duidelijkheid vond zij vreemd. Het had zondag de hele dag geregend, dus modder klopte. Maar de afdrukken liepen alleen naar binnen. Iemand die een bakfiets naar buiten duwt, moet ook naar buiten lopen. En dan is de modder aan zijn zolen bijna op, dus zouden die afdrukken vager moeten zijn, maar ze zouden er wel moeten zijn.",
+      "Ze keek naar het slot. Geen krassen, geen braakschade. Een dief met een breekijzer laat altijd iets achter. Ze vroeg wie er een sleutel had. Bram, de directeur, en de schoonmaakdienst. \"En hangt er hier een reservesleutel?\" vroeg ze. Bram werd rood. Aan de binnenkant van het kastje bij de ingang, gaf hij toe, aan een spijkertje.",
+      "Toen wist Nour genoeg om de goede vraag te stellen. Niet: wie is er binnengekomen? Maar: wie wist waar de sleutel hing? Dat rijtje was kort, en er stond niemand op die van buiten kwam.",
+      "Die middag meldde zich een leerling uit groep acht. Hij had de bakfiets geleend om zijn zieke opa naar het ziekenhuis te rijden, want de bus reed niet. Hij had de afdrukken zelf gemaakt, met zijn laarzen, in de hoop dat het op een inbraak zou lijken. En hij was op sokken weer naar buiten gelopen, netjes langs de rand.",
+      "\"Dat had bijna gewerkt,\" zei Nour. \"Alleen: echte sporen zijn nooit zo netjes. Rommel hoort erbij. Wie te goed zijn best doet, valt juist op.\""
+    ],
+    en: [
+      "On Monday morning the door of the bicycle shed stood open and the school’s new cargo bike had gone. Bram the caretaker rang the local police officer, and officer Nour came to look. She did what she always did: walk round first, touch nothing, only look.",
+      "By the door lay a trail of muddy shoe prints, leading from outside to inside. They were so clear that you could count the ridges of the sole. Bram pointed at them proudly. \"At least we have those,\" he said.",
+      "Nour nodded slowly. It was precisely that clearness she found odd. It had rained all Sunday, so the mud made sense. But the prints only led inwards. Someone pushing a cargo bike outside has to walk out as well. By then the mud on the soles is nearly gone, so those prints would be fainter, but they ought to be there.",
+      "She looked at the lock. No scratches, no damage. A thief with a crowbar always leaves something behind. She asked who had a key. Bram, the head teacher and the cleaning company. \"And is there a spare key here?\" she asked. Bram went red. On the inside of the little cupboard by the entrance, he admitted, on a nail.",
+      "Then Nour knew enough to ask the right question. Not: who got in? But: who knew where the key hung? That list was short, and nobody on it came from outside.",
+      "That afternoon a pupil from year six came forward. He had borrowed the cargo bike to take his sick grandfather to hospital, because the bus was not running. He had made the prints himself, with his boots, hoping it would look like a break-in. And he had walked back out in his socks, neatly along the edge.",
+      "\"That nearly worked,\" said Nour. \"Except: real traces are never that tidy. Mess belongs to them. Try too hard and that is exactly what stands out.\""
+    ]
+  },
+  words: [
+    { nl: 'conciërge', en: 'caretaker', defNl: 'degene die op een gebouw past en kleine klussen doet', defEn: 'the person who looks after a building and does small jobs' },
+    { nl: 'braakschade', en: 'damage from a break-in', defNl: 'de sporen die achterblijven als iemand een slot forceert', defEn: 'the marks left behind when somebody forces a lock' },
+    { nl: 'reservesleutel', en: 'spare key', defNl: 'een tweede sleutel voor het geval de eerste weg is', defEn: 'a second key in case the first one is missing' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat deed agent Nour als eerste toen ze aankwam?',
+           en: 'What did officer Nour do first when she arrived?' },
+      options: [
+        { nl: 'Rondlopen en kijken zonder iets aan te raken', en: 'Walk round and look without touching anything' },
+        { nl: 'Meteen de leerlingen ondervragen', en: 'Question the pupils straight away' },
+        { nl: 'Het slot opendraaien', en: 'Open the lock' },
+        { nl: 'De schoenafdrukken schoonvegen', en: 'Wipe away the shoe prints' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "eerst rondlopen, niets aanraken, alleen kijken".',
+                 en: 'Paragraph 1: "walk round first, touch nothing, only look".' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom vond Nour de schoenafdrukken verdacht?',
+           en: 'Why did Nour find the shoe prints suspicious?' },
+      options: [
+        { nl: 'Ze liepen alleen naar binnen, terwijl de dief ook naar buiten moest',
+          en: 'They only led inwards, while the thief had to go out as well' },
+        { nl: 'Ze waren te klein voor een volwassene', en: 'They were too small for an adult' },
+        { nl: 'Ze lagen buiten in het gras', en: 'They lay outside in the grass' },
+        { nl: 'Ze waren van sokken in plaats van laarzen', en: 'They were made by socks, not boots' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 legt precies dat uit: een spoor naar buiten ontbrak, en dat kan niet.',
+                 en: 'Paragraph 3 explains exactly that: a trail leading out was missing, which is impossible.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Precies die duidelijkheid vond zij vreemd." Wat wordt met "die duidelijkheid" bedoeld?',
+           en: '"It was precisely that clearness she found odd." What does "that clearness" mean?' },
+      options: [
+        { nl: 'Dat je de ribbels van de zool in de afdrukken kon tellen',
+          en: 'That you could count the ridges of the sole in the prints' },
+        { nl: 'Dat het slot geen krassen had', en: 'That the lock had no scratches' },
+        { nl: 'Dat Bram meteen gebeld had', en: 'That Bram had rung at once' },
+        { nl: 'Dat het de hele zondag geregend had', en: 'That it had rained all Sunday' }
+      ], answer: 0,
+      explain: { nl: 'De alinea ervoor beschrijft de afdrukken als zó duidelijk dat je de ribbels kon tellen.',
+                 en: 'The previous paragraph describes the prints as so clear you could count the ridges.' } },
+    { id: 'q4', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee aanwijzingen brachten Nour op het idee dat de dader van binnen kwam? Kies er 2.',
+           en: 'Which two clues led Nour to think the culprit came from inside? Pick 2.' },
+      options: [
+        { nl: 'Het slot had geen krassen of braakschade', en: 'The lock had no scratches or damage' },
+        { nl: 'De reservesleutel hing in het kastje bij de ingang',
+          en: 'The spare key hung in the cupboard by the entrance' },
+        { nl: 'De bakfiets was nieuw', en: 'The cargo bike was new' },
+        { nl: 'Het had de hele zondag geregend', en: 'It had rained all Sunday' }
+      ], answer: [0, 1],
+      explain: { nl: 'Geen braakschade plus een sleutel die maar een paar mensen kenden: dat wijst naar binnen.',
+                 en: 'No damage plus a key only a few people knew about points inside.' } },
+    { id: 'q5', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet het onderzoek van Nour op volgorde.', en: 'Put Nour’s investigation in order.' },
+      items: [
+        { nl: 'Ze loopt rond en bekijkt de schoenafdrukken.', en: 'She walks round and looks at the shoe prints.' },
+        { nl: 'Ze ziet dat het slot geen krassen heeft.', en: 'She sees the lock has no scratches.' },
+        { nl: 'Ze vraagt naar de reservesleutel.', en: 'She asks about the spare key.' },
+        { nl: 'Ze stelt een andere vraag: wie wist waar de sleutel hing?', en: 'She asks a different question: who knew where the key hung?' },
+        { nl: 'Een leerling meldt zich die middag.', en: 'A pupil comes forward that afternoon.' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'De alinea’s volgen precies deze stappen, van kijken tot de bekentenis.',
+                 en: 'The paragraphs follow exactly these steps, from looking to the confession.' } },
+    { id: 'q6', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Braakschade betekent: ___.', en: 'Break-in damage means: ___.' },
+      options: [
+        { nl: 'de sporen die achterblijven als iemand een slot forceert',
+          en: 'the marks left behind when somebody forces a lock' },
+        { nl: 'modder op de vloer van een stalling', en: 'mud on the floor of a shed' },
+        { nl: 'een sleutel die kwijt is', en: 'a key that has gone missing' },
+        { nl: 'schade aan een fiets na een val', en: 'damage to a bike after a fall' }
+      ], answer: 0,
+      explain: { nl: 'De tekst zegt: "Een dief met een breekijzer laat altijd iets achter." Dat achtergelaten spoor is braakschade.',
+                 en: 'The text says a thief with a crowbar always leaves something behind: that mark is break-in damage.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 begint met "Toen wist Nour genoeg om de goede vraag te stellen." Wat is de functie van die alinea?',
+           en: 'Paragraph 5 begins "Then Nour knew enough to ask the right question." What does that paragraph do?' },
+      options: [
+        { nl: 'Het is het keerpunt: de aanwijzingen worden samengevat en het onderzoek draait om',
+          en: 'It is the turning point: the clues are summed up and the investigation turns around' },
+        { nl: 'Het geeft een beschrijving van de fietsenstalling', en: 'It describes the bicycle shed' },
+        { nl: 'Het vertelt wat er zondag gebeurde', en: 'It tells what happened on Sunday' },
+        { nl: 'Het is de bekentenis van de dader', en: 'It is the culprit’s confession' }
+      ], answer: 0,
+      explain: { nl: 'Daar verandert de vraag van "wie kwam binnen?" naar "wie wist waar de sleutel hing?": het scharnier van het verhaal.',
+                 en: 'There the question changes from "who got in?" to "who knew where the key was?": the hinge of the story.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de kern van wat Nour aan het eind zegt?',
+           en: 'What is the heart of what Nour says at the end?' },
+      options: [
+        { nl: 'Sporen die te perfect zijn, zijn juist verdacht', en: 'Traces that are too perfect are exactly the suspicious ones' },
+        { nl: 'Je moet altijd op sokken lopen', en: 'You should always walk in your socks' },
+        { nl: 'Een bakfiets is moeilijk te stelen', en: 'A cargo bike is hard to steal' },
+        { nl: 'Conciërges moeten beter opletten', en: 'Caretakers should pay better attention' }
+      ], answer: 0,
+      explain: { nl: '"Echte sporen zijn nooit zo netjes… Wie te goed zijn best doet, valt juist op."',
+                 en: '"Real traces are never that tidy… Try too hard and that is exactly what stands out."' } }
+  ]
+},
+
+{
+  id: 'mysterie-5', topic: 'mysterie', level: 5, emoji: '👁️', scene: 'night',
+  title: { nl: 'Hoe zeker is een ooggetuige?', en: 'How sure is an eyewitness?' },
+  text: {
+    nl: [
+      "Voor de rechtbank is er weinig zo overtuigend als iemand die opstaat en zegt: \"Ik heb het zelf gezien. Hij was het.\" Toch is juist dat bewijs kwetsbaarder dan het lijkt. In de Verenigde Staten zijn inmiddels honderden mensen vrijgelaten nadat DNA-onderzoek aantoonde dat ze onschuldig waren. In een groot deel van die zaken was een ooggetuige het belangrijkste bewijs geweest.",
+      "Dat komt doordat ons geheugen anders werkt dan we denken. Het is geen filmpje dat je terugspoelt. Elke keer dat je iets ophaalt, bouw je het opnieuw op uit stukjes, en bij dat bouwen sluipt er nieuwe informatie naar binnen: iets wat je las, iets wat iemand zei, een foto in de krant.",
+      "De Amerikaanse onderzoeker Elizabeth Loftus liet dat met een eenvoudige proef zien. Proefpersonen keken naar een filmpje van een aanrijding. Aan de ene groep vroeg ze: hoe hard reden de auto's toen ze elkaar raakten? Aan de andere: hoe hard reden ze toen ze op elkaar knalden? De tweede groep noemde hogere snelheden. Sterker nog: een week later dachten meer mensen uit die groep dat ze glas op straat hadden gezien. Er was helemaal geen glas.",
+      "Er speelt nog iets mee. Bij een overval kijken getuigen vaak naar het wapen in plaats van naar het gezicht. Onderzoekers noemen dat het wapenbrandpunt: hoe banger je bent, hoe smaller je blik wordt. Juist op het moment dat het ertoe doet, onthoud je dus minder van het gezicht.",
+      "Dat betekent niet dat getuigen liegen. Ze zijn meestal volkomen oprecht, en dat maakt het lastig: iemand kan zich met zijn hele hart iets herinneren dat niet gebeurd is. Zekerheid in de stem zegt weinig over juistheid in het geheugen.",
+      "Daarom is de manier waaróp je het vraagt veranderd. Een agent mag geen rij foto's meer laten zien terwijl hij zelf weet wie de verdachte is, want een klein knikje is al genoeg. Bij een moderne confrontatie ziet de getuige de personen één voor één, en de agent die het afneemt weet zelf niet wie de verdachte is. Ook wordt meteen gevraagd hoe zeker iemand is, vóór hij te horen krijgt of hij het goed had.",
+      "Ooggetuigen zijn dus niet waardeloos, maar breekbaar, ongeveer zoals een vingerafdruk in zand. Je kunt hem gebruiken, als je maar weet hoe makkelijk hij uitwist."
+    ],
+    en: [
+      "In court there is little as convincing as someone who stands up and says: \"I saw it myself. It was him.\" Yet that very evidence is more fragile than it looks. In the United States hundreds of people have now been freed after DNA testing showed they were innocent. In a large share of those cases an eyewitness had been the main evidence.",
+      "That is because our memory works differently from how we think. It is not a film you rewind. Every time you call something up, you rebuild it out of pieces, and while you build, new information creeps in: something you read, something somebody said, a photo in the paper.",
+      "The American researcher Elizabeth Loftus showed this with a simple experiment. Volunteers watched a film of a car crash. She asked one group: how fast were the cars going when they hit each other? The other group: how fast were they going when they smashed into each other? The second group named higher speeds. What is more, a week later more people in that group thought they had seen glass on the road. There had been no glass at all.",
+      "Something else plays a part too. During a robbery, witnesses often look at the weapon instead of the face. Researchers call that weapon focus: the more frightened you are, the narrower your view becomes. So exactly at the moment that matters, you remember less of the face.",
+      "That does not mean witnesses lie. They are usually completely sincere, and that is what makes it difficult: someone can remember with their whole heart something that never happened. Confidence in the voice says little about accuracy in the memory.",
+      "That is why the way of asking has changed. An officer may no longer show a row of photographs while knowing himself who the suspect is, because a small nod is enough. In a modern line-up the witness sees the people one by one, and the officer running it does not know who the suspect is either. The witness is also asked at once how sure they are, before hearing whether they were right.",
+      "So eyewitnesses are not worthless, but fragile, rather like a fingerprint in sand. You can use it, as long as you know how easily it rubs out."
+    ]
+  },
+  words: [
+    { nl: 'ooggetuige', en: 'eyewitness', defNl: 'iemand die iets met eigen ogen heeft zien gebeuren', defEn: 'someone who saw something happen with their own eyes' },
+    { nl: 'proefpersoon', en: 'volunteer, test subject', defNl: 'iemand die meedoet aan een onderzoek', defEn: 'someone who takes part in a study' },
+    { nl: 'confrontatie', en: 'line-up', defNl: 'het moment waarop een getuige moet aanwijzen wie het was', defEn: 'the moment a witness has to point out who it was' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat verschilde er tussen de twee vragen in het onderzoek van Loftus?',
+           en: 'What was different between the two questions in Loftus’s study?' },
+      options: [
+        { nl: 'Eén woord: "raakten" tegenover "knalden"', en: 'One word: "hit" versus "smashed"' },
+        { nl: 'De ene groep zag een ander filmpje', en: 'One group saw a different film' },
+        { nl: 'De ene groep kreeg de vraag een week later', en: 'One group got the question a week later' },
+        { nl: 'De ene groep mocht het filmpje twee keer zien', en: 'One group could watch the film twice' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: alleen het werkwoord verschilde, en dat veranderde de antwoorden.',
+                 en: 'Paragraph 3: only the verb differed, and that changed the answers.' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Wat bewijst het glas dat de tweede groep dacht te hebben gezien?',
+           en: 'What does the glass the second group thought they saw prove?' },
+      options: [
+        { nl: 'Dat een herinnering kan veranderen door hoe een vraag gesteld wordt',
+          en: 'That a memory can change because of how a question is asked' },
+        { nl: 'Dat de proefpersonen logen', en: 'That the volunteers were lying' },
+        { nl: 'Dat auto’s vaak glas verliezen', en: 'That cars often lose glass' },
+        { nl: 'Dat mensen slecht kunnen rekenen', en: 'That people are bad at sums' }
+      ], answer: 0,
+      explain: { nl: 'Er was geen glas. Toch "herinnerden" mensen het zich, doordat één woord hun beeld had bijgekleurd.',
+                 en: 'There was no glass, yet people "remembered" it because one word had coloured their picture.' } },
+    { id: 'q3', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.',
+           en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'De tweede groep noemde hogere snelheden.', en: 'The second group named higher speeds.', bin: 0 },
+        { nl: 'Ooggetuigen zijn breekbaar, als een vingerafdruk in zand.',
+          en: 'Eyewitnesses are fragile, like a fingerprint in sand.', bin: 1 },
+        { nl: 'Bij een moderne confrontatie ziet de getuige de personen één voor één.',
+          en: 'In a modern line-up the witness sees the people one by one.', bin: 0 },
+        { nl: 'Er is voor de rechtbank weinig zo overtuigend als een ooggetuige.',
+          en: 'In court there is little as convincing as an eyewitness.', bin: 1 }
+      ],
+      explain: { nl: 'Wat gemeten of geregeld is, is een feit. Een vergelijking ("als een vingerafdruk in zand") en het woord "overtuigend" zijn oordelen.',
+                 en: 'What is measured or regulated is a fact. A comparison and the word "convincing" are judgements.' } },
+    { id: 'q4', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'Wat is het "wapenbrandpunt"?', en: 'What is "weapon focus"?' },
+      options: [
+        { nl: 'Dat een bange getuige naar het wapen kijkt en daardoor het gezicht minder onthoudt',
+          en: 'That a frightened witness looks at the weapon and so remembers the face less' },
+        { nl: 'De plek waar een wapen gevonden wordt', en: 'The place where a weapon is found' },
+        { nl: 'Een brandplek op de plaats van een misdrijf', en: 'A burn mark at a crime scene' },
+        { nl: 'Het moment waarop een agent zijn wapen trekt', en: 'The moment an officer draws a weapon' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 legt het uit: hoe banger je bent, hoe smaller je blik wordt.',
+                 en: 'Paragraph 4 explains it: the more frightened you are, the narrower your view.' } },
+    { id: 'q5', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"...en dat maakt het lastig". Wat maakt het lastig?',
+           en: '"...and that is what makes it difficult". What makes it difficult?' },
+      options: [
+        { nl: 'Dat getuigen meestal volkomen oprecht zijn', en: 'That witnesses are usually completely sincere' },
+        { nl: 'Dat rechters snel beslissen', en: 'That judges decide quickly' },
+        { nl: 'Dat DNA-onderzoek duur is', en: 'That DNA testing is expensive' },
+        { nl: 'Dat er geen glas op straat lag', en: 'That there was no glass on the road' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor is: "Ze zijn meestal volkomen oprecht." Omdat ze niet liegen, is het moeilijk te merken dat ze zich vergissen.',
+                 en: 'The sentence before says they are usually completely sincere, which is why the mistake is hard to spot.' } },
+    { id: 'q6', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee dingen zijn er veranderd aan de manier van bevragen? Kies er 2.',
+           en: 'Which two things have changed about the way witnesses are questioned? Pick 2.' },
+      options: [
+        { nl: 'De agent die de confrontatie afneemt weet zelf niet wie de verdachte is',
+          en: 'The officer running the line-up does not know who the suspect is' },
+        { nl: 'Er wordt meteen gevraagd hoe zeker de getuige is', en: 'The witness is asked at once how sure they are' },
+        { nl: 'Getuigen mogen het filmpje twee keer zien', en: 'Witnesses may watch the film twice' },
+        { nl: 'Getuigen krijgen altijd eerst een foto in de krant te zien',
+          en: 'Witnesses are always shown a newspaper photo first' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 6 noemt precies deze twee maatregelen.',
+                 en: 'Paragraph 6 names exactly these two measures.' } },
+    { id: 'q7', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver met deze tekst bereiken?',
+           en: 'What does the writer want to achieve with this text?' },
+      options: [
+        { nl: 'Uitleggen waarom ooggetuigenbewijs voorzichtig gebruikt moet worden',
+          en: 'Explain why eyewitness evidence must be used carefully' },
+        { nl: 'Bewijzen dat ooggetuigen altijd liegen', en: 'Prove that eyewitnesses always lie' },
+        { nl: 'Reclame maken voor DNA-onderzoek', en: 'Advertise DNA testing' },
+        { nl: 'Een spannend misdaadverhaal vertellen', en: 'Tell an exciting crime story' }
+      ], answer: 0,
+      explain: { nl: 'De slotzin vat het doel samen: je kunt een ooggetuige gebruiken, als je maar weet hoe makkelijk hij uitwist.',
+                 en: 'The closing line sums up the purpose: you can use an eyewitness as long as you know how easily it rubs out.' } },
+    { id: 'q8', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom staat de vergelijking met een vingerafdruk in zand helemaal aan het eind?',
+           en: 'Why does the comparison with a fingerprint in sand come right at the end?' },
+      options: [
+        { nl: 'Het vat in één beeld samen wat de hele tekst heeft uitgelegd',
+          en: 'It sums up in one image what the whole text has explained' },
+        { nl: 'Het is een nieuw onderwerp dat de schrijver nog wilde noemen',
+          en: 'It is a new subject the writer still wanted to mention' },
+        { nl: 'Het is een voorbeeld van bewijs uit een rechtszaak', en: 'It is an example of evidence from a trial' },
+        { nl: 'Het hoort bij het onderzoek van Loftus', en: 'It belongs to Loftus’s study' }
+      ], answer: 0,
+      explain: { nl: 'Een slotbeeld pakt de kern van de tekst samen: bruikbaar maar breekbaar.',
+                 en: 'A closing image sums up the core: usable but fragile.' } },
+    { id: 'q9', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?',
+           en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Ons geheugen bouwt herinneringen telkens opnieuw op, waardoor oprechte getuigen zich kunnen vergissen; daarom is de manier van bevragen aangepast.',
+          en: 'Our memory rebuilds recollections each time, so sincere witnesses can be mistaken; that is why the way of questioning has been changed.' },
+        { nl: 'Elizabeth Loftus deed een onderzoek met filmpjes van aanrijdingen.',
+          en: 'Elizabeth Loftus did a study with films of car crashes.' },
+        { nl: 'In de Verenigde Staten wordt veel DNA-onderzoek gedaan.',
+          en: 'A lot of DNA testing is done in the United States.' },
+        { nl: 'Bange mensen kijken naar wapens.', en: 'Frightened people look at weapons.' }
+      ], answer: 0,
+      explain: { nl: 'Dat antwoord bevat het probleem, de oorzaak én de oplossing. De andere drie zijn losse alinea’s.',
+                 en: 'That answer contains the problem, the cause and the solution. The other three are single paragraphs.' } }
+  ]
+}
+]);

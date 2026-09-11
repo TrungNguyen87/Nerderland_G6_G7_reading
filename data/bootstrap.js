@@ -1,6 +1,6 @@
 /* =====================================================================
    Leeskampioen - data bootstrap
-   Loaded BEFORE any stories.*.js file.
+   Loaded BEFORE any stories.*.js or spelling.js file.
    Every topic file calls addStories([...]) to register its stories.
    ===================================================================== */
 
@@ -10,7 +10,7 @@ window.addStories = function (list) {
   list.forEach(function (s) { window.STORY_DB.push(s); });
 };
 
-/* The six worlds the child can choose from.
+/* The ten worlds the child can choose from.
    `hue` drives the colour theme of every card / screen for that world. */
 window.TOPICS = [
   { id: 'dieren',   emoji: '🦊', hue: 145, nl: 'Dieren & Natuur',      en: 'Animals & Nature',
@@ -24,31 +24,69 @@ window.TOPICS = [
   { id: 'techniek', emoji: '🔬', hue: 195, nl: 'Techniek & Ontdekking', en: 'Tech & Discovery',
     subNl: 'Uitvindingen, robots en experimenten', subEn: 'Inventions, robots and experiments' },
   { id: 'mysterie', emoji: '🔍', hue: 285, nl: 'Mysterie & Detective',  en: 'Mystery & Detective',
-    subNl: 'Raadsels oplossen en sporen volgen', subEn: 'Solving riddles and following clues' }
+    subNl: 'Raadsels oplossen en sporen volgen', subEn: 'Solving riddles and following clues' },
+  { id: 'eten',     emoji: '🥐', hue: 35,  nl: 'Eten & Koken',         en: 'Food & Cooking',
+    subNl: 'Brood, chocola en de bakkerij', subEn: 'Bread, chocolate and the bakery' },
+  { id: 'muziek',   emoji: '🎵', hue: 320, nl: 'Muziek & Kunst',       en: 'Music & Art',
+    subNl: 'Instrumenten, schilders en het theater', subEn: 'Instruments, painters and theatre' },
+  { id: 'wereld',   emoji: '🌍', hue: 175, nl: 'Wereld & Culturen',    en: 'World & Cultures',
+    subNl: 'Landen, talen en feesten ver weg', subEn: 'Countries, languages and faraway festivals' },
+  { id: 'lichaam',  emoji: '🫀', hue: 355, nl: 'Lichaam & Gezondheid', en: 'Body & Health',
+    subNl: 'Je hart, je hersenen en slapen', subEn: 'Your heart, your brain and sleeping' }
 ];
 
-/* Difficulty ladder. Stops at group 7 on purpose. */
+/* Difficulty ladder. Runs from halfway group 6 up to the end of group 7,
+   with a Cito-style top level for children who are ready for the test. */
 window.LEVELS = [
-  { level: 1, avi: 'AVI M6', nl: 'Startklaar',  en: 'Warm-up',    stars: '⭐',       hue: 145 },
-  { level: 2, avi: 'AVI E6', nl: 'Doorzetter',  en: 'Challenger', stars: '⭐⭐',     hue: 40 },
-  { level: 3, avi: 'AVI M7', nl: 'Kampioen',    en: 'Champion',   stars: '⭐⭐⭐',   hue: 350 }
+  { level: 1, avi: 'AVI M6',  nl: 'Startklaar',   en: 'Warm-up',     stars: '⭐',         hue: 145,
+    descNl: 'Korte zinnen, het antwoord staat in de tekst.',
+    descEn: 'Short sentences, the answer is in the text.' },
+  { level: 2, avi: 'AVI E6',  nl: 'Doorzetter',   en: 'Challenger',  stars: '⭐⭐',       hue: 40,
+    descNl: 'Iets langer, met vragen waarbij je moet nadenken.',
+    descEn: 'A bit longer, with questions that make you think.' },
+  { level: 3, avi: 'AVI M7',  nl: 'Kampioen',     en: 'Champion',    stars: '⭐⭐⭐',     hue: 350,
+    descNl: 'Meer alinea’s en vragen over de hoofdgedachte.',
+    descEn: 'More paragraphs and questions about the main idea.' },
+  { level: 4, avi: 'AVI E7',  nl: 'Expert',       en: 'Expert',      stars: '⭐⭐⭐⭐',   hue: 265,
+    descNl: 'Lange tekst met verwijswoorden en signaalwoorden.',
+    descEn: 'Long text with referring words and signal words.' },
+  { level: 5, avi: 'AVI Plus', nl: 'Cito-meester', en: 'Cito master', stars: '⭐⭐⭐⭐⭐', hue: 205,
+    descNl: 'Zoals de echte Cito-toets: feit of mening, doel van de schrijver.',
+    descEn: 'Like the real Cito test: fact or opinion, the writer’s purpose.' }
 ];
 
-/* Reading skills we measure, so the report shows WHAT to practise. */
+/* Reading skills we measure, so the report shows WHAT to practise.
+   The first five are the classics; the last five are the extra categories
+   that the Cito begrijpend-lezen toets keeps coming back to. */
 window.SKILLS = {
-  letterlijk:   { nl: 'Letterlijk lezen',   en: 'Literal reading',   emoji: '🔎',
-                  tipNl: 'Het antwoord staat gewoon in de tekst. Zoek het woord op.',
-                  tipEn: 'The answer is right there in the text. Find the word.' },
-  gevolgtrekking:{ nl: 'Conclusie trekken', en: 'Inference',         emoji: '🧠',
-                  tipNl: 'Het antwoord staat er niet letterlijk. Combineer twee zinnen.',
-                  tipEn: 'The answer is not written down. Combine two sentences.' },
-  woordenschat: { nl: 'Woordenschat',       en: 'Vocabulary',        emoji: '📖',
-                  tipNl: 'Kijk naar de zin eromheen om de betekenis te raden.',
-                  tipEn: 'Look at the sentence around it to guess the meaning.' },
-  volgorde:     { nl: 'Volgorde',           en: 'Sequencing',        emoji: '🔢',
-                  tipNl: 'Zoek woorden als eerst, daarna, toen en ten slotte.',
-                  tipEn: 'Look for words like first, then, next and finally.' },
-  hoofdgedachte:{ nl: 'Hoofdgedachte',      en: 'Main idea',         emoji: '💡',
-                  tipNl: 'Waar gaat het hele stuk over? Niet over een klein detail.',
-                  tipEn: 'What is the whole text about? Not one small detail.' }
+  letterlijk:    { nl: 'Letterlijk lezen',    en: 'Literal reading',   emoji: '🔎',
+                   tipNl: 'Het antwoord staat gewoon in de tekst. Zoek het woord op.',
+                   tipEn: 'The answer is right there in the text. Find the word.' },
+  gevolgtrekking:{ nl: 'Conclusie trekken',   en: 'Inference',         emoji: '🧠',
+                   tipNl: 'Het antwoord staat er niet letterlijk. Combineer twee zinnen.',
+                   tipEn: 'The answer is not written down. Combine two sentences.' },
+  woordenschat:  { nl: 'Woordenschat',        en: 'Vocabulary',        emoji: '📖',
+                   tipNl: 'Kijk naar de zin eromheen om de betekenis te raden.',
+                   tipEn: 'Look at the sentence around it to guess the meaning.' },
+  volgorde:      { nl: 'Volgorde',            en: 'Sequencing',        emoji: '🔢',
+                   tipNl: 'Zoek woorden als eerst, daarna, toen en ten slotte.',
+                   tipEn: 'Look for words like first, then, next and finally.' },
+  hoofdgedachte: { nl: 'Hoofdgedachte',       en: 'Main idea',         emoji: '💡',
+                   tipNl: 'Waar gaat het hele stuk over? Niet over een klein detail.',
+                   tipEn: 'What is the whole text about? Not one small detail.' },
+  verwijswoorden:{ nl: 'Verwijswoorden',      en: 'Referring words',   emoji: '🔗',
+                   tipNl: 'Woorden als hij, die, dat en daarom verwijzen terug. Lees de zin ervoor nog eens.',
+                   tipEn: 'Words like he, that and therefore point back. Read the sentence before it again.' },
+  structuur:     { nl: 'Tekststructuur',      en: 'Text structure',    emoji: '🧱',
+                   tipNl: 'Let op signaalwoorden: maar, omdat, daardoor, ten slotte. Die verraden hoe de tekst in elkaar zit.',
+                   tipEn: 'Watch the signal words: but, because, so, finally. They show how the text is built.' },
+  doel:          { nl: 'Doel van de schrijver', en: 'Author’s purpose', emoji: '🎯',
+                   tipNl: 'Wil de schrijver iets uitleggen, iets laten geloven, of je laten lachen?',
+                   tipEn: 'Does the writer want to explain, to convince, or to make you laugh?' },
+  feitmening:    { nl: 'Feit of mening',      en: 'Fact or opinion',   emoji: '⚖️',
+                   tipNl: 'Een feit kun je nameten of opzoeken. Een mening is wat iemand vindt.',
+                   tipEn: 'A fact can be measured or looked up. An opinion is what somebody thinks.' },
+  samenvatten:   { nl: 'Samenvatten',         en: 'Summarising',       emoji: '📝',
+                   tipNl: 'Zoek per alinea de belangrijkste zin. Die zin samen vormen de samenvatting.',
+                   tipEn: 'Find the most important sentence in each paragraph. Together they are the summary.' }
 };

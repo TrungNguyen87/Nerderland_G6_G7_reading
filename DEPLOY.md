@@ -133,6 +133,19 @@ Done. Refresh the site after a minute.
 > stays blank. Press **F12** in the browser; the *Console* tab tells you exactly
 > which line is wrong.
 
+**Safer: check before you publish.** If you have Node.js on your computer, run
+this in the project folder after editing:
+
+```bash
+node tools/validate.js
+```
+
+It reads every story and spelling exercise and tells you in plain words what is
+wrong — a missing English translation, an answer that points at an option that
+does not exist, a level with no story. It needs no installation. There is also
+`node tools/smoke.mjs`, which plays the whole game in a real browser; that one
+needs `npm install playwright` first.
+
 ---
 
 ## 📱 Putting it on the tablet as an "app"

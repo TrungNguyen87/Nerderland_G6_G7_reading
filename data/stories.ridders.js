@@ -221,3 +221,258 @@ addStories([
   ]
 }
 ]);
+
+/* --- Niveau 4 en 5: langere teksten met Cito-achtige vragen --- */
+addStories([
+{
+  id: 'ridders-4', topic: 'ridders', level: 4, emoji: '🐀', scene: 'castle',
+  title: { nl: 'Het jaar dat de klokken bleven luiden', en: 'The year the bells kept tolling' },
+  text: {
+    nl: [
+      "In het najaar van 1347 meerde een schip aan in de haven van Messina, op Sicilië. De meeste bemanningsleden waren dood of stervend. Wat er verder aan boord zat, zag niemand: vlooien, in de vacht van ratten, en in die vlooien een bacterie. Binnen vier jaar zou ongeveer een derde van alle Europeanen niet meer in leven zijn.",
+      "De ziekte kreeg later de naam de zwarte dood. Wie besmet raakte, kreeg koorts en dikke, pijnlijke bulten in de hals en de liezen. Vaak was iemand binnen een week dood. Omdat niemand wist waar het vandaan kwam, gingen de wildste verklaringen rond. Sommigen wezen naar de stand van de planeten, anderen naar slechte lucht, en in veel steden kregen onschuldige joodse inwoners de schuld, met vreselijke gevolgen.",
+      "Toch deden mensen ook dingen die achteraf slim blijken. In de havenstad Ragusa, het huidige Dubrovnik, moesten schepen uit besmette gebieden dertig dagen buiten de haven wachten. Later werd dat veertig dagen: quaranta giorni in het Italiaans. Van dat woord komt ons woord quarantaine.",
+      "De gevolgen waren enorm, en niet alleen verdrietig. Vóór de pest waren er veel meer boeren dan er werk was. Daarna waren er juist te weinig handen. Wie kon ploegen of metselen, kon opeens meer loon vragen, en durfde weg te lopen naar een heer die beter betaalde. Landheren probeerden dat met wetten te verbieden, maar de rekensom was sterker dan de wet.",
+      "Ook in de kunst is het te zien. Schilders gingen de dood afbeelden als een skelet dat met iedereen danst: de bedelaar, de bisschop en de koning door elkaar. Die dodendans zegt precies wat mensen toen voelden: de ziekte trok zich niets aan van rijkdom of rang.",
+      "Eeuwen later, in 1894, vond de Zwitsers-Franse arts Alexandre Yersin in Hongkong eindelijk de bacterie zelf. Pas toen werd duidelijk waarom quarantaine en het bestrijden van ratten hielpen. Mensen in de veertiende eeuw wisten dus niet wát ze bestreden. Ze zagen alleen dát het soms hielp, en dat was genoeg om het te blijven doen."
+    ],
+    en: [
+      "In the autumn of 1347 a ship tied up in the harbour of Messina, on Sicily. Most of the crew were dead or dying. What else was on board nobody saw: fleas, in the fur of rats, and inside those fleas a bacterium. Within four years about a third of all Europeans would no longer be alive.",
+      "The disease was later called the Black Death. Anyone infected got a fever and thick, painful lumps in the neck and the groin. Often a person was dead within a week. Because nobody knew where it came from, the wildest explanations went round. Some pointed at the position of the planets, others at bad air, and in many cities innocent Jewish inhabitants were blamed, with terrible consequences.",
+      "Yet people also did things that turn out to have been clever. In the port of Ragusa, today’s Dubrovnik, ships from infected areas had to wait outside the harbour for thirty days. Later that became forty days: quaranta giorni in Italian. From that word comes our word quarantine.",
+      "The consequences were enormous, and not only sad. Before the plague there were far more farm workers than there was work. Afterwards there were too few hands. Anyone who could plough or lay bricks could suddenly ask for more pay, and dared to walk off to a lord who paid better. Landowners tried to forbid that by law, but the sums were stronger than the law.",
+      "You can see it in art as well. Painters began to show death as a skeleton dancing with everybody: the beggar, the bishop and the king all mixed together. That dance of death says exactly what people felt at the time: the disease cared nothing for wealth or rank.",
+      "Centuries later, in 1894, the Swiss-French doctor Alexandre Yersin finally found the bacterium itself, in Hong Kong. Only then did it become clear why quarantine and fighting rats had helped. So people in the fourteenth century did not know what they were fighting. They only saw that it sometimes helped, and that was enough to keep doing it."
+    ]
+  },
+  words: [
+    { nl: 'bacterie', en: 'bacterium', defNl: 'een piepklein levend wezen dat je alleen met een microscoop ziet', defEn: 'a tiny living thing you can only see with a microscope' },
+    { nl: 'quarantaine', en: 'quarantine', defNl: 'een tijd apart blijven zodat je een ziekte niet doorgeeft', defEn: 'staying apart for a while so you do not pass on a disease' },
+    { nl: 'landheer', en: 'landowner, lord', defNl: 'de rijke eigenaar van het land waarop boeren werkten', defEn: 'the rich owner of the land the farm workers worked on' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat zat er volgens de tekst echt achter de ziekte?',
+           en: 'What was really behind the disease, according to the text?' },
+      options: [
+        { nl: 'Een bacterie in vlooien die op ratten leefden', en: 'A bacterium in fleas that lived on rats' },
+        { nl: 'De stand van de planeten', en: 'The position of the planets' },
+        { nl: 'Slechte lucht in de steden', en: 'Bad air in the cities' },
+        { nl: 'Vuil water in de haven', en: 'Dirty water in the harbour' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1 noemt de vlooien, de ratten en de bacterie. De planeten en de lucht waren verklaringen die mensen tóén bedachten.',
+                 en: 'Paragraph 1 names the fleas, the rats and the bacterium. The planets and the air were explanations people invented at the time.' } },
+    { id: 'q2', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'Waar komt het woord "quarantaine" vandaan?', en: 'Where does the word "quarantine" come from?' },
+      options: [
+        { nl: 'Van het Italiaanse "quaranta giorni", veertig dagen', en: 'From the Italian "quaranta giorni", forty days' },
+        { nl: 'Van de naam van de stad Ragusa', en: 'From the name of the city Ragusa' },
+        { nl: 'Van de arts Alexandre Yersin', en: 'From the doctor Alexandre Yersin' },
+        { nl: 'Van het Latijnse woord voor ziekte', en: 'From the Latin word for disease' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 legt dat precies uit: eerst dertig dagen, later veertig, quaranta giorni.',
+                 en: 'Paragraph 3 explains it: first thirty days, later forty, quaranta giorni.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom konden boeren na de pest meer loon vragen?',
+           en: 'Why could farm workers ask for more pay after the plague?' },
+      options: [
+        { nl: 'Omdat er veel minder werkers over waren dan er werk was',
+          en: 'Because far fewer workers were left than there was work' },
+        { nl: 'Omdat de landheren aardiger werden', en: 'Because the landowners became kinder' },
+        { nl: 'Omdat er een wet kwam die hogere lonen voorschreef', en: 'Because a law demanded higher wages' },
+        { nl: 'Omdat het land vruchtbaarder was geworden', en: 'Because the land had become more fertile' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: vóór de pest te veel boeren, daarna te weinig handen. Wie schaars is, kan meer vragen.',
+                 en: 'Paragraph 4: too many workers before, too few hands after. Whoever is scarce can ask for more.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Landheren probeerden dat met wetten te verbieden." Wat is "dat"?',
+           en: '"Landowners tried to forbid that by law." What is "that"?' },
+      options: [
+        { nl: 'Dat werkers meer loon vroegen en naar een andere heer vertrokken',
+          en: 'That workers asked for more pay and left for another lord' },
+        { nl: 'Dat schepen in quarantaine moesten', en: 'That ships had to go into quarantine' },
+        { nl: 'Dat schilders de dodendans schilderden', en: 'That painters painted the dance of death' },
+        { nl: 'Dat ratten de stad in kwamen', en: 'That rats came into the city' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over meer loon vragen en weglopen naar een heer die beter betaalde.',
+                 en: 'The sentence before is about asking more pay and walking off to a better-paying lord.' } },
+    { id: 'q5', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom schilderden kunstenaars de dood als een skelet dat met iedereen danst?',
+           en: 'Why did artists paint death as a skeleton dancing with everybody?' },
+      options: [
+        { nl: 'Om te laten zien dat de ziekte arm en rijk even hard trof',
+          en: 'To show that the disease struck rich and poor just as hard' },
+        { nl: 'Omdat er in die tijd veel gedanst werd op feesten', en: 'Because there was a lot of dancing at parties then' },
+        { nl: 'Omdat skeletten makkelijk te tekenen zijn', en: 'Because skeletons are easy to draw' },
+        { nl: 'Om de koning belachelijk te maken', en: 'To make fun of the king' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5 zegt het zelf: de ziekte trok zich niets aan van rijkdom of rang.',
+                 en: 'Paragraph 5 says it: the disease cared nothing for wealth or rank.' } },
+    { id: 'q6', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de gebeurtenissen op volgorde van tijd.', en: 'Put the events in order of time.' },
+      items: [
+        { nl: 'Een schip met zieke bemanning meert aan in Messina (1347).', en: 'A ship with a sick crew ties up in Messina (1347).' },
+        { nl: 'Ragusa laat schepen eerst dertig dagen buiten de haven wachten.', en: 'Ragusa makes ships wait outside the harbour for thirty days.' },
+        { nl: 'Er zijn zo weinig werkers dat de lonen stijgen.', en: 'There are so few workers that wages rise.' },
+        { nl: 'Alexandre Yersin vindt de bacterie in Hongkong (1894).', en: 'Alexandre Yersin finds the bacterium in Hong Kong (1894).' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst het schip, dan de quarantainemaatregel, daarna de gevolgen voor het werk, en pas eeuwen later de ontdekking.',
+                 en: 'First the ship, then the quarantine rule, then the effect on work, and only centuries later the discovery.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 3 begint met "Toch deden mensen ook dingen die achteraf slim blijken." Wat kondigt dat aan?',
+           en: 'Paragraph 3 begins "Yet people also did things that turn out to have been clever." What does that announce?' },
+      options: [
+        { nl: 'Een tegenstelling met de onzin en de schuldigen uit alinea 2',
+          en: 'A contrast with the nonsense and the blaming in paragraph 2' },
+        { nl: 'Een opsomming van alle steden met een haven', en: 'A list of all cities with a harbour' },
+        { nl: 'De oorzaak van de ziekte', en: 'The cause of the disease' },
+        { nl: 'Een samenvatting van de hele tekst', en: 'A summary of the whole text' }
+      ], answer: 0,
+      explain: { nl: 'Het signaalwoord "toch" zet iets goeds tegenover het slechte dat er net stond.',
+                 en: 'The signal word "yet" sets something good against the bad that came just before.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'De pest doodde een derde van Europa en veranderde daardoor werk, kunst en gezondheidszorg',
+          en: 'The plague killed a third of Europe and so changed work, art and health care' },
+        { nl: 'Ratten en vlooien zijn vieze dieren', en: 'Rats and fleas are dirty animals' },
+        { nl: 'Alexandre Yersin was een beroemde arts', en: 'Alexandre Yersin was a famous doctor' },
+        { nl: 'In Italië spreken ze een mooie taal', en: 'Italy has a beautiful language' }
+      ], answer: 0,
+      explain: { nl: 'De alinea’s gaan over de ziekte én over alles wat daarna veranderde. Dat samen is de kern.',
+                 en: 'The paragraphs are about the disease and about everything that changed afterwards.' } }
+  ]
+},
+
+{
+  id: 'ridders-5', topic: 'ridders', level: 5, emoji: '🗿', scene: 'harbour',
+  title: { nl: 'Twee verhalen bij één standbeeld', en: 'Two stories at one statue' },
+  text: {
+    nl: [
+      "Op het plein staat hij al sinds 1841: een man van brons, één hand aan zijn zwaard, de blik op zee. Jan Pieterszoon Coen, gouverneur-generaal van de Verenigde Oost-Indische Compagnie. Op de sokkel staat één zin over handel en roem. Over wat er in 1621 op de Banda-eilanden gebeurde, staat er niets.",
+      "Dat is wat de discussie zo taai maakt. Coen zorgde ervoor dat de VOC steenrijk werd. Hij stichtte de stad Batavia, nu Jakarta, en bouwde een netwerk van handelsposten dat eeuwen meeging. In de schoolboeken van honderd jaar geleden was hij daarom eenvoudigweg een held.",
+      "Maar dezelfde man liet op de Banda-eilanden een bevolking van ongeveer vijftienduizend mensen grotendeels uitmoorden of wegvoeren, omdat zij hun nootmuskaat ook aan anderen verkochten. Na afloop bleven er nog een paar honderd Bandanezen over. Dat is geen mening van vandaag: Coens eigen brieven en die van zijn bazen beschrijven het.",
+      "Wat doe je dan met zo'n beeld? Grofweg zijn er drie antwoorden. Weghalen, zeggen sommigen: een standbeeld is een eerbetoon, en dit verdient geen eer. Laten staan, zeggen anderen: geschiedenis wis je niet uit door brons om te trekken. En de derde groep kiest ervoor het beeld te laten staan én er een bord bij te zetten dat het hele verhaal vertelt.",
+      "In Hoorn is precies dat laatste gebeurd. Het beeld bleef, maar de tekst eronder werd veranderd. Daar staat nu ook dat Coen verantwoordelijk was voor de dood van duizenden Bandanezen. Het bord is klein, maar wie stilstaat, leest een ander verhaal dan zijn overgrootouders lazen.",
+      "Historici wijzen er graag op dat het beeld ons vooral iets vertelt over 1841, het jaar waarin het werd neergezet. Nederland zocht toen helden voor een jong koninkrijk. Elke generatie kiest wie ze op een sokkel zet, en die keuze zegt net zoveel over de kiezers als over de gekozene.",
+      "Misschien is dat de nuttigste manier om ernaar te kijken. Niet als een uitspraak over wie goed was, maar als een vraag die telkens opnieuw gesteld mag worden: wie willen wij eren, en waarom eigenlijk?"
+    ],
+    en: [
+      "He has stood on the square since 1841: a man of bronze, one hand on his sword, his eyes on the sea. Jan Pieterszoon Coen, governor-general of the Dutch East India Company. On the pedestal there is one sentence about trade and glory. About what happened on the Banda Islands in 1621 there is nothing.",
+      "That is what makes the argument so stubborn. Coen made the Company immensely rich. He founded the city of Batavia, now Jakarta, and built a network of trading posts that lasted for centuries. In the schoolbooks of a hundred years ago he was therefore simply a hero.",
+      "But the same man had a population of about fifteen thousand people on the Banda Islands largely killed or carried off, because they sold their nutmeg to others as well. Afterwards only a few hundred Bandanese were left. That is not a modern opinion: Coen’s own letters and those of his bosses describe it.",
+      "So what do you do with such a statue? Roughly speaking there are three answers. Take it away, some say: a statue is an honour, and this does not deserve honour. Leave it, say others: you do not erase history by pulling down bronze. And a third group chooses to leave the statue and put a sign beside it that tells the whole story.",
+      "In Hoorn exactly that last thing happened. The statue stayed, but the text underneath was changed. It now also says that Coen was responsible for the deaths of thousands of Bandanese. The sign is small, but anyone who stops to read gets a different story from the one their great-grandparents read.",
+      "Historians like to point out that the statue mainly tells us something about 1841, the year it was put up. The Netherlands was looking for heroes for a young kingdom then. Every generation chooses who it puts on a pedestal, and that choice says as much about the choosers as about the chosen.",
+      "Perhaps that is the most useful way to look at it. Not as a verdict on who was good, but as a question that may be asked again and again: who do we want to honour, and why exactly?"
+    ]
+  },
+  words: [
+    { nl: 'sokkel', en: 'pedestal', defNl: 'het stenen blok waarop een standbeeld staat', defEn: 'the stone block a statue stands on' },
+    { nl: 'eerbetoon', en: 'tribute, honour', defNl: 'iets wat je doet om iemand te eren', defEn: 'something you do to honour someone' },
+    { nl: 'generatie', en: 'generation', defNl: 'alle mensen die ongeveer in dezelfde tijd geboren zijn', defEn: 'all the people born at roughly the same time' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waarom liet Coen de bevolking van de Banda-eilanden aanvallen?',
+           en: 'Why did Coen have the population of the Banda Islands attacked?' },
+      options: [
+        { nl: 'Omdat zij hun nootmuskaat ook aan anderen verkochten', en: 'Because they sold their nutmeg to others as well' },
+        { nl: 'Omdat zij de stad Batavia hadden verwoest', en: 'Because they had destroyed the city of Batavia' },
+        { nl: 'Omdat zij hem geen standbeeld wilden geven', en: 'Because they refused him a statue' },
+        { nl: 'Omdat zij geen belasting betaalden aan de koning', en: 'Because they paid no tax to the king' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 noemt die reden letterlijk.', en: 'Paragraph 3 states that reason literally.' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.',
+           en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Het beeld staat er sinds 1841.', en: 'The statue has stood there since 1841.', bin: 0 },
+        { nl: 'Dit beeld verdient geen eer.', en: 'This statue does not deserve honour.', bin: 1 },
+        { nl: 'Coen stichtte de stad Batavia.', en: 'Coen founded the city of Batavia.', bin: 0 },
+        { nl: 'Geschiedenis wis je niet uit door brons om te trekken.',
+          en: 'You do not erase history by pulling down bronze.', bin: 1 }
+      ],
+      explain: { nl: 'Jaartallen en gebeurtenissen kun je opzoeken. De twee andere zinnen zijn standpunten uit de discussie.',
+                 en: 'Dates and events can be looked up. The other two sentences are positions in the argument.' } },
+    { id: 'q3', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke drie oplossingen voor het beeld noemt de tekst? Kies er 3.',
+           en: 'Which three solutions for the statue does the text name? Pick 3.' },
+      options: [
+        { nl: 'Het beeld weghalen', en: 'Take the statue away' },
+        { nl: 'Het beeld laten staan zoals het is', en: 'Leave the statue as it is' },
+        { nl: 'Het beeld laten staan met een bord dat het hele verhaal vertelt',
+          en: 'Leave the statue with a sign telling the whole story' },
+        { nl: 'Het beeld naar de Banda-eilanden verschepen', en: 'Ship the statue to the Banda Islands' }
+      ], answer: [0, 1, 2],
+      explain: { nl: 'Alinea 4 noemt precies deze drie antwoorden. Verschepen komt in de tekst niet voor.',
+                 en: 'Paragraph 4 names exactly these three answers. Shipping it away does not appear in the text.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"In Hoorn is precies dat laatste gebeurd." Wat is "dat laatste"?',
+           en: '"In Hoorn exactly that last thing happened." What is "that last thing"?' },
+      options: [
+        { nl: 'Het beeld laten staan en er een uitleggend bord bij zetten',
+          en: 'Leaving the statue and adding an explaining sign' },
+        { nl: 'Het beeld weghalen', en: 'Taking the statue away' },
+        { nl: 'Een nieuw beeld laten maken', en: 'Having a new statue made' },
+        { nl: 'De sokkel vervangen', en: 'Replacing the pedestal' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 noemt drie mogelijkheden; de laatste is beeld plus bord. Daar verwijst "dat laatste" naar.',
+                 en: 'Paragraph 4 names three options; the last is statue plus sign, which is what "that last thing" means.' } },
+    { id: 'q5', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom benadrukt de schrijver dat Coens eigen brieven de gebeurtenissen beschrijven?',
+           en: 'Why does the writer stress that Coen’s own letters describe the events?' },
+      options: [
+        { nl: 'Om te laten zien dat het om vaststaande feiten gaat, niet om een mening van nu',
+          en: 'To show these are established facts, not a present-day opinion' },
+        { nl: 'Omdat Coen mooi kon schrijven', en: 'Because Coen wrote beautifully' },
+        { nl: 'Omdat brieven in die tijd zeldzaam waren', en: 'Because letters were rare in those days' },
+        { nl: 'Om te bewijzen dat Coen spijt had', en: 'To prove that Coen was sorry' }
+      ], answer: 0,
+      explain: { nl: 'De tekst zegt het erbij: "Dat is geen mening van vandaag." De bron komt van Coen zelf.',
+                 en: 'The text says so: "That is not a modern opinion." The source is Coen himself.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 2 eindigt met "was hij daarom eenvoudigweg een held" en alinea 3 begint met "Maar". Waarom?',
+           en: 'Paragraph 2 ends "he was therefore simply a hero" and paragraph 3 starts with "But". Why?' },
+      options: [
+        { nl: 'De schrijver zet de twee kanten van dezelfde man bewust naast elkaar',
+          en: 'The writer deliberately places the two sides of the same man side by side' },
+        { nl: 'De schrijver wisselt van onderwerp naar de stad Hoorn', en: 'The writer changes the subject to the city of Hoorn' },
+        { nl: 'De schrijver geeft een voorbeeld van handelsposten', en: 'The writer gives an example of trading posts' },
+        { nl: 'De schrijver herhaalt wat er op de sokkel staat', en: 'The writer repeats what is on the pedestal' }
+      ], answer: 0,
+      explain: { nl: '"Maar dezelfde man…" is precies het scharnier van de tekst: dezelfde persoon, twee verhalen.',
+                 en: '"But the same man…" is the hinge of the text: one person, two stories.' } },
+    { id: 'q7', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver met deze tekst?', en: 'What does the writer want with this text?' },
+      options: [
+        { nl: 'Laten zien dat er meerdere manieren zijn om naar een standbeeld te kijken, en de lezer zelf laten nadenken',
+          en: 'Show that there are several ways of looking at a statue, and let the reader think for themselves' },
+        { nl: 'De lezer overhalen het beeld omver te trekken', en: 'Persuade the reader to pull the statue down' },
+        { nl: 'Reclame maken voor een bezoek aan Hoorn', en: 'Advertise a visit to Hoorn' },
+        { nl: 'Uitleggen hoe je een bronzen beeld maakt', en: 'Explain how a bronze statue is made' }
+      ], answer: 0,
+      explain: { nl: 'De laatste alinea eindigt met een open vraag: "wie willen wij eren, en waarom eigenlijk?"',
+                 en: 'The last paragraph ends with an open question: who do we want to honour, and why?' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste?', en: 'Which summary fits best?' },
+      options: [
+        { nl: 'Coen bracht de VOC rijkdom én liet duizenden Bandanezen doden; daarom wordt er gestreden over zijn beeld, en in Hoorn koos men voor een uitleggend bord.',
+          en: 'Coen brought the Company wealth and had thousands of Bandanese killed; that is why his statue is fought over, and Hoorn chose an explaining sign.' },
+        { nl: 'In 1841 werden er in Nederland veel standbeelden neergezet.',
+          en: 'In 1841 many statues were put up in the Netherlands.' },
+        { nl: 'Nootmuskaat was vroeger een heel duur kruid.', en: 'Nutmeg used to be a very expensive spice.' },
+        { nl: 'Historici zijn het nooit met elkaar eens.', en: 'Historians never agree with each other.' }
+      ], answer: 0,
+      explain: { nl: 'Die samenvatting pakt beide kanten, de discussie en de oplossing. De rest zijn losse details.',
+                 en: 'That summary covers both sides, the argument and the solution. The rest are single details.' } },
+    { id: 'q9', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens historici zegt het standbeeld ook iets over de mensen die het in 1841 neerzetten.',
+           en: 'According to historians the statue also says something about the people who put it up in 1841.' },
+      answer: true,
+      explain: { nl: 'Alinea 6: elke generatie kiest wie ze op een sokkel zet, en die keuze zegt net zoveel over de kiezers.',
+                 en: 'Paragraph 6: every generation chooses who it puts on a pedestal, and that choice says as much about the choosers.' } }
+  ]
+}
+]);
