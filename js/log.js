@@ -98,6 +98,48 @@ const Stats = (function () {
     };
   }
 
+  /* ---- spelling ---- */
+  function spellItems(events) {
+    return (events || Store.events).filter(function (e) { return e.t === 'spell_item'; });
+  }
+
+  function spellSummary(events) {
+    const a = spellItems(events);
+    const done = (events || Store.events).filter(function (e) { return e.t === 'spell_done'; });
+    const ok = a.filter(function (e) { return e.correct; }).length;
+    return {
+      words: a.length,
+      correct: ok,
+      accuracy: a.length ? Math.round(ok / a.length * 100) : 0,
+      sets: done.length
+    };
+  }
+
+  function spellByCat(events) {
+    const out = {};
+    (window.SPELL_CATS || []).forEach(function (c) { out[c.id] = { n: 0, ok: 0 }; });
+    spellItems(events).forEach(function (e) {
+      if (!out[e.cat]) out[e.cat] = { n: 0, ok: 0 };
+      out[e.cat].n++;
+      if (e.correct) out[e.cat].ok++;
+    });
+    return out;
+  }
+
+  /* de woorden die het vaakst fout gaan, zodat een ouder gericht kan oefenen */
+  function spellMistakes(events) {
+    const map = {};
+    spellItems(events).forEach(function (e) {
+      if (e.correct) return;
+      const k = e.word || '?';
+      if (!map[k]) map[k] = { word: k, n: 0, cat: e.cat, given: e.given };
+      map[k].n++;
+      map[k].given = e.given;
+    });
+    return Object.keys(map).map(function (k) { return map[k]; })
+      .sort(function (a, b) { return b.n - a.n; });
+  }
+
   function bySkill(events) {
     const out = {};
     Object.keys(window.SKILLS).forEach(function (k) { out[k] = { n: 0, ok: 0 }; });
@@ -164,6 +206,36 @@ const Stats = (function () {
         ? '🌱 Veel vragen gaan mis. Kies een niveau lager en lees het verhaal samen voor met de knop "Voorlezen".'
         : '🌱 Many questions go wrong. Pick a lower level and use the "Read aloud" button together.');
     }
+    /* spelling: noem de zwakste regel met de naam van die regel erbij */
+    const sp = spellSummary(events);
+    if (sp.words >= 6) {
+      const cats = spellByCat(events);
+      const weak = Object.keys(cats)
+        .filter(function (k) { return cats[k].n >= 3; })
+        .map(function (k) { return { k: k, pct: cats[k].ok / cats[k].n }; })
+        .sort(function (a, b) { return a.pct - b.pct; })[0];
+      if (weak && weak.pct < 0.8) {
+        const c = (window.SPELL_CATS || []).filter(function (x) { return x.id === weak.k; })[0];
+        const name = c ? (lang === 'nl' ? c.nl : c.en) : weak.k;
+        const emoji = c ? c.emoji : '✍️';
+        tips.push(lang === 'nl'
+          ? emoji + ' Spelling: <b>' + name + '</b> ligt op ' + Math.round(weak.pct * 100) +
+            '% goed. Laat hem die regel hardop opzeggen voordat hij het woord opschrijft.'
+          : emoji + ' Spelling: <b>' + name + '</b> is at ' + Math.round(weak.pct * 100) +
+            '% correct. Have him say the rule out loud before writing the word.');
+      }
+      const missed = spellMistakes(events).slice(0, 4).map(function (m) { return m.word; });
+      if (missed.length >= 3) {
+        tips.push(lang === 'nl'
+          ? '📝 Maak thuis een dictee van deze woorden: <b>' + missed.join(', ') + '</b>.'
+          : '📝 Make a home dictation of these words: <b>' + missed.join(', ') + '</b>.');
+      }
+    } else if (sp.words === 0 && sum.questions >= 10) {
+      tips.push(lang === 'nl'
+        ? '✍️ De spellingspellen zijn nog niet geprobeerd. Tik boven in het spel op "Spelling" — één oefening duurt maar een paar minuten.'
+        : '✍️ The spelling games have not been tried yet. Tap "Spelling" at the top — one exercise only takes a few minutes.');
+    }
+
     if (!tips.length) {
       tips.push(lang === 'nl'
         ? '👏 Er zijn nog geen zwakke plekken te zien. Blijf afwisselen tussen onderwerpen.'
@@ -172,7 +244,10 @@ const Stats = (function () {
     return tips;
   }
 
-  return { answers: answers, summary: summary, bySkill: bySkill, byTopicLevel: byTopicLevel, advice: advice };
+  return {
+    answers: answers, summary: summary, bySkill: bySkill, byTopicLevel: byTopicLevel, advice: advice,
+    spellItems: spellItems, spellSummary: spellSummary, spellByCat: spellByCat, spellMistakes: spellMistakes
+  };
 })();
 
 /* =====================================================================
@@ -244,6 +319,21 @@ const Exporter = (function () {
       ].map(esc).join(','));
     });
 
+    /* en de spellingoefeningen, één regel per woord */
+    rows.push('');
+    rows.push(['datum', 'tijd', 'sessie', 'spellingregel', 'niveau', 'oefening', 'soort',
+               'woord', 'antwoord_kind', 'goed', 'seconden'].join(','));
+    Store.events.forEach(function (e) {
+      if (e.t !== 'spell_item') return;
+      const d = new Date(e.ts);
+      rows.push([
+        d.toISOString().slice(0, 10), d.toTimeString().slice(0, 8), e.session || '',
+        e.cat || '', e.level || '', e.set || '', e.itype || '',
+        e.word || '', e.given || '', e.correct ? 1 : 0,
+        e.ms ? (e.ms / 1000).toFixed(1) : ''
+      ].map(esc).join(','));
+    });
+
     download('leeskampioen_' + stamp() + '.csv', '﻿' + rows.join('\n'), 'text/csv');
   }
 
@@ -255,6 +345,11 @@ const Exporter = (function () {
       summary: Stats.summary(),
       bySkill: Stats.bySkill(),
       byTopicLevel: Stats.byTopicLevel(),
+      spelling: {
+        summary: Stats.spellSummary(),
+        byCategory: Stats.spellByCat(),
+        mistakes: Stats.spellMistakes()
+      },
       events: Store.events
     };
     download('leeskampioen_' + stamp() + '.json', JSON.stringify(payload, null, 2), 'application/json');
@@ -296,6 +391,28 @@ const Exporter = (function () {
         '</td><td>' + r.ok + '/' + r.n + '</td><td>' + pct + '%</td></tr>';
     });
 
+    /* spelling per regel + de woorden die misgingen */
+    const sp = Stats.spellSummary();
+    const spCats = Stats.spellByCat();
+    let spellRows = '';
+    Object.keys(spCats).forEach(function (k) {
+      if (!spCats[k].n) return;
+      const c = (window.SPELL_CATS || []).filter(function (x) { return x.id === k; })[0];
+      const pct = Math.round(spCats[k].ok / spCats[k].n * 100);
+      const col = pct >= 80 ? '#22a86b' : pct >= 60 ? '#f0a500' : '#e4483f';
+      spellRows += '<tr><td>' + (c ? c.emoji + ' ' + (nl ? c.nl : c.en) : k) + '</td><td>' +
+        spCats[k].ok + '/' + spCats[k].n + '</td>' +
+        '<td><div style="background:#eee;border-radius:9px;height:14px;width:180px">' +
+        '<div style="background:' + col + ';width:' + pct + '%;height:100%;border-radius:9px"></div></div></td>' +
+        '<td><b style="color:' + col + '">' + pct + '%</b></td></tr>';
+    });
+    let missedRows = '';
+    Stats.spellMistakes().slice(0, 25).forEach(function (m) {
+      const c = (window.SPELL_CATS || []).filter(function (x) { return x.id === m.cat; })[0];
+      missedRows += '<tr><td style="color:#22a86b"><b>' + m.word + '</b></td><td style="color:#e4483f">' +
+        (m.given || '-') + '</td><td>' + (c ? (nl ? c.nl : c.en) : '') + '</td><td>' + m.n + '×</td></tr>';
+    });
+
     let wrongRows = '';
     Stats.answers().filter(function (e) { return !e.correct; }).slice(-25).reverse().forEach(function (e) {
       wrongRows += '<tr><td>' + new Date(e.ts).toLocaleDateString() + '</td><td>' + titleOf(e.story) +
@@ -329,6 +446,19 @@ const Exporter = (function () {
       '<h2>' + (nl ? 'Per onderwerp en niveau' : 'By topic and level') + '</h2><table><tr><th>' +
       (nl ? 'Onderwerp' : 'Topic') + '</th><th>' + (nl ? 'Niveau' : 'Level') + '</th><th>' +
       (nl ? 'Goed' : 'Correct') + '</th><th>%</th></tr>' + topicRows + '</table>' +
+      (sp.words
+        ? '<h2>' + (nl ? '✍️ Spelling per regel' : '✍️ Spelling by rule') + '</h2>' +
+          '<p>' + (nl ? 'In totaal ' : 'A total of ') + sp.words + (nl ? ' woorden geoefend, waarvan ' : ' words practised, of which ') +
+          sp.correct + (nl ? ' goed (' : ' correct (') + sp.accuracy + '%).</p>' +
+          '<table><tr><th>' + (nl ? 'Regel' : 'Rule') + '</th><th>' + (nl ? 'Goed' : 'Correct') +
+          '</th><th></th><th>%</th></tr>' + spellRows + '</table>' +
+          (missedRows
+            ? '<h2>' + (nl ? 'Woorden om thuis te dicteren' : 'Words to dictate at home') + '</h2>' +
+              '<table><tr><th>' + (nl ? 'Goed' : 'Correct') + '</th><th>' + (nl ? 'Schreef' : 'Wrote') +
+              '</th><th>' + (nl ? 'Regel' : 'Rule') + '</th><th>' + (nl ? 'Keer fout' : 'Times wrong') +
+              '</th></tr>' + missedRows + '</table>'
+            : '')
+        : '') +
       '<h2>' + (nl ? 'Laatste fouten om samen na te kijken' : 'Recent mistakes to review together') + '</h2>' +
       '<table><tr><th>' + (nl ? 'Datum' : 'Date') + '</th><th>' + (nl ? 'Verhaal' : 'Story') + '</th><th>' +
       (nl ? 'Vraag' : 'Question') + '</th><th>' + (nl ? 'Gaf' : 'Gave') + '</th><th>' + (nl ? 'Moest zijn' : 'Should be') +

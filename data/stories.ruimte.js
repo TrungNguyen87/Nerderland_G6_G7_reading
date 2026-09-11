@@ -213,3 +213,262 @@ addStories([
   ]
 }
 ]);
+
+/* --- Niveau 4 en 5: langere teksten met Cito-achtige vragen --- */
+addStories([
+{
+  id: 'ruimte-4', topic: 'ruimte', level: 4, emoji: '🛰️', scene: 'space',
+  title: { nl: 'De vuilnisbelt boven ons hoofd', en: 'The rubbish dump above our heads' },
+  text: {
+    nl: [
+      "Als je 's avonds omhoogkijkt, lijkt de ruimte leeg en rustig. Dat is hij niet. Op een paar honderd kilometer hoogte draaien duizenden satellieten om de aarde, en daartussen zwerven miljoenen stukjes afval: losgeraakte schroeven, verfschilfers, een verloren gereedschapstas en de resten van oude raketten.",
+      "Dat afval zou onschuldig klinken als het stil zou liggen. Maar in een baan om de aarde vliegt alles ongeveer acht kilometer per seconde. Dat is vijfentwintig keer zo snel als een verkeersvliegtuig. Bij die snelheid slaat een moertje van één centimeter in als een handgranaat.",
+      "In 2009 gebeurde waar experts al jaren bang voor waren. Een uitgeschakelde Russische satelliet botste boven Siberië frontaal op een werkende Amerikaanse satelliet. Binnen een seconde waren beide veranderd in een wolk van meer dan tweeduizend brokstukken. Die brokstukken draaien er nog altijd rond.",
+      "En dat is precies het probleem. Elke botsing maakt nieuwe brokstukken, en elk brokstuk kan weer botsen. De Amerikaan Donald Kessler beschreef dit al in 1978: als het te druk wordt, kan één botsing een kettingreactie starten. Uiteindelijk zou een schil van puin de ruimte zo gevaarlijk maken dat er geen raket meer doorheen kan.",
+      "Daarom wordt er nu opgeruimd. Europese ingenieurs testen een satelliet met vier armen, die een oud stuk raket vastgrijpt en er samen mee de dampkring in duikt, waar alles verbrandt. Anderen denken aan netten, harpoenen of een laser die puin vanaf de grond een zetje geeft, zodat het eerder naar beneden valt.",
+      "Opruimen alleen is niet genoeg. Er gaan nu ook regels gelden: wie een satelliet lanceert, moet hem binnen vijf jaar na afloop weer naar beneden halen. Dat kost brandstof en dus geld, en niet elk land houdt zich eraan. De ruimte heeft namelijk geen politie.",
+      "Toch is er hoop. Dezelfde mensen die de rommel hebben gemaakt, bouwen nu de opruimwagens. En anders dan bij een vuilnisbelt op aarde geldt hier: wie niets doet, raakt de hele ruimte kwijt."
+    ],
+    en: [
+      "When you look up in the evening, space looks empty and calm. It is not. A few hundred kilometres up, thousands of satellites circle the earth, and among them drift millions of pieces of rubbish: loose screws, flakes of paint, a lost tool bag and the remains of old rockets.",
+      "That rubbish would sound harmless if it lay still. But in orbit everything travels at about eight kilometres per second. That is twenty-five times faster than a passenger plane. At that speed a one-centimetre nut hits like a hand grenade.",
+      "In 2009 the thing experts had feared for years actually happened. A dead Russian satellite crashed head-on into a working American one above Siberia. Within a second both had turned into a cloud of more than two thousand fragments. Those fragments are still going round up there.",
+      "And that is exactly the problem. Every collision makes new fragments, and every fragment can collide again. The American Donald Kessler described this back in 1978: once it gets too crowded, one collision can start a chain reaction. In the end a shell of debris could make space so dangerous that no rocket could get through it.",
+      "So the clean-up has begun. European engineers are testing a satellite with four arms that grabs an old piece of rocket and dives with it into the atmosphere, where everything burns up. Others are thinking of nets, harpoons or a laser that nudges debris from the ground so that it falls down sooner.",
+      "Clearing up alone is not enough. There are rules now as well: anyone who launches a satellite has to bring it down within five years of the end of its life. That costs fuel and therefore money, and not every country obeys. Space, after all, has no police.",
+      "Yet there is hope. The same people who made the mess are now building the rubbish trucks. And unlike a dump on earth, here the rule is: do nothing, and you lose the whole of space."
+    ]
+  },
+  words: [
+    { nl: 'baan om de aarde', en: 'orbit', defNl: 'de vaste ronde weg die een satelliet om de aarde aflegt', defEn: 'the fixed circular path a satellite follows around the earth' },
+    { nl: 'kettingreactie', en: 'chain reaction', defNl: 'het ene gebeurt door het andere, steeds opnieuw en steeds sneller', defEn: 'one thing causes the next, again and again and faster and faster' },
+    { nl: 'dampkring', en: 'atmosphere', defNl: 'de laag lucht om de aarde heen', defEn: 'the layer of air around the earth' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe snel vliegt afval in een baan om de aarde?', en: 'How fast does rubbish travel in orbit?' },
+      options: [
+        { nl: 'Ongeveer acht kilometer per seconde', en: 'About eight kilometres per second' },
+        { nl: 'Ongeveer acht kilometer per uur', en: 'About eight kilometres per hour' },
+        { nl: 'Net zo snel als een verkeersvliegtuig', en: 'Just as fast as a passenger plane' },
+        { nl: 'Het ligt bijna stil', en: 'It lies almost still' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "vliegt alles ongeveer acht kilometer per seconde", vijfentwintig keer zo snel als een vliegtuig.',
+                 en: 'Paragraph 2: "everything travels at about eight kilometres per second", twenty-five times faster than a plane.' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom is een moertje van één centimeter in de ruimte zo gevaarlijk?',
+           en: 'Why is a one-centimetre nut so dangerous in space?' },
+      options: [
+        { nl: 'Door de enorme snelheid slaat het in als een handgranaat',
+          en: 'Because of the huge speed it hits like a hand grenade' },
+        { nl: 'Omdat het van ijzer is gemaakt', en: 'Because it is made of iron' },
+        { nl: 'Omdat er geen lucht is in de ruimte', en: 'Because there is no air in space' },
+        { nl: 'Omdat het heel zwaar is', en: 'Because it is very heavy' }
+      ], answer: 0,
+      explain: { nl: 'Niet het gewicht maar de snelheid maakt het gevaarlijk: dat staat letterlijk in alinea 2.',
+                 en: 'Not the weight but the speed makes it dangerous, as paragraph 2 says.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"En dat is precies het probleem." Waar verwijst "dat" naar?',
+           en: '"And that is exactly the problem." What does "that" refer to?' },
+      options: [
+        { nl: 'Dat de brokstukken van de botsing van 2009 er nog steeds rondzweven',
+          en: 'That the fragments from the 2009 crash are still up there' },
+        { nl: 'Dat satellieten duur zijn', en: 'That satellites are expensive' },
+        { nl: 'Dat de ruimte leeg lijkt als je omhoogkijkt', en: 'That space looks empty when you look up' },
+        { nl: 'Dat Europese ingenieurs een satelliet testen', en: 'That European engineers are testing a satellite' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor eindigt met: "Die brokstukken draaien er nog altijd rond." Daar verwijst "dat" naar.',
+                 en: 'The sentence before ends: "Those fragments are still going round up there." That is what "that" points to.' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een kettingreactie is ___.', en: 'A chain reaction is ___.' },
+      options: [
+        { nl: 'als het ene het volgende veroorzaakt, steeds opnieuw', en: 'when one thing causes the next, again and again' },
+        { nl: 'een botsing tussen twee satellieten', en: 'a crash between two satellites' },
+        { nl: 'een ketting die om de aarde ligt', en: 'a chain lying around the earth' },
+        { nl: 'het verbranden van afval in de dampkring', en: 'rubbish burning up in the atmosphere' }
+      ], answer: 0,
+      explain: { nl: 'Kessler bedoelde: elke botsing maakt brokstukken, die weer botsen, die weer brokstukken maken.',
+                 en: 'Kessler meant: every crash makes fragments, which crash again and make more fragments.' } },
+    { id: 'q5', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke drie manieren om puin op te ruimen noemt de tekst? Kies er 3.',
+           en: 'Which three ways of clearing up debris does the text name? Pick 3.' },
+      options: [
+        { nl: 'Een satelliet met armen die puin vastgrijpt', en: 'A satellite with arms that grabs debris' },
+        { nl: 'Netten en harpoenen', en: 'Nets and harpoons' },
+        { nl: 'Een laser die puin vanaf de grond een zetje geeft', en: 'A laser that nudges debris from the ground' },
+        { nl: 'Een grote stofzuiger aan een ruimtestation', en: 'A big vacuum cleaner on a space station' }
+      ], answer: [0, 1, 2],
+      explain: { nl: 'Alinea 5 noemt de grijparmen, de netten en harpoenen en de laser. Een stofzuiger komt in de tekst niet voor.',
+                 en: 'Paragraph 5 names the grabbing arms, the nets and harpoons and the laser. No vacuum cleaner appears in the text.' } },
+    { id: 'q6', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de gebeurtenissen uit de tekst in de goede volgorde.',
+           en: 'Put the events from the text in the right order.' },
+      items: [
+        { nl: 'Kessler waarschuwt in 1978 voor een kettingreactie.', en: 'In 1978 Kessler warns about a chain reaction.' },
+        { nl: 'In 2009 botsen twee satellieten boven Siberië.', en: 'In 2009 two satellites collide above Siberia.' },
+        { nl: 'Er ontstaat een wolk van meer dan tweeduizend brokstukken.', en: 'A cloud of more than two thousand fragments appears.' },
+        { nl: 'Ingenieurs beginnen opruimsatellieten te testen.', en: 'Engineers start testing clean-up satellites.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'De waarschuwing kwam in 1978, de botsing in 2009, daarna de brokstukken en pas daarna het opruimen.',
+                 en: 'The warning came in 1978, the crash in 2009, then the fragments and only then the clean-up.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom staat alinea 6 ("Opruimen alleen is niet genoeg") na alinea 5 over de opruimtechnieken?',
+           en: 'Why does paragraph 6 ("Clearing up alone is not enough") come after paragraph 5 about clean-up techniques?' },
+      options: [
+        { nl: 'Omdat de schrijver eerst de oplossing laat zien en dan waarom die nog niet genoeg is',
+          en: 'Because the writer first shows the solution and then why it is not enough yet' },
+        { nl: 'Omdat alinea 6 het verhaal van 2009 herhaalt', en: 'Because paragraph 6 repeats the story of 2009' },
+        { nl: 'Omdat de alinea’s per jaartal op volgorde staan', en: 'Because the paragraphs are ordered by year' },
+        { nl: 'Omdat de schrijver een grap wil maken', en: 'Because the writer wants to make a joke' }
+      ], answer: 0,
+      explain: { nl: 'De tekst bouwt op: probleem, gevolg, oplossing, en dan de beperking van die oplossing ("niet genoeg", "geen politie").',
+                 en: 'The text builds up: problem, consequence, solution, and then the limits of that solution.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Ruimteafval wordt zo gevaarlijk dat we het moeten opruimen én nieuwe rommel moeten voorkomen',
+          en: 'Space junk is getting so dangerous that we must clear it up and stop making more' },
+        { nl: 'In 2009 botsten twee satellieten boven Siberië', en: 'In 2009 two satellites collided above Siberia' },
+        { nl: 'Satellieten vliegen sneller dan vliegtuigen', en: 'Satellites fly faster than planes' },
+        { nl: 'Donald Kessler was een slimme Amerikaan', en: 'Donald Kessler was a clever American' }
+      ], answer: 0,
+      explain: { nl: 'Alle alinea’s samen gaan over het probleem én over wat eraan gedaan wordt. De rest zijn losse details.',
+                 en: 'All the paragraphs together are about the problem and what is being done. The rest are single details.' } }
+  ]
+},
+
+{
+  id: 'ruimte-5', topic: 'ruimte', level: 5, emoji: '🌕', scene: 'space',
+  title: { nl: 'Van wie is de maan?', en: 'Who owns the moon?' },
+  text: {
+    nl: [
+      "In 1967 tekenden landen een verdrag over de ruimte. De afspraak was kort en duidelijk: geen enkel land mag de maan of een planeet zijn eigendom noemen. De ruimte is van iedereen, stond erin, en moet gebruikt worden ten voordele van alle mensen.",
+      "Toen dat verdrag werd ondertekend, was er nog geen mens op de maan geweest. Niemand dacht aan zakelijke plannen. Dat is nu anders. Op de bodem van donkere kraters bij de zuidpool ligt bevroren water. Uit water kun je drinken maken, maar ook zuurstof en raketbrandstof. Wie daar als eerste een installatie neerzet, hoeft die brandstof niet meer duur vanaf de aarde omhoog te vliegen.",
+      "Bovendien zit er in het maanstof helium-3, een stof die op aarde bijna niet voorkomt. Sommige onderzoekers denken dat je er ooit schone energie mee kunt maken. Anderen vinden dat een luchtkasteel: de techniek daarvoor bestaat nog niet eens.",
+      "Het verdrag van 1967 verbiedt landen om de maan te bezitten. Maar over bedrijven zegt het bijna niets. Daar maken sommige landen gebruik van. De Verenigde Staten en Luxemburg hebben wetten gemaakt waarin staat dat een bedrijf mag houden wat het in de ruimte opgraaft. Volgens hen is dat hetzelfde als vissen in een zee die van niemand is.",
+      "Andere landen zijn boos. Zij zeggen: een zee kun je niet leegvissen zonder afspraken, en met de maan is het net zo. Als een handvol rijke landen daar het beste plekje inneemt, blijft er voor de rest weinig over. En juist die zuidpoolkraters met ijs zijn er maar een paar.",
+      "Er is nog een reden voor haast. Een landing wervelt maanstof op dat, doordat er geen lucht is, kilometers ver wegschiet. Dat stof is scherp als glas. Het kan de spiegels van telescopen en de panelen van andere bases beschadigen. Wie het eerst bouwt, bepaalt dus ook een beetje wat de buren nog kunnen doen.",
+      "Intussen praten diplomaten verder. Ze proberen regels te maken voordat de eerste graafmachine landt, en niet erna. Want dat is het lastige aan de ruimte: als je te laat bent met afspreken, zijn de feiten al geschapen."
+    ],
+    en: [
+      "In 1967 countries signed a treaty about space. The agreement was short and clear: no country may call the moon or a planet its property. Space belongs to everyone, it said, and must be used for the benefit of all people.",
+      "When the treaty was signed, no human had yet walked on the moon. Nobody was thinking about business plans. That is different now. On the floor of dark craters near the south pole there is frozen water. From water you can make drinking water, but also oxygen and rocket fuel. Whoever sets up a plant there first no longer has to fly that fuel up from earth at great cost.",
+      "On top of that, moon dust contains helium-3, a substance that is almost absent on earth. Some researchers think it could one day be used to make clean energy. Others call that a castle in the air: the technology for it does not even exist yet.",
+      "The 1967 treaty forbids countries to own the moon. But about companies it says almost nothing. Some countries are making use of that. The United States and Luxembourg have passed laws saying that a company may keep what it digs up in space. According to them that is the same as fishing in a sea that belongs to nobody.",
+      "Other countries are angry. They say: you cannot empty a sea of fish without agreements, and the moon is just the same. If a handful of rich countries take the best spot, little is left for the rest. And there are only a few of those south pole craters with ice.",
+      "There is another reason to hurry. A landing whips up moon dust which, because there is no air, shoots kilometres away. That dust is as sharp as glass. It can damage the mirrors of telescopes and the panels of other bases. So whoever builds first also decides a little of what the neighbours can still do.",
+      "Meanwhile the diplomats keep talking. They are trying to make rules before the first digging machine lands, and not afterwards. Because that is the tricky thing about space: if you agree too late, the facts are already on the ground."
+    ]
+  },
+  words: [
+    { nl: 'verdrag', en: 'treaty', defNl: 'een afspraak op papier tussen landen', defEn: 'a written agreement between countries' },
+    { nl: 'luchtkasteel', en: 'castle in the air', defNl: 'een mooi plan dat waarschijnlijk nooit uitkomt', defEn: 'a fine plan that will probably never happen' },
+    { nl: 'diplomaten', en: 'diplomats', defNl: 'mensen die namens hun land met andere landen onderhandelen', defEn: 'people who negotiate with other countries on behalf of their own' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat spraken landen in 1967 af over de maan?', en: 'What did countries agree about the moon in 1967?' },
+      options: [
+        { nl: 'Geen enkel land mag de maan zijn eigendom noemen', en: 'No country may call the moon its property' },
+        { nl: 'Alleen de Verenigde Staten mogen er landen', en: 'Only the United States may land there' },
+        { nl: 'Bedrijven mogen er niets opgraven', en: 'Companies may not dig anything up there' },
+        { nl: 'De maan wordt in stukken verdeeld', en: 'The moon is divided into pieces' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1 zegt het letterlijk: geen land mag de maan of een planeet zijn eigendom noemen.',
+                 en: 'Paragraph 1 says it literally: no country may call the moon or a planet its property.' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom is bevroren water op de maan zo waardevol?',
+           en: 'Why is frozen water on the moon so valuable?' },
+      options: [
+        { nl: 'Je kunt er drinken, zuurstof én raketbrandstof van maken', en: 'You can make drinking water, oxygen and rocket fuel from it' },
+        { nl: 'Het is mooi om naar te kijken', en: 'It is beautiful to look at' },
+        { nl: 'Het bevat helium-3', en: 'It contains helium-3' },
+        { nl: 'Het beschermt tegen scherp maanstof', en: 'It protects against sharp moon dust' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 noemt alle drie. Helium-3 zit in het stof, niet in het ijs.',
+                 en: 'Paragraph 2 names all three. Helium-3 is in the dust, not in the ice.' } },
+    { id: 'q3', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.',
+           en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'In 1967 tekenden landen een verdrag over de ruimte.',
+          en: 'In 1967 countries signed a treaty about space.', bin: 0 },
+        { nl: 'Helium-3 op de maan is een luchtkasteel.', en: 'Helium-3 on the moon is a castle in the air.', bin: 1 },
+        { nl: 'Er ligt bevroren water in kraters bij de zuidpool.',
+          en: 'There is frozen water in craters near the south pole.', bin: 0 },
+        { nl: 'Rijke landen mogen het beste plekje niet inpikken.',
+          en: 'Rich countries should not grab the best spot.', bin: 1 }
+      ],
+      explain: { nl: 'Jaartallen en metingen zijn feiten. "Luchtkasteel" en "mogen niet" zijn oordelen van mensen: dat zijn meningen.',
+                 en: 'Dates and measurements are facts. "Castle in the air" and "should not" are judgements: opinions.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Daar maken sommige landen gebruik van." Waarvan maken die landen gebruik?',
+           en: '"Some countries are making use of that." Of what?' },
+      options: [
+        { nl: 'Dat het verdrag bijna niets zegt over bedrijven',
+          en: 'That the treaty says almost nothing about companies' },
+        { nl: 'Dat er ijs ligt in de zuidpoolkraters', en: 'That there is ice in the south pole craters' },
+        { nl: 'Dat maanstof scherp is als glas', en: 'That moon dust is as sharp as glass' },
+        { nl: 'Dat diplomaten nog aan het praten zijn', en: 'That diplomats are still talking' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor is: "Maar over bedrijven zegt het bijna niets." Dat gat gebruiken die landen.',
+                 en: 'The sentence before is: "But about companies it says almost nothing." That gap is what they use.' } },
+    { id: 'q5', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat is het doel van de schrijver met deze tekst?',
+           en: 'What is the writer’s purpose with this text?' },
+      options: [
+        { nl: 'Uitleggen waarom er ruzie dreigt over de maan, en beide kanten laten horen',
+          en: 'Explain why a quarrel over the moon is brewing, and let both sides be heard' },
+        { nl: 'Reclame maken voor een reis naar de maan', en: 'Advertise a trip to the moon' },
+        { nl: 'Bewijzen dat het verdrag van 1967 nutteloos was', en: 'Prove that the 1967 treaty was useless' },
+        { nl: 'Vertellen hoe je raketbrandstof maakt', en: 'Explain how to make rocket fuel' }
+      ], answer: 0,
+      explain: { nl: 'De schrijver geeft eerst de landen die wetten maken het woord, dan de boze landen, en eindigt bij de diplomaten. Dat is uitleggen, niet overtuigen.',
+                 en: 'The writer gives a voice to the countries making laws, then to the angry countries, and ends with the diplomats. That is explaining, not persuading.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Met welke vergelijking maken de voorstanders hun standpunt duidelijk?',
+           en: 'Which comparison do the supporters use to make their point?' },
+      options: [
+        { nl: 'Met vissen in een zee die van niemand is', en: 'With fishing in a sea that belongs to nobody' },
+        { nl: 'Met een vuilnisbelt', en: 'With a rubbish dump' },
+        { nl: 'Met een kasteel in de lucht', en: 'With a castle in the air' },
+        { nl: 'Met glas dat kapotgaat', en: 'With glass that breaks' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: opgraven in de ruimte zou hetzelfde zijn als vissen in een zee die van niemand is. In alinea 5 draaien de tegenstanders die vergelijking om.',
+                 en: 'Paragraph 4 uses the fishing comparison; in paragraph 5 the opponents turn it round.' } },
+    { id: 'q7', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee redenen noemt de tekst waarom haast geboden is? Kies er 2.',
+           en: 'Which two reasons does the text give for hurrying? Pick 2.' },
+      options: [
+        { nl: 'Er zijn maar een paar kraters met ijs', en: 'There are only a few craters with ice' },
+        { nl: 'Wie het eerst bouwt, beperkt met opgewerveld stof wat de buren nog kunnen',
+          en: 'Whoever builds first limits what the neighbours can do, because of the dust thrown up' },
+        { nl: 'Het verdrag van 1967 loopt binnenkort af', en: 'The 1967 treaty expires soon' },
+        { nl: 'Helium-3 raakt op de maan bijna op', en: 'Helium-3 is almost running out on the moon' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 noemt de schaarse ijskraters, alinea 6 het scherpe stof. Over aflopen of opraken staat niets in de tekst.',
+                 en: 'Paragraph 5 names the scarce ice craters, paragraph 6 the sharp dust. Nothing in the text says the treaty expires or the helium runs out.' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?',
+           en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Een oud verdrag verbiedt landen de maan te bezitten, maar nu er iets te halen valt zoeken bedrijven en landen de mazen op, en dat moet met nieuwe regels opgelost worden.',
+          en: 'An old treaty stops countries owning the moon, but now that there is something to gain, companies and countries look for loopholes, which new rules must solve.' },
+        { nl: 'Op de maan ligt ijs in kraters bij de zuidpool.', en: 'There is ice in craters near the moon’s south pole.' },
+        { nl: 'Maanstof is scherp als glas en beschadigt telescopen.',
+          en: 'Moon dust is as sharp as glass and damages telescopes.' },
+        { nl: 'Luxemburg is een klein land met bijzondere wetten.',
+          en: 'Luxembourg is a small country with unusual laws.' }
+      ], answer: 0,
+      explain: { nl: 'De kern van alle alinea’s samen: oud verdrag, nieuwe waarde, mazen in de regels, ruzie en nieuwe afspraken.',
+                 en: 'The core of all the paragraphs: old treaty, new value, loopholes, quarrel and new agreements.' } },
+    { id: 'q9', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Volgens de tekst was er in 1967 al een mens op de maan geweest.',
+           en: 'According to the text, a human had already walked on the moon in 1967.' },
+      answer: false,
+      explain: { nl: 'Alinea 2 begint juist met: "Toen dat verdrag werd ondertekend, was er nog geen mens op de maan geweest."',
+                 en: 'Paragraph 2 begins: "When the treaty was signed, no human had yet walked on the moon."' } }
+  ]
+}
+]);
