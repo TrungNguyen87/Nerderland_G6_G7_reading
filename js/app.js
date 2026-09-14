@@ -58,7 +58,8 @@ function init() {
   bindGlobal();
   restorePlayer();
   applyLang();
-  FX.setShapes(SCENE_EMOJI.default);
+  setHue(defaultHue(), 'default');
+  updateHUD();
   Store.log('session_start', { session: S.sessionId, lang: window.LANG });
   startTicker();
 }
@@ -72,10 +73,19 @@ function restorePlayer() {
   selectAvatar(p.avatar || '🦸');
 }
 
+/* de vaste avatars plus de iconen/personages die in de winkel gekocht zijn */
+function avatarPool() {
+  const owned = Store.player.owned || {};
+  const bought = (window.SHOP_ITEMS || [])
+    .filter(function (it) { return (it.kind === 'icon' || it.kind === 'character') && (owned[it.kind] || []).indexOf(it.id) !== -1; })
+    .map(function (it) { return it.emoji; });
+  return AVATARS.concat(bought.filter(function (e) { return AVATARS.indexOf(e) === -1; }));
+}
+
 function buildAvatars() {
   const box = $('avatar-picker');
   box.innerHTML = '';
-  AVATARS.forEach(function (a) {
+  avatarPool().forEach(function (a) {
     const b = document.createElement('button');
     b.className = 'avatar-opt';
     b.textContent = a;
@@ -83,6 +93,7 @@ function buildAvatars() {
     b.addEventListener('click', function () { selectAvatar(a); Sound.click(); });
     box.appendChild(b);
   });
+  $$('.avatar-opt').forEach(function (b) { b.classList.toggle('sel', b.dataset.avatar === Store.player.avatar); });
 }
 function selectAvatar(a) {
   Store.player.avatar = a;
@@ -148,10 +159,17 @@ function setHue(hue, scene) {
   FX.setShapes(SCENE_EMOJI[scene] || SCENE_EMOJI.default);
 }
 
+/* de speler kan in de winkel een eigen kleurenthema vrijspelen; zonder
+   thema blijft het de standaardkleur van het spel */
+function defaultHue() {
+  const p = Store.player;
+  return (p && typeof p.theme === 'number') ? p.theme : 255;
+}
+
 function bindGlobal() {
   $('btn-start').addEventListener('click', startGame);
   $('input-name').addEventListener('keydown', function (e) { if (e.key === 'Enter') startGame(); });
-  $('btn-home').addEventListener('click', function () { Sound.click(); setHue(255, 'default'); renderWorlds(); show('worlds'); });
+  $('btn-home').addEventListener('click', function () { Sound.click(); setHue(defaultHue(), 'default'); renderWorlds(); show('worlds'); });
   $('btn-lang').addEventListener('click', toggleLang);
   $('btn-sound').addEventListener('click', function () {
     Sound.setOn(!Sound.isOn());
@@ -162,13 +180,19 @@ function bindGlobal() {
     b.addEventListener('click', function () { Sound.click(); setMode(b.dataset.mode); });
   });
 
+  /* winkel */
+  $('btn-shop').addEventListener('click', openShop);
+  $$('.shop-tab').forEach(function (b) {
+    b.addEventListener('click', function () { Sound.click(); setShopKind(b.dataset.kind); });
+  });
+
   $$('[data-back]').forEach(function (b) {
     b.addEventListener('click', function () {
       Sound.click();
       const to = b.dataset.back;
-      if (to === 'worlds') { setHue(255, 'default'); renderWorlds(); show('worlds'); }
+      if (to === 'worlds') { setHue(defaultHue(), 'default'); renderWorlds(); show('worlds'); }
       else if (to === 'levels') { renderLevels(); show('levels'); }
-      else if (to === 'spell-cats') { setHue(255, 'default'); S.mode = 'spell'; renderWorlds(); show('worlds'); }
+      else if (to === 'spell-cats') { setHue(defaultHue(), 'default'); S.mode = 'spell'; renderWorlds(); show('worlds'); }
       else if (to === 'spell-sets') { Spell.renderSets(); show('spell-sets'); }
     });
   });
@@ -185,6 +209,7 @@ function bindGlobal() {
   $('btn-check').addEventListener('click', checkAnswer);
   $('btn-next').addEventListener('click', nextQuestion);
   $('btn-hint').addEventListener('click', useHint);
+  $('btn-joker').addEventListener('click', useJoker);
   $('btn-peek').addEventListener('click', togglePeek);
   $('btn-peek-close').addEventListener('click', togglePeek);
 
@@ -223,7 +248,7 @@ function startGame() {
   Store.save();
   Sound.click();
   updateHUD();
-  setHue(255, 'default');
+  setHue(defaultHue(), 'default');
   renderWorlds();
   show('worlds');
 }
@@ -243,6 +268,7 @@ function toggleLang() {
   else if (S.screen === 'spell-sets') Spell.renderSets();
   else if (S.screen === 'spell') Spell.renderItem();
   else if (S.screen === 'spell-result') Spell.renderResult();
+  else if (S.screen === 'shop') renderShop();
 }
 
 function applyLang() {
@@ -268,6 +294,7 @@ function updateHUD() {
   $('hud-xp-fill').style.width = (into / XP_PER_LEVEL * 100) + '%';
   $('streak-n').textContent = S.streak;
   $('hud-streak').classList.toggle('on', S.streak >= 3);
+  $('hud-coins').textContent = p.coins || 0;
 }
 
 function addXP(n) {
@@ -276,6 +303,7 @@ function addXP(n) {
   p.xp += n;
   const after = 1 + Math.floor(p.xp / XP_PER_LEVEL);
   p.level = after;
+  if (n > 0) addCoins(Math.max(1, Math.round(n / 5)));
   updateHUD();
   Store.save();
   if (after > before) {
@@ -284,11 +312,20 @@ function addXP(n) {
   }
 }
 
+/* de munten van de winkel: een vaste breuk van elke verdiende XP */
+function addCoins(n) {
+  if (!n) return;
+  const p = Store.player;
+  p.coins = (p.coins || 0) + n;
+}
+
 function awardBadge(id) {
   const p = Store.player;
   if (!p.badges) p.badges = [];
   if (p.badges.indexOf(id) !== -1) return null;
   p.badges.push(id);
+  addCoins(20);
+  updateHUD();
   Store.save();
   Store.log('badge', { badge: id });
   return BADGES.filter(function (b) { return b.id === id; })[0];
@@ -381,8 +418,24 @@ function renderWorlds() {
   });
 
   renderBadgeShelf();
+  renderStickerShelf();
   setMode(S.mode || 'read');
   updateHUD();
+}
+
+/* de stickers die uit de winkel gekocht zijn, als plankje net als de badges */
+function renderStickerShelf() {
+  const shelf = $('sticker-shelf');
+  shelf.innerHTML = '';
+  const owned = (Store.player.owned || {}).sticker || [];
+  (window.SHOP_ITEMS || []).filter(function (it) { return it.kind === 'sticker' && owned.indexOf(it.id) !== -1; })
+    .forEach(function (it) {
+      const d = document.createElement('div');
+      d.className = 'badge';
+      d.title = L(it);
+      d.innerHTML = '<b>' + it.emoji + '</b> ' + L(it);
+      shelf.appendChild(d);
+    });
 }
 
 function renderBadgeShelf() {
@@ -464,6 +517,7 @@ function openStory(story) {
   S.peeked = false;
   S.readStart = Date.now();
   S.storyStart = Date.now();
+  S.coinsBefore = Store.player.coins || 0;
 
   const tp = window.TOPICS.filter(function (x) { return x.id === story.topic; })[0];
   setHue(tp ? tp.hue : 255, story.scene);
@@ -699,6 +753,7 @@ function renderQuestion() {
   S.matchWrong = 0;
   S.checked = false;
   S.hintUsed = false;
+  S.jokerUsed = false;
   S.qStart = Date.now();
 
   renderProgress();
@@ -712,6 +767,8 @@ function renderQuestion() {
   $('btn-check').classList.remove('hidden');
   $('btn-next').classList.add('hidden');
   $('btn-hint').classList.toggle('hidden', q.type === 'match');
+  $('btn-joker').classList.toggle('hidden',
+    ['mc', 'gap', 'tf', 'multi'].indexOf(q.type) === -1 || !((Store.player.tools || {}).jokers > 0));
   $('btn-check').textContent = t('check');
   $('btn-next').textContent = (S.qi === S.story.questions.length - 1) ? t('finishStory') : t('next');
 
@@ -1109,7 +1166,7 @@ function isCorrect(q, val) {
 function reRenderQuestion() {
   const q = currentQ();
   const keep = {
-    checked: S.checked, selected: S.selected, hintUsed: S.hintUsed, qStart: S.qStart,
+    checked: S.checked, selected: S.selected, hintUsed: S.hintUsed, jokerUsed: S.jokerUsed, qStart: S.qStart,
     orderPick: S.orderPick.slice(), multiPick: S.multiPick.slice(),
     sortPick: S.sortPick ? S.sortPick.slice() : null,
     matchWrong: S.matchWrong, matchLeftDone: S.matchLeftDone
@@ -1201,11 +1258,44 @@ function showVerdict(q, ok) {
   const fb = $('q-feedback');
   fb.className = 'q-feedback show ' + (ok ? 'good' : 'bad');
   fb.innerHTML = '<b>' + (ok ? '✅ ' + t('correct') : '❌ ' + t('wrong')) + '</b>' + L(q.explain);
+  if (S.jokerUsed) fb.innerHTML += '<p class="sp-answer">🃏 ' + t('jokerUsedNote') + '</p>';
 
   $('btn-check').classList.add('hidden');
   $('btn-hint').classList.add('hidden');
+  $('btn-joker').classList.add('hidden');
   $('btn-next').classList.remove('hidden');
   renderProgress();
+}
+
+/* ---- joker: verklap het goede antwoord, tegen een lagere beloning ---- */
+function jokerFitsType(type) {
+  return ['mc', 'gap', 'tf', 'multi'].indexOf(type) !== -1;
+}
+function useJoker() {
+  const q = currentQ();
+  if (!q || S.checked || !jokerFitsType(q.type)) return;
+  const p = Store.player;
+  if (!p.tools) p.tools = { jokers: 0 };
+  if (!(p.tools.jokers > 0)) return;
+  p.tools.jokers--;
+  Store.save();
+  Sound.click();
+  S.jokerUsed = true;
+  if (q.type === 'tf') {
+    const b = $$('.tf-btn[data-val="' + (q.answer ? '1' : '0') + '"]')[0];
+    if (b) b.click();
+  } else if (q.type === 'multi') {
+    const need = {};
+    q.answer.forEach(function (i) { need[i] = true; });
+    $$('#q-body .opt').forEach(function (b) {
+      const orig = parseInt(b.dataset.orig, 10);
+      if (!!need[orig] !== b.classList.contains('sel')) b.click();
+    });
+  } else {
+    const b = $$('#q-body .opt[data-orig="' + q.answer + '"]')[0];
+    if (b) b.click();
+  }
+  $('btn-joker').classList.add('hidden');
 }
 
 function checkAnswer() {
@@ -1222,11 +1312,15 @@ function checkAnswer() {
 
   /* punten en reeks */
   if (ok) {
-    S.streak++;
-    const bonus = Math.min(S.streak, 5) * 2;
-    addXP((S.hintUsed ? 6 : 10) + bonus);
+    if (S.jokerUsed) {
+      addXP(2);
+    } else {
+      S.streak++;
+      const bonus = Math.min(S.streak, 5) * 2;
+      addXP((S.hintUsed ? 6 : 10) + bonus);
+      FX.burst(S.streak >= 3 ? 60 : 26);
+    }
     Sound.correct();
-    FX.burst(S.streak >= 3 ? 60 : 26);
     FX.say(tRandom('praise'), 'happy');
   } else {
     S.streak = 0;
@@ -1241,7 +1335,7 @@ function checkAnswer() {
     session: S.sessionId, story: S.story.id, topic: S.topic, level: S.level,
     qId: q.id, qType: q.type, skill: q.skill, correct: ok,
     given: answerText(q, S.selected), expected: expectedText(q),
-    qText: L(q.q), ms: ms, hint: S.hintUsed, peek: S.peeked, lang: window.LANG
+    qText: L(q.q), ms: ms, hint: S.hintUsed, joker: S.jokerUsed, peek: S.peeked, lang: window.LANG
   });
 }
 
@@ -1265,6 +1359,7 @@ function finishStory() {
 
   const xpGain = stars * 15 + correct * 2;
   addXP(xpGain);
+  const coinsGain = (Store.player.coins || 0) - (S.coinsBefore || 0);
 
   /* beste score bewaren */
   const p = Store.player;
@@ -1283,7 +1378,7 @@ function finishStory() {
 
   const newBadges = checkBadges({ perfect: ratio === 1, level: S.level, stars: stars, wpm: wpm });
 
-  S.lastResult = { correct: correct, total: total, stars: stars, xp: xpGain, wpm: wpm, totalMs: totalMs, badges: newBadges };
+  S.lastResult = { correct: correct, total: total, stars: stars, xp: xpGain, coins: coinsGain, wpm: wpm, totalMs: totalMs, badges: newBadges };
   renderResult();
   show('result');
 
@@ -1304,6 +1399,7 @@ function renderResult() {
   }
   $('rt-correct').textContent = r.correct + '/' + r.total;
   $('rt-xp').textContent = '+' + r.xp;
+  $('rt-coins').textContent = '+' + (r.coins || 0);
   $('rt-wpm').textContent = r.wpm || '–';
   const m = Math.floor(r.totalMs / 60000), s = Math.floor(r.totalMs % 60000 / 1000);
   $('rt-time').textContent = m + ':' + String(s).padStart(2, '0');
@@ -1365,7 +1461,7 @@ function nextStory() {
     }
   }
   FX.toast(t('allDone'), 3800);
-  setHue(255, 'default');
+  setHue(defaultHue(), 'default');
   renderWorlds();
   show('worlds');
 }
@@ -1457,9 +1553,118 @@ function endFlash() {
     FX.toast((window.LANG === 'nl' ? 'Bonusronde: ' : 'Bonus round: ') + f.score + ' punten');
   }
   S.flash = null;
-  setHue(255, 'default');
+  setHue(defaultHue(), 'default');
   renderWorlds();
   show('worlds');
+}
+
+/* =====================================================================
+   9b. Winkel
+   ===================================================================== */
+function openShop() {
+  Sound.click();
+  if (!S.shopKind) S.shopKind = 'sticker';
+  renderShop();
+  show('shop');
+}
+
+function setShopKind(kind) {
+  S.shopKind = kind;
+  renderShop();
+}
+
+function renderShop() {
+  const kind = S.shopKind || 'sticker';
+  $$('.shop-tab').forEach(function (b) { b.classList.toggle('on', b.dataset.kind === kind); });
+
+  const note = $('shop-note');
+  if (kind === 'tool') {
+    const p = Store.player;
+    const jokers = (p.tools || {}).jokers || 0;
+    const theme = typeof p.theme === 'number'
+      ? (window.SHOP_ITEMS || []).filter(function (it) { return it.effect === 'theme' && it.hue === p.theme; })[0]
+      : null;
+    note.innerHTML = '🃏 ' + jokers + ' &middot; 🎨 ' + (theme ? theme.emoji + ' ' + L(theme) : (window.LANG === 'nl' ? 'standaardkleur' : 'default colour'));
+    note.classList.remove('hidden');
+  } else {
+    note.classList.add('hidden');
+  }
+
+  const grid = $('shop-grid');
+  grid.innerHTML = '';
+  const p = Store.player;
+  const owned = p.owned || {};
+
+  (window.SHOP_ITEMS || []).filter(function (it) { return it.kind === kind; }).forEach(function (it) {
+    const isJoker = it.kind === 'tool' && it.effect === 'joker';
+    const isTheme = it.kind === 'tool' && it.effect === 'theme';
+    const has = !isJoker && (owned[it.kind] || []).indexOf(it.id) !== -1;
+    const equipped = has && ((isTheme && p.theme === it.hue) ||
+      ((it.kind === 'icon' || it.kind === 'character') && p.avatar === it.emoji));
+
+    let action;
+    if (isJoker) {
+      action = '<button class="big-btn sc-buy">' + t('buyBtn') + ' (' + it.cost + ' 🪙)</button>';
+    } else if (!has) {
+      action = '<button class="big-btn sc-buy">' + t('buyBtn') + ' (' + it.cost + ' 🪙)</button>';
+    } else if (equipped) {
+      action = '<span class="sc-equipped">✅ ' + t('equippedLabel') + '</span>';
+    } else if (it.kind === 'sticker') {
+      action = '<span class="sc-owned">✅ ' + t('ownedLabel') + '</span>';
+    } else {
+      action = '<button class="ghost-btn sc-equip">' + t('equipBtn') + '</button>';
+    }
+
+    const card = document.createElement('div');
+    card.className = 'shop-card' + (has || isJoker ? '' : ' locked');
+    card.innerHTML =
+      '<span class="sc-emoji">' + it.emoji + '</span>' +
+      '<span class="sc-name">' + L(it) + (isJoker ? ' × ' + it.amount : '') + '</span>' +
+      action;
+
+    const buyBtn = card.querySelector('.sc-buy');
+    if (buyBtn) buyBtn.addEventListener('click', function () { buyItem(it); });
+    const equipBtn = card.querySelector('.sc-equip');
+    if (equipBtn) equipBtn.addEventListener('click', function () { equipItem(it); });
+    grid.appendChild(card);
+  });
+}
+
+function buyItem(it) {
+  const p = Store.player;
+  if ((p.coins || 0) < it.cost) { FX.toast(t('notEnoughCoins')); Sound.wrong(); return; }
+  p.coins -= it.cost;
+
+  if (it.kind === 'tool' && it.effect === 'joker') {
+    if (!p.tools) p.tools = { jokers: 0 };
+    p.tools.jokers = (p.tools.jokers || 0) + it.amount;
+  } else {
+    if (!p.owned) p.owned = { sticker: [], icon: [], character: [], tool: [] };
+    if (!p.owned[it.kind]) p.owned[it.kind] = [];
+    if (p.owned[it.kind].indexOf(it.id) === -1) p.owned[it.kind].push(it.id);
+  }
+  Store.save();
+  Sound.correct();
+  FX.burst(60);
+  FX.toast(it.emoji + ' ' + L(it) + ' ' + t('boughtToast'));
+  updateHUD();
+  if (it.kind === 'icon' || it.kind === 'character') buildAvatars();
+  renderShop();
+}
+
+function equipItem(it) {
+  Sound.click();
+  if (it.kind === 'tool' && it.effect === 'theme') {
+    Store.player.theme = it.hue;
+    Store.save();
+    setHue(defaultHue(), 'default');
+  } else {
+    selectAvatar(it.emoji);
+    Store.save();
+    updateHUD();
+    buildAvatars();
+  }
+  renderShop();
 }
 
 /* =====================================================================
@@ -1498,6 +1703,9 @@ function renderParent() {
   $('p-time').textContent = Math.round(s.totalMs / 60000) + 'm';
   $('p-wpm').textContent = s.wpm || '–';
   $('p-days').textContent = s.days;
+  $('p-coins').textContent = Store.player.coins || 0;
+  const owned = Store.player.owned || {};
+  $('p-owned').textContent = Object.keys(owned).reduce(function (n, k) { return n + (owned[k] || []).length; }, 0);
 
   /* balken per vaardigheid */
   const sk = Stats.bySkill();

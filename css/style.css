@@ -97,6 +97,15 @@ h1,h2,h3{font-family:var(--font-head);margin:0 0 .3em;line-height:1.15}
 .lang-btn:active{transform:translateY(3px);box-shadow:none}
 .flag{font-size:1.05rem}
 
+.coin-btn{
+  display:flex;align-items:center;gap:6px;font-weight:800;font-size:.9rem;
+  background:#fff3d6;color:#8a5a00;padding:9px 14px;border-radius:14px;
+  box-shadow:0 3px 0 #e8c266;transition:transform .12s;
+}
+.coin-btn:hover{transform:translateY(-2px)}
+.coin-btn:active{transform:translateY(3px);box-shadow:none}
+.coin-emoji{font-size:1.05rem}
+
 #mission{position:relative;width:46px;height:46px;display:grid;place-items:center}
 #mission .ring{position:absolute;inset:0;transform:rotate(-90deg)}
 .ring-bg{fill:none;stroke:rgba(0,0,0,.10);stroke-width:5}
@@ -502,8 +511,31 @@ td.bad{color:var(--no);font-weight:800}
 .sp-missed b{font-family:var(--font-head);font-size:1.1rem}
 .sp-missed small{display:block;color:var(--ink-soft);font-weight:600;font-size:.82rem;margin-top:2px}
 
+/* ============ WINKEL ============ */
+.shop-tab{
+  padding:10px 18px;border-radius:99px;font-family:var(--font-head);font-weight:800;font-size:.92rem;
+  color:#fff;transition:transform .16s,background .2s,color .2s;white-space:nowrap
+}
+.shop-tab:hover{transform:translateY(-2px);background:rgba(255,255,255,.2)}
+.shop-tab.on{background:#fff;color:var(--brand-dark);box-shadow:0 4px 12px rgba(35,36,58,.18)}
+
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.shop-card{
+  background:#fff;border-radius:18px;padding:16px 14px;text-align:center;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .16s;
+}
+.shop-card:hover{transform:translateY(-4px)}
+.shop-card.locked{opacity:.72}
+.sc-emoji{font-size:2.5rem;line-height:1}
+.sc-name{font-family:var(--font-head);font-weight:800;font-size:.95rem}
+.sc-cost{font-weight:800;color:var(--ink-soft);font-size:.85rem}
+.shop-card .ghost-btn,.shop-card .big-btn{width:100%;margin-top:4px;padding:10px 8px;font-size:.85rem}
+.sc-owned{font-weight:800;color:var(--ok);font-size:.82rem;padding:6px 0}
+.sc-equipped{font-weight:800;color:var(--brand-dark);font-size:.82rem;padding:6px 0}
+
 @media (max-width:640px){
   .mode-tab{padding:9px 16px;font-size:.92rem}
+  .shop-tab{padding:9px 14px;font-size:.86rem}
   .sort-text{min-width:100%}
   .sort-bins{width:100%}
   .sort-bin{flex:1}

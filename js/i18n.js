@@ -107,6 +107,28 @@ const I18N = {
   pNoSpell:       { nl: 'Er is nog geen spelling geoefend.',
                     en: 'No spelling practised yet.' },
 
+  /* ---- de winkel ---- */
+  shopTitle:      { nl: '🪙 Winkel',          en: '🪙 Shop' },
+  shopSub:        { nl: 'Spaar munten en koop iets leuks!',
+                    en: 'Save up coins and buy something fun!' },
+  shopTabStickers:{ nl: '🎨 Stickers',        en: '🎨 Stickers' },
+  shopTabIcons:   { nl: '🧢 Iconen',          en: '🧢 Icons' },
+  shopTabCharacters: { nl: '🎭 Personages',   en: '🎭 Characters' },
+  shopTabTools:   { nl: '🧰 Gereedschap',     en: '🧰 Tools' },
+  buyBtn:         { nl: 'Kopen',              en: 'Buy' },
+  equipBtn:       { nl: 'Gebruiken',          en: 'Use' },
+  equippedLabel:  { nl: 'In gebruik',         en: 'In use' },
+  ownedLabel:     { nl: 'In bezit',           en: 'Owned' },
+  notEnoughCoins: { nl: 'Nog niet genoeg munten. Blijf sparen!',
+                    en: 'Not enough coins yet. Keep saving!' },
+  boughtToast:    { nl: 'gekocht! 🎉',        en: 'bought! 🎉' },
+  coinsLabel:     { nl: 'munten',             en: 'coins' },
+  pCoins:         { nl: 'munten gespaard',    en: 'coins saved' },
+  pOwned:         { nl: 'items gekocht',      en: 'items bought' },
+  jokerBtn:       { nl: '🃏 Joker',           en: '🃏 Joker' },
+  jokerUsedNote:  { nl: 'Je gebruikte een jokerkaart. Minder punten, maar wel geleerd!',
+                    en: 'You used a joker card. Fewer points, but you still learned something!' },
+
   /* korte reacties van de uil */
   praise: { nl: ['Top!','Goed gezien!','Precies!','Knap hoor!','Helemaal goed!','Je bent op dreef!','Scherp!'],
             en: ['Nice!','Well spotted!','Exactly!','Clever!','Spot on!','You are on a roll!','Sharp!'] },

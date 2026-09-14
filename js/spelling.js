@@ -13,10 +13,12 @@ const Spell = (function () {
     cat: null, set: null, i: 0,
     items: [], results: [], wrong: [],
     selected: null, sortPick: null,
-    checked: false, ruleOpen: false,
+    checked: false, ruleOpen: false, jokerUsed: false,
     setStart: 0, itemStart: 0,
     last: null
   };
+
+  const JOKER_TYPES = ['pick', 'fill', 'error'];
 
   /* ---- kleine helpers ---- */
   function catById(id) {
@@ -80,11 +82,14 @@ const Spell = (function () {
       const pct = sets.length ? Math.round(doneN / sets.length * 100) : 0;
       const words = sets.reduce(function (n, s) { return n + s.items.length; }, 0);
 
+      const meta = c.meta && window.SPELL_META && window.SPELL_META[c.meta];
+
       const card = document.createElement('button');
       card.className = 'world-card';
       card.style.setProperty('--wh', c.hue);
       card.innerHTML =
         '<span class="wc-emoji">' + c.emoji + '</span>' +
+        (meta ? '<span class="q-skill">' + meta.emoji + ' ' + (window.LANG === 'nl' ? meta.nl : meta.en) + '</span>' : '') +
         '<h3 class="wc-title">' + (window.LANG === 'nl' ? c.nl : c.en) + '</h3>' +
         '<p class="wc-sub">' + (window.LANG === 'nl' ? c.subNl : c.subEn) + '</p>' +
         '<div class="wc-progress"><i style="width:' + pct + '%"></i></div>' +
@@ -107,7 +112,9 @@ const Spell = (function () {
   function renderSets() {
     const c = catById(SP.cat);
     if (!c) return;
-    $('spell-cat-title').textContent = c.emoji + ' ' + (window.LANG === 'nl' ? c.nl : c.en);
+    const meta = c.meta && window.SPELL_META && window.SPELL_META[c.meta];
+    $('spell-cat-title').innerHTML = c.emoji + ' ' + (window.LANG === 'nl' ? c.nl : c.en) +
+      (meta ? ' <span class="q-skill">' + meta.emoji + ' ' + (window.LANG === 'nl' ? meta.nl : meta.en) + '</span>' : '');
     $('spell-rule-title').textContent = '💡 ' + t('spellRule');
     $('spell-rule-text').innerHTML = window.LANG === 'nl' ? c.ruleNl : c.ruleEn;
     $('spell-sets-sub').textContent = t('chooseSet');
@@ -150,6 +157,7 @@ const Spell = (function () {
     SP.results = [];
     SP.wrong = [];
     SP.setStart = Date.now();
+    SP.coinsBefore = Store.player.coins || 0;
     /* elke ronde in een andere volgorde, zodat herhalen zin heeft */
     SP.items = shuffle(set.items.slice());
     SP.views = SP.items.map(function (it) {
@@ -190,6 +198,7 @@ const Spell = (function () {
     SP.selected = null;
     SP.sortPick = null;
     SP.checked = false;
+    SP.jokerUsed = false;
     SP.itemStart = Date.now();
 
     renderProgress();
@@ -203,6 +212,8 @@ const Spell = (function () {
     $('btn-sp-next').classList.add('hidden');
     $('btn-sp-next').textContent = (SP.i === SP.items.length - 1) ? t('finishStory') : t('next');
     $('btn-sp-listen').classList.toggle('hidden', it.type !== 'type');
+    $('btn-sp-joker').classList.toggle('hidden',
+      JOKER_TYPES.indexOf(it.type) === -1 || !((Store.player.tools || {}).jokers > 0));
 
     const body = $('sp-body');
     body.innerHTML = '';
@@ -362,6 +373,26 @@ const Spell = (function () {
     });
   }
 
+  /* ---- joker: verklap het goede antwoord, tegen een lagere beloning ---- */
+  function useJoker() {
+    const it = current();
+    if (!it || SP.checked || JOKER_TYPES.indexOf(it.type) === -1) return;
+    const p = Store.player;
+    if (!p.tools) p.tools = { jokers: 0 };
+    if (!(p.tools.jokers > 0)) return;
+    p.tools.jokers--;
+    Store.save();
+    Sound.click();
+    SP.jokerUsed = true;
+    let sel = null;
+    if (it.type === 'pick') sel = '#sp-body .opt[data-orig="' + it.answer + '"]';
+    else if (it.type === 'fill') sel = '#sp-body .sp-piece[data-orig="' + it.answer + '"]';
+    else if (it.type === 'error') sel = '#sp-body .sp-chip[data-orig="' + it.answer + '"]';
+    const b = sel ? $$(sel)[0] : null;
+    if (b) b.click();
+    $('btn-sp-joker').classList.add('hidden');
+  }
+
   /* =====================================================================
      4. Nakijken
      ===================================================================== */
@@ -413,10 +444,14 @@ const Spell = (function () {
     mark(it);
 
     if (ok) {
-      S.streak++;
-      addXP(8 + Math.min(S.streak, 5) * 2);
+      if (SP.jokerUsed) {
+        addXP(3);
+      } else {
+        S.streak++;
+        addXP(8 + Math.min(S.streak, 5) * 2);
+        FX.burst(S.streak >= 3 ? 50 : 22);
+      }
       Sound.correct();
-      FX.burst(S.streak >= 3 ? 50 : 22);
     } else {
       S.streak = 0;
       Sound.wrong();
@@ -428,7 +463,7 @@ const Spell = (function () {
     Store.log('spell_item', {
       session: S.sessionId, set: SP.set.id, cat: SP.cat, level: SP.set.level,
       itype: it.type, word: wordOf(it), given: given(it), correct: ok,
-      ms: ms, lang: window.LANG
+      ms: ms, joker: SP.jokerUsed, lang: window.LANG
     });
   }
 
@@ -474,10 +509,12 @@ const Spell = (function () {
         return w.full + ' <small>(' + L(it.bins[w.bin]) + ')</small>';
       }).join(' &middot; ') + '</p>';
     }
+    if (SP.jokerUsed) html += '<p class="sp-answer">🃏 ' + t('jokerUsedNote') + '</p>';
     html += L(it.why);
     fb.innerHTML = html;
 
     $('btn-sp-check').classList.add('hidden');
+    $('btn-sp-joker').classList.add('hidden');
     $('btn-sp-next').classList.remove('hidden');
     $('btn-sp-next').focus();
     renderProgress();
@@ -488,7 +525,7 @@ const Spell = (function () {
     const it = current();
     if (!it) return;
     const keep = {
-      checked: SP.checked, selected: SP.selected,
+      checked: SP.checked, selected: SP.selected, jokerUsed: SP.jokerUsed,
       sortPick: SP.sortPick ? SP.sortPick.slice() : null,
       itemStart: SP.itemStart
     };
@@ -497,6 +534,7 @@ const Spell = (function () {
 
     SP.checked = keep.checked;
     SP.selected = keep.selected;
+    SP.jokerUsed = keep.jokerUsed;
     SP.sortPick = keep.sortPick;
     SP.itemStart = keep.itemStart;
 
@@ -541,6 +579,7 @@ const Spell = (function () {
     const ms = Date.now() - SP.setStart;
     const xp = stars * 12 + correct * 2;
     addXP(xp);
+    const coinsGain = (Store.player.coins || 0) - (SP.coinsBefore || 0);
 
     const p = Store.player;
     if (!p.spellBest) p.spellBest = {};
@@ -556,7 +595,7 @@ const Spell = (function () {
     });
 
     const badges = checkBadges({ spellPerfect: ratio === 1 });
-    SP.last = { correct: correct, total: total, stars: stars, xp: xp, ms: ms, badges: badges, wrong: SP.wrong.slice() };
+    SP.last = { correct: correct, total: total, stars: stars, xp: xp, coins: coinsGain, ms: ms, badges: badges, wrong: SP.wrong.slice() };
 
     renderResult();
     show('spell-result');
@@ -580,6 +619,7 @@ const Spell = (function () {
     $('sp-result-sub').textContent = t('res' + r.stars + 'sub');
     $('spt-correct').textContent = r.correct + '/' + r.total;
     $('spt-xp').textContent = '+' + r.xp;
+    $('spt-coins').textContent = '+' + (r.coins || 0);
     const m = Math.floor(r.ms / 60000), s = Math.floor(r.ms % 60000 / 1000);
     $('spt-time').textContent = m + ':' + String(s).padStart(2, '0');
 
@@ -624,7 +664,7 @@ const Spell = (function () {
       if (list.length) { SP.cat = cats[i].id; openSet(list[0]); return; }
     }
     FX.toast(t('spellAllDone'), 3800);
-    setHue(255, 'default');
+    setHue(defaultHue(), 'default');
     S.mode = 'spell';
     renderWorlds();
     show('worlds');
@@ -636,6 +676,7 @@ const Spell = (function () {
   function bind() {
     $('btn-sp-check').addEventListener('click', check);
     $('btn-sp-next').addEventListener('click', next);
+    $('btn-sp-joker').addEventListener('click', useJoker);
     $('btn-sp-listen').addEventListener('click', function () { Sound.click(); sayWord(current()); });
     $('btn-sp-rule').addEventListener('click', function () {
       Sound.click();

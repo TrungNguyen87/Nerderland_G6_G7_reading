@@ -42,6 +42,8 @@
     <span id="mission-time">0:00</span>
   </div>
 
+  <button id="btn-shop" class="coin-btn" title="Winkel"><span class="coin-emoji">🪙</span><span id="hud-coins">0</span></button>
+
   <button id="btn-lang" class="lang-btn" title="Nederlands / English"><span class="flag">🇳🇱</span><span id="lang-label">NL</span></button>
   <button id="btn-sound" class="icon-btn" title="Geluid aan/uit">🔊</button>
   <button id="btn-parent" class="icon-btn" title="Voor ouders">📊</button>
@@ -82,6 +84,7 @@
   <div id="world-grid" class="world-grid"></div>
   <div id="spell-grid" class="world-grid hidden"></div>
   <div id="badge-shelf" class="badge-shelf"></div>
+  <div id="sticker-shelf" class="badge-shelf"></div>
 </section>
 
 <!-- ============ LEVELS ============ -->
@@ -148,6 +151,7 @@
     <div id="q-body" class="q-body"></div>
     <div id="q-feedback" class="q-feedback"></div>
     <div class="quiz-actions">
+      <button id="btn-joker" class="ghost-btn hidden" data-i18n="jokerBtn">🃏 Joker</button>
       <button id="btn-hint" class="ghost-btn" data-i18n="hint">💡 Hint</button>
       <button id="btn-check" class="big-btn" data-i18n="check">Controleer</button>
       <button id="btn-next" class="big-btn hidden" data-i18n="next">Verder →</button>
@@ -170,6 +174,7 @@
     <div class="result-grid">
       <div class="result-tile"><span class="rt-icon">✅</span><b id="rt-correct">0/0</b><small data-i18n="correctLabel">goed</small></div>
       <div class="result-tile"><span class="rt-icon">⚡</span><b id="rt-xp">+0</b><small>XP</small></div>
+      <div class="result-tile"><span class="rt-icon">🪙</span><b id="rt-coins">+0</b><small data-i18n="coinsLabel">munten</small></div>
       <div class="result-tile"><span class="rt-icon">📖</span><b id="rt-wpm">0</b><small data-i18n="wpmLabel">woorden/min</small></div>
       <div class="result-tile"><span class="rt-icon">⏱</span><b id="rt-time">0:00</b><small data-i18n="timeLabel">tijd</small></div>
     </div>
@@ -228,6 +233,7 @@
     <div id="sp-body" class="q-body"></div>
     <div id="sp-feedback" class="q-feedback"></div>
     <div class="quiz-actions">
+      <button id="btn-sp-joker" class="ghost-btn hidden" data-i18n="jokerBtn">🃏 Joker</button>
       <button id="btn-sp-listen" class="ghost-btn" data-i18n="spellListen">🔊 Luister nog eens</button>
       <button id="btn-sp-check" class="big-btn" data-i18n="check">Controleer</button>
       <button id="btn-sp-next" class="big-btn hidden" data-i18n="next">Verder →</button>
@@ -247,6 +253,7 @@
     <div class="result-grid">
       <div class="result-tile"><span class="rt-icon">✅</span><b id="spt-correct">0/0</b><small data-i18n="correctLabel">goed</small></div>
       <div class="result-tile"><span class="rt-icon">⚡</span><b id="spt-xp">+0</b><small>XP</small></div>
+      <div class="result-tile"><span class="rt-icon">🪙</span><b id="spt-coins">+0</b><small data-i18n="coinsLabel">munten</small></div>
       <div class="result-tile"><span class="rt-icon">⏱</span><b id="spt-time">0:00</b><small data-i18n="timeLabel">tijd</small></div>
     </div>
 
@@ -260,6 +267,23 @@
   </div>
 
   <button class="back-btn" data-back="spell-cats">← <span data-i18n="spellBack">Terug naar de regels</span></button>
+</section>
+
+<!-- ============ WINKEL ============ -->
+<section id="screen-shop" class="screen">
+  <button class="back-btn" data-back="worlds">← <span data-i18n="backToGame">Terug naar het spel</span></button>
+  <h2 class="screen-title" data-i18n="shopTitle">🪙 Winkel</h2>
+  <p class="screen-sub" data-i18n="shopSub">Spaar munten en koop iets leuks!</p>
+
+  <div class="mode-tabs" id="shop-tabs">
+    <button class="shop-tab on" data-kind="sticker" data-i18n="shopTabStickers">🎨 Stickers</button>
+    <button class="shop-tab" data-kind="icon" data-i18n="shopTabIcons">🧢 Iconen</button>
+    <button class="shop-tab" data-kind="character" data-i18n="shopTabCharacters">🎭 Personages</button>
+    <button class="shop-tab" data-kind="tool" data-i18n="shopTabTools">🧰 Gereedschap</button>
+  </div>
+
+  <p id="shop-note" class="mini-note hidden"></p>
+  <div id="shop-grid" class="shop-grid"></div>
 </section>
 
 <!-- ============ PARENT DASHBOARD ============ -->
@@ -284,6 +308,8 @@
       <div class="result-tile"><span class="rt-icon">🔥</span><b id="p-days">0</b><small data-i18n="pDays">dagen</small></div>
       <div class="result-tile"><span class="rt-icon">✍️</span><b id="p-spell-words">0</b><small data-i18n="pSpellWords">spellingwoorden</small></div>
       <div class="result-tile"><span class="rt-icon">🅰️</span><b id="p-spell-acc">0%</b><small data-i18n="pSpellAcc">spelling goed</small></div>
+      <div class="result-tile"><span class="rt-icon">🪙</span><b id="p-coins">0</b><small data-i18n="pCoins">munten gespaard</small></div>
+      <div class="result-tile"><span class="rt-icon">🛍️</span><b id="p-owned">0</b><small data-i18n="pOwned">items gekocht</small></div>
     </div>
 
     <div class="card">
@@ -344,6 +370,7 @@
 <script src="data/stories.lichaam.js"></script>
 <script src="data/spelling.js"></script>
 <script src="data/spelling.sets.js"></script>
+<script src="data/shop.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/audio.js"></script>
 <script src="js/fx.js"></script>
