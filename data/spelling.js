@@ -15,6 +15,7 @@ window.addSpelling = function (list) {
 window.SPELL_CATS = [
   {
     id: 'eiij', emoji: '🌧️', hue: 210,
+    meta: 'weet',
     nl: 'ei of ij', en: 'ei or ij',
     subNl: 'De korte ei en de lange ij', subEn: 'The short ei and the long ij',
     ruleNl: 'Ei en ij klinken precies hetzelfde, dus je moet ze uit je hoofd leren. Twee hulpjes: woorden die eindigen op <b>-lijk</b> (mogelijk, eindelijk) en op <b>-tijd</b> krijgen altijd de lange ij. En bij <b>ei</b> hoort een klein rijtje beeldwoorden: ei, trein, klein, geit, meisje, eiland.',
@@ -22,6 +23,7 @@ window.SPELL_CATS = [
   },
   {
     id: 'auou', emoji: '🎈', hue: 25,
+    meta: 'weet',
     nl: 'au of ou', en: 'au or ou',
     subNl: 'De blauwe pauw en de oude vrouw', subEn: 'The blue peacock and the old woman',
     ruleNl: 'Au en ou klinken hetzelfde. Onthoud het zinnetje: <b>"Een blauwe pauw met een nauwe kous"</b> — die woorden hebben <b>au</b>. De rest heeft bijna altijd <b>ou</b>: oud, koud, hout, zout, goud, fout, vrouw, touw.',
@@ -29,6 +31,7 @@ window.SPELL_CATS = [
   },
   {
     id: 'dt', emoji: '✍️', hue: 355,
+    meta: 'regel',
     nl: 'Werkwoorden: d, t of dt', en: 'Verbs: d, t or dt',
     subNl: 'Hij wordt, ik word, word jij?', subEn: 'He becomes, I become, do you become?',
     ruleNl: '<b>Ik</b> + stam (ik word). <b>Hij, zij, het, jij</b> + stam + t (hij wordt). Staat <b>jij</b> ná het werkwoord, dan valt de t weg: word jij? In de verleden tijd gebruik je <b>\'t kofschip</b>: eindigt de stam op t, k, f, s, ch of p, dan komt er <b>-te(n)</b> en <b>-t</b> (werkte, gewerkt). Anders <b>-de(n)</b> en <b>-d</b> (hoorde, gehoord).',
@@ -36,13 +39,15 @@ window.SPELL_CATS = [
   },
   {
     id: 'dubbel', emoji: '🔁', hue: 145,
-    nl: 'Bomen of bommen', en: 'One letter or two',
+    meta: 'regel',
+    nl: 'Bomen of bommen: bakker- en jagerwoord', en: 'One letter or two: bakker and jager words',
     subNl: 'Open en gesloten lettergrepen', subEn: 'Open and closed syllables',
-    ruleNl: 'Hoor je een <b>korte klank</b> (bom, kat, pop), dan verdubbel je de medeklinker: bom<b>m</b>en, kat<b>t</b>en, pop<b>p</b>en. Hoor je een <b>lange klank</b> (boom, maan, poot), dan gooi je juist een klinker weg: b<b>o</b>men, m<b>a</b>nen, p<b>o</b>ten.',
-    ruleEn: 'A <b>short</b> vowel sound doubles the consonant: bom → bommen. A <b>long</b> vowel sound drops one vowel instead: boom → bomen.'
+    ruleNl: 'Op de categoriekaart van school heten dit <b>bakkerwoorden</b> en <b>jagerwoorden</b>. Hoor je een <b>korte klank</b> (bom, kat, pop — net als bakker), dan verdubbel je de medeklinker: bom<b>m</b>en, kat<b>t</b>en, pop<b>p</b>en. Hoor je een <b>lange klank</b> (boom, maan, poot — net als jager), dan gooi je juist een klinker weg: b<b>o</b>men, m<b>a</b>nen, p<b>o</b>ten.',
+    ruleEn: 'The category card from school calls these <b>bakker words</b> (short vowel, like bakker) and <b>jager words</b> (long vowel, like jager). A <b>short</b> vowel sound doubles the consonant: bom → bommen. A <b>long</b> vowel sound drops one vowel instead: boom → bomen.'
   },
   {
     id: 'verkleinwoord', emoji: '🐣', hue: 55,
+    meta: 'regel',
     nl: 'Verkleinwoorden', en: 'Diminutives',
     subNl: '-je, -tje, -pje, -kje of -etje', subEn: 'Which little ending fits?',
     ruleNl: 'Na b, d, f, g, k, p, s, t en ch komt <b>-je</b> (boekje, kopje). Na een klinker of l, n, r, w met een lange klank komt <b>-tje</b> (stoeltje, eitje). Na een <b>m</b> met een lange klank komt <b>-pje</b> (boompje, armpje). Na een <b>korte klank</b> + l, m, n, r of ng komt <b>-etje</b> (balletje, mannetje). En na een onbeklemtoonde <b>-ing</b> komt <b>-kje</b> (koninkje).',
@@ -50,6 +55,7 @@ window.SPELL_CATS = [
   },
   {
     id: 'samenstelling', emoji: '🔗', hue: 285,
+    meta: 'regel',
     nl: 'Samenstellingen', en: 'Compound words',
     subNl: 'Pannenkoek, verkeersbord of voetbal?', subEn: 'With -n, with -s, or with nothing?',
     ruleNl: 'Twee woorden aan elkaar. Soms komt er een letter tussen. <b>Tussen-n</b> als het eerste woord alleen een meervoud op -en heeft: pan → pannen → <b>pannen</b>koek. <b>Tussen-s</b> als je die s duidelijk hoort: verkeer<b>s</b>bord, dorp<b>s</b>straat. En vaak komt er helemaal niets tussen: voetbal, schoolplein.',
@@ -57,6 +63,7 @@ window.SPELL_CATS = [
   },
   {
     id: 'hoofdletter', emoji: '🔠', hue: 190,
+    meta: 'regel',
     nl: 'Hoofdletters en leestekens', en: 'Capitals and punctuation',
     subNl: 'Namen, landen, punten en vraagtekens', subEn: 'Names, countries, dots and question marks',
     ruleNl: 'Een hoofdletter aan het begin van een zin, bij <b>namen</b> (Daan, Amsterdam), bij <b>landen en talen</b> (Nederland, Nederlands) en bij <b>feesten</b> (Kerstmis, Pasen). Let op: <b>dagen en maanden krijgen géén hoofdletter</b> — maandag, juli. Een vraag eindigt op een <b>vraagteken</b>, een uitroep op een <b>uitroepteken</b>.',
@@ -64,6 +71,7 @@ window.SPELL_CATS = [
   },
   {
     id: 'achtervoegsel', emoji: '🧩', hue: 320,
+    meta: 'regel',
     nl: 'Stille stukjes achteraan', en: 'Tricky endings',
     subNl: '-lijk, -ig, -tie en -isch', subEn: '-lijk, -ig, -tie and -isch',
     ruleNl: 'Je hoort iets anders dan je schrijft. Hoor je "luk", dan schrijf je <b>-lijk</b> (vriendelijk, natuurlijk). Hoor je "ug", dan schrijf je <b>-ig</b> (rustig, handig). Hoor je "tsie", dan schrijf je <b>-tie</b> (politie, vakantie). Hoor je "ies" aan het eind van een moeilijk woord, dan schrijf je <b>-isch</b> (logisch, fantastisch).',
@@ -71,6 +79,7 @@ window.SPELL_CATS = [
   },
   {
     id: 'tremaApostrof', emoji: '✨', hue: 100,
+    meta: 'regel',
     nl: 'Trema en apostrof', en: 'Diaeresis and apostrophe',
     subNl: "Foto's, knieën en oma's", subEn: 'Photos, knees and grandmas',
     ruleNl: 'Een <b>trema</b> (twee puntjes) zet je als twee klinkers anders per ongeluk samen één klank worden: kni<b>e</b>ën, idee<b>ë</b>n, twee<b>ë</b>n. Een <b>apostrof</b> zet je in het meervoud van woorden die eindigen op a, i, o, u of y: foto\'s, oma\'s, taxi\'s, menu\'s, baby\'s. Eindigt het woord op een andere letter, dan komt er gewoon -s of -en bij: tafels, huizen.',
@@ -78,9 +87,51 @@ window.SPELL_CATS = [
   },
   {
     id: 'luisterwoord', emoji: '🎧', hue: 240,
+    meta: 'klank',
     nl: 'Dictee: luister en typ', en: 'Dictation: listen and type',
     subNl: 'Moeilijke woorden uit groep 6 en 7', subEn: 'Hard words from group 6 and 7',
     ruleNl: 'Hier hoor je het woord en typ je het zelf. Zeg het woord eerst in stukjes in je hoofd: <b>ge-beur-de</b>, <b>bi-bli-o-theek</b>. Twijfel je? Klik op "Luister nog eens" en luister naar het laatste stukje.',
     ruleEn: 'Here you hear the word and type it yourself. Say the word in pieces in your head first. In doubt, listen again and pay attention to the last piece.'
+  },
+  {
+    id: 'langermaakwoord', emoji: '📏', hue: 10, meta: 'regel',
+    nl: 'Hond of lief: d of t?', en: 'D or t at the end?',
+    subNl: 'Maak het woord langer om het te horen', subEn: 'Make the word longer to hear it',
+    ruleNl: 'Aan het eind van een woord hoor je vaak niet of er een <b>d</b> of een <b>t</b> staat: hond klinkt hetzelfde als "hont" zou klinken. De truc: maak het woord langer, bijvoorbeeld het meervoud of de vrouwelijke vorm. Hoor je dan een <b>d</b>, <b>v</b> of <b>z</b>? Dan eindigt het woord op een d: hond → hond<b>en</b>, dus je schrijft <b>hond</b>. Lief → lie<b>ve</b>, dus je schrijft <b>lief</b> met een f, ook al verandert de klank. Hoor je bij het langer maken juist een <b>t</b>, <b>f</b> of <b>s</b>? Dan blijft het een t: kat → kat<b>ten</b>, dus je schrijft <b>kat</b>.',
+    ruleEn: 'At the end of a word you often cannot hear whether it takes a d or a t: "hond" sounds the same as an imaginary "hont" would. The trick: make the word longer, for example the plural or the form with -e. If you then hear a d, v or z, the word ends in d: hond → honden, so you write "hond". Lief → lieve, so you write "lief" with an f even though the sound changes. If lengthening gives a t, f or s instead, it stays a t: kat → katten, so you write "kat".'
+  },
+  {
+    id: 'kilowoord', emoji: '⚖️', hue: 265, meta: 'weet',
+    nl: 'Kilowoord', en: 'Kilo word',
+    subNl: 'Je hoort "ie", je schrijft maar één i', subEn: 'You hear "ie" but write just one i',
+    ruleNl: 'In een paar leenwoorden hoor je een lange <b>ie</b>-klank, maar schrijf je toch maar één <b>i</b>: <b>ki</b>lo, <b>gi</b>taar, pi<b>loot</b>, ben<b>zi</b>ne. Er is geen echte regel voor: dit zijn weetwoorden die je gewoon uit je hoofd moet leren.',
+    ruleEn: 'In a handful of loanwords you hear a long "ie" sound but still write just one i: kilo, gitaar, piloot, benzine. There is no real rule for this: these are memory words you simply have to learn by heart.'
+  },
+  {
+    id: 'centcolawoord', emoji: '🥤', hue: 45, meta: 'weet',
+    nl: 'Cent of cola: de letter c', en: 'Cent or cola: the letter c',
+    subNl: 'Klinkt de c als een s of als een k?', subEn: 'Does the c sound like s or k?',
+    ruleNl: 'De letter <b>c</b> heeft twee klanken. Staat er een <b>e</b>, <b>i</b> of <b>y</b> achter? Dan klinkt de c als een <b>s</b>: <b>c</b>ent, <b>c</b>itroen, <b>c</b>irkel. Staat er een <b>a</b>, <b>o</b>, <b>u</b> of een medeklinker achter? Dan klinkt de c als een <b>k</b>: <b>c</b>ola, <b>c</b>actus, <b>c</b>omputer. Er is geen vaste regel om te weten óf een woord met een c geschreven wordt, dus dit blijven weetwoorden.',
+    ruleEn: 'The letter c has two sounds. Before an e, i or y it sounds like an s: cent, citroen, cirkel. Before an a, o, u or a consonant it sounds like a k: cola, cactus, computer. There is no rule for knowing whether a word is written with a c at all, so these stay memory words.'
+  },
+  {
+    id: 'taxiwoord', emoji: '🚕', hue: 165, meta: 'weet',
+    nl: 'Taxiwoord: x en -tie', en: 'Taxi word: x and -tie',
+    subNl: 'De x klinkt als ks, -tie klinkt als tsie', subEn: 'X sounds like ks, -tie sounds like tsie',
+    ruleNl: 'De letter <b>x</b> klinkt in het Nederlands altijd als <b>ks</b>: ta<b>x</b>i, e<b>x</b>tra, ma<b>x</b>imum. En het achtervoegsel <b>-tie</b> (of -cie) klinkt als "tsie", maar je schrijft gewoon -tie: posi<b>tie</b>, ac<b>tie</b>, provin<b>cie</b>. Beide klinken anders dan ze geschreven worden, dus het zijn weetwoorden.',
+    ruleEn: 'The letter x always sounds like "ks" in Dutch: taxi, extra, maximum. And the ending -tie (or -cie) sounds like "tsie" but is written -tie: positie, actie, provincie. Both sound different from how they are spelled, so these are memory words.'
+  },
+  {
+    id: 'citocategorie', emoji: '🧭', hue: 300, meta: null,
+    nl: 'Cito-check: welke categorie?', en: 'Cito check: which category?',
+    subNl: 'Klankwoord, regelwoord of weetwoord?', subEn: 'Sound word, rule word or memory word?',
+    ruleNl: 'Op de Cito-toets moet je soms eerst kiezen <b>bij welke categorie</b> een woord hoort, vóórdat je de goede spelling kunt bedenken. Er zijn drie hoofdgroepen. <b>Klankwoorden</b>: je schrijft precies wat je hoort, zoals kat of lamp. <b>Regelwoorden</b>: er is een vaste regel, zoals de dt-regel, de bakker/jager-regel of de tussen-n. <b>Weetwoorden</b>: er is geen regel, je moet het gewoon onthouden, zoals ei/ij of au/ou. Vraag op school naar de categoriekaart van jullie methode (Staal of Taal actief): die laat met plaatjes zien welk icoontje bij welke categorie hoort.',
+    ruleEn: 'On the Cito test you sometimes first have to decide which category a word belongs to, before you can work out the spelling. There are three main groups. Sound words: you write exactly what you hear, like kat or lamp. Rule words: there is a fixed rule, such as the dt rule, the bakker/jager rule or the linking -n. Memory words: there is no rule, you simply have to know them, like ei/ij or au/ou. Ask at school for the category card of your method (Staal or Taal actief): it uses pictures to show which icon belongs to which category.'
   }
 ];
+
+window.SPELL_META = {
+  klank: { emoji: '🎧', nl: 'Klankwoord', en: 'Sound word' },
+  regel: { emoji: '📐', nl: 'Regelwoord', en: 'Rule word' },
+  weet:  { emoji: '🧠', nl: 'Weetwoord', en: 'Memory word' }
+};

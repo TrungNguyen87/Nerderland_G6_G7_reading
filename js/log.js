@@ -9,7 +9,11 @@ const Store = (function () {
 
   const blank = {
     version: 1,
-    player: { name: '', avatar: '🦸', xp: 0, level: 1, badges: [], best: {}, flashBest: 0 },
+    player: {
+      name: '', avatar: '🦸', xp: 0, level: 1, badges: [], best: {}, flashBest: 0,
+      coins: 0, tools: { jokers: 0 }, theme: null,
+      owned: { sticker: [], icon: [], character: [], tool: [] }
+    },
     events: []
   };
 
@@ -20,10 +24,15 @@ const Store = (function () {
       const raw = localStorage.getItem(KEY);
       if (!raw) return JSON.parse(JSON.stringify(blank));
       const parsed = JSON.parse(raw);
-      /* voorzichtig samenvoegen zodat een oude opslag niet crasht */
+      const pp = parsed.player || {};
+      /* voorzichtig samenvoegen zodat een oude opslag niet crasht, ook
+         de geneste velden van de winkel (owned, tools) */
       return {
         version: 1,
-        player: Object.assign({}, blank.player, parsed.player || {}),
+        player: Object.assign({}, blank.player, pp, {
+          tools: Object.assign({}, blank.player.tools, pp.tools || {}),
+          owned: Object.assign({}, blank.player.owned, pp.owned || {})
+        }),
         events: Array.isArray(parsed.events) ? parsed.events : []
       };
     } catch (e) {

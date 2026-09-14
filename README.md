@@ -12,14 +12,16 @@ you can download a report at the end of the day.
 
 ## What is in it
 
-**Two games in one, sharing the same XP, badges and report:**
+**Two games in one, sharing the same XP, coins, badges and report:**
 
 | | |
 |---|---|
 | 📖 **Lezen** | 50 stories · 334 questions · 10 worlds · 5 difficulty levels |
-| ✍️ **Spelling** | 195 exercises · 10 spelling rules · 3 levels each |
+| ✍️ **Spelling** | 292 exercises · 15 spelling rules · 3 levels each |
+| 🪙 **Winkel** | Spend earned coins on stickers, avatars, characters and tools |
 
-Pick the game with the tab at the top of the world screen.
+Pick the game with the tab at the top of the world screen, and the coin
+button in the top bar opens the shop any time.
 
 ---
 
@@ -86,21 +88,45 @@ back to again and again.
 
 # ✍️ The spelling game
 
-Ten spelling rules from group 6 and 7, each with a plain-language explanation
-that stays one tap away while he works, and three exercises that get harder.
+Fifteen spelling rules from group 6 and 7, matching the **spellingcategorieën**
+Dutch schools actually use (Cito, Staal, Taal actief). Every rule has a
+plain-language explanation that stays one tap away while he works, and three
+exercises that get harder.
 
-| Rule | What it practises |
-|---|---|
-| 🌧️ **ei of ij** | The -lijk and -tijd helpers, and the ei picture list |
-| 🎈 **au of ou** | "Een blauwe pauw met een nauwe kous", and the -auw / -ouw pairs |
-| ✍️ **Werkwoorden: d, t of dt** | ik word / hij wordt / word jij, and 't kofschip |
-| 🔁 **Bomen of bommen** | Open and closed syllables: doubling and dropping |
-| 🐣 **Verkleinwoorden** | -je, -tje, -pje, -kje and -etje |
-| 🔗 **Samenstellingen** | The linking -n, the linking -s, or nothing at all |
-| 🔠 **Hoofdletters en leestekens** | Names, countries, festivals — and the small letter on days and months |
-| 🧩 **Stille stukjes achteraan** | -lijk, -ig, -tie and -isch: heard one way, written another |
-| ✨ **Trema en apostrof** | knieën, ideeën, foto's, taxi's |
-| 🎧 **Dictee: luister en typ** | The hardest words of the year, spoken out loud |
+## The three meta-categories
+
+Rather than one flat list, every rule is also tagged with the strategy it
+belongs to — the same three groups his school's own **categoriekaart**
+(Staal or Taal actief) uses, shown as a small badge on each rule's card:
+
+| | | |
+|---|---|---|
+| 🎧 **Klankwoord** | Sound word | Written exactly as it sounds — no rule needed (kat, lamp) |
+| 📐 **Regelwoord** | Rule word | A fixed grammatical rule applies (dt, bakker/jager, tussen-n) |
+| 🧠 **Weetwoord** | Memory word | No rule tells you — you simply have to know it (ei/ij, au/ou) |
+
+The last rule, **🧭 Cito-check**, is pure practice at *identifying* the
+category itself — exactly the three Cito question styles: "which category
+does this word belong to", "which word follows the same rule as X", and
+sorting a mixed list of words into klankwoord / regelwoord / weetwoord bins.
+
+| Rule | Meta | What it practises |
+|---|---|---|
+| 🌧️ **ei of ij** | weet | The -lijk and -tijd helpers, and the ei picture list |
+| 🎈 **au of ou** | weet | "Een blauwe pauw met een nauwe kous", and the -auw / -ouw pairs |
+| ✍️ **Werkwoorden: d, t of dt** | regel | ik word / hij wordt / word jij, and 't kofschip |
+| 🔁 **Bomen of bommen** | regel | Bakker- and jagerwoorden: doubling a short vowel, dropping a long one |
+| 🐣 **Verkleinwoorden** | regel | -je, -tje, -pje, -kje and -etje |
+| 🔗 **Samenstellingen** | regel | The linking -n, the linking -s, or nothing at all |
+| 🔠 **Hoofdletters en leestekens** | regel | Names, countries, festivals — and the small letter on days and months |
+| 🧩 **Stille stukjes achteraan** | regel | -lijk, -ig, -tie and -isch: heard one way, written another |
+| ✨ **Trema en apostrof** | regel | knieën, ideeën, foto's, taxi's |
+| 🎧 **Dictee: luister en typ** | klank | The hardest words of the year, spoken out loud |
+| 📏 **Hond of lief: d of t?** | regel | Make the word longer (honden, lieve) to hear whether it ends in d or t |
+| ⚖️ **Kilowoord** | weet | Hearing "ie" but writing one i: kilo, gitaar, piloot |
+| 🥤 **Cent of cola** | weet | The letter c sounding like s (cent) or k (cola) |
+| 🚕 **Taxiwoord: x en -tie** | weet | x always sounds like ks; -tie/-cie always sounds like tsie |
+| 🧭 **Cito-check: welke categorie?** | — | Identifying klankwoord / regelwoord / weetwoord itself |
 
 ## Five kinds of exercises
 
@@ -123,9 +149,32 @@ the round, with their rule, so you can go through them together.
 - ⏱ **30-minute mission** — a ring in the top bar fills up; at half an hour he
   gets a trophy and confetti
 - ⚡ **XP, levels and a streak counter** shared between reading and spelling
+- 🪙 **Coins** — every correct answer earns a few coins too, spendable in the shop
 - 🦉 **Oscar the owl** reacts to every answer and gives hints
 - 🎉 Confetti, stars, sound effects and **sixteen collectable badges**
 - ⚡ **Flash-words bonus round** — a word flashes briefly; which word was it?
+
+## 🪙 The rewards shop
+
+Every correct answer earns a handful of **coins** alongside XP (roughly a
+fifth of the XP gained), and finishing a story or a spelling round, hitting
+the 30-minute mission or unlocking a badge all add a bonus on top. The coin
+button in the top bar opens the shop, where coins can be saved up and spent
+on four kinds of things — nothing here is needed to play, it is purely a
+reason to keep going:
+
+| Kind | What it is | Example |
+|---|---|---|
+| 🎨 **Stickers** | Cheap, purely for the collection — shown on a shelf on the world screen | 🌈 Regenboog, 🦄 Eenhoorn |
+| 🧢 **Iconen** | Extra avatar options beyond the sixteen free ones | 🧛 Vampier, 🐺 Wolf |
+| 🎭 **Personages** | Bigger, pricier avatars, one loosely tied to each reading world | 🧑‍🚀 Astronaut, 🕵️ Detective |
+| 🧰 **Gereedschap** | A consumable **jokerkaart** that reveals the right answer for a lower reward, or a permanent **kleurenthema** that recolours the whole app | 🃏 Jokerkaart, 🌊 Oceaanthema |
+
+Bought icons and characters show up as extra choices in the avatar picker;
+bought themes can be switched on from the shop at any time. A jokerkaart
+only works on questions with a clear right answer (multiple choice,
+true/false, fill‑the‑gap, pick‑two) and gives less XP than solving it
+yourself, so it stays a genuine "I'm stuck" option rather than a shortcut.
 
 ## Reading support
 
@@ -164,6 +213,7 @@ Behind a small multiplication sum, so he cannot wander in:
   which spelling rule to say out loud and which words to dictate this week
 - The last 20 answers, with the question itself
 - A warning if he **clicked through** without really reading
+- **Coins saved and items bought**, so you can see how the shop is going too
 
 ### Downloading the report
 
@@ -216,6 +266,20 @@ A spelling exercise goes into `data/spelling.sets.js`:
   why: { nl: 'Bij hij komt er een t achter de stam.', en: 'With "hij" you add a t to the stem.' } }
 ```
 
+A new rule (category) goes into `window.SPELL_CATS` in `data/spelling.js`,
+tagged with a `meta` of `'klank'`, `'regel'` or `'weet'` so it gets the right
+badge on its card.
+
+A shop item goes into `window.SHOP_ITEMS` in `data/shop.js`:
+
+```js
+{ id: 'sticker-star', kind: 'sticker', emoji: '⭐', cost: 8, nl: 'Ster', en: 'Star' }
+```
+
+`kind` is `sticker`, `icon`, `character` or `tool`. A `tool` also needs an
+`effect`: `'joker'` with an `amount` (a consumable jokerkaart pack), or
+`'theme'` with a `hue` (a permanent colour unlock).
+
 ## Checking your changes
 
 Two commands, no build step:
@@ -254,12 +318,13 @@ js/i18n.js              every interface string, in NL and EN
 js/audio.js             sound effects (WebAudio) and read-aloud (SpeechSynthesis)
 js/fx.js                confetti, background, the owl
 js/log.js               storage, statistics and the export buttons
-js/app.js               reading game: screens, questions, scoring, dashboard
-js/spelling.js          spelling game: rules, exercises, scoring
+js/app.js               reading game: screens, questions, scoring, dashboard, shop, coins, joker
+js/spelling.js          spelling game: rules, exercises, scoring, joker
 data/bootstrap.js       worlds, levels and reading skills
 data/stories.*.js       the stories, one file per world
-data/spelling.js        the ten spelling rules with their explanation
+data/spelling.js        the fifteen spelling rules, their meta-category and explanation
 data/spelling.sets.js   the spelling exercises
+data/shop.js            the stickers, icons, characters and tools in the coin shop
 tools/validate.js       checks the data (no dependencies)
 tools/smoke.mjs         plays the game in a browser (needs playwright)
 ```

@@ -352,6 +352,37 @@ CATS.forEach(function (c) {
 });
 
 /* ---------------------------------------------------------------------
+   5b. Shop
+   --------------------------------------------------------------------- */
+const SHOP = W.SHOP_ITEMS || [];
+const SHOP_KINDS = ['sticker', 'icon', 'character', 'tool'];
+const shopIds = {};
+let shopCoinTotal = 0;
+
+SHOP.forEach(function (it) {
+  const where = 'shop item ' + (it.id || '(no id)');
+  if (!it.id) { err(where, 'missing id'); return; }
+  if (shopIds[it.id]) err(where, 'duplicate id');
+  shopIds[it.id] = true;
+  if (!it.emoji) err(where, 'missing emoji');
+  if (typeof it.cost !== 'number' || it.cost <= 0) err(where, 'cost must be a positive number');
+  else shopCoinTotal += it.cost;
+  if (!it.nl || !it.en) err(where, 'missing nl or en name');
+  if (SHOP_KINDS.indexOf(it.kind) === -1) err(where, 'unknown kind "' + it.kind + '"');
+
+  if (it.kind === 'tool') {
+    if (it.effect === 'joker') {
+      if (typeof it.amount !== 'number' || it.amount < 1) err(where, 'a joker tool needs amount >= 1');
+    } else if (it.effect === 'theme') {
+      if (typeof it.hue !== 'number') err(where, 'a theme tool needs a numeric hue');
+    } else {
+      err(where, 'unknown tool effect "' + it.effect + '"');
+    }
+  }
+});
+if (!SHOP.length) warn('data/shop.js', 'no shop items defined');
+
+/* ---------------------------------------------------------------------
    6. Interface strings: every key used must exist in both languages
    --------------------------------------------------------------------- */
 const i18nBox = { window: { LANG: 'nl' }, console: console };
@@ -438,6 +469,8 @@ console.log('  spelling rules: ' + CATS.length);
 console.log('  spelling sets : ' + SETS.length);
 console.log('  spelling items: ' + spellItemTotal);
 console.log('  exercise types: ' + Object.keys(spellTypeCount).sort().map(function (k) { return k + ' ' + spellTypeCount[k]; }).join(', '));
+console.log('');
+console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins to unlock everything once)');
 console.log('───────────────────────────────────────────────');
 
 warnings.forEach(function (w) { console.log('  ⚠️  ' + w); });

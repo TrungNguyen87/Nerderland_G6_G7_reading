@@ -1011,3 +1011,477 @@ addSpelling([
   ]
 }
 ]);
+
+/* ---------------------------------------------------------------------
+   11. Hond of lief: d of t?
+   --------------------------------------------------------------------- */
+addSpelling([
+{
+  id: 'langermaakwoord-1', cat: 'langermaakwoord', level: 1,
+  title: { nl: 'Hond of hont?', en: 'Hond or hont?' },
+  items: [
+    { type: 'fill', before: 'hon', gap: ['d', 't'], answer: 0, after: '',
+      why: { nl: 'Maak het langer: hond → honden. Je hoort een d, dus je schrijft hond.',
+             en: 'Make it longer: hond → honden. You hear a d, so you write "hond".' } },
+    { type: 'fill', before: 'ka', gap: ['d', 't'], answer: 1, after: '',
+      why: { nl: 'Maak het langer: kat → katten. Je hoort een t, dus je schrijft kat.',
+             en: 'Make it longer: kat → katten. You hear a t, so you write "kat".' } },
+    { type: 'pick', options: ['brood', 'broot'], answer: 0,
+      sentence: { nl: 'Bij de bakker kopen we een vers ___.', en: 'We buy fresh ___ at the baker.' },
+      why: { nl: 'Brood → broden. Je hoort een d, dus schrijf je brood.',
+             en: 'Brood → broden. You hear a d, so you write "brood".' } },
+    { type: 'type', word: 'vriend',
+      sentence: { nl: 'Sam is mijn beste ___.', en: 'Sam is my best ___.' },
+      why: { nl: 'Vriend → vrienden. Je hoort een d.', en: 'Vriend → vrienden. You hear a d.' } },
+    { type: 'error', words: ['De', 'hont', 'rent', 'over', 'het', 'gras.'], answer: 1, fix: 'hond',
+      why: { nl: 'Hond → honden, dus met een d, niet met een t.',
+             en: 'Hond → honden, so with a d, not a t.' } },
+    { type: 'sort', bins: [{ nl: 'eindigt op d', en: 'ends in d' }, { nl: 'eindigt op t', en: 'ends in t' }],
+      words: [{ w: 'hon__', full: 'hond → honden', bin: 0 }, { w: 'ka__', full: 'kat → katten', bin: 1 },
+              { w: 'broo__', full: 'brood → broden', bin: 0 }, { w: 'po__', full: 'pot → potten', bin: 1 }],
+      why: { nl: 'Hoor je bij het langer maken een d? Dan schrijf je d. Hoor je een t? Dan schrijf je t.',
+             en: 'Hear a d when you lengthen the word? Write d. Hear a t? Write t.' } }
+  ]
+},
+{
+  id: 'langermaakwoord-2', cat: 'langermaakwoord', level: 2,
+  title: { nl: 'Potlood, klad en geit', en: 'Potlood, klad and geit' },
+  items: [
+    { type: 'fill', before: 'bor', gap: ['d', 't'], answer: 0, after: '',
+      why: { nl: 'Bord → borden. Je hoort een d.', en: 'Bord → borden. You hear a d.' } },
+    { type: 'pick', options: ['potlood', 'potloot'], answer: 0,
+      sentence: { nl: 'Ik teken met een ___.', en: 'I draw with a ___.' },
+      why: { nl: 'Potlood → potloden. Je hoort een d, dus schrijf je potlood.',
+             en: 'Potlood → potloden. You hear a d, so you write "potlood".' } },
+    { type: 'type', word: 'klad',
+      sentence: { nl: 'Ik schreef eerst een ___ voordat ik het overschreef.',
+                  en: 'I first wrote a ___ before copying it out.' },
+      why: { nl: 'Klad → kladden. Je hoort een d (met een dubbele d door de korte a).',
+             en: 'Klad → kladden. You hear a d (doubled because of the short a).' } },
+    { type: 'pick', options: ['geit', 'geid'], answer: 0,
+      sentence: { nl: 'In de wei staat een ___.', en: 'A ___ stands in the meadow.' },
+      why: { nl: 'Geit → geiten. Je hoort een t, dus schrijf je geit.',
+             en: 'Geit → geiten. You hear a t, so you write "geit".' } },
+    { type: 'error', words: ['Opa', 'zette', 'zijn', 'hoet', 'op', 'voor', 'de', 'regen.'],
+      answer: 3, fix: 'hoed',
+      why: { nl: 'Hoed → hoeden. Je hoort een d, dus schrijf je hoed.',
+             en: 'Hoed → hoeden. You hear a d, so you write "hoed".' } },
+    { type: 'type', word: 'lief',
+      sentence: { nl: 'Mijn zusje is heel ___ voor de kleine hond.',
+                  en: 'My little sister is very ___ to the little dog.' },
+      why: { nl: 'Lief → lieve. Je hoort een v, maar je schrijft toch lief met een f.',
+             en: 'Lief → lieve. You hear a v, but you still write "lief" with an f.' } },
+    { type: 'sort', bins: [{ nl: 'eindigt op d', en: 'ends in d' }, { nl: 'eindigt op t', en: 'ends in t' }],
+      words: [{ w: 'bor__', full: 'bord → borden', bin: 0 }, { w: 'gei__', full: 'geit → geiten', bin: 1 },
+              { w: 'ma__', full: 'mat → matten', bin: 1 }, { w: 'kla__', full: 'klad → kladden', bin: 0 }],
+      why: { nl: 'Bord en klad krijgen een d, geit en mat krijgen een t — dat hoor je pas als je ze langer maakt.',
+             en: 'Bord and klad take a d, geit and mat take a t — you only hear that once you lengthen them.' } }
+  ]
+},
+{
+  id: 'langermaakwoord-3', cat: 'langermaakwoord', level: 3,
+  title: { nl: 'Kind, rund en grof', en: 'Kind, rund and grof' },
+  items: [
+    { type: 'fill', before: 'kin', gap: ['d', 't'], answer: 0, after: '',
+      why: { nl: 'Kind wordt kinderen: je hoort een d, dus schrijf je kind, ook al klinkt het einde als een t.',
+             en: 'Kind becomes kinderen: you hear a d, so you write "kind", even though the end sounds like a t.' } },
+    { type: 'type', word: 'rund',
+      sentence: { nl: 'Op de boerderij staat een groot ___.', en: 'A big ___ stands on the farm.' },
+      why: { nl: 'Rund → runderen. Je hoort een d.', en: 'Rund → runderen. You hear a d.' } },
+    { type: 'pick', options: ['grof', 'grov'], answer: 0,
+      sentence: { nl: 'Dit zand voelt heel ___ aan.', en: 'This sand feels very ___.' },
+      why: { nl: 'Grof → grove. Je hoort een v, maar in de losse vorm schrijf je toch grof met een f.',
+             en: 'Grof → grove. You hear a v, but in the plain form you still write "grof" with an f.' } },
+    { type: 'error', words: ['De', 'oude', 'muur', 'was', 'gemaakt', 'van', 'grov', 'gehakte', 'stenen.'],
+      answer: 6, fix: 'grof',
+      why: { nl: 'Grof eindigt op een f, ook al hoor je bij grove een v.',
+             en: '"Grof" ends in an f, even though you hear a v in "grove".' } },
+    { type: 'type', word: 'hoofd',
+      sentence: { nl: 'Zet je ___ maar rechtop.', en: 'Just hold your ___ up straight.' },
+      why: { nl: 'Hoofd → hoofden. Je hoort een d.', en: 'Hoofd → hoofden. You hear a d.' } },
+    { type: 'sort', bins: [{ nl: 'eindigt op d', en: 'ends in d' }, { nl: 'eindigt op t', en: 'ends in t' }],
+      words: [{ w: 'kin__', full: 'kind → kinderen', bin: 0 }, { w: 'run__', full: 'rund → runderen', bin: 0 },
+              { w: 'gei__', full: 'geit → geiten', bin: 1 }, { w: 'ka__', full: 'kat → katten', bin: 1 }],
+      why: { nl: 'Kind en rund klinken alsof ze op een t eindigen, maar door ze langer te maken hoor je toch een d. Geit en kat eindigen echt op een t.',
+             en: 'Kind and rund sound as if they end in t, but lengthening them reveals a d. Geit and kat really do end in t.' } }
+  ]
+}
+]);
+
+/* ---------------------------------------------------------------------
+   12. Kilowoord
+   --------------------------------------------------------------------- */
+addSpelling([
+{
+  id: 'kilowoord-1', cat: 'kilowoord', level: 1,
+  title: { nl: 'Je hoort ie, je schrijft i', en: 'You hear ie, you write i' },
+  items: [
+    { type: 'fill', before: 'k', gap: ['i', 'ie'], answer: 0, after: 'lo',
+      why: { nl: 'Je hoort een lange ie, maar kilo schrijf je met één i.',
+             en: 'You hear a long ie, but "kilo" is written with just one i.' } },
+    { type: 'pick', options: ['piano', 'pieano'], answer: 0,
+      sentence: { nl: 'In de huiskamer staat een grote ___.', en: 'A big ___ stands in the living room.' },
+      why: { nl: 'Piano klinkt met ie, maar je schrijft er maar één i.',
+             en: '"Piano" sounds like it has ie, but you write only one i.' } },
+    { type: 'type', word: 'radio',
+      sentence: { nl: 'We luisteren elke ochtend naar de ___.', en: 'Every morning we listen to the ___.' },
+      why: { nl: 'Radio: je hoort ie, je schrijft i.', en: 'Radio: you hear ie, you write i.' } },
+    { type: 'fill', before: 'l', gap: ['i', 'ie'], answer: 0, after: 'ter',
+      why: { nl: 'Liter klinkt als "lieter", maar je schrijft liter met één i.',
+             en: '"Liter" sounds like "lieter", but it is written with just one i.' } },
+    { type: 'error', words: ['Voor', 'het', 'feest', 'kochten', 'we', 'een', 'grote', 'pieza.'],
+      answer: 7, fix: 'pizza.',
+      why: { nl: 'Pizza schrijf je met één i, ook al hoor je ie.',
+             en: '"Pizza" is written with one i, even though you hear ie.' } },
+    { type: 'sort', bins: [{ nl: 'kilowoord (i)', en: 'kilo word (i)' }, { nl: 'gewoon ie-woord', en: 'normal ie word' }],
+      words: [{ w: 'k__lo', full: 'kilo', bin: 0 }, { w: 'f__ts', full: 'fiets', bin: 1 },
+              { w: 'p__ano', full: 'piano', bin: 0 }, { w: 'd__p', full: 'diep', bin: 1 }],
+      why: { nl: 'Kilo en piano zijn kilowoorden: je hoort ie maar schrijft i. Fiets en diep zijn gewone ie-woorden.',
+             en: 'Kilo and piano are kilo words: you hear ie but write i. Fiets and diep are regular ie words.' } }
+  ]
+},
+{
+  id: 'kilowoord-2', cat: 'kilowoord', level: 2,
+  title: { nl: 'Langere kilowoorden', en: 'Longer kilo words' },
+  items: [
+    { type: 'pick', options: ['gitaar', 'gietaar'], answer: 0,
+      sentence: { nl: 'Mijn zus speelt ___.', en: 'My sister plays ___.' },
+      why: { nl: 'Gitaar schrijf je met één i.', en: '"Gitaar" is written with one i.' } },
+    { type: 'fill', before: 'p', gap: ['i', 'ie'], answer: 0, after: 'loot',
+      why: { nl: 'Piloot schrijf je met één i.', en: '"Piloot" is written with one i.' } },
+    { type: 'type', word: 'titel',
+      sentence: { nl: 'Wat is de ___ van dit boek?', en: 'What is the ___ of this book?' },
+      why: { nl: 'Titel schrijf je met één i.', en: '"Titel" is written with one i.' } },
+    { type: 'pick', options: ['benzine', 'benziene'], answer: 0,
+      sentence: { nl: 'De auto rijdt op ___.', en: 'The car runs on ___.' },
+      why: { nl: 'Benzine heeft in de laatste lettergreep maar één i.',
+             en: '"Benzine" has just one i in the last syllable.' } },
+    { type: 'error', words: ['In', 'de', 'fabriek', 'staat', 'een', 'grote', 'machiene.'],
+      answer: 6, fix: 'machine.',
+      why: { nl: 'Machine schrijf je met één i.', en: '"Machine" is written with one i.' } },
+    { type: 'type', word: 'vitamine',
+      sentence: { nl: 'Een sinaasappel zit vol ___ C.', en: 'An orange is full of ___ C.' },
+      why: { nl: 'Vitamine schrijf je met één i.', en: '"Vitamine" is written with one i.' } },
+    { type: 'sort', bins: [{ nl: 'kilowoord (i)', en: 'kilo word (i)' }, { nl: 'gewoon ie-woord', en: 'normal ie word' }],
+      words: [{ w: 'g__taar', full: 'gitaar', bin: 0 }, { w: 'br__f', full: 'brief', bin: 1 },
+              { w: 't__tel', full: 'titel', bin: 0 }, { w: 'w__l', full: 'wiel', bin: 1 }],
+      why: { nl: 'Gitaar en titel zijn kilowoorden. Brief en wiel zijn gewone ie-woorden.',
+             en: 'Gitaar and titel are kilo words. Brief and wiel are regular ie words.' } }
+  ]
+},
+{
+  id: 'kilowoord-3', cat: 'kilowoord', level: 3,
+  title: { nl: 'De moeilijkste kilowoorden', en: 'The hardest kilo words' },
+  items: [
+    { type: 'type', word: 'stadion',
+      sentence: { nl: 'De wedstrijd is in een groot ___.', en: 'The match is in a big ___.' },
+      why: { nl: 'Stadion schrijf je met één i.', en: '"Stadion" is written with one i.' } },
+    { type: 'pick', options: ['scenario', 'scienario'], answer: 0,
+      sentence: { nl: 'De film volgt een spannend ___.', en: 'The film follows an exciting ___.' },
+      why: { nl: 'Scenario schrijf je met één i.', en: '"Scenario" is written with one i.' } },
+    { type: 'fill', before: 'macaron', gap: ['i', 'ie'], answer: 0, after: '',
+      why: { nl: 'Macaroni eindigt op één i, geen ie.', en: '"Macaroni" ends in one i, not ie.' } },
+    { type: 'type', word: 'limonade',
+      sentence: { nl: 'In mijn glas zit koude ___.', en: 'There is cold ___ in my glass.' },
+      why: { nl: 'Limonade schrijf je met één i.', en: '"Limonade" is written with one i.' } },
+    { type: 'error', words: ['Mijn', 'moeder', 'kocht', 'twee', 'kielogram', 'appels.'],
+      answer: 4, fix: 'kilogram',
+      why: { nl: 'Kilogram schrijf je met één i, geen ie.', en: '"Kilogram" is written with one i, not ie.' } },
+    { type: 'pick', options: ['provincie', 'proviencie'], answer: 0,
+      sentence: { nl: 'Utrecht is de kleinste ___ van Nederland.', en: 'Utrecht is the smallest ___ of the Netherlands.' },
+      why: { nl: 'Provincie schrijf je met één i; let op, dit woord eindigt ook nog op -cie, net als -tie.',
+             en: '"Provincie" is written with one i; it also ends in -cie, just like -tie.' } },
+    { type: 'sort', bins: [{ nl: 'kilowoord (i)', en: 'kilo word (i)' }, { nl: 'gewoon ie-woord', en: 'normal ie word' }],
+      words: [{ w: 'stad__on', full: 'stadion', bin: 0 }, { w: 'vr__nd', full: 'vriend', bin: 1 },
+              { w: 'prov__ncie', full: 'provincie', bin: 0 }, { w: 'l__ve', full: 'lieve', bin: 1 }],
+      why: { nl: 'Stadion en provincie zijn kilowoorden met i. Vriend en lieve zijn gewone woorden met ie.',
+             en: 'Stadion and provincie are kilo words with i. Vriend and lieve are regular words with ie.' } }
+  ]
+}
+]);
+
+/* ---------------------------------------------------------------------
+   13. Cent of cola: de letter c
+   --------------------------------------------------------------------- */
+addSpelling([
+{
+  id: 'centcolawoord-1', cat: 'centcolawoord', level: 1,
+  title: { nl: 'Hoor je een s of een k?', en: 'Do you hear an s or a k?' },
+  items: [
+    { type: 'pick', options: ['cent', 'sent'], answer: 0,
+      sentence: { nl: 'Dit snoepje kost vijftig ___.', en: 'This sweet costs fifty ___.' },
+      why: { nl: 'Voor een e klinkt de c als een s, maar je schrijft toch een c: cent.',
+             en: 'Before an e the c sounds like an s, but you still write a c: cent.' } },
+    { type: 'type', word: 'citroen',
+      sentence: { nl: 'In de thee doet oma een schijfje ___.', en: 'Grandma puts a slice of ___ in the tea.' },
+      why: { nl: 'Voor een i klinkt de c als een s: citroen.', en: 'Before an i the c sounds like an s: citroen.' } },
+    { type: 'pick', options: ['cola', 'sola'], answer: 0,
+      sentence: { nl: 'Bij de lunch drinkt hij een glas ___.', en: 'He drinks a glass of ___ at lunch.' },
+      why: { nl: 'Voor een a klinkt de c als een k: cola.', en: 'Before an a the c sounds like a k: cola.' } },
+    { type: 'fill', before: '', gap: ['c', 's'], answer: 0, after: 'actus',
+      why: { nl: 'Cactus: voor een a klinkt de c als een k, maar je schrijft c.',
+             en: 'Cactus: before an a the c sounds like a k, but you write c.' } },
+    { type: 'error', words: ['In', 'het', 'park', 'staat', 'een', 'groot', 'sirkus.'], answer: 6, fix: 'circus.',
+      why: { nl: 'Circus schrijf je met een c, ook al hoor je een s.',
+             en: '"Circus" is written with a c, even though you hear an s.' } },
+    { type: 'sort', bins: [{ nl: 'klinkt als s', en: 'sounds like s' }, { nl: 'klinkt als k', en: 'sounds like k' }],
+      words: [{ w: '__ent', full: 'cent', bin: 0 }, { w: '__ola', full: 'cola', bin: 1 },
+              { w: '__irkel', full: 'cirkel', bin: 0 }, { w: '__omputer', full: 'computer', bin: 1 }],
+      why: { nl: 'Voor een e of i klinkt de c als s. Voor een a of o klinkt de c als k.',
+             en: 'Before an e or i the c sounds like s. Before an a or o the c sounds like k.' } }
+  ]
+},
+{
+  id: 'centcolawoord-2', cat: 'centcolawoord', level: 2,
+  title: { nl: 'Meer c-woorden', en: 'More c words' },
+  items: [
+    { type: 'pick', options: ['cement', 'sement'], answer: 0,
+      sentence: { nl: 'De muur is gemaakt van stenen en ___.', en: 'The wall is made of bricks and ___.' },
+      why: { nl: 'Voor een e klinkt de c als een s: cement.', en: 'Before an e the c sounds like an s: cement.' } },
+    { type: 'type', word: 'cijfer',
+      sentence: { nl: 'Voor de toets kreeg ik een goed ___.', en: 'I got a good ___ for the test.' },
+      why: { nl: 'Voor een i klinkt de c als een s: cijfer.', en: 'Before an i the c sounds like an s: cijfer.' } },
+    { type: 'pick', options: ['computer', 'komputer'], answer: 0,
+      sentence: { nl: 'Ik doe mijn huiswerk op de ___.', en: 'I do my homework on the ___.' },
+      why: { nl: 'Voor een o klinkt de c als een k, maar je schrijft toch een c.',
+             en: 'Before an o the c sounds like a k, but you still write a c.' } },
+    { type: 'fill', before: '', gap: ['c', 'k'], answer: 0, after: 'ontact',
+      why: { nl: 'Contact: voor een o schrijf je een c.', en: 'Contact: before an o you write a c.' } },
+    { type: 'error', words: ['Voor', 'mijn', 'verjaardag', 'kreeg', 'ik', 'een', 'leuk', 'kadeau.'],
+      answer: 7, fix: 'cadeau.',
+      why: { nl: 'Cadeau schrijf je met een c, ook al hoor je een k.',
+             en: '"Cadeau" is written with a c, even though you hear a k.' } },
+    { type: 'type', word: 'camera',
+      sentence: { nl: 'Met deze ___ maken we een filmpje.', en: 'With this ___ we make a little film.' },
+      why: { nl: 'Voor een a klinkt de c als een k: camera.', en: 'Before an a the c sounds like a k: camera.' } },
+    { type: 'sort', bins: [{ nl: 'klinkt als s', en: 'sounds like s' }, { nl: 'klinkt als k', en: 'sounds like k' }],
+      words: [{ w: '__ement', full: 'cement', bin: 0 }, { w: '__ontact', full: 'contact', bin: 1 },
+              { w: '__ijfer', full: 'cijfer', bin: 0 }, { w: '__adeau', full: 'cadeau', bin: 1 }],
+      why: { nl: 'Voor een e of i klinkt de c als s. Voor een o of a klinkt de c als k.',
+             en: 'Before an e or i the c sounds like s. Before an o or a the c sounds like k.' } }
+  ]
+},
+{
+  id: 'centcolawoord-3', cat: 'centcolawoord', level: 3,
+  title: { nl: 'Lastige c-woorden: concert en conclusie', en: 'Tricky c words: concert and conclusie' },
+  items: [
+    { type: 'type', word: 'cursus',
+      sentence: { nl: 'Mijn vader volgt een ___ Spaans.', en: 'My father is taking a ___ in Spanish.' },
+      why: { nl: 'Voor een u klinkt de c als een k: cursus.', en: 'Before a u the c sounds like a k: cursus.' } },
+    { type: 'pick', options: ['code', 'kode'], answer: 0,
+      sentence: { nl: 'Om de kluis te openen typ je een ___ in.', en: 'You type in a ___ to open the safe.' },
+      why: { nl: 'Voor een o klinkt de c als een k: code.', en: 'Before an o the c sounds like a k: code.' } },
+    { type: 'fill', before: '', gap: ['c', 'k'], answer: 0, after: 'ultuur',
+      why: { nl: 'Cultuur: voor een u schrijf je een c.', en: 'Cultuur: before a u you write a c.' } },
+    { type: 'error', words: ['Wij', 'gingen', 'naar', 'een', 'kabine', 'om', 'ons', 'om', 'te', 'kleden.'],
+      answer: 4, fix: 'cabine',
+      why: { nl: 'Cabine: voor een a schrijf je een c.', en: 'Cabine: before an a you write a c.' } },
+    { type: 'pick', options: ['concert', 'consert'], answer: 0,
+      sentence: { nl: 'Vanavond gaan we naar een ___ van onze idolen.', en: 'Tonight we are going to a ___ of our idols.' },
+      why: { nl: 'Concert heeft twee keer een c: de eerste (voor de o) klinkt als k, de tweede (voor de e) klinkt als s.',
+             en: '"Concert" has a c twice: the first (before o) sounds like k, the second (before e) sounds like s.' } },
+    { type: 'type', word: 'conclusie',
+      sentence: { nl: 'Aan het eind van zijn verhaal trok hij een duidelijke ___.',
+                  en: 'At the end of his story he drew a clear ___.' },
+      why: { nl: 'Conclusie heeft ook twee keer een c: eerst een k-klank, dan een s-klank.',
+             en: '"Conclusie" also has a c twice: first a k sound, then an s sound.' } },
+    { type: 'sort', bins: [{ nl: 'klinkt als s', en: 'sounds like s' }, { nl: 'klinkt als k', en: 'sounds like k' }],
+      words: [{ w: '__ursus', full: 'cursus', bin: 1 }, { w: '__ode', full: 'code', bin: 1 },
+              { w: '__itroen', full: 'citroen', bin: 0 }, { w: '__abine', full: 'cabine', bin: 1 }],
+      why: { nl: 'Voor een u, o of a klinkt de c als k. Voor een i klinkt de c als s.',
+             en: 'Before a u, o or a the c sounds like k. Before an i the c sounds like s.' } }
+  ]
+}
+]);
+
+/* ---------------------------------------------------------------------
+   14. Taxiwoord: x en -tie
+   --------------------------------------------------------------------- */
+addSpelling([
+{
+  id: 'taxiwoord-1', cat: 'taxiwoord', level: 1,
+  title: { nl: 'De x klinkt als ks', en: 'The x sounds like ks' },
+  items: [
+    { type: 'type', word: 'taxi',
+      sentence: { nl: 'We namen een ___ naar het vliegveld.', en: 'We took a ___ to the airport.' },
+      why: { nl: 'De x in taxi klinkt als ks.', en: 'The x in "taxi" sounds like ks.' } },
+    { type: 'pick', options: ['extra', 'ekstra'], answer: 0,
+      sentence: { nl: 'Mag ik nog een ___ boterham?', en: 'May I have an ___ sandwich?' },
+      why: { nl: 'Extra schrijf je met een x, ook al hoor je ks.',
+             en: '"Extra" is written with an x, even though you hear ks.' } },
+    { type: 'fill', before: 'ma', gap: ['x', 'ks'], answer: 0, after: 'imum',
+      why: { nl: 'Maximum schrijf je met een x.', en: '"Maximum" is written with an x.' } },
+    { type: 'type', word: 'box',
+      sentence: { nl: 'De baby speelt in de ___.', en: 'The baby plays in the ___.' },
+      why: { nl: 'Box schrijf je met een x.', en: '"Box" is written with an x.' } },
+    { type: 'error', words: ['Reken', 'dit', 'sommetje', 'heel', 'eksact', 'uit.'], answer: 4, fix: 'exact',
+      why: { nl: 'Exact schrijf je met een x, niet met ks.', en: '"Exact" is written with an x, not ks.' } },
+    { type: 'sort', bins: [{ nl: 'x klinkt als ks', en: 'x sounds like ks' }, { nl: '-tie klinkt als tsie', en: '-tie sounds like tsie' }],
+      words: [{ w: 'ta__i', full: 'taxi (x)', bin: 0 }, { w: 'posi__', full: 'positie (tie)', bin: 1 },
+              { w: 'e__tra', full: 'extra (x)', bin: 0 }, { w: 'ac__', full: 'actie (tie)', bin: 1 }],
+      why: { nl: 'De x klinkt als ks en de -tie klinkt als tsie. Allebei schrijf je toch gewoon zoals ze horen: met x of met -tie.',
+             en: 'The x sounds like ks and -tie sounds like tsie. Both are still written plainly: with x or with -tie.' } }
+  ]
+},
+{
+  id: 'taxiwoord-2', cat: 'taxiwoord', level: 2,
+  title: { nl: 'Van expert tot actie', en: 'From expert to actie' },
+  items: [
+    { type: 'type', word: 'expert',
+      sentence: { nl: 'Voor deze klus hebben we een ___ nodig.', en: 'For this job we need an ___.' },
+      why: { nl: 'Expert schrijf je met een x.', en: '"Expert" is written with an x.' } },
+    { type: 'pick', options: ['excuus', 'ekskuus'], answer: 0,
+      sentence: { nl: 'Hij bood zijn ___ aan voor het te laat komen.', en: 'He offered his ___ for being late.' },
+      why: { nl: 'Excuus schrijf je met een x.', en: '"Excuus" is written with an x.' } },
+    { type: 'fill', before: 'refle', gap: ['x', 'ks'], answer: 0, after: '',
+      why: { nl: 'Reflex eindigt op een x, ook al klinkt het als ks.',
+             en: '"Reflex" ends in an x, even though it sounds like ks.' } },
+    { type: 'pick', options: ['actie', 'aksie'], answer: 0,
+      sentence: { nl: 'In de film zit veel ___.', en: 'The film has a lot of ___.' },
+      why: { nl: 'Actie klinkt als "aksie", maar je schrijft -tie.',
+             en: '"Actie" sounds like "aksie", but you write -tie.' } },
+    { type: 'error', words: ['Voetballen', 'op', 'topniveau', 'vraagt', 'veel', 'ambisie.'],
+      answer: 5, fix: 'ambitie.',
+      why: { nl: 'Ambitie schrijf je met -tie, niet met -sie.', en: '"Ambitie" is written with -tie, not -sie.' } },
+    { type: 'type', word: 'complex',
+      sentence: { nl: 'Dit programma is best ___.', en: 'This program is quite ___.' },
+      why: { nl: 'Complex eindigt op een x.', en: '"Complex" ends in an x.' } },
+    { type: 'sort', bins: [{ nl: 'x klinkt als ks', en: 'x sounds like ks' }, { nl: '-tie klinkt als tsie', en: '-tie sounds like tsie' }],
+      words: [{ w: 'refle__', full: 'reflex (x)', bin: 0 }, { w: 'ac__', full: 'actie (tie)', bin: 1 },
+              { w: 'comple__', full: 'complex (x)', bin: 0 }, { w: 'ambi__', full: 'ambitie (tie)', bin: 1 }],
+      why: { nl: 'Reflex en complex hebben de x-klank. Actie en ambitie hebben de tsie-klank.',
+             en: 'Reflex and complex have the x sound. Actie and ambitie have the tsie sound.' } }
+  ]
+},
+{
+  id: 'taxiwoord-3', cat: 'taxiwoord', level: 3,
+  title: { nl: 'Expeditie: x én -tie samen', en: 'Expeditie: x and -tie together' },
+  items: [
+    { type: 'type', word: 'textiel',
+      sentence: { nl: 'Deze jas is gemaakt van sterk ___.', en: 'This coat is made of strong ___.' },
+      why: { nl: 'Textiel schrijf je met een x, die klinkt als ks.',
+             en: '"Textiel" is written with an x, which sounds like ks.' } },
+    { type: 'pick', options: ['exotisch', 'eksotisch'], answer: 0,
+      sentence: { nl: 'In de dierentuin zagen we een ___ dier.', en: 'At the zoo we saw an ___ animal.' },
+      why: { nl: 'Exotisch schrijf je met een x.', en: '"Exotisch" is written with an x.' } },
+    { type: 'fill', before: '', gap: ['ex', 'eks'], answer: 0, after: 'peditie',
+      why: { nl: 'Expeditie heeft zowel een x (klinkt als ks) als -tie (klinkt als tsie) — allebei in één woord!',
+             en: '"Expeditie" has both an x (sounds like ks) and -tie (sounds like tsie) — both in one word!' } },
+    { type: 'pick', options: ['publicatie', 'publicasie'], answer: 0,
+      sentence: { nl: 'Het boek kwam uit na de ___ van het eerste hoofdstuk.',
+                  en: 'The book came out after the ___ of the first chapter.' },
+      why: { nl: 'Publicatie schrijf je met -tie.', en: '"Publicatie" is written with -tie.' } },
+    { type: 'error', words: ['Na', 'de', 'training', 'was', 'zijn', 'conditsie', 'een', 'stuk', 'beter.'],
+      answer: 5, fix: 'conditie',
+      why: { nl: 'Conditie schrijf je met -tie, niet met -tsie.', en: '"Conditie" is written with -tie, not -tsie.' } },
+    { type: 'type', word: 'provincie',
+      sentence: { nl: 'Groningen is een ___ in het noorden.', en: 'Groningen is a ___ in the north.' },
+      why: { nl: 'Provincie eindigt op -cie, dat klinkt als "sie". Je schrijft het toch met een c.',
+             en: '"Provincie" ends in -cie, which sounds like "sie". You still write it with a c.' } },
+    { type: 'sort', bins: [{ nl: 'x klinkt als ks', en: 'x sounds like ks' }, { nl: '-tie/-cie klinkt als (t)sie', en: '-tie/-cie sounds like (t)sie' }],
+      words: [{ w: 'te__tiel', full: 'textiel (x)', bin: 0 }, { w: 'publica__', full: 'publicatie (tie)', bin: 1 },
+              { w: 'e__otisch', full: 'exotisch (x)', bin: 0 }, { w: 'provin__', full: 'provincie (cie)', bin: 1 }],
+      why: { nl: 'Textiel en exotisch hebben de x-klank. Publicatie en provincie hebben de (t)sie-klank.',
+             en: 'Textiel and exotisch have the x sound. Publicatie and provincie have the (t)sie sound.' } }
+  ]
+}
+]);
+
+/* ---------------------------------------------------------------------
+   15. Cito-check: welke categorie?
+   --------------------------------------------------------------------- */
+addSpelling([
+{
+  id: 'citocategorie-1', cat: 'citocategorie', level: 1,
+  title: { nl: 'Klank-, regel- of weetwoord?', en: 'Sound, rule or memory word?' },
+  items: [
+    { type: 'pick', options: ['klankwoord', 'regelwoord', 'weetwoord'], answer: 0, whole: true,
+      sentence: { nl: 'Bij welke categorie hoort het woord <b>lamp</b>?', en: 'Which category does the word <b>lamp</b> belong to?' },
+      why: { nl: 'Lamp schrijf je precies zoals je het hoort. Geen regel, niets om te onthouden: een klankwoord.',
+             en: '"Lamp" is written exactly as it sounds. No rule, nothing to memorise: a sound word.' } },
+    { type: 'pick', options: ['klankwoord', 'regelwoord', 'weetwoord'], answer: 1, whole: true,
+      sentence: { nl: 'Bij welke categorie hoort het woord <b>hond</b>?', en: 'Which category does the word <b>hond</b> belong to?' },
+      why: { nl: 'Bij hond gebruik je de langer-maken-regel (hond → honden) om te weten dat het op een d eindigt: een regelwoord.',
+             en: 'For hond you use the lengthening rule (hond → honden) to know it ends in d: a rule word.' } },
+    { type: 'pick', options: ['klankwoord', 'regelwoord', 'weetwoord'], answer: 2, whole: true,
+      sentence: { nl: 'Bij welke categorie hoort het woord <b>trein</b>?', en: 'Which category does the word <b>trein</b> belong to?' },
+      why: { nl: 'Trein hoort bij het ei-rijtje, dat je gewoon uit je hoofd moet leren: een weetwoord.',
+             en: '"Trein" belongs to the ei list, which you simply have to learn by heart: a memory word.' } },
+    { type: 'pick', options: ['tapper', 'trein', 'lamp'], answer: 0, whole: true,
+      sentence: { nl: 'Welk woord hoort bij dezelfde categorie als <b>bakker</b>?', en: 'Which word belongs to the same category as <b>bakker</b>?' },
+      why: { nl: 'Bakker heeft een korte klank die de medeklinker verdubbelt. Tapper werkt precies zo: tap → tapper.',
+             en: 'Bakker has a short vowel that doubles the consonant. Tapper works the same way: tap → tapper.' } },
+    { type: 'pick', options: ['dauw', 'stoel', 'bank'], answer: 0, whole: true,
+      sentence: { nl: 'Welk woord hoort bij dezelfde categorie als <b>pauw</b>?', en: 'Which word belongs to the same category as <b>pauw</b>?' },
+      why: { nl: 'Pauw hoort bij het rijtje "een blauwe pauw met een nauwe kous" — een weetwoord. Dauw hoort ook in dat rijtje.',
+             en: 'Pauw belongs to the "blue peacock" memory list — a memory word. Dauw belongs to that list too.' } },
+    { type: 'sort', bins: [{ nl: 'klankwoord', en: 'sound word' }, { nl: 'regelwoord', en: 'rule word' }, { nl: 'weetwoord', en: 'memory word' }],
+      words: [{ w: 'tas', full: 'tas (klankwoord)', bin: 0 }, { w: 'bomen', full: 'bomen (regelwoord: jagerwoord)', bin: 1 },
+              { w: 'klein', full: 'klein (weetwoord: ei-rijtje)', bin: 2 }, { w: 'pen', full: 'pen (klankwoord)', bin: 0 }],
+      why: { nl: 'Tas en pen schrijf je gewoon zoals je ze hoort. Bomen volgt de jager-regel. Klein moet je onthouden uit het ei-rijtje.',
+             en: 'Tas and pen are written just as they sound. Bomen follows the jager rule. Klein must be memorised from the ei list.' } }
+  ]
+},
+{
+  id: 'citocategorie-2', cat: 'citocategorie', level: 2,
+  title: { nl: 'Lastigere woorden', en: 'Trickier words' },
+  items: [
+    { type: 'pick', options: ['klankwoord', 'regelwoord', 'weetwoord'], answer: 1, whole: true,
+      sentence: { nl: 'Bij welke categorie hoort het woord <b>verkeersbord</b>?', en: 'Which category does the word <b>verkeersbord</b> belong to?' },
+      why: { nl: 'Verkeersbord is een samenstelling met een tussen-s die je duidelijk hoort: een regelwoord.',
+             en: 'Verkeersbord is a compound with a clearly heard linking -s: a rule word.' } },
+    { type: 'pick', options: ['klankwoord', 'regelwoord', 'weetwoord'], answer: 2, whole: true,
+      sentence: { nl: 'Bij welke categorie hoort het woord <b>gitaar</b>?', en: 'Which category does the word <b>gitaar</b> belong to?' },
+      why: { nl: 'Bij gitaar hoor je een lange ie, maar er is geen regel die zegt dat je één i schrijft — dat moet je gewoon onthouden: een weetwoord.',
+             en: 'In gitaar you hear a long ie, but no rule says you write one i — you just have to remember it: a memory word.' } },
+    { type: 'pick', options: ['klankwoord', 'regelwoord', 'weetwoord'], answer: 0, whole: true,
+      sentence: { nl: 'Bij welke categorie hoort het woord <b>tafel</b>?', en: 'Which category does the word <b>tafel</b> belong to?' },
+      why: { nl: 'Tafel schrijf je precies zoals je het hoort, zonder speciale regel: een klankwoord.',
+             en: '"Tafel" is written exactly as it sounds, with no special rule: a sound word.' } },
+    { type: 'pick', options: ['taxi’s', 'tafels', 'honden'], answer: 0, whole: true,
+      sentence: { nl: 'Welk woord hoort bij dezelfde categorie als <b>foto’s</b>?', en: 'Which word belongs to the same category as <b>foto’s</b>?' },
+      why: { nl: 'Foto’s krijgt een apostrof omdat het op een o eindigt. Taxi’s werkt volgens dezelfde apostrof-regel (eindigt op i).',
+             en: 'Foto’s takes an apostrophe because it ends in o. Taxi’s follows the same apostrophe rule (ends in i).' } },
+    { type: 'pick', options: ['geit', 'koud', 'tafel'], answer: 0, whole: true,
+      sentence: { nl: 'Welk woord hoort bij dezelfde categorie als <b>klein</b>?', en: 'Which word belongs to the same category as <b>klein</b>?' },
+      why: { nl: 'Klein en geit horen allebei bij het ei-rijtje: ei, trein, klein, geit, meisje.',
+             en: 'Klein and geit both belong to the ei list: ei, trein, klein, geit, meisje.' } },
+    { type: 'sort', bins: [{ nl: 'klankwoord', en: 'sound word' }, { nl: 'regelwoord', en: 'rule word' }, { nl: 'weetwoord', en: 'memory word' }],
+      words: [{ w: 'boek', full: 'boek (klankwoord)', bin: 0 }, { w: 'pannenkoek', full: 'pannenkoek (regelwoord: tussen-n)', bin: 1 },
+              { w: 'blauw', full: 'blauw (weetwoord: au-rijtje)', bin: 2 }, { w: 'kast', full: 'kast (klankwoord)', bin: 0 }],
+      why: { nl: 'Boek en kast schrijf je gewoon zoals je ze hoort. Pannenkoek volgt de tussen-n-regel. Blauw moet je onthouden uit het au-rijtje.',
+             en: 'Boek and kast are written just as they sound. Pannenkoek follows the linking -n rule. Blauw must be memorised from the au list.' } }
+  ]
+},
+{
+  id: 'citocategorie-3', cat: 'citocategorie', level: 3,
+  title: { nl: 'Welke regel precies?', en: 'Which exact rule?' },
+  items: [
+    { type: 'pick', options: ['dt-regel (werkwoord)', 'bakker/jager-regel', 'tussen-n-regel'], answer: 0, whole: true,
+      sentence: { nl: 'Welke regel hoort bij het woord <b>hij wordt</b>?', en: 'Which rule belongs to the word <b>hij wordt</b>?' },
+      why: { nl: '"Wordt" is een werkwoordsvorm: bij hij/zij/het komt er een t achter de stam. Dat is de dt-regel voor werkwoorden.',
+             en: '"Wordt" is a verb form: with hij/zij/het a t is added to the stem. That is the dt rule for verbs.' } },
+    { type: 'pick', options: ['dt-regel (werkwoord)', 'bakker/jager-regel', 'langer-maken-regel'], answer: 1, whole: true,
+      sentence: { nl: 'Welke regel hoort bij het woord <b>bommen</b>?', en: 'Which rule belongs to the word <b>bommen</b>?' },
+      why: { nl: 'Bom heeft een korte klank, dus verdubbel je de medeklinker: bommen. Dat is de bakker/jager-regel.',
+             en: 'Bom has a short vowel, so the consonant doubles: bommen. That is the bakker/jager rule.' } },
+    { type: 'pick', options: ['tussen-n-regel', 'tussen-s-regel', 'apostrof-regel'], answer: 0, whole: true,
+      sentence: { nl: 'Welke regel hoort bij het woord <b>hondenhok</b>?', en: 'Which rule belongs to the word <b>hondenhok</b>?' },
+      why: { nl: 'Hond heeft het meervoud honden (op -en), dus komt er een tussen-n in de samenstelling: hondenhok.',
+             en: 'Hond has the plural honden (in -en), so a linking -n goes into the compound: hondenhok.' } },
+    { type: 'pick', options: ['vindt', 'bomen', 'foto’s'], answer: 0, whole: true,
+      sentence: { nl: 'Welk woord volgt dezelfde regel als <b>wordt</b> (dt-regel)?', en: 'Which word follows the same rule as <b>wordt</b> (dt rule)?' },
+      why: { nl: 'Vindt is ook een werkwoordsvorm: stam vind + t bij hij/zij. Net als wordt.',
+             en: 'Vindt is also a verb form: stem vind + t with hij/zij. Just like wordt.' } },
+    { type: 'pick', options: ['dorpsstraat', 'schoolplein', 'boekenkast'], answer: 0, whole: true,
+      sentence: { nl: 'Welk woord volgt dezelfde regel als <b>verkeersbord</b> (tussen-s)?', en: 'Which word follows the same rule as <b>verkeersbord</b> (linking -s)?' },
+      why: { nl: 'Dorpsstraat: je hoort duidelijk de s, net als bij verkeersbord. Allebei de tussen-s-regel.',
+             en: 'Dorpsstraat: you clearly hear the s, just like verkeersbord. Both follow the linking -s rule.' } },
+    { type: 'sort', bins: [{ nl: 'klankwoord', en: 'sound word' }, { nl: 'regelwoord', en: 'rule word' }, { nl: 'weetwoord', en: 'memory word' }],
+      words: [{ w: 'wordt', full: 'wordt (regelwoord: dt-regel)', bin: 1 }, { w: 'piloot', full: 'piloot (weetwoord: kilowoord)', bin: 2 },
+              { w: 'kast', full: 'kast (klankwoord)', bin: 0 }, { w: 'ballonnen', full: 'ballonnen (regelwoord: bakker/jager-regel)', bin: 1 }],
+      why: { nl: 'Kast schrijf je gewoon zoals je hem hoort. Wordt en ballonnen volgen allebei een regel. Piloot is een weetwoord: je hoort ie, maar schrijft i.',
+             en: 'Kast is written just as it sounds. Wordt and ballonnen both follow a rule. Piloot is a memory word: you hear ie but write i.' } }
+  ]
+}
+]);
