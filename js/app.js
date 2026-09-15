@@ -27,7 +27,8 @@ const S = {
   karaokeTimer: null,
   sessionId: 'S' + Date.now().toString(36),
   activeMs: 0, lastTick: Date.now(), missionFired: false,
-  flash: null
+  flash: null,
+  draftAvatar: '🦸'
 };
 
 const SCENE_EMOJI = {
@@ -56,50 +57,76 @@ const SCENE_EMOJI = {
    1. Start
    ===================================================================== */
 function init() {
-  buildAvatars();
   bindGlobal();
-  restorePlayer();
+  renderHomeGate();
   applyLang();
   setHue(defaultHue(), 'default');
   updateHUD();
-  Store.log('session_start', { session: S.sessionId, lang: window.LANG });
   startTicker();
 }
 
-function restorePlayer() {
-  const p = Store.player;
-  if (p.name) {
-    $('input-name').value = p.name;
-    $('btn-start').textContent = t('continueBtn');
-  }
-  selectAvatar(p.avatar || '🦸');
+/* toont ofwel "wie speelt er?" (bestaande profielen) ofwel het formulier
+   voor een nieuwe speler, afhankelijk van wat er al op dit apparaat staat */
+function renderHomeGate() {
+  const profiles = Store.profiles;
+  const hasProfiles = profiles.length > 0;
+  $('profile-picker').classList.toggle('hidden', !hasProfiles);
+  $('new-player-form').classList.toggle('hidden', hasProfiles);
+  $('btn-cancel-new').classList.toggle('hidden', !hasProfiles);
+  if (hasProfiles) renderProfileChips(profiles);
+  else resetNewPlayerForm();
 }
 
-/* de vaste avatars plus de iconen/personages die in de winkel gekocht zijn */
-function avatarPool() {
-  const owned = Store.player.owned || {};
-  const bought = (window.SHOP_ITEMS || [])
-    .filter(function (it) { return (it.kind === 'icon' || it.kind === 'character') && (owned[it.kind] || []).indexOf(it.id) !== -1; })
-    .map(function (it) { return it.emoji; });
-  return AVATARS.concat(bought.filter(function (e) { return AVATARS.indexOf(e) === -1; }));
+function renderProfileChips(profiles) {
+  const box = $('profile-chips');
+  box.innerHTML = '';
+  (profiles || Store.profiles).forEach(function (p) {
+    const b = document.createElement('button');
+    b.className = 'profile-chip';
+    b.innerHTML = '<span class="pc-avatar">' + p.avatar + '</span><span class="pc-name"></span>';
+    b.querySelector('.pc-name').textContent = p.name || (window.LANG === 'nl' ? 'Speler' : 'Player');
+    b.addEventListener('click', function () { chooseProfile(p.id); });
+    box.appendChild(b);
+  });
+}
+
+function chooseProfile(id) {
+  Sound.click();
+  Store.switchTo(id);
+  Store.log('session_start', { session: S.sessionId, lang: window.LANG });
+  updateHUD();
+  setHue(defaultHue(), 'default');
+  renderWorlds();
+  show('worlds');
+}
+
+/* leeg formulier voor een gloednieuwe speler: nooit gevuld met de naam of
+   het avatar van een ander profiel dat toevallig nog in het geheugen staat */
+function resetNewPlayerForm() {
+  $('input-name').value = '';
+  S.draftAvatar = '🦸';
+  buildAvatars();
 }
 
 function buildAvatars() {
   const box = $('avatar-picker');
   box.innerHTML = '';
-  avatarPool().forEach(function (a) {
+  AVATARS.forEach(function (a) {
     const b = document.createElement('button');
     b.className = 'avatar-opt';
     b.textContent = a;
     b.dataset.avatar = a;
-    b.addEventListener('click', function () { selectAvatar(a); Sound.click(); });
+    b.addEventListener('click', function () { selectDraftAvatar(a); Sound.click(); });
     box.appendChild(b);
   });
-  $$('.avatar-opt').forEach(function (b) { b.classList.toggle('sel', b.dataset.avatar === Store.player.avatar); });
+  markSelectedAvatar();
 }
-function selectAvatar(a) {
-  Store.player.avatar = a;
-  $$('.avatar-opt').forEach(function (b) { b.classList.toggle('sel', b.dataset.avatar === a); });
+function markSelectedAvatar() {
+  $$('.avatar-opt').forEach(function (b) { b.classList.toggle('sel', b.dataset.avatar === S.draftAvatar); });
+}
+function selectDraftAvatar(a) {
+  S.draftAvatar = a;
+  markSelectedAvatar();
 }
 
 /* ---- klok die bijhoudt hoelang er echt gespeeld wordt ---- */
@@ -172,6 +199,18 @@ function defaultHue() {
 function bindGlobal() {
   $('btn-start').addEventListener('click', startGame);
   $('input-name').addEventListener('keydown', function (e) { if (e.key === 'Enter') startGame(); });
+  $('btn-new-player').addEventListener('click', function () {
+    Sound.click();
+    $('profile-picker').classList.add('hidden');
+    $('new-player-form').classList.remove('hidden');
+    resetNewPlayerForm();
+    $('input-name').focus();
+  });
+  $('btn-cancel-new').addEventListener('click', function () {
+    Sound.click();
+    $('new-player-form').classList.add('hidden');
+    $('profile-picker').classList.remove('hidden');
+  });
   $('btn-home').addEventListener('click', function () { Sound.click(); setHue(defaultHue(), 'default'); renderWorlds(); show('worlds'); });
   $('btn-lang').addEventListener('click', toggleLang);
   $('btn-sound').addEventListener('click', function () {
@@ -228,7 +267,8 @@ function bindGlobal() {
   $('btn-dl-json').addEventListener('click', function () { Exporter.json(); FX.toast('JSON ✓'); });
   $('btn-dl-html').addEventListener('click', function () { Exporter.report(); FX.toast('HTML ✓'); });
   $('btn-wipe').addEventListener('click', function () {
-    if (confirm(t('wipeConfirm'))) { Store.wipe(); location.reload(); }
+    const name = Store.player.name || (window.LANG === 'nl' ? 'deze speler' : 'this player');
+    if (confirm(t('wipeConfirm').replace('{name}', name))) { Store.wipe(); location.reload(); }
   });
 
   /* toetsenbord: 1-4 om te kiezen, Enter om te controleren */
@@ -246,9 +286,9 @@ function bindGlobal() {
 }
 
 function startGame() {
-  const name = $('input-name').value.trim();
-  Store.player.name = name || (window.LANG === 'nl' ? 'Lezer' : 'Reader');
-  Store.save();
+  const name = $('input-name').value.trim() || (window.LANG === 'nl' ? 'Lezer' : 'Reader');
+  Store.createProfile(name, S.draftAvatar || '🦸');
+  Store.log('session_start', { session: S.sessionId, lang: window.LANG });
   Sound.click();
   updateHUD();
   setHue(defaultHue(), 'default');
@@ -280,8 +320,6 @@ function applyLang() {
   $('lang-label').textContent = nl ? 'NL' : 'EN';
   $$('#btn-lang .flag')[0].textContent = nl ? '🇳🇱' : '🇬🇧';
   $$('[data-i18n]').forEach(function (el) { el.textContent = t(el.dataset.i18n); });
-  if (!Store.player.name) $('btn-start').textContent = t('startBtn');
-  else $('btn-start').textContent = t('continueBtn');
 }
 
 /* =====================================================================
@@ -1787,7 +1825,35 @@ function checkGate() {
   }
 }
 
+/* laat de ouder wisselen tussen de kinderen die op dit apparaat spelen,
+   zodat elk logboek apart te bekijken en te downloaden is */
+function renderParentProfileSwitch() {
+  const box = $('p-profile-switch');
+  const profiles = Store.profiles;
+  box.innerHTML = '';
+  if (profiles.length < 2) {
+    $('p-profile-switch-card').classList.toggle('hidden', profiles.length < 1);
+  } else {
+    $('p-profile-switch-card').classList.remove('hidden');
+  }
+  profiles.forEach(function (p) {
+    const b = document.createElement('button');
+    b.className = 'profile-chip' + (p.id === Store.activeProfileId ? ' sel' : '');
+    b.innerHTML = '<span class="pc-avatar">' + p.avatar + '</span><span class="pc-name"></span>';
+    b.querySelector('.pc-name').textContent = p.name || (window.LANG === 'nl' ? 'Speler' : 'Player');
+    b.addEventListener('click', function () {
+      if (p.id === Store.activeProfileId) return;
+      Sound.click();
+      Store.switchTo(p.id);
+      updateHUD();
+      renderParent();
+    });
+    box.appendChild(b);
+  });
+}
+
 function renderParent() {
+  renderParentProfileSwitch();
   const s = Stats.summary();
   $('p-stories').textContent = s.stories;
   $('p-questions').textContent = s.questions;

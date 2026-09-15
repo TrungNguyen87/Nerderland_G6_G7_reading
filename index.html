@@ -60,7 +60,14 @@
       <p class="tagline" data-i18n="tagline">Word beter in lezen. Eén verhaal per keer.</p>
     </div>
 
-    <div class="card home-card">
+    <div id="profile-picker" class="card home-card hidden">
+      <label class="field-label" data-i18n="whoIsPlaying">Wie speelt er?</label>
+      <div id="profile-chips" class="profile-chips"></div>
+      <button id="btn-new-player" class="ghost-btn" data-i18n="newPlayerBtn">➕ Nieuwe speler</button>
+      <p class="mini-note" data-i18n="privacyNote">Alles blijft op dit apparaat. Niets wordt verstuurd.</p>
+    </div>
+
+    <div id="new-player-form" class="card home-card">
       <label class="field-label" data-i18n="yourName">Hoe heet je?</label>
       <input id="input-name" class="text-input" maxlength="16" placeholder="Bijv. Daan" autocomplete="off">
 
@@ -68,6 +75,7 @@
       <div id="avatar-picker" class="avatar-picker"></div>
 
       <button id="btn-start" class="big-btn" data-i18n="startBtn">Start het avontuur 🚀</button>
+      <button id="btn-cancel-new" class="ghost-btn hidden" data-i18n="backToProfiles">← Terug</button>
       <p class="mini-note" data-i18n="privacyNote">Alles blijft op dit apparaat. Niets wordt verstuurd.</p>
     </div>
   </div>
@@ -299,6 +307,11 @@
   </div>
 
   <div id="parent-body" class="hidden">
+    <div id="p-profile-switch-card" class="card hidden">
+      <h3 data-i18n="pWhichPlayer">Welke speler bekijk je?</h3>
+      <div id="p-profile-switch" class="profile-chips"></div>
+    </div>
+
     <div class="result-grid wide">
       <div class="result-tile"><span class="rt-icon">📚</span><b id="p-stories">0</b><small data-i18n="pStories">verhalen</small></div>
       <div class="result-tile"><span class="rt-icon">❓</span><b id="p-questions">0</b><small data-i18n="pQuestions">vragen</small></div>
