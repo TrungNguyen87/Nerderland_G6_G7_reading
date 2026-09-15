@@ -156,25 +156,37 @@ the round, with their rule, so you can go through them together.
 
 ## 🪙 The rewards shop
 
-Every correct answer earns a handful of **coins** alongside XP (roughly a
-fifth of the XP gained), and finishing a story or a spelling round, hitting
-the 30-minute mission or unlocking a badge all add a bonus on top. The coin
-button in the top bar opens the shop, where coins can be saved up and spent
-on four kinds of things — nothing here is needed to play, it is purely a
-reason to keep going:
+Coins are only earned by **finishing** something — a story, a spelling
+round, a badge, the 30-minute mission — never for single questions, and a
+**daily coin cap** (60 a day, shown live in the shop) means even a marathon
+session cannot empty the shop in one sitting. It takes real, repeated days
+of reading to save up, on purpose. The coin button in the top bar opens the
+shop, where coins are spent on five rarity tiers — nothing here is needed
+to play, it is purely a reason to keep coming back:
 
-| Kind | What it is | Example |
-|---|---|---|
-| 🎨 **Stickers** | Cheap, purely for the collection — shown on a shelf on the world screen | 🌈 Regenboog, 🦄 Eenhoorn |
-| 🧢 **Iconen** | Extra avatar options beyond the sixteen free ones | 🧛 Vampier, 🐺 Wolf |
-| 🎭 **Personages** | Bigger, pricier avatars, one loosely tied to each reading world | 🧑‍🚀 Astronaut, 🕵️ Detective |
-| 🧰 **Gereedschap** | A consumable **jokerkaart** that reveals the right answer for a lower reward, or a permanent **kleurenthema** that recolours the whole app | 🃏 Jokerkaart, 🌊 Oceaanthema |
+| Tier | Kind | What it is | Example |
+|---|---|---|---|
+| Common | 🎨 **Stickers** | Cheap, purely for the collection — shown on a shelf on the world screen | 🌈 Regenboog, 🦄 Eenhoorn |
+| Uncommon | 🧢 **Iconen** | Extra avatars, need a small player level | 🧛 Vampier, 🦁 Leeuw |
+| Rare | 🎭 **Personages** | Bigger, pricier avatars, need a solid player level | 🧑‍🚀 Astronaut, 🧞 Geest |
+| Epic | 🥋 **Special personages** | Anime-style heroes, unlocked only at a high player level | 🏴‍☠️ Piratenkapitein, 🐲 Drakenkrijger |
+| Legendary | 🌠 **Kosmische Kampioen** | One holographic "3D" card, buyable only after *every* story, *every* spelling set and *every* badge has been earned | 🌠 |
+| — | 🧰 **Gereedschap** | A consumable **jokerkaart**, or a permanent **kleurenthema** | 🃏 Jokerkaart, 🌊 Oceaanthema |
 
 Bought icons and characters show up as extra choices in the avatar picker;
 bought themes can be switched on from the shop at any time. A jokerkaart
 only works on questions with a clear right answer (multiple choice,
 true/false, fill‑the‑gap, pick‑two) and gives less XP than solving it
 yourself, so it stays a genuine "I'm stuck" option rather than a shortcut.
+
+A locked item shows exactly what is missing — the player level needed, or
+(for the legendary card) a live checklist of stories, spelling sets and
+badges still to go — so the goal always feels reachable, never mysterious.
+The special/epic characters are original anime-archetype heroes (pirate
+captain, ninja master, dragon warrior, cyber hero) rather than characters
+from an existing show, so the game does not borrow a name or design that
+belongs to someone else's franchise; feel free to rename them in
+`data/shop.js` for your own copy.
 
 ## Reading support
 
@@ -214,6 +226,11 @@ Behind a small multiplication sum, so he cannot wander in:
 - The last 20 answers, with the question itself
 - A warning if he **clicked through** without really reading
 - **Coins saved and items bought**, so you can see how the shop is going too
+- **A daily activity log** — sessions, time played, stories, questions,
+  accuracy, spelling and coins earned, one row per day for at least the
+  last three weeks. It is stored separately from the detailed answer log,
+  so it survives a page refresh and is not affected if the detailed log
+  ever gets trimmed for space.
 
 ### Downloading the report
 
@@ -273,12 +290,28 @@ badge on its card.
 A shop item goes into `window.SHOP_ITEMS` in `data/shop.js`:
 
 ```js
-{ id: 'sticker-star', kind: 'sticker', emoji: '⭐', cost: 8, nl: 'Ster', en: 'Star' }
+{ id: 'sticker-star', kind: 'sticker', tier: 'common', emoji: '⭐', cost: 18, nl: 'Ster', en: 'Star' }
 ```
 
 `kind` is `sticker`, `icon`, `character` or `tool`. A `tool` also needs an
 `effect`: `'joker'` with an `amount` (a consumable jokerkaart pack), or
 `'theme'` with a `hue` (a permanent colour unlock).
+
+Three more fields make an item harder to reach:
+
+- `tier` — `'common'`, `'uncommon'`, `'rare'`, `'epic'` or `'legendary'`.
+  Purely cosmetic (it picks the little rarity pill and, for `'legendary'`,
+  the holographic card style) but keep the naming honest: a `cost` should
+  climb with the tier.
+- `minLevel` — the player level (from XP) required before the item can be
+  bought at all. Shown to the child as a locked card with the level still
+  needed.
+- `unlock` — an extra, non-negotiable requirement on top of level and
+  coins, checked by `itemUnlockOk()` in `js/app.js`. Any combination of
+  `{ allStories: true, allSpelling: true, allBadges: true }` — "every
+  story played", "every spelling set played", "every badge earned". This
+  is what makes the legendary item mean *finished the whole game*, not
+  just *saved up enough coins*.
 
 ## Checking your changes
 

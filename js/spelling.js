@@ -579,6 +579,7 @@ const Spell = (function () {
     const ms = Date.now() - SP.setStart;
     const xp = stars * 12 + correct * 2;
     addXP(xp);
+    addCoins(stars * 3, 'spell:' + SP.set.id);
     const coinsGain = (Store.player.coins || 0) - (SP.coinsBefore || 0);
 
     const p = Store.player;

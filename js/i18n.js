@@ -106,6 +106,9 @@ const I18N = {
   pSpellMistakes: { nl: 'Fout gespelde woorden',   en: 'Misspelled words' },
   pNoSpell:       { nl: 'Er is nog geen spelling geoefend.',
                     en: 'No spelling practised yet.' },
+  pDailyLog:      { nl: 'Activiteitenlog per dag',  en: 'Daily activity log' },
+  pDailyLogNote:  { nl: 'Blijft bewaard op dit apparaat, ook na het verversen van de pagina - minstens de laatste dagen.',
+                    en: 'Stays saved on this device, even after refreshing the page - at least the last few days.' },
 
   /* ---- de winkel ---- */
   shopTitle:      { nl: '🪙 Winkel',          en: '🪙 Shop' },
@@ -128,6 +131,8 @@ const I18N = {
   jokerBtn:       { nl: '🃏 Joker',           en: '🃏 Joker' },
   jokerUsedNote:  { nl: 'Je gebruikte een jokerkaart. Minder punten, maar wel geleerd!',
                     en: 'You used a joker card. Fewer points, but you still learned something!' },
+  dailyCoinCap:   { nl: 'Je hebt vandaag al genoeg munten verdiend. Kom morgen terug voor meer! 🌙',
+                    en: 'You have earned enough coins for today. Come back tomorrow for more! 🌙' },
 
   /* korte reacties van de uil */
   praise: { nl: ['Top!','Goed gezien!','Precies!','Knap hoor!','Helemaal goed!','Je bent op dreef!','Scherp!'],
