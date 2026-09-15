@@ -217,6 +217,12 @@ spoken in Dutch — only the instructions and the rules translate.
 
 Behind a small multiplication sum, so he cannot wander in:
 
+- **More than one child on the same device?** Each player gets their own
+  profile — own name, avatar, XP, coins and log — picked from a "Wie speelt
+  er?" (who's playing?) screen. Inside the parent dashboard you can switch
+  between the children's profiles to see (and download) each one's own
+  report separately; nothing is ever mixed together. A downloaded CSV,
+  JSON or HTML report has the player's name in its file name too.
 - Stories, questions, percentage correct, reading time and **reading pace (wpm)**
 - **A bar per reading skill** — the weak spot is visible at a glance
 - **A bar per spelling rule**, plus the words he misspelled and what he wrote
@@ -236,13 +242,15 @@ Behind a small multiplication sum, so he cannot wander in:
 
 | Button | File | For |
 |---|---|---|
-| **CSV** | `leeskampioen_date.csv` | Open in Excel or Numbers; one row per question, spelling rows at the bottom |
-| **JSON** | `leeskampioen_date.json` | All raw data |
-| **Rapport** | `leesrapport_date.html` | A tidy page to read or print, with both games in it |
+| **CSV** | `leeskampioen_naam_date.csv` | Open in Excel or Numbers; one row per question, spelling rows at the bottom |
+| **JSON** | `leeskampioen_naam_date.json` | All raw data |
+| **Rapport** | `leesrapport_naam_date.html` | A tidy page to read or print, with both games in it |
 
 > **Privacy:** everything stays in that device's browser (`localStorage`).
 > Nothing is sent anywhere. The log is kept until you press *Wis alles*, so you
-> can just as easily download at the end of the week.
+> can just as easily download at the end of the week. With more than one
+> child on the device, *Wis alles* only erases the profile you are currently
+> viewing — the other children's progress and logs are not touched.
 
 ---
 

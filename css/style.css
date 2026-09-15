@@ -135,6 +135,7 @@ h1,h2,h3{font-family:var(--font-head);margin:0 0 .3em;line-height:1.15}
 .logo span{color:var(--gold)}
 .tagline{color:rgba(255,255,255,.95);font-weight:700;margin:6px 0 26px}
 .home-card{max-width:460px;margin:0 auto;text-align:left}
+.home-card .ghost-btn{width:100%;margin-top:12px;text-align:center}
 .field-label{display:block;font-weight:800;margin:14px 0 7px;font-size:.95rem}
 .text-input{
   width:100%;padding:14px 16px;font-size:1.05rem;font-family:inherit;font-weight:700;
@@ -148,6 +149,18 @@ h1,h2,h3{font-family:var(--font-head);margin:0 0 .3em;line-height:1.15}
 }
 .avatar-opt:hover{transform:translateY(-4px) scale(1.06)}
 .avatar-opt.sel{background:var(--brand-light);box-shadow:0 0 0 3px var(--brand) inset;transform:scale(1.07)}
+
+/* ---------- speler-profielen: "wie speelt er?" en de wisselaar bij de ouders ---------- */
+.profile-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.profile-chip{
+  display:flex;align-items:center;gap:9px;padding:9px 16px 9px 9px;border-radius:99px;
+  background:#f4f4fb;font-weight:800;font-size:.98rem;transition:transform .16s,background .2s,box-shadow .2s;
+}
+.profile-chip:hover{transform:translateY(-2px)}
+.profile-chip.sel{background:var(--brand-light);box-shadow:0 0 0 3px var(--brand) inset}
+.profile-chip .pc-avatar{
+  width:34px;height:34px;flex:none;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.3rem;
+}
 
 /* ---------- buttons ---------- */
 .big-btn{

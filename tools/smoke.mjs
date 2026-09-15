@@ -65,7 +65,11 @@ let fontsBlocked = false;
 
 page.on('console', (m) => {
   const text = m.text();
-  if (/fonts\.(googleapis|gstatic)/.test(text) || /ERR_CONNECTION|ERR_NAME_NOT_RESOLVED/.test(text)) {
+  /* CERT_/SSL_ only ever shows up here for the https:// Google Fonts request:
+     the test server itself is plain http://localhost, so it can never produce
+     that error, and a sandboxed proxy that intercepts TLS reports exactly this
+     instead of the plainer ERR_CONNECTION/ERR_NAME_NOT_RESOLVED. */
+  if (/fonts\.(googleapis|gstatic)/.test(text) || /ERR_CONNECTION|ERR_NAME_NOT_RESOLVED|ERR_CERT_|ERR_SSL_/.test(text)) {
     fontsBlocked = true;
     return;
   }
@@ -416,9 +420,17 @@ try {
   }
 
   /* =================================================================
-     10. Progress survives a reload, and phone width works
+     10. Progress survives a reload, and the returning player sees a
+     "who is playing?" chip instead of the name form
      ================================================================= */
   await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForSelector('#profile-picker:not(.hidden)');
+  const chipCount = await sel('#profile-chips .profile-chip').count();
+  if (chipCount !== 1) bad(`profile picker shows ${chipCount} chips after one profile was created (expected 1)`);
+  else ok('a returning player sees a "who is playing?" chip instead of retyping their name');
+
+  await page.locator('#profile-chips .profile-chip', { hasText: 'Testkind' }).click();
+  await page.waitForSelector('#screen-worlds.active');
   const saved = await page.evaluate(() => ({
     name: Store.player.name,
     xp: Store.player.xp,
@@ -428,16 +440,70 @@ try {
   if (saved.name !== 'Testkind' || saved.xp <= 0) bad('progress did not survive a reload');
   else ok(`progress survives a reload (${saved.xp} XP, ${saved.stories} story, ${saved.spelling} spelling exercise)`);
 
-  await page.setViewportSize({ width: 390, height: 780 });
+  /* =================================================================
+     11. A second player on the same device gets a separate profile
+     and a separate log, and a parent can switch between them
+     ================================================================= */
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForSelector('#profile-picker:not(.hidden)');
+  await sel('#btn-new-player').click();
+  await page.waitForSelector('#new-player-form:not(.hidden)');
+  if (!(await sel('#btn-cancel-new').isVisible())) bad('"back to profiles" is missing once a profile already exists');
+  const nameField = await sel('#input-name').inputValue();
+  const avatarIsDefault = await page.evaluate(() => document.querySelector('.avatar-opt.sel').dataset.avatar === '🦸');
+  if (nameField !== '' || !avatarIsDefault) bad('the new-player form was pre-filled with the other player\'s name or avatar');
+  else ok('the new-player form starts blank, never pre-filled from another profile in memory');
+
+  await sel('#input-name').fill('Speler2');
+  await sel('#avatar-picker .avatar-opt').nth(3).click();
   await sel('#btn-start').click();
   await page.waitForSelector('#screen-worlds.active');
+
+  const profileCount = await page.evaluate(() => Store.profiles.length);
+  if (profileCount !== 2) bad(`expected 2 profiles on this device, found ${profileCount}`);
+  else ok('a second player gets their own profile, separate from the first');
+
+  await sel('#btn-parent').click();
+  await page.waitForSelector('#screen-parent.active');
+  const gate2 = await sel('#gate-sum').innerText();
+  const [gx, gy] = gate2.replace('= ?', '').split('×').map((n) => parseInt(n.trim(), 10));
+  await sel('#gate-input').fill(String(gx * gy));
+  await sel('#gate-btn').click();
+  await page.waitForSelector('#parent-body:not(.hidden)');
+
+  const switchChips = await sel('#p-profile-switch .profile-chip').count();
+  if (switchChips !== 2) bad(`parent profile switcher shows ${switchChips} players (expected 2)`);
+  const speler2Stories = await sel('#p-stories').innerText();
+  if (speler2Stories !== '0') bad(`a brand-new second player already shows ${speler2Stories} stories - logs are mixed up`);
+  else ok('the parent dashboard for the new player starts clean, with no trace of the first player\'s log');
+
+  await page.locator('#p-profile-switch .profile-chip', { hasText: 'Testkind' }).click();
+  await page.waitForSelector('#p-stories');
+  const testkindStories = await page.evaluate(() => document.getElementById('p-stories').textContent);
+  if (testkindStories === '0') bad('switching the parent view back to Testkind lost their story count');
+  else ok(`a parent can switch the dashboard back to Testkind and see their own log again (${testkindStories} stories)`);
+
+  const [dl2] = await Promise.all([
+    page.waitForEvent('download', { timeout: 5000 }),
+    sel('#btn-dl-csv').click()
+  ]);
+  const dl2Name = dl2.suggestedFilename();
+  if (!/testkind/i.test(dl2Name)) bad(`downloaded file "${dl2Name}" does not identify which player it belongs to`);
+  else ok(`the downloaded file names the player it belongs to (${dl2Name})`);
+
+  /* =================================================================
+     12. Phone width works
+     ================================================================= */
+  await sel('#btn-home').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await page.setViewportSize({ width: 390, height: 780 });
   const overflow = await page.evaluate(() =>
     document.documentElement.scrollWidth - document.documentElement.clientWidth);
   if (overflow > 2) bad(`the page scrolls sideways on a phone (${overflow}px too wide)`);
   else ok('no sideways scrolling at phone width (390px)');
 
   /* =================================================================
-     11. Everything index.html asks for actually exists
+     13. Everything index.html asks for actually exists
      ================================================================= */
   const missing = requested.filter((u) => u !== '/favicon.ico' && !u.startsWith('/__'));
   ok(`server delivered ${missing.length} files without a single 404`);

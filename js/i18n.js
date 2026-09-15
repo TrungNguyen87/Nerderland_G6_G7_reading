@@ -7,7 +7,10 @@ const I18N = {
   yourName:       { nl: 'Hoe heet je?',            en: 'What is your name?' },
   chooseAvatar:   { nl: 'Kies je held',            en: 'Choose your hero' },
   startBtn:       { nl: 'Start het avontuur 🚀',   en: 'Start the adventure 🚀' },
-  continueBtn:    { nl: 'Verder spelen 🚀',        en: 'Keep playing 🚀' },
+  whoIsPlaying:   { nl: 'Wie speelt er?',          en: 'Who is playing?' },
+  newPlayerBtn:   { nl: '➕ Nieuwe speler',         en: '➕ New player' },
+  backToProfiles: { nl: '← Terug',                 en: '← Back' },
+  pWhichPlayer:   { nl: 'Welke speler bekijk je?', en: 'Which player are you viewing?' },
   privacyNote:    { nl: 'Alles blijft op dit apparaat. Er wordt niets verstuurd.',
                     en: 'Everything stays on this device. Nothing is sent anywhere.' },
   chooseWorld:    { nl: 'Kies een wereld',         en: 'Choose a world' },
@@ -57,8 +60,8 @@ const I18N = {
   pDownloadNote:  { nl: 'Het logboek blijft bewaard op dit apparaat tot je het wist.',
                     en: 'The log stays on this device until you erase it.' },
   pWipe:          { nl: '🗑 Wis alles',            en: '🗑 Erase all' },
-  wipeConfirm:    { nl: 'Weet je het zeker? Alle voortgang en logboeken worden gewist.',
-                    en: 'Are you sure? All progress and logs will be erased.' },
+  wipeConfirm:    { nl: 'Weet je het zeker? Alle voortgang en logboeken van {name} worden gewist. De andere spelers op dit apparaat blijven staan.',
+                    en: 'Are you sure? All progress and logs for {name} will be erased. The other players on this device are not affected.' },
 
   /* ---- de twee spelmodes ---- */
   modeRead:       { nl: '📖 Lezen',                en: '📖 Reading' },

@@ -1,42 +1,44 @@
 /* =====================================================================
    Opslag en logboek.
    Alles staat in localStorage van de browser: er gaat niets naar internet.
-   De ouder kan het logboek exporteren als CSV, JSON of een HTML-rapport.
+   Meerdere kinderen op hetzelfde apparaat krijgen elk hun eigen profiel
+   (eigen XP, munten en logboek), zodat hun resultaten nooit door elkaar
+   heen lopen. De ouder kan het logboek exporteren als CSV, JSON of een
+   HTML-rapport, altijd voor het profiel dat op dat moment actief is.
    ===================================================================== */
 const Store = (function () {
-  const KEY = 'leeskampioen.v1';
+  const NS = 'leeskampioen.v1';
+  const PROFILES_KEY = 'leeskampioen.profiles.v1';
   const MAX_EVENTS = 6000;
 
   const MAX_DAYS = 120;   /* activiteitenlog per dag: ruim meer dan de 10+ dagen die een ouder nodig heeft */
 
-  const blank = {
-    version: 1,
-    player: {
-      name: '', avatar: '🦸', xp: 0, level: 1, badges: [], best: {}, flashBest: 0,
-      coins: 0, tools: { jokers: 0 }, theme: null,
-      coinsDaily: { date: '', earned: 0, toastShown: false },
-      owned: { sticker: [], icon: [], character: [], tool: [] }
-    },
-    events: [],
-    daily: {}
+  const blankPlayer = {
+    name: '', avatar: '🦸', xp: 0, level: 1, badges: [], best: {}, flashBest: 0,
+    coins: 0, tools: { jokers: 0 }, theme: null,
+    coinsDaily: { date: '', earned: 0, toastShown: false },
+    owned: { sticker: [], icon: [], character: [], tool: [] }
   };
+  const blank = { version: 1, player: blankPlayer, events: [], daily: {} };
 
-  let data = load();
+  function profileKey(id) { return NS + ':' + id; }
+  function newId() { return 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
 
-  function load() {
+  /* leest één profiel-blob (of de oude, profielloze opslag) */
+  function loadBlob(key) {
     try {
-      const raw = localStorage.getItem(KEY);
-      if (!raw) return JSON.parse(JSON.stringify(blank));
+      const raw = localStorage.getItem(key);
+      if (!raw) return null;
       const parsed = JSON.parse(raw);
       const pp = parsed.player || {};
       /* voorzichtig samenvoegen zodat een oude opslag niet crasht, ook
          de geneste velden van de winkel (owned, tools) */
       return {
         version: 1,
-        player: Object.assign({}, blank.player, pp, {
-          tools: Object.assign({}, blank.player.tools, pp.tools || {}),
-          owned: Object.assign({}, blank.player.owned, pp.owned || {}),
-          coinsDaily: Object.assign({}, blank.player.coinsDaily, pp.coinsDaily || {})
+        player: Object.assign({}, blankPlayer, pp, {
+          tools: Object.assign({}, blankPlayer.tools, pp.tools || {}),
+          owned: Object.assign({}, blankPlayer.owned, pp.owned || {}),
+          coinsDaily: Object.assign({}, blankPlayer.coinsDaily, pp.coinsDaily || {})
         }),
         events: Array.isArray(parsed.events) ? parsed.events : [],
         /* het dagoverzicht staat los van de losse gebeurtenissen: het wordt
@@ -45,17 +47,111 @@ const Store = (function () {
         daily: (parsed.daily && typeof parsed.daily === 'object') ? parsed.daily : {}
       };
     } catch (e) {
-      return JSON.parse(JSON.stringify(blank));
+      return null;
     }
   }
 
+  function loadRegistry() {
+    try {
+      const raw = localStorage.getItem(PROFILES_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && Array.isArray(parsed.list)) return parsed;
+      }
+    } catch (e) { /* niets, dan bouwen we een nieuwe hieronder */ }
+    return null;
+  }
+
+  function saveRegistry() {
+    try { localStorage.setItem(PROFILES_KEY, JSON.stringify(registry)); } catch (e) {}
+  }
+
+  /* ---- opstarten: profielregister inlezen, of eenmalig migreren vanaf
+     de oude opslag (van vóór er profielen bestonden) zodat niemand zijn
+     voortgang kwijtraakt bij deze update ---- */
+  let registry = loadRegistry();
+  if (!registry) {
+    registry = { activeId: null, list: [] };
+    const legacy = loadBlob(NS);
+    if (legacy && (legacy.player.name || legacy.events.length)) {
+      const id = newId();
+      registry.list.push({ id: id, name: legacy.player.name || '', avatar: legacy.player.avatar || '🦸', lastPlayed: Date.now() });
+      registry.activeId = id;
+      try { localStorage.setItem(profileKey(id), JSON.stringify(legacy)); } catch (e) {}
+    }
+  }
+
+  let activeId = null;
+  let data;
+  if (registry.activeId && registry.list.some(function (p) { return p.id === registry.activeId; })) {
+    activeId = registry.activeId;
+    data = loadBlob(profileKey(activeId)) || JSON.parse(JSON.stringify(blank));
+  } else if (registry.list.length) {
+    activeId = registry.list[0].id;
+    data = loadBlob(profileKey(activeId)) || JSON.parse(JSON.stringify(blank));
+  } else {
+    data = JSON.parse(JSON.stringify(blank));
+  }
+  registry.activeId = activeId;
+  saveRegistry();
+
   function save() {
+    if (!activeId) return;   /* nog geen profiel gekozen: niets om te bewaren */
     try {
       if (data.events.length > MAX_EVENTS) data.events = data.events.slice(-MAX_EVENTS);
-      localStorage.setItem(KEY, JSON.stringify(data));
+      localStorage.setItem(profileKey(activeId), JSON.stringify(data));
+      const entry = registry.list.filter(function (p) { return p.id === activeId; })[0];
+      if (entry) {
+        entry.name = data.player.name || '';
+        entry.avatar = data.player.avatar || '🦸';
+        entry.lastPlayed = Date.now();
+        saveRegistry();
+      }
     } catch (e) {
       /* opslag vol of geblokkeerd (privémodus): het spel blijft gewoon werken */
     }
+  }
+
+  /* maakt een nieuw, leeg profiel aan en maakt het meteen actief */
+  function createProfile(name, avatar) {
+    const id = newId();
+    data = JSON.parse(JSON.stringify(blank));
+    data.player.name = name || '';
+    data.player.avatar = avatar || blankPlayer.avatar;
+    activeId = id;
+    registry.list.push({ id: id, name: data.player.name, avatar: data.player.avatar, lastPlayed: Date.now() });
+    registry.activeId = id;
+    saveRegistry();
+    save();
+    return id;
+  }
+
+  /* wisselt naar een bestaand profiel (bijv. het andere kind, of de ouder
+     die een ander logboek wil bekijken) */
+  function switchTo(id) {
+    const entry = registry.list.filter(function (p) { return p.id === id; })[0];
+    if (!entry) return false;
+    data = loadBlob(profileKey(id)) || JSON.parse(JSON.stringify(blank));
+    activeId = id;
+    registry.activeId = id;
+    saveRegistry();
+    return true;
+  }
+
+  /* verwijdert een profiel volledig (gebruikt door "Wis alles") */
+  function deleteProfile(id) {
+    registry.list = registry.list.filter(function (p) { return p.id !== id; });
+    try { localStorage.removeItem(profileKey(id)); } catch (e) {}
+    if (activeId === id) {
+      if (registry.list.length) {
+        switchTo(registry.list[0].id);
+        return;
+      }
+      activeId = null;
+      data = JSON.parse(JSON.stringify(blank));
+      registry.activeId = null;
+    }
+    saveRegistry();
   }
 
   /* telt elke gebeurtenis mee in het dagoverzicht van die kalenderdag */
@@ -87,8 +183,10 @@ const Store = (function () {
     }
   }
 
+  /* elke gebeurtenis krijgt de naam van de speler erbij, zodat een export
+     ook nog te herleiden is als hij los van dit apparaat bekeken wordt */
   function log(type, payload) {
-    const ev = Object.assign({ t: type, ts: Date.now() }, payload || {});
+    const ev = Object.assign({ t: type, ts: Date.now(), player: data.player.name || '' }, payload || {});
     data.events.push(ev);
     bumpDaily(ev);
     save();
@@ -99,11 +197,19 @@ const Store = (function () {
     get data() { return data; },
     get player() { return data.player; },
     get events() { return data.events; },
+    /* alle profielen op dit apparaat, meest recent gespeeld eerst */
+    get profiles() {
+      return registry.list.slice().sort(function (a, b) { return (b.lastPlayed || 0) - (a.lastPlayed || 0); });
+    },
+    get activeProfileId() { return activeId; },
     save: save,
     log: log,
+    createProfile: createProfile,
+    switchTo: switchTo,
+    /* wist alleen het actieve profiel, niet de andere spelers op dit apparaat */
     wipe: function () {
-      data = JSON.parse(JSON.stringify(blank));
-      try { localStorage.removeItem(KEY); } catch (e) {}
+      if (activeId) deleteProfile(activeId);
+      else data = JSON.parse(JSON.stringify(blank));
     }
   };
 })();
@@ -352,8 +458,18 @@ const Exporter = (function () {
     return /[",;]/.test(s) ? '"' + s + '"' : s;
   }
 
+  /* naam van de speler, geschikt om in een bestandsnaam te zetten */
+  function nameSlug() {
+    const name = (Store.player.name || '').trim();
+    if (!name) return '';
+    return '_' + name.toLowerCase()
+      .replace(/[^a-z0-9à-ž]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 24);
+  }
+
   function csv() {
-    const head = ['datum', 'tijd', 'sessie', 'onderwerp', 'niveau', 'verhaal', 'vraag_id', 'vraagtype',
+    const head = ['datum', 'tijd', 'speler', 'sessie', 'onderwerp', 'niveau', 'verhaal', 'vraag_id', 'vraagtype',
                   'leesvaardigheid', 'goed', 'antwoord_kind', 'juiste_antwoord', 'seconden', 'hint_gebruikt', 'taal', 'vraag'];
     const rows = [head.join(',')];
 
@@ -363,6 +479,7 @@ const Exporter = (function () {
       rows.push([
         d.toISOString().slice(0, 10),
         d.toTimeString().slice(0, 8),
+        e.player || '',
         e.session || '',
         e.topic || '',
         e.level || '',
@@ -382,12 +499,12 @@ const Exporter = (function () {
 
     /* leesregels apart onderaan, zodat het tempo ook in de CSV staat */
     rows.push('');
-    rows.push(['datum', 'tijd', 'sessie', 'onderwerp', 'niveau', 'verhaal', 'leestijd_sec', 'aantal_woorden', 'woorden_per_minuut', 'voorgelezen'].join(','));
+    rows.push(['datum', 'tijd', 'speler', 'sessie', 'onderwerp', 'niveau', 'verhaal', 'leestijd_sec', 'aantal_woorden', 'woorden_per_minuut', 'voorgelezen'].join(','));
     Store.events.forEach(function (e) {
       if (e.t !== 'read_done') return;
       const d = new Date(e.ts);
       rows.push([
-        d.toISOString().slice(0, 10), d.toTimeString().slice(0, 8), e.session || '',
+        d.toISOString().slice(0, 10), d.toTimeString().slice(0, 8), e.player || '', e.session || '',
         e.topic || '', e.level || '', e.story || '',
         e.readMs ? Math.round(e.readMs / 1000) : '', e.words || '', e.wpm || '', e.tts ? 1 : 0
       ].map(esc).join(','));
@@ -395,20 +512,20 @@ const Exporter = (function () {
 
     /* en de spellingoefeningen, één regel per woord */
     rows.push('');
-    rows.push(['datum', 'tijd', 'sessie', 'spellingregel', 'niveau', 'oefening', 'soort',
+    rows.push(['datum', 'tijd', 'speler', 'sessie', 'spellingregel', 'niveau', 'oefening', 'soort',
                'woord', 'antwoord_kind', 'goed', 'seconden'].join(','));
     Store.events.forEach(function (e) {
       if (e.t !== 'spell_item') return;
       const d = new Date(e.ts);
       rows.push([
-        d.toISOString().slice(0, 10), d.toTimeString().slice(0, 8), e.session || '',
+        d.toISOString().slice(0, 10), d.toTimeString().slice(0, 8), e.player || '', e.session || '',
         e.cat || '', e.level || '', e.set || '', e.itype || '',
         e.word || '', e.given || '', e.correct ? 1 : 0,
         e.ms ? (e.ms / 1000).toFixed(1) : ''
       ].map(esc).join(','));
     });
 
-    download('leeskampioen_' + stamp() + '.csv', '﻿' + rows.join('\n'), 'text/csv');
+    download('leeskampioen' + nameSlug() + '_' + stamp() + '.csv', '﻿' + rows.join('\n'), 'text/csv');
   }
 
   function json() {
@@ -426,7 +543,7 @@ const Exporter = (function () {
       },
       events: Store.events
     };
-    download('leeskampioen_' + stamp() + '.json', JSON.stringify(payload, null, 2), 'application/json');
+    download('leeskampioen' + nameSlug() + '_' + stamp() + '.json', JSON.stringify(payload, null, 2), 'application/json');
   }
 
   /* Zelfstandig HTML-rapport: dubbelklikken en printen kan */
@@ -540,7 +657,7 @@ const Exporter = (function () {
       '<h2>' + (nl ? 'Advies voor thuis' : 'Advice for home') + '</h2><ul><li>' + tips.join('</li><li>') + '</li></ul>' +
       '</body></html>';
 
-    download('leesrapport_' + stamp() + '.html', html, 'text/html');
+    download('leesrapport' + nameSlug() + '_' + stamp() + '.html', html, 'text/html');
   }
 
   return { csv: csv, json: json, report: report };
