@@ -9,8 +9,10 @@ const $$ = function (sel, root) { return Array.prototype.slice.call((root || doc
 window.LANG = 'nl';
 
 const MISSION_MS = 30 * 60 * 1000;   /* de missie van 30 minuten */
-const XP_PER_LEVEL = 120;
+const XP_PER_LEVEL = 160;
 const MAX_WPM = 350;          /* daarboven is er doorgeklikt, niet gelezen */
+const DAILY_COIN_CAP = 60;    /* per dag maximaal te verdienen munten, zodat de
+                                  winkel dagen kost in plaats van één middag */
 
 const S = {
   screen: 'home',
@@ -135,6 +137,7 @@ function updateMission() {
     FX.toast(t('missionDone'), 4200);
     Sound.finish();
     Store.log('mission_done', { minutes: 30 });
+    addCoins(15, 'mission');
     awardBadge('mission');
   }
   if (Math.random() < 0.05) Store.save();   /* af en toe wegschrijven */
@@ -284,11 +287,13 @@ function applyLang() {
 /* =====================================================================
    3. HUD, XP en badges
    ===================================================================== */
+function playerLevel() { return 1 + Math.floor((Store.player.xp || 0) / XP_PER_LEVEL); }
+
 function updateHUD() {
   const p = Store.player;
   $('hud-avatar').textContent = p.avatar;
   $('hud-name').textContent = p.name || '...';
-  const lvl = 1 + Math.floor(p.xp / XP_PER_LEVEL);
+  const lvl = playerLevel();
   const into = p.xp % XP_PER_LEVEL;
   $('hud-level').textContent = lvl;
   $('hud-xp-fill').style.width = (into / XP_PER_LEVEL * 100) + '%';
@@ -299,11 +304,10 @@ function updateHUD() {
 
 function addXP(n) {
   const p = Store.player;
-  const before = 1 + Math.floor(p.xp / XP_PER_LEVEL);
+  const before = playerLevel();
   p.xp += n;
-  const after = 1 + Math.floor(p.xp / XP_PER_LEVEL);
+  const after = playerLevel();
   p.level = after;
-  if (n > 0) addCoins(Math.max(1, Math.round(n / 5)));
   updateHUD();
   Store.save();
   if (after > before) {
@@ -312,11 +316,34 @@ function addXP(n) {
   }
 }
 
-/* de munten van de winkel: een vaste breuk van elke verdiende XP */
-function addCoins(n) {
-  if (!n) return;
+/* munten worden alleen nog verdiend bij het AFRONDEN van iets (een verhaal,
+   een spellingoefening, een badge, de dagmissie) - niet meer per losse
+   vraag. Er geldt bovendien een dagelijkse grens (DAILY_COIN_CAP), zodat
+   de winkel dagen kost in plaats van één speelsessie. */
+function todayCoins() {
   const p = Store.player;
-  p.coins = (p.coins || 0) + n;
+  if (!p.coinsDaily || p.coinsDaily.date !== todayKey()) {
+    p.coinsDaily = { date: todayKey(), earned: 0, toastShown: false };
+  }
+  return p.coinsDaily;
+}
+
+function addCoins(n, reason) {
+  if (!n || n <= 0) return 0;
+  const p = Store.player;
+  const cd = todayCoins();
+  const allowed = Math.max(0, DAILY_COIN_CAP - cd.earned);
+  const given = Math.min(n, allowed);
+  if (given > 0) {
+    p.coins = (p.coins || 0) + given;
+    cd.earned += given;
+    Store.log('coins_earned', { session: S.sessionId, amount: given, reason: reason || '' });
+  }
+  if (given < n && !cd.toastShown) {
+    cd.toastShown = true;
+    FX.toast(t('dailyCoinCap'), 4200);
+  }
+  return given;
 }
 
 function awardBadge(id) {
@@ -324,7 +351,7 @@ function awardBadge(id) {
   if (!p.badges) p.badges = [];
   if (p.badges.indexOf(id) !== -1) return null;
   p.badges.push(id);
-  addCoins(20);
+  addCoins(10, 'badge:' + id);
   updateHUD();
   Store.save();
   Store.log('badge', { badge: id });
@@ -1359,6 +1386,7 @@ function finishStory() {
 
   const xpGain = stars * 15 + correct * 2;
   addXP(xpGain);
+  addCoins(stars * 4, 'story:' + S.story.id);
   const coinsGain = (Store.player.coins || 0) - (S.coinsBefore || 0);
 
   /* beste score bewaren */
@@ -1561,6 +1589,51 @@ function endFlash() {
 /* =====================================================================
    9b. Winkel
    ===================================================================== */
+const TIER_LABEL = {
+  common:    { nl: 'Gewoon',       en: 'Common' },
+  uncommon:  { nl: 'Bijzonder',    en: 'Uncommon' },
+  rare:      { nl: 'Zeldzaam',     en: 'Rare' },
+  epic:      { nl: 'Episch',       en: 'Epic' },
+  legendary: { nl: 'Legendarisch', en: 'Legendary' }
+};
+
+/* hoever de speler is met ECHT alles: nodig voor het legendarische item */
+function legendaryProgress() {
+  const totalStories = (window.STORY_DB || []).length;
+  const doneStories = Object.keys(Store.player.best || {}).length;
+  const totalSets = (window.SPELL_SETS || []).length;
+  const doneSets = Object.keys(Store.player.spellBest || {}).length;
+  const totalBadges = BADGES.length;
+  const doneBadges = (Store.player.badges || []).length;
+  return {
+    doneStories: doneStories, totalStories: totalStories,
+    doneSets: doneSets, totalSets: totalSets,
+    doneBadges: doneBadges, totalBadges: totalBadges
+  };
+}
+
+function itemUnlockOk(it) {
+  if (!it.unlock) return true;
+  const pr = legendaryProgress();
+  if (it.unlock.allStories && pr.doneStories < pr.totalStories) return false;
+  if (it.unlock.allSpelling && pr.doneSets < pr.totalSets) return false;
+  if (it.unlock.allBadges && pr.doneBadges < pr.totalBadges) return false;
+  return true;
+}
+
+/* korte voortgangstekst onder een op-slot item: level en/of de checklist */
+function itemReqText(it) {
+  const parts = [];
+  if (it.minLevel) parts.push('⭐ ' + playerLevel() + '/' + it.minLevel);
+  if (it.unlock) {
+    const pr = legendaryProgress();
+    if (it.unlock.allStories) parts.push('📚 ' + pr.doneStories + '/' + pr.totalStories);
+    if (it.unlock.allSpelling) parts.push('✍️ ' + pr.doneSets + '/' + pr.totalSets);
+    if (it.unlock.allBadges) parts.push('🏅 ' + pr.doneBadges + '/' + pr.totalBadges);
+  }
+  return parts.join(' · ');
+}
+
 function openShop() {
   Sound.click();
   if (!S.shopKind) S.shopKind = 'sticker';
@@ -1578,17 +1651,20 @@ function renderShop() {
   $$('.shop-tab').forEach(function (b) { b.classList.toggle('on', b.dataset.kind === kind); });
 
   const note = $('shop-note');
+  const cd = todayCoins();
+  const capLine = '🪙 ' + (window.LANG === 'nl' ? 'vandaag verdiend' : 'earned today') + ': ' + cd.earned + '/' + DAILY_COIN_CAP;
   if (kind === 'tool') {
     const p = Store.player;
     const jokers = (p.tools || {}).jokers || 0;
     const theme = typeof p.theme === 'number'
       ? (window.SHOP_ITEMS || []).filter(function (it) { return it.effect === 'theme' && it.hue === p.theme; })[0]
       : null;
-    note.innerHTML = '🃏 ' + jokers + ' &middot; 🎨 ' + (theme ? theme.emoji + ' ' + L(theme) : (window.LANG === 'nl' ? 'standaardkleur' : 'default colour'));
-    note.classList.remove('hidden');
+    note.innerHTML = '🃏 ' + jokers + ' &middot; 🎨 ' + (theme ? theme.emoji + ' ' + L(theme) : (window.LANG === 'nl' ? 'standaardkleur' : 'default colour')) +
+      ' &middot; ' + capLine;
   } else {
-    note.classList.add('hidden');
+    note.innerHTML = capLine;
   }
+  note.classList.remove('hidden');
 
   const grid = $('shop-grid');
   grid.innerHTML = '';
@@ -1602,8 +1678,14 @@ function renderShop() {
     const equipped = has && ((isTheme && p.theme === it.hue) ||
       ((it.kind === 'icon' || it.kind === 'character') && p.avatar === it.emoji));
 
+    const levelOk = playerLevel() >= (it.minLevel || 0);
+    const unlockOk = itemUnlockOk(it);
+    const gated = !has && !isJoker && (!levelOk || !unlockOk);
+
     let action;
-    if (isJoker) {
+    if (gated) {
+      action = '<span class="sc-locked">🔒 ' + (window.LANG === 'nl' ? 'Nog op slot' : 'Still locked') + '</span>';
+    } else if (isJoker) {
       action = '<button class="big-btn sc-buy">' + t('buyBtn') + ' (' + it.cost + ' 🪙)</button>';
     } else if (!has) {
       action = '<button class="big-btn sc-buy">' + t('buyBtn') + ' (' + it.cost + ' 🪙)</button>';
@@ -1615,12 +1697,17 @@ function renderShop() {
       action = '<button class="ghost-btn sc-equip">' + t('equipBtn') + '</button>';
     }
 
+    const tier = it.tier || 'common';
+    const tierPill = tier !== 'common' ? '<span class="sc-tier sc-tier-' + tier + '">' + L(TIER_LABEL[tier]) + '</span>' : '';
+    const reqLine = gated ? '<span class="sc-req">' + itemReqText(it) + '</span>' : '';
+
     const card = document.createElement('div');
-    card.className = 'shop-card' + (has || isJoker ? '' : ' locked');
+    card.className = 'shop-card tier-' + tier + (has || isJoker ? '' : ' locked');
     card.innerHTML =
+      tierPill +
       '<span class="sc-emoji">' + it.emoji + '</span>' +
       '<span class="sc-name">' + L(it) + (isJoker ? ' × ' + it.amount : '') + '</span>' +
-      action;
+      action + reqLine;
 
     const buyBtn = card.querySelector('.sc-buy');
     if (buyBtn) buyBtn.addEventListener('click', function () { buyItem(it); });
@@ -1632,6 +1719,11 @@ function renderShop() {
 
 function buyItem(it) {
   const p = Store.player;
+  if (playerLevel() < (it.minLevel || 0) || !itemUnlockOk(it)) {
+    FX.toast(window.LANG === 'nl' ? 'Dit is nog op slot.' : 'This is still locked.');
+    Sound.wrong();
+    return;
+  }
   if ((p.coins || 0) < it.cost) { FX.toast(t('notEnoughCoins')); Sound.wrong(); return; }
   p.coins -= it.cost;
 
@@ -1706,6 +1798,27 @@ function renderParent() {
   $('p-coins').textContent = Store.player.coins || 0;
   const owned = Store.player.owned || {};
   $('p-owned').textContent = Object.keys(owned).reduce(function (n, k) { return n + (owned[k] || []).length; }, 0);
+
+  /* activiteitenlog per dag: apart bewaard van de losse gebeurtenissen,
+     dus dit blijft staan (minstens de laatste maanden) ook als het ruwe
+     logboek ooit ingekort wordt, en overleeft gewoon het verversen van
+     de pagina omdat alles in localStorage staat */
+  const daily = Stats.dailyLog(21);
+  let dHtml = '<table><tr><th>' + (window.LANG === 'nl' ? 'Datum' : 'Date') + '</th><th>' +
+    (window.LANG === 'nl' ? 'Sessies' : 'Sessions') + '</th><th>' + (window.LANG === 'nl' ? 'Tijd' : 'Time') +
+    '</th><th>' + (window.LANG === 'nl' ? 'Verhalen' : 'Stories') + '</th><th>' + (window.LANG === 'nl' ? 'Vragen' : 'Questions') +
+    '</th><th>' + (window.LANG === 'nl' ? 'Goed' : 'Correct') + '</th><th>' + (window.LANG === 'nl' ? 'Spelling' : 'Spelling') +
+    '</th><th>🪙</th><th>🏅</th></tr>';
+  if (!daily.length) {
+    dHtml += '<tr><td colspan="9">' + (window.LANG === 'nl' ? 'Nog geen dagen gespeeld.' : 'No days played yet.') + '</td></tr>';
+  }
+  daily.forEach(function (d) {
+    dHtml += '<tr><td>' + d.date + '</td><td>' + d.sessions + '</td><td>' + d.minutes + 'm</td><td>' +
+      d.stories + '</td><td>' + d.questions + '</td><td>' + (d.questions ? d.accuracy + '%' : '–') +
+      '</td><td>' + d.spellWords + '</td><td>' + d.coinsEarned + '</td><td>' + d.badges + '</td></tr>';
+  });
+  dHtml += '</table>';
+  $('p-daily-log').innerHTML = dHtml;
 
   /* balken per vaardigheid */
   const sk = Stats.bySkill();

@@ -7,14 +7,18 @@ const Store = (function () {
   const KEY = 'leeskampioen.v1';
   const MAX_EVENTS = 6000;
 
+  const MAX_DAYS = 120;   /* activiteitenlog per dag: ruim meer dan de 10+ dagen die een ouder nodig heeft */
+
   const blank = {
     version: 1,
     player: {
       name: '', avatar: '🦸', xp: 0, level: 1, badges: [], best: {}, flashBest: 0,
       coins: 0, tools: { jokers: 0 }, theme: null,
+      coinsDaily: { date: '', earned: 0, toastShown: false },
       owned: { sticker: [], icon: [], character: [], tool: [] }
     },
-    events: []
+    events: [],
+    daily: {}
   };
 
   let data = load();
@@ -31,9 +35,14 @@ const Store = (function () {
         version: 1,
         player: Object.assign({}, blank.player, pp, {
           tools: Object.assign({}, blank.player.tools, pp.tools || {}),
-          owned: Object.assign({}, blank.player.owned, pp.owned || {})
+          owned: Object.assign({}, blank.player.owned, pp.owned || {}),
+          coinsDaily: Object.assign({}, blank.player.coinsDaily, pp.coinsDaily || {})
         }),
-        events: Array.isArray(parsed.events) ? parsed.events : []
+        events: Array.isArray(parsed.events) ? parsed.events : [],
+        /* het dagoverzicht staat los van de losse gebeurtenissen: het wordt
+           nooit ingekort door MAX_EVENTS, zodat een ouder altijd minstens
+           de laatste maanden aan dagen kan terugzien, ook na verversen */
+        daily: (parsed.daily && typeof parsed.daily === 'object') ? parsed.daily : {}
       };
     } catch (e) {
       return JSON.parse(JSON.stringify(blank));
@@ -49,9 +58,39 @@ const Store = (function () {
     }
   }
 
+  /* telt elke gebeurtenis mee in het dagoverzicht van die kalenderdag */
+  function bumpDaily(ev) {
+    if (!data.daily) data.daily = {};
+    const day = new Date(ev.ts).toISOString().slice(0, 10);
+    if (!data.daily[day]) {
+      data.daily[day] = {
+        sessions: {}, readMs: 0, quizMs: 0, stories: 0, questions: 0, correct: 0,
+        spellWords: 0, spellCorrect: 0, spellSets: 0, coinsEarned: 0, badges: 0,
+        first: ev.ts, last: ev.ts
+      };
+    }
+    const d = data.daily[day];
+    d.last = ev.ts;
+    if (ev.session) d.sessions[ev.session] = 1;
+    if (ev.t === 'answer') { d.questions++; if (ev.correct) d.correct++; d.quizMs += ev.ms || 0; }
+    else if (ev.t === 'read_done') { d.readMs += ev.readMs || 0; }
+    else if (ev.t === 'story_done') { d.stories++; }
+    else if (ev.t === 'spell_item') { d.spellWords++; if (ev.correct) d.spellCorrect++; }
+    else if (ev.t === 'spell_done') { d.spellSets++; }
+    else if (ev.t === 'badge') { d.badges++; }
+    else if (ev.t === 'coins_earned') { d.coinsEarned += ev.amount || 0; }
+
+    /* nooit onbeperkt laten groeien: alleen de recentste MAX_DAYS bewaren */
+    const days = Object.keys(data.daily).sort();
+    if (days.length > MAX_DAYS) {
+      days.slice(0, days.length - MAX_DAYS).forEach(function (k) { delete data.daily[k]; });
+    }
+  }
+
   function log(type, payload) {
     const ev = Object.assign({ t: type, ts: Date.now() }, payload || {});
     data.events.push(ev);
+    bumpDaily(ev);
     save();
     return ev;
   }
@@ -253,9 +292,35 @@ const Stats = (function () {
     return tips;
   }
 
+  /* Het activiteitenlog per dag voor de ouder: gebaseerd op Store.data.daily,
+     dat los staat van de losse gebeurtenissen en dus nooit ingekort wordt.
+     Geeft de laatste `nDays` dagen terug, nieuwste eerst. */
+  function dailyLog(nDays) {
+    const daily = Store.data.daily || {};
+    const days = Object.keys(daily).sort().reverse().slice(0, nDays || 14);
+    return days.map(function (day) {
+      const d = daily[day];
+      const totalMs = (d.readMs || 0) + (d.quizMs || 0);
+      return {
+        date: day,
+        sessions: Object.keys(d.sessions || {}).length,
+        minutes: Math.round(totalMs / 60000),
+        stories: d.stories || 0,
+        questions: d.questions || 0,
+        correct: d.correct || 0,
+        accuracy: d.questions ? Math.round(d.correct / d.questions * 100) : 0,
+        spellWords: d.spellWords || 0,
+        spellSets: d.spellSets || 0,
+        coinsEarned: d.coinsEarned || 0,
+        badges: d.badges || 0
+      };
+    });
+  }
+
   return {
     answers: answers, summary: summary, bySkill: bySkill, byTopicLevel: byTopicLevel, advice: advice,
-    spellItems: spellItems, spellSummary: spellSummary, spellByCat: spellByCat, spellMistakes: spellMistakes
+    spellItems: spellItems, spellSummary: spellSummary, spellByCat: spellByCat, spellMistakes: spellMistakes,
+    dailyLog: dailyLog
   };
 })();
 

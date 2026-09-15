@@ -521,7 +521,7 @@ td.bad{color:var(--no);font-weight:800}
 
 .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
 .shop-card{
-  background:#fff;border-radius:18px;padding:16px 14px;text-align:center;box-shadow:var(--shadow);
+  position:relative;background:#fff;border-radius:18px;padding:16px 14px;text-align:center;box-shadow:var(--shadow);
   display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .16s;
 }
 .shop-card:hover{transform:translateY(-4px)}
@@ -532,6 +532,47 @@ td.bad{color:var(--no);font-weight:800}
 .shop-card .ghost-btn,.shop-card .big-btn{width:100%;margin-top:4px;padding:10px 8px;font-size:.85rem}
 .sc-owned{font-weight:800;color:var(--ok);font-size:.82rem;padding:6px 0}
 .sc-equipped{font-weight:800;color:var(--brand-dark);font-size:.82rem;padding:6px 0}
+.sc-locked{font-weight:800;color:#9a9aad;font-size:.82rem;padding:6px 0}
+.sc-req{font-size:.68rem;font-weight:700;color:var(--ink-soft);line-height:1.4;margin-top:1px}
+
+/* ---------- winkel: zeldzaamheid ---------- */
+.sc-tier{
+  align-self:flex-start;font-size:.6rem;font-weight:800;padding:3px 9px;border-radius:99px;
+  background:#eee;color:#5b5d78;text-transform:uppercase;letter-spacing:.4px;
+}
+.sc-tier-uncommon{background:#dff5e6;color:#1a7a44}
+.sc-tier-rare{background:#dbe8ff;color:#1e4fb0}
+.sc-tier-epic{background:#ecdcff;color:#6a1fc7}
+.sc-tier-legendary{background:linear-gradient(120deg,#ffd76a,#ff8a00);color:#5a2d00}
+
+.shop-card.tier-epic{background:linear-gradient(165deg,#2c1f5e,#5a34b8);box-shadow:0 0 0 2px #b28dff,var(--shadow)}
+.shop-card.tier-epic .sc-name,.shop-card.tier-epic .sc-req{color:#f1eaff}
+.shop-card.tier-epic .sc-locked{color:#d8c9ff}
+
+/* het legendarische item krijgt een "3D" folie-kaart: schuine glans die
+   ronddraait plus een lichte kanteling bij hover, met alleen CSS - er is
+   geen build-stap of 3D-library in dit project. */
+.shop-card.tier-legendary{
+  background:linear-gradient(150deg,#1b1035,#3a1c63 45%,#7b2ff7 75%,#ffb703);
+  box-shadow:0 0 0 3px #ffd76a,var(--shadow-lg),0 0 34px rgba(255,183,3,.5);
+  overflow:hidden;perspective:800px;transition:transform .25s ease;
+}
+.shop-card.tier-legendary.locked{opacity:.94}
+.shop-card.tier-legendary::before{
+  content:'';position:absolute;inset:-60%;
+  background:conic-gradient(from 0deg,transparent 0 8%,rgba(255,255,255,.6) 10%,transparent 13% 100%);
+  animation:legendSpin 3.4s linear infinite;mix-blend-mode:screen;pointer-events:none;
+}
+.shop-card.tier-legendary:hover{transform:translateY(-4px) rotateX(6deg) rotateY(-6deg) scale(1.04)}
+.shop-card.tier-legendary .sc-emoji{font-size:2.9rem;filter:drop-shadow(0 0 10px rgba(255,255,255,.7))}
+.shop-card.tier-legendary .sc-name,.shop-card.tier-legendary .sc-req{color:#fff;position:relative;z-index:1}
+.shop-card.tier-legendary .sc-locked{color:#ffe9b0;position:relative;z-index:1}
+.shop-card.tier-legendary .sc-owned,.shop-card.tier-legendary .sc-equipped{color:#baffcf;position:relative;z-index:1}
+.shop-card.tier-legendary .big-btn{position:relative;z-index:1}
+@keyframes legendSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){
+  .shop-card.tier-legendary::before{animation:none}
+}
 
 @media (max-width:640px){
   .mode-tab{padding:9px 16px;font-size:.92rem}

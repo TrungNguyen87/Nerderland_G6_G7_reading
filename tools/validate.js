@@ -356,6 +356,8 @@ CATS.forEach(function (c) {
    --------------------------------------------------------------------- */
 const SHOP = W.SHOP_ITEMS || [];
 const SHOP_KINDS = ['sticker', 'icon', 'character', 'tool'];
+const SHOP_TIERS = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+const UNLOCK_FLAGS = ['allStories', 'allSpelling', 'allBadges'];
 const shopIds = {};
 let shopCoinTotal = 0;
 
@@ -379,8 +381,32 @@ SHOP.forEach(function (it) {
       err(where, 'unknown tool effect "' + it.effect + '"');
     }
   }
+
+  /* zeldzaamheid en de niveau-/afrondingseis die daarbij hoort */
+  if (it.tier !== undefined && SHOP_TIERS.indexOf(it.tier) === -1) {
+    err(where, 'unknown tier "' + it.tier + '"');
+  }
+  if (it.minLevel !== undefined && (typeof it.minLevel !== 'number' || it.minLevel < 0)) {
+    err(where, 'minLevel must be a non-negative number');
+  }
+  if (it.unlock !== undefined) {
+    if (typeof it.unlock !== 'object' || it.unlock === null) {
+      err(where, 'unlock must be an object');
+    } else {
+      Object.keys(it.unlock).forEach(function (k) {
+        if (UNLOCK_FLAGS.indexOf(k) === -1) err(where, 'unknown unlock flag "' + k + '"');
+      });
+    }
+  }
 });
 if (!SHOP.length) warn('data/shop.js', 'no shop items defined');
+const legendaryItems = SHOP.filter(function (it) { return it.tier === 'legendary'; });
+if (!legendaryItems.length) warn('data/shop.js', 'no legendary item defined');
+legendaryItems.forEach(function (it) {
+  if (!it.unlock || Object.keys(it.unlock).length === 0) {
+    err('shop item ' + it.id, 'a legendary item should have an unlock requirement, or it is not actually rare');
+  }
+});
 
 /* ---------------------------------------------------------------------
    6. Interface strings: every key used must exist in both languages
