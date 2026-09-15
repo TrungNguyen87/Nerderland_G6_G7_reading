@@ -1,4 +1,6 @@
-# Optioneel: publiceert de site automatisch bij elke push naar main.
+# Optioneel: publiceert de site automatisch bij elke push naar de huidige
+# standaardbranch. Hernoem je die branch later naar `main`, dan blijft deze
+# workflow ook daarop draaien.
 # Gebruik dit ALLEEN als je bij Settings > Pages kiest voor Source = "GitHub Actions".
 # Kies je voor "Deploy from a branch" (de eenvoudigste manier), dan doet dit
 # bestand niets en kun je het laten staan of verwijderen.
@@ -6,7 +8,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, claude/dutch-reading-game-kids-j7ekss]
+    branches: [Main/dutch-reading-game-kids-g67, main]
   workflow_dispatch:
 
 permissions:

@@ -24,8 +24,8 @@ downloads. Only the font looks slightly different when you are offline.
 
 ## Route A — Through the GitHub website (no terminal)
 
-> **Important for your repository:** right now there is only **one** branch,
-> `claude/dutch-reading-game-kids-j7ekss`. There is **no `main` branch**.
+> **Important for your repository:** right now the live branch is
+> `Main/dutch-reading-game-kids-g67`. There is **no `main` branch**.
 > You can publish straight from that branch — it works exactly the same. If you
 > prefer a cleaner name, see *"Would you rather use `main`?"* at the end of this
 > route.
@@ -38,13 +38,13 @@ downloads. Only the font looks slightly different when you are offline.
 3. In the left menu, click **Pages**.
 4. Under **Source**, choose: **Deploy from a branch**.
 5. Under **Branch**, in the first dropdown choose:
-   **`claude/dutch-reading-game-kids-j7ekss`**
+   **`Main/dutch-reading-game-kids-g67`**
 6. In the second dropdown (the folder), choose: **`/ (root)`**.
 7. Click **Save**.
 
 ```
 Source:  Deploy from a branch
-Branch:  claude/dutch-reading-game-kids-j7ekss   /  (root)     [ Save ]
+Branch:  Main/dutch-reading-game-kids-g67   /  (root)     [ Save ]
 ```
 
 ### Step 2. Make sure the repository is public
@@ -94,7 +94,7 @@ The code is already online, so you only need this if you prefer working locally.
 # Get the repository
 git clone https://github.com/TrungNguyen87/Nerderland_G6_G7_reading.git
 cd Nerderland_G6_G7_reading
-git checkout claude/dutch-reading-game-kids-j7ekss
+git checkout Main/dutch-reading-game-kids-g67
 
 # View the site locally (pick one)
 open index.html               # macOS
@@ -105,7 +105,7 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 To rename the branch to `main`:
 
 ```bash
-git branch -m claude/dutch-reading-game-kids-j7ekss main
+git branch -m Main/dutch-reading-game-kids-g67 main
 git push -u origin main
 ```
 
