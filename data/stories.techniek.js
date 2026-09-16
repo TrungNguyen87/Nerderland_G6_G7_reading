@@ -486,3 +486,523 @@ addStories([
   ]
 }
 ]);
+
+/* --- Niveau 1-5: vijf nieuwe verhalen (techniek-6 t/m techniek-10) --- */
+addStories([
+{
+  id: 'techniek-6', topic: 'techniek', level: 1, emoji: '🚲', scene: 'default',
+  title: { nl: 'De fiets zonder trappers', en: 'The bicycle without pedals' },
+  text: {
+    nl: [
+      "Stel je voor: een fiets zonder trappers. Om vooruit te komen, moet je met je voeten over de grond lopen, net zoals bij een stepje. Zo zag de allereerste fiets er echt uit.",
+      "In 1817 bedacht de Duitse uitvinder Karl Drais zo’n fiets. Hij noemde hem de loopfiets. Het ding had twee wielen, een zadel en een stuur, maar geen trappers en geen kettingen.",
+      "Om te rijden, zette je je voeten af tegen de grond, net als bij hardlopen. Als je genoeg vaart had, tilde je je voeten op en gleed je verder. Zo hield je moeiteloos je evenwicht.",
+      "De loopfiets werd al snel populair. Mensen konden er sneller mee dan lopen. Toch was hij ook vermoeiend: bergop moest je stevig doorduwen, want trappers had de fiets niet.",
+      "Pas tientallen jaren later, rond 1860, kwamen er trappers aan het voorwiel. Eindelijk kon je fietsen zonder je voeten op de grond te zetten. Zo werd de loopfiets stap voor stap de fiets die we nu kennen."
+    ],
+    en: [
+      "Imagine a bicycle without pedals. To move forward, you have to walk your feet along the ground, just like on a kick scooter. That is really what the very first bicycle looked like.",
+      "In 1817 the German inventor Karl Drais came up with such a bicycle. He called it the loopfiets, or balance bike. The thing had two wheels, a saddle and handlebars, but no pedals and no chains.",
+      "To ride it, you pushed off with your feet against the ground, just like running. Once you had enough speed, you lifted your feet up and glided onward. That way you kept your balance without any effort.",
+      "The balance bike quickly became popular. People could get around faster with it than on foot. Still, it was also tiring: going uphill you had to push hard, because the bike had no pedals.",
+      "Only decades later, around 1860, pedals were added to the front wheel. At last you could cycle without putting your feet on the ground. Step by step, the balance bike became the bicycle we know today."
+    ]
+  },
+  words: [
+    { nl: 'loopfiets', en: 'balance bike', defNl: 'de allereerste fiets, zonder trappers', defEn: 'the very first bicycle, without pedals' },
+    { nl: 'uitvinder', en: 'inventor', defNl: 'iemand die iets nieuws bedenkt en maakt', defEn: 'someone who thinks up and makes something new' },
+    { nl: 'evenwicht', en: 'balance', defNl: 'niet omvallen, mooi rechtop blijven', defEn: 'not falling over, staying nicely upright' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wie bedacht de loopfiets?', en: 'Who came up with the balance bike?' },
+      options: [
+        { nl: 'Karl Drais', en: 'Karl Drais' },
+        { nl: 'Henry Ford', en: 'Henry Ford' },
+        { nl: 'James Watt', en: 'James Watt' },
+        { nl: 'Alexander Bell', en: 'Alexander Bell' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "In 1817 bedacht de Duitse uitvinder Karl Drais zo’n fiets."',
+                 en: 'Paragraph 2: "In 1817 the German inventor Karl Drais came up with such a bicycle."' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe kwam je vooruit op de loopfiets?', en: 'How did you move forward on the balance bike?' },
+      options: [
+        { nl: 'Je zette je voeten af tegen de grond', en: 'You pushed off with your feet against the ground' },
+        { nl: 'Je trapte op de pedalen', en: 'You pedalled' },
+        { nl: 'Een paard trok de fiets', en: 'A horse pulled the bike' },
+        { nl: 'Er zat een motor in', en: 'It had a motor in it' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "Om te rijden, zette je je voeten af tegen de grond."',
+                 en: 'Paragraph 3: "To ride it, you pushed off with your feet against the ground."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een uitvinder is iemand die ___.', en: 'An inventor is someone who ___.' },
+      options: [
+        { nl: 'iets nieuws bedenkt en maakt', en: 'thinks up and makes something new' },
+        { nl: 'fietsen repareert', en: 'repairs bicycles' },
+        { nl: 'in een fabriek werkt', en: 'works in a factory' },
+        { nl: 'boeken schrijft over machines', en: 'writes books about machines' }
+      ], answer: 0,
+      explain: { nl: 'Karl Drais bedacht zelf iets nieuws: de loopfiets. Dat maakt hem een uitvinder.',
+                 en: 'Karl Drais thought up something new himself: the balance bike. That makes him an inventor.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de geschiedenis van de fiets op volgorde.', en: 'Put the history of the bicycle in order.' },
+      items: [
+        { nl: 'Karl Drais bedenkt de loopfiets.', en: 'Karl Drais comes up with the balance bike.' },
+        { nl: 'Mensen rijden erop door met hun voeten af te zetten.', en: 'People ride it by pushing off with their feet.' },
+        { nl: 'De loopfiets wordt populair, maar bergop is vermoeiend.', en: 'The balance bike becomes popular, but uphill is tiring.' },
+        { nl: 'Rond 1860 komen er trappers bij.', en: 'Around 1860 pedals are added.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'De tekst loopt netjes van de uitvinding naar de trappers die er later bij kwamen.',
+                 en: 'The text runs neatly from the invention to the pedals that were added later.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'De eerste fiets had geen trappers; die kwamen er pas veel later bij',
+          en: 'The first bicycle had no pedals; those were only added much later' },
+        { nl: 'Karl Drais reed graag paard', en: 'Karl Drais liked to ride horses' },
+        { nl: 'Fietsen zijn altijd al heel snel geweest', en: 'Bicycles have always been very fast' },
+        { nl: 'Trappers zijn moeilijk te maken', en: 'Pedals are hard to make' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst gaat over de loopfiets zonder trappers en hoe die er later bij kwamen.',
+                 en: 'The whole text is about the balance bike without pedals and how they were added later.' } }
+  ]
+},
+
+{
+  id: 'techniek-7', topic: 'techniek', level: 2, emoji: '🍫', scene: 'lab',
+  title: { nl: 'De chocolade die per ongeluk smolt', en: 'The chocolate that melted by accident' },
+  text: {
+    nl: [
+      "In 1945 werkte de Amerikaanse ingenieur Percy Spencer aan radarapparatuur voor het leger. Hij stond vlak bij een magnetron, een buis die onzichtbare golven uitzendt. Ineens voelde hij iets kleverigs in zijn broekzak: de chocoladereep die hij bij zich had, was helemaal gesmolten.",
+      "De meeste mensen zouden gewoon een nieuwe reep kopen en verdergaan. Percy niet. Hij was nieuwsgierig en wilde weten waarom. Hij legde popcornkorrels bij de magnetron. Binnen een paar seconden knalden ze uit elkaar. Toen probeerde hij een ei. Dat ontplofte zo hard dat het tegen het gezicht van een collega spatte.",
+      "Percy snapte nu wat er gebeurde: de golven van de magnetron konden voedsel razendsnel verwarmen, zonder vuur en zonder gaspit. Hij bouwde een metalen kast om de magnetron heen, zodat de golven niet konden ontsnappen. Zo ontstond de allereerste magnetronoven.",
+      "Maar hoe verwarmt zo’n oven eigenlijk je eten? In elk stuk voedsel zit water. De golven van de magnetron laten de watermoleculen supersnel heen en weer schudden, miljoenen keren per seconde. Door al dat schudden ontstaat wrijving, en wrijving maakt warmte. Zo wordt je eten van binnenuit warm, in plaats van van buitenaf zoals bij een pan op het vuur.",
+      "De eerste magnetronovens waren enorm, duur en zo groot als een koelkast. Alleen restaurants en het leger konden ze betalen. Pas in 1967 kwam er een model dat in een gewone keuken paste. Sindsdien staat er in bijna elk huis wel eentje: allemaal dankzij een chocoladereep die op het verkeerde moment smolt."
+    ],
+    en: [
+      "In 1945 the American engineer Percy Spencer was working on radar equipment for the army. He was standing right next to a magnetron, a tube that sends out invisible waves. Suddenly he felt something sticky in his trouser pocket: the chocolate bar he had with him had completely melted.",
+      "Most people would just buy a new bar and move on. Not Percy. He was curious and wanted to know why. He put popcorn kernels next to the magnetron. Within a few seconds they popped. Then he tried an egg. It exploded so hard that it splattered onto a colleague’s face.",
+      "Percy now understood what was happening: the waves from the magnetron could heat food incredibly fast, without fire and without a gas flame. He built a metal box around the magnetron so the waves could not escape. That is how the very first microwave oven was created.",
+      "But how does such an oven actually heat your food? There is water in every piece of food. The waves from the magnetron make the water molecules shake back and forth super fast, millions of times a second. All that shaking creates friction, and friction makes heat. That way your food gets warm from the inside out, instead of from the outside like with a pan on the stove.",
+      "The first microwave ovens were enormous, expensive and as big as a refrigerator. Only restaurants and the army could afford them. Only in 1967 did a model arrive that fit in an ordinary kitchen. Since then almost every house has one: all thanks to a chocolate bar that melted at just the right moment."
+    ]
+  },
+  words: [
+    { nl: 'golven', en: 'waves', defNl: 'onzichtbare trillingen die energie meenemen', defEn: 'invisible vibrations that carry energy' },
+    { nl: 'wrijving', en: 'friction', defNl: 'de kracht die ontstaat als dingen tegen elkaar bewegen en die warmte maakt', defEn: 'the force created when things move against each other, which makes heat' },
+    { nl: 'watermolecuul', en: 'water molecule', defNl: 'een piepklein deeltje waaruit water bestaat', defEn: 'a tiny particle that water is made of' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat merkte Percy Spencer in zijn broekzak?', en: 'What did Percy Spencer notice in his trouser pocket?' },
+      options: [
+        { nl: 'Zijn chocoladereep was gesmolten', en: 'His chocolate bar had melted' },
+        { nl: 'Zijn sleutels waren verdwenen', en: 'His keys had disappeared' },
+        { nl: 'Zijn zakdoek was nat', en: 'His handkerchief was wet' },
+        { nl: 'Zijn telefoon was heet', en: 'His phone was hot' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "de chocoladereep die hij bij zich had, was helemaal gesmolten."',
+                 en: 'Paragraph 1: "the chocolate bar he had with him had completely melted."' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat gebeurde er met het ei dat Percy bij de magnetron legde?', en: 'What happened to the egg Percy put next to the magnetron?' },
+      options: [
+        { nl: 'Het ontplofte', en: 'It exploded' },
+        { nl: 'Het werd hard gekookt', en: 'It became hard-boiled' },
+        { nl: 'Het bleef precies hetzelfde', en: 'It stayed exactly the same' },
+        { nl: 'Het rolde weg', en: 'It rolled away' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: het ei "ontplofte zo hard dat het tegen het gezicht van een collega spatte".',
+                 en: 'Paragraph 2: the egg "exploded so hard that it splattered onto a colleague’s face".' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom bouwde Percy een metalen kast om de magnetron heen?', en: 'Why did Percy build a metal box around the magnetron?' },
+      options: [
+        { nl: 'Zodat de golven niet konden ontsnappen', en: 'So that the waves could not escape' },
+        { nl: 'Om de magnetron mooier te laten lijken', en: 'To make the magnetron look nicer' },
+        { nl: 'Om hem lichter te maken', en: 'To make it lighter' },
+        { nl: 'Om hem stiller te maken', en: 'To make it quieter' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 zegt het letterlijk: "zodat de golven niet konden ontsnappen".',
+                 en: 'Paragraph 3 says it literally: "so that the waves could not escape".' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Wrijving betekent ___.', en: 'Friction means ___.' },
+      options: [
+        { nl: 'de kracht die ontstaat als dingen tegen elkaar bewegen', en: 'the force created when things move against each other' },
+        { nl: 'een golf die door de lucht gaat', en: 'a wave that travels through the air' },
+        { nl: 'een klein deeltje water', en: 'a small particle of water' },
+        { nl: 'een knop op de magnetron', en: 'a button on the magnetron' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: "door al dat schudden ontstaat wrijving, en wrijving maakt warmte".',
+                 en: 'Paragraph 4: "all that shaking creates friction, and friction makes heat".' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Een toevallige ontdekking met een gesmolten chocoladereep leidde tot de magnetronoven',
+          en: 'An accidental discovery with a melted chocolate bar led to the microwave oven' },
+        { nl: 'Percy Spencer was een slechte ingenieur', en: 'Percy Spencer was a bad engineer' },
+        { nl: 'Eieren mag je nooit opeten', en: 'You should never eat eggs' },
+        { nl: 'Radar en chocolade hebben niets met elkaar te maken', en: 'Radar and chocolate have nothing to do with each other' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst volgt die lijn: gesmolten chocolade, onderzoek, en dan de uitvinding.',
+                 en: 'The whole text follows that line: melted chocolate, investigation, and then the invention.' } },
+    { id: 'q6', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Sleep elk woord naar de juiste uitleg.', en: 'Drag each word to its correct explanation.' },
+      pairs: [
+        { word: { nl: 'golven', en: 'waves' },
+          meaning: { nl: 'onzichtbare trillingen die energie meenemen', en: 'invisible vibrations that carry energy' } },
+        { word: { nl: 'wrijving', en: 'friction' },
+          meaning: { nl: 'de kracht die ontstaat als dingen tegen elkaar bewegen en die warmte maakt',
+                     en: 'the force created when things move against each other, which makes heat' } },
+        { word: { nl: 'watermolecuul', en: 'water molecule' },
+          meaning: { nl: 'een piepklein deeltje waaruit water bestaat', en: 'a tiny particle that water is made of' } }
+      ],
+      explain: { nl: 'Alle drie de woorden staan uitgelegd in alinea 4, waar de tekst vertelt hoe een magnetron eten opwarmt.',
+                 en: 'All three words are explained in paragraph 4, where the text tells how a microwave heats food.' } }
+  ]
+},
+
+{
+  id: 'techniek-8', topic: 'techniek', level: 3, emoji: '🖨️', scene: 'default',
+  title: { nl: 'Een huis printen in een dag', en: 'Printing a house in a day' },
+  text: {
+    nl: [
+      "Op een bouwterrein in Eindhoven staat een reusachtige printer. Hij drukt geen papier af, maar een huis. In iets meer dan een dag spuit hij de muren van een compleet huis op elkaar, laag voor laag.",
+      "De printer werkt met een grote arm die over rails beweegt. Uit het mondstuk komt betonpasta, een dikke grijze smurrie die lijkt op glazuur op een taart. Elke laag moet stevig genoeg zijn om de volgende laag te dragen, maar ook nat genoeg om er goed mee te verbinden. Daarom moet de pasta precies de juiste dikte hebben.",
+      "Sinds 2021 wonen er al echte mensen in zulke geprinte huizen, in het project Milestone bij Eindhoven. Wat meteen opvalt, zijn de ronde muren. Een metselaar heeft veel tijd nodig om een gebogen muur van losse stenen te maken. Voor de printer maakt het niets uit: hij volgt gewoon de vorm die in de computer staat, recht of rond.",
+      "Waarom is dit interessant? Op veel plekken in de wereld is een groot woningtekort: er zijn simpelweg te weinig huizen voor alle mensen die er een nodig hebben. Printen gaat sneller dan traditioneel bouwen, en er zijn minder handen nodig om elke steen apart te leggen. Bovendien gebruikt de printer precies zoveel beton als nodig is, zodat er minder afval overblijft.",
+      "Toch is een huis niet klaar na die ene dag. De printer maakt alleen de muren. Het dak, de ramen, de deuren en alle leidingen voor water en stroom moeten daarna nog met de hand worden aangebracht. Ook moet het recept van de betonpasta exact kloppen: is die te dun, dan zakken de lagen in elkaar voordat ze droog zijn.",
+      "Bouwregels zijn in veel landen ook nog niet aangepast aan deze nieuwe manier van bouwen. Toch bouwen steeds meer steden proefwoningen. Misschien is een geprint huis over tien jaar heel gewoon."
+    ],
+    en: [
+      "On a building site in Eindhoven stands a huge printer. It does not print paper, but a house. In just over a day it squirts the walls of a whole house on top of each other, layer by layer.",
+      "The printer works with a large arm that moves along rails. Concrete paste comes out of the nozzle, a thick grey goo that looks like icing on a cake. Every layer has to be sturdy enough to carry the next layer, but also wet enough to bond well with it. That is why the paste has to be exactly the right thickness.",
+      "Since 2021 real people have already been living in such printed houses, in the Milestone project near Eindhoven. What stands out immediately are the curved walls. A bricklayer needs a lot of time to build a curved wall out of loose bricks. For the printer it makes no difference: it simply follows the shape stored in the computer, straight or round.",
+      "Why is this interesting? In many places in the world there is a big housing shortage: there are simply too few houses for all the people who need one. Printing is faster than traditional building, and fewer hands are needed to lay every brick separately. On top of that, the printer uses exactly as much concrete as needed, so less waste is left over.",
+      "Still, a house is not finished after that one day. The printer only makes the walls. The roof, the windows, the doors and all the pipes for water and electricity still have to be added by hand afterwards. The recipe for the concrete paste also has to be exactly right: if it is too thin, the layers sink into each other before they dry.",
+      "Building rules in many countries also have not yet been adapted to this new way of building. Even so, more and more cities are building test homes. Maybe a printed house will be completely normal in ten years."
+    ]
+  },
+  words: [
+    { nl: 'betonpasta', en: 'concrete paste', defNl: 'een dikke, vloeibare vorm van beton die uit een mondstuk geperst kan worden', defEn: 'a thick, liquid form of concrete that can be pushed out of a nozzle' },
+    { nl: 'mondstuk', en: 'nozzle', defNl: 'het puntje waar de pasta uitkomt', defEn: 'the tip where the paste comes out' },
+    { nl: 'woningtekort', en: 'housing shortage', defNl: 'er zijn te weinig huizen voor het aantal mensen dat een huis nodig heeft', defEn: 'there are too few houses for the number of people who need one' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat komt er uit het mondstuk van de printer?', en: 'What comes out of the printer’s nozzle?' },
+      options: [
+        { nl: 'Betonpasta', en: 'Concrete paste' },
+        { nl: 'Water', en: 'Water' },
+        { nl: 'Verf', en: 'Paint' },
+        { nl: 'Zand', en: 'Sand' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Uit het mondstuk komt betonpasta, een dikke grijze smurrie."',
+                 en: 'Paragraph 2: "Concrete paste comes out of the nozzle, a thick grey goo."' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Sinds welk jaar wonen er mensen in geprinte huizen bij Eindhoven?', en: 'Since which year have people been living in printed houses near Eindhoven?' },
+      options: [
+        { nl: '2021', en: '2021' },
+        { nl: '2010', en: '2010' },
+        { nl: '2030', en: '2030' },
+        { nl: '1999', en: '1999' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "Sinds 2021 wonen er al echte mensen in zulke geprinte huizen."',
+                 en: 'Paragraph 3: "Since 2021 real people have already been living in such printed houses."' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom kan de printer makkelijker een ronde muur maken dan een metselaar?', en: 'Why can the printer make a curved wall more easily than a bricklayer?' },
+      options: [
+        { nl: 'Hij volgt gewoon de vorm uit de computer, steen voor steen is niet nodig',
+          en: 'It simply follows the shape from the computer, brick by brick is not needed' },
+        { nl: 'Ronde muren zijn dunner dan rechte muren', en: 'Curved walls are thinner than straight walls' },
+        { nl: 'De printer werkt niet met beton', en: 'The printer does not work with concrete' },
+        { nl: 'Metselaars mogen van de wet geen ronde muren maken', en: 'The law does not allow bricklayers to build curved walls' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "hij volgt gewoon de vorm die in de computer staat, recht of rond".',
+                 en: 'Paragraph 3: "it simply follows the shape stored in the computer, straight or round".' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Is die te dun, dan zakken de lagen in elkaar." Waar verwijst "die" naar?',
+           en: '"If it is too thin, the layers sink into each other." What does "it" refer to?' },
+      options: [
+        { nl: 'Naar de betonpasta', en: 'To the concrete paste' },
+        { nl: 'Naar de printer', en: 'To the printer' },
+        { nl: 'Naar het dak', en: 'To the roof' },
+        { nl: 'Naar de bouwregels', en: 'To the building rules' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over het recept van de betonpasta dat exact moet kloppen.',
+                 en: 'The sentence before is about the concrete paste recipe that has to be exactly right.' } },
+    { id: 'q5', type: 'mc', skill: 'structuur',
+      q: { nl: 'Het woord "Toch" aan het begin van alinea 5 laat zien dat er...', en: 'The word "Still" at the start of paragraph 5 shows that...' },
+      options: [
+        { nl: 'na de voordelen nu een nadeel of moeilijkheid volgt', en: 'after the advantages, a disadvantage or difficulty now follows' },
+        { nl: 'de tekst hier ophoudt', en: 'the text stops here' },
+        { nl: 'er een nieuw onderwerp begint dat niets met huizen te maken heeft', en: 'a new topic begins that has nothing to do with houses' },
+        { nl: 'de schrijver een grapje maakt', en: 'the writer is making a joke' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 noemt de voordelen, alinea 5 begint met "Toch" en noemt daarna de nadelen.',
+                 en: 'Paragraph 4 names the advantages, paragraph 5 starts with "Still" and then names the drawbacks.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Een 3D-printer kan snel muren bouwen en zo helpen tegen woningtekort, maar het dak, de leidingen en de regels zijn nog niet klaar',
+          en: 'A 3D printer can build walls fast and so help against the housing shortage, but the roof, the pipes and the rules are not ready yet' },
+        { nl: 'Metselaars zijn helemaal niet meer nodig', en: 'Bricklayers are not needed at all anymore' },
+        { nl: 'Beton is het enige bouwmateriaal dat werkt', en: 'Concrete is the only building material that works' },
+        { nl: 'Printers kunnen alleen ronde muren maken', en: 'Printers can only make curved walls' }
+      ], answer: 0,
+      explain: { nl: 'De tekst legt werking en voordelen uit, maar noemt ook duidelijk wat er nog moeilijk is.',
+                 en: 'The text explains how it works and its advantages, but also clearly names what is still difficult.' } },
+    { id: 'q7', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een woningtekort betekent ___.', en: 'A housing shortage means ___.' },
+      options: [
+        { nl: 'er zijn te weinig huizen voor het aantal mensen dat er een nodig heeft', en: 'there are too few houses for the number of people who need one' },
+        { nl: 'er zijn te veel huizen', en: 'there are too many houses' },
+        { nl: 'huizen zijn te duur geworden', en: 'houses have become too expensive' },
+        { nl: 'er is te weinig beton', en: 'there is too little concrete' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 legt het uit: "er zijn simpelweg te weinig huizen voor alle mensen die er een nodig hebben".',
+                 en: 'Paragraph 4 explains it: "there are simply too few houses for all the people who need one".' } }
+  ]
+},
+
+{
+  id: 'techniek-9', topic: 'techniek', level: 4, emoji: '🚗', scene: 'default',
+  title: { nl: 'Hoe "ziet" een zelfrijdende auto de weg?', en: 'How does a self-driving car "see" the road?' },
+  text: {
+    nl: [
+      "Een zelfrijdende auto heeft geen ogen, en toch moet hij precies weten wat er om hem heen gebeurt: waar de weg loopt, of er een fietser oversteekt, of het stoplicht rood is. Dat lukt dankzij een combinatie van sensoren die samen razendsnel een beeld van de omgeving opbouwen, tientallen keren per seconde.",
+      "Ten eerste zijn er camera’s. Die werken een beetje zoals onze ogen: ze zien kleuren en kunnen verkeersborden, stoplichten en belijning op de weg herkennen. Het probleem is dat een camera het moeilijk heeft bij mist, in het donker, of als de zon recht in de lens schijnt.",
+      "Daarnaast gebruikt de auto radar. Radar stuurt radiogolven de lucht in, die terugkaatsen zodra ze een ander voertuig raken. Zo meet de auto heel precies hoe ver iets weg is en hoe snel het beweegt. Radar werkt prima in regen, mist en duisternis, maar ziet geen kleuren en kan geen bord lezen.",
+      "Ten derde is er lidar, een soort laserradar. Een lidar-sensor stuurt miljoenen laserflitsjes per seconde alle kanten op en meet hoelang elke flits erover doet om terug te kaatsen. Zo ontstaat een driedimensionale puntenwolk van alles om de auto heen, tot op de centimeter nauwkeurig: stoepranden, voetgangers, bomen. Een lidar-sensor is wel duur, en werkt minder goed bij dichte sneeuw of mist.",
+      "De boordcomputer voegt de gegevens van camera’s, radar en lidar tientallen keren per seconde samen tot één beeld. Hij beslist wat een auto is, wat een voetganger is en wat gewoon een plastic zakje is dat wegwaait. Maakt één sensor een fout, dan corrigeren de andere twee dat vaak.",
+      "Toch blijven onverwachte situaties lastig. Sneeuw die de belijning bedekt, een bal die de straat op rolt gevolgd door een rennend kind, een agent die met handgebaren het verkeer regelt: de computer is getraind op miljoenen voorbeelden, maar de werkelijkheid blijft eindeloos verrassend. Daarom zit er bij veel testritten nog altijd een mens achter het stuur, klaar om meteen over te nemen."
+    ],
+    en: [
+      "A self-driving car has no eyes, and yet it has to know exactly what is happening around it: where the road runs, whether a cyclist is crossing, whether the traffic light is red. It manages this thanks to a combination of sensors that build up a picture of its surroundings together, at lightning speed, dozens of times per second.",
+      "First there are cameras. They work a bit like our eyes: they see colours and can recognise traffic signs, traffic lights and lane markings on the road. The problem is that a camera struggles in fog, in the dark, or when the sun shines straight into the lens.",
+      "The car also uses radar. Radar sends radio waves into the air, which bounce back as soon as they hit another vehicle. That way the car measures very precisely how far away something is and how fast it is moving. Radar works fine in rain, fog and darkness, but it cannot see colours and cannot read a sign.",
+      "Third, there is lidar, a kind of laser radar. A lidar sensor sends millions of laser pulses per second in every direction and measures how long each pulse takes to bounce back. That creates a three-dimensional point cloud of everything around the car, accurate to the centimetre: kerbs, pedestrians, trees. A lidar sensor is expensive, though, and works less well in heavy snow or fog.",
+      "The onboard computer combines the data from cameras, radar and lidar dozens of times per second into one picture. It decides what is a car, what is a pedestrian, and what is just a plastic bag blowing away. If one sensor makes a mistake, the other two often correct it.",
+      "Still, unexpected situations remain difficult. Snow covering the lane markings, a ball rolling into the street followed by a running child, an officer directing traffic with hand signals: the computer is trained on millions of examples, but reality keeps being endlessly surprising. That is why a human still sits behind the wheel during many test drives, ready to take over immediately."
+    ]
+  },
+  words: [
+    { nl: 'sensor', en: 'sensor', defNl: 'een apparaatje dat iets in de omgeving meet', defEn: 'a small device that measures something in the surroundings' },
+    { nl: 'puntenwolk', en: 'point cloud', defNl: 'duizenden meetpunten die samen een 3D-vorm laten zien', defEn: 'thousands of measured points that together show a 3D shape' },
+    { nl: 'boordcomputer', en: 'onboard computer', defNl: 'de computer in de auto die alle informatie verzamelt en beslissingen neemt', defEn: 'the computer in the car that gathers all the information and makes decisions' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar kan een camera moeite mee hebben?', en: 'What can a camera struggle with?' },
+      options: [
+        { nl: 'Met mist, duisternis of fel tegenlicht', en: 'With fog, darkness or bright glare' },
+        { nl: 'Met het lezen van radiogolven', en: 'With reading radio waves' },
+        { nl: 'Met het meten van snelheid', en: 'With measuring speed' },
+        { nl: 'Met driedimensionale puntenwolken', en: 'With three-dimensional point clouds' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "een camera het moeilijk heeft bij mist, in het donker, of als de zon recht in de lens schijnt".',
+                 en: 'Paragraph 2: "a camera struggles in fog, in the dark, or when the sun shines straight into the lens".' } },
+    { id: 'q2', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee dingen kan radar goed meten? Kies er 2.', en: 'Which two things can radar measure well? Pick 2.' },
+      options: [
+        { nl: 'Hoe ver iets weg is', en: 'How far away something is' },
+        { nl: 'Hoe snel iets beweegt', en: 'How fast something is moving' },
+        { nl: 'Welke kleur een auto heeft', en: 'What colour a car is' },
+        { nl: 'Wat er op een verkeersbord staat', en: 'What is written on a traffic sign' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 3: radar meet "heel precies hoe ver iets weg is en hoe snel het beweegt", maar ziet geen kleuren of tekst.',
+                 en: 'Paragraph 3: radar measures "very precisely how far away something is and how fast it is moving", but cannot see colours or text.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Maakt één sensor een fout, dan corrigeren de andere twee dat vaak." Waar verwijst "dat" naar?',
+           en: '"If one sensor makes a mistake, the other two often correct it." What does "it" refer to?' },
+      options: [
+        { nl: 'Naar de fout van die ene sensor', en: 'To the mistake made by that one sensor' },
+        { nl: 'Naar de kleur van de auto', en: 'To the colour of the car' },
+        { nl: 'Naar het weer', en: 'To the weather' },
+        { nl: 'Naar de laserflitsjes', en: 'To the laser pulses' }
+      ], answer: 0,
+      explain: { nl: 'De zin begint met "maakt één sensor een fout"; "dat" pakt precies die fout weer op.',
+                 en: 'The sentence starts with "if one sensor makes a mistake"; "it" picks up exactly that mistake.' } },
+    { id: 'q4', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom gebruikt een zelfrijdende auto drie soorten sensoren in plaats van één?',
+           en: 'Why does a self-driving car use three kinds of sensors instead of one?' },
+      options: [
+        { nl: 'Omdat elke sensor andere sterke en zwakke punten heeft, en ze elkaar zo aanvullen',
+          en: 'Because each sensor has different strengths and weaknesses, so they complement each other' },
+        { nl: 'Omdat drie sensoren goedkoper zijn dan één', en: 'Because three sensors are cheaper than one' },
+        { nl: 'Omdat de wet drie sensoren verplicht stelt', en: 'Because the law requires three sensors' },
+        { nl: 'Omdat een camera niet in een auto past', en: 'Because a camera does not fit in a car' }
+      ], answer: 0,
+      explain: { nl: 'Elke sensor heeft een zwak punt (camera bij mist, radar zonder kleur, lidar bij sneeuw); samen vullen ze elkaar aan.',
+                 en: 'Each sensor has a weak point (camera in fog, radar without colour, lidar in snow); together they complement each other.' } },
+    { id: 'q5', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een puntenwolk is ___.', en: 'A point cloud is ___.' },
+      options: [
+        { nl: 'duizenden meetpunten die samen een 3D-vorm laten zien', en: 'thousands of measured points that together show a 3D shape' },
+        { nl: 'een wolk aan de hemel', en: 'a cloud in the sky' },
+        { nl: 'een soort regen', en: 'a kind of rain' },
+        { nl: 'een nieuwe verkeersregel', en: 'a new traffic rule' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: de lidar maakt "een driedimensionale puntenwolk van alles om de auto heen".',
+                 en: 'Paragraph 4: the lidar creates "a three-dimensional point cloud of everything around the car".' } },
+    { id: 'q6', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de sensoren op volgorde zoals de tekst ze bespreekt.', en: 'Put the sensors in the order the text discusses them.' },
+      items: [
+        { nl: 'Camera’s herkennen borden en stoplichten.', en: 'Cameras recognise signs and traffic lights.' },
+        { nl: 'Radar meet afstand en snelheid met radiogolven.', en: 'Radar measures distance and speed with radio waves.' },
+        { nl: 'Lidar maakt een driedimensionale puntenwolk met laserflitsjes.', en: 'Lidar creates a three-dimensional point cloud with laser pulses.' },
+        { nl: 'De boordcomputer voegt alle gegevens samen tot één beeld.', en: 'The onboard computer combines all the data into one picture.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'De tekst behandelt eerst camera, dan radar, dan lidar, en pas daarna hoe de boordcomputer alles combineert.',
+                 en: 'The text first covers cameras, then radar, then lidar, and only after that how the onboard computer combines everything.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'De tekst gebruikt de woorden "Ten eerste", "Daarnaast" en "Ten derde". Waarvoor dienen die woorden?',
+           en: 'The text uses the words "First", "Also" and "Third". What are those words for?' },
+      options: [
+        { nl: 'Ze laten zien dat er een opsomming van verschillende sensoren volgt',
+          en: 'They show that a list of different sensors follows' },
+        { nl: 'Ze geven aan dat de tekst bijna afgelopen is', en: 'They indicate that the text is almost over' },
+        { nl: 'Ze vergelijken twee meningen met elkaar', en: 'They compare two opinions with each other' },
+        { nl: 'Ze geven een waarschuwing voor gevaar', en: 'They give a warning about danger' }
+      ], answer: 0,
+      explain: { nl: 'De woorden kondigen elk een nieuwe sensor aan: eerst camera, dan radar, dan lidar.',
+                 en: 'Each word announces a new sensor: first cameras, then radar, then lidar.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Een zelfrijdende auto combineert camera’s, radar en lidar om de omgeving te herkennen, maar onverwachte situaties blijven lastig',
+          en: 'A self-driving car combines cameras, radar and lidar to recognise its surroundings, but unexpected situations remain difficult' },
+        { nl: 'Camera’s zijn de enige sensor die een zelfrijdende auto nodig heeft', en: 'Cameras are the only sensor a self-driving car needs' },
+        { nl: 'Lidar is in alle gevallen beter dan radar', en: 'Lidar is better than radar in every case' },
+        { nl: 'Zelfrijdende auto’s rijden nooit fout', en: 'Self-driving cars never make mistakes' }
+      ], answer: 0,
+      explain: { nl: 'De tekst legt eerst de sensoren en hun samenwerking uit, en eindigt met de grens: onverwachte situaties.',
+                 en: 'The text first explains the sensors and how they work together, and ends with the limit: unexpected situations.' } }
+  ]
+},
+
+{
+  id: 'techniek-10', topic: 'techniek', level: 5, emoji: '⚖️', scene: 'lab',
+  title: { nl: 'Mag een computer beslissen wie er het eerst geholpen wordt?', en: 'Should a computer decide who gets helped first?' },
+  text: {
+    nl: [
+      "Stel je voor: de spoedeisende hulp van een ziekenhuis zit stampvol. Tien mensen tegelijk hebben hulp nodig, maar er is maar één arts. Wie wordt eerst geholpen? Steeds vaker helpt een computerprogramma die keuze maken. En dat roept een lastige vraag op: mag een computer beslissen over iets dat zo belangrijk is?",
+      "Zo’n programma kijkt naar symptomen, bloeddruk, hartslag en medische voorgeschiedenis, en vergelijkt dat met enorme hoeveelheden gegevens van eerdere patiënten. Binnen een paar seconden komt er een advies: wie waarschijnlijk het snelst hulp nodig heeft. Een uitgeputte arts die al twaalf uur dienst heeft, doet er veel langer over.",
+      "Voorstanders wijzen daarop: een computer wordt niet moe, heeft geen slechte dag en behandelt elke patiënt volgens dezelfde regels. Dat zou eerlijker kunnen zijn dan een arts die, zonder het te willen, de ene patiënt toch anders bekijkt dan de andere. Bovendien kan snelheid levens redden.",
+      "Tegenstanders zien juist een groot risico. Zo’n programma heeft geleerd van duizenden eerdere beslissingen, gemaakt door mensen. Als die beslissingen in het verleden oneerlijk waren voor een bepaalde groep patiënten, dan leert de computer die oneerlijkheid gewoon mee, verstopt diep in de code, waar niemand het meteen ziet. En als het misgaat, wie is er dan verantwoordelijk? De dokter die het advies volgde? De programmeur? Het ziekenhuis? Niemand heeft daar een duidelijk antwoord op.",
+      "Er is nog iets waar een computer niet bij kan: angst van een patiënt, de situatie thuis, dingen die niet in cijfers te vangen zijn. Sommige beslissingen vragen om een mens die goed kan luisteren, niet alleen om rekenwerk.",
+      "In de praktijk gebruiken de meeste ziekenhuizen het programma daarom als adviseur, niet als baas. De computer geeft een advies, maar de uiteindelijke keuze blijft bij een arts. Bij zelfrijdende auto’s speelt eenzelfde discussie: mag de boordcomputer in een fractie van een seconde zelf een noodbeslissing nemen, of moet er altijd een mens kunnen ingrijpen?",
+      "Deze discussie gaat voorlopig niet weg. Computers worden steeds slimmer, en steeds vaker krijgen ze belangrijke beslissingen in handen. En wat vind jij: mag een computer meebeslissen over zoiets belangrijks, of moet dat altijd een mens blijven?"
+    ],
+    en: [
+      "Imagine: a hospital’s emergency room is packed. Ten people need help at the same time, but there is only one doctor. Who gets helped first? Increasingly, a computer program helps make that choice. And that raises a difficult question: should a computer be allowed to decide something this important?",
+      "Such a program looks at symptoms, blood pressure, heart rate and medical history, and compares that with huge amounts of data from earlier patients. Within a few seconds it gives advice: who probably needs help the fastest. An exhausted doctor who has already been on shift for twelve hours takes much longer to do the same thing.",
+      "Supporters point that out: a computer does not get tired, does not have a bad day, and treats every patient by the same rules. That could be fairer than a doctor who, without meaning to, looks at one patient differently than another. On top of that, speed can save lives.",
+      "Opponents see a big risk instead. Such a program has learned from thousands of earlier decisions, made by people. If those past decisions were unfair to a certain group of patients, the computer simply learns that unfairness too, hidden deep in the code, where nobody notices it right away. And if it goes wrong, who is responsible then? The doctor who followed the advice? The programmer? The hospital? Nobody has a clear answer to that.",
+      "There is something else a computer cannot reach: a patient’s fear, the situation at home, things that cannot be captured in numbers. Some decisions need a person who can listen well, not just calculations.",
+      "In practice, most hospitals therefore use the program as an advisor, not as a boss. The computer gives advice, but the final choice stays with a doctor. The same discussion plays out with self-driving cars: should the onboard computer be allowed to make an emergency decision itself in a fraction of a second, or must a human always be able to step in?",
+      "This discussion is not going away any time soon. Computers keep getting smarter, and more and more often they are handed important decisions. So what do you think: should a computer be allowed to help decide something this important, or should that always stay a human’s job?"
+    ]
+  },
+  words: [
+    { nl: 'voorgeschiedenis', en: 'medical history', defNl: 'wat er vroeger met iemand gebeurd is, bijvoorbeeld bij een ziekte', defEn: 'what happened to someone in the past, for example with an illness' },
+    { nl: 'verantwoordelijk', en: 'responsible', defNl: 'diegene die iets moet uitleggen als het misgaat', defEn: 'the one who has to explain if something goes wrong' },
+    { nl: 'adviseur', en: 'advisor', defNl: 'iemand of iets dat een tip geeft, maar niet de baas is', defEn: 'someone or something that gives a tip, but is not the boss' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar kijkt het computerprogramma naar om een advies te geven?', en: 'What does the computer program look at to give advice?' },
+      options: [
+        { nl: 'Symptomen, bloeddruk, hartslag en medische voorgeschiedenis', en: 'Symptoms, blood pressure, heart rate and medical history' },
+        { nl: 'Naam en adres van de patiënt', en: 'The patient’s name and address' },
+        { nl: 'De kleur van de kleding van de patiënt', en: 'The colour of the patient’s clothes' },
+        { nl: 'Het weer buiten het ziekenhuis', en: 'The weather outside the hospital' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: het programma "kijkt naar symptomen, bloeddruk, hartslag en medische voorgeschiedenis".',
+                 en: 'Paragraph 2: the program "looks at symptoms, blood pressure, heart rate and medical history".' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Het programma vergelijkt gegevens met die van eerdere patiënten.',
+          en: 'The program compares data with that of earlier patients.', bin: 0 },
+        { nl: 'Dat zou eerlijker kunnen zijn dan een arts.', en: 'That could be fairer than a doctor.', bin: 1 },
+        { nl: 'Een uitgeputte arts die al twaalf uur dienst heeft, doet er veel langer over.',
+          en: 'An exhausted doctor who has already been on shift for twelve hours takes much longer.', bin: 0 },
+        { nl: 'Sommige beslissingen vragen om een mens die goed kan luisteren.',
+          en: 'Some decisions need a person who can listen well.', bin: 1 }
+      ],
+      explain: { nl: 'Wat het programma doet en hoelang iets duurt zijn feiten. "Zou kunnen" en "vragen om" zijn standpunten.',
+                 en: 'What the program does and how long something takes are facts. "Could be" and "need" are positions.' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat is het doel van de schrijver?', en: 'What is the writer’s purpose?' },
+      options: [
+        { nl: 'Laten zien dat er argumenten vóór én tegen zijn, zodat de lezer er zelf over kan nadenken',
+          en: 'Show that there are arguments both for and against, so the reader can think it over themselves' },
+        { nl: 'Bewijzen dat computers altijd beter beslissen dan mensen', en: 'Prove that computers always decide better than people' },
+        { nl: 'Artsen aanraden om zich te laten vervangen door computers', en: 'Advise doctors to have themselves replaced by computers' },
+        { nl: 'Uitleggen hoe je zelf een computerprogramma bouwt', en: 'Explain how to build a computer program yourself' }
+      ], answer: 0,
+      explain: { nl: 'De tekst noemt eerst voorstanders, dan tegenstanders, en eindigt met een open vraag aan de lezer.',
+                 en: 'The text first names supporters, then opponents, and ends with an open question to the reader.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Als het misgaat, wie is er dan verantwoordelijk?" Waar slaat "het" hier op?',
+           en: '"And if it goes wrong, who is responsible then?" What does "it" refer to here?' },
+      options: [
+        { nl: 'Op een verkeerd advies van het computerprogramma', en: 'To a wrong piece of advice from the computer program' },
+        { nl: 'Op het weer', en: 'To the weather' },
+        { nl: 'Op de spoedeisende hulp zelf', en: 'To the emergency room itself' },
+        { nl: 'Op de twaalf uur dienst van de arts', en: 'To the doctor’s twelve-hour shift' }
+      ], answer: 0,
+      explain: { nl: 'De zinnen ervoor gaan over een programma dat geleerde oneerlijkheid meeneemt in zijn advies.',
+                 en: 'The sentences before are about a program that carries learned unfairness into its advice.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee risico’s noemen tegenstanders van zo’n programma? Kies er 2.',
+           en: 'Which two risks do opponents of such a program name? Pick 2.' },
+      options: [
+        { nl: 'De computer kan oneerlijkheid uit het verleden meeleren', en: 'The computer can learn unfairness from the past' },
+        { nl: 'Niemand weet altijd precies wie verantwoordelijk is als het misgaat', en: 'Nobody always knows exactly who is responsible if it goes wrong' },
+        { nl: 'De computer is te traag voor spoedgevallen', en: 'The computer is too slow for emergencies' },
+        { nl: 'De computer kost te veel stroom', en: 'The computer uses too much electricity' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 4 noemt precies deze twee risico’s: meegeleerde oneerlijkheid en onduidelijke verantwoordelijkheid.',
+                 en: 'Paragraph 4 names exactly these two risks: learned unfairness and unclear responsibility.' } },
+    { id: 'q6', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de tekst gebruiken de meeste ziekenhuizen het programma nu al als enige beslisser, zonder arts.',
+           en: 'According to the text, most hospitals already use the program as the sole decision-maker, without a doctor.' },
+      answer: false,
+      explain: { nl: 'Alinea 6: het programma is een adviseur, "de uiteindelijke keuze blijft bij een arts".',
+                 en: 'Paragraph 6: the program is an advisor, "the final choice stays with a doctor".' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Hoe is deze tekst opgebouwd?', en: 'How is this text structured?' },
+      options: [
+        { nl: 'Eerst het probleem, dan argumenten vóór, dan argumenten tegen, en dan een open vraag aan de lezer',
+          en: 'First the problem, then arguments for, then arguments against, and then an open question to the reader' },
+        { nl: 'Een tijdlijn van 1900 tot nu', en: 'A timeline from 1900 to now' },
+        { nl: 'Een stappenplan om zelf een computerprogramma te bouwen', en: 'A step-by-step plan for building a computer program yourself' },
+        { nl: 'Een interview met een dokter', en: 'An interview with a doctor' }
+      ], answer: 0,
+      explain: { nl: 'De tekst begint met het dilemma, weegt daarna beide kanten, en sluit af met "En wat vind jij?".',
+                 en: 'The text opens with the dilemma, then weighs both sides, and closes with "So what do you think?".' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste?', en: 'Which summary fits best?' },
+      options: [
+        { nl: 'Computerprogramma’s kunnen sneller en misschien eerlijker beslissen wie het eerst geholpen wordt, maar ze kunnen ook oneerlijkheid overnemen en niemand weet altijd wie verantwoordelijk is; de meeste ziekenhuizen laten daarom de dokter de baas blijven.',
+          en: 'Computer programs can decide faster and maybe more fairly who gets helped first, but they can also take over unfairness and nobody always knows who is responsible; that is why most hospitals keep the doctor in charge.' },
+        { nl: 'Ziekenhuizen gebruiken al honderd jaar computers om patiënten te helpen.', en: 'Hospitals have used computers to help patients for a hundred years already.' },
+        { nl: 'Alleen artsen met twaalf jaar ervaring mogen op de spoedeisende hulp werken.', en: 'Only doctors with twelve years of experience are allowed to work in the emergency room.' },
+        { nl: 'Zelfrijdende auto’s hebben niets te maken met dit onderwerp.', en: 'Self-driving cars have nothing to do with this topic.' }
+      ], answer: 0,
+      explain: { nl: 'Die samenvatting pakt de kern van elke alinea; de andere antwoorden zijn niet wat de tekst zegt.',
+                 en: 'That summary takes the core of every paragraph; the other answers are not what the text says.' } },
+    { id: 'q9', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een adviseur is ___.', en: 'An advisor is ___.' },
+      options: [
+        { nl: 'iemand of iets dat een tip geeft, maar niet de baas is', en: 'someone or something that gives a tip, but is not the boss' },
+        { nl: 'de baas van het ziekenhuis', en: 'the boss of the hospital' },
+        { nl: 'een patiënt met spoed', en: 'a patient in urgent need' },
+        { nl: 'een computerprogramma dat nooit fouten maakt', en: 'a computer program that never makes mistakes' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 6: het programma wordt gebruikt "als adviseur, niet als baas"; de keuze blijft bij de arts.',
+                 en: 'Paragraph 6: the program is used "as an advisor, not as a boss"; the choice stays with the doctor.' } }
+  ]
+}
+]);

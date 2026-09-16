@@ -127,7 +127,15 @@ try {
   if (levelCards < 5) bad(`level screen shows only ${levelCards} levels`);
   else ok(`level screen shows ${levelCards} difficulty levels`);
 
-  const locked = await sel('#level-grid .level-card').nth(4).innerText();
+  /* a world can have more than one story per level, so the card index of
+     "the first level-5 card" is however many level 1-4 cards precede it,
+     not a fixed offset */
+  const firstTopicId = await page.evaluate(() => window.TOPICS[0].id);
+  const firstLevel5Index = await page.evaluate(
+    (topicId) => window.STORY_DB.filter((s) => s.topic === topicId && s.level < 5).length,
+    firstTopicId
+  );
+  const locked = await sel('#level-grid .level-card').nth(firstLevel5Index).innerText();
   if (!/🔒/.test(locked)) bad('level 5 is not locked for a new player');
   else ok('higher levels start locked');
 

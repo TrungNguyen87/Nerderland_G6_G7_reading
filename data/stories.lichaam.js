@@ -524,3 +524,506 @@ addStories([
   ]
 }
 ]);
+
+/* --- Extra verhalen: niezen, huid, groei, geheugen, schooltijden --- */
+addStories([
+{
+  id: 'lichaam-6', topic: 'lichaam', level: 1, emoji: '🤧', scene: 'body',
+  title: { nl: 'Waarom moet je niezen?', en: 'Why do you have to sneeze?' },
+  text: {
+    nl: [
+      "Soms kriebelt het even in je neus, en voor je er iets aan kunt doen, nies je keihard. Niezen komt altijd onverwacht. Het duurt maar een paar seconden, maar je hele lichaam doet mee.",
+      "Wat gebeurt er dan precies? In je neus zitten piepkleine haartjes en zenuwen. Die voelen alles wat er binnenkomt: stof, peper, een haartje van de kat of gewoon een kriebel. Zodra zoiets die zenuwen prikkelt, sturen ze meteen een seintje naar je hersenen.",
+      "Je hersenen nemen dat seintje heel serieus. Ze geven het bevel voor een reflex: een beweging die je zelf niet kunt tegenhouden. Je longen vullen zich met lucht en de spieren in je borst en buik spannen zich in één keer aan.",
+      "Dan komt de klap. De lucht schiet met een enorme vaart je neus en mond uit, soms wel honderdvijftig kilometer per uur. Duizenden piepkleine druppeltjes vliegen mee de kamer in, tot wel enkele meters ver.",
+      "Dat lijkt misschien overdreven, maar het is heel handig. Met die harde windvlaag blaast je lichaam het stof of de kruimel weg, voordat het dieper naar binnen kan. Daarom hou je bij het niezen je elleboog voor je mond: dan blijven de druppeltjes bij jou."
+    ],
+    en: [
+      "Sometimes your nose tickles for a moment, and before you can do anything about it, you sneeze hard. Sneezing always comes as a surprise. It only lasts a few seconds, but your whole body joins in.",
+      "What exactly happens then? Your nose is lined with tiny hairs and nerves. They sense everything that comes in: dust, pepper, a cat hair or just a tickle. As soon as something like that irritates those nerves, they instantly send a signal to your brain.",
+      "Your brain takes that signal very seriously. It gives the order for a reflex: a movement you cannot stop yourself. Your lungs fill with air and the muscles in your chest and belly all tighten at once.",
+      "Then comes the blast. The air shoots out of your nose and mouth at enormous speed, sometimes as fast as one hundred and fifty kilometres an hour. Thousands of tiny droplets fly along into the room, sometimes several metres away.",
+      "That may sound over the top, but it is very useful. With that hard gust of wind your body blows away the dust or the crumb, before it can get in any deeper. That is why you hold your elbow in front of your mouth when you sneeze: then the droplets stay with you."
+    ]
+  },
+  words: [
+    { nl: 'kriebel', en: 'tickle', defNl: 'een licht gevoel dat je bijna moet krabben of niezen', defEn: 'a light feeling that makes you want to scratch or sneeze' },
+    { nl: 'zenuwen', en: 'nerves', defNl: 'dunne draadjes in je lijf die signalen naar je hersenen sturen', defEn: 'thin threads in your body that send signals to your brain' },
+    { nl: 'reflex', en: 'reflex', defNl: 'een beweging die je lichaam vanzelf doet, zonder dat je erover nadenkt', defEn: 'a movement your body makes automatically, without you thinking about it' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat voelen de piepkleine haartjes en zenuwen in je neus?',
+           en: 'What do the tiny hairs and nerves in your nose sense?' },
+      options: [
+        { nl: 'Alles wat er in je neus binnenkomt, zoals stof of peper', en: 'Everything that comes into your nose, like dust or pepper' },
+        { nl: 'Hoe warm het buiten is', en: 'How warm it is outside' },
+        { nl: 'Of je moe bent', en: 'Whether you are tired' },
+        { nl: 'Hoeveel je hebt gegeten', en: 'How much you have eaten' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: die voelen alles wat er binnenkomt: stof, peper, een haartje van de kat of een kriebel.',
+                 en: 'Paragraph 2: they sense everything that comes in: dust, pepper, a cat hair or a tickle.' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Een nies kan met een snelheid van meer dan honderd kilometer per uur je neus uit schieten.',
+           en: 'A sneeze can shoot out of your nose faster than one hundred kilometres an hour.' },
+      answer: true,
+      explain: { nl: 'Alinea 4: soms wel honderdvijftig kilometer per uur.',
+                 en: 'Paragraph 4: sometimes as fast as one hundred and fifty kilometres an hour.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een reflex is een beweging die ___.', en: 'A reflex is a movement that ___.' },
+      options: [
+        { nl: 'je lichaam vanzelf doet, zonder dat je erover nadenkt', en: 'your body makes automatically, without you thinking about it' },
+        { nl: 'je heel langzaam bedenkt', en: 'you think up very slowly' },
+        { nl: 'alleen in de nacht gebeurt', en: 'only happens at night' },
+        { nl: 'je expres oefent voor een wedstrijd', en: 'you deliberately practise for a match' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 legt uit dat een reflex een beweging is die je zelf niet kunt tegenhouden.',
+                 en: 'Paragraph 3 explains that a reflex is a movement you cannot stop yourself.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de stappen van het niezen op volgorde.', en: 'Put the steps of sneezing in order.' },
+      items: [
+        { nl: 'Iets prikkelt de zenuwen in je neus.', en: 'Something irritates the nerves in your nose.' },
+        { nl: 'De zenuwen sturen een seintje naar je hersenen.', en: 'The nerves send a signal to your brain.' },
+        { nl: 'De spieren in je borst en buik spannen zich aan.', en: 'The muscles in your chest and belly tighten.' },
+        { nl: 'De lucht schiet met grote vaart naar buiten.', en: 'The air shoots outward at great speed.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Alinea 2 tot en met 4 beschrijven precies deze volgorde.',
+                 en: 'Paragraphs 2 to 4 describe exactly this order.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat deze tekst vooral over?', en: 'What is this text mainly about?' },
+      options: [
+        { nl: 'Waarom en hoe je moet niezen', en: 'Why and how you sneeze' },
+        { nl: 'Hoe je een verkoudheid voorkomt', en: 'How to prevent a cold' },
+        { nl: 'Waarom katten haren verliezen', en: 'Why cats shed hair' },
+        { nl: 'Hoe je hersenen werken tijdens het slapen', en: 'How your brain works while you sleep' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea gaat over de reden en het proces van niezen.',
+                 en: 'Every paragraph is about the reason and the process of sneezing.' } }
+  ]
+},
+
+{
+  id: 'lichaam-7', topic: 'lichaam', level: 2, emoji: '🩹', scene: 'body',
+  title: { nl: 'Je huid: het grootste orgaan', en: 'Your skin: the biggest organ' },
+  text: {
+    nl: [
+      "Je huid is je grootste orgaan, groter dan je hart of je longen. Bij een volwassene is hij ongeveer twee vierkante meter groot: net zo groot als een deken voor een tweepersoonsbed. Toch denk je er zelden aan, want je huid werkt altijd door zonder dat je het merkt.",
+      "Je huid is vooral een muur. Ze houdt water binnen je lijf en houdt vuil, bacteriën en te veel zonlicht buiten. Zonder die muur zou je lichaam binnen een paar dagen uitdrogen of ziek worden van de kleinste besmetting.",
+      "Daarnaast is je huid een enorm zintuig. Er zitten miljoenen zenuwuiteinden in die voelen of iets zacht, hard, warm of koud is. Op je vingertoppen zitten de meeste: daarom lees je met je vingers ook braille, en daarom voel je een splinter sneller in je vinger dan in je rug.",
+      "Je huid repareert zichzelf ook voortdurend. De bovenste laag bestaat uit dode cellen die steeds afschilferen, zoals stofjes die van je afvallen. Daaronder maken nieuwe cellen zich elke dag klaar om die plek in te nemen. Een schaafwond is binnen een paar dagen bedekt met een nieuw laagje huid.",
+      "Ten slotte regelt je huid je temperatuur. Wordt het te warm in je lijf, dan gaan je zweetklieren aan het werk. Het zweet verdampt op je huid, en juist dat verdampen koelt je af, net zoals een natte handdoek in de wind afkoelt.",
+      "Al die taken samen maken je huid tot een van de knapste onderdelen van je lichaam: een muur, een zintuig, een reparateur en een airconditioning, allemaal tegelijk."
+    ],
+    en: [
+      "Your skin is your biggest organ, bigger than your heart or your lungs. In an adult it measures about two square metres: as big as a blanket for a double bed. Yet you rarely think about it, because your skin keeps working without you noticing.",
+      "Your skin is mainly a wall. It keeps water inside your body and keeps dirt, bacteria and too much sunlight out. Without that wall your body would dry out within a few days, or fall ill from the smallest infection.",
+      "Your skin is also a huge sense organ. It holds millions of nerve endings that feel whether something is soft, hard, warm or cold. Your fingertips have the most: that is why you can also read braille with your fingers, and why you feel a splinter faster in your finger than in your back.",
+      "Your skin also repairs itself constantly. The top layer is made of dead cells that keep flaking off, like little bits of dust falling away from you. Underneath, new cells get ready every day to take that spot. A graze is covered with a new layer of skin within a few days.",
+      "Finally, your skin controls your temperature. When your body gets too warm, your sweat glands go to work. The sweat evaporates on your skin, and it is exactly that evaporating that cools you down, just like a wet towel cools down in the wind.",
+      "Together all these jobs make your skin one of the cleverest parts of your body: a wall, a sense organ, a repairer and an air conditioner, all at once."
+    ]
+  },
+  words: [
+    { nl: 'zintuig', en: 'sense organ', defNl: 'een deel van je lichaam waarmee je iets waarneemt, zoals voelen of zien', defEn: 'a body part you use to sense things, like touch or sight' },
+    { nl: 'verdampen', en: 'to evaporate', defNl: 'van vloeistof veranderen in damp', defEn: 'turning from a liquid into vapour' },
+    { nl: 'schaafwond', en: 'graze', defNl: 'een wondje waarbij de bovenste laag huid eraf is', defEn: 'a small wound where the top layer of skin has come off' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel vierkante meter huid heeft een volwassene ongeveer?',
+           en: 'How many square metres of skin does an adult have, roughly?' },
+      options: [
+        { nl: 'Ongeveer twee vierkante meter', en: 'About two square metres' },
+        { nl: 'Ongeveer twintig vierkante meter', en: 'About twenty square metres' },
+        { nl: 'Ongeveer een halve vierkante meter', en: 'About half a square metre' },
+        { nl: 'Ongeveer tien vierkante meter', en: 'About ten square metres' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: bij een volwassene is de huid ongeveer twee vierkante meter groot.',
+                 en: 'Paragraph 1: in an adult the skin measures about two square metres.' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom voel je een splinter sneller in je vinger dan in je rug?',
+           en: 'Why do you feel a splinter faster in your finger than in your back?' },
+      options: [
+        { nl: 'Omdat er op je vingertoppen de meeste zenuwuiteinden zitten', en: 'Because your fingertips have the most nerve endings' },
+        { nl: 'Omdat je rug dikkere huid heeft', en: 'Because your back has thicker skin' },
+        { nl: 'Omdat je vingers warmer zijn', en: 'Because your fingers are warmer' },
+        { nl: 'Omdat je rug minder bloed heeft', en: 'Because your back has less blood' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: op je vingertoppen zitten de meeste zenuwuiteinden.',
+                 en: 'Paragraph 3: your fingertips have the most nerve endings.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Verdampen betekent dat iets ___.', en: 'To evaporate means something ___.' },
+      options: [
+        { nl: 'van vloeistof in damp verandert', en: 'turns from a liquid into vapour' },
+        { nl: 'keihard wordt', en: 'becomes rock hard' },
+        { nl: 'van kleur verandert', en: 'changes colour' },
+        { nl: 'kouder wordt dan ijs', en: 'gets colder than ice' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5: het zweet verdampt op je huid, en dat verdampen koelt je af.',
+                 en: 'Paragraph 5: the sweat evaporates on your skin, and that evaporating cools you down.' } },
+    { id: 'q4', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Zweet koelt je af doordat het op je huid verdampt.', en: 'Sweat cools you down because it evaporates on your skin.' },
+      answer: true,
+      explain: { nl: 'Alinea 5 zegt het letterlijk: juist dat verdampen koelt je af.',
+                 en: 'Paragraph 5 says it literally: it is exactly that evaporating that cools you down.' } },
+    { id: 'q5', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Klik het woord en daarna de juiste betekenis.', en: 'Click the word and then the correct meaning.' },
+      pairs: [
+        { word: { nl: 'zintuig', en: 'sense organ' }, meaning: { nl: 'een deel van je lichaam waarmee je iets waarneemt', en: 'a body part you use to sense things' } },
+        { word: { nl: 'verdampen', en: 'to evaporate' }, meaning: { nl: 'van vloeistof veranderen in damp', en: 'turning from a liquid into vapour' } },
+        { word: { nl: 'schaafwond', en: 'graze' }, meaning: { nl: 'een wondje waarbij de bovenste laag huid eraf is', en: 'a small wound where the top layer of skin has come off' } }
+      ],
+      explain: { nl: 'Deze drie woorden komen allemaal uit de tekst.', en: 'All three words come from the text.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Je huid doet veel meer dan je denkt: beschermen, voelen, repareren en afkoelen', en: 'Your skin does far more than you think: protecting, sensing, repairing and cooling' },
+        { nl: 'Je huid is twee vierkante meter groot', en: 'Your skin is two square metres in size' },
+        { nl: 'Zweet is vies', en: 'Sweat is dirty' },
+        { nl: 'Braille is een taal voor blinden', en: 'Braille is a language for the blind' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea beschrijft een andere taak van de huid: muur, zintuig, reparateur en airconditioning.',
+                 en: 'Every paragraph describes a different job of the skin: wall, sense organ, repairer and air conditioner.' } }
+  ]
+},
+
+{
+  id: 'lichaam-8', topic: 'lichaam', level: 3, emoji: '📏', scene: 'body',
+  title: { nl: 'Waarom groeien sommige kinderen sneller dan anderen?', en: 'Why do some kids grow faster than others?' },
+  text: {
+    nl: [
+      "Sta je weleens naast een klasgenoot die opeens een kop groter is, terwijl jullie vorig jaar nog even lang waren? Dat is geen toeval en zeker geen oneerlijkheid. Ieder lichaam heeft zijn eigen tempo, en dat tempo ligt voor een groot deel al vast voordat je geboren wordt.",
+      "Het belangrijkste stuurt de erfelijkheid. In je cellen zit DNA, een soort bouwtekening die je van je ouders hebt gekregen. Die bouwtekening bepaalt niet alleen hoe lang je uiteindelijk wordt, maar ook wannéér je groeit. Kinderen van lange ouders groeien vaak, maar niet altijd, ook zelf lang en vaak op een vergelijkbare leeftijd als hun vader of moeder vroeger.",
+      "Groeien gebeurt niet gelijkmatig, met elke dag een millimeter erbij. Het gaat met vlagen. Een hormoon, een stofje dat door je bloed reist en cellen een opdracht geeft, zet die vlagen in gang. Vooral 's nachts, in de diepe slaap, maakt je lichaam het meeste groeihormoon aan. Daarom is voldoende slaap voor een kind even belangrijk als goed eten.",
+      "Rond het begin van de puberteit versnelt de groei flink, bij het ene kind rond het tiende jaar, bij het andere pas rond het veertiende. Meisjes beginnen daarbij vaak eerder dan jongens. Wie op zijn elfde nog niet is gegroeid, hoeft zich dus geen zorgen te maken: die groeispurt kan nog komen.",
+      "Ook voeding en gezondheid spelen mee. Een kind dat te weinig eet of vaak ziek is, groeit tijdelijk langzamer, en haalt dat later vaak weer in. Dat verschil in tempo tussen kinderen is dus volkomen normaal: de een is op zijn tiende al bijna volgroeid, de ander schiet pas op zijn zestiende omhoog.",
+      "Kortom: hoe lang je wordt en wanneer je groeit, hangt af van een mix van erfelijkheid, hormonen, slaap en voeding. Die mix is bij ieder kind anders, en daarom loopt niemands groeicurve precies gelijk met die van een klasgenoot."
+    ],
+    en: [
+      "Do you ever stand next to a classmate who has suddenly become a head taller, even though you were the same height last year? That is not chance and certainly not unfair. Every body has its own pace, and that pace is largely set before you are even born.",
+      "The most important factor is heredity. Inside your cells is DNA, a kind of blueprint you got from your parents. That blueprint decides not only how tall you eventually become, but also when you grow. Children of tall parents often, though not always, grow tall themselves too, and often at an age similar to when their father or mother did.",
+      "Growing does not happen evenly, with a millimetre added every day. It comes in bursts. A hormone, a substance that travels through your blood and gives cells an order, sets those bursts going. Your body makes the most growth hormone especially at night, during deep sleep. That is why enough sleep is just as important for a child as eating well.",
+      "Around the start of puberty, growth speeds up considerably, in one child around age ten, in another only around age fourteen. Girls often start earlier than boys in this. So anyone who has not grown much by age eleven need not worry: that growth spurt can still come.",
+      "Diet and health also play a part. A child who eats too little or is often ill grows more slowly for a while, and often catches up again later. So that difference in pace between children is completely normal: one child is almost fully grown by age ten, while another only shoots up at sixteen.",
+      "In short: how tall you become and when you grow depends on a mix of heredity, hormones, sleep and diet. That mix is different for every child, which is why nobody's growth curve runs exactly parallel to a classmate's."
+    ]
+  },
+  words: [
+    { nl: 'erfelijkheid', en: 'heredity', defNl: 'dat eigenschappen van je ouders op jou overgaan', defEn: 'traits from your parents passing on to you' },
+    { nl: 'groeihormoon', en: 'growth hormone', defNl: 'een stofje in je bloed dat je lichaam laat groeien', defEn: 'a substance in your blood that makes your body grow' },
+    { nl: 'groeispurt', en: 'growth spurt', defNl: 'een periode waarin je opeens veel groeit', defEn: 'a period when you suddenly grow a lot' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wanneer maakt je lichaam het meeste groeihormoon aan?', en: 'When does your body make the most growth hormone?' },
+      options: [
+        { nl: "Vooral 's nachts, in de diepe slaap", en: 'Especially at night, during deep sleep' },
+        { nl: 'Vooral tijdens het sporten', en: 'Mainly during sports' },
+        { nl: 'Vooral tijdens het eten', en: 'Mainly while eating' },
+        { nl: "Vooral 's ochtends vroeg", en: 'Mainly early in the morning' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: vooral \'s nachts, in de diepe slaap, maakt je lichaam het meeste groeihormoon aan.',
+                 en: 'Paragraph 3: your body makes the most growth hormone especially at night, during deep sleep.' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Die bouwtekening bepaalt niet alleen hoe lang je wordt." Waar verwijst "die bouwtekening" naar?',
+           en: '"That blueprint decides not only how tall you become." What does "that blueprint" refer to?' },
+      options: [
+        { nl: 'Naar het DNA in je cellen', en: 'To the DNA in your cells' },
+        { nl: 'Naar de groeispurt', en: 'To the growth spurt' },
+        { nl: 'Naar het hormoon in je bloed', en: 'To the hormone in your blood' },
+        { nl: 'Naar de klasgenoot', en: 'To the classmate' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor noemt DNA als een soort bouwtekening die je van je ouders hebt gekregen.',
+                 en: 'The sentence before names DNA as a kind of blueprint you got from your parents.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom hoeft een kind van elf dat nog niet gegroeid is, zich geen zorgen te maken?',
+           en: 'Why does an eleven-year-old who has not grown much yet not need to worry?' },
+      options: [
+        { nl: 'Omdat de groeispurt bij het ene kind later begint dan bij het andere', en: 'Because the growth spurt starts later for some children than for others' },
+        { nl: 'Omdat groeien niet belangrijk is', en: 'Because growing is not important' },
+        { nl: 'Omdat jongens sowieso niet groeien', en: 'Because boys do not grow at all' },
+        { nl: 'Omdat hormonen op die leeftijd niet werken', en: 'Because hormones do not work at that age' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: bij het ene kind rond het tiende jaar, bij het andere pas rond het veertiende.',
+                 en: 'Paragraph 4: in one child around age ten, in another only around age fourteen.' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een groeispurt is ___.', en: 'A growth spurt is ___.' },
+      options: [
+        { nl: 'een periode waarin je opeens veel groeit', en: 'a period when you suddenly grow a lot' },
+        { nl: 'een soort hormoon', en: 'a kind of hormone' },
+        { nl: 'een stuk DNA', en: 'a piece of DNA' },
+        { nl: 'een ziekte die je groei stopt', en: 'an illness that stops your growth' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 gebruikt het woord voor de periode waarin de groei flink versnelt.',
+                 en: 'Paragraph 4 uses the word for the period when growth speeds up considerably.' } },
+    { id: 'q5', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom begint de tekst met de vraag over de klasgenoot die opeens een kop groter is?',
+           en: 'Why does the text open with the question about the classmate who suddenly became a head taller?' },
+      options: [
+        { nl: 'Om een herkenbaar voorbeeld te geven voordat de uitleg over groeien begint', en: 'To give a recognisable example before the explanation about growing begins' },
+        { nl: 'Om te bewijzen dat groeien oneerlijk is', en: 'To prove that growing is unfair' },
+        { nl: 'Om een grap te maken over lange kinderen', en: 'To make a joke about tall children' },
+        { nl: 'Om de hoofdgedachte al aan het begin te herhalen', en: 'To repeat the main idea right at the start' }
+      ], answer: 0,
+      explain: { nl: 'De openingsvraag lokt een herkenbare situatie op, waarna de tekst uitlegt waarom dat zo is.',
+                 en: 'The opening question evokes a recognisable situation, after which the text explains why that happens.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Hoe snel en wanneer je groeit, verschilt per kind door een mix van erfelijkheid, hormonen, slaap en voeding', en: 'How fast and when you grow differs per child due to a mix of heredity, hormones, sleep and diet' },
+        { nl: 'Meisjes groeien altijd sneller dan jongens', en: 'Girls always grow faster than boys' },
+        { nl: 'Groeihormoon werkt alleen in de nacht', en: 'Growth hormone only works at night' },
+        { nl: 'Elk kind is op zijn tiende volgroeid', en: 'Every child is fully grown by age ten' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea voegt een andere factor toe die samen het groeitempo bepalen.',
+                 en: 'Every paragraph adds a different factor that together determine the pace of growth.' } },
+    { id: 'q7', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Een kind dat een tijd lang ziek is geweest, groeit daarna nooit meer normaal.',
+           en: 'A child who has been ill for a while never grows normally again afterwards.' },
+      answer: false,
+      explain: { nl: 'Alinea 5: het kind groeit tijdelijk langzamer, maar haalt dat later vaak weer in.',
+                 en: 'Paragraph 5: the child grows more slowly for a while, but often catches up again later.' } }
+  ]
+},
+
+{
+  id: 'lichaam-9', topic: 'lichaam', level: 4, emoji: '🧠', scene: 'lab',
+  title: { nl: 'Hoe je hersenen herinneringen opslaan', en: 'How your brain stores memories' },
+  text: {
+    nl: [
+      "Je fietst langs de plek waar je vorige zomer bent gevallen, en meteen zie je het tafereel weer voor je: het asfalt, de schrik, de pleister die je moeder erop plakte. Een herinnering lijkt op een filmpje dat ergens in je hoofd is opgeslagen. Maar zo simpel werkt het niet.",
+      "Elke gebeurtenis wordt eerst heel kort vastgehouden in je kortetermijngeheugen, een soort tijdelijk kladblok dat maar een paar seconden tot minuten meegaat. De meeste van die indrukken worden meteen weer weggegooid: je hersenen kunnen onmogelijk alles bewaren wat je elke dag meemaakt.",
+      "Alleen wat belangrijk genoeg lijkt, wordt overgezet naar het langetermijngeheugen. Die overzetting, consolidatie genoemd, gebeurt voor een groot deel 's nachts. Terwijl je slaapt, speelt een diep hersengebied de gebeurtenissen van die dag opnieuw af, en worden de verbindingen tussen hersencellen die bij die herinnering horen steviger. Wie te weinig slaapt, onthoudt daardoor minder van wat hij die dag heeft geleerd.",
+      "Twee dingen maken een herinnering extra sterk. Het eerste is herhaling: een som die je vaak oefent, of een liedje dat je tien keer hoort, slijt een dieper spoor in je hersenen. Het tweede is emotie. Gebeurtenissen waarbij je heel bang, blij of verdrietig was, blijven vaak feller hangen dan een gewone doordeweekse dinsdag, ook al is die net zo lang geleden.",
+      "Er is nog iets vreemds aan de hand. Elke keer dat je een herinnering ophaalt, wordt hij instabiel, en moet je hersenen hem daarna weer opnieuw vastleggen. Bij dat opnieuw vastleggen sluipen er kleine veranderingen in: een detail dat verschuift, een kleur die anders wordt, een zin die iemand anders zei dan je denkt. Vandaar dat twee mensen die hetzelfde meemaakten, elkaar achteraf soms tegenspreken.",
+      "Dat heeft grote gevolgen. Een getuige die een gebeurtenis steeds opnieuw navertelt, gelooft na een tijdje soms in details die er nooit zijn geweest. Onderzoekers noemen dit een vals geheugen: geen leugen, maar een herinnering die stilletjes is bijgeschaafd.",
+      "Een herinnering is dus geen filmpje dat onveranderd in een la ligt, maar meer een verhaal dat je hersenen telkens opnieuw vertellen, en dat bij elk vertellen een klein beetje verschuift."
+    ],
+    en: [
+      "You cycle past the spot where you fell last summer, and at once you see the whole scene again: the tarmac, the fright, the plaster your mother stuck on. A memory seems like a little film stored somewhere in your head. But it does not work that simply.",
+      "Every event is first held very briefly in your short-term memory, a kind of temporary notepad that only lasts a few seconds to minutes. Most of those impressions are thrown away again immediately: your brain simply cannot keep everything you experience every day.",
+      "Only what seems important enough gets moved into your long-term memory. That transfer, called consolidation, happens largely at night. While you sleep, a deep brain area replays the day's events, and the connections between the brain cells belonging to that memory become stronger. That is why someone who sleeps too little remembers less of what they learned that day.",
+      "Two things make a memory extra strong. The first is repetition: a sum you practise often, or a song you hear ten times, wears a deeper track into your brain. The second is emotion. Events where you were very scared, happy or sad tend to stick more vividly than an ordinary weekday Tuesday, even if it happened just as long ago.",
+      "There is something else strange going on. Every time you retrieve a memory, it briefly becomes unstable, and your brain then has to lock it in again. During that re-locking, small changes creep in: a detail that shifts, a colour that changes, a sentence someone said differently than you think. That is why two people who experienced the same thing sometimes contradict each other afterwards.",
+      "That has big consequences. A witness who keeps retelling an event sometimes ends up believing in details that never happened. Researchers call this a false memory: not a lie, but a memory that has been quietly touched up.",
+      "So a memory is not a little film lying unchanged in a drawer, but more like a story your brain tells over and over, shifting a little each time it is told."
+    ]
+  },
+  words: [
+    { nl: 'kortetermijngeheugen', en: 'short-term memory', defNl: 'het deel van je geheugen dat iets maar heel even vasthoudt', defEn: 'the part of your memory that holds something only briefly' },
+    { nl: 'consolidatie', en: 'consolidation', defNl: 'het overzetten van een herinnering naar je langetermijngeheugen', defEn: 'moving a memory into your long-term memory' },
+    { nl: 'vals geheugen', en: 'false memory', defNl: 'een herinnering aan iets dat in werkelijkheid nooit zo is gebeurd', defEn: 'a memory of something that never actually happened that way' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe lang blijft een indruk ongeveer in je kortetermijngeheugen?',
+           en: 'How long does an impression stay in your short-term memory, roughly?' },
+      options: [
+        { nl: 'Een paar seconden tot minuten', en: 'A few seconds to minutes' },
+        { nl: 'Een paar dagen', en: 'A few days' },
+        { nl: 'Je hele leven', en: 'Your whole life' },
+        { nl: 'Precies één nacht', en: 'Exactly one night' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: een tijdelijk kladblok dat maar een paar seconden tot minuten meegaat.',
+                 en: 'Paragraph 2: a temporary notepad that only lasts a few seconds to minutes.' } },
+    { id: 'q2', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee dingen maken een herinnering volgens de tekst extra sterk? Kies er 2.',
+           en: 'Which two things make a memory extra strong, according to the text? Pick 2.' },
+      options: [
+        { nl: 'Herhaling', en: 'Repetition' },
+        { nl: 'Emotie', en: 'Emotion' },
+        { nl: 'De kleur van de gebeurtenis', en: 'The colour of the event' },
+        { nl: 'Hoe laat het gebeurde', en: 'What time it happened' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 4 noemt precies die twee: herhaling en emotie.',
+                 en: 'Paragraph 4 names exactly those two: repetition and emotion.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Bij dat opnieuw vastleggen sluipen er kleine veranderingen in." Waar verwijst "dat opnieuw vastleggen" naar?',
+           en: '"During that re-locking, small changes creep in." What does "that re-locking" refer to?' },
+      options: [
+        { nl: 'Naar het weer vastleggen van een herinnering nadat je hem hebt opgehaald', en: 'To locking a memory in again after you have retrieved it' },
+        { nl: 'Naar het maken van een compleet nieuwe herinnering', en: 'To creating a completely new memory' },
+        { nl: 'Naar het consolideren tijdens de slaap', en: 'To consolidating during sleep' },
+        { nl: 'Naar het navertellen aan een getuige', en: 'To retelling something to a witness' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor zegt dat je hersenen de herinnering daarna weer opnieuw moeten vastleggen.',
+                 en: 'The sentence before says your brain then has to lock the memory in again.' } },
+    { id: 'q4', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom onthoudt iemand die te weinig slaapt minder van wat hij die dag heeft geleerd?',
+           en: 'Why does someone who sleeps too little remember less of what they learned that day?' },
+      options: [
+        { nl: 'Omdat consolidatie, het overzetten naar het langetermijngeheugen, vooral \'s nachts gebeurt', en: 'Because consolidation, the transfer to long-term memory, happens mostly at night' },
+        { nl: 'Omdat hersenen overdag helemaal niet werken', en: 'Because the brain does not work at all during the day' },
+        { nl: 'Omdat hij dan minder emoties voelt', en: 'Because they feel fewer emotions then' },
+        { nl: 'Omdat een getuige dan minder betrouwbaar is', en: 'Because a witness is then less reliable' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 legt uit dat consolidatie voor een groot deel \'s nachts gebeurt.',
+                 en: 'Paragraph 3 explains that consolidation happens largely at night.' } },
+    { id: 'q5', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een vals geheugen is ___.', en: 'A false memory is ___.' },
+      options: [
+        { nl: 'een herinnering aan iets dat nooit precies zo is gebeurd', en: 'a memory of something that never exactly happened that way' },
+        { nl: 'een herinnering die je expres verzint om te liegen', en: 'a memory you deliberately make up to lie' },
+        { nl: 'een herinnering zonder enige emotie', en: 'a memory without any emotion' },
+        { nl: 'een herinnering die je nooit meer terugkrijgt', en: 'a memory you never get back' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 6: geen leugen, maar een herinnering die stilletjes is bijgeschaafd.',
+                 en: 'Paragraph 6: not a lie, but a memory that has been quietly touched up.' } },
+    { id: 'q6', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de stappen van een herinnering op volgorde.', en: 'Put the steps of a memory in order.' },
+      items: [
+        { nl: 'Een gebeurtenis komt kort in je kortetermijngeheugen.', en: 'An event briefly enters your short-term memory.' },
+        { nl: 'De belangrijke informatie wordt \'s nachts overgezet naar je langetermijngeheugen.', en: 'The important information is moved into your long-term memory at night.' },
+        { nl: 'Later haal je de herinnering weer op, en wordt hij instabiel.', en: 'Later you retrieve the memory again, and it becomes unstable.' },
+        { nl: 'Je hersenen leggen de herinnering opnieuw vast, met kleine veranderingen.', en: 'Your brain locks the memory in again, with small changes.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Alinea 2, 3 en 5 beschrijven precies deze volgorde.',
+                 en: 'Paragraphs 2, 3 and 5 describe exactly this order.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom begint de tekst met het voorbeeld van de val van vorige zomer?',
+           en: 'Why does the text open with the example of falling last summer?' },
+      options: [
+        { nl: 'Om een herkenbaar voorbeeld te geven voordat de uitleg over het geheugen begint', en: 'To give a recognisable example before the explanation about memory begins' },
+        { nl: 'Om te laten zien dat fietsen gevaarlijk is', en: 'To show that cycling is dangerous' },
+        { nl: 'Om de hoofdgedachte alvast samen te vatten', en: 'To already sum up the main idea' },
+        { nl: 'Om te bewijzen dat getuigen altijd liegen', en: 'To prove that witnesses always lie' }
+      ], answer: 0,
+      explain: { nl: 'Het voorbeeld maakt de rest van de uitleg over het geheugen herkenbaar.',
+                 en: 'The example makes the rest of the explanation about memory recognisable.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Herinneringen worden opgeslagen en telkens een beetje veranderd als je ze ophaalt, vooral door slaap, herhaling en emotie', en: 'Memories are stored and slightly changed each time you retrieve them, especially through sleep, repetition and emotion' },
+        { nl: 'Slapen is alleen goed voor je lichaam, niet voor je hersenen', en: 'Sleep is only good for your body, not for your brain' },
+        { nl: 'Getuigen liegen vaak expres', en: 'Witnesses often lie on purpose' },
+        { nl: 'Een herinnering is een filmpje dat nooit verandert', en: 'A memory is a little film that never changes' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea voegt een aspect toe: opslag, versterking, verandering en gevolgen.',
+                 en: 'Every paragraph adds an aspect: storage, strengthening, change and consequences.' } }
+  ]
+},
+
+{
+  id: 'lichaam-10', topic: 'lichaam', level: 5, emoji: '⏰', scene: 'school',
+  title: { nl: 'Moeten scholen later beginnen?', en: 'Should schools start later?' },
+  text: {
+    nl: [
+      "Half acht 's ochtends, en de helft van de klas zit er nog met dichte ogen bij. Niet omdat ze lui zijn, maar omdat hun lichaam op dat moment eigenlijk nog in de diepste slaap zou moeten zitten. Steeds meer wetenschappers en ouders stellen daarom een simpele vraag: moeten scholen gewoon later beginnen?",
+      "Die vraag komt niet uit de lucht vallen. Rond een jaar of twaalf verschuift de biologische klok van bijna elke tiener een paar uur naar achteren. Het hormoon melatonine, dat je slaperig maakt, komt 's avonds later op gang dan bij een kind of een volwassene. Vroeg naar bed gaan lukt daardoor gewoonweg niet: het lichaam is nog niet moe genoeg.",
+      "Het gevolg is dat veel tieners op een schooldag te weinig slaap krijgen. Terwijl ze negen uur nodig hebben, halen ze er in de praktijk vaak zeven. Onderzoek koppelt dat chronische slaaptekort aan een slechter humeur, een zwakker geheugen en zelfs een hoger risico op ongelukken in het verkeer.",
+      "Voorstanders van een latere start wijzen op scholen die het al hebben geprobeerd. In de Amerikaanse staat Minnesota schoof een middelbare school het beginuur een uur op, en de cijfers gingen omhoog terwijl het aantal ongelukken van scholieren in de auto daalde. \"Je vecht niet tegen luiheid,\" zegt een slaaponderzoeker, \"je vecht tegen de biologie, en die wint altijd.\"",
+      "Toch is de praktijk lastiger dan het idee. Later beginnen betekent ook later eindigen, en dat botst met sporttrainingen die om vier uur beginnen. Ouders die om acht uur op hun werk moeten zijn, kunnen hun kind dan niet meer wegbrengen. En bussen die kinderen van meerdere scholen vervoeren, rijden al krap op schema; een ander begintijd voor één school gooit het hele rooster overhoop.",
+      "Er is dus geen simpele knop om over te zetten. Sommige scholen kiezen een tussenweg: een kwartier of half uur later beginnen, gecombineerd met minder huiswerk 's avonds zodat tieners ook echt eerder in bed liggen. Onderzoekers benadrukken dat het beginuur maar één stukje van de puzzel is; wat een tiener 's avonds op zijn telefoon doet, telt net zo zwaar mee.",
+      "De biologie van tieners verandert niet, ook al verandert het lesrooster wel. De vraag is dan ook niet alleen wat wetenschappelijk het beste zou zijn, maar ook wat haalbaar is voor gezinnen, sportclubs en buschauffeurs. En wat vind jij: zou jouw school een uur later moeten beginnen?"
+    ],
+    en: [
+      "Half past seven in the morning, and half the class is sitting there with their eyes half shut. Not because they are lazy, but because at that moment their bodies should really still be in the deepest part of sleep. More and more scientists and parents are therefore asking a simple question: should schools simply start later?",
+      "That question does not come out of nowhere. Around the age of twelve, the biological clock of almost every teenager shifts a few hours later. The hormone melatonin, which makes you sleepy, kicks in later in the evening than it does for a child or an adult. Going to bed early simply does not work as a result: the body is not tired enough yet.",
+      "The result is that many teenagers get too little sleep on a school day. While they need nine hours, in practice they often only get seven. Research links that chronic lack of sleep to a worse mood, a weaker memory and even a higher risk of traffic accidents.",
+      "Supporters of a later start point to schools that have already tried it. In the American state of Minnesota, a secondary school pushed its start time back an hour, and grades went up while the number of accidents involving student drivers went down. \"You are not fighting laziness,\" says a sleep researcher, \"you are fighting biology, and biology always wins.\"",
+      "Yet in practice it is trickier than the idea suggests. Starting later also means finishing later, which clashes with sports training that starts at four o'clock. Parents who have to be at work by eight can then no longer drop their child off. And buses that carry children from several schools are already running a tight schedule; a different start time for one school throws the whole timetable into chaos.",
+      "So there is no simple switch to flip. Some schools choose a middle way: starting a quarter or half an hour later, combined with less homework in the evening so teenagers really do get to bed earlier. Researchers stress that the start time is only one piece of the puzzle; what a teenager does on their phone in the evening counts just as heavily.",
+      "Teenagers' biology does not change, even though a timetable can. So the question is not only what would be scientifically best, but also what is realistic for families, sports clubs and bus drivers. And what do you think: should your school start an hour later?"
+    ]
+  },
+  words: [
+    { nl: 'melatonine', en: 'melatonin', defNl: 'een hormoon dat je slaperig maakt', defEn: 'a hormone that makes you feel sleepy' },
+    { nl: 'chronisch', en: 'chronic', defNl: 'iets dat lang aanhoudt in plaats van maar even', defEn: 'something that lasts a long time instead of just briefly' },
+    { nl: 'tussenweg', en: 'middle way', defNl: 'een oplossing die tussen twee uitersten in zit', defEn: 'a solution that lies between two extremes' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel uur slaap hebben tieners volgens de tekst nodig, en hoeveel krijgen ze er in de praktijk vaak?',
+           en: 'How many hours of sleep do teenagers need according to the text, and how many do they often get in practice?' },
+      options: [
+        { nl: 'Negen uur nodig, maar vaak maar zeven in de praktijk', en: 'Nine hours needed, but often only seven in practice' },
+        { nl: 'Acht uur nodig, en die krijgen ze ook', en: 'Eight hours needed, and they get that too' },
+        { nl: 'Zes uur nodig, en tien in de praktijk', en: 'Six hours needed, and ten in practice' },
+        { nl: 'Tien uur nodig, en acht in de praktijk', en: 'Ten hours needed, and eight in practice' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: terwijl ze negen uur nodig hebben, halen ze er in de praktijk vaak zeven.',
+                 en: 'Paragraph 3: while they need nine hours, in practice they often only get seven.' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.',
+           en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Rond een jaar of twaalf verschuift de biologische klok van bijna elke tiener.', en: 'Around the age of twelve the biological clock of almost every teenager shifts.', bin: 0 },
+        { nl: 'Je vecht niet tegen luiheid, je vecht tegen de biologie, en die wint altijd.', en: 'You are not fighting laziness, you are fighting biology, and biology always wins.', bin: 1 },
+        { nl: 'In Minnesota schoof een middelbare school het beginuur een uur op.', en: 'In Minnesota a secondary school pushed its start time back an hour.', bin: 0 },
+        { nl: 'Een latere schooltijd past beter bij hoe het lichaam van een tiener werkt.', en: 'A later school start suits how a teenager’s body works better.', bin: 1 }
+      ],
+      explain: { nl: 'De eerste en derde zin zijn meetbare gebeurtenissen; de tweede en vierde zijn oordelen van mensen in het debat.',
+                 en: 'The first and third sentences are measurable events; the second and fourth are judgements from people in the debate.' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat probeert de schrijver met deze tekst vooral te doen?',
+           en: 'What is the writer mainly trying to do with this text?' },
+      options: [
+        { nl: 'Beide kanten van het debat over schooltijden laten zien, zodat de lezer er zelf over nadenkt', en: 'Show both sides of the debate about school start times, so the reader thinks it over themselves' },
+        { nl: 'De lezer overtuigen dat elke school per direct later moet beginnen', en: 'Convince the reader that every school must start later immediately' },
+        { nl: 'Uitleggen hoe je \'s avonds sneller in slaap valt', en: 'Explain how to fall asleep faster in the evening' },
+        { nl: 'Bewijzen dat ouders ongelijk hebben', en: 'Prove that parents are wrong' }
+      ], answer: 0,
+      explain: { nl: 'De tekst geeft eerst de wetenschap, dan voor- en tegenargumenten, en eindigt met "En wat vind jij?".',
+                 en: 'The text gives the science first, then arguments for and against, and ends with "And what do you think?".' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Die vraag komt niet uit de lucht vallen." Waar verwijst "die vraag" naar?',
+           en: '"That question does not come out of nowhere." What does "that question" refer to?' },
+      options: [
+        { nl: 'Naar de vraag of scholen later moeten beginnen', en: 'To the question of whether schools should start later' },
+        { nl: 'Naar de vraag hoeveel uur slaap een tiener nodig heeft', en: 'To the question of how many hours of sleep a teenager needs' },
+        { nl: 'Naar de vraag waarom bussen krap op schema rijden', en: 'To the question of why buses run a tight schedule' },
+        { nl: 'Naar de vraag wat melatonine doet', en: 'To the question of what melatonin does' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1 eindigt met precies die vraag; alinea 2 verwijst erop terug.',
+                 en: 'Paragraph 1 ends with exactly that question; paragraph 2 refers back to it.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee praktische bezwaren tegen een latere schooltijd noemt de tekst? Kies er 2.',
+           en: 'Which two practical objections to a later school start does the text mention? Pick 2.' },
+      options: [
+        { nl: 'Het botst met sporttrainingen die vroeg beginnen', en: 'It clashes with sports training that starts early' },
+        { nl: 'Ouders kunnen hun kind dan niet meer wegbrengen voor werk', en: 'Parents can no longer drop their child off before work' },
+        { nl: 'Tieners zouden minder huiswerk krijgen', en: 'Teenagers would get less homework' },
+        { nl: 'Melatonine zou dan niet meer werken', en: 'Melatonin would stop working' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 noemt precies deze twee praktische problemen.',
+                 en: 'Paragraph 5 names exactly these two practical problems.' } },
+    { id: 'q6', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Uit de tekst blijkt dat onderzoekers een latere schooltijd zien als de enige oplossing voor slaaptekort bij tieners.',
+           en: 'The text shows that researchers see a later school start as the only solution for sleep deprivation among teenagers.' },
+      answer: false,
+      explain: { nl: 'Alinea 6: het beginuur is maar één stukje van de puzzel; ook het telefoongebruik \'s avonds telt mee.',
+                 en: 'Paragraph 6: the start time is only one piece of the puzzle; phone use in the evening counts too.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Hoe is deze tekst opgebouwd?', en: 'How is this text structured?' },
+      options: [
+        { nl: 'Een herkenbare situatie, dan de biologie erachter, dan argumenten voor, dan argumenten tegen, dan een nuance en een open vraag', en: 'A recognisable situation, then the biology behind it, then arguments for, then arguments against, then a nuance and an open question' },
+        { nl: 'Alleen argumenten tegen een latere schooltijd', en: 'Only arguments against a later school start' },
+        { nl: 'Een verhaal over één leerling in Minnesota', en: 'A story about one student in Minnesota' },
+        { nl: 'Een opsomming van hormonen', en: 'A list of hormones' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1 schetst het beeld, 2-3 de biologie, 4 de voorstanders, 5 de tegenstanders, 6 de nuance, 7 de open vraag.',
+                 en: 'Paragraph 1 sets the scene, 2-3 the biology, 4 the supporters, 5 the opponents, 6 the nuance, 7 the open question.' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Tieners hebben biologisch gezien een latere klok, wat pleit voor later beginnen, maar praktische bezwaren zoals sport, werk en bussen maken het lastig, en het beginuur is maar één deel van de oplossing.', en: 'Teenagers biologically have a later clock, which argues for starting later, but practical objections such as sport, work and buses make it difficult, and the start time is only one part of the solution.' },
+        { nl: 'Melatonine zorgt ervoor dat kinderen altijd om acht uur naar bed gaan.', en: 'Melatonin makes sure children always go to bed at eight o’clock.' },
+        { nl: 'In Minnesota beginnen nu alle scholen een uur later.', en: 'In Minnesota all schools now start an hour later.' },
+        { nl: 'Bussen kunnen niet meer rijden als een school later begint.', en: 'Buses can no longer run if a school starts later.' }
+      ], answer: 0,
+      explain: { nl: 'De juiste samenvatting bevat de biologie, de twee kanten én de nuance. De andere drie zijn losse details uit één alinea.',
+                 en: 'The correct summary holds the biology, both sides and the nuance. The other three are single details from one paragraph.' } },
+    { id: 'q9', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'Wat betekent het woord "tussenweg" in deze tekst?', en: 'What does the word "tussenweg" (middle way) mean in this text?' },
+      options: [
+        { nl: 'Een oplossing die tussen twee uitersten in zit, zoals een kwartier later beginnen', en: 'A solution that lies between two extremes, such as starting a quarter of an hour later' },
+        { nl: 'De weg naar school', en: 'The road to school' },
+        { nl: 'Een pauze tussen twee lessen', en: 'A break between two lessons' },
+        { nl: 'Een bus die tussen twee scholen rijdt', en: 'A bus that runs between two schools' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 6: sommige scholen kiezen een tussenweg, zoals een kwartier of half uur later beginnen.',
+                 en: 'Paragraph 6: some schools choose a middle way, such as starting a quarter or half an hour later.' } }
+  ]
+}
+]);

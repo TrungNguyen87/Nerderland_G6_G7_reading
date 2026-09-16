@@ -533,3 +533,533 @@ addStories([
   ]
 }
 ]);
+
+addStories([
+{
+  id: 'wereld-6', topic: 'wereld', level: 1, emoji: '🪔', scene: 'world',
+  title: { nl: 'Het feest van de lichtjes', en: 'The festival of lights' },
+  text: {
+    nl: [
+      "Elk jaar, ergens tussen half oktober en half november, vieren miljoenen mensen het Lichtfeest. Het heet Diwali. Het feest duurt vijf dagen en is één van de belangrijkste feesten in India.",
+      "Overal worden kleine olielampjes aangestoken. Zo'n lampje heet een diya en is gemaakt van klei. Er zit een beetje olie in met een lontje. Mensen zetten de diya's op vensterbanken en voor de deur.",
+      "Voor het feest maken mensen zoetigheid: kleine gebakjes en snoepjes. Die worden uitgedeeld aan buren, familie en vrienden. Zelfs de buren die je bijna niet kent, krijgen een doosje lekkers.",
+      "De lichtjes staan voor iets. Ze vertellen het verhaal van het licht dat wint van het donker, en het goede dat wint van het kwade. Daarom brandt elk huis vol lampjes.",
+      "Overal worden de straten versierd met kleurige patronen van gekleurd zand. Zo'n patroon heet een rangoli. 's Avonds klinkt er vuurwerk en komt de hele familie samen. Het ruikt dan overal naar zoet gebak."
+    ],
+    en: [
+      "Every year, somewhere between mid-October and mid-November, millions of people celebrate the Festival of Lights. It is called Diwali. The festival lasts five days and is one of the most important festivals in India.",
+      "Small oil lamps are lit everywhere. Such a lamp is called a diya and is made of clay. It holds a little oil with a wick. People place the diyas on windowsills and in front of the door.",
+      "Before the festival people make sweets: small pastries and treats. These are given out to neighbours, family and friends. Even the neighbours you barely know get a box of sweets.",
+      "The little lights stand for something. They tell the story of light winning over darkness, and good winning over evil. That is why every house is full of burning lamps.",
+      "Streets everywhere are decorated with colourful patterns made of coloured sand. Such a pattern is called a rangoli. In the evening there are fireworks and the whole family gets together. Everywhere it smells of sweet pastries."
+    ]
+  },
+  words: [
+    { nl: 'diya', en: 'diya', defNl: 'een klein lampje van klei met olie en een lontje', defEn: 'a small clay lamp with oil and a wick' },
+    { nl: 'rangoli', en: 'rangoli', defNl: 'een kleurig patroon van gekleurd zand op straat', defEn: 'a colourful pattern made of coloured sand on the ground' },
+    { nl: 'Lichtfeest', en: 'Festival of Lights', defNl: 'een andere naam voor het feest Diwali', defEn: 'another name for the festival of Diwali' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel dagen duurt het Diwali-feest?', en: 'How many days does the Diwali festival last?' },
+      options: [
+        { nl: 'Vijf dagen', en: 'Five days' },
+        { nl: 'Eén dag', en: 'One day' },
+        { nl: 'Tien dagen', en: 'Ten days' },
+        { nl: 'Dertig dagen', en: 'Thirty days' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "Het feest duurt vijf dagen."', en: 'Paragraph 1: "The festival lasts five days."' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar zetten mensen de diya\'s neer?', en: 'Where do people place the diyas?' },
+      options: [
+        { nl: 'Op vensterbanken en voor de deur', en: 'On windowsills and in front of the door' },
+        { nl: 'Onder het bed', en: 'Under the bed' },
+        { nl: 'Begraven in de achtertuin', en: 'Buried in the back garden' },
+        { nl: 'In de koelkast', en: 'In the fridge' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Mensen zetten de diya\'s op vensterbanken en voor de deur."',
+                 en: 'Paragraph 2: "People place the diyas on windowsills and in front of the door."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een diya is ___.', en: 'A diya is ___.' },
+      options: [
+        { nl: 'een klein lampje van klei met olie en een lontje', en: 'a small clay lamp with oil and a wick' },
+        { nl: 'een zoet gebakje voor de buren', en: 'a sweet pastry for the neighbours' },
+        { nl: 'een kleurig patroon van zand', en: 'a colourful pattern of sand' },
+        { nl: 'een feest dat één dag duurt', en: 'a festival that lasts one day' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 legt uit wat een diya is: een lampje van klei met olie en een lontje.',
+                 en: 'Paragraph 2 explains what a diya is: a clay lamp with oil and a wick.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet op volgorde wat er rond het feest gebeurt.', en: 'Put in order what happens around the festival.' },
+      items: [
+        { nl: 'Mensen steken de diya\'s aan.', en: 'People light the diyas.' },
+        { nl: 'Buren en familie krijgen doosjes met zoetigheid.', en: 'Neighbours and family get boxes of sweets.' },
+        { nl: 'De straten worden versierd met een rangoli.', en: 'The streets are decorated with a rangoli.' },
+        { nl: '\'s Avonds klinkt er vuurwerk en komt de familie samen.', en: 'In the evening there are fireworks and the family gets together.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'De tekst volgt precies die volgorde: lampjes, zoetigheid, versieringen, en dan de avond.',
+                 en: 'The text follows exactly that order: lamps, sweets, decorations, and then the evening.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat deze tekst vooral over?', en: 'What is this text mainly about?' },
+      options: [
+        { nl: 'Hoe mensen het Lichtfeest Diwali vieren', en: 'How people celebrate the Festival of Lights, Diwali' },
+        { nl: 'Hoe je een diya van klei maakt', en: 'How to make a diya out of clay' },
+        { nl: 'Waarom vuurwerk gevaarlijk kan zijn', en: 'Why fireworks can be dangerous' },
+        { nl: 'Hoe je een rangoli tekent', en: 'How to draw a rangoli' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea gaat over een onderdeel van het Diwali-feest: de lampjes, de zoetigheid, de betekenis en het vieren.',
+                 en: 'Every paragraph is about a part of the Diwali festival: the lamps, the sweets, the meaning and the celebration.' } }
+  ]
+},
+
+{
+  id: 'wereld-7', topic: 'wereld', level: 2, emoji: '🥢', scene: 'world',
+  title: { nl: 'Waarom eten mensen met stokjes?', en: 'Why do people eat with chopsticks?' },
+  text: {
+    nl: [
+      "Bij ons is het heel normaal om met mes en vork te eten. Maar in grote delen van Azië, van China tot Japan, Korea en Vietnam, eten mensen al meer dan drieduizend jaar met stokjes. Voor miljarden mensen is dat de gewoonste zaak van de wereld.",
+      "Stokjes werden in China niet bedacht om te snijden, maar om te koken. Met lange stokjes kon je eten uit een hete pan of pot vissen zonder je vingers te branden. Aan tafel had je later dezelfde stokjes gewoon nodig om op te pakken wat je moeder al klein gesneden had.",
+      "Dat 'klein snijden' gebeurt namelijk in de keuken, niet aan tafel. Vlees en groente worden al in hapklare stukjes gehakt voordat het gerecht wordt opgediend. Brandhout was vroeger schaars, dus kleine stukjes kookten sneller gaar. Een mes aan tafel was daardoor niet nodig, en volgens een oud verhaal vond de wijze Confucius messen aan tafel zelfs ongepast: ze deden hem denken aan een slachthuis.",
+      "Rond het gebruik van stokjes bestaan strenge regels. Zet ze nooit rechtop in een kom rijst: dat lijkt te veel op de wierookstokjes die bij een begrafenis voor overledenen worden gebrand, en dat brengt ongeluk. Wijs ook nooit met je stokjes naar iemand, en trommel er niet mee op je kom. Wie deze regels kent, laat zien dat hij goede manieren heeft.",
+      "In Europa ging het anders. Hier werd vlees vaak in grote stukken op tafel gezet en pas dáár gesneden, dus bleven mes en vork nodig. Geen van beide gewoontes is beter: het is vooral een andere keuze, ontstaan uit een andere manier van koken."
+    ],
+    en: [
+      "For us it is completely normal to eat with a knife and fork. But across large parts of Asia, from China to Japan, Korea and Vietnam, people have eaten with chopsticks for more than three thousand years. For billions of people that is the most ordinary thing in the world.",
+      "Chopsticks were not invented in China for cutting, but for cooking. With long sticks you could fish food out of a hot pan or pot without burning your fingers. At the table you later simply needed the same sticks to pick up what your mother had already cut small.",
+      "That 'cutting small' happens in the kitchen, not at the table. Meat and vegetables are already chopped into bite-sized pieces before the dish is served. Firewood used to be scarce, so small pieces cooked done faster. A knife at the table was therefore not needed, and according to an old story the wise Confucius even found knives at the table inappropriate: they reminded him of a slaughterhouse.",
+      "Strict rules surround the use of chopsticks. Never stand them upright in a bowl of rice: that looks too much like the incense sticks burned for the dead at a funeral, and that brings bad luck. Also never point your chopsticks at someone, and do not drum them on your bowl. Anyone who knows these rules shows they have good manners.",
+      "In Europe it went differently. Here meat was often put on the table in large pieces and only cut there, so a knife and fork remained necessary. Neither custom is better: it is mainly a different choice, born from a different way of cooking."
+    ]
+  },
+  words: [
+    { nl: 'hapklaar', en: 'bite-sized', defNl: 'al in kleine stukjes gesneden, klaar om zo op te eten', defEn: 'already cut into small pieces, ready to eat just like that' },
+    { nl: 'wierookstokjes', en: 'incense sticks', defNl: 'dunne stokjes die branden en lekker ruiken, gebruikt bij een begrafenis', defEn: 'thin sticks that burn and smell nice, used at a funeral' },
+    { nl: 'schaars', en: 'scarce', defNl: 'er is niet veel van, het is moeilijk te krijgen', defEn: 'there is not much of it, it is hard to get' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waarvoor werden stokjes in China oorspronkelijk gebruikt?', en: 'What were chopsticks originally used for in China?' },
+      options: [
+        { nl: 'Om mee te koken, voedsel uit een hete pan te vissen', en: 'For cooking, to fish food out of a hot pan' },
+        { nl: 'Om mee te schrijven', en: 'For writing' },
+        { nl: 'Om vlees mee te snijden', en: 'For cutting meat' },
+        { nl: 'Om mee te vechten', en: 'For fighting' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Stokjes werden in China niet bedacht om te snijden, maar om te koken."',
+                 en: 'Paragraph 2: "Chopsticks were not invented in China for cutting, but for cooking."' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waarom hoefde er geen mes aan tafel te liggen?', en: 'Why was there no need for a knife at the table?' },
+      options: [
+        { nl: 'Omdat het eten al in de keuken in kleine stukjes was gesneden', en: 'Because the food had already been cut into small pieces in the kitchen' },
+        { nl: 'Omdat mensen geen messen hadden', en: 'Because people had no knives' },
+        { nl: 'Omdat er in Azië geen vlees werd gegeten', en: 'Because no meat was eaten in Asia' },
+        { nl: 'Omdat stokjes scherper zijn dan messen', en: 'Because chopsticks are sharper than knives' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: vlees en groente worden al in hapklare stukjes gehakt voordat het gerecht wordt opgediend.',
+                 en: 'Paragraph 3: meat and vegetables are already chopped into bite-sized pieces before the dish is served.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom is het onbeleefd om je stokjes rechtop in een kom rijst te zetten?',
+           en: 'Why is it rude to stand your chopsticks upright in a bowl of rice?' },
+      options: [
+        { nl: 'Omdat het lijkt op de wierookstokjes die bij een begrafenis worden gebrand',
+          en: 'Because it looks like the incense sticks burned at a funeral' },
+        { nl: 'Omdat de rijst dan koud wordt', en: 'Because the rice then gets cold' },
+        { nl: 'Omdat de stokjes dan omvallen', en: 'Because the chopsticks then fall over' },
+        { nl: 'Omdat het te lang duurt', en: 'Because it takes too long' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 legt precies dat verband uit tussen stokjes in rijst en wierookstokjes bij een begrafenis.',
+                 en: 'Paragraph 4 explains exactly that link between chopsticks in rice and incense sticks at a funeral.' } },
+    { id: 'q4', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Koppel elk woord aan de betekenis.', en: 'Match each word to its meaning.' },
+      pairs: [
+        { word: { nl: 'hapklaar', en: 'bite-sized' }, meaning: { nl: 'al in kleine stukjes gesneden', en: 'already cut into small pieces' } },
+        { word: { nl: 'wierookstokjes', en: 'incense sticks' }, meaning: { nl: 'stokjes die branden bij een begrafenis', en: 'sticks that burn at a funeral' } },
+        { word: { nl: 'schaars', en: 'scarce' }, meaning: { nl: 'er is niet veel van', en: 'there is not much of it' } }
+      ],
+      explain: { nl: 'Alle drie de woorden komen uit de tekst over eetstokjes.', en: 'All three words come from the text about chopsticks.' } },
+    { id: 'q5', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom bleven mes en vork in Europa wél nodig?', en: 'Why did a knife and fork remain necessary in Europe?' },
+      options: [
+        { nl: 'Omdat vlees daar in grote stukken op tafel kwam en pas daar gesneden werd',
+          en: 'Because meat was put on the table there in large pieces and only cut there' },
+        { nl: 'Omdat Europeanen geen stokjes konden maken', en: 'Because Europeans could not make chopsticks' },
+        { nl: 'Omdat vlees in Europa zachter is', en: 'Because meat is softer in Europe' },
+        { nl: 'Omdat er in Europa geen keukens waren', en: 'Because there were no kitchens in Europe' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5: vlees werd in grote stukken op tafel gezet en pas dáár gesneden.',
+                 en: 'Paragraph 5: meat was put on the table in large pieces and only cut there.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Eetstokjes ontstonden uit de manier van koken in Azië en hebben eigen regels van beleefdheid',
+          en: 'Chopsticks grew out of the way of cooking in Asia and have their own rules of politeness' },
+        { nl: 'Mensen in Azië hebben geen messen', en: 'People in Asia have no knives' },
+        { nl: 'Vlees is in Europa lekkerder dan in Azië', en: 'Meat tastes better in Europe than in Asia' },
+        { nl: 'Confucius vond al het bestek onbeleefd', en: 'Confucius thought all cutlery was rude' }
+      ], answer: 0,
+      explain: { nl: 'De tekst gaat over het ontstaan, het gebruik, de regels en de vergelijking met Europa.',
+                 en: 'The text is about the origin, the use, the rules and the comparison with Europe.' } }
+  ]
+},
+
+{
+  id: 'wereld-8', topic: 'wereld', level: 3, emoji: '🧱', scene: 'world',
+  title: { nl: 'De langste muur ter wereld', en: 'The longest wall in the world' },
+  text: {
+    nl: [
+      "De Chinese Muur is niet één muur, maar een heel netwerk van muren, wachttorens en forten. Het werd niet in één keer gebouwd, maar in stukken, door verschillende dynastieën, over een periode van meer dan tweeduizend jaar. Archeologen maten dat alle stukken samen, met de zijtakken meegerekend, ruim eenentwintigduizend kilometer lang zijn.",
+      "Waarom bouwden Chinese keizers zoiets enorms? Vooral uit bescherming. Uit het noorden kwamen regelmatig ruiters van nomadische volken de vlaktes over, op zoek naar buit. Een muur hield hen niet altijd tegen, maar vertraagde ze wel, en gaf de keizer controle: wie er langs een poort mocht reizen en handelen, werd daar bijgehouden.",
+      "Om snel te kunnen waarschuwen, stonden er om de paar honderd meter wachttorens. Zag een soldaat vijandelijke ruiters naderen, dan stak hij een vuur aan. De volgende toren zag de rook en deed hetzelfde. Zo kon een bericht in één dag honderden kilometers afleggen, sneller dan een ruiter te paard.",
+      "De bekendste en best bewaarde stukken muur, van steen en baksteen, dateren uit de Ming-dynastie, zo'n zeshonderd jaar geleden. Veel oudere stukken, uit de tijd van de eerste keizer Qin Shi Huang, werden gemaakt van gestampte aarde. Daar is intussen weinig van over: die stukken zijn grotendeels weggesleten door regen en wind.",
+      "Over de muur bestaat een hardnekkig verhaal: dat je hem met het blote oog vanuit de ruimte kunt zien, als enig bouwwerk van de mens. Astronauten spreken dat inmiddels tegen. De muur is smal, meestal maar een paar meter breed, en heeft ongeveer dezelfde kleur als het landschap eromheen. Een grote stad valt vanuit een baan om de aarde juist veel beter op.",
+      "Tegenwoordig staat de muur op de Werelderfgoedlijst van de Unesco en komen er elk jaar miljoenen toeristen. Bij Peking zijn stukken prachtig gerestaureerd. Verderop, in afgelegen bergen, brokkelt de muur ongezien verder af, steen voor steen."
+    ],
+    en: [
+      "The Great Wall of China is not one wall, but a whole network of walls, watchtowers and forts. It was not built all at once, but in pieces, by different dynasties, over a period of more than two thousand years. Archaeologists measured that all the pieces together, including the side branches, add up to more than twenty-one thousand kilometres.",
+      "Why did Chinese emperors build something so enormous? Mainly for protection. Riders from nomadic peoples regularly came across the plains from the north, looking for plunder. A wall did not always stop them, but it did slow them down, and gave the emperor control: who was allowed to travel and trade past a gate was kept track of there.",
+      "To be able to warn each other quickly, watchtowers stood every few hundred metres. If a soldier saw enemy riders approaching, he lit a fire. The next tower saw the smoke and did the same. That way a message could travel hundreds of kilometres in a single day, faster than a rider on horseback.",
+      "The best-known and best-preserved sections of wall, made of stone and brick, date from the Ming dynasty, about six hundred years ago. Much older sections, from the time of the first emperor Qin Shi Huang, were made of packed earth. Little of that remains today: those sections have mostly worn away through rain and wind.",
+      "A stubborn story exists about the wall: that you can see it with the naked eye from space, as the only man-made structure that can be seen. Astronauts now contradict that. The wall is narrow, usually only a few metres wide, and is roughly the same colour as the landscape around it. A large city stands out far better from orbit.",
+      "Today the wall is on the Unesco World Heritage list, and millions of tourists visit every year. Near Beijing, sections have been beautifully restored. Further away, in remote mountains, the wall crumbles away unseen, stone by stone."
+    ]
+  },
+  words: [
+    { nl: 'dynastie', en: 'dynasty', defNl: 'een familie van keizers die achter elkaar aan de macht is', defEn: 'a family of emperors who rule one after another' },
+    { nl: 'buit', en: 'plunder', defNl: 'spullen die je met geweld van een ander afpakt', defEn: 'things you take from someone else by force' },
+    { nl: 'Werelderfgoed', en: 'World Heritage', defNl: 'een plek die de hele wereld belangrijk genoeg vindt om te beschermen', defEn: 'a place the whole world considers important enough to protect' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe lang zijn alle stukken muur samen, met de zijtakken meegerekend?',
+           en: 'How long are all the sections of wall together, including the side branches?' },
+      options: [
+        { nl: 'Ruim eenentwintigduizend kilometer', en: 'More than twenty-one thousand kilometres' },
+        { nl: 'Tweeduizend kilometer', en: 'Two thousand kilometres' },
+        { nl: 'Honderd kilometer', en: 'A hundred kilometres' },
+        { nl: 'Zeshonderd kilometer', en: 'Six hundred kilometres' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: alle stukken samen zijn ruim eenentwintigduizend kilometer lang.',
+                 en: 'Paragraph 1: all the sections together are more than twenty-one thousand kilometres long.' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom hielpen wachttorens met vuur en rook de Chinese keizers?',
+           en: 'Why did watchtowers with fire and smoke help the Chinese emperors?' },
+      options: [
+        { nl: 'Omdat een bericht daardoor razendsnel over grote afstand kon reizen',
+          en: 'Because a message could then travel very fast over a great distance' },
+        { nl: 'Omdat vuur de ruiters uit het noorden verjoeg', en: 'Because fire chased away the riders from the north' },
+        { nl: 'Omdat de soldaten het anders koud kregen', en: 'Because the soldiers would otherwise get cold' },
+        { nl: 'Omdat het licht gaf in het donker', en: 'Because it gave light in the dark' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: zo kon een bericht in één dag honderden kilometers afleggen, sneller dan een ruiter.',
+                 en: 'Paragraph 3: a message could travel hundreds of kilometres in a day, faster than a rider.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Daar is intussen weinig van over." Waar verwijst "daar" naar?',
+           en: '"Little of that remains today." What does "that" point to?' },
+      options: [
+        { nl: 'Naar de oude stukken muur van gestampte aarde uit de tijd van Qin Shi Huang',
+          en: 'To the old sections of wall made of packed earth from the time of Qin Shi Huang' },
+        { nl: 'Naar de wachttorens', en: 'To the watchtowers' },
+        { nl: 'Naar de stad Peking', en: 'To the city of Beijing' },
+        { nl: 'Naar het verhaal over de ruimte', en: 'To the story about space' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over stukken van gestampte aarde uit de tijd van Qin Shi Huang.',
+                 en: 'The sentence before is about sections of packed earth from the time of Qin Shi Huang.' } },
+    { id: 'q4', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 begint met "Over de muur bestaat een hardnekkig verhaal." Wat doet de rest van die alinea?',
+           en: 'Paragraph 5 opens with "A stubborn story exists about the wall." What does the rest of that paragraph do?' },
+      options: [
+        { nl: 'Ze weerlegt het verhaal met feiten van astronauten', en: 'It refutes the story with facts from astronauts' },
+        { nl: 'Ze vertelt een nieuw verhaal', en: 'It tells a new story' },
+        { nl: 'Ze legt uit hoe je de muur bouwt', en: 'It explains how to build the wall' },
+        { nl: 'Ze somt alle keizers op', en: 'It lists all the emperors' }
+      ], answer: 0,
+      explain: { nl: 'Na de inleidende zin volgt de weerlegging: astronauten spreken het verhaal tegen.',
+                 en: 'After the introductory sentence comes the refutation: astronauts contradict the story.' } },
+    { id: 'q5', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Uit welke dynastie stammen de bekendste, best bewaarde stukken muur?',
+           en: 'Which dynasty do the best-known, best-preserved sections of wall come from?' },
+      options: [
+        { nl: 'De Ming-dynastie', en: 'The Ming dynasty' },
+        { nl: 'De Qin-dynastie', en: 'The Qin dynasty' },
+        { nl: 'De Han-dynastie', en: 'The Han dynasty' },
+        { nl: 'De Tang-dynastie', en: 'The Tang dynasty' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: de bekendste en best bewaarde stukken dateren uit de Ming-dynastie.',
+                 en: 'Paragraph 4: the best-known and best-preserved sections date from the Ming dynasty.' } },
+    { id: 'q6', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een dynastie is ___.', en: 'A dynasty is ___.' },
+      options: [
+        { nl: 'een familie van keizers die na elkaar aan de macht is', en: 'a family of emperors who rule one after another' },
+        { nl: 'een leger van soldaten', en: 'an army of soldiers' },
+        { nl: 'een muur van steen', en: 'a wall of stone' },
+        { nl: 'een verhaal over ruimtevaart', en: 'a story about space travel' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1 en 4 noemen de Ming-dynastie en de Qin-dynastie: families van keizers na elkaar aan de macht.',
+                 en: 'Paragraphs 1 and 4 name the Ming and Qin dynasties: families of emperors ruling one after another.' } },
+    { id: 'q7', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'De Chinese Muur werd eeuwenlang gebouwd voor bescherming en waarschuwing, en is minder zichtbaar vanuit de ruimte dan het verhaal wil',
+          en: 'The Great Wall was built for centuries for protection and warning, and is less visible from space than the story claims' },
+        { nl: 'De Chinese Muur is één ononderbroken bouwwerk', en: 'The Great Wall is a single unbroken structure' },
+        { nl: 'Astronauten kunnen niets zien vanuit de ruimte', en: 'Astronauts cannot see anything from space' },
+        { nl: 'Peking is de hoofdstad van China', en: 'Beijing is the capital of China' }
+      ], answer: 0,
+      explain: { nl: 'Alle alinea\'s gaan over het ontstaan, het doel en het weerleggen van de mythe rond de muur.',
+                 en: 'All the paragraphs are about the origin, the purpose and the refutation of the myth around the wall.' } }
+  ]
+},
+
+{
+  id: 'wereld-9', topic: 'wereld', level: 4, emoji: '🚗', scene: 'world',
+  title: { nl: 'Waarom rijden sommige landen links?', en: 'Why do some countries drive on the left?' },
+  text: {
+    nl: [
+      "In Nederland, Duitsland en de meeste landen van de wereld rijdt het verkeer rechts. Maar in Engeland, Japan, Australië en zo'n zestig andere landen rijdt iedereen juist links. Dat verschil lijkt willekeurig, maar heeft een lange geschiedenis, die begint eeuwen voordat de auto werd uitgevonden.",
+      "In de middeleeuwen reisden mensen te paard, vaak gewapend met een zwaard aan de linkerheup, handig voor een rechtshandige ruiter, die het snel met zijn rechterhand kon trekken. Reed je links op de weg, dan wees je zwaardarm naar het midden, klaar voor een tegenligger die misschien een vijand was. Bovendien steeg je makkelijker op een paard op als je zwaard links hing, zonder over je eigen wapen te struikelen.",
+      "Napoleon Bonaparte veranderde dat voor een groot deel van Europa. Historici twisten over de precieze reden: sommigen zeggen dat hij zelf linkshandig was, anderen wijzen op zijn legers, die praktischer rechts marcheerden. Zeker is dat overal waar Napoleons troepen kwamen, van Frankrijk tot Duitsland, Polen en Italië, rechts rijden de nieuwe regel werd, soms letterlijk afgedwongen.",
+      "Engeland werd nooit door Napoleon veroverd, en bleef daarom gewoon links rijden. Landen die buiten zijn rijk lagen, zoals Portugal en Zweden, deden dat lange tijd ook, al stapten sommige daarvan later alsnog over op rechts.",
+      "In diezelfde tijd breidde het Britse Rijk zich juist uit, over de hele wereld. Overal waar de Britten een kolonie stichtten, zoals India, Australië en delen van Afrika, namen ze het linksrijden mee. Toen die landen later onafhankelijk werden, bleven de meeste gewoon links rijden: een heel land ineens laten omschakelen is duur en gevaarlijk, dus niemand begon eraan.",
+      "Vandaag de dag rijdt ongeveer een derde van de wereldbevolking links, de rest rechts. Aan de grens tussen zo'n linkse en rechtse buur moet het verkeer soms letterlijk van weghelft wisselen, via een speciaal kruispunt. Het is een van de duidelijkste sporen die de geschiedenis nog elke dag op straat achterlaat."
+    ],
+    en: [
+      "In the Netherlands, Germany and most countries in the world, traffic drives on the right. But in England, Japan, Australia and about sixty other countries, everyone drives on the left instead. That difference looks random, but it has a long history that begins centuries before the car was invented.",
+      "In the Middle Ages people travelled on horseback, often armed with a sword on their left hip, handy for a right-handed rider who could draw it quickly with his right hand. If you rode on the left side of the road, your sword arm pointed towards the middle, ready for an oncoming traveller who might be an enemy. Besides, it was easier to mount a horse if your sword hung on the left, without tripping over your own weapon.",
+      "Napoleon Bonaparte changed that for a large part of Europe. Historians argue about the exact reason: some say he was left-handed himself, others point to his armies, which marched more practically on the right. What is certain is that everywhere Napoleon's troops went, from France to Germany, Poland and Italy, driving on the right became the new rule, sometimes literally enforced.",
+      "England was never conquered by Napoleon, and so simply kept driving on the left. Countries that lay outside his empire, such as Portugal and Sweden, did the same for a long time, although some of them later switched to the right after all.",
+      "At that same time the British Empire was expanding, all over the world. Everywhere the British founded a colony, such as India, Australia and parts of Africa, they brought left-hand driving with them. When those countries later became independent, most simply kept driving on the left: switching a whole country over at once is expensive and dangerous, so nobody started on it.",
+      "Today about a third of the world's population drives on the left, the rest on the right. At the border between such a left-hand and right-hand neighbour, traffic sometimes literally has to switch sides of the road, through a special crossover. It is one of the clearest traces history still leaves on the street every day."
+    ]
+  },
+  words: [
+    { nl: 'rijk', en: 'empire', defNl: 'een heel groot gebied met veel landen dat door één heerser bestuurd wordt', defEn: 'a very large territory of many lands ruled by one ruler' },
+    { nl: 'kolonie', en: 'colony', defNl: 'een gebied dat door een ander land wordt bestuurd, vaak ver weg', defEn: 'a territory ruled by another country, often far away' },
+    { nl: 'omschakelen', en: 'to switch over', defNl: 'in één keer overstappen van de ene manier naar de andere', defEn: 'to change from one way of doing something to another, all at once' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel landen rijden volgens de tekst links?', en: 'How many countries drive on the left, according to the text?' },
+      options: [
+        { nl: 'Zo\'n zestig landen', en: 'About sixty countries' },
+        { nl: 'Precies dertig landen', en: 'Exactly thirty countries' },
+        { nl: 'Honderd landen', en: 'A hundred countries' },
+        { nl: 'Alle landen van Europa', en: 'All the countries of Europe' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "in Engeland, Japan, Australië en zo\'n zestig andere landen rijdt iedereen juist links."',
+                 en: 'Paragraph 1: "in England, Japan, Australia and about sixty other countries, everyone drives on the left instead."' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Landen die buiten zijn rijk lagen... deden dat lange tijd ook." Waarnaar verwijst "dat"?',
+           en: '"Countries that lay outside his empire... did the same for a long time." What does "the same" point to?' },
+      options: [
+        { nl: 'Naar links blijven rijden', en: 'To continuing to drive on the left' },
+        { nl: 'Naar een leger hebben', en: 'To having an army' },
+        { nl: 'Naar een zwaard dragen', en: 'To carrying a sword' },
+        { nl: 'Naar een kolonie stichten', en: 'To founding a colony' }
+      ], answer: 0,
+      explain: { nl: 'De vorige zin gaat over Engeland, dat links bleef rijden omdat het niet veroverd werd.',
+                 en: 'The previous sentence is about England, which kept driving on the left because it was not conquered.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom reden middeleeuwse ruiters het liefst aan de linkerkant van de weg?',
+           en: 'Why did medieval riders prefer to ride on the left side of the road?' },
+      options: [
+        { nl: 'Omdat hun zwaardarm dan naar een tegenligger in het midden van de weg wees',
+          en: 'Because their sword arm then pointed towards an oncoming traveller in the middle of the road' },
+        { nl: 'Omdat paarden van nature links liepen', en: 'Because horses naturally walked on the left' },
+        { nl: 'Omdat de wegen links het gladst waren', en: 'Because the roads were smoothest on the left' },
+        { nl: 'Omdat het zo in de wet stond', en: 'Because that is what the law said' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 legt precies dat verband uit tussen het zwaard op de linkerheup en links rijden.',
+                 en: 'Paragraph 2 explains exactly that link between the sword on the left hip and riding on the left.' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een kolonie is ___.', en: 'A colony is ___.' },
+      options: [
+        { nl: 'een gebied dat door een ander land wordt bestuurd, vaak ver weg', en: 'a territory ruled by another country, often far away' },
+        { nl: 'een leger van ruiters', en: 'an army of riders' },
+        { nl: 'een kruispunt tussen twee landen', en: 'a crossing between two countries' },
+        { nl: 'een zwaard met twee kanten', en: 'a sword with two edges' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5 noemt India en Australië als voorbeelden van Britse koloniën.',
+                 en: 'Paragraph 5 names India and Australia as examples of British colonies.' } },
+    { id: 'q5', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de geschiedenis van linksrijden en rechtsrijden op volgorde.',
+           en: 'Put the history of left-hand and right-hand driving in order.' },
+      items: [
+        { nl: 'Ridders dragen een zwaard aan hun linkerheup en rijden links.', en: 'Knights carry a sword on their left hip and ride on the left.' },
+        { nl: 'Napoleons legers verspreiden rechtsrijden door Europa.', en: 'Napoleon\'s armies spread right-hand driving through Europe.' },
+        { nl: 'Engeland blijft links rijden omdat het niet wordt veroverd.', en: 'England keeps driving on the left because it is not conquered.' },
+        { nl: 'Britse koloniën nemen het linksrijden over.', en: 'British colonies adopt left-hand driving.' },
+        { nl: 'Onafhankelijke landen houden links rijden, want omschakelen is duur.', en: 'Independent countries keep driving on the left, because switching over is expensive.' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'De tekst volgt precies deze volgorde, van de middeleeuwen tot vandaag.',
+                 en: 'The text follows exactly this order, from the Middle Ages to today.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 3 begint met "Napoleon Bonaparte veranderde dat voor een groot deel van Europa." Wat doet die alinea in de opbouw van de tekst?',
+           en: 'Paragraph 3 begins "Napoleon Bonaparte changed that for a large part of Europe." What does that paragraph do in the structure of the text?' },
+      options: [
+        { nl: 'Ze introduceert de gebeurtenis die rechtsrijden over Europa verspreidde, na de uitleg over ridders',
+          en: 'It introduces the event that spread right-hand driving across Europe, after the explanation about knights' },
+        { nl: 'Ze vat de hele tekst samen', en: 'It summarises the whole text' },
+        { nl: 'Ze geeft de mening van de schrijver over Napoleon', en: 'It gives the writer\'s opinion of Napoleon' },
+        { nl: 'Ze beschrijft hoe auto\'s worden gemaakt', en: 'It describes how cars are made' }
+      ], answer: 0,
+      explain: { nl: 'Na de uitleg over ridders (de oorzaak van linksrijden) volgt de kanteling door Napoleon (de oorzaak van rechtsrijden).',
+                 en: 'After the explanation about knights (the cause of left-hand driving) comes the turn caused by Napoleon (the cause of right-hand driving).' } },
+    { id: 'q7', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee landen noemt de tekst als voorbeeld van Britse koloniën? Kies er 2.',
+           en: 'Which two countries does the text name as examples of British colonies? Pick 2.' },
+      options: [
+        { nl: 'India', en: 'India' },
+        { nl: 'Australië', en: 'Australia' },
+        { nl: 'Portugal', en: 'Portugal' },
+        { nl: 'Zweden', en: 'Sweden' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 noemt precies India en Australië (en delen van Afrika) als voorbeelden van Britse koloniën.',
+                 en: 'Paragraph 5 names exactly India and Australia (and parts of Africa) as examples of British colonies.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Of een land links of rechts rijdt, komt voort uit eeuwenoude gewoontes van ridders, Napoleon en koloniale geschiedenis',
+          en: 'Whether a country drives on the left or right comes from centuries-old habits of knights, Napoleon and colonial history' },
+        { nl: 'Auto\'s werden pas honderd jaar geleden uitgevonden', en: 'Cars were only invented a hundred years ago' },
+        { nl: 'Engeland heeft de beste wegen van Europa', en: 'England has the best roads in Europe' },
+        { nl: 'Zwaardvechten was populair in de middeleeuwen', en: 'Sword fighting was popular in the Middle Ages' }
+      ], answer: 0,
+      explain: { nl: 'De tekst legt uit hoe ridders, Napoleon en koloniën samen bepaalden welke kant landen nu nog kiezen.',
+                 en: 'The text explains how knights, Napoleon and colonies together determined which side countries still choose today.' } }
+  ]
+},
+
+{
+  id: 'wereld-10', topic: 'wereld', level: 5, emoji: '🌐', scene: 'world',
+  title: { nl: 'Moet iedereen op school een tweede taal leren?', en: 'Should everyone learn a second language at school?' },
+  text: {
+    nl: [
+      "In Nederland leren de meeste kinderen op de basisschool al Engels, en op de middelbare school komt daar vaak nog een taal bij: Frans, Duits of Spaans. Niet elk land doet dat zo. In sommige landen is één vreemde taal genoeg, in andere is een tweede taal zelfs verplicht vanaf groep drie. Moet iedereen op school echt een tweede taal leren? Daarover verschillen de meningen.",
+      "Voorstanders wijzen erop dat je met een extra taal meer deuren opent. Je kunt op vakantie makkelijker een gesprek voeren, later misschien in het buitenland werken of studeren, en meer vrienden maken die anders onbereikbaar zouden blijven. Onderzoek laat ook zien dat wie een taal spreekt, vaak beter naar andere mensen luistert en zich makkelijker in iemand anders kan verplaatsen.",
+      "Daar komt bij dat een taal leren je iets vertelt over een andere cultuur: hoe mensen daar denken, grappen maken of beleefd zijn. En jonge kinderen leren talen nu eenmaal makkelijker dan volwassenen. Hun hersenen zijn daar nog goed op ingesteld. Wachten tot je achttien bent, is voor een taal vaak al te laat om hem echt vloeiend te leren.",
+      "Tegenstanders zien vooral het lesrooster als probleem. Een schooldag duurt niet oneindig lang, en elk uur voor een tweede taal is een uur minder voor rekenen, geschiedenis of gymnastiek. Sommige scholen hebben daardoor amper tijd over voor vakken die volgens hen minstens zo belangrijk zijn.",
+      "Ook wijzen ze erop dat niet elk kind een tweede taal nodig heeft voor het latere beroep dat het kiest. Een automonteur of tuinman heeft daar zelden iets aan. Bovendien hebben sommige kinderen al moeite met lezen en schrijven in hun eigen taal. Voor hen voelt een tweede taal dan al snel als een extra last, zeggen tegenstanders, in plaats van een cadeau.",
+      "Beide kanten hebben een punt, en de keuze hangt ook af van het land: een klein land dat veel handelt met het buitenland heeft er misschien meer aan dan een heel groot land waar bijna iedereen al dezelfde taal spreekt. Sommige scholen proberen een middenweg: een beetje taal, gekoppeld aan spelletjes en liedjes, zonder dat het meteen een streng examen wordt.",
+      "Een echt antwoord bestaat niet: het is een afweging tussen tijd, nut en plezier, en niemand kan voor een heel land tegelijk beslissen wat het beste is. En wat vind jij?"
+    ],
+    en: [
+      "In the Netherlands, most children already learn English in primary school, and in secondary school another language is often added: French, German or Spanish. Not every country does it that way. In some countries one foreign language is enough, in others a second language is even compulsory from the age of six. Should everyone at school really learn a second language? Opinions on that differ.",
+      "Supporters point out that an extra language opens more doors. You can hold a conversation more easily on holiday, perhaps later work or study abroad, and make more friends who would otherwise stay out of reach. Research also shows that people who speak a language often listen better to others and find it easier to imagine themselves in someone else's shoes.",
+      "On top of that, learning a language tells you something about another culture: how people there think, joke or are polite. And young children simply learn languages more easily than adults. Their brains are still well set up for it. Waiting until you are eighteen is often already too late to learn a language really fluently.",
+      "Opponents mainly see the timetable as a problem. A school day does not last forever, and every hour spent on a second language is an hour less for maths, history or PE. Because of that, some schools barely have time left for subjects they consider at least as important.",
+      "They also point out that not every child needs a second language for the job they will later choose. A car mechanic or a gardener rarely gets any use out of it. What's more, some children already struggle with reading and writing in their own language. For them a second language quickly feels like an extra burden, opponents say, instead of a gift.",
+      "Both sides have a point, and the choice also depends on the country: a small country that trades a lot with other countries may get more out of it than a very large country where almost everyone already speaks the same language. Some schools try a middle way: a little language, linked to games and songs, without it immediately becoming a strict exam.",
+      "There is no real answer: it is a trade-off between time, usefulness and enjoyment, and nobody can decide for a whole country all at once what is best. And what do you think?"
+    ]
+  },
+  words: [
+    { nl: 'voorstanders', en: 'supporters', defNl: 'mensen die vóór iets zijn en het steunen', defEn: 'people who are in favour of something and support it' },
+    { nl: 'tegenstanders', en: 'opponents', defNl: 'mensen die tegen iets zijn', defEn: 'people who are against something' },
+    { nl: 'middenweg', en: 'middle way', defNl: 'een oplossing die tussen twee uitersten in zit', defEn: 'a solution that lies between two extremes' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Vanaf welke groep is een tweede taal in sommige landen verplicht, volgens de tekst?',
+           en: 'From which year is a second language compulsory in some countries, according to the text?' },
+      options: [
+        { nl: 'Vanaf groep drie', en: 'From the first years of primary school' },
+        { nl: 'Vanaf groep acht', en: 'From the last year of primary school' },
+        { nl: 'Pas op de middelbare school', en: 'Only in secondary school' },
+        { nl: 'Nooit verplicht', en: 'Never compulsory' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "in andere is een tweede taal zelfs verplicht vanaf groep drie."',
+                 en: 'Paragraph 1: "in others a second language is even compulsory from the age of six."' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'In Nederland leren de meeste kinderen op de basisschool al Engels.',
+          en: 'In the Netherlands, most children already learn English in primary school.', bin: 0 },
+        { nl: 'Jonge kinderen leren talen makkelijker dan volwassenen.',
+          en: 'Young children learn languages more easily than adults.', bin: 0 },
+        { nl: 'Voor sommige kinderen voelt een tweede taal als een extra last in plaats van een cadeau.',
+          en: 'For some children a second language feels like an extra burden instead of a gift.', bin: 1 },
+        { nl: 'Een klein land heeft waarschijnlijk meer aan een tweede taal dan een heel groot land.',
+          en: 'A small country probably gets more out of a second language than a very large country.', bin: 1 }
+      ],
+      explain: { nl: 'De eerste twee zinnen kun je nagaan of onderzoeken. De laatste twee zijn een oordeel over wat beter of vervelender is.',
+                 en: 'The first two sentences can be checked or researched. The last two are a judgement about what is better or more of a burden.' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver met deze tekst vooral bereiken?', en: 'What is the writer mainly trying to achieve with this text?' },
+      options: [
+        { nl: 'Je laten nadenken over een lastige keuze, door voor- en tegenargumenten naast elkaar te zetten',
+          en: 'Make you think about a hard choice by putting arguments for and against side by side' },
+        { nl: 'Je overtuigen dat een tweede taal verplicht moet worden', en: 'Convince you that a second language should be compulsory' },
+        { nl: 'Uitleggen hoe je snel een taal leert', en: 'Explain how to learn a language quickly' },
+        { nl: 'Je vertellen welke taal het makkelijkst is', en: 'Tell you which language is the easiest' }
+      ], answer: 0,
+      explain: { nl: 'De tekst geeft eerst de voorstanders het woord, dan de tegenstanders, en eindigt met "En wat vind jij?".',
+                 en: 'The text first gives the supporters a voice, then the opponents, and ends with "And what do you think?".' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Daar komt bij dat een taal leren je iets vertelt over een andere cultuur." Waar slaat "daar" op?',
+           en: '"On top of that, learning a language tells you something about another culture." What does "that" point to?' },
+      options: [
+        { nl: 'Op het argument van de voorstanders dat een taal deuren opent',
+          en: 'On the supporters\' argument that a language opens doors' },
+        { nl: 'Op het lesrooster van school', en: 'On the school timetable' },
+        { nl: 'Op het beroep dat je later kiest', en: 'On the job you choose later' },
+        { nl: 'Op groep drie', en: 'On the first years of primary school' }
+      ], answer: 0,
+      explain: { nl: 'De vorige alinea gaat over de voorstanders; "daar komt bij" voegt een extra argument toe.',
+                 en: 'The previous paragraph is about the supporters; "on top of that" adds an extra argument.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee argumenten gebruiken de tegenstanders? Kies er 2.', en: 'Which two arguments do the opponents use? Pick 2.' },
+      options: [
+        { nl: 'Elk lesuur voor een tweede taal is een uur minder voor een ander vak',
+          en: 'Every lesson hour for a second language is one hour less for another subject' },
+        { nl: 'Niet elk kind heeft een tweede taal nodig voor zijn latere beroep',
+          en: 'Not every child needs a second language for their future job' },
+        { nl: 'Een tweede taal is voor iedereen precies even makkelijk', en: 'A second language is exactly as easy for everyone' },
+        { nl: 'Vreemde talen bestaan pas sinds honderd jaar', en: 'Foreign languages have only existed for a hundred years' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 4 en 5 noemen precies deze twee argumenten van de tegenstanders.',
+                 en: 'Paragraphs 4 and 5 name exactly these two arguments from the opponents.' } },
+    { id: 'q6', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de tekst is er één duidelijk juist antwoord op de vraag of iedereen een tweede taal moet leren.',
+           en: 'According to the text there is one clearly correct answer to the question of whether everyone should learn a second language.' },
+      answer: false,
+      explain: { nl: 'De slotalinea zegt juist: "Een echt antwoord bestaat niet."',
+                 en: 'The closing paragraph says the opposite: "There is no real answer."' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'De tekst behandelt eerst de voorstanders (alinea 2 en 3) en dan de tegenstanders (alinea 4 en 5). Wat doet alinea 6 daarna?',
+           en: 'The text first deals with the supporters (paragraphs 2 and 3) and then the opponents (paragraphs 4 and 5). What does paragraph 6 do after that?' },
+      options: [
+        { nl: 'Ze brengt nuance en laat zien dat het ook van het land en de aanpak afhangt',
+          en: 'It brings nuance and shows it also depends on the country and the approach' },
+        { nl: 'Ze herhaalt de argumenten van de voorstanders', en: 'It repeats the supporters\' arguments' },
+        { nl: 'Ze vertelt een nieuw feit over Engels', en: 'It tells a new fact about English' },
+        { nl: 'Ze sluit de tekst af zonder iets toe te voegen', en: 'It closes the text without adding anything' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 6 begint met "Beide kanten hebben een punt" en voegt een genuanceerd perspectief toe.',
+                 en: 'Paragraph 6 begins with "Both sides have a point" and adds a nuanced perspective.' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Een tweede taal leren heeft duidelijke voordelen, maar kost ook lestijd en is niet voor elk kind even nuttig; een pasklaar antwoord is er niet.',
+          en: 'Learning a second language has clear advantages, but also costs lesson time and is not equally useful for every child; there is no ready-made answer.' },
+        { nl: 'In Nederland leren kinderen op de basisschool al Engels en later nog een taal erbij.',
+          en: 'In the Netherlands children already learn English in primary school and another language later.' },
+        { nl: 'Automonteurs en tuinlieden hebben nooit iets aan een tweede taal.',
+          en: 'Car mechanics and gardeners never have any use for a second language.' },
+        { nl: 'Jonge kinderen leren alles sneller dan volwassenen.', en: 'Young children learn everything faster than adults.' }
+      ], answer: 0,
+      explain: { nl: 'Een goede samenvatting bevat de voordelen, de nadelen én de open conclusie; de andere antwoorden zijn losse details uit één alinea.',
+                 en: 'A good summary contains the advantages, the disadvantages and the open conclusion; the other answers are single details from one paragraph.' } },
+    { id: 'q9', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'Wat betekent "middenweg" zoals gebruikt in de tekst?', en: 'What does "middle way" mean as used in the text?' },
+      options: [
+        { nl: 'Een oplossing die tussen twee uitersten in zit', en: 'A solution that lies between two extremes' },
+        { nl: 'De kortste weg naar school', en: 'The shortest way to school' },
+        { nl: 'Een taal die niemand meer spreekt', en: 'A language nobody speaks any more' },
+        { nl: 'Een examen dat heel streng is', en: 'An exam that is very strict' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 6: sommige scholen proberen een middenweg tussen niets doen en een streng examen.',
+                 en: 'Paragraph 6: some schools try a middle way between doing nothing and a strict exam.' } }
+  ]
+}
+]);

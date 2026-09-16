@@ -16,7 +16,7 @@ you can download a report at the end of the day.
 
 | | |
 |---|---|
-| 📖 **Lezen** | 50 stories · 334 questions · 10 worlds · 5 difficulty levels |
+| 📖 **Lezen** | 100 stories · 680 questions · 10 worlds · 5 difficulty levels |
 | ✍️ **Spelling** | 292 exercises · 15 spelling rules · 3 levels each |
 | 🪙 **Winkel** | Spend earned coins on stickers, avatars, characters and tools |
 
@@ -31,20 +31,21 @@ button in the top bar opens the shop any time.
 
 | World | Topic |
 |---|---|
-| 🦊 | Animals & Nature — the city fox, the humpback's song, the wolf, the bees' dance, should we wipe out the mosquito? |
-| 🚀 | Space & Stars — sleeping on the space station, the Mars rover, space junk, who owns the moon? |
-| ⚽ | Sport & Excitement — the last penalty, the Elfstedentocht, nerves at the start, the VAR, starting young |
-| 🏰 | Knights & History — Joris the squire, cold in the castle, the Golden Age, the Black Death, two stories at one statue |
-| 🔬 | Tech & Discovery — velcro, the Delta Works, the robot that learned to fall, solar panels, may the computer write your essay? |
-| 🔍 | Mystery & Detective — the empty biscuit tin, grandpa's code, the theft nobody saw, the trail that was too tidy, how sure is an eyewitness? |
-| 🥐 | Food & Cooking — why bread rises, a cocoa bean's journey, taste and smell, the crooked carrot, insects on your plate |
-| 🎵 | Music & Art — the talking drum, the Stradivarius, Vermeer's blue, earworms, who made this painting? |
-| 🌍 | World & Cultures — New Year in February, the whistled language, time zones, salt caravans, vanishing languages |
-| 🫀 | Body & Health — why you sleep, bones that repair themselves, gut bacteria, how your body learns to fight, do screens make you unhappy? |
+| 🦊 | Animals & Nature — the city fox, the humpback's song, the wolf, the bees' dance, should we wipe out the mosquito? · the beaver's dam, the octopus's memory, bird migration, an ant colony, should zoos disappear? |
+| 🚀 | Space & Stars — sleeping on the space station, the Mars rover, space junk, who owns the moon? · astronaut food, the James Webb telescope, why you float in orbit, life on a moon of Jupiter, should we send humans to Mars? |
+| ⚽ | Sport & Excitement — the last penalty, the Elfstedentocht, nerves at the start, the VAR, starting young · the first kickflip, top sport without two legs, cycling in the slipstream, home advantage, doping and second chances |
+| 🏰 | Knights & History — Joris the squire, cold in the castle, the Golden Age, the Black Death, two stories at one statue · a blacksmith's apprentice, the night watch, a VOC cabin boy, the printing press, should controversial statues stay standing? |
+| 🔬 | Tech & Discovery — velcro, the Delta Works, the robot that learned to fall, solar panels, may the computer write your essay? · the bicycle without pedals, the chocolate that melted by accident, a house printed in a day, how a self-driving car sees the road, should a computer decide who gets helped first? |
+| 🔍 | Mystery & Detective — the empty biscuit tin, grandpa's code, the theft nobody saw, the trail that was too tidy, how sure is an eyewitness? · the missing school trophy, the wet footprints, fingerprint evidence, the sniffer dog, should police scan your face on the street? |
+| 🥐 | Food & Cooking — why bread rises, a cocoa bean's journey, taste and smell, the crooked carrot, insects on your plate · why popcorn pops, why onions make you cry, how cheese gets its holes, where our food disappears to, should sugar be more expensive? |
+| 🎵 | Music & Art — the talking drum, the Stradivarius, Vermeer's blue, earworms, who made this painting? · a first performance, how a piano makes sound, the symphony a deaf composer wrote, why minor keys sound sad, is graffiti art or vandalism? |
+| 🌍 | World & Cultures — New Year in February, the whistled language, time zones, salt caravans, vanishing languages · the festival of lights, eating with chopsticks, the longest wall in the world, why some countries drive on the left, should everyone learn a second language? |
+| 🫀 | Body & Health — why you sleep, bones that repair themselves, gut bacteria, how your body learns to fight, do screens make you unhappy? · why you sneeze, your skin as an organ, why growth spurts differ, how memories are stored, should school start later? |
 
 ## Five difficulty levels
 
-Every world has a story at every level, so the ladder never has a hole in it.
+Every world has two stories at every level, so the ladder never has a hole
+in it and a second run through a world is never the same story twice.
 
 | Level | Reading level | Length | What is new |
 |---|---|---|---|
@@ -260,7 +261,7 @@ Open a file in `data/` and paste in another story. The pattern:
 
 ```js
 {
-  id: 'dieren-6', topic: 'dieren', level: 2, emoji: '🦔', scene: 'forest',
+  id: 'dieren-11', topic: 'dieren', level: 2, emoji: '🦔', scene: 'forest',
   title: { nl: 'De egel in de tuin', en: 'The hedgehog in the garden' },
   text: {
     nl: ['Eerste alinea...', 'Tweede alinea...'],

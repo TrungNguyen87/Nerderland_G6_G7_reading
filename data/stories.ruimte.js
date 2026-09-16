@@ -472,3 +472,483 @@ addStories([
   ]
 }
 ]);
+
+/* --- Nieuwe verhalen: niveau 1 t/m 5 --- */
+addStories([
+{
+  id: 'ruimte-6', topic: 'ruimte', level: 1, emoji: '🍽️', scene: 'space',
+  title: { nl: 'Eten uit een zakje', en: 'Food from a pouch' },
+  text: {
+    nl: [
+      "Op het ruimtestation kun je geen bord met eten op tafel zetten. Zodra je het bord loslaat, zweeft alles weg. Astronauten eten daarom heel anders dan wij thuis.",
+      "Veel van hun eten is gevriesdroogd. Dat betekent dat bijna al het water eruit is gehaald voordat het de ruimte in ging. Wil een astronaut soep of aardappelpuree eten, dan spuit hij er met een spuitje warm water bij. Na een paar minuten roeren is het weer een gewone maaltijd.",
+      "Kruimels zijn verboden. Een kruimel brood zou door de lucht zweven en in iemands oog, neus of in een gevoelig apparaat terecht kunnen komen. Daarom eten astronauten geen gewoon brood, maar zachte tortillas die bijna niet kruimelen.",
+      "Drinken doe je ook anders. Water in een open beker zou meteen in duizenden zwevende druppeltjes uiteenvallen. Daarom drinkt een astronaut uit een plastic zakje met een rietje. Een klein klepje houdt de vloeistof binnen tot je zuigt.",
+      "Toch is niet alles anders. Astronauten mogen zelf kiezen wat er in hun zakjes zit, van macaroni tot chocolade. Veel astronauten vragen om extra pittig eten, want in de ruimte proef je minder sterk dan op aarde."
+    ],
+    en: [
+      "On the space station you cannot just put a plate of food on the table. As soon as you let go of the plate, everything floats away. That is why astronauts eat very differently from us at home.",
+      "Much of their food is freeze-dried. That means nearly all the water has been removed from it before it went into space. If an astronaut wants soup or mashed potato, he squirts warm water into the pouch with a syringe. After stirring for a few minutes it is a normal meal again.",
+      "Crumbs are forbidden. A crumb of bread would float through the air and could end up in someone's eye, nose, or in a sensitive machine. That is why astronauts do not eat ordinary bread, but soft tortillas that hardly crumble at all.",
+      "Drinking works differently too. Water in an open cup would instantly break apart into thousands of floating droplets. That is why an astronaut drinks from a plastic pouch with a straw. A small valve keeps the liquid inside until you suck.",
+      "Still, not everything is different. Astronauts get to choose what goes in their pouches, from macaroni to chocolate. Many astronauts ask for extra spicy food, because in space you taste things less strongly than on Earth."
+    ]
+  },
+  words: [
+    { nl: 'gevriesdroogd', en: 'freeze-dried', defNl: 'eten waar bijna al het water uit is gehaald', defEn: 'food that has had nearly all its water removed' },
+    { nl: 'kruimels', en: 'crumbs', defNl: 'hele kleine stukjes die van brood afvallen', defEn: 'tiny bits that fall off bread' },
+    { nl: 'rietje', en: 'straw', defNl: 'een dun buisje waarmee je drinkt', defEn: 'a thin tube you drink through' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat doet een astronaut met gevriesdroogde soep voordat hij die eet?',
+           en: 'What does an astronaut do with freeze-dried soup before eating it?' },
+      options: [ { nl: 'Er warm water bij spuiten', en: 'Squirt warm water into it' },
+                 { nl: 'Het in de vriezer stoppen', en: 'Put it in the freezer' },
+                 { nl: 'Het in de oven opwarmen', en: 'Heat it in the oven' },
+                 { nl: 'Er koud water bij spuiten', en: 'Squirt cold water into it' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 2: hij spuit er met een spuitje warm water bij en roert dan een paar minuten.',
+                 en: 'Paragraph 2: he squirts warm water into it with a syringe and then stirs for a few minutes.' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Astronauten eten gewoon brood met kruimels.', en: 'Astronauts eat ordinary bread with crumbs.' },
+      answer: false,
+      explain: { nl: 'Alinea 3 zegt het tegenovergestelde: ze eten zachte tortillas die bijna niet kruimelen.',
+                 en: 'Paragraph 3 says the opposite: they eat soft tortillas that hardly crumble at all.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Eten waar bijna al het water uit is gehaald, noem je ___.',
+           en: 'Food that has had nearly all its water removed is called ___.' },
+      options: [ { nl: 'gevriesdroogd', en: 'freeze-dried' }, { nl: 'vers', en: 'fresh' },
+                 { nl: 'rot', en: 'rotten' }, { nl: 'ingevroren met water', en: 'frozen with water' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 2 legt het woord precies zo uit.', en: 'Paragraph 2 explains the word exactly this way.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de stappen van een maaltijd soep op een rij.', en: 'Put the steps of a soup meal in order.' },
+      items: [
+        { nl: 'De astronaut pakt een zakje gevriesdroogde soep.', en: 'The astronaut takes a pouch of freeze-dried soup.' },
+        { nl: 'Hij spuit er warm water bij.', en: 'He squirts warm water into it.' },
+        { nl: 'Hij roert een paar minuten.', en: 'He stirs for a few minutes.' },
+        { nl: 'Hij eet de warme soep.', en: 'He eats the warm soup.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst het zakje, dan water erbij, dan roeren, en dan pas eten.',
+                 en: 'First the pouch, then add water, then stir, and only then eat.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat deze tekst vooral over?', en: 'What is this text mainly about?' },
+      options: [
+        { nl: 'Hoe astronauten in de ruimte eten en drinken', en: 'How astronauts eat and drink in space' },
+        { nl: 'Hoe je tortillas bakt', en: 'How to bake tortillas' },
+        { nl: 'Waarom brood lekker is', en: 'Why bread tastes good' },
+        { nl: 'Hoe astronauten slapen', en: 'How astronauts sleep' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea gaat over eten of drinken in de ruimte: gevriesdroogd voedsel, kruimels en het zakje met rietje.',
+                 en: 'Every paragraph is about eating or drinking in space: freeze-dried food, crumbs and the pouch with a straw.' } }
+  ]
+},
+
+{
+  id: 'ruimte-7', topic: 'ruimte', level: 2, emoji: '🔭', scene: 'space',
+  title: { nl: 'De telescoop die naar het begin kijkt', en: 'The telescope that looks at the beginning' },
+  text: {
+    nl: [
+      "In 2021 ging de grootste ruimtetelescoop ooit de lucht in: de James Webb Space Telescope, vernoemd naar een voormalig directeur van de Amerikaanse ruimtevaartorganisatie NASA. Zijn taak is bijzonder: hij moet naar het allereerste begin van het heelal kijken.",
+      "Dat klinkt onmogelijk, maar het kan dankzij licht. Licht reist snel, maar niet oneindig snel. Het licht van een sterrenstelsel dat miljarden lichtjaren ver weg staat, is miljarden jaren onderweg geweest voordat het de telescoop bereikt. Je kijkt dus niet naar hoe die plek er nu uitziet, maar naar hoe hij er toen uitzag, vlak na het ontstaan van het heelal.",
+      "De spiegel van de telescoop is achttien meter breed en gemaakt van goudkleurig glas. Zo'n grote spiegel past niet in een raket. Daarom werd hij opgevouwen als een stuk origami, met scharnieren op precies de goede plekken. Pas nadat de telescoop in de ruimte aankwam, klapte hij langzaam open.",
+      "Webb kijkt niet naar gewoon licht, maar naar infraroodlicht, een soort warmtestraling die je oog niet kan zien. Dat licht komt makkelijker door wolken stof heen, en juist heel oud sterrenlicht is vaak infrarood geworden tijdens de lange reis. Om die zwakke straling goed te vangen, moet de telescoop ijskoud blijven. Daarom staat hij anderhalf miljoen kilometer van de aarde, ver weg van de warmte van onze planeet.",
+      "Sindsdien heeft Webb duizelingwekkende foto's gestuurd: pasgeboren sterren in wolken van gas, en zelfs de lucht rond planeten die om andere sterren draaien. Wetenschappers zoeken daar naar aanwijzingen voor water of leven. Voor het eerst kunnen we echt terugkijken naar het begin van alles."
+    ],
+    en: [
+      "In 2021 the largest space telescope ever launched: the James Webb Space Telescope, named after a former director of the American space agency NASA. Its task is special: it has to look at the very beginning of the universe.",
+      "That sounds impossible, but it works thanks to light. Light travels fast, but not infinitely fast. Light from a galaxy billions of light years away has been travelling for billions of years before it reaches the telescope. So you are not looking at what that place looks like now, but at what it looked like back then, just after the universe began.",
+      "The telescope's mirror is eighteen metres wide and made of gold-coloured glass. A mirror that big does not fit in a rocket. So it was folded up like a piece of origami, with hinges in exactly the right spots. Only after the telescope arrived in space did it slowly unfold.",
+      "Webb does not look at ordinary light, but at infrared light, a kind of heat radiation your eye cannot see. That light passes more easily through clouds of dust, and very old starlight has often turned infrared during its long journey. To catch that faint radiation properly, the telescope has to stay freezing cold. That is why it sits one and a half million kilometres from Earth, far from the warmth of our planet.",
+      "Since then Webb has sent back breathtaking photos: newborn stars inside clouds of gas, and even the air around planets orbiting other stars. Scientists are searching there for clues of water or life. For the first time we can really look back at the beginning of everything."
+    ]
+  },
+  words: [
+    { nl: 'sterrenstelsel', en: 'galaxy', defNl: 'een enorme groep van miljarden sterren bij elkaar', defEn: 'a huge group of billions of stars together' },
+    { nl: 'infraroodlicht', en: 'infrared light', defNl: 'een soort warmtestraling die je oog niet kan zien', defEn: 'a kind of heat radiation your eye cannot see' },
+    { nl: 'scharnieren', en: 'hinges', defNl: 'de draaipunten waarmee je iets kunt open- en dichtvouwen', defEn: 'the pivot points that let you fold something open and shut' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe breed is de spiegel van de James Webb telescoop ongeveer?',
+           en: 'About how wide is the mirror of the James Webb telescope?' },
+      options: [ { nl: 'Achttien meter', en: 'Eighteen metres' }, { nl: 'Twee meter', en: 'Two metres' },
+                 { nl: 'Honderd meter', en: 'A hundred metres' }, { nl: 'Vijf meter', en: 'Five metres' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 3 zegt dat de spiegel achttien meter breed is.',
+                 en: 'Paragraph 3 says the mirror is eighteen metres wide.' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom moest de spiegel worden opgevouwen?', en: 'Why did the mirror have to be folded up?' },
+      options: [
+        { nl: 'Omdat hij anders niet in de raket paste', en: 'Because otherwise it would not fit in the rocket' },
+        { nl: 'Omdat hij dan lichter werd', en: 'Because that made it lighter' },
+        { nl: 'Omdat vouwen hem sterker maakte', en: 'Because folding made it stronger' },
+        { nl: 'Omdat NASA dat mooier vond', en: 'Because NASA thought that looked nicer' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 legt uit dat zo een grote spiegel niet in een raket past.',
+                 en: 'Paragraph 3 explains that a mirror that big does not fit in a rocket.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Warmtestraling die je oog niet kan zien, heet ___.', en: 'Heat radiation your eye cannot see is called ___.' },
+      options: [ { nl: 'infraroodlicht', en: 'infrared light' }, { nl: 'sterrenlicht', en: 'starlight' },
+                 { nl: 'zonlicht', en: 'sunlight' }, { nl: 'roentgenstraling', en: 'X-ray radiation' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 4 geeft precies deze uitleg bij het woord infraroodlicht.',
+                 en: 'Paragraph 4 gives exactly this explanation for the word infrared light.' } },
+    { id: 'q4', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Als je naar heel ver sterrenlicht kijkt, zie je hoe die plek er nu uitziet.',
+           en: 'If you look at starlight from very far away, you see what that place looks like now.' },
+      answer: false,
+      explain: { nl: 'Alinea 2 zegt het tegenovergestelde: je ziet hoe de plek er toen uitzag, niet hoe hij er nu uitziet.',
+                 en: 'Paragraph 2 says the opposite: you see what the place looked like back then, not what it looks like now.' } },
+    { id: 'q5', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Koppel het woord aan de juiste betekenis.', en: 'Match the word to the right meaning.' },
+      pairs: [
+        { word: { nl: 'sterrenstelsel', en: 'galaxy' }, meaning: { nl: 'een enorme groep sterren bij elkaar', en: 'a huge group of stars together' } },
+        { word: { nl: 'infraroodlicht', en: 'infrared light' }, meaning: { nl: 'warmtestraling die je oog niet kan zien', en: 'heat radiation your eye cannot see' } },
+        { word: { nl: 'scharnieren', en: 'hinges' }, meaning: { nl: 'draaipunten om iets open te vouwen', en: 'pivot points for folding something open' } },
+        { word: { nl: 'lichtjaar', en: 'light year' }, meaning: { nl: 'de afstand die licht in een jaar aflegt', en: 'the distance light travels in a year' } }
+      ],
+      explain: { nl: 'Alle vier de woorden komen uit de tekst.', en: 'All four words come from the text.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de belangrijkste boodschap van deze tekst?', en: 'What is the main message of this text?' },
+      options: [
+        { nl: 'Dankzij zijn spiegel en infraroodlicht kan Webb terugkijken naar het begin van het heelal',
+          en: 'Thanks to its mirror and infrared light, Webb can look back at the beginning of the universe' },
+        { nl: 'De telescoop maakt vooral mooie foto’s van planeten', en: 'The telescope mainly takes nice photos of planets' },
+        { nl: 'NASA heeft de duurste telescoop ooit gebouwd', en: 'NASA built the most expensive telescope ever' },
+        { nl: 'Licht reist oneindig snel', en: 'Light travels infinitely fast' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea draagt bij aan hetzelfde idee: de spiegel en het infraroodlicht maken het mogelijk om heel ver terug te kijken in de tijd.',
+                 en: 'Every paragraph adds to the same idea: the mirror and the infrared light make it possible to look far back in time.' } }
+  ]
+},
+
+{
+  id: 'ruimte-8', topic: 'ruimte', level: 3, emoji: '🌠', scene: 'space',
+  title: { nl: 'Waarom zweef je in het ruimtestation?', en: 'Why do you float on the space station?' },
+  text: {
+    nl: [
+      "Veel mensen denken dat astronauten zweven omdat er in de ruimte geen zwaartekracht is. Dat is een hardnekkig misverstand. Op de hoogte van het ruimtestation, ongeveer vierhonderd kilometer boven de aarde, is de zwaartekracht nog bijna negentig procent zo sterk als hier beneden. Zonder zwaartekracht zou het station meteen de diepe ruimte in vliegen. Waarom zweven de astronauten dan toch?",
+      "Het antwoord zit in vallen. Schiet je een kanonskogel hard genoeg horizontaal weg, dan valt hij weliswaar naar de aarde, maar de aarde kromt onder hem net zo snel weg als hij valt. De kogel blijft dus vallen, zonder ooit de grond te raken. Zo een eeuwige val om de aarde heen noemen we een baan om de aarde.",
+      "Het ruimtestation doet niets anders. Het valt voortdurend naar de aarde toe, maar beweegt tegelijk zijwaarts met ongeveer achtentwintigduizend kilometer per uur. Die snelheid is precies genoeg om steeds naast de aarde te blijven vallen in plaats van erop.",
+      "De astronauten vallen gewoon mee, met dezelfde snelheid als het station zelf. Daarom drukken ze nergens tegenaan en lijkt het of ze zweven. Het is te vergelijken met een lift waarvan de kabel doorknipt: iedereen erin valt even snel, dus voor de inzittenden voelt het alsof ze gewichtloos zijn.",
+      "Daarom spreken wetenschappers liever van gewichtloosheid dan van geen zwaartekracht. De zwaartekracht is er wel degelijk; alleen valt alles er samen mee, waardoor niemand er iets van voelt. Op aarde merk je zwaartekracht juist wel, want de grond duwt terug tegen je voeten, en dat voelt als gewicht.",
+      "Astronauten oefenen dit gevoel al op aarde, in een vliegtuig met de bijnaam de kotsende komeet. Het maakt grote bogen door de lucht, net als de kanonskogel. Tijdens zo een boog valt iedereen aan boord ongeveer dertig seconden vrij, precies zoals op het ruimtestation, voordat het toestel weer omhoog trekt."
+    ],
+    en: [
+      "Many people think astronauts float because there is no gravity in space. That is a stubborn misconception. At the height of the space station, about four hundred kilometres above Earth, gravity is still almost ninety percent as strong as it is down here. Without gravity the station would fly straight off into deep space. So why do the astronauts float after all?",
+      "The answer lies in falling. If you fire a cannonball hard enough horizontally, it does fall towards Earth, but Earth curves away beneath it just as fast as it falls. So the ball keeps falling without ever hitting the ground. That endless fall around the Earth is what we call an orbit.",
+      "The space station does exactly the same. It keeps falling towards Earth, but at the same time moves sideways at about twenty-eight thousand kilometres an hour. That speed is exactly enough to keep missing the Earth instead of hitting it.",
+      "The astronauts simply fall along with it, at the same speed as the station itself. That is why they press against nothing and seem to float. It is like a lift whose cable has been cut: everyone inside falls at the same rate, so to the people in it, it feels as if they are weightless.",
+      "That is why scientists prefer to speak of weightlessness rather than no gravity. Gravity is definitely still there; it is just that everything falls along with it, so nobody notices it. On Earth you do feel gravity, because the ground pushes back against your feet, and that feels like weight.",
+      "Astronauts practise this feeling on Earth already, in a plane nicknamed the vomit comet. It flies big arcs through the sky, just like the cannonball. During such an arc everyone on board falls freely for about thirty seconds, exactly as on the space station, before the plane pulls back up."
+    ]
+  },
+  words: [
+    { nl: 'misverstand', en: 'misconception', defNl: 'iets dat de meeste mensen fout denken', defEn: 'something most people think wrongly' },
+    { nl: 'gewichtloosheid', en: 'weightlessness', defNl: 'het gevoel dat je niets weegt', defEn: 'the feeling that you weigh nothing' },
+    { nl: 'kanonskogel', en: 'cannonball', defNl: 'een zware ronde kogel die uit een kanon wordt geschoten', defEn: 'a heavy round ball fired from a cannon' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel procent van de zwaartekracht op aarde is er nog op de hoogte van het ruimtestation?',
+           en: 'About what percentage of Earth’s gravity is still there at the height of the space station?' },
+      options: [ { nl: 'Ongeveer negentig procent', en: 'About ninety percent' }, { nl: 'Ongeveer tien procent', en: 'About ten percent' },
+                 { nl: 'Helemaal niets', en: 'Nothing at all' }, { nl: 'Precies honderd procent', en: 'Exactly a hundred percent' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 1 noemt ongeveer negentig procent op die hoogte.',
+                 en: 'Paragraph 1 names about ninety percent at that height.' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom raakt de kanonskogel de grond nooit, als hij hard genoeg wordt weggeschoten?',
+           en: 'Why does the cannonball never hit the ground, if it is fired hard enough?' },
+      options: [
+        { nl: 'De aarde kromt onder hem net zo snel weg als hij valt', en: 'Earth curves away beneath it just as fast as it falls' },
+        { nl: 'De zwaartekracht verdwijnt dan helemaal', en: 'Gravity disappears completely then' },
+        { nl: 'De kogel wordt dan te licht', en: 'The ball becomes too light then' },
+        { nl: 'De lucht houdt de kogel tegen', en: 'The air holds the ball back' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 legt uit dat de aarde net zo snel wegkromt onder de kogel als hij valt.',
+                 en: 'Paragraph 2 explains that Earth curves away beneath the ball just as fast as it falls.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: 'Zo een eeuwige val om de aarde heen noemen we een baan om de aarde. Waar verwijst deze val naar?',
+           en: 'That endless fall around the Earth is what we call an orbit. What does this fall refer to?' },
+      options: [
+        { nl: 'Naar de kogel die blijft vallen zonder ooit de grond te raken', en: 'To the ball that keeps falling without ever hitting the ground' },
+        { nl: 'Naar de zwaartekracht van de aarde', en: 'To the gravity of the Earth' },
+        { nl: 'Naar de snelheid van het ruimtestation', en: 'To the speed of the space station' },
+        { nl: 'Naar het gewicht van de kanonskogel', en: 'To the weight of the cannonball' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor beschrijft de kogel die blijft vallen zonder de grond te raken; daar verwijst het naar.',
+                 en: 'The sentence before describes the ball that keeps falling without hitting the ground; that is what it refers to.' } },
+    { id: 'q4', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de tekst is er helemaal geen zwaartekracht op de hoogte van het ruimtestation.',
+           en: 'According to the text, there is no gravity at all at the height of the space station.' },
+      answer: false,
+      explain: { nl: 'Alinea 1 en 5 leggen uit dat de zwaartekracht er wel degelijk is; alleen valt alles er samen mee.',
+                 en: 'Paragraphs 1 and 5 explain that gravity is definitely still there; it is just that everything falls along with it.' } },
+    { id: 'q5', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 begint met het woord daarom. Waar verwijst dat woord naar terug?',
+           en: 'Paragraph 5 starts with the word therefore. What does that word refer back to?' },
+      options: [
+        { nl: 'Naar het feit dat astronauten met dezelfde snelheid vallen als het station zelf',
+          en: 'To the fact that astronauts fall at the same speed as the station itself' },
+        { nl: 'Naar de bouw van het ruimtestation', en: 'To the construction of the space station' },
+        { nl: 'Naar het gewicht van een kanonskogel', en: 'To the weight of a cannonball' },
+        { nl: 'Naar de temperatuur in de ruimte', en: 'To the temperature in space' }
+      ], answer: 0,
+      explain: { nl: 'Omdat astronauten en station samen met dezelfde snelheid vallen, spreken wetenschappers liever van gewichtloosheid dan van geen zwaartekracht.',
+                 en: 'Because astronauts and station fall together at the same speed, scientists prefer to speak of weightlessness rather than no gravity.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Astronauten zweven niet omdat er geen zwaartekracht is, maar omdat zij en het station constant om de aarde vallen',
+          en: 'Astronauts do not float because there is no gravity, but because they and the station constantly fall around the Earth' },
+        { nl: 'Astronauten trainen in een bijzonder vliegtuig', en: 'Astronauts train in a special plane' },
+        { nl: 'Zwaartekracht bestaat helemaal niet in de ruimte', en: 'Gravity does not exist at all in space' },
+        { nl: 'Het ruimtestation vliegt achtentwintigduizend kilometer per uur', en: 'The space station flies at twenty-eight thousand kilometres an hour' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst bouwt naar deze uitleg toe: van misverstand, via de kanonskogel, naar het echte antwoord.',
+                 en: 'The whole text builds towards this explanation: from misconception, via the cannonball, to the real answer.' } }
+  ]
+},
+
+{
+  id: 'ruimte-9', topic: 'ruimte', level: 4, emoji: '🧊', scene: 'space',
+  title: { nl: 'Is er leven op een maan van Jupiter?', en: 'Is there life on a moon of Jupiter?' },
+  text: {
+    nl: [
+      "Jupiter heeft tientallen manen, maar een ervan houdt wetenschappers al jaren wakker: Europa. Deze maan is ongeveer even groot als onze eigen maan en helemaal bedekt met een dikke laag ijs. Van een afstand lijkt Europa op een gladde knikker vol barsten en strepen.",
+      "Die barsten zijn het interessante deel. Ze ontstaan doordat de zwaartekracht van Jupiter voortdurend aan Europa trekt en duwt, alsof de maan wordt gekneed. Door die wrijving warmt het binnenste op. Onder de ijskorst, die vijftien tot vijfentwintig kilometer dik is, zit daardoor een oceaan van vloeibaar water. Die oceaan bevat waarschijnlijk meer water dan alle oceanen op aarde samen.",
+      "Water alleen maakt nog geen leven, maar de combinatie is veelbelovend. Diep in de oceanen van de aarde leven organismen rond hete bronnen op de bodem, zonder ooit zonlicht te zien. Ze halen hun energie uit chemische reacties met mineralen uit de rotsen. Onderzoekers vermoeden dat de bodem van de oceaan van Europa vergelijkbare bronnen kan hebben, met dezelfde chemie die leven mogelijk zou kunnen maken.",
+      "Om dat te onderzoeken lanceerde NASA de Europa Clipper, een ruimtesonde die tientallen keren langs de maan scheert zonder te landen. Aan boord zit onder andere radar die door het ijs heen kan kijken, om te meten hoe dik de korst precies is. De sonde zoekt ook naar pluimen: fonteinen van waterdamp die soms via scheuren de ruimte in spuiten. Vliegt de sonde daar doorheen, dan kan ze meteen proeven wat er in dat water zit, zonder ooit het ijs te hoeven doorboren.",
+      "Een lander die daadwerkelijk door het ijs boort, staat nog niet gepland. Vijfentwintig kilometer ijs doorboren is met de techniek van nu bijna onmogelijk, en zo een missie zou tientallen jaren en miljarden kosten. Toch werken ingenieurs al aan proefrobots die zich al borend een weg naar beneden zouden kunnen smelten.",
+      "Mocht er ooit leven gevonden worden onder dat ijs, dan zou dat een van de grootste ontdekkingen in de geschiedenis zijn: het bewijs dat leven niet uniek is voor de aarde. Tot die tijd blijft Europa een van de meest veelbelovende, en meest mysterieuze, plekken in ons zonnestelsel."
+    ],
+    en: [
+      "Jupiter has dozens of moons, but one of them has kept scientists awake for years: Europa. This moon is roughly the same size as our own moon and completely covered by a thick layer of ice. From a distance Europa looks like a smooth marble covered in cracks and streaks.",
+      "Those cracks are the interesting part. They form because Jupiter's gravity constantly pulls and pushes at Europa, as if the moon is being kneaded. That friction heats up the inside. Beneath the ice crust, which is fifteen to twenty-five kilometres thick, there is therefore an ocean of liquid water. That ocean probably contains more water than all of Earth's oceans combined.",
+      "Water alone does not make life, but the combination is promising. Deep in Earth's oceans, organisms live around hot vents on the seafloor without ever seeing sunlight. They get their energy from chemical reactions with minerals in the rock. Researchers suspect the floor of Europa's ocean could have similar vents, with the same chemistry that might make life possible.",
+      "To investigate this, NASA launched the Europa Clipper, a space probe that will fly past the moon dozens of times without landing. On board is, among other things, radar that can look through the ice to measure exactly how thick the crust is. The probe also searches for plumes: fountains of water vapour that sometimes shoot into space through cracks. If the probe flies through one, it can immediately taste what is in that water, without ever having to drill through the ice.",
+      "A lander that actually drills through the ice is not yet planned. Drilling through twenty-five kilometres of ice is nearly impossible with today's technology, and such a mission would take decades and cost billions. Still, engineers are already working on test robots that could melt their own way down while drilling.",
+      "If life were ever found beneath that ice, it would be one of the greatest discoveries in history: proof that life is not unique to Earth. Until then, Europa remains one of the most promising, and most mysterious, places in our solar system."
+    ]
+  },
+  words: [
+    { nl: 'ijskorst', en: 'ice crust', defNl: 'de harde buitenste laag ijs om een planeet of maan', defEn: 'the hard outer layer of ice around a planet or moon' },
+    { nl: 'pluimen', en: 'plumes', defNl: 'fonteinen van waterdamp die de ruimte in spuiten', defEn: 'fountains of water vapour shooting into space' },
+    { nl: 'mineralen', en: 'minerals', defNl: 'natuurlijke stoffen uit gesteente', defEn: 'natural substances found in rock' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe dik is de ijskorst van Europa ongeveer?', en: 'About how thick is the ice crust of Europa?' },
+      options: [ { nl: 'Vijftien tot vijfentwintig kilometer', en: 'Fifteen to twenty-five kilometres' },
+                 { nl: 'Eén meter', en: 'One metre' }, { nl: 'Honderd meter', en: 'A hundred metres' },
+                 { nl: 'Vijfhonderd kilometer', en: 'Five hundred kilometres' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 2 noemt een ijskorst van vijftien tot vijfentwintig kilometer dik.',
+                 en: 'Paragraph 2 names an ice crust fifteen to twenty-five kilometres thick.' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: 'Die barsten zijn het interessante deel. Waar verwijst die barsten naar?',
+           en: 'Those cracks are the interesting part. What does those cracks refer to?' },
+      options: [
+        { nl: 'Naar de barsten en strepen op het ijs van Europa, genoemd in de vorige zin', en: 'To the cracks and streaks on the ice of Europa, named in the previous sentence' },
+        { nl: 'Naar de manen van Jupiter in het algemeen', en: 'To the moons of Jupiter in general' },
+        { nl: 'Naar de radar van de Europa Clipper', en: 'To the radar of the Europa Clipper' },
+        { nl: 'Naar de hete bronnen op de bodem van de aarde', en: 'To the hot vents on the floor of Earth' }
+      ], answer: 0,
+      explain: { nl: 'De vorige zin noemt de barsten en strepen op het ijs; daar verwijst dat naar terug.',
+                 en: 'The previous sentence names the cracks and streaks on the ice; that is what it refers back to.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom denken onderzoekers dat er leven in de oceaan van Europa zou kunnen zijn?',
+           en: 'Why do researchers think there could be life in Europa’s ocean?' },
+      options: [
+        { nl: 'Omdat er misschien warme bronnen zijn met chemie zoals bij leven op de bodem van aardse oceanen',
+          en: 'Because there may be warm vents with chemistry like the life on the floor of Earth’s oceans' },
+        { nl: 'Omdat er al sporen van vissen zijn gevonden', en: 'Because traces of fish have already been found' },
+        { nl: 'Omdat Europa dichter bij de zon staat dan de aarde', en: 'Because Europa is closer to the sun than Earth' },
+        { nl: 'Omdat het ijs op Europa warmer is dan de lucht op aarde', en: 'Because the ice on Europa is warmer than the air on Earth' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 vergelijkt het met hete bronnen op de bodem van aardse oceanen, waar leven bestaat zonder zonlicht.',
+                 en: 'Paragraph 3 compares it to hot vents on the floor of Earth’s oceans, where life exists without sunlight.' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Fonteinen van waterdamp die via scheuren de ruimte in spuiten, heten ___.',
+           en: 'Fountains of water vapour that shoot into space through cracks are called ___.' },
+      options: [ { nl: 'pluimen', en: 'plumes' }, { nl: 'kraters', en: 'craters' },
+                 { nl: 'scharnieren', en: 'hinges' }, { nl: 'korsten', en: 'crusts' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 4 noemt dit precies: pluimen zijn fonteinen van waterdamp die door scheuren spuiten.',
+                 en: 'Paragraph 4 says exactly this: plumes are fountains of water vapour shooting through cracks.' } },
+    { id: 'q5', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet op volgorde wat de Europa Clipper doet.', en: 'Put in order what the Europa Clipper does.' },
+      items: [
+        { nl: 'NASA lanceert de Europa Clipper.', en: 'NASA launches the Europa Clipper.' },
+        { nl: 'De sonde vliegt tientallen keren langs Europa.', en: 'The probe flies past Europa dozens of times.' },
+        { nl: 'De radar meet hoe dik de ijskorst is.', en: 'The radar measures how thick the ice crust is.' },
+        { nl: 'De sonde vliegt eventueel door een pluim waterdamp.', en: 'The probe may fly through a plume of water vapour.' },
+        { nl: 'Wetenschappers proeven wat er in het water zit.', en: 'Scientists taste what is in the water.' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'Alinea 4 beschrijft deze stappen in precies deze volgorde, van lancering tot het proeven van het water.',
+                 en: 'Paragraph 4 describes these steps in exactly this order, from launch to tasting the water.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 begint met de zin over een lander die nog niet gepland is. Wat doet die zin ten opzichte van alinea 4?',
+           en: 'Paragraph 5 opens with the sentence about a lander that is not yet planned. What does that sentence do compared to paragraph 4?' },
+      options: [
+        { nl: 'Ze zet de grote wens (leven vinden) af tegen wat met de techniek van nu nog bijna onmogelijk is',
+          en: 'It sets the big wish (finding life) against what is still nearly impossible with today’s technology' },
+        { nl: 'Ze herhaalt precies wat de Europa Clipper al doet', en: 'It repeats exactly what the Europa Clipper already does' },
+        { nl: 'Ze introduceert een onderwerp dat niets met Europa te maken heeft', en: 'It introduces a topic that has nothing to do with Europa' },
+        { nl: 'Ze vat de hele tekst samen', en: 'It summarises the whole text' }
+      ], answer: 0,
+      explain: { nl: 'De Clipper kan al vliegen en meten, maar een lander die door het ijs boort is met de huidige techniek nog bijna onmogelijk: dat contrast legt alinea 5 uit.',
+                 en: 'The Clipper can already fly past and measure, but a lander drilling through the ice is still nearly impossible with current technology: paragraph 5 explains that contrast.' } },
+    { id: 'q7', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Onder het ijs van Europa zit mogelijk een oceaan waarin leven zou kunnen bestaan, en missies proberen dat te onderzoeken',
+          en: 'Beneath Europa’s ice there is possibly an ocean where life could exist, and missions are trying to investigate that' },
+        { nl: 'Jupiter heeft de meeste manen van alle planeten', en: 'Jupiter has the most moons of all the planets' },
+        { nl: 'De Europa Clipper is de duurste ruimtesonde ooit gebouwd', en: 'The Europa Clipper is the most expensive space probe ever built' },
+        { nl: 'Het ijs op Europa is precies vijfentwintig kilometer dik', en: 'The ice on Europa is exactly twenty-five kilometres thick' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea gaat over dezelfde kern: de kans op een oceaan met leven onder het ijs, en de missies die dat proberen te onderzoeken.',
+                 en: 'Every paragraph is about the same core idea: the chance of an ocean with life under the ice, and the missions trying to investigate it.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee dingen doet de Europa Clipper om de maan te onderzoeken? Kies er 2.',
+           en: 'Which two things does the Europa Clipper do to study the moon? Pick 2.' },
+      options: [
+        { nl: 'Meet met radar hoe dik het ijs is', en: 'Measures with radar how thick the ice is' },
+        { nl: 'Boort een gat door het ijs', en: 'Drills a hole through the ice' },
+        { nl: 'Vliegt door pluimen waterdamp om ze te proeven', en: 'Flies through plumes of water vapour to taste them' },
+        { nl: 'Landt op het oppervlak van Europa', en: 'Lands on the surface of Europa' }
+      ], answer: [0, 2],
+      explain: { nl: 'Alinea 4 zegt dat de sonde met radar het ijs meet en door pluimen vliegt om ze te proeven; landen of boren doet ze niet.',
+                 en: 'Paragraph 4 says the probe measures the ice with radar and flies through plumes to taste them; it does not land or drill.' } }
+  ]
+},
+
+{
+  id: 'ruimte-10', topic: 'ruimte', level: 5, emoji: '🚀', scene: 'mars',
+  title: { nl: 'Moeten we mensen naar Mars sturen?', en: 'Should we send humans to Mars?' },
+  text: {
+    nl: [
+      "Al meer dan vijftig jaar dromen mensen van een reis naar Mars. Lang was het alleen een idee voor films en boeken. Nu zeggen ruimtevaartorganisaties en bedrijven dat het echt zou kunnen: misschien al over twintig jaar zet een mens voet op de rode planeet. Maar moeten we dat wel willen?",
+      "Voorstanders noemen drie redenen. Ten eerste de wetenschap: een mens kan ter plekke beslissen welke steen de moeite waard is, iets waar een robot veel langer over doet. Ten tweede zien sommigen Mars als een soort reservekopie van de mensheid, mocht er op aarde ooit een ramp gebeuren. Ten derde wijzen ze op inspiratie: net als de maanlandingen ooit deden, zou een Marsmissie een hele generatie naar wetenschap kunnen trekken.",
+      "Tegenstanders beginnen bij het geld. Een bemande missie zou honderden miljarden euro kosten. Met dat geld kun je scholen bouwen, ziekenhuizen bemannen of miljoenen mensen aan schoon water helpen. Waarom, vragen zij, zoveel geld uitgeven aan een planeet waar niemand kan ademen, terwijl er op aarde nog zoveel op te lossen is?",
+      "Ook gezondheid baart zorgen. Een reis heen en terug duurt al snel twee tot drie jaar. Zonder het magnetische schild van de aarde krijgen astronauten onderweg een enorme dosis straling binnen, wat de kans op kanker verhoogt. Daarbij komt de eenzaamheid: maandenlang opgesloten zitten in een kleine cabine, ver van familie, is voor het brein een zware belasting.",
+      "Het argument van de reservekopie wordt door critici bestreden. Mars heeft geen zuurstof, extreme kou en dodelijke straling: zelfs de zwaarst beschadigde aarde zou leefbaarder blijven dan Mars nu is. Beter, zeggen zij, is al dat geld gebruiken om problemen hier op te lossen, in plaats van te vluchten.",
+      "Er is ook een tussenweg. Onbemande rovers zoals Perseverance doen al jaren waardevol onderzoek, voor een fractie van de kosten en zonder risico voor mensenlevens. Voorstanders van bemande missies antwoorden dat een mens sneller kan schakelen en op onverwachte ontdekkingen kan reageren op een manier die een robot niet kan.",
+      "Een duidelijk antwoord is er niet. Ruimtevaartorganisaties blijven plannen maken en bedrijven blijven raketten testen, terwijl de discussie voortduurt. En wat vind jij: moeten we het risico en de kosten nemen, of eerst onze eigen planeet op orde brengen?"
+    ],
+    en: [
+      "For more than fifty years people have dreamed of a journey to Mars. For a long time it was only an idea for films and books. Now both space agencies and companies say it could really happen: perhaps within twenty years a human will set foot on the red planet. But should we actually want that?",
+      "Supporters name three reasons. First, science: a human can decide on the spot which rock is worth bringing back, something a robot takes much longer to do. Second, some see Mars as a kind of backup copy of humanity, in case a disaster ever strikes Earth. Third, they point to inspiration: just as the moon landings once did, a Mars mission could draw a whole generation toward science.",
+      "Opponents start with the money. A crewed mission would cost hundreds of billions of euros. With that money you could build schools, staff hospitals or bring clean water to millions of people. Why, they ask, spend so much on a planet where nobody can breathe, while there is still so much to solve here on Earth?",
+      "Health is also a concern. A round trip already takes two to three years. Without Earth's magnetic shield, astronauts absorb a huge dose of radiation on the way, which raises the risk of cancer. On top of that comes the loneliness: being shut in a small cabin for months, far from family, is a heavy burden on the brain.",
+      "The backup-copy argument is challenged by critics. Mars has no oxygen, extreme cold and deadly radiation: even the most damaged Earth would still stay more liveable than Mars is now. Better, they say, to use all that money to solve problems here, instead of fleeing.",
+      "There is also a middle way. Uncrewed rovers like Perseverance have done valuable research for years, at a fraction of the cost and without risk to human life. Supporters of crewed missions reply that a human can switch tasks faster and react to unexpected discoveries in a way a robot cannot.",
+      "There is no clear answer. Space agencies keep making plans and companies keep testing rockets, while the debate continues. And what do you think: should we take the risk and the cost, or fix our own planet first?"
+    ]
+  },
+  words: [
+    { nl: 'bemand', en: 'crewed', defNl: 'met mensen aan boord', defEn: 'with people on board' },
+    { nl: 'straling', en: 'radiation', defNl: 'onzichtbare deeltjes die je lichaam kunnen beschadigen', defEn: 'invisible particles that can damage your body' },
+    { nl: 'reservekopie', en: 'backup copy', defNl: 'een extra versie die je achter de hand houdt voor het geval het misgaat', defEn: 'an extra version you keep in reserve in case something goes wrong' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel zou een bemande missie naar Mars volgens de tekst ongeveer kosten?',
+           en: 'About how much would a crewed mission to Mars cost, according to the text?' },
+      options: [ { nl: 'Honderden miljarden euro', en: 'Hundreds of billions of euros' },
+                 { nl: 'Honderd euro', en: 'A hundred euros' }, { nl: 'Eén miljoen euro', en: 'One million euros' },
+                 { nl: 'Tien euro per kilometer', en: 'Ten euros per kilometre' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 3 noemt honderden miljarden euro als geschatte kosten.',
+                 en: 'Paragraph 3 names hundreds of billions of euros as the estimated cost.' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Een reis heen en terug duurt twee tot drie jaar.', en: 'A round trip takes two to three years.', bin: 0 },
+        { nl: 'Beter is al dat geld gebruiken om problemen hier op te lossen.', en: 'It is better to use all that money to solve problems here.', bin: 1 },
+        { nl: 'Onbemande rovers zoals Perseverance doen al jaren onderzoek.', en: 'Uncrewed rovers like Perseverance have done research for years.', bin: 0 },
+        { nl: 'Een mens kan sneller schakelen dan een robot.', en: 'A human can switch tasks faster than a robot.', bin: 1 }
+      ],
+      explain: { nl: 'Feiten kun je nameten of opzoeken. Meningen bevatten een oordeel, zoals wat beter zou zijn of wie sneller is.',
+                 en: 'Facts can be measured or looked up. Opinions contain a judgement, like what would be better or who is faster.' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat probeert de schrijver van deze tekst vooral te doen?', en: 'What is the writer of this text mainly trying to do?' },
+      options: [
+        { nl: 'Beide kanten van het Mars-debat eerlijk laten zien, zonder zelf een kant te kiezen',
+          en: 'Show both sides of the Mars debate fairly, without picking a side' },
+        { nl: 'De lezer overtuigen dat we naar Mars moeten gaan', en: 'Convince the reader that we should go to Mars' },
+        { nl: 'De lezer overtuigen dat een Marsmissie geldverspilling is', en: 'Convince the reader that a Mars mission is a waste of money' },
+        { nl: 'Uitleggen hoe je een raket bouwt', en: 'Explain how to build a rocket' }
+      ], answer: 0,
+      explain: { nl: 'De schrijver laat eerst de voorstanders aan het woord, dan de tegenstanders, en eindigt met een open vraag zonder zelf een kant te kiezen.',
+                 en: 'The writer first gives the supporters a voice, then the opponents, and ends with an open question without picking a side.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: 'Het argument van de reservekopie wordt door critici bestreden. Welk argument wordt hier bedoeld?',
+           en: 'The backup-copy argument is challenged by critics. Which argument is meant here?' },
+      options: [
+        { nl: 'Dat Mars kan dienen als reservekopie van de mensheid bij een ramp op aarde',
+          en: 'That Mars could serve as a backup copy of humanity in case of a disaster on Earth' },
+        { nl: 'Dat een Marsmissie te duur is', en: 'That a Mars mission is too expensive' },
+        { nl: 'Dat robots sneller onderzoek doen dan mensen', en: 'That robots do research faster than humans' },
+        { nl: 'Dat astronauten te veel straling krijgen', en: 'That astronauts get too much radiation' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 noemt dat argument het eerst; alinea 5 haalt het aan om het te bestrijden.',
+                 en: 'Paragraph 2 first names that argument; paragraph 5 brings it back up to challenge it.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee gezondheidsrisico’s voor astronauten noemt de tekst? Kies er 2.',
+           en: 'Which two health risks for astronauts does the text name? Pick 2.' },
+      options: [
+        { nl: 'Een hoge dosis straling onderweg', en: 'A high dose of radiation on the way' },
+        { nl: 'Eenzaamheid in een kleine cabine', en: 'Loneliness in a small cabin' },
+        { nl: 'Te weinig zwaartekracht op Mars zelf', en: 'Too little gravity on Mars itself' },
+        { nl: 'Gebrek aan eten tijdens de reis', en: 'Lack of food during the journey' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 4 noemt straling en eenzaamheid als gezondheidsrisico’s. Over zwaartekracht op Mars of te weinig eten zegt de tekst niets.',
+                 en: 'Paragraph 4 names radiation and loneliness as health risks. The text says nothing about gravity on Mars or a lack of food.' } },
+    { id: 'q6', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de tekst is Mars, ook al is de aarde zwaar beschadigd, altijd nog leefbaarder dan de aarde.',
+           en: 'According to the text, Mars is always more liveable than Earth, even if Earth is badly damaged.' },
+      answer: false,
+      explain: { nl: 'Alinea 5 zegt het tegenovergestelde: zelfs de zwaarst beschadigde aarde blijft leefbaarder dan Mars nu is.',
+                 en: 'Paragraph 5 says the opposite: even the most damaged Earth would stay more liveable than Mars is now.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom noemt de schrijver in alinea 6 de rovers zoals Perseverance, vlak na de gezondheidsrisico’s in alinea 4 en 5?',
+           en: 'Why does the writer bring up rovers like Perseverance in paragraph 6, right after the health risks in paragraphs 4 and 5?' },
+      options: [
+        { nl: 'Om een derde optie te laten zien die veel van de bezwaren omzeilt: onderzoek zonder mensen aan boord',
+          en: 'To show a third option that avoids many of the objections: research without people on board' },
+        { nl: 'Om te bewijzen dat rovers altijd beter zijn dan mensen', en: 'To prove that rovers are always better than humans' },
+        { nl: 'Om de kosten van Perseverance te vergelijken met die van een Marsmissie', en: 'To compare the cost of Perseverance with that of a Mars mission' },
+        { nl: 'Om terug te komen op de maanlandingen', en: 'To come back to the moon landings' }
+      ], answer: 0,
+      explain: { nl: 'Na de gezondheidsrisico’s laat de schrijver een derde optie zien: onderzoek zonder mensen aan boord.',
+                 en: 'After the health risks, the writer shows a third option: research without people on board.' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Een bemande Marsmissie heeft grote voordelen zoals wetenschap en inspiratie, maar ook grote nadelen zoals kosten en gezondheidsrisico’s, en de discussie is nog niet beslist',
+          en: 'A crewed Mars mission has big advantages like science and inspiration, but also big disadvantages like cost and health risks, and the debate is not settled' },
+        { nl: 'Perseverance is een rover die al jaren onderzoek doet op Mars', en: 'Perseverance is a rover that has done research on Mars for years' },
+        { nl: 'Astronauten krijgen tijdens de reis naar Mars te veel straling binnen', en: 'Astronauts absorb too much radiation during the journey to Mars' },
+        { nl: 'De maanlandingen inspireerden ooit een hele generatie', en: 'The moon landings once inspired a whole generation' }
+      ], answer: 0,
+      explain: { nl: 'Een goede samenvatting pakt van elke alinea de kern: voordelen, nadelen en een discussie zonder duidelijke winnaar. De andere antwoorden zijn losse details.',
+                 en: 'A good summary takes the core of each paragraph: advantages, disadvantages and a debate without a clear winner. The other answers are single details.' } },
+    { id: 'q9', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'Wat betekent bemand in deze tekst?', en: 'What does crewed mean in this text?' },
+      options: [
+        { nl: 'Met mensen aan boord', en: 'With people on board' },
+        { nl: 'Zonder mensen aan boord, bestuurd vanaf de aarde', en: 'Without people on board, controlled from Earth' },
+        { nl: 'Gemaakt van metaal', en: 'Made of metal' },
+        { nl: 'Heel duur', en: 'Very expensive' }
+      ], answer: 0,
+      explain: { nl: 'Bemand betekent met mensen aan boord; het tegenovergestelde is onbemand.',
+                 en: 'Crewed means with people on board; the opposite is uncrewed.' } }
+  ]
+}
+]);

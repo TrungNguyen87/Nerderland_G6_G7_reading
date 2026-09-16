@@ -525,3 +525,514 @@ addStories([
   ]
 }
 ]);
+
+addStories([
+{
+  id: 'muziek-6', topic: 'muziek', level: 1, emoji: '🎤', scene: 'stage',
+  title: { nl: 'Het eerste optreden', en: 'The first performance' },
+  text: {
+    nl: [
+      "Vanavond is het zover: het schoolconcert. Noa speelt op het keyboard, samen met de rest van groep 7. Het is de allereerste keer dat ze voor publiek optreedt. In de gymzaal zetten meneer Bram de stoelen al klaar.",
+      "Achter het gordijn, in de coulissen, voelt Noa haar hart bonzen. Haar handen trillen en haar buik doet pijn van de zenuwen. Ze wil het liefst naar huis rennen. Wat als ze een fout maakt? Wat als iedereen naar haar kijkt?",
+      "Juf Sanne ziet dat Noa bang is. Ze buigt zich voorover en fluistert: \"Je hebt hier honderd keer voor geoefend. Je vingers weten precies wat ze moeten doen.\" Noa haalt diep adem en loopt het podium op.",
+      "Het licht is fel en de zaal is stil. Noa legt haar vingers op de toetsen en begint te spelen. Bij de derde maat speelt ze bijna een verkeerde toets, maar ze herstelt zich meteen. De rest van het lied gaat vanzelf.",
+      "Als de laatste toon wegsterft, barst het applaus los. Noa buigt en ziet haar ouders vooraan staan klappen. De zenuwen zijn weg, en er blijft alleen trots over. Ze heeft het gedaan."
+    ],
+    en: [
+      "Tonight is the night: the school concert. Noa is playing keyboard, together with the rest of the class. It is the very first time she has performed in front of an audience. In the gym Mr Bram is already setting out the chairs.",
+      "Behind the curtain, in the wings, Noa feels her heart pounding. Her hands are shaking and her stomach hurts from nerves. She would rather just run home. What if she makes a mistake? What if everyone is staring at her?",
+      "Teacher Sanne sees that Noa is scared. She leans in and whispers: \"You have practised this a hundred times. Your fingers know exactly what to do.\" Noa takes a deep breath and walks onto the stage.",
+      "The light is bright and the hall is silent. Noa puts her fingers on the keys and starts to play. On the third bar she almost hits a wrong key, but she recovers at once. The rest of the song comes naturally.",
+      "As the last note fades away, applause breaks out. Noa bows and sees her parents clapping in the front row. The nerves are gone, and only pride is left. She did it."
+    ]
+  },
+  words: [
+    { nl: 'coulissen', en: 'the wings (backstage)', defNl: 'de ruimte opzij van het podium waar je niet gezien wordt', defEn: 'the space beside the stage where you cannot be seen' },
+    { nl: 'zenuwen', en: 'nerves', defNl: 'een onrustig, gespannen gevoel vlak voor iets spannends', defEn: 'an uneasy, tense feeling right before something exciting' },
+    { nl: 'applaus', en: 'applause', defNl: 'het klappen van het publiek', defEn: 'the audience clapping' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat moest Noa die avond doen?', en: 'What did Noa have to do that evening?' },
+      options: [
+        { nl: 'Meespelen op het schoolconcert', en: 'Perform at the school concert' },
+        { nl: 'Een toets afmaken op school', en: 'Finish a test at school' },
+        { nl: 'Voetballen met groep 7', en: 'Play football with her class' },
+        { nl: 'Een cadeau uitzoeken', en: 'Pick out a present' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "Vanavond is het zover: het schoolconcert. Noa speelt op het keyboard."',
+                 en: 'Paragraph 1: "Tonight is the night: the school concert. Noa is playing keyboard."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Noa’s handen trilden in de coulissen.', en: 'Noa’s hands were shaking in the wings.' },
+      answer: true,
+      explain: { nl: 'Alinea 2: "Haar handen trillen en haar buik doet pijn van de zenuwen."',
+                 en: 'Paragraph 2: "Her hands are shaking and her stomach hurts from nerves."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Noa voelde zenuwen. Dat betekent dat ze ___.', en: 'Noa felt nerves. That means she ___.' },
+      options: [
+        { nl: 'een onrustig, gespannen gevoel had vlak voor het optreden', en: 'had an uneasy, tense feeling right before the performance' },
+        { nl: 'heel blij en rustig was', en: 'was very happy and calm' },
+        { nl: 'moe was van het oefenen', en: 'was tired from practising' },
+        { nl: 'boos was op de juf', en: 'was angry at her teacher' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 beschrijft precies dat gevoel: een bonzend hart en een pijnlijke buik van de zenuwen.',
+                 en: 'Paragraph 2 describes exactly that feeling: a pounding heart and a stomach ache from nerves.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet het verhaal van Noa in de juiste volgorde.', en: 'Put Noa’s story in the right order.' },
+      items: [
+        { nl: 'Noa staat achter het gordijn met trillende handen.', en: 'Noa stands behind the curtain with shaking hands.' },
+        { nl: 'Juf Sanne fluistert een bemoedigend woord.', en: 'Teacher Sanne whispers an encouraging word.' },
+        { nl: 'Noa speelt bijna een verkeerde toets, maar herstelt zich.', en: 'Noa almost hits a wrong key, but recovers.' },
+        { nl: 'Het publiek klapt en Noa buigt.', en: 'The audience claps and Noa bows.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Zo vertelt de tekst het: eerst de zenuwen, dan de bemoediging, dan het spelen, dan het applaus.',
+                 en: 'That is the order the text tells it in: first the nerves, then the encouragement, then the playing, then the applause.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat dit verhaal vooral over?', en: 'What is this text mainly about?' },
+      options: [
+        { nl: 'Een meisje dat ondanks haar zenuwen toch optreedt en trots is', en: 'A girl who performs despite her nerves and feels proud' },
+        { nl: 'Hoe je keyboard leert spelen', en: 'How to learn to play keyboard' },
+        { nl: 'Een schoolconcert dat niet doorgaat', en: 'A school concert that gets cancelled' },
+        { nl: 'Een meisje die een prijs wint', en: 'A girl who wins a prize' }
+      ], answer: 0,
+      explain: { nl: 'Het verhaal volgt Noa van doodsbange zenuwen tot trots na het optreden.',
+                 en: 'The story follows Noa from scared nerves to pride after the performance.' } }
+  ]
+},
+
+{
+  id: 'muziek-7', topic: 'muziek', level: 2, emoji: '🎹', scene: 'stage',
+  title: { nl: 'Hoe maakt een piano geluid?', en: 'How does a piano make sound?' },
+  text: {
+    nl: [
+      "Til het deksel van een vleugelpiano op en je ziet een web van snaren, strak gespannen over een gouden plaat. Meer dan tweehonderd stuks, elk met zijn eigen spanning. Maar hoe wordt dat drukken op een toets nou precies een toon?",
+      "Onder elke toets zit een klein hameltje van vilt. Druk je een toets in, dan zwiept dat hameltje omhoog en raakt het een snaar. De snaar gaat trillen, en die trilling maakt het geluid dat je hoort. Laat je de toets los, dan valt er een dempertje tegen de snaar en stopt het geluid meteen.",
+      "Waarom klinkt de ene toets hoog en de andere laag? Dat zit hem in de snaar zelf. Korte, dunne snaren trillen heel snel en klinken hoog. Lange, dikke snaren trillen langzaam en klinken laag. Kijk maar naar de linkerkant van de piano: daar liggen de dikste, langste snaren, omwikkeld met koperdraad.",
+      "Onderaan de piano zitten pedalen. Trap je het rechterpedaal in, dan gaan alle dempertjes tegelijk omhoog. De snaren mogen dan blijven natrillen, ook als je je vinger al van de toets hebt gehaald. Zo klinkt een akkoord lang door en vloeien de tonen in elkaar over.",
+      "Bij een stevig muziekstuk raken de hameltjes de snaren duizenden keren per minuut. Toch hoor je geen gehamer, alleen muziek. Dat komt doordat het hele mechaniek in een fractie van een seconde werkt: druk, sla, dempen, en weer opnieuw."
+    ],
+    en: [
+      "Lift the lid of a grand piano and you see a web of strings, stretched tight over a golden plate. More than two hundred of them, each with its own tension. But how does pressing a key become a note exactly?",
+      "Under every key sits a small hammer covered in felt. Press a key and that hammer swings up and hits a string. The string starts to vibrate, and that vibration makes the sound you hear. Let go of the key and a small damper drops against the string, stopping the sound at once.",
+      "Why does one key sound high and another low? That is down to the string itself. Short, thin strings vibrate very fast and sound high. Long, thick strings vibrate slowly and sound low. Just look at the left side of the piano: that is where the thickest, longest strings are, wound with copper wire.",
+      "At the bottom of the piano are pedals. Press the right-hand pedal and all the dampers lift up at once. The strings are then free to keep ringing, even after you have lifted your finger off the key. That is how a chord keeps sounding and the notes blend into each other.",
+      "During a lively piece the hammers hit the strings thousands of times a minute. Yet you hear no hammering, only music. That is because the whole mechanism works in a fraction of a second: press, strike, dampen, and again."
+    ]
+  },
+  words: [
+    { nl: 'hameltje', en: 'hammer', defNl: 'een klein onderdeeltje bekleed met vilt dat op de snaar slaat', defEn: 'a small felt-covered part that strikes the string' },
+    { nl: 'dempertje', en: 'damper', defNl: 'een stukje vilt dat tegen de snaar valt om het geluid te stoppen', defEn: 'a bit of felt that drops against the string to stop the sound' },
+    { nl: 'snaar', en: 'string', defNl: 'een strak gespannen draad die trilt en geluid maakt', defEn: 'a tightly stretched wire that vibrates and makes sound' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat gebeurt er als je een toets indrukt?', en: 'What happens when you press a key?' },
+      options: [
+        { nl: 'Een hameltje zwiept omhoog en raakt een snaar', en: 'A hammer swings up and hits a string' },
+        { nl: 'Een snaar wordt losgemaakt', en: 'A string is loosened' },
+        { nl: 'Een pedaal gaat automatisch omlaag', en: 'A pedal automatically goes down' },
+        { nl: 'Het dempertje slaat een geluid aan', en: 'The damper strikes a sound' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "dan zwiept dat hameltje omhoog en raakt het een snaar."',
+                 en: 'Paragraph 2: "that hammer swings up and hits a string."' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat doet het dempertje als je de toets loslaat?', en: 'What does the damper do when you let go of the key?' },
+      options: [
+        { nl: 'Het valt tegen de snaar en stopt het geluid', en: 'It drops against the string and stops the sound' },
+        { nl: 'Het maakt de snaar strakker', en: 'It tightens the string' },
+        { nl: 'Het verandert de toon', en: 'It changes the pitch' },
+        { nl: 'Het zwiept tegen de hamer', en: 'It swings against the hammer' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "dan valt er een dempertje tegen de snaar en stopt het geluid meteen."',
+                 en: 'Paragraph 2: "a small damper drops against the string, stopping the sound at once."' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom liggen de dikste en langste snaren aan de linkerkant van de piano?',
+           en: 'Why are the thickest and longest strings on the left side of the piano?' },
+      options: [
+        { nl: 'Omdat dikke, lange snaren langzaam trillen en dus laag klinken', en: 'Because thick, long strings vibrate slowly and so sound low' },
+        { nl: 'Omdat linkshandige mensen daar zitten', en: 'Because left-handed people sit there' },
+        { nl: 'Omdat dat de goedkoopste snaren zijn', en: 'Because those are the cheapest strings' },
+        { nl: 'Omdat ze daar het makkelijkst te stemmen zijn', en: 'Because they are easiest to tune there' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 legt uit: lange, dikke snaren trillen langzaam en klinken laag.',
+                 en: 'Paragraph 3 explains it: long, thick strings vibrate slowly and sound low.' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een snaar is ___.', en: 'A string is ___.' },
+      options: [
+        { nl: 'een strak gespannen draad die trilt en geluid maakt', en: 'a tightly stretched wire that vibrates and makes sound' },
+        { nl: 'een toets van de piano', en: 'a key of the piano' },
+        { nl: 'het pedaal onderaan de piano', en: 'the pedal at the bottom of the piano' },
+        { nl: 'het deksel van de piano', en: 'the lid of the piano' }
+      ], answer: 0,
+      explain: { nl: 'In alinea 1 en 3 wordt de snaar beschreven als de trillende draad die het geluid maakt.',
+                 en: 'Paragraphs 1 and 3 describe the string as the vibrating wire that makes the sound.' } },
+    { id: 'q5', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Wat gebeurt er als je het rechterpedaal indrukt terwijl je een akkoord speelt?',
+           en: 'What happens if you press the right-hand pedal while playing a chord?' },
+      options: [
+        { nl: 'De dempertjes gaan omhoog en de tonen blijven natrillen', en: 'The dampers lift and the notes keep ringing' },
+        { nl: 'De snaren worden dikker', en: 'The strings become thicker' },
+        { nl: 'Het geluid stopt meteen', en: 'The sound stops immediately' },
+        { nl: 'De hameltjes raken twee snaren tegelijk', en: 'The hammers hit two strings at once' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: "gaan alle dempertjes tegelijk omhoog. De snaren mogen dan blijven natrillen."',
+                 en: 'Paragraph 4: "all the dampers lift up at once. The strings are then free to keep ringing."' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat legt deze tekst vooral uit?', en: 'What does this text mainly explain?' },
+      options: [
+        { nl: 'Hoe drukken op een toets uiteindelijk een toon maakt', en: 'How pressing a key eventually makes a note' },
+        { nl: 'Hoe je een piano moet stemmen', en: 'How to tune a piano' },
+        { nl: 'Waarom piano’s duur zijn', en: 'Why pianos are expensive' },
+        { nl: 'Hoe je pianoles neemt', en: 'How to take piano lessons' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea volgt de weg van drukken, via hameltje en snaar, naar geluid.',
+                 en: 'Every paragraph follows the path from pressing, via hammer and string, to sound.' } }
+  ]
+},
+
+{
+  id: 'muziek-8', topic: 'muziek', level: 3, emoji: '🎼', scene: 'stage',
+  title: { nl: 'De symfonie die een dove componist schreef', en: 'The symphony a deaf composer wrote' },
+  text: {
+    nl: [
+      "Ludwig van Beethoven was zesentwintig toen er een zoemend geluid in zijn oren begon dat niet meer wegging. De jaren erna werd zijn gehoor steeds slechter. Op zijn negenentwintigste schreef hij een wanhopige brief aan zijn broers, waarin hij bekende dat hij aan zelfmoord had gedacht. Toch besloot hij door te gaan: de muziek in zijn hoofd was hem te dierbaar.",
+      "Hoe componeer je muziek die je niet meer kunt horen? Beethoven kende de wetten van harmonie en ritme zo goed, dat hij een heel orkest in zijn hoofd kon laten spelen zonder er één noot van te horen. Zo schreef hij op uit het geheugen, niet uit wat zijn oren opvingen.",
+      "Toch wilde hij ook echt blijven voelen. Hij liet de poten van zijn piano afzagen, zodat het instrument plat op de vloer stond en de klanken via de vloerplanken door zijn lichaam trilden. Sommige verhalen vertellen dat hij ook een houten stok tussen zijn tanden en de piano klemde, om de trillingen via zijn kaak te voelen.",
+      "In 1824 ging zijn negende symfonie in première, met het beroemde 'Ode an die Freude'. Beethoven was toen al volledig doof. Hij stond naast de echte dirigent en sloeg de maat mee, zonder iets van het orkest te horen. Toen het laatste akkoord wegstierf, bleef hij naar de muzikanten kijken. Pas toen een zangeres hem voorzichtig omdraaide, zag hij de zaal vol klappend en juichend publiek.",
+      "Dat moment laat precies zien wat zijn dove jaren zo bijzonder maakten. Beethoven kon het applaus niet horen, maar hij had het stuk wél geschreven, tot in het kleinste detail. Zijn compositie kwam niet uit zijn oren, maar uit een innerlijk gehoor, opgebouwd door jaren van studie.",
+      "Zijn verhaal veranderde hoe mensen naar componeren keken. Muziek maken bleek niet alleen een kwestie van luisteren, maar ook van weten en onthouden. Beethovens doofheid nam hem zijn oren af, maar niet zijn muziek."
+    ],
+    en: [
+      "Ludwig van Beethoven was twenty-six when a ringing sound began in his ears that never went away. In the years that followed his hearing kept getting worse. At twenty-nine he wrote a desperate letter to his brothers, in which he admitted he had thought about suicide. Still, he decided to carry on: the music in his head was too precious to give up.",
+      "How do you compose music you can no longer hear? Beethoven knew the laws of harmony and rhythm so well that he could have a whole orchestra play inside his head without hearing a single note of it. That is how he wrote it down, from memory, not from what his ears picked up.",
+      "Still, he also wanted to keep truly feeling it for as long as possible. He had the legs of his piano sawn off, so the instrument stood flat on the floor and the sounds travelled up through the floorboards into his body. Some stories say he also clamped a wooden stick between his teeth and the piano, to feel the vibrations through his jaw.",
+      "In 1824 his Ninth Symphony premiered, with the famous 'Ode to Joy'. By then Beethoven was completely deaf. He stood next to the actual conductor and beat time along with the music, without hearing a thing from the orchestra. When the last chord died away, he kept looking at the musicians. Only when a singer gently turned him around did he see the hall full of a clapping, cheering audience.",
+      "That moment shows exactly what made his deaf years so remarkable. Beethoven could not hear the applause, but he had written the piece, down to the smallest detail. His composition did not come from his ears, but from an inner hearing built up over years of study.",
+      "His story changed how people looked at composing. Making music turned out to be not only a matter of listening, but also of knowing and remembering. Beethoven’s deafness took away his ears, but not his music."
+    ]
+  },
+  words: [
+    { nl: 'dirigent', en: 'conductor', defNl: 'iemand die met gebaren het orkest leidt tijdens het spelen', defEn: 'someone who leads the orchestra with gestures while it plays' },
+    { nl: 'trillingen', en: 'vibrations', defNl: 'hele snelle, kleine bewegingen die je kunt voelen of horen', defEn: 'very fast, tiny movements you can feel or hear' },
+    { nl: 'compositie', en: 'composition', defNl: 'een stuk muziek dat iemand heeft bedacht en opgeschreven', defEn: 'a piece of music that someone has thought up and written down' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat liet Beethoven met de poten van zijn piano doen?', en: 'What did Beethoven have done to the legs of his piano?' },
+      options: [
+        { nl: 'Afzagen, zodat het instrument plat op de vloer stond', en: 'Sawn off, so the instrument stood flat on the floor' },
+        { nl: 'Verlengen, zodat hij rechtop kon staan', en: 'Lengthened, so he could stand upright' },
+        { nl: 'Vervangen door wielen', en: 'Replaced with wheels' },
+        { nl: 'Verven in een felle kleur', en: 'Painted a bright colour' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "Hij liet de poten van zijn piano afzagen, zodat het instrument plat op de vloer stond."',
+                 en: 'Paragraph 3: "He had the legs of his piano sawn off, so the instrument stood flat on the floor."' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Dat moment laat precies zien wat zijn dove jaren zo bijzonder maakten." Naar welk moment verwijst "dat"?',
+           en: '"That moment shows exactly what made his deaf years so remarkable." Which moment does "that" refer to?' },
+      options: [
+        { nl: 'Naar het moment dat de zangeres Beethoven omdraaide en hij het juichende publiek zag',
+          en: 'To the moment the singer turned Beethoven around and he saw the cheering audience' },
+        { nl: 'Naar het moment dat hij de brief aan zijn broers schreef', en: 'To the moment he wrote the letter to his brothers' },
+        { nl: 'Naar het moment dat de piano zijn poten kwijtraakte', en: 'To the moment the piano lost its legs' },
+        { nl: 'Naar het moment dat hij zesentwintig werd', en: 'To the moment he turned twenty-six' }
+      ], answer: 0,
+      explain: { nl: 'De vorige alinea eindigt precies met dat moment: hij wordt omgedraaid en ziet het klappende publiek.',
+                 en: 'The previous paragraph ends with exactly that moment: he is turned around and sees the clapping audience.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom kon Beethoven toch een symfonie componeren, ook al was hij doof?',
+           en: 'Why could Beethoven still compose a symphony, even though he was deaf?' },
+      options: [
+        { nl: 'Omdat hij de regels van muziek zo goed kende dat hij het orkest in zijn hoofd kon horen',
+          en: 'Because he knew the rules of music so well that he could hear the orchestra in his head' },
+        { nl: 'Omdat hij stiekem toch nog een beetje kon horen', en: 'Because he could secretly still hear a little' },
+        { nl: 'Omdat andere componisten het voor hem opschreven', en: 'Because other composers wrote it down for him' },
+        { nl: 'Omdat hij alleen heel simpele stukken schreef', en: 'Because he only wrote very simple pieces' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 legt het uit: hij kon een heel orkest in zijn hoofd laten spelen zonder er iets van te horen.',
+                 en: 'Paragraph 2 explains it: he could have a whole orchestra play in his head without hearing any of it.' } },
+    { id: 'q4', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom vertelt de tekst eerst over de wanhopige brief, voordat de negende symfonie ter sprake komt?',
+           en: 'Why does the text first tell about the desperate letter, before the Ninth Symphony comes up?' },
+      options: [
+        { nl: 'Om te laten zien hoe zwaar het verlies van zijn gehoor voor Beethoven was, voordat blijkt wat hij er ondanks alles mee bereikte',
+          en: 'To show how heavy the loss of his hearing was for Beethoven, before revealing what he still achieved despite it' },
+        { nl: 'Omdat de brief en de symfonie in hetzelfde jaar geschreven zijn', en: 'Because the letter and the symphony were written in the same year' },
+        { nl: 'Om uit te leggen hoe je een brief schrijft', en: 'To explain how to write a letter' },
+        { nl: 'Omdat de schrijver de volgorde van de tijd niet kon veranderen', en: 'Because the writer could not change the order of time' }
+      ], answer: 0,
+      explain: { nl: 'Het contrast tussen wanhoop aan het begin en het triomfmoment bij de symfonie maakt zijn prestatie extra groot.',
+                 en: 'The contrast between despair at the start and the triumphant symphony moment makes his achievement stand out more.' } },
+    { id: 'q5', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Wat bedoelt de tekst met een "innerlijk gehoor"?', en: 'What does the text mean by an "inner hearing"?' },
+      options: [
+        { nl: 'Het vermogen om muziek in je hoofd te horen zonder dat je oren iets opvangen',
+          en: 'The ability to hear music in your head without your ears picking up anything' },
+        { nl: 'Een gehoorapparaat dat Beethoven droeg', en: 'A hearing aid Beethoven wore' },
+        { nl: 'Het geluid van het orkest zelf', en: 'The sound of the orchestra itself' },
+        { nl: 'Een soort oefening voor je oren', en: 'A kind of exercise for your ears' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5: zijn compositie kwam niet uit zijn oren, maar uit een innerlijk gehoor, opgebouwd door studie.',
+                 en: 'Paragraph 5: his composition did not come from his ears, but from an inner hearing built up through study.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Beethoven bleef ondanks zijn doofheid schitterende muziek schrijven, dankzij kennis en verbeelding in plaats van gehoor',
+          en: 'Despite his deafness Beethoven kept writing brilliant music, thanks to knowledge and imagination rather than hearing' },
+        { nl: 'Beethoven vond het niet erg om doof te zijn', en: 'Beethoven did not mind being deaf' },
+        { nl: 'Een piano zonder poten werkt beter', en: 'A piano without legs works better' },
+        { nl: 'Dirigenten moeten altijd meebewegen met het orkest', en: 'Conductors must always move along with the orchestra' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst laat zien hoe Beethoven ondanks doofheid bleef componeren, dankzij kennis en gevoel.',
+                 en: 'The whole text shows how Beethoven kept composing despite deafness, thanks to knowledge and feeling.' } }
+  ]
+},
+
+{
+  id: 'muziek-9', topic: 'muziek', level: 4, emoji: '🎶', scene: 'stage',
+  title: { nl: 'Waarom klinkt muziek in mineur verdrietig?', en: 'Why does music in a minor key sound sad?' },
+  text: {
+    nl: [
+      "Speel dezelfde melodie twee keer, verander maar één toon, en het lied slaat om van vrolijk naar verdrietig. Componisten weten dat al eeuwen, maar wat gebeurt er dan precies in je hoofd?",
+      "Het geheim zit in de toonladder. Een gewone, vrolijke toonladder heet majeur. Tel je vanaf de eerste toon vier halve stapjes omhoog, dan kom je bij de derde toon, en dat stapje heet een grote terts. In een mineurladder is dat stapje één halve toon kleiner: een kleine terts. Dat ene, minieme verschil is genoeg om je gevoel om te draaien.",
+      "Waarom klinkt zo'n kleine terts dan verdrietig? Onderzoekers denken dat het te maken heeft met spraak. Als mensen verdrietig praten, dalen hun stem en de afstand tussen hun tonen vaak op een manier die lijkt op een kleine terts. Ons brein herkent dat patroon, ook zonder dat we het weten, en koppelt het aan emotie. Kinderen van amper vier jaar oud kunnen al horen dat mineurmuziek 'bozer' of 'verdrietiger' klinkt dan majeurmuziek, zelfs voordat iemand het hun heeft uitgelegd.",
+      "Filmcomponisten gebruiken dat trucje voortdurend, en bewust. Een scène waarin een personage over slecht nieuws hoort, krijgt bijna nooit vrolijke majeurakkoorden. In plaats daarvan schuift de muziek naar mineur, soms met extra wrijvende tonen ertussen, zodat de spanning nog voelbaarder wordt. Het publiek hoeft niets te weten van toonladders om het verschil te voelen: de emotie komt vanzelf binnen.",
+      "Toch is het geen ijzeren wet. Er bestaan vrolijke popliedjes die technisch gezien in mineur staan, en trage, sombere stukken die keurig in majeur zijn geschreven. Tempo, volume en de woorden van een lied spelen minstens zo'n grote rol als de toonladder. Mineur werkt vooral als een sterke aanwijzing, niet als een garantie.",
+      "Weet je dit eenmaal, dan luister je anders naar een film. Let maar eens op het moment vlak voordat er iets ergs gebeurt: de kans is groot dat de muziek al een paar tellen eerder stiekem naar mineur is geschoven, lang voordat je het zelf doorhebt."
+    ],
+    en: [
+      "Play the same melody twice, change just one note, and the song flips from happy to sad. Composers have known this for centuries, but what exactly happens in your head?",
+      "The secret lies in the scale. An ordinary, cheerful scale is called major. Count four half-steps up from the first note and you reach the third note, and that gap is called a major third. In a minor scale that gap is one half-step smaller: a minor third. That one tiny difference is enough to flip how you feel.",
+      "Why does such a small third sound sad? Researchers think it has to do with speech. When people speak sadly, their voice drops, and the gap between their pitches often resembles a minor third. Our brain recognises that pattern, even without our knowing it, and links it to emotion. Children barely four years old can already hear that minor music sounds 'angrier' or 'sadder' than major music, even before anyone has explained it to them.",
+      "Film composers use that trick constantly, and on purpose. A scene where a character hears bad news almost never gets cheerful major chords. Instead the music slides into minor, sometimes with extra clashing notes thrown in, so the tension feels even sharper. The audience does not need to know anything about scales to feel the difference: the emotion just arrives.",
+      "Still, it is not an iron rule. There are cheerful pop songs that are technically in minor, and slow, gloomy pieces neatly written in major. Tempo, volume and a song's lyrics play at least as big a role as the scale. Minor mainly works as a strong hint, not a guarantee.",
+      "Once you know this, you listen to a film differently. Watch the moment right before something bad happens: chances are the music has already quietly slipped into minor a few beats earlier, long before you notice it yourself."
+    ]
+  },
+  words: [
+    { nl: 'toonladder', en: 'scale', defNl: 'een reeks tonen die achter elkaar omhooggaan, van laag naar hoog', defEn: 'a series of notes going up one after another, from low to high' },
+    { nl: 'terts', en: 'third (interval)', defNl: 'de afstand tussen de eerste en de derde toon van een toonladder', defEn: 'the gap between the first and third note of a scale' },
+    { nl: 'aanwijzing', en: 'hint, clue', defNl: 'iets dat een hint geeft, maar geen absolute zekerheid', defEn: 'something that gives a hint, but not absolute certainty' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat is het verschil tussen een grote en een kleine terts?', en: 'What is the difference between a major and a minor third?' },
+      options: [
+        { nl: 'Bij een kleine terts is de afstand tussen de eerste en derde toon een halve toon kleiner',
+          en: 'With a minor third the gap between the first and third note is one half-step smaller' },
+        { nl: 'Een kleine terts heeft meer noten', en: 'A minor third has more notes' },
+        { nl: 'Een grote terts klinkt altijd harder', en: 'A major third always sounds louder' },
+        { nl: 'Een kleine terts bestaat niet in muziek', en: 'A minor third does not exist in music' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "In een mineurladder is dat stapje één halve toon kleiner: een kleine terts."',
+                 en: 'Paragraph 2: "In a minor scale that gap is one half-step smaller: a minor third."' } },
+    { id: 'q2', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee dingen noemt de tekst als reden waarom mineur verdrietig klinkt? Kies er 2.',
+           en: 'Which two things does the text name as reasons why minor sounds sad? Pick 2.' },
+      options: [
+        { nl: 'De klank lijkt op hoe mensen praten als ze verdrietig zijn', en: 'The sound resembles how people speak when they are sad' },
+        { nl: 'Al heel jonge kinderen horen het verschil tussen mineur en majeur', en: 'Even very young children hear the difference between minor and major' },
+        { nl: 'Mineurmuziek is altijd trager gespeeld', en: 'Minor music is always played more slowly' },
+        { nl: 'Filmcomponisten hebben mineur uitgevonden', en: 'Film composers invented minor keys' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 3 noemt het lijken op verdrietige spraak en het al vroeg herkennen door jonge kinderen. Over tempo of een uitvinder zegt de tekst niets.',
+                 en: 'Paragraph 3 names the resemblance to sad speech and early recognition by young children. The text says nothing about tempo or an inventor.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Het publiek hoeft niets te weten van toonladders om het verschil te voelen." Waar verwijst "het verschil" naar?',
+           en: '"The audience does not need to know anything about scales to feel the difference." What does "the difference" refer to?' },
+      options: [
+        { nl: 'Naar het verschil tussen majeur- en mineurakkoorden in de filmmuziek', en: 'To the difference between major and minor chords in the film music' },
+        { nl: 'Naar het verschil tussen twee acteurs', en: 'To the difference between two actors' },
+        { nl: 'Naar het verschil tussen twee filmscènes', en: 'To the difference between two film scenes' },
+        { nl: 'Naar het verschil tussen volume en tempo', en: 'To the difference between volume and tempo' }
+      ], answer: 0,
+      explain: { nl: 'De zinnen ervoor beschrijven hoe muziek naar mineur schuift in plaats van majeur; dat verschil wordt bedoeld.',
+                 en: 'The sentences before describe music sliding into minor instead of major; that is the difference meant.' } },
+    { id: 'q4', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom kiest een filmcomponist voor mineurakkoorden bij slecht nieuws in een scène?',
+           en: 'Why does a film composer choose minor chords for bad news in a scene?' },
+      options: [
+        { nl: 'Om de spanning of het verdriet voelbaarder te maken voor de kijker, ook zonder dat die het doorheeft',
+          en: 'To make the tension or sadness feel stronger to the viewer, even without them realising it' },
+        { nl: 'Omdat mineurakkoorden makkelijker te spelen zijn', en: 'Because minor chords are easier to play' },
+        { nl: 'Omdat majeurakkoorden niet bestaan in filmmuziek', en: 'Because major chords do not exist in film music' },
+        { nl: 'Omdat het publiek erom vraagt', en: 'Because the audience asks for it' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: de spanning wordt voelbaarder, en het publiek hoeft niets van toonladders te weten om het te voelen.',
+                 en: 'Paragraph 4: the tension feels sharper, and the audience does not need to know about scales to feel it.' } },
+    { id: 'q5', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een toonladder is ___.', en: 'A scale is ___.' },
+      options: [
+        { nl: 'een reeks tonen die achter elkaar omhooggaan, van laag naar hoog', en: 'a series of notes going up one after another, from low to high' },
+        { nl: 'het volume van een lied', en: 'the volume of a song' },
+        { nl: 'een instrument dat je met je vingers bespeelt', en: 'an instrument you play with your fingers' },
+        { nl: 'een soort mineurakkoord', en: 'a kind of minor chord' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 legt het uit: je telt vanaf de eerste toon stapjes omhoog binnen de toonladder.',
+                 en: 'Paragraph 2 explains it: you count steps up from the first note within the scale.' } },
+    { id: 'q6', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de uitleg over mineur en majeur in de juiste volgorde.', en: 'Put the explanation about minor and major in the right order.' },
+      items: [
+        { nl: 'Je verandert één toon in een melodie en het gevoel slaat om.', en: 'You change one note in a melody and the feeling flips.' },
+        { nl: 'Een grote terts (majeur) blijkt één halve toon groter dan een kleine terts (mineur).', en: 'A major third turns out to be one half-step bigger than a minor third.' },
+        { nl: 'Onderzoekers ontdekken dat de kleine terts lijkt op verdrietige spraak.', en: 'Researchers discover that the minor third resembles sad speech.' },
+        { nl: 'Filmcomponisten gebruiken mineur bewust om spanning op te roepen.', en: 'Film composers deliberately use minor to create tension.' },
+        { nl: 'Je hoort zelf hoe muziek in een film al vóór een naar moment naar mineur is geschoven.', en: 'You notice yourself how film music has already slipped into minor before something bad happens.' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'De tekst bouwt precies zo op: het effect, dan de toonladder, dan waarom, dan het gebruik, dan het zelf horen.',
+                 en: 'The text builds up in exactly this order: the effect, then the scale, then why, then the use, then noticing it yourself.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom begint alinea 5 met het woord "Toch"?', en: 'Why does paragraph 5 start with the word "Still"?' },
+      options: [
+        { nl: 'Om een nuance toe te voegen: mineur is geen absolute wet, er zijn uitzonderingen',
+          en: 'To add a nuance: minor is not an absolute rule, there are exceptions' },
+        { nl: 'Om een nieuw voorbeeld van filmmuziek te geven', en: 'To give a new example of film music' },
+        { nl: 'Om te herhalen wat alinea 2 al zei', en: 'To repeat what paragraph 2 already said' },
+        { nl: 'Om de toonladder opnieuw uit te leggen', en: 'To explain the scale again' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5 zegt letterlijk "geen ijzeren wet" en geeft voorbeelden van uitzonderingen.',
+                 en: 'Paragraph 5 literally says "not an iron rule" and gives examples of exceptions.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Een klein verschil in toonladder kan al een groot verschil in gevoel geven, en filmcomponisten spelen daar bewust mee',
+          en: 'A small difference in scale can already give a big difference in feeling, and film composers deliberately play with that' },
+        { nl: 'Kinderen van vier snappen niets van muziek', en: 'Four-year-olds understand nothing about music' },
+        { nl: 'Majeurmuziek is altijd beter dan mineurmuziek', en: 'Major music is always better than minor music' },
+        { nl: 'Filmmuziek heeft geen invloed op wat je voelt', en: 'Film music has no effect on how you feel' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst draait om dat ene kleine verschil en hoe bewust componisten het inzetten.',
+                 en: 'The whole text revolves around that one small difference and how deliberately composers use it.' } }
+  ]
+},
+
+{
+  id: 'muziek-10', topic: 'muziek', level: 5, emoji: '🧱', scene: 'default',
+  title: { nl: 'Is graffiti kunst of vernieling?', en: 'Is graffiti art or vandalism?' },
+  text: {
+    nl: [
+      "Op een grauwe muur naast het station staat 's ochtends niets bijzonders. De volgende ochtend prijkt er een kleurrijk schilderij van drie verdiepingen hoog: een vogel die uit een kooi ontsnapt. Buurtbewoners staan ervoor te kijken, sommigen enthousiast, anderen boos. Is dit kunst, of is dit vernieling?",
+      "Graffiti is het spuiten of schilderen van tekeningen en letters op muren, treinen of andere oppervlakken, meestal zonder dat de eigenaar daar toestemming voor gaf. Het ontstond in de jaren zeventig in de metro's van New York, waar jongeren hun bijnaam als 'tag' overal neerzetten. Inmiddels is het uitgegroeid tot enorme, gedetailleerde muurschilderingen die je over de hele wereld tegenkomt.",
+      "Voorstanders zien graffiti als een van de weinige kunstvormen die iedereen kan zien, zonder museumkaartje. Een saaie, grijze muur verandert in iets om naar te kijken, en dat maakt een buurt levendiger. Sommige graffitikunstenaars werden wereldberoemd: de Britse kunstenaar Banksy begon met illegale muren, en zijn werk hangt nu in de duurste veilinghuizen ter wereld.",
+      "Tegenstanders wijzen op iets simpels: die muur is van iemand anders, en niemand heeft om die tekening gevraagd. Een winkelier die zijn pand elke maand moet laten schoonspuiten, betaalt dat uit eigen zak, en gemeenten geven jaarlijks miljoenen euro's uit aan het verwijderen van graffiti. Sommige buurtbewoners voelen zich ook onveiliger in een straat vol wilde spuitverf: het doet denken aan verwaarlozing, ook als de tekening zelf mooi is.",
+      "Tussen die twee uitersten zit een groot grijs gebied. Steeds meer steden wijzen legale muren aan waar spuiten wél mag, of geven kunstenaars officieel een opdracht voor een muurschildering. Dan is precies dezelfde tekening ineens geen vernieling meer, maar een gemeentelijk kunstwerk. Kunst en toestemming blijken dus twee losse vragen: een tekening kan prachtig zijn én illegaal, allebei tegelijk.",
+      "Datzelfde Banksy-werk laat de spanning goed zien. Zijn stukken werden ooit 's nachts stiekem op muren gezet, zonder toestemming, met het risico op een boete. Diezelfde stukken worden tegenwoordig voorzichtig van de muur gezaagd en voor miljoenen verkocht. Sommigen vinden dat een mooi bewijs dat straatkunst serieus genomen wordt. Anderen vinden het juist ironisch: het rebelse, illegale randje wordt nu net het verkoopargument.",
+      "Een makkelijk antwoord bestaat niet. Wie zegt dat graffiti altijd kunst is, vergeet de winkelier met de rekening. Wie zegt dat het altijd vernieling is, vergeet de vogel die uit zijn kooi ontsnapt op die grauwe stationsmuur. En wat vind jij?"
+    ],
+    en: [
+      "On a grey wall next to the station there is nothing special in the morning. The next morning a colourful painting three storeys high has appeared: a bird escaping from a cage. Local residents stand looking at it, some delighted, others angry. Is this art, or is this vandalism?",
+      "Graffiti is spraying or painting drawings and letters on walls, trains or other surfaces, usually without the owner's permission. It started in the 1970s in the subways of New York, where young people put their nickname, their 'tag', up everywhere. By now it has grown into huge, detailed murals you come across all over the world.",
+      "Supporters see graffiti as one of the few art forms everyone can see, without a museum ticket. A dull, grey wall turns into something worth looking at, and that makes a neighbourhood livelier. Some graffiti artists became world-famous: the British artist Banksy started out on illegal walls, and his work now hangs in the most expensive auction houses in the world.",
+      "Opponents point to something simple: that wall belongs to somebody else, and nobody asked for that drawing. A shopkeeper who has to have their building cleaned every month pays for that out of their own pocket, and city councils spend millions of euros every year removing graffiti. Some residents also feel less safe in a street full of wild spray paint: it makes them think of neglect, even when the drawing itself is beautiful.",
+      "Between those two extremes lies a big grey area. More and more cities designate legal walls where spraying is allowed, or officially commission artists for a mural. Then the exact same drawing suddenly stops being vandalism and becomes a municipal artwork. Art and permission turn out to be two separate questions: a drawing can be beautiful and illegal, both at once.",
+      "That same Banksy work shows the tension well. His pieces were once put up secretly at night, without permission, at the risk of a fine. Those same pieces are now carefully sawn off the wall and sold for millions. Some people see that as a fine proof that street art is taken seriously. Others find it ironic: the rebellious, illegal edge has now become exactly the selling point.",
+      "There is no easy answer. Anyone who says graffiti is always art forgets the shopkeeper with the bill. Anyone who says it is always vandalism forgets the bird escaping from its cage on that grey station wall. And what do you think?"
+    ]
+  },
+  words: [
+    { nl: 'muurschildering', en: 'mural', defNl: 'een groot schilderij dat direct op een muur is gemaakt', defEn: 'a large painting made directly on a wall' },
+    { nl: 'vernieling', en: 'vandalism', defNl: 'iets kapotmaken of besmeuren zonder toestemming', defEn: 'damaging or defacing something without permission' },
+    { nl: 'verwaarlozing', en: 'neglect', defNl: 'de toestand waarin niemand meer voor iets zorgt', defEn: 'the state of nobody taking care of something anymore' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar ontstond graffiti in de jaren zeventig?', en: 'Where did graffiti originate in the 1970s?' },
+      options: [
+        { nl: 'In de metro’s van New York', en: 'In the subways of New York' },
+        { nl: 'In musea in Londen', en: 'In museums in London' },
+        { nl: 'Op stationsmuren in Nederland', en: 'On station walls in the Netherlands' },
+        { nl: 'Op treinen in Frankrijk', en: 'On trains in France' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Het ontstond in de jaren zeventig in de metro’s van New York."',
+                 en: 'Paragraph 2: "It started in the 1970s in the subways of New York."' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Graffiti ontstond in de jaren zeventig in de metro’s van New York.',
+          en: 'Graffiti originated in the 1970s in the subways of New York.', bin: 0 },
+        { nl: 'Een saaie, grijze muur verandert in iets om naar te kijken.',
+          en: 'A dull, grey wall turns into something worth looking at.', bin: 1 },
+        { nl: 'Gemeenten geven jaarlijks miljoenen euro’s uit aan het verwijderen van graffiti.',
+          en: 'City councils spend millions of euros every year removing graffiti.', bin: 0 },
+        { nl: 'Het doet denken aan verwaarlozing, ook als de tekening zelf mooi is.',
+          en: 'It makes people think of neglect, even when the drawing itself is beautiful.', bin: 1 }
+      ],
+      explain: { nl: 'Ontstaansjaar en uitgegeven bedragen kun je narekenen: dat zijn feiten. Of iets "levendiger" of "verwaarloosd" aanvoelt, is een oordeel.',
+                 en: 'A founding year and money spent can be checked: those are facts. Whether something feels "livelier" or "neglected" is a judgement.' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver vooral bereiken met deze tekst?', en: 'What is the writer mainly trying to achieve with this text?' },
+      options: [
+        { nl: 'Je laten nadenken over een lastige vraag, door voor- en tegenstanders eerlijk aan het woord te laten',
+          en: 'Make you think about a hard question, by letting supporters and opponents speak fairly' },
+        { nl: 'Je overtuigen dat alle graffiti verboden moet worden', en: 'Convince you that all graffiti must be banned' },
+        { nl: 'Je uitleggen hoe je zelf een muurschildering maakt', en: 'Explain how to make a mural yourself' },
+        { nl: 'Reclame maken voor het werk van Banksy', en: 'Advertise Banksy’s work' }
+      ], answer: 0,
+      explain: { nl: 'De tekst geeft eerst de voorstanders het woord, dan de tegenstanders, en eindigt met "En wat vind jij?".',
+                 en: 'The text gives supporters a voice first, then opponents, and ends with "And what do you think?"' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Dan is precies dezelfde tekening ineens geen vernieling meer, maar een gemeentelijk kunstwerk." Waar verwijst "dezelfde tekening" naar?',
+           en: '"Then the exact same drawing suddenly stops being vandalism and becomes a municipal artwork." What does "the exact same drawing" refer to?' },
+      options: [
+        { nl: 'Naar een tekening die eerst illegaal was, maar nu op een aangewezen legale muur staat',
+          en: 'To a drawing that was illegal at first, but now stands on a designated legal wall' },
+        { nl: 'Naar het schilderij van Banksy dat verkocht is', en: 'To the Banksy painting that was sold' },
+        { nl: 'Naar de vogel op de stationsmuur', en: 'To the bird on the station wall' },
+        { nl: 'Naar de tekeningen in de metro’s van New York in de jaren zeventig', en: 'To the drawings in the New York subways in the 1970s' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over legale muren en officiële opdrachten; "dezelfde tekening" verwijst daarnaar terug.',
+                 en: 'The sentence before is about legal walls and official commissions; "the exact same drawing" refers back to that.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee dingen laten zien dat "kunst" en "toestemming" twee aparte vragen zijn? Kies er 2.',
+           en: 'Which two things show that "art" and "permission" are two separate questions? Pick 2.' },
+      options: [
+        { nl: 'Dezelfde tekening kan legaal zijn op de ene muur en illegaal op de andere', en: 'The same drawing can be legal on one wall and illegal on another' },
+        { nl: 'Banksy’s werk werd eerst illegaal gemaakt en later voor miljoenen verkocht', en: 'Banksy’s work was first made illegally and later sold for millions' },
+        { nl: 'Alle graffiti wordt tegenwoordig door de gemeente betaald', en: 'All graffiti is nowadays paid for by the city council' },
+        { nl: 'Musea vragen nooit toegang voor kunst', en: 'Museums never charge for admission to art' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 en 6 laten allebei zien dat dezelfde tekening kunst én (on)wettig kan zijn. De andere twee beweringen staan niet in de tekst.',
+                 en: 'Paragraphs 5 and 6 both show the same drawing can be art and (il)legal at once. The other two claims are not in the text.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom begint alinea 5 met "Tussen die twee uitersten zit een groot grijs gebied"?',
+           en: 'Why does paragraph 5 start with "Between those two extremes lies a big grey area"?' },
+      options: [
+        { nl: 'Om de tekst een nuance te geven na de duidelijke voor- en tegenargumenten',
+          en: 'To add a nuance to the text after the clear arguments for and against' },
+        { nl: 'Om een nieuw voorbeeld van vernieling te geven', en: 'To give a new example of vandalism' },
+        { nl: 'Om de geschiedenis van graffiti te herhalen', en: 'To repeat the history of graffiti' },
+        { nl: 'Om te zeggen dat voorstanders gelijk hebben', en: 'To say the supporters are right' }
+      ], answer: 0,
+      explain: { nl: 'Na de duidelijke alinea’s vóór en tegen volgt hier een nuance: legale muren en opdrachten.',
+                 en: 'After the clear for-and-against paragraphs, a nuance follows here: legal walls and commissions.' } },
+    { id: 'q7', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Graffiti kan een buurt opfleuren en beroemde kunstenaars opleveren, maar het gebeurt vaak zonder toestemming en kost geld om te verwijderen, waardoor het geen simpele vraag is of het kunst of vernieling is.',
+          en: 'Graffiti can brighten a neighbourhood and produce famous artists, but it often happens without permission and costs money to remove, so whether it is art or vandalism is not a simple question.' },
+        { nl: 'Banksy is de beroemdste graffitikunstenaar ter wereld.', en: 'Banksy is the most famous graffiti artist in the world.' },
+        { nl: 'Gemeenten moeten stoppen met het schoonmaken van muren.', en: 'City councils must stop cleaning walls.' },
+        { nl: 'Graffiti ontstond in New York en verspreidde zich daarna over de wereld.', en: 'Graffiti originated in New York and then spread around the world.' }
+      ], answer: 0,
+      explain: { nl: 'Dat antwoord bevat de kern van elke alinea: voor, tegen en de nuance ertussen. De rest zijn losse details.',
+                 en: 'That answer holds the core of every paragraph: for, against and the nuance between them. The rest are single details.' } },
+    { id: 'q8', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Uit de tekst blijkt dat de schrijver vindt dat graffiti altijd verboden moet worden.',
+           en: 'The text shows that the writer thinks graffiti should always be banned.' },
+      answer: false,
+      explain: { nl: 'De laatste alinea zegt: "Een makkelijk antwoord bestaat niet", en eindigt met een open vraag aan de lezer.',
+                 en: 'The last paragraph says: "There is no easy answer", and ends with an open question to the reader.' } },
+    { id: 'q9', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'Wat betekent "verwaarlozing" zoals het in de tekst gebruikt wordt?', en: 'What does "neglect" mean as used in the text?' },
+      options: [
+        { nl: 'De toestand waarin niemand meer voor iets zorgt', en: 'The state of nobody taking care of something anymore' },
+        { nl: 'Een nieuwe kunstvorm', en: 'A new art form' },
+        { nl: 'Het schoonmaken van een muur', en: 'The cleaning of a wall' },
+        { nl: 'Een soort spuitverf', en: 'A type of spray paint' }
+      ], answer: 0,
+      explain: { nl: 'De tekst gebruikt het woord om te beschrijven hoe wilde graffiti een straat verwaarloosd kan laten aanvoelen.',
+                 en: 'The text uses the word to describe how wild graffiti can make a street feel neglected.' } }
+  ]
+}
+]);

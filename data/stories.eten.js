@@ -547,3 +547,514 @@ addStories([
   ]
 }
 ]);
+
+addStories([
+{
+  id: 'eten-6', topic: 'eten', level: 1, emoji: '🍿', scene: 'kitchen',
+  title: { nl: 'Waarom knapt popcorn?', en: 'Why does popcorn pop?' },
+  text: {
+    nl: [
+      "In de keuken staat een pan op het vuur. Er zitten harde gele korrels in, mais. Na een paar minuten begint het: knap, knap, knap! De korrels springen tegen het deksel. Wat is er precies aan de hand in zo'n korrel?",
+      "Elke maiskorrel heeft een hard, dik jasje. Vanbinnen zit een klein beetje water, verstopt in het zetmeel. Dat water kun je niet zien. Maar het zit er wel, in elke korrel opnieuw.",
+      "Als de pan heet wordt, warmt dat kleine beetje water op. Het water verandert in stoom. Stoom heeft veel meer plaats nodig dan water. Maar de korrel laat de stoom niet zomaar weg: het harde jasje zit potdicht.",
+      "De stoom blijft duwen, harder en harder. Op een gegeven moment kan het jasje het niet meer houden. Het knapt open met een klap. De binnenkant van de korrel klapt naar buiten, wit en schuimig. Zo ontstaat popcorn.",
+      "Niet elke mais doet dit. Gewone mais, zoals je van de kolf eet, heeft een dunner jasje. De stoom ontsnapt daar te makkelijk. Alleen popcornmais heeft het stevige jasje dat nodig is voor die harde knap."
+    ],
+    en: [
+      "In the kitchen a pan stands on the stove. It is full of hard yellow kernels, corn. After a few minutes it starts: pop, pop, pop! The kernels jump against the lid. What exactly is going on inside such a kernel?",
+      "Every corn kernel has a hard, thick jacket. Inside sits a tiny bit of water, hidden in the starch. You cannot see that water. But it is there, in every single kernel.",
+      "When the pan gets hot, that tiny bit of water heats up. The water turns into steam. Steam needs far more space than water. But the kernel does not simply let the steam out: the hard jacket is sealed tight.",
+      "The steam keeps pushing, harder and harder. At some point the jacket cannot hold it any longer. It pops open with a bang. The inside of the kernel flips outward, white and foamy. That is how popcorn is made.",
+      "Not every corn does this. Regular corn, the kind you eat off the cob, has a thinner jacket. The steam escapes there too easily. Only popcorn corn has the sturdy jacket needed for that loud pop."
+    ]
+  },
+  words: [
+    { nl: 'korrel', en: 'kernel', defNl: 'een klein hard zaadje, bijvoorbeeld van mais', defEn: 'a small hard seed, for example of corn' },
+    { nl: 'zetmeel', en: 'starch', defNl: 'de stof in mais en aardappels waar ook water in verstopt kan zitten', defEn: 'the substance in corn and potatoes that can also hide water inside it' },
+    { nl: 'stoom', en: 'steam', defNl: 'wat er ontstaat als water heel heet wordt', defEn: 'what water turns into when it gets very hot' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat zit er verstopt in het zetmeel van een maiskorrel?', en: 'What is hidden in the starch of a corn kernel?' },
+      options: [
+        { nl: 'Een klein beetje water', en: 'A tiny bit of water' },
+        { nl: 'Een beetje zout', en: 'A bit of salt' },
+        { nl: 'Een druppel olie', en: 'A drop of oil' },
+        { nl: 'Een luchtbelletje', en: 'A little air bubble' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Vanbinnen zit een klein beetje water, verstopt in het zetmeel."',
+                 en: 'Paragraph 2: "Inside sits a tiny bit of water, hidden in the starch."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Gewone mais van de kolf knapt precies zo hard open als popcornmais.',
+           en: 'Regular corn off the cob pops open exactly as loudly as popcorn corn.' },
+      answer: false,
+      explain: { nl: 'Alinea 5: gewone mais heeft een dunner jasje, waardoor de stoom te makkelijk ontsnapt.',
+                 en: 'Paragraph 5: regular corn has a thinner jacket, so the steam escapes too easily.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Stoom is water dat ___.', en: 'Steam is water that ___.' },
+      options: [
+        { nl: 'zo heet is geworden dat het gas is geworden', en: 'has become so hot that it has turned into gas' },
+        { nl: 'is bevroren tot ijs', en: 'has frozen into ice' },
+        { nl: 'zout heeft opgelost', en: 'has dissolved salt' },
+        { nl: 'in de koelkast heeft gestaan', en: 'has been in the fridge' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "Het water verandert in stoom." Stoom is water dat door hitte gas is geworden.',
+                 en: 'Paragraph 3: "The water turns into steam." Steam is water that has turned into gas through heat.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet op volgorde wat er in de korrel gebeurt.', en: 'Put in order what happens inside the kernel.' },
+      items: [
+        { nl: 'De pan wordt heet.', en: 'The pan gets hot.' },
+        { nl: 'Het water in de korrel verandert in stoom.', en: 'The water in the kernel turns into steam.' },
+        { nl: 'De stoom duwt steeds harder tegen het jasje.', en: 'The steam pushes harder and harder against the jacket.' },
+        { nl: 'Het jasje knapt open en de korrel klapt naar buiten.', en: 'The jacket pops open and the kernel flips outward.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst wordt het heet, dan ontstaat stoom, dan groeit de druk, en pas dan knapt de korrel open.',
+                 en: 'First it gets hot, then steam forms, then the pressure grows, and only then does the kernel pop open.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat deze tekst vooral over?', en: 'What is this text mainly about?' },
+      options: [
+        { nl: 'Hoe een druppel water in een maiskorrel popcorn laat ontstaan',
+          en: 'How a drop of water inside a corn kernel creates popcorn' },
+        { nl: 'Hoe je een pan schoonmaakt', en: 'How to clean a pan' },
+        { nl: 'Waarom mais geel is', en: 'Why corn is yellow' },
+        { nl: 'Hoe je een deksel vastmaakt', en: 'How to fasten a lid' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea legt een stapje uit van water tot knappende korrel.',
+                 en: 'Every paragraph explains one step from water to popping kernel.' } }
+  ]
+},
+
+{
+  id: 'eten-7', topic: 'eten', level: 2, emoji: '🧅', scene: 'kitchen',
+  title: { nl: 'Waarom moet je huilen van een ui?', en: 'Why do onions make you cry?' },
+  text: {
+    nl: [
+      "Je staat in de keuken, snijdt een ui doormidden, en na een paar seconden prikken je ogen. Even later huil je gewoon, terwijl er niets verdrietigs is gebeurd. Wat doet die ui met je?",
+      "In een ui zitten piepkleine cellen, opgesloten achter dunne wandjes. Zolang de ui heel is, gebeurt er niets. Maar zodra je mes door die wandjes snijdt, komen er stoffen vrij die normaal gescheiden blijven. Ze mengen zich en vormen een prikkelend gas.",
+      "Dat gas stijgt op naar je ogen. In je ogen zit altijd een laagje vocht, om ze vochtig te houden. Zodra het gas dat vocht raakt, ontstaat er een heel zwak zuurtje. Je ogen voelen dat meteen als iets vervelends.",
+      "Je hersenen reageren razendsnel. Ze sturen een seintje: spoel dit weg! Daarom maken je traanklieren extra tranen aan. Die tranen spoelen het zuurtje weg, net zoals water een vlek uit een trui spoelt.",
+      "Gelukkig zijn er trucjes. Een koude ui geeft minder gas af, dus leg hem even in de koelkast voor je gaat snijden. Snijden onder de afzuigkap of vlak bij een open raam helpt ook: het gas waait dan weg voordat het je ogen bereikt. En een heel scherp mes beschadigt minder cellen dan een bot mes, dus komt er minder gas vrij.",
+      "Zo simpel is het dus: geen verdriet, maar chemie. Je ogen doen precies wat ze moeten doen, alleen kiezen ze op dat moment het verkeerde moment om het te laten zien."
+    ],
+    en: [
+      "You are standing in the kitchen, you cut an onion in half, and after a few seconds your eyes start to sting. A moment later you are simply crying, even though nothing sad has happened. What does that onion do to you?",
+      "An onion is full of tiny cells, sealed off behind thin walls. As long as the onion is whole, nothing happens. But the moment your knife cuts through those walls, substances that normally stay separate are released. They mix together and form an irritating gas.",
+      "That gas rises up to your eyes. Your eyes always have a thin layer of moisture on them, to keep them moist. The moment the gas touches that moisture, a very weak acid forms. Your eyes feel that right away as something unpleasant.",
+      "Your brain reacts in a flash. It sends a signal: rinse this away! That is why your tear glands make extra tears. Those tears rinse the mild acid away, just like water rinses a stain out of a jumper.",
+      "Luckily there are tricks. A cold onion releases less gas, so pop it in the fridge for a bit before you start cutting. Cutting under the extractor fan or near an open window also helps: the gas blows away before it reaches your eyes. And a very sharp knife damages fewer cells than a blunt one, so less gas is released.",
+      "So it is that simple: no sadness, just chemistry. Your eyes are doing exactly what they are supposed to do, they just pick the wrong moment to show it."
+    ]
+  },
+  words: [
+    { nl: 'traanklieren', en: 'tear glands', defNl: 'de plekjes bij je ogen die tranen maken', defEn: 'the spots near your eyes that make tears' },
+    { nl: 'vocht', en: 'moisture', defNl: 'een dun laagje water, bijvoorbeeld op je oog', defEn: 'a thin layer of water, for example on your eye' },
+    { nl: 'afzuigkap', en: 'extractor fan', defNl: 'het apparaat boven het fornuis dat lucht en geur wegzuigt', defEn: 'the appliance above the stove that sucks away air and smell' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat zit er altijd in je ogen, om ze vochtig te houden?', en: 'What is always in your eyes, to keep them moist?' },
+      options: [
+        { nl: 'Een laagje vocht', en: 'A thin layer of moisture' },
+        { nl: 'Een laagje huid', en: 'A layer of skin' },
+        { nl: 'Een laagje zout', en: 'A layer of salt' },
+        { nl: 'Een laagje was', en: 'A layer of wax' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "In je ogen zit altijd een laagje vocht, om ze vochtig te houden."',
+                 en: 'Paragraph 3: "Your eyes always have a thin layer of moisture on them, to keep them moist."' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom maak je extra tranen aan als je een ui snijdt?', en: 'Why do you produce extra tears when you cut an onion?' },
+      options: [
+        { nl: 'Om het zuurtje uit je ogen te spoelen', en: 'To rinse the mild acid out of your eyes' },
+        { nl: 'Omdat je ogen moe worden van het snijden', en: 'Because your eyes get tired from cutting' },
+        { nl: 'Omdat de ui een sterke geur heeft', en: 'Because the onion has a strong smell' },
+        { nl: 'Omdat je hersenen verdrietig worden', en: 'Because your brain becomes sad' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: de tranen spoelen het zuurtje weg, net zoals water een vlek uit een trui spoelt.',
+                 en: 'Paragraph 4: the tears rinse the mild acid away, just like water rinses a stain out of a jumper.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Je traanklieren zijn de plekjes bij je ogen die ___.', en: 'Your tear glands are the spots near your eyes that ___.' },
+      options: [
+        { nl: 'tranen aanmaken', en: 'make tears' },
+        { nl: 'een prikkelend gas maken', en: 'make an irritating gas' },
+        { nl: 'je ogen dichtknijpen', en: 'squeeze your eyes shut' },
+        { nl: 'het mes vasthouden', en: 'hold the knife' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: "Daarom maken je traanklieren extra tranen aan."',
+                 en: 'Paragraph 4: "That is why your tear glands make extra tears."' } },
+    { id: 'q4', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Klik het woord en daarna de juiste betekenis.', en: 'Click the word and then the correct meaning.' },
+      pairs: [
+        { word: { nl: 'traanklieren', en: 'tear glands' }, meaning: { nl: 'de plekjes die tranen maken', en: 'the spots that make tears' } },
+        { word: { nl: 'vocht', en: 'moisture' }, meaning: { nl: 'een dun laagje water op iets', en: 'a thin layer of water on something' } },
+        { word: { nl: 'afzuigkap', en: 'extractor fan' }, meaning: { nl: 'het apparaat boven het fornuis dat lucht wegzuigt', en: 'the appliance above the stove that sucks away air' } }
+      ],
+      explain: { nl: 'Deze drie woorden komen allemaal uit de tekst.', en: 'All three words come from the text.' } },
+    { id: 'q5', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Wat hebben een koude ui, een afzuigkap en een scherp mes met elkaar gemeen volgens de tekst?',
+           en: 'According to the text, what do a cold onion, an extractor fan and a sharp knife have in common?' },
+      options: [
+        { nl: 'Ze zorgen er alle drie voor dat er minder prikkelend gas bij je ogen komt',
+          en: 'All three make sure less irritating gas reaches your eyes' },
+        { nl: 'Ze maken de ui zoeter', en: 'They make the onion sweeter' },
+        { nl: 'Ze halen de schil van de ui', en: 'They remove the onion’s skin' },
+        { nl: 'Ze laten de ui sneller garen', en: 'They make the onion cook faster' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5 noemt alle drie als manieren om minder gas bij je ogen te krijgen.',
+                 en: 'Paragraph 5 names all three as ways to get less gas near your eyes.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Ui-tranen zijn geen verdriet maar een chemische reactie die je oog probeert weg te spoelen',
+          en: 'Onion tears are not sadness but a chemical reaction your eye tries to rinse away' },
+        { nl: 'Ui is een ongezonde groente', en: 'Onion is an unhealthy vegetable' },
+        { nl: 'Een scherp mes is altijd beter dan een bot mes', en: 'A sharp knife is always better than a blunt one' },
+        { nl: 'Je moet nooit in de keuken huilen', en: 'You should never cry in the kitchen' }
+      ], answer: 0,
+      explain: { nl: 'Alle alinea’s samen leggen uit hoe het prikkelende gas ontstaat en waarom je ogen erop reageren met tranen.',
+                 en: 'All the paragraphs together explain how the irritating gas forms and why your eyes respond to it with tears.' } }
+  ]
+},
+
+{
+  id: 'eten-8', topic: 'eten', level: 3, emoji: '🧀', scene: 'farm',
+  title: { nl: 'Hoe krijgt kaas zijn gaten?', en: 'How does cheese get its holes?' },
+  text: {
+    nl: [
+      "Op de foto in het prentenboek heeft de muis een geel blok kaas met ronde gaten erin. Kinderen tekenen kaas al jaren zo. Maar hoe komen die gaten daar eigenlijk in? Niemand prikt ze erin met een satéprikker.",
+      "Het antwoord zit al in de melk, voordat de kaas zelfs maar bestaat. Bij het kaasmaken wordt melk gestremd tot een dikke massa, en daar worden speciale bacteriën aan toegevoegd. Deze bacteriën zijn onmisbaar: zonder hen wordt melk nooit kaas, maar gewoon bedorven melk.",
+      "Sommige van die bacteriën doen iets bijzonders terwijl de kaas rijpt in een koele kelder. Ze eten een stofje in de kaas, melkzuur, en daarbij laten ze een gas los: koolzuurgas. Dat gas kan nergens heen in de stevige kaasmassa, dus het blijft zitten en duwt de kaas een beetje uit elkaar. Zo ontstaat een bel.",
+      "Hoe langer de kaas rijpt, hoe meer tijd de bacteriën krijgen om te werken, en hoe groter de bellen kunnen worden. Bij een jonge kaas van een paar weken zie je nog bijna niets. Bij een kaas die maanden rijpt, zoals een Leerdammer, zijn de gaten vaak zo groot als een knikker of nog groter.",
+      "Kaasmakers hebben hier zelf best veel invloed op. Door de temperatuur van de rijpkelder aan te passen, kunnen ze de bacteriën sneller of langzamer laten werken. Willen ze een kaas zonder gaten, zoals sommige geraspte kazen, dan gebruiken ze bacteriën die geen gas maken.",
+      "Dus die gaten zijn geen foutje en ook geen trucje van de fabriek. Het zijn de sporen van piepkleine bacteriën die, verstopt in het donker, precies deden waar ze goed in zijn."
+    ],
+    en: [
+      "In the picture book the mouse has a yellow block of cheese with round holes in it. Children have drawn cheese like that for years. But how do those holes actually get in there? Nobody pokes them in with a skewer.",
+      "The answer is already in the milk, before the cheese even exists. When cheese is made, milk is curdled into a thick mass, and special bacteria are added to it. These bacteria are essential: without them milk never becomes cheese, just spoiled milk.",
+      "Some of those bacteria do something special while the cheese ripens in a cool cellar. They eat a substance in the cheese, lactic acid, and as they do they release a gas: carbon dioxide. That gas has nowhere to go inside the firm cheese mass, so it stays put and pushes the cheese apart a little. That is how a bubble forms.",
+      "The longer the cheese ripens, the more time the bacteria get to work, and the bigger the bubbles can become. In a young cheese only a few weeks old you hardly see anything yet. In a cheese that ripens for months, like a Leerdammer, the holes are often as big as a marble or even bigger.",
+      "Cheesemakers actually have quite a lot of influence on this themselves. By adjusting the temperature of the ripening cellar, they can make the bacteria work faster or slower. If they want a cheese without holes, like some grated cheeses, they use bacteria that make no gas.",
+      "So those holes are not a mistake, and not a trick by the factory either. They are the traces of tiny bacteria that, hidden in the dark, did exactly what they are good at."
+    ]
+  },
+  words: [
+    { nl: 'stremmen', en: 'to curdle', defNl: 'melk dik laten worden zodat er kaas van gemaakt kan worden', defEn: 'to make milk thicken so cheese can be made from it' },
+    { nl: 'rijpen', en: 'to ripen', defNl: 'een tijd bewaard worden zodat de smaak verandert', defEn: 'to be stored for a while so the flavour changes' },
+    { nl: 'koolzuurgas', en: 'carbon dioxide', defNl: 'een onzichtbaar gas dat bacteriën kunnen maken', defEn: 'an invisible gas that bacteria can produce' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat laten de bacteriën los terwijl ze melkzuur opeten?', en: 'What do the bacteria release while they eat lactic acid?' },
+      options: [
+        { nl: 'Koolzuurgas', en: 'Carbon dioxide' },
+        { nl: 'Zuurstof', en: 'Oxygen' },
+        { nl: 'Waterdamp', en: 'Water vapour' },
+        { nl: 'Zout', en: 'Salt' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "Ze eten een stofje in de kaas, melkzuur, en daarbij laten ze een gas los: koolzuurgas."',
+                 en: 'Paragraph 3: "They eat a substance in the cheese, lactic acid, and as they do they release a gas: carbon dioxide."' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Dat gas kan nergens heen in de stevige kaasmassa." Waar verwijst "dat gas" naar?',
+           en: '"That gas has nowhere to go inside the firm cheese mass." What does "that gas" refer to?' },
+      options: [
+        { nl: 'Het koolzuurgas dat de bacteriën loslaten', en: 'The carbon dioxide the bacteria release' },
+        { nl: 'De lucht in de kaaswinkel', en: 'The air in the cheese shop' },
+        { nl: 'De geur van de kelder', en: 'The smell of the cellar' },
+        { nl: 'Het gas van het fornuis', en: 'The gas from the stove' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor noemt het koolzuurgas dat vrijkomt; "dat gas" verwijst daarnaar terug.',
+                 en: 'The sentence before names the carbon dioxide that is released; "that gas" refers back to it.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom heeft een kaas die maanden rijpt vaak grotere gaten dan een jonge kaas van een paar weken?',
+           en: 'Why does a cheese that ripens for months often have bigger holes than a young cheese only a few weeks old?' },
+      options: [
+        { nl: 'Omdat de bacteriën dan meer tijd hebben gehad om gas te maken',
+          en: 'Because the bacteria have had more time to make gas' },
+        { nl: 'Omdat oude kaas meer melk bevat', en: 'Because old cheese contains more milk' },
+        { nl: 'Omdat de kelder dan kouder wordt', en: 'Because the cellar gets colder then' },
+        { nl: 'Omdat er dan meer bacteriën worden toegevoegd', en: 'Because more bacteria are added then' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: hoe langer de kaas rijpt, hoe meer tijd de bacteriën krijgen en hoe groter de bellen worden.',
+                 en: 'Paragraph 4: the longer the cheese ripens, the more time the bacteria get and the bigger the bubbles become.' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Rijpen betekent dat een kaas ___.', en: 'To ripen means a cheese ___.' },
+      options: [
+        { nl: 'een tijd bewaard wordt, waardoor de smaak verandert', en: 'is stored for a while, which changes its flavour' },
+        { nl: 'meteen na het maken wordt opgegeten', en: 'is eaten right after it is made' },
+        { nl: 'in de vriezer wordt bewaard', en: 'is stored in the freezer' },
+        { nl: 'extra zout krijgt', en: 'gets extra salt' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 en 4 laten zien dat de kaas een tijd in een koele kelder ligt voordat hij klaar is.',
+                 en: 'Paragraphs 3 and 4 show the cheese sits in a cool cellar for a while before it is ready.' } },
+    { id: 'q5', type: 'mc', skill: 'structuur',
+      q: { nl: 'Wat doet de laatste alinea in deze tekst?', en: 'What does the last paragraph do in this text?' },
+      options: [
+        { nl: 'Ze vat samen dat de gaten het werk zijn van bacteriën, en geen foutje',
+          en: 'It sums up that the holes are the work of bacteria, not a mistake' },
+        { nl: 'Ze legt uit hoe je zelf kaas maakt', en: 'It explains how to make cheese yourself' },
+        { nl: 'Ze geeft een nieuw voorbeeld van een kaassoort', en: 'It gives a new example of a cheese type' },
+        { nl: 'Ze waarschuwt dat kaas met gaten ongezond is', en: 'It warns that cheese with holes is unhealthy' }
+      ], answer: 0,
+      explain: { nl: 'De laatste alinea sluit de tekst af door terug te komen op de vraag uit alinea 1: geen foutje, maar het werk van bacteriën.',
+                 en: 'The last paragraph closes the text by returning to the question from paragraph 1: not a mistake, but the work of bacteria.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Bacteriën die melkzuur opeten, laten een gas los waardoor er gaten in bepaalde kazen ontstaan',
+          en: 'Bacteria that eat lactic acid release a gas that creates holes in certain cheeses' },
+        { nl: 'Kaas wordt altijd gemaakt met een satéprikker', en: 'Cheese is always made using a skewer' },
+        { nl: 'Hoe ouder de kaas, hoe minder smaak hij heeft', en: 'The older the cheese, the less flavour it has' },
+        { nl: 'Alle kazen krijgen vanzelf gaten', en: 'Every cheese automatically gets holes' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea legt een stap uit van bacteriën tot bel tot gat, en dat is precies waar de tekst over gaat.',
+                 en: 'Every paragraph explains one step from bacteria to bubble to hole, which is exactly what the text is about.' } }
+  ]
+},
+
+{
+  id: 'eten-9', topic: 'eten', level: 4, emoji: '🗑️', scene: 'default',
+  title: { nl: 'Waar verdwijnt ons eten naartoe?', en: 'Where does our food disappear to?' },
+  text: {
+    nl: [
+      "Een brood dat een dag oud is, sla die te slap is geworden, een pak yoghurt met een datum van gisteren: elke dag verdwijnt er in Nederland een enorme berg eten in de vuilnisbak. Niet omdat het bedorven is, maar omdat iemand in de keten besloot dat het niet meer verkocht of gegeten kon worden.",
+      "Die keten begint op het land. Een deel van de oogst blijft liggen: te klein, te groot, of overtollig omdat de vraag lager was dan verwacht. In fabrieken en winkels gaat eten weg door beschadigde verpakkingen, te volle schappen en producten die simpelweg niet op tijd verkocht raakten.",
+      "In restaurants speelt iets anders mee: mensen bestellen te veel, of de keuken bereidt iets meer dan er die avond wordt opgegeten. Dan is er de laatste schakel, misschien de grootste: thuis. Onderzoekers schatten dat huishoudens samen minstens zoveel weggooien als winkels en restaurants samen.",
+      "Een groot deel van die thuisverspilling komt door een misverstand over de datum op de verpakking. Veel mensen lezen \"ten minste houdbaar tot\" als een harde grens: één dag erover en het pak gaat de bak in. Maar die datum zegt iets over kwaliteit, niet over veiligheid. Koekjes een week over de datum zijn heus niet giftig, hooguit iets minder knapperig.",
+      "Bij \"te gebruiken tot\", vooral op vlees, vis en verse maaltijden, ligt dat anders: die datum gaat wél over veiligheid, omdat bacteriën dan kunnen groeien. Het verschil tussen die twee zinnetjes lijkt klein, maar bepaalt of je een half pak yoghurt gerust opeet of toch weggooit.",
+      "Wat vooral helpt, is heel gewoon gedrag. Een boodschappenlijst maken voorkomt dat je dingen dubbel koopt. De koelkast op de juiste temperatuur zetten, tussen de twee en vier graden, houdt groente en zuivel dagen langer goed. Kliekjes de volgende dag opwarmen levert een gratis lunch op.",
+      "Geen van die stappen is ingewikkeld. Toch zou Nederland, als iedereen ze toepaste, in één klap veel weggegooid eten kunnen redden. Het probleem zit dus niet alleen bij boeren, fabrieken of supermarkten, maar voor een flink stuk in onze eigen keuken."
+    ],
+    en: [
+      "A loaf of bread that is a day old, lettuce that has gone too limp, a carton of yoghurt dated yesterday: every day an enormous pile of food disappears into the bin in the Netherlands. Not because it has gone bad, but because somewhere along the chain someone decided it could no longer be sold or eaten.",
+      "That chain begins in the field. Part of the harvest simply stays there: too small, too big, or surplus because demand was lower than expected. In factories and shops food is lost through damaged packaging, overstocked shelves and products that simply did not sell in time.",
+      "In restaurants something else plays a role: people order too much, or the kitchen prepares slightly more than gets eaten that evening. Then there is the last link, perhaps the biggest one: home. Researchers estimate that households together throw away at least as much as shops and restaurants combined.",
+      "A large part of that waste at home comes from a misunderstanding about the date on the packaging. Many people read \"best before\" as a hard line: one day over and the packet goes in the bin. But that date says something about quality, not about safety. Biscuits a week past their date are really not poisonous, at most a little less crunchy.",
+      "With \"use by\", mainly on meat, fish and fresh meals, that is different: that date really is about safety, because bacteria can then grow. The difference between those two little phrases seems small, but it decides whether you eat half a tub of yoghurt without worry or throw it away after all.",
+      "What mainly helps is very ordinary behaviour. A shopping list stops you buying things twice. Setting the fridge to the right temperature, between two and four degrees, keeps vegetables and dairy good for days longer. Reheating leftovers the next day gives you a free lunch.",
+      "None of those steps is complicated. Yet if everyone in the Netherlands applied them, the country could save much of all that wasted food in one go. So the problem does not only lie with farmers, factories or supermarkets, but for a good part in our own kitchen."
+    ]
+  },
+  words: [
+    { nl: 'schakel', en: 'link', defNl: 'een onderdeel van een keten, bijvoorbeeld één stap in de weg van boer tot bord', defEn: 'a part of a chain, for example one step on the way from farmer to plate' },
+    { nl: 'misverstand', en: 'misunderstanding', defNl: 'een verkeerd idee dat mensen over iets hebben', defEn: 'a wrong idea that people have about something' },
+    { nl: 'overtollig', en: 'surplus', defNl: 'meer dan er nodig of gevraagd is', defEn: 'more than is needed or asked for' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar begint de keten van voedselverspilling volgens de tekst?', en: 'Where does the food-waste chain begin, according to the text?' },
+      options: [
+        { nl: 'Op het land, bij de oogst', en: 'In the field, at the harvest' },
+        { nl: 'In de vuilnisbak thuis', en: 'In the bin at home' },
+        { nl: 'In het restaurant', en: 'In the restaurant' },
+        { nl: 'Bij de kassa van de supermarkt', en: 'At the supermarket checkout' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 begint met: "Die keten begint op het land."',
+                 en: 'Paragraph 2 starts with: "That chain begins in the field."' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Toch zou Nederland, als iedereen ze toepaste, ... eten kunnen redden." Waar verwijst "ze" naar?',
+           en: '"Yet if everyone applied them ... could save ... food." What does "them" refer to?' },
+      options: [
+        { nl: 'Naar de drie gewoontes uit de vorige alinea: een lijstje maken, de koelkast goed instellen, kliekjes opwarmen',
+          en: 'To the three habits from the previous paragraph: making a list, setting the fridge, reheating leftovers' },
+        { nl: 'Naar de boeren en de fabrieken', en: 'To the farmers and the factories' },
+        { nl: 'Naar de datums op de verpakking', en: 'To the dates on the packaging' },
+        { nl: 'Naar de restaurants en de winkels', en: 'To the restaurants and the shops' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 6 noemt drie gewone gewoontes; "ze" in alinea 7 verwijst terug naar die drie.',
+                 en: 'Paragraph 6 names three ordinary habits; "them" in paragraph 7 refers back to those three.' } },
+    { id: 'q3', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee redenen noemt de tekst waarom er eten weggaat in fabrieken en winkels? Kies er 2.',
+           en: 'Which two reasons does the text give for food being lost in factories and shops? Pick 2.' },
+      options: [
+        { nl: 'Beschadigde verpakkingen', en: 'Damaged packaging' },
+        { nl: 'Te volle schappen', en: 'Overstocked shelves' },
+        { nl: 'Te weinig personeel', en: 'Too few staff' },
+        { nl: 'Te hoge energieprijzen', en: 'Too-high energy prices' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 2: "beschadigde verpakkingen, te volle schappen en producten die simpelweg niet op tijd verkocht raakten."',
+                 en: 'Paragraph 2: "damaged packaging, overstocked shelves and products that simply did not sell in time."' } },
+    { id: 'q4', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom is een pak koekjes met een overschreden "ten minste houdbaar tot"-datum meestal nog gewoon te eten?',
+           en: 'Why is a packet of biscuits past its "best before" date usually still fine to eat?' },
+      options: [
+        { nl: 'Omdat die datum over kwaliteit gaat, niet over veiligheid', en: 'Because that date is about quality, not safety' },
+        { nl: 'Omdat koekjes nooit bederven', en: 'Because biscuits never go off' },
+        { nl: 'Omdat de fabrikant de datum expres te vroeg zet', en: 'Because the manufacturer deliberately sets the date too early' },
+        { nl: 'Omdat koekjes bacteriën doden', en: 'Because biscuits kill bacteria' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: "die datum zegt iets over kwaliteit, niet over veiligheid."',
+                 en: 'Paragraph 4: "that date says something about quality, not about safety."' } },
+    { id: 'q5', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een misverstand is ___.', en: 'A misunderstanding is ___.' },
+      options: [
+        { nl: 'een verkeerd idee dat mensen over iets hebben', en: 'a wrong idea that people have about something' },
+        { nl: 'een lege verpakking', en: 'an empty packet' },
+        { nl: 'een fout in de datum zelf', en: 'a mistake in the date itself' },
+        { nl: 'een tekort aan voedsel', en: 'a shortage of food' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 noemt het misverstand over de datum: mensen denken dat die over veiligheid gaat, terwijl het om kwaliteit gaat.',
+                 en: 'Paragraph 4 names the misunderstanding about the date: people think it is about safety while it is about quality.' } },
+    { id: 'q6', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de schakels van de voedselketen op volgorde.', en: 'Put the links of the food chain in order.' },
+      items: [
+        { nl: 'Een deel van de oogst blijft op het land liggen.', en: 'Part of the harvest stays in the field.' },
+        { nl: 'In fabrieken en winkels gaat eten weg door schade en te volle schappen.', en: 'In factories and shops food is lost through damage and overstocked shelves.' },
+        { nl: 'In restaurants wordt soms te veel besteld of bereid.', en: 'In restaurants too much is sometimes ordered or prepared.' },
+        { nl: 'Thuis gooien huishoudens samen nog meer weg dan winkels en restaurants.', en: 'At home, households together throw away even more than shops and restaurants.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'De tekst volgt precies deze volgorde: land, fabriek en winkel, restaurant, en dan thuis.',
+                 en: 'The text follows exactly this order: field, factory and shop, restaurant, and then home.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 4 en 5 leggen het verschil uit tussen twee soorten datums op een verpakking. Wat is de functie van die twee alinea\'s in de tekst?',
+           en: 'Paragraphs 4 and 5 explain the difference between two kinds of dates on packaging. What do those two paragraphs do in the text?' },
+      options: [
+        { nl: 'Ze verklaren een misverstand dat een groot deel van de verspilling thuis veroorzaakt',
+          en: 'They explain a misunderstanding that causes a large part of the waste at home' },
+        { nl: 'Ze geven een nieuw voorbeeld van verspilling in de winkel', en: 'They give a new example of waste in the shop' },
+        { nl: 'Ze vatten de hele tekst samen', en: 'They summarise the whole text' },
+        { nl: 'Ze waarschuwen dat alle datums onbetrouwbaar zijn', en: 'They warn that all dates are unreliable' }
+      ], answer: 0,
+      explain: { nl: 'Na de alinea over thuisverspilling volgt precies de uitleg die dat misverstand ophelderen: het verschil tussen de twee datums.',
+                 en: 'After the paragraph about waste at home comes exactly the explanation that clears up that misunderstanding: the difference between the two dates.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Eten gaat verloren in elke stap van het land tot je eigen keuken, en thuis valt de meeste winst te behalen',
+          en: 'Food is lost at every step from the field to your own kitchen, and the biggest gain can be made at home' },
+        { nl: 'Boeren zijn verantwoordelijk voor alle voedselverspilling', en: 'Farmers are responsible for all food waste' },
+        { nl: 'Restaurants gooien het meeste eten weg', en: 'Restaurants throw away the most food' },
+        { nl: 'Een datum op een verpakking is altijd betrouwbaar', en: 'A date on packaging is always reliable' }
+      ], answer: 0,
+      explain: { nl: 'De tekst loopt van land naar fabriek naar restaurant naar thuis, en eindigt met de conclusie dat de grootste winst in onze eigen keuken zit.',
+                 en: 'The text runs from field to factory to restaurant to home, and ends with the conclusion that the biggest gain lies in our own kitchen.' } }
+  ]
+},
+
+{
+  id: 'eten-10', topic: 'eten', level: 5, emoji: '🍬', scene: 'default',
+  title: { nl: 'Moet suiker duurder worden?', en: 'Should sugar become more expensive?' },
+  text: {
+    nl: [
+      "Een blikje cola kost in de supermarkt al een paar jaar meer dan vroeger. Een deel van die prijsstijging komt niet van de fabrikant, maar van de overheid: een extra belasting op suiker. Moet dat wel? Veel mensen vragen zich hardop af of de overheid zich daarmee niet te veel bemoeit met wat we eten en drinken.",
+      "Zo'n suikertaks bestaat al in meerdere landen. Het Verenigd Koninkrijk voerde in 2018 een belasting in op frisdrank met veel suiker. Mexico deed dat al eerder, in 2014. Ook Nederland verhoogde in 2024 de belasting op suikerhoudende dranken. Het idee is steeds hetzelfde: maak het product duurder, en mensen kopen er vanzelf minder van.",
+      "Voorstanders wijzen naar de cijfers. In het Verenigd Koninkrijk daalde de hoeveelheid suiker in frisdrank flink, omdat veel fabrikanten hun recept aanpasten om onder de belastinggrens te blijven. Minder suiker drinken betekent minder overgewicht, minder gaatjes in tanden en op termijn minder kosten voor de zorg. Bovendien levert de belasting geld op, dat de overheid weer kan besteden aan bijvoorbeeld sportlessen op school.",
+      "\"Suiker is verslavend en jonge kinderen weten dat niet\", zegt een voorstander van zulke maatregelen. \"Als de prijs helpt om die eerste slok net iets minder vanzelfsprekend te maken, dan is dat de moeite waard.\"",
+      "Tegenstanders zien vooral de nadelen. Een extra belasting raakt gezinnen met een lager inkomen harder, omdat zij relatief een groter deel van hun geld aan boodschappen uitgeven. Bovendien wijken mensen vaak simpelweg uit naar goedkopere alternatieven die net zo veel suiker bevatten, zoals zelfgemaakte limonade of producten die niet onder de belasting vallen. Dan is er van de gezondheidswinst weinig over, terwijl iedereen wel meer betaalt.",
+      "\"Mensen mogen zelf weten wat ze eten en drinken\", zegt een tegenstander. \"De overheid kan beter voorlichting geven dan mensen via hun portemonnee dwingen.\"",
+      "Onderzoekers zien intussen dat de waarheid ergens in het midden ligt: een suikertaks werkt het best als hij wordt gecombineerd met goede voorlichting op scholen en gezondere alternatieven in de schappen. Los daarvan verandert hij weinig. De discussie gaat door, in Nederland en daarbuiten. En wat vind jij: moet suiker duurder worden, of is dat een te makkelijke oplossing voor een lastig probleem?"
+    ],
+    en: [
+      "A can of cola has cost more in the supermarket for a few years now. Part of that price rise does not come from the manufacturer, but from the government: an extra tax on sugar. Should that really happen? Many people openly wonder whether the government is not interfering too much with what we eat and drink.",
+      "A sugar tax like this already exists in several countries. The United Kingdom introduced a tax on high-sugar soft drinks in 2018. Mexico had already done so earlier, in 2014. The Netherlands also raised the tax on sugary drinks in 2024. The idea is always the same: make the product more expensive, and people automatically buy less of it.",
+      "Supporters point to the figures. In the United Kingdom the amount of sugar in soft drinks dropped considerably, because many manufacturers adjusted their recipes to stay under the tax threshold. Drinking less sugar means less obesity, fewer cavities in teeth, and lower healthcare costs in the long run. On top of that, the tax raises money, which the government can spend on, for example, sports lessons at school.",
+      "\"Sugar is addictive and young children do not know that,\" says a supporter of such measures. \"If the price helps make that first sip a little less obvious a choice, then it is worth it.\"",
+      "Opponents mainly see the downsides. An extra tax hits families with a lower income harder, because they spend a relatively bigger part of their money on groceries. On top of that, people often simply switch to cheaper alternatives that contain just as much sugar, such as homemade lemonade or products that fall outside the tax. Then little is left of the health benefit, while everyone pays more.",
+      "\"People are allowed to decide for themselves what they eat and drink,\" says an opponent. \"The government would do better to give information than to force people through their wallet.\"",
+      "Researchers meanwhile find that the truth lies somewhere in the middle: a sugar tax works best when it is combined with good information at schools and healthier alternatives on the shelves. On its own it changes little. The debate continues, in the Netherlands and beyond. So what do you think: should sugar become more expensive, or is that too easy a solution to a difficult problem?"
+    ]
+  },
+  words: [
+    { nl: 'suikertaks', en: 'sugar tax', defNl: 'een extra belasting op producten met veel suiker', defEn: 'an extra tax on products with a lot of sugar' },
+    { nl: 'voorlichting', en: 'public information', defNl: 'uitleg geven zodat mensen een onderwerp beter begrijpen', defEn: 'giving explanation so people understand a topic better' },
+    { nl: 'belastinggrens', en: 'tax threshold', defNl: 'de grens waarboven een product extra belasting krijgt', defEn: 'the limit above which a product gets an extra tax' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'In welk jaar voerde het Verenigd Koninkrijk een belasting in op frisdrank met veel suiker?',
+           en: 'In which year did the United Kingdom introduce a tax on high-sugar soft drinks?' },
+      options: [
+        { nl: '2018', en: '2018' },
+        { nl: '2014', en: '2014' },
+        { nl: '2024', en: '2024' },
+        { nl: '2010', en: '2010' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Het Verenigd Koninkrijk voerde in 2018 een belasting in op frisdrank met veel suiker."',
+                 en: 'Paragraph 2: "The United Kingdom introduced a tax on high-sugar soft drinks in 2018."' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Het Verenigd Koninkrijk voerde in 2018 een suikertaks in.', en: 'The United Kingdom introduced a sugar tax in 2018.', bin: 0 },
+        { nl: 'De overheid bemoeit zich te veel met wat we eten en drinken.', en: 'The government is interfering too much with what we eat and drink.', bin: 1 },
+        { nl: 'In het Verenigd Koninkrijk daalde de hoeveelheid suiker in frisdrank.', en: 'In the United Kingdom the amount of sugar in soft drinks dropped.', bin: 0 },
+        { nl: 'Mensen mogen zelf weten wat ze eten en drinken.', en: 'People are allowed to decide for themselves what they eat and drink.', bin: 1 }
+      ],
+      explain: { nl: 'Jaartallen en dalingen zijn te controleren. Uitspraken met "te veel" of "mogen zelf weten" zijn oordelen van mensen.',
+                 en: 'Years and drops can be checked. Statements with "too much" or "allowed to decide" are people’s judgements.' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver vooral bereiken met deze tekst?', en: 'What is the writer mainly trying to achieve with this text?' },
+      options: [
+        { nl: 'Je laten nadenken over een lastige keuze, door voor- en tegenargumenten naast elkaar te zetten',
+          en: 'Make you think about a difficult choice by placing arguments for and against side by side' },
+        { nl: 'Je overtuigen dat suiker helemaal verboden moet worden', en: 'Convince you that sugar should be banned altogether' },
+        { nl: 'Reclame maken voor frisdrank zonder suiker', en: 'Advertise sugar-free soft drinks' },
+        { nl: 'Uitleggen hoe je zelf limonade maakt', en: 'Explain how to make your own lemonade' }
+      ], answer: 0,
+      explain: { nl: 'De tekst geeft eerst de voorstanders het woord, dan de tegenstanders, en eindigt met "En wat vind jij?". Dat is nadenken uitlokken, geen overtuigen.',
+                 en: 'The text first gives the supporters a voice, then the opponents, and ends with "So what do you think?" That is inviting thought, not persuading.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Dan is er van de gezondheidswinst weinig over." Waar verwijst "dan" naar?',
+           en: '"Then little is left of the health benefit." What does "then" refer to?' },
+      options: [
+        { nl: 'Naar het moment waarop mensen overstappen op goedkopere suikerhoudende alternatieven',
+          en: 'To the moment when people switch to cheaper sugary alternatives' },
+        { nl: 'Naar het moment waarop de belasting wordt ingevoerd', en: 'To the moment when the tax is introduced' },
+        { nl: 'Naar het moment waarop fabrikanten hun recept aanpassen', en: 'To the moment when manufacturers adjust their recipe' },
+        { nl: 'Naar het moment waarop de overheid voorlichting geeft', en: 'To the moment when the government gives information' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor beschrijft dat mensen uitwijken naar goedkopere suikerhoudende alternatieven; "dan" verwijst naar dat moment.',
+                 en: 'The sentence before describes people switching to cheaper sugary alternatives; "then" refers to that moment.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee argumenten gebruiken de tegenstanders van een suikertaks? Kies er 2.',
+           en: 'Which two arguments do opponents of a sugar tax use? Pick 2.' },
+      options: [
+        { nl: 'Een extra belasting raakt gezinnen met een lager inkomen harder', en: 'An extra tax hits families with a lower income harder' },
+        { nl: 'Mensen wijken vaak uit naar goedkopere suikerhoudende alternatieven', en: 'People often switch to cheaper sugary alternatives' },
+        { nl: 'Suiker is niet slecht voor je tanden', en: 'Sugar is not bad for your teeth' },
+        { nl: 'De belasting levert de overheid te veel geld op', en: 'The tax raises too much money for the government' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 noemt precies deze twee: de belasting raakt lagere inkomens harder, en mensen wijken uit naar alternatieven. Over tanden of te veel geld zegt de tekst niets.',
+                 en: 'Paragraph 5 names exactly these two: the tax hits lower incomes harder, and people switch to alternatives. The text says nothing about teeth or too much money.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 7 begint met "Onderzoekers zien intussen...". Wat doet die alinea in de tekst?',
+           en: 'Paragraph 7 begins "Researchers meanwhile find...". What does that paragraph do in the text?' },
+      options: [
+        { nl: 'Ze brengt de twee kanten samen en laat zien dat de waarheid genuanceerd is',
+          en: 'It brings the two sides together and shows the truth is nuanced' },
+        { nl: 'Ze herhaalt het argument van de voorstanders', en: 'It repeats the supporters’ argument' },
+        { nl: 'Ze bewijst dat de tegenstanders gelijk hebben', en: 'It proves the opponents are right' },
+        { nl: 'Ze vertelt hoe je frisdrank maakt', en: 'It explains how to make soft drinks' }
+      ], answer: 0,
+      explain: { nl: 'Na de duidelijke voor- en tegenkant komt een alinea die nuanceert: een suikertaks werkt vooral in combinatie met voorlichting.',
+                 en: 'After the clear for-and-against comes a paragraph that adds nuance: a sugar tax mainly works combined with information.' } },
+    { id: 'q7', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Een suikertaks maakt suiker duurder om mensen minder te laten drinken en eten, maar de effecten op arme gezinnen en de kans om uit te wijken naar alternatieven maken het een lastige discussie.',
+          en: 'A sugar tax makes sugar more expensive to make people eat and drink less of it, but the effects on poorer families and the chance to switch to alternatives make it a difficult discussion.' },
+        { nl: 'Cola is duurder geworden omdat fabrikanten meer winst willen maken.', en: 'Cola has become more expensive because manufacturers want more profit.' },
+        { nl: 'Het Verenigd Koninkrijk en Mexico hebben dezelfde belastingregels.', en: 'The United Kingdom and Mexico have the same tax rules.' },
+        { nl: 'De overheid gebruikt het belastinggeld altijd voor sportlessen.', en: 'The government always uses the tax money for sports lessons.' }
+      ], answer: 0,
+      explain: { nl: 'Die zin vat het hele dilemma samen: doel, voordeel én nadeel. De andere drie zijn losse details uit één alinea.',
+                 en: 'That sentence sums up the whole dilemma: goal, benefit and downside. The other three are single details from one paragraph.' } },
+    { id: 'q8', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de tekst is iedereen het erover eens dat een suikertaks de beste oplossing is.',
+           en: 'According to the text, everyone agrees that a sugar tax is the best solution.' },
+      answer: false,
+      explain: { nl: 'De tekst laat juist zien dat voor- en tegenstanders het oneens zijn, en dat onderzoekers een genuanceerd antwoord geven.',
+                 en: 'The text actually shows supporters and opponents disagree, and researchers give a nuanced answer.' } },
+    { id: 'q9', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'In de tekst staat: mensen "wijken uit naar goedkopere alternatieven". Wat betekent dat hier?',
+           en: 'The text says people "switch to cheaper alternatives". What does that mean here?' },
+      options: [
+        { nl: 'Ze kopen iets anders dat minder kost maar net zo veel suiker bevat',
+          en: 'They buy something else that costs less but contains just as much sugar' },
+        { nl: 'Ze stoppen helemaal met frisdrank drinken', en: 'They stop drinking soft drinks completely' },
+        { nl: 'Ze verhuizen naar een ander land', en: 'They move to another country' },
+        { nl: 'Ze kopen juist duurdere merken', en: 'They buy more expensive brands instead' }
+      ], answer: 0,
+      explain: { nl: '"Uitwijken naar" betekent hier overstappen op iets anders: in dit geval een goedkoper product met evenveel suiker.',
+                 en: '"Switch to" here means moving to something else: in this case a cheaper product with just as much sugar.' } }
+  ]
+}
+]);

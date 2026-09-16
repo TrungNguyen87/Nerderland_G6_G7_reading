@@ -32,6 +32,19 @@ All notable changes to Leeskampioen are recorded here. Format loosely follows
   returning player's chip, creating a second profile with no leakage from
   the first, the parent dashboard's profile switcher, and that a download's
   file name identifies the player.
+- **A second story at every level of every world**, doubling the reading
+  game from 50 to 100 stories (334 to 680 questions). Every one of the ten
+  worlds now has two stories per difficulty level, each on a distinct
+  subject from its existing five (see the world table in `README.md` for
+  the full list) — a second playthrough of a world is never the same five
+  stories again. The level screen already supported more than one story
+  per level (it gives each its own card, numbered "Kampioen 2" etc.); this
+  is the first time every world actually uses that.
+  - `tools/smoke.mjs`'s "level 5 starts locked" check was hardcoded to the
+    5th level-card being level 5, which only happened to be true while
+    every world had exactly one story per level. Fixed it to compute the
+    right card index instead, so it stays correct now that worlds can have
+    any number of stories per level.
 
 ### Planned (see `docs/plans/multiplayer-mode.md`)
 - A draft, phased plan for a future "two players compete" mode, starting

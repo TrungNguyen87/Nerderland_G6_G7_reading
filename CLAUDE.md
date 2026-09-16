@@ -93,3 +93,72 @@ reports.
 **Next likely steps:** if the user wants Phase 1 of the multiplayer plan
 built, start there — it's scoped concretely at the bottom of
 `docs/plans/multiplayer-mode.md`.
+
+### 2026-09-16 — doubled the story library, one new story per level per world
+Prompted by: "add more reading content to each topic."
+
+- Added a second story at every difficulty level of all ten worlds:
+  `data/stories.*.js` went from 5 stories each (50 total) to 10 each (100
+  total, 680 questions). The level screen already rendered a card per story
+  when a level had more than one (`elk niveau kan meerdere verhalen hebben`
+  in `js/app.js`'s `renderLevels()`) — this is the first time that code
+  path is actually exercised by real content instead of just being ready
+  for it.
+  - New ids follow the existing `<topic>-<n>` convention, continuing at
+    `-6` through `-10` (so `-1..5` are always the original five, `-6..10`
+    are always this session's five) — level and id number no longer line
+    up 1:1 the way they did when every world had exactly one story per
+    level; check each story's own `level` field, don't infer it from the
+    id.
+  - New subjects were chosen to be clearly distinct from each world's
+    existing five (e.g. dieren's new mosquito-adjacent "should zoos
+    disappear?" question is a different debate from the existing "should
+    we wipe out the mosquito?" one) — see the world table in `README.md`
+    for the full list per world.
+  - Wrote all ten worlds' new content in parallel via ten background
+    subagents (one per `data/stories.*.js` file, so no two agents ever
+    touched the same file), each given: the exact story/question JSON
+    schema, the validation rules `tools/validate.js` enforces, a
+    level-by-level template (question count, skill mix, word-count band)
+    reverse-engineered from the existing 50 stories, and five pre-assigned
+    subjects with a one-line brief each. Each agent ran `node
+    tools/validate.js` itself before reporting back; I re-validated after
+    every file landed and committed per-topic once its owning agent's
+    report confirmed a pure append (no edits to the original five stories
+    in that file). This is a reasonable pattern to repeat for future
+    "add more content" requests — the parallelism is the only way ~50
+    bilingual stories with schema-correct questions get written in one
+    session, but it needs a tight shared spec up front (agents that
+    improvise the question-type/skill mix drift from the existing style)
+    and a careful integration pass (see below) rather than trusting each
+    agent's self-report blindly.
+- Fixed a latent bug in `tools/smoke.mjs` this surfaced: its "level 5
+  starts locked" check used a hardcoded `nth(4)` (assuming the 5th
+  level-card is always the first level-5 card), which only happened to be
+  true while every world had exactly one story per level. It now computes
+  the actual index — however many level 1-4 stories the first world has —
+  instead. Committed and pushed separately before the story content
+  landed, since it's a complete, independent fix.
+- Verified integration issues that don't show up in any single agent's own
+  `validate.js` run: zero duplicate story ids and zero duplicate titles
+  across all ten files combined, every world ended up with exactly 2
+  stories per level (not, say, 3 at level 1 and 1 at level 3 from a
+  miscounted `level:` field), and `git diff` across the whole range of
+  story commits shows zero removed/modified lines in the original five
+  stories of any file — every change was a pure append.
+- Updated `README.md`'s world table (one short subject list appended per
+  world) and the "50 stories · 334 questions" stat line, and changed the
+  `id: 'dieren-6'` placeholder in the "Adding your own stories" example to
+  `dieren-11` since `dieren-6` is now a real story.
+- Both `node tools/validate.js` (100 stories, 680 questions, clean) and
+  `node tools/smoke.mjs` (full run, including the fixed locked-level
+  check) were run clean before the final push. `smoke.mjs` needed
+  `PLAYWRIGHT_CHROMIUM=/opt/pw-browsers/chromium-1194/chrome-linux/chrome`
+  this session (the installed `playwright` npm package wanted a chromium
+  build newer than the one pre-installed in this sandbox).
+
+**Next likely steps:** the ten worlds are now evenly doubled (2 stories per
+level each); if more content is wanted, either add a third story per level
+across the board (same process as above) or go deeper on specific worlds
+the user calls out. If the multiplayer plan (`docs/plans/multiplayer-mode.md`)
+comes up again, that's still unstarted and unrelated to this session's work.

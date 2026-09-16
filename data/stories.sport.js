@@ -484,3 +484,433 @@ addStories([
   ]
 }
 ]);
+
+/* --- Niveau 1, 2 en 3: nieuwe verhalen --- */
+addStories([
+{
+  id: 'sport-6', topic: 'sport', level: 1, emoji: '🛹', scene: 'default',
+  title: { nl: 'De eerste kickflip', en: 'The first kickflip' },
+  text: {
+    nl: [
+      "Elke dag na school gaat Jayden naar het skatepark achter de sporthal. Hij wil één truc leren: de kickflip. Daarbij springt hij omhoog en laat hij het board onder zich ronddraaien.",
+      "De eerste keer valt hij meteen op zijn knie. Au! Hij staat op, klopt het stof van zijn broek en probeert het opnieuw. En weer. En weer.",
+      "Na een week kan hij het board al een half rondje laten draaien. Maar landen lukt niet. Hij valt steeds op zijn billen. Zijn vriendin Sanne roept: \"Kijk naar het board, niet naar je voeten!\"",
+      "Jayden luistert. Hij buigt zijn knieën, springt en kijkt strak naar het board. Het draait helemaal rond. Zijn voeten raken de grond. Hij staat! Hij is niet gevallen!",
+      "Sanne juicht en geeft hem een high five. Jayden lacht zo breed dat zijn wangen pijn doen. Honderd keer vallen voor één keer landen, dat is meer dan genoeg waard."
+    ],
+    en: [
+      "Every day after school Jayden goes to the skatepark behind the sports hall. He wants to learn one trick: the kickflip. To do it, he jumps up and makes the board spin underneath him.",
+      "The first time he falls straight onto his knee. Ouch! He gets up, brushes the dust off his trousers and tries again. And again. And again.",
+      "After a week he can already make the board spin half a turn. But landing does not work. He keeps falling on his bottom. His friend Sanne shouts: \"Look at the board, not at your feet!\"",
+      "Jayden listens. He bends his knees, jumps and stares hard at the board. It spins all the way round. His feet touch the ground. He is standing! He has not fallen!",
+      "Sanne cheers and gives him a high five. Jayden smiles so wide his cheeks hurt. A hundred falls for one landing, that is worth more than enough."
+    ]
+  },
+  words: [
+    { nl: 'kickflip', en: 'kickflip', defNl: 'een skatetruc waarbij het board in de lucht ronddraait', defEn: 'a skateboard trick where the board spins around in the air' },
+    { nl: 'opstaan', en: 'to get up', defNl: 'weer overeind komen nadat je bent gevallen', defEn: 'to stand up again after falling' },
+    { nl: 'juichen', en: 'to cheer', defNl: 'hard roepen en springen van blijdschap', defEn: 'to shout loudly and jump for joy' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Welke truc wil Jayden leren?', en: 'Which trick does Jayden want to learn?' },
+      options: [ { nl: 'De kickflip', en: 'The kickflip' }, { nl: 'De ollie', en: 'The ollie' }, { nl: 'De grind', en: 'The grind' }, { nl: 'De 360 flip', en: 'The 360 flip' } ],
+      answer: 0,
+      explain: { nl: 'De eerste alinea zegt: "Hij wil één truc leren: de kickflip."', en: 'The first paragraph says: "He wants to learn one trick: the kickflip."' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar valt Jayden de eerste keer op?', en: 'What does Jayden fall on the first time?' },
+      options: [ { nl: 'Zijn knie', en: 'His knee' }, { nl: 'Zijn arm', en: 'His arm' }, { nl: 'Zijn hoofd', en: 'His head' }, { nl: 'Zijn rug', en: 'His back' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 2: "valt hij meteen op zijn knie".', en: 'Paragraph 2: "he falls straight onto his knee".' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Na zijn val staat Jayden meteen weer op. Opstaan betekent hier ___.', en: 'After his fall Jayden gets straight back up. To get up here means ___.' },
+      options: [
+        { nl: 'weer overeind komen na een val', en: 'to stand up again after falling' },
+        { nl: 'naar beneden vallen', en: 'to fall down' },
+        { nl: 'heel hard springen', en: 'to jump very hard' },
+        { nl: 'je veters strikken', en: 'to tie your shoelaces' }
+      ], answer: 0,
+      explain: { nl: 'Opstaan is het tegenovergestelde van vallen: je komt weer overeind.', en: 'To get up is the opposite of falling: you stand up again.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de gebeurtenissen in de goede volgorde.', en: 'Put the events in the right order.' },
+      items: [
+        { nl: 'Jayden valt op zijn knie.', en: 'Jayden falls on his knee.' },
+        { nl: 'Jayden kan het board een half rondje laten draaien.', en: 'Jayden can make the board spin half a turn.' },
+        { nl: 'Sanne roept dat hij naar het board moet kijken.', en: 'Sanne shouts that he should look at the board.' },
+        { nl: 'Jayden landt de kickflip.', en: 'Jayden lands the kickflip.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Val, half rondje, de tip van Sanne, dan pas de landing: dat is de volgorde in het verhaal.', en: 'Fall, half turn, the tip from Sanne, then the landing: that is the order in the story.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat leert dit verhaal je vooral?', en: 'What does this story mainly teach you?' },
+      options: [
+        { nl: 'Oefenen en vallen horen bij iets nieuws leren', en: 'Practising and falling are part of learning something new' },
+        { nl: 'Skaten is te gevaarlijk om te proberen', en: 'Skateboarding is too dangerous to try' },
+        { nl: 'Je moet altijd naar je voeten kijken', en: 'You should always look at your feet' },
+        { nl: 'Vrienden mogen niet meekijken tijdens het oefenen', en: 'Friends are not allowed to watch while you practise' }
+      ], answer: 0,
+      explain: { nl: 'Jayden valt heel vaak voordat het lukt. Dat honderd keer vallen hoort erbij.', en: 'Jayden falls many times before it works. All that falling is part of it.' } }
+  ]
+},
+
+{
+  id: 'sport-7', topic: 'sport', level: 2, emoji: '🦽', scene: 'stadium',
+  title: { nl: 'Topsport zonder twee benen', en: 'Top-level sport without two legs' },
+  text: {
+    nl: [
+      "Een paar weken na de Olympische Spelen gaan de poorten van hetzelfde stadion weer open. Dan beginnen de Paralympische Spelen. Duizenden sporters met een lichamelijke of visuele beperking strijden om goud, zilver en brons. Het woord \"para\" komt niet van \"minder\", maar van het Griekse woord voor \"naast\": deze Spelen staan naast de Olympische Spelen, niet eronder.",
+      "Om de wedstrijden eerlijk te maken, worden sporters ingedeeld in klassen. Een hardloper zonder onderbeen komt niet uit tegen iemand die blind is: hun beperking werkt heel anders. Daarom krijgt elke sporter, na een grondige keuring, een code zoals T64 of S9. De letter zegt om welke sport het gaat, het cijfer zegt hoe groot de beperking is.",
+      "Ook het materiaal is aangepast, maar niet zomaar een beetje. Een racerolstoel is drie wielen lang, ligt heel laag en weegt soms minder dan negen kilo. Een sprintblade, het veerkrachtige kunstonderbeen waarmee sommige lopers rennen, is speciaal gemaakt voor de vorm en de kracht van elke sporter apart. Zo'n blade kost al snel duizenden euro's en wordt steeds opnieuw afgesteld.",
+      "Denk niet dat het daardoor makkelijker wordt. De trainingsuren zijn precies zo lang als bij niet-beperkte topsporters: vaak zes dagen per week, meerdere uren per dag. De wereldrecords worden ieder jaar sneller. Sommige tijden op de honderd meter met een sprintblade liggen inmiddels dicht bij die van hardlopers zonder beperking.",
+      "Toch kregen de Paralympische Spelen lang minder aandacht. Dat verandert. Steeds meer wedstrijden worden live uitgezonden en steeds meer mensen kijken toe. Topsport blijft topsport, met of zonder twee benen."
+    ],
+    en: [
+      "A few weeks after the Olympic Games, the gates of the same stadium open again. Then the Paralympic Games begin. Thousands of athletes with a physical or visual impairment compete for gold, silver and bronze. The word \"para\" does not come from \"less\", but from the Greek word for \"alongside\": these Games stand alongside the Olympic Games, not beneath them.",
+      "To make the competitions fair, athletes are placed into classes. A runner without a lower leg does not compete against someone who is blind: their impairment works completely differently. That is why every athlete, after a thorough assessment, gets a code such as T64 or S9. The letter says which sport it is, the number says how big the impairment is.",
+      "The equipment is adapted too, but not just a little. A racing wheelchair is three wheels long, sits very low and sometimes weighs less than nine kilos. A running blade, the springy artificial lower leg some runners run on, is made specially to fit the shape and strength of each athlete. Such a blade quickly costs thousands of euros and is adjusted again and again.",
+      "Do not think that makes it easier. The training hours are exactly as long as for non-disabled top athletes: often six days a week, several hours a day. World records get faster every year. Some times over a hundred metres with a running blade are now close to those of runners without an impairment.",
+      "Still, the Paralympic Games got less attention for a long time. That is changing. More and more competitions are broadcast live and more and more people watch. Top-level sport stays top-level sport, with or without two legs."
+    ]
+  },
+  words: [
+    { nl: 'keuring', en: 'assessment', defNl: 'een onderzoek waarbij artsen precies bekijken wat iemand wel en niet kan', defEn: 'an examination where doctors check exactly what someone can and cannot do' },
+    { nl: 'racerolstoel', en: 'racing wheelchair', defNl: 'een speciale, lichte rolstoel met drie wielen om snel mee te rijden', defEn: 'a special, light wheelchair with three wheels for racing' },
+    { nl: 'sprintblade', en: 'running blade', defNl: 'een veerkrachtig kunstonderbeen waarmee je hard kunt rennen', defEn: 'a springy artificial lower leg that lets you run fast' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar komt het woord "para" vandaan, volgens de tekst?', en: 'Where does the word "para" come from, according to the text?' },
+      options: [
+        { nl: 'Het Griekse woord voor "naast"', en: 'The Greek word for "alongside"' },
+        { nl: 'Het Engelse woord voor "minder"', en: 'The English word for "less"' },
+        { nl: 'De naam van een oude stad', en: 'The name of an old city' },
+        { nl: 'Een afkorting van het woord paralysis', en: 'An abbreviation of the word paralysis' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "van het Griekse woord voor \'naast\'".', en: 'Paragraph 1: "from the Greek word for \'alongside\'".' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom krijgt elke sporter een code zoals T64 of S9?', en: 'Why does every athlete get a code such as T64 or S9?' },
+      options: [
+        { nl: 'Zodat sporters met een vergelijkbare beperking tegen elkaar strijden', en: 'So athletes with a comparable impairment compete against each other' },
+        { nl: 'Zodat trainers weten wie het langst traint', en: 'So coaches know who trains the longest' },
+        { nl: 'Om bij te houden hoeveel medailles iemand wint', en: 'To keep track of how many medals someone wins' },
+        { nl: 'Om te bepalen welk land wint', en: 'To determine which country wins' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2 legt uit dat een hardloper zonder onderbeen niet uitkomt tegen iemand die blind is: de klasse zorgt voor een eerlijke strijd.', en: 'Paragraph 2 explains that a runner without a lower leg does not compete against someone blind: the class makes the contest fair.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Elke sporter krijgt een code na een grondige keuring. Een keuring is ___.', en: 'Every athlete gets a code after a thorough assessment. An assessment is ___.' },
+      options: [
+        { nl: 'een onderzoek dat precies bekijkt wat iemand kan', en: 'an examination that closely checks what someone can do' },
+        { nl: 'een wedstrijd om medailles', en: 'a competition for medals' },
+        { nl: 'een warming-up voor de wedstrijd', en: 'a warm-up before the race' },
+        { nl: 'het moment dat je wint', en: 'the moment you win' }
+      ], answer: 0,
+      explain: { nl: 'De tekst noemt de keuring vlak voor het geven van de code: het is het onderzoek dat de klasse bepaalt.', en: 'The text mentions the assessment right before the code is given: it is the examination that decides the class.' } },
+    { id: 'q4', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Klik het woord en daarna de juiste betekenis.', en: 'Click the word and then the correct meaning.' },
+      pairs: [
+        { word: { nl: 'keuring', en: 'assessment' }, meaning: { nl: 'onderzoek dat bekijkt wat iemand kan', en: 'an examination of what someone can do' } },
+        { word: { nl: 'racerolstoel', en: 'racing wheelchair' }, meaning: { nl: 'lichte rolstoel met drie wielen om snel te rijden', en: 'a light wheelchair with three wheels for racing' } },
+        { word: { nl: 'sprintblade', en: 'running blade' }, meaning: { nl: 'veerkrachtig kunstonderbeen om hard mee te rennen', en: 'a springy artificial lower leg for running fast' } }
+      ],
+      explain: { nl: 'Deze drie woorden komen allemaal uit de tekst.', en: 'All three words come from the text.' } },
+    { id: 'q5', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Sporters op de Paralympische Spelen trainen minder uren dan andere topsporters.', en: 'Athletes at the Paralympic Games train fewer hours than other top athletes.' },
+      answer: false,
+      explain: { nl: 'Alinea 4 zegt juist het tegenovergestelde: de trainingsuren zijn precies zo lang als bij niet-beperkte topsporters.', en: 'Paragraph 4 says the opposite: the training hours are exactly as long as for non-disabled top athletes.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Paralympische sporters zijn net zulke serieuze topsporters als Olympische sporters, met eigen klassen en aangepast materiaal', en: 'Paralympic athletes are just as serious top athletes as Olympic athletes, with their own classes and adapted equipment' },
+        { nl: 'Blinde sporters mogen niet meedoen aan de Spelen', en: 'Blind athletes are not allowed to take part in the Games' },
+        { nl: 'Racerolstoelen zijn te duur voor de meeste sporters', en: 'Racing wheelchairs are too expensive for most athletes' },
+        { nl: 'De Paralympische Spelen bestaan pas sinds kort', en: 'The Paralympic Games have only existed since recently' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst legt uit hoe klassen en materiaal het mogelijk maken dat dit net zo serieuze topsport is als de Olympische Spelen.', en: 'The whole text explains how classes and equipment make this just as serious a top-level sport as the Olympic Games.' } }
+  ]
+},
+
+{
+  id: 'sport-8', topic: 'sport', level: 3, emoji: '🚴', scene: 'default',
+  title: { nl: 'Waarom fietsers vlak achter elkaar rijden', en: 'Why cyclists ride close behind each other' },
+  text: {
+    nl: [
+      "In de Tour de France fietst het peloton vaak als één grote, dichte klont. Honderdvijftig renners rijden soms maar een paar centimeter van elkaars achterwiel. Dat lijkt gevaarlijk, en dat is het soms ook, maar er zit een heel logische reden achter: windschaduw.",
+      "Een fietser die vooraan rijdt, duwt met zijn hele lichaam de lucht opzij. Dat kost enorm veel kracht: bij hoge snelheid gaat wel tachtig procent van je energie op aan het overwinnen van luchtweerstand. Wie vlak achter een ander wiel blijft zitten, rijdt in een soort rustige luchtbel. Onderzoekers meten dat een volger daardoor zo'n dertig procent minder energie kwijt is bij dezelfde snelheid.",
+      "Dat verklaart meteen waarom een solo-ontsnapping zo zwaar is. Eén renner die vooruit rijdt, vecht helemaal alleen tegen de wind. Het peloton erachter deelt de last: renners wisselen elkaar constant af aan kop, terwijl de rest lekker in de luwte meerijdt. Daardoor kan het peloton bijna altijd harder dan de vluchter, en wordt een ontsnapping meestal, maar niet altijd, ingehaald voor de finish.",
+      "Ploegen gebruiken dit elke dag als tactiek. Zogeheten knechten rijden een groot deel van de etappe vooraan, zodat hun kopman de hele dag lekker uit de wind kan blijven en fris is voor de laatste beklimming. Bij harde zijwind splitst het peloton zelfs in waaiers: schuine linies waarin elke renner net iets naast en achter de vorige schuift om optimaal beschut te blijven. Wie de aansluiting mist, verliest in een paar minuten tijd soms al zijn kansen.",
+      "Zo blijkt wielrennen minder een gevecht van de sterkste benen te zijn dan het lijkt. Wie het beste weet wanneer hij moet schuilen en wanneer hij moet trekken, wint vaker dan wie simpelweg het hardst kan fietsen."
+    ],
+    en: [
+      "In the Tour de France the peloton often rides as one big, tightly packed clump. A hundred and fifty riders sometimes ride only a few centimetres from each other's back wheel. That looks dangerous, and sometimes it is, but there is a very logical reason behind it: drafting.",
+      "A cyclist riding at the front pushes the air aside with his whole body. That costs an enormous amount of strength: at high speed as much as eighty percent of your energy goes into overcoming air resistance. Anyone who stays right behind another wheel rides in a kind of calm air bubble. Researchers measure that a follower uses about thirty percent less energy at the same speed because of this.",
+      "That immediately explains why a solo breakaway is so hard. One rider riding out front fights the wind completely alone. The peloton behind shares the load: riders constantly take turns at the front, while the rest happily ride along in the shelter. Because of that the peloton can almost always go faster than the escapee, and a breakaway is usually, though not always, caught before the finish.",
+      "Teams use this as tactics every day. So-called domestiques ride at the front for a large part of the stage, so that their team leader can stay out of the wind all day and be fresh for the final climb. In strong crosswinds the peloton even splits into echelons: diagonal lines in which every rider slots in just beside and behind the one in front to stay optimally sheltered. Anyone who misses the connection can lose all their chances within a few minutes.",
+      "So cycling turns out to be less of a battle of the strongest legs than it looks. Whoever best knows when to shelter and when to pull wins more often than whoever can simply pedal the hardest."
+    ]
+  },
+  words: [
+    { nl: 'windschaduw', en: 'draft / slipstream', defNl: 'de luwe plek vlak achter iemand waar de wind minder hard voelt', defEn: 'the sheltered spot right behind someone where the wind feels less strong' },
+    { nl: 'luchtweerstand', en: 'air resistance', defNl: 'de kracht van de lucht die tegen je in duwt als je beweegt', defEn: 'the force of the air pushing against you as you move' },
+    { nl: 'waaier', en: 'echelon', defNl: 'een schuine linie van renners die elkaar beschutten tegen zijwind', defEn: 'a diagonal line of riders sheltering each other from crosswind' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel procent minder energie is een volger kwijt, volgens de tekst?', en: 'How much less energy does a follower use, according to the text?' },
+      options: [ { nl: 'Ongeveer dertig procent', en: 'About thirty percent' }, { nl: 'Ongeveer tachtig procent', en: 'About eighty percent' },
+                 { nl: 'Ongeveer vijftig procent', en: 'About fifty percent' }, { nl: 'Ongeveer tien procent', en: 'About ten percent' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 2: "zo\'n dertig procent minder energie kwijt".', en: 'Paragraph 2: "about thirty percent less energy".' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom wordt een solo-ontsnapping meestal ingehaald?', en: 'Why is a solo breakaway usually caught?' },
+      options: [
+        { nl: 'Omdat het peloton de last van het kopwerk kan verdelen, en dus harder kan dan één renner alleen', en: 'Because the peloton can share the load of riding at the front, so it can go faster than one rider alone' },
+        { nl: 'Omdat de vluchter altijd een lekke band krijgt', en: 'Because the escapee always gets a flat tyre' },
+        { nl: 'Omdat de scheidsrechter dat beslist', en: 'Because the referee decides that' },
+        { nl: 'Omdat het publiek dat wil', en: 'Because the crowd wants it' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 legt uit dat het peloton de last deelt en daardoor bijna altijd harder kan dan de vluchter.', en: 'Paragraph 3 explains that the peloton shares the load and can therefore almost always go faster than the escapee.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Windschaduw is de plek ___.', en: 'Draft is the spot ___.' },
+      options: [
+        { nl: 'vlak achter iemand, waar de wind minder hard voelt', en: 'right behind someone, where the wind feels less strong' },
+        { nl: 'voor het peloton, waar de wind het hardst waait', en: 'in front of the peloton, where the wind blows hardest' },
+        { nl: 'naast de weg, waar je mag rusten', en: 'beside the road, where you are allowed to rest' },
+        { nl: 'boven op de berg, waar de finish ligt', en: 'at the top of the mountain, where the finish is' }
+      ], answer: 0,
+      explain: { nl: 'De tekst legt uit: wie vlak achter een ander wiel blijft zitten, rijdt in een rustige luchtbel.', en: 'The text explains: staying right behind another wheel means riding in a calm air bubble.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Daardoor kan het peloton bijna altijd harder dan de vluchter." Waar verwijst "daardoor" naar?', en: '"Because of that the peloton can almost always go faster than the escapee." What does "that" refer to?' },
+      options: [
+        { nl: 'Naar het feit dat het peloton het kopwerk onderling verdeelt', en: 'To the fact that the peloton shares the work at the front among themselves' },
+        { nl: 'Naar het feit dat de vluchter een lekke band heeft', en: 'To the fact that the escapee has a flat tyre' },
+        { nl: 'Naar de finish van de etappe', en: 'To the finish of the stage' },
+        { nl: 'Naar de zijwind', en: 'To the crosswind' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor zegt dat renners elkaar constant afwisselen aan kop. Dat delen van het werk is waar "daardoor" naar terugwijst.', en: 'The sentence before says riders constantly take turns at the front. That sharing of the work is what "that" refers back to.' } },
+    { id: 'q5', type: 'mc', skill: 'structuur',
+      q: { nl: 'Waarom begint de tekst met een scène uit de Tour de France?', en: 'Why does the text start with a scene from the Tour de France?' },
+      options: [
+        { nl: 'Om eerst een herkenbaar beeld te geven, voordat de uitleg over windschaduw volgt', en: 'To first give a recognisable image, before the explanation of drafting follows' },
+        { nl: 'Om te laten zien dat de Tour de France de beste wedstrijd is', en: 'To show that the Tour de France is the best race' },
+        { nl: 'Om meteen de tactiek van de ploegen uit te leggen', en: 'To immediately explain the teams’ tactics' },
+        { nl: 'Om een grap te maken over de renners', en: 'To make a joke about the riders' }
+      ], answer: 0,
+      explain: { nl: 'De tekst opent met het beeld van het dichte peloton en legt daarna pas uit waarom dat zo is.', en: 'The text opens with the image of the tightly packed peloton and only then explains why.' } },
+    { id: 'q6', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Bij harde zijwind blijft het peloton altijd in één rechte lijn rijden.', en: 'In strong crosswinds the peloton always keeps riding in one straight line.' },
+      answer: false,
+      explain: { nl: 'Alinea 4 zegt dat het peloton dan juist splitst in waaiers: schuine linies.', en: 'Paragraph 4 says the peloton splits into echelons instead: diagonal lines.' } },
+    { id: 'q7', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Door windschaduw en samenwerking is wielrennen niet alleen een kwestie van de sterkste benen, maar ook van slimme tactiek', en: 'Because of drafting and teamwork, cycling is not only about the strongest legs, but also about smart tactics' },
+        { nl: 'Alleen de kopman van een ploeg telt mee', en: 'Only the team leader counts' },
+        { nl: 'Zijwind is het grootste gevaar in het wielrennen', en: 'Crosswind is the biggest danger in cycling' },
+        { nl: 'Elke renner fietst het liefst helemaal alleen', en: 'Every rider prefers to cycle completely alone' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst laat zien hoe windschaduw en teamwerk samen bepalen wie er wint, niet alleen pure kracht.', en: 'The whole text shows how drafting and teamwork together decide who wins, not just raw strength.' } }
+  ]
+},
+
+{
+  id: 'sport-9', topic: 'sport', level: 4, emoji: '🏟️', scene: 'stadium',
+  title: { nl: 'Het thuisvoordeel: waarom een vol stadion helpt', en: 'Home advantage: why a full stadium helps' },
+  text: {
+    nl: [
+      "Voetbalclubs weten het al lang: spelen op eigen veld levert vaker een overwinning op dan spelen bij de tegenstander. Onderzoekers die duizenden profwedstrijden natelden, kwamen op ongeveer 45 procent winst voor de thuisploeg, tegenover maar 27 procent voor de uitploeg. De rest eindigt gelijk. Dat verschil noemen we het thuisvoordeel, en het bestaat niet alleen in het voetbal, maar bijna overal waar mensen tegen elkaar sporten.",
+      "Waar komt dat voordeel vandaan? Tijdens de coronapandemie kregen onderzoekers een unieke kans om dat uit te zoeken. Stadions bleven wekenlang helemaal leeg. Zonder joelend publiek gaven scheidsrechters opeens minder vaak een gele of rode kaart aan de uitploeg, en floten ze minder overtredingen in het voordeel van de thuisploeg. Een scheidsrechter laat zich blijkbaar, misschien zonder het zelf te merken, meebewegen door duizenden mensen die om een beslissing roepen.",
+      "Geluid is niet de enige verklaring. Spelers van de thuisploeg kennen elke hoek van hun veld: de lengte van het gras, de akoestiek van de catacomben, de kleedkamer waar ze al jaren zitten. Die vertrouwdheid klinkt klein, maar sporters die zich op hun gemak voelen, nemen gemiddeld iets snellere en betere beslissingen op het veld.",
+      "Daarnaast speelt vermoeidheid mee. De uitploeg reist soms uren met de bus of het vliegtuig, slaapt in een hotelbed dat niet het eigen bed is, en eet niet de vertrouwde maaltijd. Dat kost energie die de thuisploeg gewoon thuis kan sparen. Bij wedstrijden ver over de grens, met een tijdsverschil erbij, is dat verschil nog groter.",
+      "Toch is het thuisvoordeel de laatste decennia iets kleiner geworden. Topclubs reizen nu in speciale vliegtuigen, slapen in hotels die zo veel mogelijk op de vertrouwde omgeving lijken en nemen zelfs hun eigen kok mee. Daardoor voelen uitwedstrijden minder ontregelend dan vroeger, al verdwijnt het effect van het joelende publiek natuurlijk niet helemaal.",
+      "Het thuisvoordeel is dus geen toeval en ook geen enkel trucje, maar een optelsom: een scheidsrechter die meebeweegt met het publiek, spelers die zich vertrouwd voelen, en een lijf dat niet vermoeid is van het reizen. Samen verklaren die drie dingen waarom een vol stadion echt meetelt."
+    ],
+    en: [
+      "Football clubs have known it for a long time: playing on your own pitch leads to a win more often than playing at the opponent's ground. Researchers who counted thousands of professional matches found about 45 percent wins for the home team, against only 27 percent for the away team. The rest end in a draw. We call that difference the home advantage, and it exists not only in football but in almost every sport where people compete against each other.",
+      "Where does that advantage come from? During the coronavirus pandemic researchers got a unique chance to find out. Stadiums stayed completely empty for weeks. Without a roaring crowd, referees suddenly gave fewer yellow or red cards to the away team, and blew the whistle less often in the home team's favour. A referee is apparently swayed, perhaps without noticing it himself, by thousands of people shouting for a decision.",
+      "Sound is not the only explanation. Home players know every corner of their pitch: the length of the grass, the acoustics of the tunnel, the dressing room they have used for years. That familiarity sounds small, but athletes who feel at ease make slightly faster and better decisions on the pitch on average.",
+      "Tiredness also plays a part. The away team sometimes travels for hours by bus or plane, sleeps in a hotel bed that is not their own, and does not eat their usual meal. That costs energy the home team can simply save at home. In matches far across the border, with a time difference added, that gap is even bigger.",
+      "Still, the home advantage has become a little smaller in recent decades. Top clubs now travel in special planes, sleep in hotels made to feel as familiar as possible, and even bring their own cook. Because of that, away games feel less disruptive than they used to, although the effect of a roaring crowd of course does not disappear completely.",
+      "So the home advantage is neither a coincidence nor a single trick, but a combination: a referee who is swayed by the crowd, players who feel at home, and bodies that are not tired from travelling. Together these three things explain why a full stadium really does count."
+    ]
+  },
+  words: [
+    { nl: 'thuisvoordeel', en: 'home advantage', defNl: 'het voordeel dat een team heeft als het op eigen veld speelt', defEn: 'the advantage a team has when playing on its own pitch' },
+    { nl: 'akoestiek', en: 'acoustics', defNl: 'hoe geluid klinkt en weerkaatst in een ruimte', defEn: 'how sound sounds and echoes in a space' },
+    { nl: 'vertrouwdheid', en: 'familiarity', defNl: 'het gevoel dat je een plek heel goed kent', defEn: 'the feeling of knowing a place very well' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel procent van de wedstrijden wint de thuisploeg volgens het onderzoek?', en: 'What percentage of matches does the home team win, according to the research?' },
+      options: [ { nl: 'Ongeveer 45 procent', en: 'About 45 percent' }, { nl: 'Ongeveer 27 procent', en: 'About 27 percent' },
+                 { nl: 'Ongeveer 70 procent', en: 'About 70 percent' }, { nl: 'Ongeveer 10 procent', en: 'About 10 percent' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 1: "ongeveer 45 procent winst voor de thuisploeg".', en: 'Paragraph 1: "about 45 percent wins for the home team".' } },
+    { id: 'q2', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Wat ontdekten onderzoekers tijdens de lege stadions in de coronapandemie? Kies er 2.', en: 'What did researchers discover during the empty stadiums in the coronavirus pandemic? Pick 2.' },
+      options: [
+        { nl: 'Scheidsrechters gaven minder vaak een kaart aan de uitploeg', en: 'Referees gave fewer cards to the away team' },
+        { nl: 'Scheidsrechters floten minder overtredingen in het voordeel van de thuisploeg', en: 'Referees blew the whistle less often in the home team’s favour' },
+        { nl: 'Spelers scoorden veel meer doelpunten dan normaal', en: 'Players scored far more goals than normal' },
+        { nl: 'Wedstrijden duurden korter dan normaal', en: 'Matches lasted shorter than normal' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 2 noemt precies deze twee dingen. Over doelpunten of de duur van wedstrijden zegt de tekst niets.', en: 'Paragraph 2 names exactly these two things. The text says nothing about goals or match length.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Die vertrouwdheid klinkt klein, maar..." Waar verwijst "die" naar?', en: '"That familiarity sounds small, but..." What does "that" refer to?' },
+      options: [
+        { nl: 'Naar het kennen van het veld, de akoestiek en de kleedkamer', en: 'To knowing the pitch, the acoustics and the dressing room' },
+        { nl: 'Naar het geluid van het publiek', en: 'To the sound of the crowd' },
+        { nl: 'Naar de reistijd van de uitploeg', en: 'To the away team’s travel time' },
+        { nl: 'Naar de gele kaarten van de scheidsrechter', en: 'To the referee’s yellow cards' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor somt op: de lengte van het gras, de akoestiek, de kleedkamer. "Die vertrouwdheid" verwijst naar die hele opsomming.', en: 'The sentence before lists: the length of the grass, the acoustics, the dressing room. "That familiarity" refers to that whole list.' } },
+    { id: 'q4', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom is het verschil in vermoeidheid extra groot bij wedstrijden ver over de grens?', en: 'Why is the tiredness gap extra large in matches far across the border?' },
+      options: [
+        { nl: 'Omdat er dan ook nog een tijdsverschil bijkomt, naast de lange reis', en: 'Because a time difference is then added on top of the long journey' },
+        { nl: 'Omdat de bus daar langzamer rijdt', en: 'Because the bus drives slower there' },
+        { nl: 'Omdat de scheidsrechter dan strenger is', en: 'Because the referee is stricter then' },
+        { nl: 'Omdat het stadion daar altijd voller is', en: 'Because the stadium there is always fuller' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 noemt de lange reis én het tijdsverschil samen als reden voor het grotere verschil.', en: 'Paragraph 4 names the long journey and the time difference together as the reason for the bigger gap.' } },
+    { id: 'q5', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Vertrouwdheid betekent hier ___.', en: 'Familiarity here means ___.' },
+      options: [
+        { nl: 'het gevoel dat je een plek heel goed kent', en: 'the feeling of knowing a place very well' },
+        { nl: 'het geluid dat weerkaatst in een ruimte', en: 'the sound that echoes in a space' },
+        { nl: 'de vermoeidheid na een lange reis', en: 'the tiredness after a long journey' },
+        { nl: 'het aantal gele kaarten in een wedstrijd', en: 'the number of yellow cards in a match' }
+      ], answer: 0,
+      explain: { nl: 'De tekst noemt vertrouwdheid vlak na het voorbeeld van het veld en de kleedkamer kennen: het is het goed kennen van een plek.', en: 'The text mentions familiarity right after the example of knowing the pitch and dressing room: it is knowing a place well.' } },
+    { id: 'q6', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de onderdelen van het thuisvoordeel in de volgorde waarin de tekst ze bespreekt.', en: 'Put the parts of the home advantage in the order the text discusses them.' },
+      items: [
+        { nl: 'Onderzoekers tellen duizenden wedstrijden en vinden een verschil in winstpercentage.', en: 'Researchers count thousands of matches and find a difference in win percentage.' },
+        { nl: 'Tijdens lege stadions in de coronapandemie fluiten scheidsrechters anders.', en: 'During empty stadiums in the pandemic, referees whistle differently.' },
+        { nl: 'Spelers blijken baat te hebben bij vertrouwdheid met hun eigen veld.', en: 'Players turn out to benefit from familiarity with their own pitch.' },
+        { nl: 'Vermoeidheid door reizen kost de uitploeg energie.', en: 'Tiredness from travelling costs the away team energy.' },
+        { nl: 'Topclubs proberen het thuisvoordeel van de tegenstander tegenwoordig te verkleinen.', en: 'Top clubs nowadays try to shrink the opponent’s home advantage.' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'De vijf alinea’s volgen precies deze volgorde: cijfers, scheidsrechters, vertrouwdheid, vermoeidheid, en de huidige aanpak van topclubs.', en: 'The five paragraphs follow exactly this order: numbers, referees, familiarity, tiredness, and the current approach of top clubs.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 begint met "Toch is het thuisvoordeel... kleiner geworden." Wat doet het signaalwoord "toch" hier?', en: 'Paragraph 5 begins "Still, the home advantage has become... smaller." What does the signal word "still" do here?' },
+      options: [
+        { nl: 'Het zet een tegenstelling neer: eerder leek het thuisvoordeel groot, nu blijkt het iets af te nemen', en: 'It sets up a contrast: earlier the home advantage seemed large, now it turns out to be shrinking a little' },
+        { nl: 'Het geeft een voorbeeld van akoestiek', en: 'It gives an example of acoustics' },
+        { nl: 'Het vat de hele tekst samen', en: 'It summarises the whole text' },
+        { nl: 'Het introduceert een nieuw onderzoek uit Duitsland', en: 'It introduces a new study from Germany' }
+      ], answer: 0,
+      explain: { nl: '"Toch" laat een onverwachte wending zien na alle uitleg over waaróm het thuisvoordeel bestaat.', en: '"Still" shows an unexpected turn after all the explanation of why the home advantage exists.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Thuisvoordeel bestaat echt en komt door een combinatie van scheidsrechters die meebewegen, vertrouwdheid en minder vermoeidheid', en: 'Home advantage really exists and comes from a combination of referees being swayed, familiarity and less tiredness' },
+        { nl: 'Scheidsrechters zijn altijd oneerlijk', en: 'Referees are always unfair' },
+        { nl: 'Reizen heeft geen enkele invloed op een wedstrijd', en: 'Travelling has no influence at all on a match' },
+        { nl: 'Het thuisvoordeel is helemaal verdwenen', en: 'The home advantage has disappeared completely' }
+      ], answer: 0,
+      explain: { nl: 'De tekst zet drie oorzaken naast elkaar en laat zien dat ze samen het thuisvoordeel verklaren.', en: 'The text sets three causes side by side and shows that together they explain the home advantage.' } }
+  ]
+},
+
+{
+  id: 'sport-10', topic: 'sport', level: 5, emoji: '💊', scene: 'default',
+  title: { nl: 'Verdienen sporters die doping gebruikten een tweede kans?', en: 'Do athletes who used doping deserve a second chance?' },
+  text: {
+    nl: [
+      "Stel je voor: een sprinter van negentien wordt betrapt op een verboden middel. Ze krijgt een schorsing van vier jaar en mag niet meer meedoen aan wedstrijden. Na die vier jaar staat ze, inmiddels drieëntwintig, weer aan de startlijn. Mag ze meedoen? Of heeft ze haar recht daarop voorgoed verspeeld? Over die vraag verschillen sporters, trainers en fans van mening.",
+      "Doping zijn middelen die spieren sneller laten groeien, vermoeidheid uitstellen of het herstel versnellen. Ze staan op een verboden lijst omdat ze een oneerlijk voordeel geven én omdat ze op de lange termijn schadelijk kunnen zijn voor hart, lever of hormonen. Wie betrapt wordt, krijgt meestal een schorsing van enkele maanden tot enkele jaren, afhankelijk van het middel en of het de eerste keer is.",
+      "Voorstanders van een tweede kans wijzen erop dat mensen kunnen veranderen. Sommige sporters gebruikten doping toen ze nog minderjarig waren, onder druk van een trainer of een land dat resultaten eiste. \"Een straf van vier jaar is al zwaar genoeg,\" zegt een sportjurist. \"Als je die straf hebt uitgezeten, moet je verder kunnen met je leven.\" Sommige teruggekeerde sporters tonen bovendien openlijk spijt en waarschuwen jongere sporters voor dezelfde fout.",
+      "Tegenstanders denken vooral aan de sporters die zich wel aan de regels hielden. Zij trainden jarenlang net zo hard, zonder ooit een verboden middel aan te raken, en misten soms het podium omdat een concurrent stiekem voordeel had. Voor hen voelt een tweede kans oneerlijk: de een moest wachten op een eerlijke wedstrijd, de ander krijgt gewoon een nieuwe start. Ook wijzen zij op het voorbeeld dat topsporters geven aan kinderen die naar hen opkijken.",
+      "Sportbonden proberen daarom onderscheid te maken. Een sporter die per ongeluk een verboden stofje binnenkreeg via een besmet voedingssupplement, krijgt vaak een kortere schorsing dan iemand die doelbewust en jarenlang doping gebruikte. Bij een tweede overtreding is de straf meestal levenslang. Toch blijft het lastig om opzet te bewijzen, en dat maakt elke zaak weer anders.",
+      "Een makkelijk antwoord bestaat niet. Straf en vergeving, eerlijkheid en menselijkheid trekken allebei aan de discussie, en geen enkele sportbond heeft de perfecte regel gevonden. En wat vind jij?"
+    ],
+    en: [
+      "Imagine this: a nineteen-year-old sprinter tests positive for a banned substance. She gets a four-year ban and is not allowed to compete anymore. After those four years, now twenty-three, she is back on the start line. Should she be allowed to compete? Or has she permanently forfeited that right? Athletes, coaches and fans disagree about that question.",
+      "Doping means substances that make muscles grow faster, delay tiredness or speed up recovery. They are on a banned list because they give an unfair advantage and because in the long run they can damage the heart, liver or hormones. Anyone caught usually gets a ban of a few months to a few years, depending on the substance and whether it is a first offence.",
+      "Supporters of a second chance point out that people can change. Some athletes used doping while still under age, under pressure from a coach or a country demanding results. \"A four-year punishment is already severe enough,\" says a sports lawyer. \"Once you have served that punishment, you should be able to move on with your life.\" Some returning athletes also openly show regret and warn younger athletes against making the same mistake.",
+      "Opponents mainly think of the athletes who did stick to the rules. They trained just as hard for years, without ever touching a banned substance, and sometimes missed the podium because a rival had a secret advantage. For them a second chance feels unfair: one had to wait for a fair race, the other simply gets a fresh start. They also point to the example top athletes set for children who look up to them.",
+      "Sports federations therefore try to make a distinction. An athlete who accidentally ingested a banned substance through a contaminated food supplement often gets a shorter ban than someone who used doping deliberately for years. For a second offence the punishment is usually a lifetime ban. Still, proving intent remains difficult, and that makes every case different again.",
+      "There is no easy answer. Punishment and forgiveness, fairness and humanity both pull at the discussion, and no sports federation has found the perfect rule. And what do you think?"
+    ]
+  },
+  words: [
+    { nl: 'schorsing', en: 'ban / suspension', defNl: 'een periode waarin een sporter niet mag meedoen aan wedstrijden', defEn: 'a period in which an athlete is not allowed to compete' },
+    { nl: 'opzet', en: 'intent', defNl: 'iets expres doen, niet per ongeluk', defEn: 'doing something on purpose, not by accident' },
+    { nl: 'herstel', en: 'recovery', defNl: 'het proces waarbij je lichaam weer beter wordt na inspanning', defEn: 'the process of your body getting better again after effort' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe lang duurt de schorsing van de sprinter uit het voorbeeld?', en: 'How long is the ban of the sprinter in the example?' },
+      options: [ { nl: 'Vier jaar', en: 'Four years' }, { nl: 'Twee jaar', en: 'Two years' }, { nl: 'Tien jaar', en: 'Ten years' }, { nl: 'Eén jaar', en: 'One year' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 1: "Ze krijgt een schorsing van vier jaar".', en: 'Paragraph 1: "She gets a four-year ban".' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Doping kan schadelijk zijn voor hart, lever of hormonen.', en: 'Doping can be harmful to the heart, liver or hormones.', bin: 0 },
+        { nl: 'Een straf van vier jaar is al zwaar genoeg.', en: 'A four-year punishment is already severe enough.', bin: 1 },
+        { nl: 'Bij een tweede overtreding is de straf meestal levenslang.', en: 'For a second offence the punishment is usually a lifetime ban.', bin: 0 },
+        { nl: 'Een tweede kans voelt oneerlijk voor wie zich wel aan de regels hield.', en: 'A second chance feels unfair for those who did stick to the rules.', bin: 1 }
+      ],
+      explain: { nl: 'Wat de tekst als regel of cijfer geeft, kun je nameten: dat zijn feiten. "Al zwaar genoeg" en "voelt oneerlijk" zijn oordelen van mensen.', en: 'What the text gives as a rule or a number can be checked: those are facts. "Already enough" and "feels unfair" are judgements people make.' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver met deze tekst vooral bereiken?', en: 'What is the writer mainly trying to achieve with this text?' },
+      options: [
+        { nl: 'Je laten nadenken over een moeilijke vraag door beide kanten eerlijk te laten zien', en: 'Make you think about a difficult question by showing both sides fairly' },
+        { nl: 'Je overtuigen dat alle sporters die doping gebruikten voor altijd geschorst moeten blijven', en: 'Convince you that every athlete who used doping should stay banned forever' },
+        { nl: 'Uitleggen hoe je doping herkent in een laboratorium', en: 'Explain how doping is detected in a laboratory' },
+        { nl: 'Je laten lachen om een grappig verhaal over sport', en: 'Make you laugh with a funny story about sport' }
+      ], answer: 0,
+      explain: { nl: 'De schrijver geeft eerst de voorstanders het woord, dan de tegenstanders, en eindigt met "En wat vind jij?". Dat is geen overtuigen maar laten nadenken.', en: 'The writer gives the supporters a voice, then the opponents, and ends with "what do you think?". That is inviting thought, not persuading.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Voor hen voelt een tweede kans oneerlijk." Naar wie verwijst "hen"?', en: '"For them a second chance feels unfair." Who does "them" refer to?' },
+      options: [
+        { nl: 'Naar de sporters die zich wel aan de regels hielden', en: 'To the athletes who did stick to the rules' },
+        { nl: 'Naar de sporters die doping gebruikten', en: 'To the athletes who used doping' },
+        { nl: 'Naar de sportbonden', en: 'To the sports federations' },
+        { nl: 'Naar de trainers die druk uitoefenden', en: 'To the coaches who put on pressure' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4 begint met "de sporters die zich wel aan de regels hielden". "Hen" pakt die groep verderop weer op.', en: 'Paragraph 4 starts with "the athletes who did stick to the rules". "Them" picks up that group again later on.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee argumenten gebruiken voorstanders van een tweede kans? Kies er 2.', en: 'Which two arguments do supporters of a second chance use? Pick 2.' },
+      options: [
+        { nl: 'Mensen kunnen veranderen, zeker als ze jong fouten maakten', en: 'People can change, especially if they made mistakes when young' },
+        { nl: 'Een uitgezeten straf zou niet voor altijd moeten blijven meetellen', en: 'A served punishment should not keep counting forever' },
+        { nl: 'Doping is nooit echt schadelijk voor de gezondheid', en: 'Doping is never really harmful to health' },
+        { nl: 'Sportbonden verdienen meer geld met dopingzaken', en: 'Sports federations earn more money from doping cases' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 3 noemt precies deze twee argumenten. Over gezondheid of geld voor sportbonden zegt de tekst iets anders of niets.', en: 'Paragraph 3 names exactly these two arguments. The text says something different or nothing about health or money for federations.' } },
+    { id: 'q6', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de tekst krijgt elke sporter die doping gebruikt altijd dezelfde straf.', en: 'According to the text, every athlete who uses doping always gets the same punishment.' },
+      answer: false,
+      explain: { nl: 'Alinea 5 legt uit dat de straf verschilt: per ongeluk en doelbewust gebruik leiden tot een andere schorsing.', en: 'Paragraph 5 explains that the punishment differs: accidental and deliberate use lead to a different ban.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 gaat over het maken van onderscheid tussen soorten dopinggevallen. Wat is de functie van die alinea in de hele tekst?', en: 'Paragraph 5 is about making a distinction between types of doping cases. What is the function of that paragraph in the whole text?' },
+      options: [
+        { nl: 'Ze voegt nuance toe aan het felle voor-en-tegen door te laten zien dat niet elk geval hetzelfde is', en: 'It adds nuance to the sharp for-and-against by showing that not every case is the same' },
+        { nl: 'Ze herhaalt het argument van de voorstanders', en: 'It repeats the supporters’ argument' },
+        { nl: 'Ze vertelt het verhaal van de sprinter opnieuw', en: 'It tells the sprinter’s story again' },
+        { nl: 'Ze geeft het laatste woord aan de tegenstanders', en: 'It gives the last word to the opponents' }
+      ], answer: 0,
+      explain: { nl: 'Na de scherpe tegenstelling in alinea 3 en 4 laat alinea 5 zien dat sportbonden juist per geval kijken.', en: 'After the sharp contrast in paragraphs 3 and 4, paragraph 5 shows that federations actually look at each case individually.' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Sporters die doping gebruikten mogen na hun schorsing terugkeren, maar daarover verschillen mensen van mening: sommigen vinden dat straf genoeg is, anderen vinden het oneerlijk tegenover eerlijke sporters', en: 'Athletes who used doping may return after their ban, but people disagree about that: some think punishment is enough, others find it unfair to clean athletes' },
+        { nl: 'Doping is een middel dat spieren sneller laat groeien en daarom door alle sporters gebruikt wordt', en: 'Doping is a substance that makes muscles grow faster and is therefore used by all athletes' },
+        { nl: 'Sportjuristen bepalen altijd hoe lang een schorsing duurt, ongeacht het middel', en: 'Sports lawyers always decide how long a ban lasts, regardless of the substance' },
+        { nl: 'Sporters die eerlijk trainen, winnen nooit een medaille', en: 'Athletes who train honestly never win a medal' }
+      ], answer: 0,
+      explain: { nl: 'Een goede samenvatting pakt van elke alinea de kern: het dilemma, wat doping is, voor, tegen, nuance en open slot. De andere antwoorden zijn onjuist of losse details.', en: 'A good summary takes the core of each paragraph: the dilemma, what doping is, for, against, nuance and open ending. The other answers are incorrect or single details.' } },
+    { id: 'q9', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'In de tekst staat: "Toch blijft het lastig om opzet te bewijzen." Wat betekent opzet hier?', en: 'The text says: "Still, proving intent remains difficult." What does intent mean here?' },
+      options: [
+        { nl: 'Dat iemand iets expres deed, niet per ongeluk', en: 'That someone did something on purpose, not by accident' },
+        { nl: 'Dat iemand heel snel rent', en: 'That someone runs very fast' },
+        { nl: 'Dat iemand een medaille wint', en: 'That someone wins a medal' },
+        { nl: 'Dat iemand een schorsing krijgt', en: 'That someone gets a ban' }
+      ], answer: 0,
+      explain: { nl: 'Opzet staat tegenover per ongeluk: het is iets bewust en expres doen.', en: 'Intent is the opposite of accidental: it means doing something consciously and on purpose.' } }
+  ]
+}
+]);
