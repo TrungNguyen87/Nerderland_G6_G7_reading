@@ -475,3 +475,511 @@ addStories([
   ]
 }
 ]);
+
+/* --- Nieuwe verhalen: bever, octopus, trekvogels, mieren, dierentuinen --- */
+addStories([
+{
+  id: 'dieren-6', topic: 'dieren', level: 1, emoji: '🦫', scene: 'forest',
+  title: { nl: 'De bever bouwt een dam', en: 'The beaver builds a dam' },
+  text: {
+    nl: [
+      "Honderd jaar geleden was de bever helemaal verdwenen uit Nederland. Jagers vingen hem voor zijn dikke vacht. Pas de laatste tijd wonen er weer bevers, langs rustige beken en sloten.",
+      "Een bever is een echte bouwer. Met zijn scherpe tanden knaagt hij takken van bomen. Hij stapelt de takken op elkaar en stopt de gaten dicht met modder en gras. Zo bouwt hij een dam dwars door het water.",
+      "Achter de dam stijgt het water langzaam. Een smal beekje verandert in een brede poel. Midden in die poel bouwt de bever zijn burcht: een huis van takken, met de ingang onder water.",
+      "De poel is niet alleen goed voor de bever zelf. Vissen krijgen meer plek om te zwemmen. Kikkers leggen er hun eitjes. Vogels komen er drinken en baden. Eén dam zorgt dus voor een heel nieuw leefgebied.",
+      "Sommige boeren zijn niet blij, want een dam kan een weiland onder water zetten. Toch vinden veel mensen de bever een held: zonder machines maakt hij een plek waar heel veel andere dieren van profiteren."
+    ],
+    en: [
+      "A hundred years ago the beaver had completely disappeared from the Netherlands. Hunters caught it for its thick fur. Only recently have beavers returned, along quiet streams and ditches.",
+      "A beaver is a true builder. With his sharp teeth he gnaws branches off trees. He stacks the branches on top of each other and seals the gaps with mud and grass. That is how he builds a dam right across the water.",
+      "Behind the dam the water slowly rises. A narrow stream turns into a wide pond. In the middle of that pond the beaver builds his lodge: a house of branches, with the entrance underwater.",
+      "The pond is not just good for the beaver himself. Fish get more room to swim. Frogs lay their eggs there. Birds come to drink and bathe. So one dam creates a whole new habitat.",
+      "Some farmers are not happy, because a dam can flood a meadow. Still, many people see the beaver as a hero: without any machines, he creates a place where lots of other animals benefit."
+    ]
+  },
+  words: [
+    { nl: 'knaagt', en: 'gnaws', defNl: 'met de tanden stukjes van iets afbijten', defEn: 'to bite small pieces off something with your teeth' },
+    { nl: 'burcht', en: 'lodge', defNl: 'het huis van takken waar een bever in woont', defEn: 'the house of branches a beaver lives in' },
+    { nl: 'leefgebied', en: 'habitat', defNl: 'de plek waar een dier woont en eten vindt', defEn: 'the place where an animal lives and finds food' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waarom verdween de bever vroeger uit Nederland?', en: 'Why did the beaver disappear from the Netherlands long ago?' },
+      options: [
+        { nl: 'Jagers vingen hem voor zijn vacht', en: 'Hunters caught him for his fur' },
+        { nl: 'Er was geen water meer over', en: 'There was no water left' },
+        { nl: 'Hij verhuisde zelf naar Duitsland', en: 'He moved to Germany on his own' },
+        { nl: 'Boeren bouwden dammen weg', en: 'Farmers removed the dams' }
+      ], answer: 0,
+      explain: { nl: 'In de eerste alinea staat: "Jagers vingen hem voor zijn dikke vacht."',
+                 en: 'The first paragraph says: "Hunters caught it for its thick fur."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'De bever bouwt zijn burcht midden in de poel.', en: 'The beaver builds his lodge in the middle of the pond.' },
+      answer: true,
+      explain: { nl: 'Alinea 3 zegt: "Midden in die poel bouwt de bever zijn burcht."',
+                 en: 'Paragraph 3 says: "In the middle of that pond the beaver builds his lodge."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'De burcht van de bever is ___.', en: 'The beaver\'s lodge is ___.' },
+      options: [
+        { nl: 'zijn huis van takken, met de ingang onder water', en: 'his house of branches, with the entrance underwater' },
+        { nl: 'de dam dwars door de beek', en: 'the dam right across the stream' },
+        { nl: 'een school voor jonge bevers', en: 'a school for young beavers' },
+        { nl: 'een nest hoog in een boom', en: 'a nest high in a tree' }
+      ], answer: 0,
+      explain: { nl: 'De tekst zegt het letterlijk: een huis van takken, met de ingang onder water.',
+                 en: 'The text says it directly: a house of branches, with the entrance underwater.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de bouw van de dam in de juiste volgorde.', en: 'Put the building of the dam in the right order.' },
+      items: [
+        { nl: 'De bever knaagt takken van de bomen.', en: 'The beaver gnaws branches off the trees.' },
+        { nl: 'Hij stopt de gaten dicht met modder en gras.', en: 'He seals the gaps with mud and grass.' },
+        { nl: 'Het water achter de dam stijgt.', en: 'The water behind the dam rises.' },
+        { nl: 'Vissen, kikkers en vogels komen op de nieuwe poel af.', en: 'Fish, frogs and birds come to the new pond.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst knagen, dan bouwen, dan stijgt het water, en pas daarna komen de andere dieren.',
+                 en: 'First gnawing, then building, then the water rises, and only after that the other animals come.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat dit verhaal vooral over?', en: 'What is this text mainly about?' },
+      options: [
+        { nl: 'Hoe een bever met zijn dam een nieuwe leefplek maakt', en: 'How a beaver creates a new habitat with his dam' },
+        { nl: 'Waarom boeren geen water lusten', en: 'Why farmers dislike water' },
+        { nl: 'Hoe je een muur van steen bouwt', en: 'How to build a wall of stone' },
+        { nl: 'Waarom kikkers in bomen leven', en: 'Why frogs live in trees' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea gaat over de bever, zijn dam en wat die dam voor de natuur betekent.',
+                 en: 'Every paragraph is about the beaver, his dam and what that dam means for nature.' } }
+  ]
+},
+
+{
+  id: 'dieren-7', topic: 'dieren', level: 2, emoji: '🐙', scene: 'ocean',
+  title: { nl: 'Het geheugen van de octopus', en: 'The octopus\'s memory' },
+  text: {
+    nl: [
+      "Een octopus heeft geen botten, geen schild en zelfs geen ruggengraat. Toch geldt hij als een van de slimste dieren in de zee. Van de driehonderd miljoen zenuwcellen in zijn lijf zit maar een derde in zijn hoofd.",
+      "Zijn huid zit vol piepkleine zakjes kleurstof. Door die zakjes samen te trekken of juist op te rekken, verandert een octopus in een paar tellen van kleur. Hij past zelfs de structuur van zijn huid aan, zodat hij op een steen of op zeewier lijkt. Roofdieren zwemmen zo vlak langs hem heen zonder hem op te merken.",
+      "Octopussen zijn ook uitstekende probleemoplossers. In een proef kregen ze een afgesloten potje met een lekkere garnaal erin. Binnen een paar minuten draaiden de meeste dieren het deksel eraf. Een octopus in een aquarium in Nieuw-Zeeland, Inky genaamd, kroop zelfs 's nachts door een piepklein gaatje, over de vloer en via een afvoerbuis regelrecht terug de oceaan in.",
+      "Het knapste zit misschien wel in zijn armen. Elk van de acht armen heeft een eigen bosje zenuwcellen, een soort minibreintje. Daardoor kan een arm al een beetje zelfstandig voelen, grijpen en proeven, zonder dat het hoofdbrein daarvoor steeds een seintje hoeft te geven.",
+      "Dat is best bijzonder, want een octopus leeft meestal maar één of twee jaar. Hij heeft dus nauwelijks tijd om iets van zijn ouders te leren, die meestal al dood zijn voordat hij uit het ei kruipt. Toch weet hij binnen die korte tijd potjes te openen, uit tanks te ontsnappen en gevaar te herkennen. Onderzoekers proberen nog steeds te snappen hoe dat precies kan."
+    ],
+    en: [
+      "An octopus has no bones, no shell and not even a spine. Yet it counts as one of the smartest animals in the sea. Of the three hundred million nerve cells in its body, only a third sits in its head.",
+      "Its skin is full of tiny sacs of pigment. By squeezing or stretching those sacs, an octopus changes colour within a few seconds. It even adjusts the texture of its skin, so that it looks like a rock or seaweed. Predators swim right past it without ever noticing.",
+      "Octopuses are also excellent problem solvers. In one test they were given a sealed jar with a tasty shrimp inside. Within a few minutes most of the animals had unscrewed the lid. An octopus in an aquarium in New Zealand, named Inky, even crawled at night through a tiny gap, across the floor and through a drainpipe, straight back into the ocean.",
+      "The cleverest part is perhaps in its arms. Each of the eight arms has its own little cluster of nerve cells, a kind of mini-brain. That lets an arm feel, grip and taste somewhat on its own, without the main brain having to give a signal every time.",
+      "That is quite remarkable, because an octopus usually lives only one or two years. So it barely has time to learn anything from its parents, who are usually already dead before it hatches from its egg. Yet within that short time it manages to open jars, escape tanks and recognise danger. Researchers still struggle to understand exactly how that is possible."
+    ]
+  },
+  words: [
+    { nl: 'zenuwcellen', en: 'nerve cells', defNl: 'de cellen waarmee een dier voelt en denkt', defEn: 'the cells an animal uses to feel and think' },
+    { nl: 'kleurstof', en: 'pigment', defNl: 'de stof in de huid die kleur geeft', defEn: 'the substance in the skin that gives colour' },
+    { nl: 'minibreintje', en: 'mini-brain', defNl: 'een klein groepje zenuwcellen dat een beetje zelf kan denken', defEn: 'a small cluster of nerve cells that can think a little on its own' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel zenuwcellen heeft een octopus ongeveer?', en: 'About how many nerve cells does an octopus have?' },
+      options: [
+        { nl: 'Driehonderd miljoen', en: 'Three hundred million' },
+        { nl: 'Drie miljoen', en: 'Three million' },
+        { nl: 'Dertigduizend', en: 'Thirty thousand' },
+        { nl: 'Drie miljard', en: 'Three billion' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "Van de driehonderd miljoen zenuwcellen in zijn lijf..."',
+                 en: 'Paragraph 1: "Of the three hundred million nerve cells in its body..."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Inky ontsnapte overdag uit het aquarium.', en: 'Inky escaped from the aquarium during the day.' },
+      answer: false,
+      explain: { nl: 'De tekst zegt dat hij "\'s nachts" door een piepklein gaatje kroop.',
+                 en: 'The text says he crawled through a tiny gap "at night."' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom kon Inky door zo\'n klein gaatje ontsnappen?', en: 'Why could Inky escape through such a tiny gap?' },
+      options: [
+        { nl: 'Omdat een octopus geen harde botten heeft en zich overal doorheen kan wurmen',
+          en: 'Because an octopus has no hard bones and can squeeze through almost anything' },
+        { nl: 'Omdat de bewakers een deur hadden opengelaten', en: 'Because the keepers had left a door open' },
+        { nl: 'Omdat hij nog heel jong en klein was', en: 'Because he was still very young and small' },
+        { nl: 'Omdat hij het gaatje eerst groter had geknaagd', en: 'Because he had first gnawed the gap bigger' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1 vertelt dat een octopus geen botten en geen ruggengraat heeft; daardoor past hij door heel kleine openingen, zoals bij Inky.',
+                 en: 'Paragraph 1 says an octopus has no bones and no spine; that lets it fit through very small openings, as with Inky.' } },
+    { id: 'q4', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Klik het woord en daarna de juiste betekenis.', en: 'Click the word and then the correct meaning.' },
+      pairs: [
+        { word: { nl: 'zenuwcellen', en: 'nerve cells' }, meaning: { nl: 'de cellen waarmee een dier voelt en denkt', en: 'the cells an animal uses to feel and think' } },
+        { word: { nl: 'kleurstof', en: 'pigment' }, meaning: { nl: 'de stof in de huid die kleur geeft', en: 'the substance in the skin that gives colour' } },
+        { word: { nl: 'minibreintje', en: 'mini-brain' }, meaning: { nl: 'een klein groepje zenuwcellen dat zelf een beetje kan denken', en: 'a small cluster of nerve cells that can think a little on its own' } }
+      ],
+      explain: { nl: 'Deze drie woorden komen allemaal uit de tekst.', en: 'All three words come from the text.' } },
+    { id: 'q5', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Wat kun je afleiden uit het feit dat een octopus zoveel weet, terwijl hij maar één of twee jaar leeft?',
+           en: 'What can you infer from the fact that an octopus knows so much, even though it lives only one or two years?' },
+      options: [
+        { nl: 'Hij moet zelf uitvogelen wat hij weet, want hij kan het niet van zijn ouders leren',
+          en: 'He must figure things out for himself, because he cannot learn them from his parents' },
+        { nl: 'Hij wordt op school onderwezen door andere octopussen', en: 'He is taught at school by other octopuses' },
+        { nl: 'Hij leert alles van zijn moeder voordat hij geboren wordt', en: 'He learns everything from his mother before he is born' },
+        { nl: 'Hij hoeft niets te leren omdat hij alles al kan', en: 'He does not need to learn anything because he already can do it all' }
+      ], answer: 0,
+      explain: { nl: 'De tekst zegt dat de ouders meestal al dood zijn voordat de octopus uit het ei kruipt, dus hij kan niets van hen leren.',
+                 en: 'The text says the parents are usually already dead before the octopus hatches, so it cannot learn anything from them.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'De octopus is op allerlei manieren verrassend slim, ondanks dat hij zo anders in elkaar zit', en: 'The octopus is surprisingly smart in many ways, despite being built so differently' },
+        { nl: 'Octopussen leven altijd in aquaria', en: 'Octopuses always live in aquariums' },
+        { nl: 'Octopussen zijn de snelste zwemmers van de oceaan', en: 'Octopuses are the fastest swimmers in the ocean' },
+        { nl: 'Een octopus verandert nooit van kleur', en: 'An octopus never changes colour' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea laat een ander bewijs van slimheid zien: camouflage, problemen oplossen, de armen en het korte leven.',
+                 en: 'Every paragraph shows a different piece of evidence of intelligence: camouflage, problem-solving, the arms and the short life.' } }
+  ]
+},
+
+{
+  id: 'dieren-8', topic: 'dieren', level: 3, emoji: '🐦', scene: 'ocean',
+  title: { nl: 'Hoe vinden trekvogels de weg?', en: 'How do migrating birds find their way?' },
+  text: {
+    nl: [
+      "De grote stern is een klein vogeltje met een groot geheim. Hij weegt niet meer dan een tros druiven, maar vliegt elk jaar van de Noordpool naar de Zuidpool en weer terug. Dat is bijna zeventigduizend kilometer, bijna twee keer de aarde rond.",
+      "Hoe vindt zo'n vogel zijn weg, zonder kaart, zonder gps en zonder ouders die de route wijzen? Jonge sterns vliegen namelijk vaak apart van de volwassen vogels. Toch komen de meesten precies op de goede plek aan. Onderzoekers breken zich al jaren het hoofd over die vraag.",
+      "Eén antwoord ligt in de kop van de vogel. Trekvogels hebben cellen die gevoelig zijn voor het magneetveld van de aarde, net als het naaldje in een echt kompas. Daarmee voelen ze ruwweg waar het noorden en het zuiden liggen, zelfs in dikke mist of boven de open zee.",
+      "Een kompas alleen is niet genoeg, want dat vertelt alleen een richting, geen bestemming. Daarom kijken vogels ook naar de sterren. Jonge vogels bestuderen in hun eerste zomer de draaiende sterrenhemel en onthouden rond welk punt alles draait. \"Het is alsof ze 's nachts een sterrenkaart uit hun hoofd leren,\" zegt bioloog Rens Holtkamp, die trekvogels al twintig jaar volgt met kleine zendertjes.",
+      "Overdag gebruiken vogels vaak herkenningspunten: een kustlijn, een rivier, een bergketen. Ze combineren dus meerdere systemen tegelijk, als een reservekopie voor het geval er eentje uitvalt. Toch is niet alles ontrafeld. Waarom sommige sterns net iets oostelijker vliegen dan andere, blijft voorlopig een raadsel dat onderzoekers nog niet hebben opgelost."
+    ],
+    en: [
+      "The Arctic tern is a small bird with a big secret. It weighs no more than a bunch of grapes, yet every year it flies from the North Pole to the South Pole and back again. That is almost seventy thousand kilometres, nearly twice around the earth.",
+      "How does such a bird find its way, without a map, without GPS and without parents to show the route? Young terns often fly apart from the adult birds. Yet most of them still arrive exactly at the right place. Researchers have been puzzling over that question for years.",
+      "One answer lies inside the bird's head. Migrating birds have cells that are sensitive to the earth's magnetic field, just like the needle in a real compass. With that they can roughly sense where north and south lie, even in thick fog or over the open sea.",
+      "A compass alone is not enough, because it only gives a direction, not a destination. So birds also look at the stars. In their first summer, young birds study the turning night sky and remember the point everything seems to turn around. \"It's as if they learn a star map by heart at night,\" says biologist Rens Holtkamp, who has tracked migrating birds for twenty years using small transmitters.",
+      "During the day birds often use landmarks: a coastline, a river, a mountain range. So they combine several systems at once, as a backup in case one of them fails. Still, not everything has been figured out. Why some terns fly a little further east than others remains, for now, a mystery researchers have not yet solved."
+    ]
+  },
+  words: [
+    { nl: 'trekvogels', en: 'migrating birds', defNl: 'vogels die elk jaar een lange reis maken naar een warmer of kouder gebied', defEn: 'birds that make a long journey every year to a warmer or colder area' },
+    { nl: 'magneetveld', en: 'magnetic field', defNl: 'de onzichtbare kracht rond de aarde die een kompasnaald laat wijzen', defEn: 'the invisible force around the earth that makes a compass needle point' },
+    { nl: 'herkenningspunten', en: 'landmarks', defNl: 'plekken die je makkelijk herkent, zoals een rivier of een berg', defEn: 'places you easily recognise, such as a river or a mountain' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel kilometer vliegt de grote stern ongeveer per jaar?', en: 'About how many kilometres does the Arctic tern fly each year?' },
+      options: [
+        { nl: 'Bijna zeventigduizend kilometer', en: 'Almost seventy thousand kilometres' },
+        { nl: 'Ongeveer duizend kilometer', en: 'About a thousand kilometres' },
+        { nl: 'Precies honderd kilometer', en: 'Exactly a hundred kilometres' },
+        { nl: 'Zeven kilometer', en: 'Seven kilometres' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "Dat is bijna zeventigduizend kilometer, bijna twee keer de aarde rond."',
+                 en: 'Paragraph 1: "That is almost seventy thousand kilometres, nearly twice around the earth."' } },
+    { id: 'q2', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom komen jonge sterns toch op de goede plek aan, ook al vliegen ze zonder hun ouders?',
+           en: 'Why do young terns still arrive at the right place, even though they fly without their parents?' },
+      options: [
+        { nl: 'Omdat ze zelf al meerdere manieren hebben om de weg te vinden, zoals het magneetveld en de sterren',
+          en: 'Because they already have several ways of their own to find the way, such as the magnetic field and the stars' },
+        { nl: 'Omdat ze een kaart bij zich dragen', en: 'Because they carry a map with them' },
+        { nl: 'Omdat andere trekvogels ze altijd de hele weg begeleiden', en: 'Because other migrating birds always guide them the whole way' },
+        { nl: 'Omdat ze de route van de vorige generatie uit hun geheugen erven', en: 'Because they inherit the previous generation\'s memories of the route' }
+      ], answer: 0,
+      explain: { nl: 'De tekst legt uit dat vogels een gevoel voor het magneetveld, de sterren én herkenningspunten gebruiken, zonder hulp van hun ouders nodig te hebben.',
+                 en: 'The text explains that birds use a sense of the magnetic field, the stars and landmarks, without needing help from their parents.' } },
+    { id: 'q3', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Toch komen de meesten precies op de goede plek aan." Waar verwijst "de meesten" naar?',
+           en: '"Yet most of them still arrive exactly at the right place." What does "most of them" point to?' },
+      options: [
+        { nl: 'Naar de meeste jonge sterns', en: 'To most of the young terns' },
+        { nl: 'Naar de meeste onderzoekers', en: 'To most of the researchers' },
+        { nl: 'Naar de meeste sterrenbeelden', en: 'To most of the star patterns' },
+        { nl: 'Naar de meeste kustlijnen', en: 'To most of the coastlines' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over jonge sterns die apart van de volwassenen vliegen. "De meesten" verwijst dus terug naar die jonge sterns.',
+                 en: 'The sentence before is about young terns flying apart from the adults. "Most of them" refers back to those young terns.' } },
+    { id: 'q4', type: 'mc', skill: 'structuur',
+      q: { nl: 'De laatste alinea eindigt met: "Toch is niet alles ontrafeld." Wat doet het signaalwoord "toch" hier?',
+           en: 'The last paragraph ends with: "Still, not everything has been figured out." What does the signal word "still" do here?' },
+      options: [
+        { nl: 'Het zet een tegenstelling neer: de vogels combineren knap veel systemen, maar toch blijft er een raadsel over',
+          en: 'It sets up a contrast: the birds cleverly combine many systems, but a mystery still remains' },
+        { nl: 'Het geeft een voorbeeld van een herkenningspunt', en: 'It gives an example of a landmark' },
+        { nl: 'Het vertelt hoe lang het onderzoek al duurt', en: 'It tells how long the research has already taken' },
+        { nl: 'Het sluit een opsomming van rivieren af', en: 'It closes off a list of rivers' }
+      ], answer: 0,
+      explain: { nl: '"Toch" laat zien dat er, ondanks alle knappe systemen die net zijn uitgelegd, nog steeds iets onopgelost blijft.',
+                 en: '"Still" shows that, despite all the clever systems just explained, something remains unsolved.' } },
+    { id: 'q5', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Het magneetveld van de aarde is ___.', en: 'The earth\'s magnetic field is ___.' },
+      options: [
+        { nl: 'de onzichtbare kracht die een kompasnaald laat wijzen', en: 'the invisible force that makes a compass needle point' },
+        { nl: 'de route die een vogel volgt', en: 'the route a bird follows' },
+        { nl: 'een sterrenbeeld aan de nachtelijke hemel', en: 'a star pattern in the night sky' },
+        { nl: 'een rivier die vogels als herkenningspunt gebruiken', en: 'a river birds use as a landmark' }
+      ], answer: 0,
+      explain: { nl: 'De tekst vergelijkt het gevoel van de vogel met het naaldje in een kompas, dat op het magneetveld reageert.',
+                 en: 'The text compares the bird\'s sense to the needle in a compass, which reacts to the magnetic field.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Trekvogels gebruiken meerdere systemen tegelijk om hun weg over duizenden kilometers te vinden',
+          en: 'Migrating birds use several systems at once to find their way over thousands of kilometres' },
+        { nl: 'De grote stern is het zwaarste vogeltje ter wereld', en: 'The Arctic tern is the heaviest little bird in the world' },
+        { nl: 'Bioloog Rens Holtkamp heeft alle vogelraadsels opgelost', en: 'Biologist Rens Holtkamp has solved all bird mysteries' },
+        { nl: 'Vogels vliegen altijd samen met hun ouders', en: 'Birds always fly together with their parents' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea beschrijft een ander hulpmiddel: het magneetveld, de sterren en herkenningspunten, allemaal om de weg te vinden.',
+                 en: 'Every paragraph describes a different tool: the magnetic field, the stars and landmarks, all used to find the way.' } }
+  ]
+},
+
+{
+  id: 'dieren-9', topic: 'dieren', level: 4, emoji: '🐜', scene: 'forest',
+  title: { nl: 'Het geheime leven van een mierenkolonie', en: 'The secret life of an ant colony' },
+  text: {
+    nl: [
+      "Een mierenkolonie kan wel een miljoen mieren tellen. Van bovenaf lijkt het een chaotische mierenhoop, met mieren die kriskras door elkaar lopen. Toch werkt de hele kolonie samen als één groot wezen. Wetenschappers noemen dat een superorganisme: apart is een mier bijna niks, maar met miljoenen tegelijk vormen ze iets wat bijna op een dier met één lichaam lijkt.",
+      "De koningin zit vaak diep in het nest, in een kamer helemaal voor haar alleen. Veel mensen denken dat zij de baas is die de kolonie bestuurt. Dat klopt niet. De koningin doet maar één ding: eitjes leggen, dag in dag uit, soms wel duizenden per dag. De echte beslissingen worden ergens anders genomen.",
+      "Iedere werkster heeft namelijk een eigen taak. Sommige mieren zoeken voedsel buiten het nest. Andere verzorgen de eitjes en de larven. Weer andere bouwen gangen of verdedigen de ingang tegen indringers. Een werkster wisselt vaak van baan naarmate ze ouder wordt: jonge mieren blijven eerst binnen bij de larven, oudere mieren gaan naar buiten om te foerageren, want dat is gevaarlijker werk.",
+      "Hoe weet een mier eigenlijk waar het eten ligt? Als een werkster voedsel vindt, laat ze op de terugweg een spoortje geurstof achter, feromoon genoemd. Andere mieren ruiken dat spoor en volgen het. Vinden zij ook eten, dan versterken zij het spoor met hun eigen feromoon. Zo groeit het pad steeds sterker, totdat het voedsel op is. Dan verdampt de geur langzaam en verdwijnt het spoor vanzelf.",
+      "Niemand geeft een mier ooit een bevel. Er is geen bestuurder die zegt: jij zoekt eten, jij bewaakt de poort. Toch ontstaat er orde uit duizenden kleine beslissingen. Vergelijk het met de cellen in jouw lichaam: geen enkele cel kent het hele plaatje, maar samen zorgen ze ervoor dat jij kunt lopen, denken en ademen.",
+      "Een enkele mier leeft vaak maar een paar maanden. Toch kan een kolonie soms wel dertig jaar bestaan, doordat er steeds nieuwe werksters bijkomen. Net als bij een lichaam waarvan de cellen steeds vervangen worden terwijl jij dezelfde persoon blijft, blijft de kolonie bestaan, ook al is geen enkele mier daarin hetzelfde gebleven."
+    ],
+    en: [
+      "An ant colony can hold as many as a million ants. From above it looks like a chaotic anthill, with ants scurrying every which way. Yet the whole colony works together as a single being. Scientists call that a superorganism: on its own an ant is almost nothing, but with millions together they form something that resembles an animal with one body.",
+      "The queen often sits deep inside the nest, in a chamber all to herself. Many people think she is the boss who runs the colony. That is not true. The queen really only does one thing: lay eggs, day after day, sometimes thousands a day. The real decisions are made somewhere else.",
+      "Every worker has her own job. Some ants search for food outside the nest. Others tend the eggs and the larvae. Still others dig tunnels or defend the entrance against intruders. A worker often changes jobs as she gets older: young ants first stay inside with the larvae, while older ants go outside to forage, because that is more dangerous work.",
+      "How does an ant actually know where food is? When a worker finds food, she leaves a trail of scent on her way back, called a pheromone. Other ants smell that trail and follow it. If they find food too, they reinforce the trail with their own pheromone. That way the path keeps growing stronger, until the food runs out. Then the scent slowly evaporates and the trail disappears on its own.",
+      "No one ever gives an ant an order. There is no manager who says: you look for food, you guard the gate. Yet order still emerges from thousands of small decisions. Compare it to the cells in your own body: no single cell knows the whole picture, but together they let you walk, think and breathe.",
+      "A single ant often lives only a few months. Yet a colony can sometimes last thirty years, because new workers keep being born. Just like a body whose cells keep being replaced while you stay the same person, the colony keeps existing, even though not a single ant in it has stayed the same."
+    ]
+  },
+  words: [
+    { nl: 'superorganisme', en: 'superorganism', defNl: 'een grote groep dieren die samen werkt als één levend wezen', defEn: 'a large group of animals that works together as a single living being' },
+    { nl: 'feromoon', en: 'pheromone', defNl: 'een geurstof waarmee dieren zoals mieren met elkaar communiceren', defEn: 'a scent substance animals such as ants use to communicate with each other' },
+    { nl: 'foerageren', en: 'to forage', defNl: 'buiten het nest op zoek gaan naar voedsel', defEn: 'to go looking for food outside the nest' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat doet de koningin vooral, de hele dag door?', en: 'What does the queen mostly do, all day long?' },
+      options: [
+        { nl: 'Eitjes leggen', en: 'Lay eggs' },
+        { nl: 'De kolonie besturen', en: 'Run the colony' },
+        { nl: 'Voedsel zoeken', en: 'Search for food' },
+        { nl: 'Gangen graven', en: 'Dig tunnels' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "De koningin doet maar één ding: eitjes leggen."',
+                 en: 'Paragraph 2: "The queen really only does one thing: lay eggs."' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Andere mieren ruiken dat spoor en volgen het." Waar verwijst "dat spoor" naar?',
+           en: '"Other ants smell that trail and follow it." What does "that trail" point to?' },
+      options: [
+        { nl: 'Naar het spoor van feromoon dat de werkster op de terugweg achterliet',
+          en: 'To the pheromone trail the worker left on her way back' },
+        { nl: 'Naar het spoor van de koningin naar haar kamer', en: 'To the queen\'s trail to her chamber' },
+        { nl: 'Naar de gangen die de bouwers graven', en: 'To the tunnels the builders dig' },
+        { nl: 'Naar het pad dat de indringers gebruiken', en: 'To the path the intruders use' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor vertelt dat een werkster op de terugweg een spoortje feromoon achterlaat. "Dat spoor" verwijst daarnaar terug.',
+                 en: 'The previous sentence explains a worker leaves a pheromone trail on the way back. "That trail" refers back to it.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Wat kun je afleiden uit het feit dat een kolonie soms wel dertig jaar bestaat, terwijl een mier maar een paar maanden leeft?',
+           en: 'What can you infer from the fact that a colony can last thirty years, even though a single ant lives only a few months?' },
+      options: [
+        { nl: 'Er komen steeds nieuwe werksters bij die de oude vervangen, zodat de kolonie blijft bestaan',
+          en: 'New workers keep being born to replace the old ones, so the colony keeps existing' },
+        { nl: 'Mieren in een kolonie worden veel ouder dan mieren buiten een kolonie', en: 'Ants in a colony live much longer than ants outside a colony' },
+        { nl: 'De koningin doet al het werk in haar eentje', en: 'The queen does all the work by herself' },
+        { nl: 'Een kolonie stopt met groeien zodra de eerste mier sterft', en: 'A colony stops growing as soon as the first ant dies' }
+      ], answer: 0,
+      explain: { nl: 'De tekst legt uit dat de kolonie blijft bestaan doordat er steeds nieuwe werksters bijkomen, net als cellen in een lichaam die vervangen worden.',
+                 en: 'The text explains the colony keeps existing because new workers keep being added, just like cells in a body being replaced.' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een feromoon is ___.', en: 'A pheromone is ___.' },
+      options: [
+        { nl: 'een geurstof waarmee mieren met elkaar communiceren', en: 'a scent substance ants use to communicate with each other' },
+        { nl: 'de kamer waar de koningin woont', en: 'the chamber where the queen lives' },
+        { nl: 'een soort mier die de ingang bewaakt', en: 'a type of ant that guards the entrance' },
+        { nl: 'het geluid dat mieren maken', en: 'the sound ants make' }
+      ], answer: 0,
+      explain: { nl: 'De tekst noemt het letterlijk: "een spoortje geurstof achter, feromoon genoemd."',
+                 en: 'The text says it directly: "a trail of scent... called a pheromone."' } },
+    { id: 'q5', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet uit hoe een voedselspoor van feromoon ontstaat en weer verdwijnt.',
+           en: 'Put in order how a pheromone food trail appears and disappears.' },
+      items: [
+        { nl: 'Een werkster vindt voedsel buiten het nest.', en: 'A worker finds food outside the nest.' },
+        { nl: 'Ze laat op de terugweg een spoor van feromoon achter.', en: 'On the way back she leaves a trail of pheromone.' },
+        { nl: 'Andere mieren ruiken het spoor en volgen het.', en: 'Other ants smell the trail and follow it.' },
+        { nl: 'Vinden zij ook eten, dan versterken zij het spoor.', en: 'If they find food too, they reinforce the trail.' },
+        { nl: 'Is het voedsel op, dan verdampt de geur en verdwijnt het spoor.', en: 'Once the food runs out, the scent evaporates and the trail disappears.' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'De vierde alinea beschrijft precies deze volgorde, van vinden tot verdwijnen.',
+                 en: 'The fourth paragraph describes exactly this order, from finding to disappearing.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 zegt: "Toch ontstaat er orde uit duizenden kleine beslissingen." Wat doet "toch" hier?',
+           en: 'Paragraph 5 says: "Yet order still emerges from thousands of small decisions." What does "yet" do here?' },
+      options: [
+        { nl: 'Het zet een tegenstelling neer: niemand geeft bevelen, en toch ontstaat er orde',
+          en: 'It sets up a contrast: nobody gives orders, and yet order still emerges' },
+        { nl: 'Het geeft een voorbeeld van een indringer', en: 'It gives an example of an intruder' },
+        { nl: 'Het vertelt hoeveel beslissingen de koningin neemt', en: 'It tells how many decisions the queen makes' },
+        { nl: 'Het sluit de uitleg over feromonen af', en: 'It closes off the explanation about pheromones' }
+      ], answer: 0,
+      explain: { nl: '"Toch" laat het onverwachte zien: zonder baas of bevelen ontstaat er tóch een werkende orde.',
+                 en: '"Yet" shows the unexpected part: without a boss or orders, a working order still emerges.' } },
+    { id: 'q7', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee taken voeren werksters uit? Kies er 2.', en: 'Which two jobs do workers carry out? Pick 2.' },
+      options: [
+        { nl: 'Voedsel zoeken buiten het nest', en: 'Search for food outside the nest' },
+        { nl: 'De eitjes en larven verzorgen', en: 'Tend the eggs and the larvae' },
+        { nl: 'Zelf eitjes leggen', en: 'Lay eggs themselves' },
+        { nl: 'Een nieuwe koningin kiezen', en: 'Choose a new queen' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 3 noemt precies deze twee taken. Eitjes leggen doet alleen de koningin, en een koningin "kiezen" komt niet in de tekst voor.',
+                 en: 'Paragraph 3 names exactly these two jobs. Only the queen lays eggs, and "choosing" a queen is not in the text at all.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van deze tekst?', en: 'What is the main idea of this text?' },
+      options: [
+        { nl: 'Een mierenkolonie werkt samen als één superorganisme, zonder dat iemand de baas is',
+          en: 'An ant colony works together as one superorganism, without anyone being in charge' },
+        { nl: 'De koningin bestuurt de hele kolonie persoonlijk', en: 'The queen personally rules the whole colony' },
+        { nl: 'Mieren leven maar een paar dagen', en: 'Ants live only a few days' },
+        { nl: 'Feromonen zijn gevaarlijk voor mieren', en: 'Pheromones are dangerous for ants' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea laat zien hoe de kolonie zonder leider toch goed georganiseerd is: taakverdeling, feromonen en het vergelijk met een lichaam.',
+                 en: 'Every paragraph shows how the colony is well organised without a leader: division of labour, pheromones and the comparison with a body.' } }
+  ]
+},
+
+{
+  id: 'dieren-10', topic: 'dieren', level: 5, emoji: '🦁', scene: 'default',
+  title: { nl: 'Moeten dierentuinen verdwijnen?', en: 'Should zoos disappear?' },
+  text: {
+    nl: [
+      "In dierentuinen over de hele wereld lopen olifanten, ijsberen en gorilla's rond, terwijl duizenden bezoekers toekijken. Al meer dan honderd jaar gaan mensen naar de dierentuin om dieren te bekijken die ze anders nooit zouden zien. Maar de laatste jaren groeit de vraag: hebben dierentuinen nog wel een plek in deze tijd, of moeten ze verdwijnen?",
+      "Voorstanders wijzen vooral op het behoud van bedreigde diersoorten. Van sommige dieren, zoals bepaalde soorten neushoorn, leven er nog maar een paar honderd exemplaren in het wild. Dierentuinen houden fokprogramma's bij, waarbij dieren van over de hele wereld met elkaar gekoppeld worden om de genenpool gezond te houden. Zonder die programma's, zeggen zij, waren sommige soorten al uitgestorven.",
+      "Ook educatie is volgens voorstanders belangrijk. \"Een kind dat oog in oog staat met een leeuw, vergeet dat nooit meer,\" zegt dierentuindirecteur Marloes Stins. \"Wie een dier van dichtbij ziet, gaat er sneller iets voor doen: geld doneren, minder plastic gebruiken, opkomen voor de natuur.\" Onderzoek naar hoeveel bezoekers hun gedrag daadwerkelijk veranderen, is er overigens nauwelijks.",
+      "Tegenstanders zien vooral het dierenwelzijn over het hoofd. Een ijsbeer zwerft in het wild wel honderden kilometers per week; in een dierentuin past dat nooit in een verblijf, hoe groot ook. Sommige dieren vertonen daardoor stereotiep gedrag: ze lopen eindeloos heen en weer, of bijten op de tralies. Dat is volgens gedragsbiologen een teken van chronische stress.",
+      "Bovendien, zeggen tegenstanders, worden maar weinig dieren uit fokprogramma's ooit echt teruggezet in het wild. De meeste blijven hun leven lang achter glas of hek. Dan is het niet zozeer natuurbehoud, maar vooral een manier om bezoekers te trekken, verpakt als een goed doel.",
+      "Toch is niet elke dierentuin hetzelfde. Sommige parken hebben de kooien van vroeger vervangen door grote, natuurlijke verblijven, en werken écht mee aan het terugzetten van dieren, zoals de Arabische oryx, die dankzij fokprogramma's weer in de woestijn rondloopt. Andere dierentuinen zijn eigenlijk niet veel meer dan een pretpark met dieren erbij.",
+      "Het antwoord hangt dus af van de vraag welke dierentuin je precies bedoelt. Moet je alle dierentuinen sluiten om een paar slechte voorbeelden, of juist de goede beschermen en de slechte aanpakken? Wetenschappers, dierentuinen en dierenbeschermers praten er nog steeds over. En wat vind jij?"
+    ],
+    en: [
+      "In zoos all over the world, elephants, polar bears and gorillas roam around while thousands of visitors watch. For more than a hundred years people have gone to zoos to see animals they would otherwise never encounter. But in recent years a question keeps growing: do zoos still have a place today, or should they disappear?",
+      "Supporters point mainly to the conservation of endangered species. Of some animals, such as certain kinds of rhino, only a few hundred remain in the wild. Zoos run breeding programmes, pairing animals from all over the world to keep the gene pool healthy. Without those programmes, they say, some species would already be extinct.",
+      "Supporters also see education as important. \"A child who stands eye to eye with a lion never forgets it,\" says zoo director Marloes Stins. \"Someone who sees an animal up close is more likely to act for it: donate money, use less plastic, stand up for nature.\" Research into how many visitors actually change their behaviour is, however, scarce.",
+      "Opponents mainly point to animal welfare being overlooked. In the wild a polar bear roams hundreds of kilometres a week; in a zoo that never fits into an enclosure, however large. As a result, some animals show stereotypic behaviour: pacing back and forth endlessly, or biting at the bars. Behavioural biologists see that as a sign of chronic stress.",
+      "What is more, opponents say, only a few animals from breeding programmes are ever actually released back into the wild. Most spend their whole lives behind glass or fencing. In that case it is not so much conservation, but mainly a way to attract visitors, dressed up as a good cause.",
+      "Still, not every zoo is the same. Some parks have replaced the old-fashioned cages with large, natural enclosures, and genuinely help release animals, such as the Arabian oryx, which thanks to breeding programmes now roams the desert again. Other zoos are really little more than an amusement park with animals added.",
+      "So the answer depends on which zoo you actually mean. Should you close every zoo because of a few bad examples, or rather protect the good ones and fix the bad ones? Scientists, zoos and animal welfare groups are still talking it over. And what do you think?"
+    ]
+  },
+  words: [
+    { nl: 'fokprogramma\'s', en: 'breeding programmes', defNl: 'plannen om dieren gecontroleerd jongen te laten krijgen, om een soort te redden', defEn: 'plans to let animals breed in a controlled way, in order to save a species' },
+    { nl: 'genenpool', en: 'gene pool', defNl: 'alle verschillende erfelijke eigenschappen die binnen een diersoort voorkomen', defEn: 'all the different hereditary traits found within an animal species' },
+    { nl: 'stereotiep gedrag', en: 'stereotypic behaviour', defNl: 'hetzelfde bewegen dat een dier steeds weer herhaalt, vaak door stress', defEn: 'the same movement an animal repeats over and over, often caused by stress' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat doen fokprogramma\'s volgens de tekst?', en: 'What do breeding programmes do, according to the text?' },
+      options: [
+        { nl: 'Dieren van over de hele wereld koppelen om de genenpool gezond te houden',
+          en: 'Pair animals from all over the world to keep the gene pool healthy' },
+        { nl: 'Dieren africhten voor shows', en: 'Train animals for shows' },
+        { nl: 'Bezoekers leren hoe ze een dier moeten voeren', en: 'Teach visitors how to feed an animal' },
+        { nl: 'Geld inzamelen voor nieuwe verblijven', en: 'Raise money for new enclosures' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Dierentuinen houden fokprogramma\'s bij, waarbij dieren van over de hele wereld met elkaar gekoppeld worden om de genenpool gezond te houden."',
+                 en: 'Paragraph 2: "Zoos run breeding programmes, pairing animals from all over the world to keep the gene pool healthy."' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Is het een feit of een mening? Zet elke zin in de goede groep.',
+           en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Van sommige neushoornsoorten leven er nog maar een paar honderd exemplaren in het wild.',
+          en: 'Of some rhino species, only a few hundred remain in the wild.', bin: 0 },
+        { nl: 'Een kind dat oog in oog staat met een leeuw, vergeet dat nooit meer.',
+          en: 'A child who stands eye to eye with a lion never forgets it.', bin: 1 },
+        { nl: 'Een ijsbeer zwerft in het wild honderden kilometers per week.',
+          en: 'In the wild a polar bear roams hundreds of kilometres a week.', bin: 0 },
+        { nl: 'Het is niet zozeer natuurbehoud, maar vooral een manier om bezoekers te trekken.',
+          en: 'It is not so much conservation, but mainly a way to attract visitors.', bin: 1 }
+      ],
+      explain: { nl: 'Een feit kun je nameten of opzoeken, zoals aantallen en afstanden. Een mening herken je aan een oordeel, zoals "vergeet dat nooit meer" of "vooral een manier om".',
+                 en: 'A fact can be measured or looked up, like numbers and distances. An opinion shows a judgment, like "never forgets it" or "mainly a way to."' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver vooral bereiken met deze tekst?', en: 'What is the writer mainly trying to achieve with this text?' },
+      options: [
+        { nl: 'Je laten nadenken over dierentuinen, door voor- en tegenargumenten eerlijk te laten zien',
+          en: 'Make you think about zoos by fairly showing arguments for and against' },
+        { nl: 'Je overtuigen dat alle dierentuinen zo snel mogelijk dicht moeten', en: 'Convince you that every zoo must close as fast as possible' },
+        { nl: 'Reclame maken voor een bepaalde dierentuin', en: 'Advertise for one particular zoo' },
+        { nl: 'Uitleggen hoe je zelf een ijsbeer verzorgt', en: 'Explain how to take care of a polar bear yourself' }
+      ], answer: 0,
+      explain: { nl: 'De schrijver laat eerst voorstanders aan het woord, dan tegenstanders, en eindigt met "En wat vind jij?". Dat is geen overtuigen maar laten nadenken.',
+                 en: 'The writer first gives supporters a voice, then opponents, and ends with "And what do you think?" That is inviting thought, not persuading.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"De meeste blijven hun leven lang achter glas of hek." Waar verwijst "de meeste" naar?',
+           en: '"Most spend their whole lives behind glass or fencing." What does "most" point to?' },
+      options: [
+        { nl: 'Naar de meeste dieren uit fokprogramma\'s', en: 'To most of the animals from breeding programmes' },
+        { nl: 'Naar de meeste dierentuinen', en: 'To most of the zoos' },
+        { nl: 'Naar de meeste bezoekers', en: 'To most of the visitors' },
+        { nl: 'Naar de meeste gedragsbiologen', en: 'To most of the behavioural biologists' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over dieren uit fokprogramma\'s die maar zelden teruggezet worden. "De meeste" verwijst dus terug naar die dieren.',
+                 en: 'The sentence before is about animals from breeding programmes that are rarely released. "Most" refers back to those animals.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee argumenten gebruiken tegenstanders van dierentuinen? Kies er 2.',
+           en: 'Which two arguments do opponents of zoos use? Pick 2.' },
+      options: [
+        { nl: 'Dieren krijgen vaak te weinig ruimte, waardoor ze stereotiep gedrag vertonen',
+          en: 'Animals often get too little space, causing them to show stereotypic behaviour' },
+        { nl: 'Maar weinig dieren uit fokprogramma\'s keren echt terug naar het wild',
+          en: 'Only a few animals from breeding programmes really return to the wild' },
+        { nl: 'Dierentuinen zijn te duur voor gemeentes om te betalen', en: 'Zoos are too expensive for local councils to pay for' },
+        { nl: 'Kinderen leren helemaal niets van een bezoek aan de dierentuin', en: 'Children learn absolutely nothing from visiting a zoo' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 4 en 5 noemen precies deze twee argumenten. Over de kosten voor gemeentes of het "helemaal niets" leren zegt de tekst niets.',
+                 en: 'Paragraphs 4 and 5 name exactly these two arguments. The text says nothing about council costs or learning "absolutely nothing."' } },
+    { id: 'q6', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Uit de tekst blijkt dat alle dierentuinen precies hetzelfde zijn.', en: 'The text shows that all zoos are exactly the same.' },
+      answer: false,
+      explain: { nl: 'Alinea 6 laat juist het tegenovergestelde zien: sommige dierentuinen hebben grote, natuurlijke verblijven, andere zijn eigenlijk een pretpark.',
+                 en: 'Paragraph 6 shows exactly the opposite: some zoos have large, natural enclosures, others are really just an amusement park.' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 6 begint met "Toch". Wat gebeurt er in die alinea?', en: 'Paragraph 6 begins with "Still." What happens in that paragraph?' },
+      options: [
+        { nl: 'De schrijver zwakt het felle voor-en-tegen af en laat zien dat niet elke dierentuin hetzelfde is',
+          en: 'The writer softens the sharp for-and-against and shows not every zoo is the same' },
+        { nl: 'De schrijver herhaalt het argument van de voorstanders', en: 'The writer repeats the supporters\' argument' },
+        { nl: 'De schrijver vertelt hoe je een ijsbeer voert', en: 'The writer explains how to feed a polar bear' },
+        { nl: 'De schrijver geeft de tegenstanders helemaal gelijk', en: 'The writer fully agrees with the opponents' }
+      ], answer: 0,
+      explain: { nl: '"Toch is niet elke dierentuin hetzelfde" kondigt een nuance aan na de felle argumenten voor en tegen.',
+                 en: '"Still, not every zoo is the same" announces a nuance after the sharp arguments for and against.' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Dierentuinen helpen bedreigde dieren en leren bezoekers over de natuur, maar dieren hebben er vaak weinig ruimte en niet elk fokprogramma werkt echt goed; het hangt af van de dierentuin of het goed of slecht uitpakt.',
+          en: 'Zoos help endangered animals and teach visitors about nature, but animals often have little space and not every breeding programme really works; it depends on the zoo whether it turns out well or badly.' },
+        { nl: 'Dierentuinen bestaan vooral om kinderen te vermaken met leeuwen en olifanten.',
+          en: 'Zoos mainly exist to entertain children with lions and elephants.' },
+        { nl: 'Alle dieren uit fokprogramma\'s worden uiteindelijk teruggezet in het wild.',
+          en: 'All animals from breeding programmes are eventually released back into the wild.' },
+        { nl: 'IJsberen voelen zich altijd prima in een verblijf in de dierentuin.',
+          en: 'Polar bears always feel perfectly fine in a zoo enclosure.' }
+      ], answer: 0,
+      explain: { nl: 'Een goede samenvatting pakt de kern van elke alinea: behoud, educatie, welzijn, kritiek op fokprogramma\'s en de nuance dat niet elke dierentuin hetzelfde is. De andere antwoorden zijn losse details.',
+                 en: 'A good summary captures the core of every paragraph: conservation, education, welfare, criticism of breeding programmes and the nuance that not every zoo is the same. The others are single details.' } },
+    { id: 'q9', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'Wat betekent "genenpool" in deze tekst?', en: 'What does "gene pool" mean in this text?' },
+      options: [
+        { nl: 'Alle verschillende erfelijke eigenschappen die binnen een diersoort voorkomen',
+          en: 'All the different hereditary traits found within an animal species' },
+        { nl: 'Een zwembad speciaal voor dierentuindieren', en: 'A swimming pool especially for zoo animals' },
+        { nl: 'Het geld dat een dierentuin verdient aan kaartjes', en: 'The money a zoo earns from tickets' },
+        { nl: 'Een groep bezoekers die samen de dierentuin bezoekt', en: 'A group of visitors who visit the zoo together' }
+      ], answer: 0,
+      explain: { nl: 'De tekst legt uit dat fokprogramma\'s dieren koppelen "om de genenpool gezond te houden": het gaat om erfelijke eigenschappen, niet om zwemmen.',
+                 en: 'The text explains breeding programmes pair animals "to keep the gene pool healthy": it is about hereditary traits, not swimming.' } }
+  ]
+}
+]);
