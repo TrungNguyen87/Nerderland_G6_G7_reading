@@ -476,3 +476,514 @@ addStories([
   ]
 }
 ]);
+
+/* --- Nieuwe verhalen: smid, stadswacht, VOC, drukpers, standbeelden --- */
+addStories([
+{
+  id: 'ridders-6', topic: 'ridders', level: 1, emoji: '🔨', scene: 'castle',
+  title: { nl: 'Leerling van de smid', en: 'The blacksmith’s apprentice' },
+  text: {
+    nl: [
+      "Bram is tien jaar en werkt bij smid Hendrik. Hij is nog geen echte smid, maar een leerling. Zijn belangrijkste taak: de blaasbalg pompen, zodat het vuur in de smidse heet genoeg blijft.",
+      "De smidse is een klein, donker gebouw vol herrie. Het vuur gloeit oranje en rood. Overal vliegen vonken. Als smid Hendrik met zijn hamer op het gloeiende ijzer slaat, klinkt dat door de hele straat: bang, bang, bang.",
+      "Uren achter elkaar pompt Bram de blaasbalg. Zijn armen doen pijn en zijn gezicht is zwart van het roet. Tussendoor haalt hij nieuwe kolen en houdt hij de tang vast waarmee Hendrik het hete ijzer beetpakt.",
+      "Op een dag mag Bram voor het eerst zelf slaan. Smid Hendrik houdt een gloeiend stuk ijzer op het aambeeld en wijst Bram waar hij moet raken. Langzaam moet het ijzer de vorm van een hoefijzer krijgen.",
+      "Bram slaat voorzichtig, dan steviger. Zijn eerste hoefijzer is een beetje scheef, maar het is er wel een. \"Goed zo\", zegt smid Hendrik. Bram glimlacht. Over een paar jaar, denkt hij, maak ik ze mooi recht."
+    ],
+    en: [
+      "Bram is ten years old and works for blacksmith Hendrik. He is not yet a real blacksmith, but an apprentice. His most important task: pumping the bellows, so the fire in the smithy stays hot enough.",
+      "The smithy is a small, dark building full of noise. The fire glows orange and red. Sparks fly everywhere. When blacksmith Hendrik strikes the glowing iron with his hammer, you can hear it through the whole street: clang, clang, clang.",
+      "For hours on end Bram pumps the bellows. His arms hurt and his face is black with soot. In between he fetches new coal and holds the tongs with which Hendrik grips the hot iron.",
+      "One day Bram is allowed to strike the iron himself for the first time. Blacksmith Hendrik holds a glowing piece of iron on the anvil and points out where Bram must hit. Slowly the iron has to take the shape of a horseshoe.",
+      "Bram strikes carefully, then more firmly. His first horseshoe is a little crooked, but it is a horseshoe. \"Well done,\" says blacksmith Hendrik. Bram smiles. In a few years, he thinks, I will make them nice and straight."
+    ]
+  },
+  words: [
+    { nl: 'blaasbalg', en: 'bellows', defNl: 'een soort zak waarmee je een vuur harder laat branden', defEn: 'a kind of bag used to make a fire burn hotter' },
+    { nl: 'aambeeld', en: 'anvil', defNl: 'het zware ijzeren blok waarop een smid slaat', defEn: 'the heavy iron block a blacksmith hammers on' },
+    { nl: 'hoefijzer', en: 'horseshoe', defNl: 'het ijzeren beslag onder de hoef van een paard', defEn: 'the iron shoe fitted under a horse’s hoof' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat is de belangrijkste taak van Bram?', en: 'What is Bram’s most important task?' },
+      options: [ { nl: 'De blaasbalg pompen', en: 'Pumping the bellows' }, { nl: 'Op het ijzer hameren', en: 'Hammering the iron' },
+                 { nl: 'Kolen verkopen', en: 'Selling coal' }, { nl: 'Paarden africhten', en: 'Training horses' } ],
+      answer: 0,
+      explain: { nl: 'De tekst zegt: "Zijn belangrijkste taak: de blaasbalg pompen."',
+                 en: 'The text says: "His most important task: pumping the bellows."' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar is het gezicht van Bram zwart van, na uren pompen?', en: 'What is Bram’s face black with, after hours of pumping?' },
+      options: [ { nl: 'Van het roet', en: 'From soot' }, { nl: 'Van de modder', en: 'From mud' },
+                 { nl: 'Van de verf', en: 'From paint' }, { nl: 'Van het zand', en: 'From sand' } ],
+      answer: 0,
+      explain: { nl: 'Alinea 3: "zijn gezicht is zwart van het roet."', en: 'Paragraph 3: "his face is black with soot."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een aambeeld is ___.', en: 'An anvil is ___.' },
+      options: [
+        { nl: 'het zware ijzeren blok waarop de smid slaat', en: 'the heavy iron block the blacksmith hammers on' },
+        { nl: 'de blaasbalg waarmee je het vuur aanwakkert', en: 'the bellows used to stoke the fire' },
+        { nl: 'een hoefijzer voor een paard', en: 'a horseshoe for a horse' },
+        { nl: 'de tang waarmee je heet ijzer vastpakt', en: 'the tongs used to grip hot iron' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: Hendrik houdt het gloeiende ijzer op het aambeeld om erop te slaan.',
+                 en: 'Paragraph 4: Hendrik holds the glowing iron on the anvil to hammer it.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de leerperiode van Bram op volgorde.', en: 'Put Bram’s learning steps in order.' },
+      items: [
+        { nl: 'Bram pompt de blaasbalg zodat het vuur heet blijft.', en: 'Bram pumps the bellows so the fire stays hot.' },
+        { nl: 'Hij haalt kolen en houdt de tang vast.', en: 'He fetches coal and holds the tongs.' },
+        { nl: 'Smid Hendrik laat hem voor het eerst zelf op het ijzer slaan.', en: 'Blacksmith Hendrik lets him strike the iron himself for the first time.' },
+        { nl: 'Bram maakt zijn eerste, een beetje scheve, hoefijzer.', en: 'Bram makes his first, slightly crooked, horseshoe.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Zo staat het in de tekst: eerst de vaste klusjes, dan pas mag hij zelf slaan en zijn eerste hoefijzer maken.',
+                 en: 'That is the order in the text: first the fixed chores, only then may he strike himself and make his first horseshoe.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Welke zin vat de tekst het beste samen?', en: 'Which sentence sums up the text best?' },
+      options: [
+        { nl: 'Bram leert stap voor stap het vak van smid', en: 'Bram is learning the blacksmith’s trade step by step' },
+        { nl: 'Bram wil geen smid meer worden', en: 'Bram no longer wants to become a blacksmith' },
+        { nl: 'Smid Hendrik is boos op Bram', en: 'Blacksmith Hendrik is angry with Bram' },
+        { nl: 'Paarden zijn bang voor hoefijzers', en: 'Horses are afraid of horseshoes' }
+      ], answer: 0,
+      explain: { nl: 'Van blaasbalg pompen tot zelf een hoefijzer maken: de hele tekst laat Bram steeds meer leren.',
+                 en: 'From pumping the bellows to making a horseshoe himself: the whole text shows Bram learning more and more.' } }
+  ]
+},
+
+{
+  id: 'ridders-7', topic: 'ridders', level: 2, emoji: '🔔', scene: 'castle',
+  title: { nl: 'De nachtwacht op de stadsmuur', en: 'The night watch on the city wall' },
+  text: {
+    nl: [
+      "Een middeleeuwse stad had bijna altijd een dikke muur eromheen, met een paar poorten als enige ingang. Dat klinkt overdreven, maar zonder muur was een stad een makkelijk doelwit voor rovers en vijandige legers. Wie de stad in wilde, moest via een poort naar binnen, en die poort werd streng in de gaten gehouden.",
+      "Bij zonsondergang klonk er een bel of een hoorn, en dan gingen de zware poorten dicht. Was je te laat? Dan sliep je die nacht buiten de muren, tussen de velden, of je klopte aan en hoopte dat een wachter je toch binnenliet.",
+      "'s Nachts liep de nachtwacht zijn rondes over de stadsmuur. Om het uur riep hij hardop hoe laat het was, zodat de inwoners wisten dat alles goed ging. Hoorde je zijn stem niet meer, dan was er iets mis.",
+      "De grootste gevaren waren geen vijandige legers, maar brand en dieven. Huizen waren van hout, met rieten daken, en één omgevallen kaars kon een hele straat in vlammen zetten. De nachtwacht speurde daarom vanaf de muur naar rook en vreemde schaduwen in de steegjes.",
+      "Wie deze baan kreeg, moest wakker kunnen blijven zonder in slaap te vallen, ook als het uren stil bleef. Sommige steden gaven de wachter daarom een hond, of lieten hem in koppels van twee lopen, zodat de een de ander wakker hield.",
+      "Vandaag de dag staan de meeste stadsmuren er niet meer, of ze zijn een rustig wandelpad geworden. Maar de torens die je soms nog ziet, herinneren aan een tijd waarin een stad zonder muur, poort en waakzame nachtwacht gewoon niet veilig was."
+    ],
+    en: [
+      "A medieval city almost always had a thick wall around it, with only a few gates as entrances. That sounds exaggerated, but without a wall a city was an easy target for robbers and enemy armies. Anyone who wanted to enter the city had to go through a gate, and that gate was closely guarded.",
+      "At sunset a bell or a horn sounded, and then the heavy gates closed. Were you too late? Then you slept that night outside the walls, among the fields, or you knocked and hoped a guard would let you in after all.",
+      "At night the night watchman walked his rounds along the city wall. Every hour he called out loudly what time it was, so the townspeople knew everything was fine. If you no longer heard his voice, something was wrong.",
+      "The biggest dangers were not enemy armies, but fire and thieves. Houses were made of wood, with thatched roofs, and one fallen candle could set a whole street ablaze. That is why the night watchman scanned from the wall for smoke and strange shadows in the alleys.",
+      "Anyone who got this job had to be able to stay awake without falling asleep, even when it stayed quiet for hours. Some cities therefore gave the watchman a dog, or had him walk in pairs, so that one kept the other awake.",
+      "Today most city walls are gone, or have become a peaceful walking path. But the towers you sometimes still see remind us of a time when a city without a wall, a gate and a watchful night watchman simply was not safe."
+    ]
+  },
+  words: [
+    { nl: 'poort', en: 'gate', defNl: 'de ingang in een stadsmuur die in de avond dicht ging', defEn: 'the entrance in a city wall that closed in the evening' },
+    { nl: 'nachtwacht', en: 'night watchman', defNl: 'iemand die in de nacht de stad in de gaten houdt', defEn: 'someone who keeps watch over the city at night' },
+    { nl: 'rieten dak', en: 'thatched roof', defNl: 'een dak gemaakt van gedroogd riet of stro', defEn: 'a roof made of dried reed or straw' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waarom had een middeleeuwse stad een muur?', en: 'Why did a medieval city have a wall?' },
+      options: [
+        { nl: 'Om rovers en vijandige legers buiten te houden', en: 'To keep out robbers and enemy armies' },
+        { nl: 'Om de stad er mooier uit te laten zien', en: 'To make the city look prettier' },
+        { nl: 'Om toeristen te trekken', en: 'To attract tourists' },
+        { nl: 'Om de kerk te beschermen tegen regen', en: 'To protect the church from rain' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: zonder muur was een stad een makkelijk doelwit voor rovers en vijandige legers.',
+                 en: 'Paragraph 1: without a wall a city was an easy target for robbers and enemy armies.' } },
+    { id: 'q2', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat gebeurde er bij zonsondergang?', en: 'What happened at sunset?' },
+      options: [
+        { nl: 'De zware poorten gingen dicht', en: 'The heavy gates closed' },
+        { nl: 'De markt begon', en: 'The market started' },
+        { nl: 'Alle huizen werden verlicht', en: 'All the houses were lit up' },
+        { nl: 'De nachtwacht ging naar bed', en: 'The night watchman went to bed' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: bij zonsondergang klonk een bel of hoorn en gingen de zware poorten dicht.',
+                 en: 'Paragraph 2: at sunset a bell or horn sounded and the heavy gates closed.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom riep de nachtwacht elk uur hardop hoe laat het was?',
+           en: 'Why did the night watchman call out the time every hour?' },
+      options: [
+        { nl: 'Zodat de inwoners wisten dat alles veilig was', en: 'So the townspeople knew everything was safe' },
+        { nl: 'Om zichzelf voor de lol wakker te houden', en: 'To keep himself awake for fun' },
+        { nl: 'Om te oefenen met tellen', en: 'To practise counting' },
+        { nl: 'Om andere wachters te irriteren', en: 'To annoy other guards' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "zodat de inwoners wisten dat alles goed ging."',
+                 en: 'Paragraph 3: "so the townspeople knew everything was fine."' } },
+    { id: 'q4', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Vuur was voor een stad een groter gevaar dan een vijandig leger.',
+           en: 'Fire was a bigger danger for a city than an enemy army.' },
+      answer: true,
+      explain: { nl: 'Alinea 4: "De grootste gevaren waren geen vijandige legers, maar brand en dieven."',
+                 en: 'Paragraph 4: "The biggest dangers were not enemy armies, but fire and thieves."' } },
+    { id: 'q5', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Koppel elk woord aan de betekenis.', en: 'Match each word to its meaning.' },
+      pairs: [
+        { word: { nl: 'poort', en: 'gate' }, meaning: { nl: 'de ingang in een stadsmuur', en: 'the entrance in a city wall' } },
+        { word: { nl: 'nachtwacht', en: 'night watchman' }, meaning: { nl: 'iemand die in de nacht de wacht houdt', en: 'someone who keeps watch at night' } },
+        { word: { nl: 'rieten dak', en: 'thatched roof' }, meaning: { nl: 'een dak van gedroogd riet of stro', en: 'a roof of dried reed or straw' } },
+        { word: { nl: 'stadsmuur', en: 'city wall' }, meaning: { nl: 'de dikke muur rond een stad', en: 'the thick wall around a city' } }
+      ],
+      explain: { nl: 'Deze woorden hoor je vaak samen met dit onderwerp.', en: 'You often hear these words together with this topic.' } },
+    { id: 'q6', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Een stad zonder muur, poort en nachtwacht was vroeger niet veilig',
+          en: 'A city without a wall, gate and night watchman was not safe in the past' },
+        { nl: 'Nachtwachten hadden altijd een hond bij zich', en: 'Night watchmen always had a dog with them' },
+        { nl: 'Stadsmuren waren vooral mooi om naar te kijken', en: 'City walls were mainly nice to look at' },
+        { nl: 'Brand kwam in middeleeuwse steden bijna nooit voor', en: 'Fire almost never happened in medieval cities' }
+      ], answer: 0,
+      explain: { nl: 'Dat staat bijna letterlijk in de slotalinea.', en: 'That is almost literally in the closing paragraph.' } }
+  ]
+},
+
+{
+  id: 'ridders-8', topic: 'ridders', level: 3, emoji: '⚓', scene: 'harbour',
+  title: { nl: 'Een scheepsjongen op een VOC-schip', en: 'A cabin boy on a VOC ship' },
+  text: {
+    nl: [
+      "Pieter is dertien jaar als hij aan boord klimt van De Hoop, een schip van de VOC. Vanaf de kade in Texel zwaait zijn moeder, maar Pieter kijkt vooral vooruit. Hij is scheepsjongen nu, en over een paar maanden ziet hij Batavia, aan de andere kant van de wereld.",
+      "Aan boord is geen centimeter ruimte over. Pieter slaapt in een hangmat, ingeklemd tussen kisten specerijen en vaten drinkwater, met tientallen andere scheepsjongens om hem heen. Het ruikt er naar teer, zout en zeewater. De eerste weken is hij zo zeeziek dat hij bijna niets binnenhoudt.",
+      "Zijn dagen zijn gevuld met werk: touwen splitsen, dekken schrobben, en ratten vangen die op de proviand azen. Als het stormt, moet hij hoog in de mast klimmen om zeilen vast te binden, terwijl het schip heen en weer slingert. Wie bang is voor hoogte, wordt hier snel over die angst heen geholpen, of anders niet.",
+      "Na een paar weken is de kust van Nederland allang uit zicht. Alleen water, dag in dag uit. Pieter mist zijn moeder, het geluid van de kerkklok in zijn dorp, zelfs het gemekker van de geiten. 's Avonds fluistert hij haar naam voor zichzelf, alsof dat de afstand kleiner maakt.",
+      "Onderweg wordt de reis nog zwaarder. Vers voedsel raakt op en scheurbuik, een ziekte door gebrek aan groente en fruit, eist zijn tol onder de bemanning. Twee matrozen worden, genaaid in canvas, overboord gezet. Pieter beseft dat hij, als hij dat wil overleven, precies moet doen wat de stuurman zegt.",
+      "Na bijna acht maanden verschijnt eindelijk de kust van Java aan de horizon. Batavia blijkt drukker en heter dan Pieter zich ooit had voorgesteld. Trots, uitgeput en een beetje bang tegelijk stapt hij van boord. Van de honderden scheepsjongens die met hem vertrokken, zijn lang niet allemaal levend aangekomen. Pieter wel, en dat, denkt hij, is al een overwinning."
+    ],
+    en: [
+      "Pieter is thirteen years old when he climbs aboard De Hoop, a ship of the VOC. From the quay in Texel his mother waves, but Pieter is mostly looking ahead. He is a cabin boy now, and in a few months he will see Batavia, on the other side of the world.",
+      "On board there is not a centimetre of space to spare. Pieter sleeps in a hammock, wedged between crates of spices and barrels of drinking water, with dozens of other cabin boys around him. It smells of tar, salt and seawater. For the first weeks he is so seasick that he can barely keep anything down.",
+      "His days are filled with work: splicing ropes, scrubbing decks, and catching rats that go after the food supplies. When it storms, he has to climb high into the mast to tie down sails, while the ship rolls back and forth. Anyone afraid of heights is quickly cured of that fear here, or else.",
+      "After a few weeks the coast of the Netherlands is long out of sight. Only water, day after day. Pieter misses his mother, the sound of the church bell in his village, even the bleating of the goats. In the evening he whispers her name to himself, as if that makes the distance smaller.",
+      "Along the way the voyage gets even harder. Fresh food runs out, and scurvy, a disease caused by a lack of vegetables and fruit, takes its toll on the crew. Two sailors, sewn into canvas, are put overboard. Pieter realises that if he wants to survive this, he has to do exactly what the mate says.",
+      "After almost eight months the coast of Java finally appears on the horizon. Batavia turns out to be busier and hotter than Pieter had ever imagined. Proud, exhausted and a little scared all at once, he steps ashore. Of the hundreds of cabin boys who set off with him, not nearly all arrived alive. Pieter did, and that, he thinks, is already a victory."
+    ]
+  },
+  words: [
+    { nl: 'scheepsjongen', en: 'cabin boy', defNl: 'een jonge jongen die op een schip werkt en klusjes doet', defEn: 'a young boy who works on a ship doing chores' },
+    { nl: 'hangmat', en: 'hammock', defNl: 'een hangend bed van stof of touw', defEn: 'a hanging bed made of cloth or rope' },
+    { nl: 'scheurbuik', en: 'scurvy', defNl: 'een ziekte die je krijgt door te weinig groente en fruit te eten', defEn: 'a disease caused by eating too little fruit and vegetables' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar slaapt Pieter aan boord?', en: 'Where does Pieter sleep on board?' },
+      options: [
+        { nl: 'In een hangmat tussen kisten en vaten', en: 'In a hammock between crates and barrels' },
+        { nl: 'In een eigen hut met een bed', en: 'In his own cabin with a bed' },
+        { nl: 'Op het dek onder de sterren', en: 'On deck under the stars' },
+        { nl: 'In de keuken bij het fornuis', en: 'In the galley by the stove' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Pieter slaapt in een hangmat, ingeklemd tussen kisten specerijen en vaten drinkwater."',
+                 en: 'Paragraph 2: "Pieter sleeps in a hammock, wedged between crates of spices and barrels of drinking water."' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: "\"'s Avonds fluistert hij haar naam voor zichzelf.\" Naar wie verwijst \"haar\"?",
+           en: "\"In the evening he whispers her name to himself.\" Who does \"her\" refer to?" },
+      options: [
+        { nl: 'Naar zijn moeder', en: 'To his mother' },
+        { nl: 'Naar de stuurman', en: 'To the mate' },
+        { nl: 'Naar de stad Batavia', en: 'To the city of Batavia' },
+        { nl: 'Naar een andere scheepsjongen', en: 'To another cabin boy' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over Pieter die zijn moeder mist. "Haar" verwijst dus naar zijn moeder.',
+                 en: 'The sentence before is about Pieter missing his mother. So "her" refers to his mother.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom moet Pieter zijn angst voor hoogte snel overwinnen?',
+           en: 'Why does Pieter quickly have to overcome his fear of heights?' },
+      options: [
+        { nl: 'Omdat hij bij storm hoog de mast in moet om zeilen vast te binden',
+          en: 'Because in a storm he has to climb high into the mast to tie down sails' },
+        { nl: 'Omdat de kapitein hem dat als straf oplegt', en: 'Because the captain orders it as a punishment' },
+        { nl: 'Omdat hij dat al kon voor hij aan boord kwam', en: 'Because he could already do that before boarding' },
+        { nl: 'Omdat andere jongens hem daarmee plagen', en: 'Because other boys tease him about it' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 legt uit dat hij bij storm de mast in moet, of hij nu bang is of niet.',
+                 en: 'Paragraph 3 explains he has to climb the mast in a storm, whether he is afraid or not.' } },
+    { id: 'q4', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 begint met "Onderweg wordt de reis nog zwaarder." Wat kondigt die zin aan?',
+           en: 'Paragraph 5 begins "Along the way the voyage gets even harder." What does that sentence announce?' },
+      options: [
+        { nl: 'Dat het nu nog moeilijker wordt dan wat er al beschreven is', en: 'That it now gets even harder than what has already been described' },
+        { nl: 'Dat de reis bijna afgelopen is', en: 'That the voyage is almost over' },
+        { nl: 'Dat er een nieuw personage wordt geïntroduceerd', en: 'That a new character is introduced' },
+        { nl: 'Dat het weer in Nederland verandert', en: 'That the weather in the Netherlands is changing' }
+      ], answer: 0,
+      explain: { nl: 'Het woord "nog" laat zien dat de zwaarte toeneemt ten opzichte van eerder in de tekst.',
+                 en: 'The word "even" shows that the hardship is increasing compared to earlier in the text.' } },
+    { id: 'q5', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Scheurbuik is ___.', en: 'Scurvy is ___.' },
+      options: [
+        { nl: 'een ziekte door te weinig groente en fruit', en: 'a disease caused by too little fruit and vegetables' },
+        { nl: 'een sterke storm op zee', en: 'a strong storm at sea' },
+        { nl: 'een soort VOC-schip', en: 'a type of VOC ship' },
+        { nl: 'een straf voor lui personeel', en: 'a punishment for lazy crew members' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5: "scheurbuik, een ziekte door gebrek aan groente en fruit."',
+                 en: 'Paragraph 5: "scurvy, a disease caused by a lack of vegetables and fruit."' } },
+    { id: 'q6', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Niet alle scheepsjongens die met Pieter vertrokken, kwamen levend aan in Batavia.',
+           en: 'Not all the cabin boys who set off with Pieter arrived alive in Batavia.' },
+      answer: true,
+      explain: { nl: 'Laatste alinea: "zijn lang niet allemaal levend aangekomen."',
+                 en: 'Last paragraph: "not nearly all arrived alive."' } },
+    { id: 'q7', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Het leven van een scheepsjongen op een VOC-schip was zwaar en gevaarlijk, maar Pieter overleefde de reis',
+          en: 'Life as a cabin boy on a VOC ship was hard and dangerous, but Pieter survived the voyage' },
+        { nl: 'Pieter werd al snel kapitein van het schip', en: 'Pieter quickly became captain of the ship' },
+        { nl: 'VOC-schepen waren heel comfortabel om op te reizen', en: 'VOC ships were very comfortable to travel on' },
+        { nl: 'Scheepsjongens hoefden bijna nooit te werken', en: 'Cabin boys hardly ever had to work' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst laat de zware, gevaarlijke kanten van de reis zien, maar eindigt met Pieters overwinning: hij overleeft.',
+                 en: 'The whole text shows the hard, dangerous sides of the voyage, but ends with Pieter’s victory: he survives.' } }
+  ]
+},
+
+{
+  id: 'ridders-9', topic: 'ridders', level: 4, emoji: '📚', scene: 'default',
+  title: { nl: 'De uitvinding die boeken voor iedereen maakte', en: 'The invention that made books for everyone' },
+  text: {
+    nl: [
+      "Rond het jaar 1450 werkte een Duitse goudsmid genaamd Johannes Gutenberg in het geheim aan een uitvinding die de wereld zou veranderen. Vóór die tijd werd elk boek met de hand overgeschreven, meestal door monniken in een klooster. Eén bijbel kopiëren kon wel een jaar duren, en het resultaat was zo kostbaar dat alleen kerken, kloosters en rijke edelen zich een boek konden veroorloven.",
+      "Gutenberg bedacht iets slims: losse metalen lettertjes, elk apart gegoten, die je steeds opnieuw kon rangschikken tot woorden en zinnen. Was een bladzijde klaar gedrukt, dan haalde je de letters uit elkaar en zette je ze weer opnieuw in elkaar voor de volgende bladzijde. Die techniek heet boekdrukkunst met losse letters, en ze was precies wat er nodig was.",
+      "Om zijn machine goed te laten werken, moest Gutenberg ook een speciale inkt ontwikkelen die aan het metaal bleef plakken zonder te vlekken, en een pers bouwen die stevig genoeg was om gelijkmatig te drukken. Pas na jaren experimenteren, en flink wat schulden, kreeg hij het voor elkaar.",
+      "Rond 1455 drukte hij zijn beroemdste werk: de Gutenbergbijbel, in een oplage van ongeveer honderdtachtig exemplaren. Dat klinkt weinig, maar vergeleken met de paar bijbels die een klooster per jaar met de hand kon overschrijven, was het een revolutie. Binnen vijftig jaar stonden er drukkerijen in meer dan tweehonderd Europese steden.",
+      "Die snelheid veranderde alles. Nieuwe ideeën, wetenschappelijke ontdekkingen en ook felle meningsverschillen konden zich nu in weken verspreiden in plaats van in decennia. Toen de Duitse monnik Maarten Luther het in 1517 oneens was met de kerk, werden zijn geschriften binnen enkele maanden in heel Europa gelezen. Zonder de drukpers was dat ondenkbaar geweest.",
+      "Ook voor gewone mensen veranderde er iets. Boeken werden goedkoper, en steeds meer mensen leerden lezen, al bleef dat nog eeuwenlang een voorrecht van een kleine groep. Historici noemen Gutenbergs uitvinding daarom een van de belangrijkste ooit: niet omdat hij het idee van een boek bedacht, maar omdat hij ervoor zorgde dat kennis niet langer het bezit van een handjevol mensen hoefde te blijven."
+    ],
+    en: [
+      "Around the year 1450 a German goldsmith named Johannes Gutenberg was secretly working on an invention that would change the world. Before that time every book was copied by hand, usually by monks in a monastery. Copying a single bible could take a whole year, and the result was so costly that only churches, monasteries and rich nobles could afford a book.",
+      "Gutenberg came up with something clever: separate metal letters, each cast individually, that you could arrange again and again into words and sentences. Once a page was printed, you took the letters apart and set them up again for the next page. That technique is called movable-type printing, and it was exactly what was needed.",
+      "To make his machine work properly, Gutenberg also had to develop a special ink that stuck to the metal without smudging, and build a press sturdy enough to print evenly. Only after years of experimenting, and quite a lot of debt, did he manage it.",
+      "Around 1455 he printed his most famous work: the Gutenberg Bible, in a print run of about a hundred and eighty copies. That sounds like little, but compared to the handful of bibles a monastery could copy by hand each year, it was a revolution. Within fifty years there were printing shops in more than two hundred European cities.",
+      "That speed changed everything. New ideas, scientific discoveries and fierce disagreements too could now spread in weeks instead of decades. When the German monk Martin Luther disagreed with the church in 1517, his writings were read across Europe within a few months. Without the printing press that would have been unthinkable.",
+      "Something changed for ordinary people too. Books became cheaper, and more and more people learned to read, though for centuries that remained a privilege of a small group. Historians therefore call Gutenberg’s invention one of the most important ever: not because he invented the idea of a book, but because he made sure knowledge no longer had to remain the property of a handful of people."
+    ]
+  },
+  words: [
+    { nl: 'boekdrukkunst', en: 'movable-type printing', defNl: 'het drukken van boeken met losse metalen letters', defEn: 'printing books using separate metal letters' },
+    { nl: 'oplage', en: 'print run', defNl: 'het aantal exemplaren dat er van een boek gedrukt wordt', defEn: 'the number of copies printed of a book' },
+    { nl: 'voorrecht', en: 'privilege', defNl: 'iets bijzonders dat maar weinig mensen mogen of kunnen', defEn: 'something special that only a few people are allowed or able to have' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe werden boeken gemaakt vóór Gutenbergs uitvinding?', en: 'How were books made before Gutenberg’s invention?' },
+      options: [
+        { nl: 'Ze werden met de hand overgeschreven, meestal door monniken', en: 'They were copied by hand, usually by monks' },
+        { nl: 'Ze werden gedrukt met losse metalen letters', en: 'They were printed with separate metal letters' },
+        { nl: 'Ze werden gemaakt van papyrus in Egypte', en: 'They were made of papyrus in Egypt' },
+        { nl: 'Ze werden ingesproken en later opgeschreven', en: 'They were dictated and written down later' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: elk boek werd met de hand overgeschreven, meestal door monniken in een klooster.',
+                 en: 'Paragraph 1: every book was copied by hand, usually by monks in a monastery.' } },
+    { id: 'q2', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Pas na jaren experimenteren, en flink wat schulden, kreeg hij het voor elkaar." Waar verwijst "het" naar?',
+           en: '"Only after years of experimenting, and quite a lot of debt, did he manage it." What does "it" refer to?' },
+      options: [
+        { nl: 'Een werkende drukpers met goede inkt bouwen', en: 'Building a working press with good ink' },
+        { nl: 'Een bijbel met de hand overschrijven', en: 'Copying a bible by hand' },
+        { nl: 'Een klooster bezoeken', en: 'Visiting a monastery' },
+        { nl: 'Losse letters verkopen aan monniken', en: 'Selling separate letters to monks' }
+      ], answer: 0,
+      explain: { nl: 'De zinnen ervoor gaan over de inkt en de pers die Gutenberg moest ontwikkelen. Dát is wat hem uiteindelijk lukte.',
+                 en: 'The sentences before are about the ink and press Gutenberg had to develop. That is what he finally managed.' } },
+    { id: 'q3', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom kon Maarten Luthers verzet tegen de kerk zich zo snel verspreiden?',
+           en: 'Why could Martin Luther’s opposition to the church spread so quickly?' },
+      options: [
+        { nl: 'Omdat de drukpers zijn geschriften in korte tijd door heel Europa kon verspreiden',
+          en: 'Because the printing press could spread his writings across Europe in a short time' },
+        { nl: 'Omdat Luther zelf naar elke stad reisde om te preken', en: 'Because Luther himself travelled to every city to preach' },
+        { nl: 'Omdat de kerk zijn boeken gratis liet kopiëren', en: 'Because the church had his books copied for free' },
+        { nl: 'Omdat er toen al kranten bestonden', en: 'Because newspapers already existed back then' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5 legt precies dat verband: zonder de drukpers was de snelle verspreiding ondenkbaar geweest.',
+                 en: 'Paragraph 5 makes exactly that link: without the printing press, the rapid spread would have been unthinkable.' } },
+    { id: 'q4', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een oplage is ___.', en: 'A print run is ___.' },
+      options: [
+        { nl: 'het aantal exemplaren dat van een boek gedrukt is', en: 'the number of copies printed of a book' },
+        { nl: 'de prijs van een boek', en: 'the price of a book' },
+        { nl: 'de naam van een drukkerij', en: 'the name of a printing shop' },
+        { nl: 'het aantal bladzijden in een boek', en: 'the number of pages in a book' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: de Gutenbergbijbel werd gedrukt "in een oplage van ongeveer honderdtachtig exemplaren."',
+                 en: 'Paragraph 4: the Gutenberg Bible was printed "in a print run of about a hundred and eighty copies."' } },
+    { id: 'q5', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de gebeurtenissen op volgorde van tijd.', en: 'Put the events in order of time.' },
+      items: [
+        { nl: 'Gutenberg werkt in het geheim aan losse metalen letters.', en: 'Gutenberg secretly works on separate metal letters.' },
+        { nl: 'Hij ontwikkelt een goede inkt en bouwt een stevige pers.', en: 'He develops a good ink and builds a sturdy press.' },
+        { nl: 'Hij drukt de Gutenbergbijbel in ongeveer 180 exemplaren.', en: 'He prints the Gutenberg Bible in about 180 copies.' },
+        { nl: 'Er staan drukkerijen in meer dan tweehonderd Europese steden.', en: 'There are printing shops in more than two hundred European cities.' },
+        { nl: 'Maarten Luthers geschriften worden binnen maanden in heel Europa gelezen.', en: 'Martin Luther’s writings are read across Europe within months.' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'Eerst de uitvinding zelf, dan de techniek eromheen, dan de eerste grote druk, de verspreiding van drukkerijen en tenslotte het effect op Luther.',
+                 en: 'First the invention itself, then the technique around it, then the first big print, the spread of printing shops and finally the effect on Luther.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 5 begint met "Die snelheid veranderde alles." Wat kondigt die zin aan?',
+           en: 'Paragraph 5 begins "That speed changed everything." What does that sentence announce?' },
+      options: [
+        { nl: 'De schrijver gaat uitleggen welke gevolgen de snelheid van drukken had',
+          en: 'The writer is going to explain what the consequences of printing speed were' },
+        { nl: 'De schrijver herhaalt hoe de drukpers precies werkt', en: 'The writer repeats exactly how the printing press works' },
+        { nl: 'De schrijver vertelt over Gutenbergs jeugd', en: 'The writer talks about Gutenberg’s childhood' },
+        { nl: 'De schrijver introduceert een nieuwe uitvinder', en: 'The writer introduces a new inventor' }
+      ], answer: 0,
+      explain: { nl: 'Na deze zin volgen voorbeelden van hoe snel ideeën zich nu konden verspreiden, zoals bij Maarten Luther.',
+                 en: 'After this sentence come examples of how fast ideas could now spread, such as with Martin Luther.' } },
+    { id: 'q7', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Gutenbergs drukpers zorgde ervoor dat boeken en ideeën zich veel sneller konden verspreiden',
+          en: 'Gutenberg’s printing press made it possible for books and ideas to spread much faster' },
+        { nl: 'Gutenberg was vooral een goede goudsmid', en: 'Gutenberg was mainly a good goldsmith' },
+        { nl: 'Bijbels werden na 1450 helemaal gratis', en: 'Bibles became completely free after 1450' },
+        { nl: 'Monniken stopten meteen met het schrijven van boeken', en: 'Monks immediately stopped writing books' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea laat op een andere manier zien hoe de drukpers boeken en kennis sneller liet verspreiden.',
+                 en: 'Every paragraph shows, in a different way, how the printing press spread books and knowledge faster.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Wat moest Gutenberg naast losse letters ook nog ontwikkelen om zijn drukpers te laten werken? Kies er 2.',
+           en: 'What did Gutenberg also have to develop besides separate letters to make his press work? Pick 2.' },
+      options: [
+        { nl: 'Een speciale inkt die aan het metaal bleef plakken', en: 'A special ink that stuck to the metal' },
+        { nl: 'Een stevige pers om gelijkmatig te drukken', en: 'A sturdy press to print evenly' },
+        { nl: 'Een nieuw soort papier dat hijzelf uitvond', en: 'A new kind of paper that he invented himself' },
+        { nl: 'Een eigen klooster om boeken te verkopen', en: 'His own monastery to sell books' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 3 noemt precies deze twee: een speciale inkt en een stevige pers. Over papier of een klooster zegt de tekst niets.',
+                 en: 'Paragraph 3 names exactly these two: a special ink and a sturdy press. The text says nothing about paper or a monastery.' } }
+  ]
+},
+
+{
+  id: 'ridders-10', topic: 'ridders', level: 5, emoji: '🏛️', scene: 'default',
+  title: { nl: 'Moeten omstreden standbeelden blijven staan?', en: 'Should controversial statues remain standing?' },
+  text: {
+    nl: [
+      "In steden over de hele wereld staan standbeelden van mensen die vroeger als helden werden gezien: ontdekkingsreizigers, veldheren, kooplieden. Sommigen van hen waren ook verantwoordelijk voor slavenhandel, oorlogsmisdaden of de onderdrukking van hele volken. De laatste jaren wordt daardoor steeds vaker gevraagd: moet zo'n beeld gewoon blijven staan?",
+      "In 2020 gebeurde er in de Engelse stad Bristol iets wat de discussie in heel Europa aanwakkerde. Demonstranten trokken het standbeeld van Edward Colston, een slavenhandelaar uit de zeventiende eeuw, van zijn sokkel en gooiden het in de haven. Het beeld werd later opgevist en in een museum gezet, met uitleg over wie Colston werkelijk was.",
+      "Wie vindt dat standbeelden moeten blijven staan, heeft daar duidelijke argumenten voor. Een standbeeld weghalen wist de geschiedenis niet uit, zeggen zij: het gebeurde al, of het beeld er nu staat of niet. Bovendien is een beeld een aanknopingspunt om juist over die geschiedenis te praten, zeker als er goede uitleg bij staat.",
+      "Voorstanders van weghalen zien dat anders. Een standbeeld op een plein is geen geschiedenisles, zeggen zij, maar een eerbetoon. Als een gemeente iemand op een sokkel zet, zegt ze daarmee: kijk naar deze persoon, wees trots. Voor nabestaanden van tot slaaf gemaakte mensen voelt dat vaak als een klap in het gezicht.",
+      "Een derde groep kiest een middenweg: het beeld laten staan, maar met een bord of kunstwerk ernaast dat het hele verhaal vertelt, inclusief het leed dat de persoon veroorzaakte. Zo blijft het beeld zichtbaar, zonder dat de stad doet alsof er niets aan de hand was.",
+      "Wat de juiste keuze is, verschilt bovendien per beeld en per stad. Een klein bord bij een nauwelijks bekend standbeeld heeft misschien weinig effect, terwijl een groot beeld op een centraal plein veel meer aandacht trekt, en dus ook meer pijn kan doen.",
+      "Eén ding is duidelijk: openbare ruimte verandert mee met de tijd. Straten worden omgedoopt, pleinen krijgen een andere naam, en misschien is het logisch dat ook standbeelden soms verplaatst worden. Definitieve antwoorden zijn er niet. En wat vind jij: moet zo'n beeld blijven staan, verdwijnen, of ergens tussenin?"
+    ],
+    en: [
+      "In cities all over the world there are statues of people who used to be seen as heroes: explorers, generals, merchants. Some of them were also responsible for the slave trade, war crimes or the oppression of entire peoples. In recent years this has led to a question that comes up more and more often: should such a statue simply keep standing?",
+      "In 2020 something happened in the English city of Bristol that fuelled the debate across Europe. Demonstrators pulled the statue of Edward Colston, a seventeenth-century slave trader, off its pedestal and threw it into the harbour. The statue was later fished out and placed in a museum, with an explanation of who Colston really was.",
+      "Those who believe statues should stay have clear arguments for that. Removing a statue does not erase history, they say: it already happened, whether the statue is there or not. Besides, a statue is a starting point for talking about that history, especially if there is good context beside it.",
+      "Supporters of removal see it differently. A statue on a square is not a history lesson, they say, but a tribute. When a city puts someone on a pedestal, it is saying: look at this person, be proud. For descendants of enslaved people, that often feels like a slap in the face.",
+      "A third group chooses a middle way: leave the statue standing, but add a sign or artwork beside it that tells the whole story, including the harm the person caused. That way the statue stays visible, without the city pretending nothing happened.",
+      "What the right choice is also differs per statue and per city. A small sign next to a barely known statue may have little effect, while a large statue on a central square draws far more attention, and so can also cause more pain.",
+      "One thing is clear: public space changes along with the times. Streets get renamed, squares get new names, and perhaps it makes sense that statues too are sometimes moved. There are no final answers. And what do you think: should such a statue stay standing, disappear, or something in between?"
+    ]
+  },
+  words: [
+    { nl: 'slavenhandelaar', en: 'slave trader', defNl: 'iemand die vroeger mensen kocht en verkocht als slaaf', defEn: 'someone who used to buy and sell people as slaves' },
+    { nl: 'nabestaanden', en: 'descendants', defNl: 'de familie en nakomelingen van iemand die overleden is', defEn: 'the family and descendants of someone who has died' },
+    { nl: 'aanknopingspunt', en: 'starting point', defNl: 'iets waarmee je een gesprek of uitleg kunt beginnen', defEn: 'something you can use to start a conversation or explanation' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat deden demonstranten in 2020 met het standbeeld van Edward Colston in Bristol?',
+           en: 'What did demonstrators do with the statue of Edward Colston in Bristol in 2020?' },
+      options: [
+        { nl: 'Ze trokken het van de sokkel en gooiden het in de haven', en: 'They pulled it off its pedestal and threw it into the harbour' },
+        { nl: 'Ze schilderden het beeld helemaal rood', en: 'They painted the statue completely red' },
+        { nl: 'Ze zetten er bloemen omheen', en: 'They placed flowers around it' },
+        { nl: 'Ze verplaatsten het naar een ander plein', en: 'They moved it to a different square' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Demonstranten trokken het standbeeld ... van zijn sokkel en gooiden het in de haven."',
+                 en: 'Paragraph 2: "Demonstrators pulled the statue ... off its pedestal and threw it into the harbour."' } },
+    { id: 'q2', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Het standbeeld van Colston werd in 2020 in de haven van Bristol gegooid.',
+          en: 'The statue of Colston was thrown into the harbour of Bristol in 2020.', bin: 0 },
+        { nl: 'Een standbeeld weghalen wist de geschiedenis niet uit.', en: 'Removing a statue does not erase history.', bin: 1 },
+        { nl: 'Edward Colston was een slavenhandelaar uit de zeventiende eeuw.',
+          en: 'Edward Colston was a seventeenth-century slave trader.', bin: 0 },
+        { nl: 'Een standbeeld op een plein is vooral een eerbetoon, geen geschiedenisles.',
+          en: 'A statue on a square is mainly a tribute, not a history lesson.', bin: 1 }
+      ],
+      explain: { nl: 'Jaartallen en gebeurtenissen kun je opzoeken. De andere twee zinnen zijn standpunten uit de discussie.',
+                 en: 'Dates and events can be looked up. The other two sentences are positions in the debate.' } },
+    { id: 'q3', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat is het doel van deze tekst?', en: 'What is the purpose of this text?' },
+      options: [
+        { nl: 'Verschillende kanten van de discussie laten zien en de lezer laten nadenken',
+          en: 'Show different sides of the debate and make the reader think' },
+        { nl: 'De lezer overtuigen dat alle standbeelden weg moeten', en: 'Convince the reader that every statue must go' },
+        { nl: 'Uitleggen hoe je een standbeeld schoonmaakt', en: 'Explain how to clean a statue' },
+        { nl: 'Reclame maken voor een bezoek aan Bristol', en: 'Advertise a visit to Bristol' }
+      ], answer: 0,
+      explain: { nl: 'De tekst geeft eerst beide kanten het woord en eindigt met de open vraag "En wat vind jij?"',
+                 en: 'The text gives both sides a voice and ends with the open question "And what do you think?"' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Zo blijft het beeld zichtbaar, zonder dat de stad doet alsof er niets aan de hand was." Waar verwijst "zo" naar?',
+           en: '"That way the statue stays visible, without the city pretending nothing happened." What does "that way" refer to?' },
+      options: [
+        { nl: 'Het beeld laten staan met een bord of kunstwerk dat het hele verhaal vertelt',
+          en: 'Leaving the statue standing with a sign or artwork that tells the whole story' },
+        { nl: 'Het beeld weghalen en in een museum zetten', en: 'Removing the statue and placing it in a museum' },
+        { nl: 'Het beeld optillen en naar een ander plein verplaatsen', en: 'Lifting the statue and moving it to another square' },
+        { nl: 'Het beeld schoonmaken na de demonstratie', en: 'Cleaning the statue after the demonstration' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5 beschrijft eerst de middenweg: beeld laten staan plus bord of kunstwerk erbij. Daarnaar verwijst "zo".',
+                 en: 'Paragraph 5 first describes the middle way: leave the statue plus add a sign or artwork. That is what "that way" refers to.' } },
+    { id: 'q5', type: 'multi', skill: 'gevolgtrekking',
+      q: { nl: 'Welke twee argumenten gebruiken mensen die vinden dat een standbeeld moet blijven staan? Kies er 2.',
+           en: 'Which two arguments do people who think a statue should stay use? Pick 2.' },
+      options: [
+        { nl: 'Weghalen wist de geschiedenis niet uit', en: 'Removing it does not erase history' },
+        { nl: 'Het beeld is een aanknopingspunt om over geschiedenis te praten', en: 'The statue is a starting point for talking about history' },
+        { nl: 'Het beeld is te zwaar om te verplaatsen', en: 'The statue is too heavy to move' },
+        { nl: 'Niemand vindt het beeld mooi genoeg om te bewaren', en: 'Nobody thinks the statue is pretty enough to keep' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 3 noemt precies deze twee argumenten. Over gewicht of schoonheid zegt de tekst niets.',
+                 en: 'Paragraph 3 names exactly these two arguments. The text says nothing about weight or beauty.' } },
+    { id: 'q6', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de tekst is er één duidelijk juist antwoord op de vraag of een omstreden beeld moet blijven staan.',
+           en: 'According to the text there is one clearly correct answer to whether a controversial statue should stay standing.' },
+      answer: false,
+      explain: { nl: 'De slotalinea zegt juist: "Definitieve antwoorden zijn er niet."',
+                 en: 'The closing paragraph says the opposite: "There are no final answers."' } },
+    { id: 'q7', type: 'mc', skill: 'structuur',
+      q: { nl: 'Alinea 4 begint met "Voorstanders van weghalen zien dat anders." Wat doet deze zin?',
+           en: 'Paragraph 4 begins "Supporters of removal see it differently." What does this sentence do?' },
+      options: [
+        { nl: 'Ze zet de mening van voorstanders van weghalen tegenover die uit alinea 3',
+          en: 'It sets the opinion of supporters of removal against the one in paragraph 3' },
+        { nl: 'Ze vat de hele tekst kort samen', en: 'It briefly summarises the whole text' },
+        { nl: 'Ze introduceert het voorbeeld van Bristol', en: 'It introduces the Bristol example' },
+        { nl: 'Ze legt uit wanneer het beeld gemaakt is', en: 'It explains when the statue was made' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3 gaf de argumenten om te laten staan, alinea 4 geeft met "anders" het tegenovergestelde standpunt.',
+                 en: 'Paragraph 3 gave the arguments for keeping it, paragraph 4 uses "differently" to give the opposite view.' } },
+    { id: 'q8', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het beste?', en: 'Which summary fits best?' },
+      options: [
+        { nl: 'Standbeelden van mensen die ook kwaad deden, roepen discussie op: weghalen, laten staan, of laten staan met uitleg; een definitief antwoord is er niet.',
+          en: 'Statues of people who also did harm cause debate: remove them, leave them, or leave them with an explanation; there is no final answer.' },
+        { nl: 'In Bristol staat het standbeeld van Colston nog steeds op zijn oude plek.',
+          en: 'In Bristol the statue of Colston still stands in its old place.' },
+        { nl: 'Alle historici zijn het erover eens dat standbeelden weg moeten.', en: 'All historians agree that statues must go.' },
+        { nl: 'Standbeelden worden altijd van brons gemaakt.', en: 'Statues are always made of bronze.' }
+      ], answer: 0,
+      explain: { nl: 'Die samenvatting pakt de kern van elke alinea: het probleem, de drie mogelijke keuzes en de open vraag. De rest zijn losse of onjuiste details.',
+                 en: 'That summary captures the core of every paragraph: the problem, the three possible choices and the open question. The rest are single or incorrect details.' } },
+    { id: 'q9', type: 'mc', skill: 'woordenschat',
+      q: { nl: 'In de tekst is een standbeeld voor sommigen een "aanknopingspunt". Wat betekent dat hier?',
+           en: 'In the text a statue is, for some, a "starting point". What does that mean here?' },
+      options: [
+        { nl: 'Iets waarmee je een gesprek over geschiedenis kunt beginnen', en: 'Something you can use to start a conversation about history' },
+        { nl: 'Een plek waar mensen elkaar ontmoeten om te winkelen', en: 'A place where people meet to shop' },
+        { nl: 'Het moment waarop een beeld gemaakt wordt', en: 'The moment a statue is made' },
+        { nl: 'Een soort standbeeld dat van steen is', en: 'A type of statue made of stone' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: een beeld is "een aanknopingspunt om juist over die geschiedenis te praten".',
+                 en: 'Paragraph 3: a statue is "a starting point for talking about that history".' } }
+  ]
+}
+]);
