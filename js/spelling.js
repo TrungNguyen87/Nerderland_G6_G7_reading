@@ -452,6 +452,7 @@ const Spell = (function () {
         FX.burst(S.streak >= 3 ? 50 : 22);
       }
       Sound.correct();
+      Rewards.track('spellCorrect');
     } else {
       S.streak = 0;
       Sound.wrong();
@@ -590,6 +591,9 @@ const Spell = (function () {
     }
     Store.save();
 
+    Rewards.markPlayedToday();
+    Rewards.track('spellSet');
+
     Store.log('spell_done', {
       session: S.sessionId, set: SP.set.id, cat: SP.cat, level: SP.set.level,
       correct: correct, total: total, stars: stars, xp: xp, ms: ms, lang: window.LANG
@@ -619,8 +623,8 @@ const Spell = (function () {
     $('sp-result-title').textContent = t('res' + r.stars);
     $('sp-result-sub').textContent = t('res' + r.stars + 'sub');
     $('spt-correct').textContent = r.correct + '/' + r.total;
-    $('spt-xp').textContent = '+' + r.xp;
-    $('spt-coins').textContent = '+' + (r.coins || 0);
+    FX.countUp($('spt-xp'), r.xp, '+');
+    FX.countUp($('spt-coins'), r.coins || 0, '+');
     const m = Math.floor(r.ms / 60000), s = Math.floor(r.ms % 60000 / 1000);
     $('spt-time').textContent = m + ':' + String(s).padStart(2, '0');
 
@@ -633,7 +637,7 @@ const Spell = (function () {
       r.wrong.forEach(function (w) {
         const d = document.createElement('div');
         d.className = 'sp-missed';
-        d.innerHTML = '<b>' + w.word + '</b><small>' + w.why + '</small>';
+        d.innerHTML = '<b>' + escHtml(w.word) + '</b><small>' + w.why + '</small>';
         list.appendChild(d);
       });
     }
@@ -649,6 +653,7 @@ const Spell = (function () {
 
     $('btn-sp-again').textContent = t('spellAgain');
     $('btn-sp-continue').textContent = t('spellNextSet');
+    Rewards.renderQuestStrip($('sp-result-quests'));
   }
 
   /* volgende oefening: eerst binnen dezelfde regel, anders een nieuwe regel */
@@ -692,13 +697,16 @@ const Spell = (function () {
 
     /* toetsenbord: 1-9 kiest, Enter controleert of gaat verder */
     document.addEventListener('keydown', function (e) {
-      if (S.screen !== 'spell') return;
+      if (S.screen !== 'spell' || e.ctrlKey || e.metaKey || e.altKey) return;
       if (current() && current().type === 'type') return;   /* daar typ je gewoon */
       if (e.key >= '1' && e.key <= '9') {
         const opts = $$('#sp-body .opt, #sp-body .sp-piece, #sp-body .sp-chip');
         const i = parseInt(e.key, 10) - 1;
         if (opts[i]) opts[i].click();
       } else if (e.key === 'Enter') {
+        /* voorkomt dat de browser daarna óók nog op de "Verder"-knop klikt
+           die na het nakijken focus krijgt: dan sloeg je een woord over */
+        e.preventDefault();
         if (!$('btn-sp-next').classList.contains('hidden')) next();
         else check();
       }

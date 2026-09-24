@@ -155,8 +155,61 @@ const I18N = {
   levelUp:        { nl: 'Level omhoog!',           en: 'Level up!' },
   missionDone:    { nl: '🏆 Missie geslaagd: 30 minuten gelezen!', en: '🏆 Mission complete: 30 minutes of reading!' },
   storyLocked:    { nl: 'Lees eerst het vorige niveau uit.', en: 'Finish the previous level first.' },
-  allDone:        { nl: 'Je hebt alle verhalen van deze wereld gedaan! Kies een andere wereld.',
-                    en: 'You have done every story in this world! Pick another world.' },
+  allDone:        { nl: 'Je hebt alle open verhalen gelezen! Kies een verhaal om je sterren te verbeteren.',
+                    en: 'You have read every open story! Pick one to improve your stars.' },
+  noSpeech:       { nl: 'Voorlezen werkt niet op dit apparaat.', en: 'Read aloud is not available on this device.' },
+  storiesLabel:   { nl: 'verhalen',                en: 'stories' },
+  worldDone:      { nl: 'Alle verhalen van deze wereld gelezen!', en: 'Every story in this world is done!' },
+  flashScore:     { nl: 'Bonusronde: {n} punten',  en: 'Bonus round: {n} points' },
+  flashRecord:    { nl: '🏅 Nieuw record!',        en: '🏅 New record!' },
+  levelUnlocks:   { nl: 'Nieuw in de winkel:',     en: 'New in the shop:' },
+  didYouKnow:     { nl: 'Wist je dat...',          en: 'Did you know...' },
+
+  /* ---- beloningen: dagopdrachten, dagreeks, cadeaus en album ---- */
+  hello:          { nl: 'Hoi {name}!',             en: 'Hi {name}!' },
+  questsTitle:    { nl: 'Dagopdrachten',           en: 'Daily quests' },
+  questDone:      { nl: 'Opdracht klaar:',         en: 'Quest done:' },
+  questsReward:   { nl: 'Nog {n} te gaan, dan krijg je een cadeau!', en: '{n} to go, then you get a gift!' },
+  questsAllDone:  { nl: 'Alle dagopdrachten klaar! Morgen staan er nieuwe voor je klaar.',
+                    en: 'All daily quests done! New ones are waiting tomorrow.' },
+  dayStreak:      { nl: '{n} dagen op rij gelezen', en: '{n} days in a row' },
+  dayStreakOne:   { nl: '1 dag gelezen',           en: '1 day of reading' },
+  dayStreakKeep:  { nl: 'lees vandaag om je reeks te houden!', en: 'read today to keep your streak!' },
+  dayStreakStart: { nl: 'Lees vandaag een verhaal en start je dagreeks!', en: 'Read a story today and start your streak!' },
+  dayStreakToast: { nl: '{n} dagen op rij! Houd je reeks vast!', en: '{n} days in a row! Keep it going!' },
+  chestEarnedDaily:  { nl: 'Cadeau verdiend: alle dagopdrachten klaar!', en: 'Gift earned: all daily quests done!' },
+  chestEarnedStreak: { nl: 'Cadeau verdiend voor je dagreeks!',          en: 'Gift earned for your day streak!' },
+  chestEarnedLevel:  { nl: 'Cadeau verdiend voor je nieuwe level!',      en: 'Gift earned for your new level!' },
+  chestEarnedStar:   { nl: 'Cadeau verdiend: 3 sterren!',                en: 'Gift earned: 3 stars!' },
+  chestFromDaily:    { nl: '🎯 Voor al je dagopdrachten',  en: '🎯 For all your daily quests' },
+  chestFromStreak:   { nl: '🔥 Voor je dagreeks',          en: '🔥 For your day streak' },
+  chestFromLevel:    { nl: '⚡ Voor je nieuwe level',       en: '⚡ For your new level' },
+  chestFromStar:     { nl: '⭐ Voor 3 sterren',             en: '⭐ For 3 stars' },
+  chestTap:       { nl: 'Tik op het cadeau om het te openen!', en: 'Tap the gift to open it!' },
+  chestGiftDesc:  { nl: 'Nieuw in je album! Dit kun je nergens kopen.', en: 'New in your album! You cannot buy this anywhere.' },
+  chestJoker:     { nl: 'Jokerkaart',              en: 'Joker card' },
+  chestJokerDesc: { nl: 'Gebruik hem bij een lastige vraag.', en: 'Use it on a tricky question.' },
+  chestCoinsDesc: { nl: 'Extra munten voor de winkel!', en: 'Extra coins for the shop!' },
+  chestNext:      { nl: 'Volgende cadeau ({n}) →', en: 'Next gift ({n}) →' },
+  chestClose:     { nl: 'Super! 🎉',               en: 'Awesome! 🎉' },
+  chestOpen:      { nl: 'Open je cadeau!',         en: 'Open your gift!' },
+  chestOpenN:     { nl: 'Open je {n} cadeaus!',    en: 'Open your {n} gifts!' },
+  chestBtn:       { nl: 'Cadeau openen',           en: 'Open gift' },
+  albumBtn:       { nl: '🎁 Mijn album',           en: '🎁 My album' },
+  albumNote:      { nl: '{n} van de {total} verzameld. Cadeaus krijg je voor dagopdrachten, 3 sterren, je dagreeks en elke 5 levels.',
+                    en: '{n} of {total} collected. You get gifts for daily quests, 3 stars, your day streak and every 5 levels.' },
+  albumFound:     { nl: 'Gevonden',                en: 'Found' },
+  albumMissing:   { nl: 'Nog niet gevonden',       en: 'Not found yet' },
+  shopTabAlbum:   { nl: '🎁 Album',                en: '🎁 Album' },
+  equippedToast:  { nl: 'is nu je held!',          en: 'is now your hero!' },
+  pStreak:        { nl: 'langste dagreeks',        en: 'longest streak' },
+  pGifts:         { nl: 'cadeaus',                 en: 'gifts' },
+
+  /* ---- feedback ---- */
+  feedbackText:   { nl: 'Tips, ideeën of een foutje gezien? Mail ons:', en: 'Tips, ideas or spotted a mistake? Email us:' },
+  pFeedback:      { nl: 'Feedback',                en: 'Feedback' },
+  pFeedbackNote:  { nl: 'Mist u iets, klopt er een vraag niet of heeft uw kind een idee? We horen het graag. Er wordt niets automatisch meegestuurd: u kiest zelf wat u in de mail zet.',
+                    en: 'Missing something, a question that is wrong, or an idea from your child? We would love to hear it. Nothing is attached automatically: you choose what goes in the email.' },
   bestScore:      { nl: 'Beste',                   en: 'Best' },
   notYet:         { nl: 'nog niet gedaan',         en: 'not done yet' },
   words:          { nl: 'woorden',                 en: 'words' },
@@ -192,7 +245,12 @@ const BADGES = [
   { id: 'speller',  emoji: '✍️', nl: 'Spellingstarter',  en: 'Spelling starter', dNl: 'Je eerste spellingoefening gedaan', dEn: 'Finished your first spelling exercise' },
   { id: 'spell50',  emoji: '🅰️', nl: 'Vijftig woorden',  en: 'Fifty words',      dNl: '50 woorden goed gespeld', dEn: '50 words spelled correctly' },
   { id: 'dictee',   emoji: '💯', nl: 'Foutloos dictee',  en: 'Flawless dictation', dNl: 'Een spellingoefening zonder fouten', dEn: 'A spelling exercise without mistakes' },
-  { id: 'ruler',    emoji: '📐', nl: 'Regelkenner',      en: 'Rule expert',      dNl: 'Vijf spellingregels geoefend', dEn: 'Practised five spelling rules' }
+  { id: 'ruler',    emoji: '📐', nl: 'Regelkenner',      en: 'Rule expert',      dNl: 'Vijf spellingregels geoefend', dEn: 'Practised five spelling rules' },
+  { id: 'bookworm', emoji: '🐛', nl: 'Boekenwurm',       en: 'Bookworm',         dNl: '25 verschillende verhalen uitgelezen', dEn: 'Finished 25 different stories' },
+  { id: 'days3',    emoji: '📅', nl: 'Drie dagen',       en: 'Three days',       dNl: '3 dagen op rij gelezen', dEn: 'Read 3 days in a row' },
+  { id: 'days7',    emoji: '🗓️', nl: 'Weekkampioen',     en: 'Week champion',    dNl: '7 dagen op rij gelezen', dEn: 'Read 7 days in a row' },
+  { id: 'questhero', emoji: '🎯', nl: 'Opdrachtheld',    en: 'Quest hero',       dNl: 'Op 3 dagen alle dagopdrachten gehaald', dEn: 'Finished all daily quests on 3 days' },
+  { id: 'collector', emoji: '🎁', nl: 'Verzamelaar',     en: 'Collector',        dNl: '10 cadeaus in je album', dEn: '10 gifts in your album' }
 ];
 
 const AVATARS = ['🦸','🦹','🧙','🥷','🦊','🐯','🐼','🐸','🦉','🐙','🤖','👽','🦖','🦄','🐝','🐢'];
@@ -213,4 +271,23 @@ function L(obj) {
   if (obj === null || obj === undefined) return '';
   if (typeof obj === 'string') return obj;
   return obj[window.LANG || 'nl'] !== undefined ? obj[window.LANG || 'nl'] : (obj.nl || '');
+}
+
+/* waar ouders (en kinderen) feedback en ideeën naartoe kunnen sturen */
+const FEEDBACK_EMAIL = 'nxtrung87@gmail.com';
+
+/* maakt tekst die een kind zelf getypt heeft veilig om in innerHTML te zetten */
+function escHtml(s) {
+  return String(s === null || s === undefined ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/* de kalenderdag in de tijdzone van het apparaat (JJJJ-MM-DD). Niet
+   toISOString(): dat is UTC, en dan begint de "nieuwe dag" in Nederland
+   pas om 01:00 of 02:00 's nachts. */
+function localDay(ts) {
+  const d = ts === undefined ? new Date() : new Date(ts);
+  const p = function (n) { return String(n).padStart(2, '0'); };
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
 }

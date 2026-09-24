@@ -26,7 +26,7 @@ const S = {
   fontStep: 0, easyFont: false, ruler: false,
   karaokeTimer: null,
   sessionId: 'S' + Date.now().toString(36),
-  activeMs: 0, lastTick: Date.now(), missionFired: false,
+  activeMs: 0, lastTick: Date.now(),
   flash: null,
   draftAvatar: '🦸'
 };
@@ -93,6 +93,7 @@ function renderProfileChips(profiles) {
 function chooseProfile(id) {
   Sound.click();
   Store.switchTo(id);
+  S.streak = 0;   /* de reeks goede antwoorden hoort bij één kind */
   Store.log('session_start', { session: S.sessionId, lang: window.LANG });
   updateHUD();
   setHue(defaultHue(), 'default');
@@ -130,42 +131,63 @@ function selectDraftAvatar(a) {
 }
 
 /* ---- klok die bijhoudt hoelang er echt gespeeld wordt ---- */
+/* op het startscherm (nog niemand gekozen) en in het ouderdeel telt de
+   tijd niet mee voor de leesmissie van het kind */
+const NO_CLOCK_SCREENS = ['home', 'parent'];
+
 function startTicker() {
   setInterval(function () {
     const now = Date.now();
     const delta = now - S.lastTick;
     S.lastTick = now;
     if (document.hidden || delta > 5000) return;   /* pauzeer bij weggeklikt tabblad */
+    if (!Store.activeProfileId || NO_CLOCK_SCREENS.indexOf(S.screen) !== -1) return;
     S.activeMs += delta;
-    updateMission();
+    updateMission(1000);
     if (S.screen === 'read') updateReadTimer();
   }, 1000);
 }
 
-function todayKey() { return new Date().toISOString().slice(0, 10); }
+function todayKey() { return localDay(); }
 
-function updateMission() {
+function missionMs() {
   const p = Store.player;
-  if (!p.daily) p.daily = {};
-  const k = todayKey();
-  p.daily[k] = (p.daily[k] || 0) + 1000;
-  const ms = p.daily[k];
+  return (p.daily && p.daily[todayKey()]) || 0;
+}
 
+/* de ring rechtsboven: hoeveel van de 30 minuten zit er vandaag al in */
+function drawMission() {
+  const ms = missionMs();
   const frac = Math.min(ms / MISSION_MS, 1);
   const c = 2 * Math.PI * 18;
   $('ring-fill').style.strokeDashoffset = String(c * (1 - frac));
   const mins = Math.floor(ms / 60000), secs = Math.floor(ms % 60000 / 1000);
   $('mission-time').textContent = mins + ':' + String(secs).padStart(2, '0');
+  $('mission').classList.toggle('done', frac >= 1);
+}
 
-  if (frac >= 1 && !S.missionFired) {
-    S.missionFired = true;
-    $('mission').classList.add('done');
+function updateMission(step) {
+  const p = Store.player;
+  if (!p.daily) p.daily = {};
+  const k = todayKey();
+  p.daily[k] = (p.daily[k] || 0) + step;
+  drawMission();
+
+  /* één keer per dag per speler: vroeger stond dit alleen in het geheugen,
+     waardoor elke herlaadbeurt na 30 minuten opnieuw 15 munten gaf */
+  if (p.daily[k] >= MISSION_MS && p.missionDay !== k) {
+    p.missionDay = k;
     FX.burst(150);
     FX.toast(t('missionDone'), 4200);
     Sound.finish();
     Store.log('mission_done', { minutes: 30 });
     addCoins(15, 'mission');
     awardBadge('mission');
+    /* de minuten per dag nooit eindeloos laten groeien */
+    const days = Object.keys(p.daily).sort();
+    days.slice(0, Math.max(0, days.length - 60)).forEach(function (d) { delete p.daily[d]; });
+    Store.save();
+    updateHUD();
   }
   if (Math.random() < 0.05) Store.save();   /* af en toe wegschrijven */
 }
@@ -213,9 +235,11 @@ function bindGlobal() {
   });
   $('btn-home').addEventListener('click', function () { Sound.click(); setHue(defaultHue(), 'default'); renderWorlds(); show('worlds'); });
   $('btn-lang').addEventListener('click', toggleLang);
+  $('btn-sound').textContent = Sound.isOn() ? '🔊' : '🔇';
   $('btn-sound').addEventListener('click', function () {
     Sound.setOn(!Sound.isOn());
     $('btn-sound').textContent = Sound.isOn() ? '🔊' : '🔇';
+    Sound.click();
   });
   $('btn-parent').addEventListener('click', openParent);
   $$('.mode-tab').forEach(function (b) {
@@ -271,14 +295,18 @@ function bindGlobal() {
     if (confirm(t('wipeConfirm').replace('{name}', name))) { Store.wipe(); location.reload(); }
   });
 
-  /* toetsenbord: 1-4 om te kiezen, Enter om te controleren */
+  /* toetsenbord: 1-9 om te kiezen, Enter om te controleren */
   document.addEventListener('keydown', function (e) {
-    if (S.screen !== 'quiz') return;
+    if (S.screen !== 'quiz' || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (!$('peek-panel').classList.contains('hidden')) return;
     if (e.key >= '1' && e.key <= '9') {
       const opts = $$('#q-body .opt, #q-body .tf-btn, #q-body .order-item:not(.picked)');
       const i = parseInt(e.key, 10) - 1;
       if (opts[i]) opts[i].click();
     } else if (e.key === 'Enter') {
+      /* anders "klikt" de browser ook nog op de knop die focus heeft, en
+         wordt er in één toetsaanslag twee keer doorgegaan */
+      e.preventDefault();
       if (!$('btn-next').classList.contains('hidden')) $('btn-next').click();
       else $('btn-check').click();
     }
@@ -288,6 +316,7 @@ function bindGlobal() {
 function startGame() {
   const name = $('input-name').value.trim() || (window.LANG === 'nl' ? 'Lezer' : 'Reader');
   Store.createProfile(name, S.draftAvatar || '🦸');
+  S.streak = 0;
   Store.log('session_start', { session: S.sessionId, lang: window.LANG });
   Sound.click();
   updateHUD();
@@ -320,6 +349,8 @@ function applyLang() {
   $('lang-label').textContent = nl ? 'NL' : 'EN';
   $$('#btn-lang .flag')[0].textContent = nl ? '🇳🇱' : '🇬🇧';
   $$('[data-i18n]').forEach(function (el) { el.textContent = t(el.dataset.i18n); });
+  $('btn-chest').title = t('chestBtn');
+  $('btn-chest').setAttribute('aria-label', t('chestBtn'));
 }
 
 /* =====================================================================
@@ -338,6 +369,8 @@ function updateHUD() {
   $('streak-n').textContent = S.streak;
   $('hud-streak').classList.toggle('on', S.streak >= 3);
   $('hud-coins').textContent = p.coins || 0;
+  drawMission();
+  Rewards.renderChestButton();
 }
 
 function addXP(n) {
@@ -349,8 +382,18 @@ function addXP(n) {
   updateHUD();
   Store.save();
   if (after > before) {
-    FX.levelUp(t('levelUp') + ' ' + after);
+    /* laat meteen zien wat er met dit niveau in de winkel open gaat: een
+       concreet doel om naartoe te sparen werkt beter dan alleen een getal */
+    const unlocked = (window.SHOP_ITEMS || []).filter(function (it) {
+      return it.minLevel && it.minLevel > before && it.minLevel <= after;
+    });
+    const sub = unlocked.length
+      ? t('levelUnlocks') + ' ' + unlocked.map(function (it) { return it.emoji; }).join(' ')
+      : '';
+    FX.levelUp(t('levelUp') + ' ' + after, sub);
     Store.log('level_up', { level: after, xp: p.xp });
+    /* elke vijf niveaus een cadeau */
+    for (let lv = before + 1; lv <= after; lv++) if (lv % 5 === 0) Rewards.grantChest('level');
   }
 }
 
@@ -429,6 +472,14 @@ function checkBadges(ctx) {
   const vocabOk = Stats.answers().filter(function (e) { return e.skill === 'woordenschat' && e.correct; }).length;
   if (vocabOk >= 10) push('wordking');
 
+  /* beloningssysteem: dagreeks, dagopdrachten en het verzamelalbum */
+  if (done.length >= 25) push('bookworm');
+  const ds = p.dayStreak || {};
+  if ((ds.best || 0) >= 3) push('days3');
+  if ((ds.best || 0) >= 7) push('days7');
+  if ((p.questDays || 0) >= 3) push('questhero');
+  if (((p.owned || {}).gift || []).length >= 10) push('collector');
+
   return got;
 }
 
@@ -461,17 +512,20 @@ function renderWorlds() {
     const all = storiesOf(tp.id);
     const doneN = all.filter(function (s) { return best[s.id]; }).length;
     const pct = all.length ? Math.round(doneN / all.length * 100) : 0;
+    const starN = all.reduce(function (n, s) { return n + (best[s.id] ? best[s.id].stars : 0); }, 0);
+    const complete = all.length && doneN === all.length;
 
     const card = document.createElement('button');
-    card.className = 'world-card';
+    card.className = 'world-card' + (complete ? ' complete' : '');
     card.style.setProperty('--wh', tp.hue);
     card.innerHTML =
       '<span class="wc-emoji">' + tp.emoji + '</span>' +
       '<h3 class="wc-title">' + (window.LANG === 'nl' ? tp.nl : tp.en) + '</h3>' +
       '<p class="wc-sub">' + (window.LANG === 'nl' ? tp.subNl : tp.subEn) + '</p>' +
       '<div class="wc-progress"><i style="width:' + pct + '%"></i></div>' +
-      '<span class="wc-count">' + doneN + '/' + all.length + ' ' +
-        (window.LANG === 'nl' ? 'verhalen' : 'stories') + (doneN === all.length ? ' ✓' : '') + '</span>';
+      '<span class="wc-count"><span>' + doneN + '/' + all.length + ' ' + t('storiesLabel') +
+        (complete ? ' ✓' : '') + '</span><span class="wc-stars">⭐ ' + starN + '/' + (all.length * 3) + '</span></span>' +
+      (complete ? '<span class="wc-crown" title="' + escHtml(t('worldDone')) + '">👑</span>' : '');
     card.addEventListener('click', function () {
       Sound.click();
       S.topic = tp.id;
@@ -486,6 +540,7 @@ function renderWorlds() {
   renderStickerShelf();
   setMode(S.mode || 'read');
   updateHUD();
+  Rewards.renderToday();
 }
 
 /* de stickers die uit de winkel gekocht zijn, als plankje net als de badges */
@@ -580,6 +635,8 @@ function openStory(story) {
   S.usedTTS = false;
   S.usedKaraoke = false;
   S.peeked = false;
+  S.helpUsed = false;
+  S.wordsTapped = {};
   S.readStart = Date.now();
   S.storyStart = Date.now();
   S.coinsBefore = Store.player.coins || 0;
@@ -639,6 +696,8 @@ function renderStory() {
       Sound.click();
       Speech.speak(L(w), window.LANG, 0.8);
       Store.log('word_help', { session: S.sessionId, story: st.id, word: w.nl });
+      /* één keer per woord per verhaal meetellen voor de dagopdracht */
+      if (!S.wordsTapped[w.nl]) { S.wordsTapped[w.nl] = true; Rewards.track('wordHelp'); }
     });
     help.appendChild(c);
   });
@@ -666,7 +725,7 @@ function toggleSpeak() {
     speakLabel(false);
     return;
   }
-  if (!Speech.available()) { FX.toast(window.LANG === 'nl' ? 'Voorlezen werkt niet op dit apparaat.' : 'Read aloud is not available here.'); return; }
+  if (!Speech.available()) { FX.toast(t('noSpeech')); return; }
   S.usedTTS = true;
   speakLabel(true);
   const text = L(S.story.text).join(' ');
@@ -743,6 +802,7 @@ function doneReading() {
     tts: S.usedTTS, karaoke: S.usedKaraoke, lang: window.LANG
   });
 
+  if (!skimmed) Rewards.track('readMin', S.readMs / 60000);
   Sound.click();
   startQuiz();
 }
@@ -1121,6 +1181,7 @@ function useHint() {
   const q = currentQ();
   if (S.checked) return;
   S.hintUsed = true;
+  S.helpUsed = true;
   Sound.click();
   const sk = window.SKILLS[q.skill];
   FX.say(window.LANG === 'nl' ? sk.tipNl : sk.tipEn, 'happy');
@@ -1346,6 +1407,7 @@ function useJoker() {
   Store.save();
   Sound.click();
   S.jokerUsed = true;
+  S.helpUsed = true;
   if (q.type === 'tf') {
     const b = $$('.tf-btn[data-val="' + (q.answer ? '1' : '0') + '"]')[0];
     if (b) b.click();
@@ -1387,6 +1449,7 @@ function checkAnswer() {
     }
     Sound.correct();
     FX.say(tRandom('praise'), 'happy');
+    Rewards.track('correct');
   } else {
     S.streak = 0;
     Sound.wrong();
@@ -1436,6 +1499,15 @@ function finishStory() {
   }
   Store.save();
 
+  /* beloningen: dagreeks, dagopdrachten en een cadeau voor de eerste
+     keer drie sterren bij dit verhaal */
+  Rewards.markPlayedToday();
+  Rewards.track('story');
+  Rewards.track('world', 1, S.topic);
+  if (stars === 3) Rewards.track('perfect');
+  if (!S.helpUsed && stars >= 1) Rewards.track('nohint');
+  if (stars === 3 && !(prev && prev.stars === 3)) Rewards.grantChest('star');
+
   Store.log('story_done', {
     session: S.sessionId, story: S.story.id, topic: S.topic, level: S.level,
     correct: correct, total: total, stars: stars, xp: xpGain,
@@ -1445,6 +1517,7 @@ function finishStory() {
   const newBadges = checkBadges({ perfect: ratio === 1, level: S.level, stars: stars, wpm: wpm });
 
   S.lastResult = { correct: correct, total: total, stars: stars, xp: xpGain, coins: coinsGain, wpm: wpm, totalMs: totalMs, badges: newBadges };
+  S.lastResult.fact = Rewards.factFor(S.topic);
   renderResult();
   show('result');
 
@@ -1464,13 +1537,25 @@ function renderResult() {
     if (i < r.stars) setTimeout(function () { Sound.star(); }, 300 + i * 220);
   }
   $('rt-correct').textContent = r.correct + '/' + r.total;
-  $('rt-xp').textContent = '+' + r.xp;
-  $('rt-coins').textContent = '+' + (r.coins || 0);
+  FX.countUp($('rt-xp'), r.xp, '+');
+  FX.countUp($('rt-coins'), r.coins || 0, '+');
   $('rt-wpm').textContent = r.wpm || '–';
   const m = Math.floor(r.totalMs / 60000), s = Math.floor(r.totalMs % 60000 / 1000);
   $('rt-time').textContent = m + ':' + String(s).padStart(2, '0');
 
   renderResultTexts();
+}
+
+/* alles met tekst op het resultaatscherm, zodat een taalwissel het
+   hele scherm vertaalt zonder de sterren en het geluid opnieuw af te spelen */
+function renderResultTexts() {
+  const r = S.lastResult;
+  if (!r) return;
+  $('result-title').textContent = t('res' + r.stars);
+  $('result-sub').textContent = t('res' + r.stars + 'sub');
+  $('btn-again').textContent = t('tryAgain');
+  $('btn-bonus').textContent = t('bonusRound');
+  $('btn-continue').textContent = t('keepGoing');
 
   /* per vaardigheid van dit verhaal */
   const sk = $('result-skills');
@@ -1491,15 +1576,11 @@ function renderResult() {
     d.textContent = b.emoji + ' ' + (window.LANG === 'nl' ? b.nl : b.en);
     nb.appendChild(d);
   });
-}
 
-function renderResultTexts() {
-  const r = S.lastResult;
-  $('result-title').textContent = t('res' + r.stars);
-  $('result-sub').textContent = t('res' + r.stars + 'sub');
-  $('btn-again').textContent = t('tryAgain');
-  $('btn-bonus').textContent = t('bonusRound');
-  $('btn-continue').textContent = t('keepGoing');
+  Rewards.renderQuestStrip($('result-quests'));
+  const fact = $('result-fact');
+  fact.innerHTML = r.fact ? '<b>🦉 ' + t('didYouKnow') + '</b> ' + escHtml(L(r.fact)) : '';
+  fact.classList.toggle('hidden', !r.fact);
 }
 
 /* volgend logisch verhaal kiezen */
@@ -1536,7 +1617,10 @@ function nextStory() {
    9. Bonusronde: flitswoorden
    Traint het snel herkennen van woorden, wat het leestempo helpt.
    ===================================================================== */
+const wordPoolCache = {};
 function wordPool() {
+  /* 100 verhalen doorlopen kost even; per taal één keer is genoeg */
+  if (wordPoolCache[window.LANG]) return wordPoolCache[window.LANG];
   const pool = [];
   window.STORY_DB.forEach(function (s) {
     (s.words || []).forEach(function (w) { pool.push(L(w)); });
@@ -1546,7 +1630,8 @@ function wordPool() {
       if (clean.length >= 6 && clean.length <= 13) pool.push(clean.toLowerCase());
     });
   });
-  return Array.from(new Set(pool));
+  wordPoolCache[window.LANG] = Array.from(new Set(pool));
+  return wordPoolCache[window.LANG];
 }
 
 function startFlash() {
@@ -1560,8 +1645,13 @@ function startFlash() {
 
 function flashRound() {
   const f = S.flash;
-  if (!f || f.round >= f.rounds) { endFlash(); return; }
+  if (!f) return;   /* al gestopt */
+  if (f.round >= f.rounds) { endFlash(); return; }
   f.round++;
+  /* elke timer hieronder checkt of dit nog steeds dezelfde bonusronde is:
+     wie halverwege op Stoppen drukt, mag niet daarna nog een toast of een
+     sprong terug naar het wereldscherm krijgen */
+  const alive = function () { return S.flash === f && S.screen === 'flits'; };
 
   const stage = $('flits-stage');
   const opts = $('flits-options');
@@ -1579,6 +1669,7 @@ function flashRound() {
   let count = 3;
   stage.innerHTML = '<span>' + count + '</span>';
   const tick = setInterval(function () {
+    if (!alive()) { clearInterval(tick); return; }
     count--;
     if (count > 0) { stage.innerHTML = '<span>' + count + '</span>'; Sound.click(); }
     else {
@@ -1587,6 +1678,7 @@ function flashRound() {
       stage.innerHTML = '<span class="flash">' + target + '</span>';
       Sound.flash();
       setTimeout(function () {
+        if (!alive()) return;
         stage.innerHTML = '<span style="opacity:.35">👀</span>';
         choices.forEach(function (w) {
           const b = document.createElement('button');
@@ -1602,7 +1694,7 @@ function flashRound() {
               $$('.flits-opt').forEach(function (x) { if (x.textContent === target) x.classList.add('ok'); });
             }
             $('flits-score').textContent = f.score;
-            setTimeout(flashRound, 900);
+            setTimeout(function () { if (alive()) flashRound(); }, 900);
           });
           opts.appendChild(b);
         });
@@ -1615,8 +1707,10 @@ function endFlash() {
   const f = S.flash;
   if (f) {
     Store.log('flash', { session: S.sessionId, score: f.score, rounds: f.round, lang: window.LANG });
-    if (f.score > (Store.player.flashBest || 0)) { Store.player.flashBest = f.score; Store.save(); }
-    FX.toast((window.LANG === 'nl' ? 'Bonusronde: ' : 'Bonus round: ') + f.score + ' punten');
+    const record = f.score > (Store.player.flashBest || 0);
+    if (record) { Store.player.flashBest = f.score; Store.save(); }
+    FX.toast(t('flashScore').replace('{n}', f.score) + (record && f.score ? ' ' + t('flashRecord') : ''));
+    if (f.round >= 3) Rewards.track('flash');
   }
   S.flash = null;
   setHue(defaultHue(), 'default');
@@ -1689,6 +1783,9 @@ function renderShop() {
   $$('.shop-tab').forEach(function (b) { b.classList.toggle('on', b.dataset.kind === kind); });
 
   const note = $('shop-note');
+  const grid = $('shop-grid');
+  /* het album: cadeaus die je niet kunt kopen, alleen uit een cadeaudoos */
+  if (kind === 'gift') { Rewards.renderAlbum(grid, note); return; }
   const cd = todayCoins();
   const capLine = '🪙 ' + (window.LANG === 'nl' ? 'vandaag verdiend' : 'earned today') + ': ' + cd.earned + '/' + DAILY_COIN_CAP;
   if (kind === 'tool') {
@@ -1704,12 +1801,11 @@ function renderShop() {
   }
   note.classList.remove('hidden');
 
-  const grid = $('shop-grid');
   grid.innerHTML = '';
   const p = Store.player;
   const owned = p.owned || {};
 
-  (window.SHOP_ITEMS || []).filter(function (it) { return it.kind === kind; }).forEach(function (it) {
+  (window.SHOP_ITEMS || []).filter(function (it) { return it.kind === kind && !it.chestOnly; }).forEach(function (it) {
     const isJoker = it.kind === 'tool' && it.effect === 'joker';
     const isTheme = it.kind === 'tool' && it.effect === 'theme';
     const has = !isJoker && (owned[it.kind] || []).indexOf(it.id) !== -1;
@@ -1778,7 +1874,6 @@ function buyItem(it) {
   FX.burst(60);
   FX.toast(it.emoji + ' ' + L(it) + ' ' + t('boughtToast'));
   updateHUD();
-  if (it.kind === 'icon' || it.kind === 'character') buildAvatars();
   renderShop();
 }
 
@@ -1789,10 +1884,12 @@ function equipItem(it) {
     Store.save();
     setHue(defaultHue(), 'default');
   } else {
-    selectAvatar(it.emoji);
+    /* een gekocht icoon of personage wordt de nieuwe avatar van deze speler
+       (Store.save() zet hem ook in het profielregister, voor de chips) */
+    Store.player.avatar = it.emoji;
     Store.save();
     updateHUD();
-    buildAvatars();
+    FX.toast(it.emoji + ' ' + L(it) + ' ' + t('equippedToast'));
   }
   renderShop();
 }
@@ -1845,6 +1942,7 @@ function renderParentProfileSwitch() {
       if (p.id === Store.activeProfileId) return;
       Sound.click();
       Store.switchTo(p.id);
+      S.streak = 0;
       updateHUD();
       renderParent();
     });
@@ -1862,6 +1960,8 @@ function renderParent() {
   $('p-wpm').textContent = s.wpm || '–';
   $('p-days').textContent = s.days;
   $('p-coins').textContent = Store.player.coins || 0;
+  $('p-streak').textContent = ((Store.player.dayStreak || {}).best || 0);
+  $('p-gifts').textContent = ((Store.player.owned || {}).gift || []).length;
   const owned = Store.player.owned || {};
   $('p-owned').textContent = Object.keys(owned).reduce(function (n, k) { return n + (owned[k] || []).length; }, 0);
 
@@ -1930,7 +2030,7 @@ function renderParent() {
   if (!missed.length) mHtml += '<tr><td colspan="4">' + (sp.words ? (window.LANG === 'nl' ? 'Alles goed gespeld!' : 'Everything spelled correctly!') : t('pNoSpell')) + '</td></tr>';
   missed.forEach(function (m) {
     const c = (window.SPELL_CATS || []).filter(function (x) { return x.id === m.cat; })[0];
-    mHtml += '<tr><td class="good">' + m.word + '</td><td class="bad">' + (m.given || '-') +
+    mHtml += '<tr><td class="good">' + escHtml(m.word) + '</td><td class="bad">' + escHtml(m.given || '-') +
       '</td><td>' + (c ? (window.LANG === 'nl' ? c.nl : c.en) : '') + '</td><td>' + m.n + '×</td></tr>';
   });
   mHtml += '</table>';
@@ -1975,7 +2075,7 @@ function renderParent() {
   recent.forEach(function (e) {
     const d = new Date(e.ts);
     log += '<tr><td>' + d.toLocaleDateString() + ' ' + d.toTimeString().slice(0, 5) + '</td><td>' +
-      titleOf(e.story) + '</td><td>' + (e.qText || '').slice(0, 60) + '</td><td class="' + (e.correct ? 'good' : 'bad') + '">' +
+      titleOf(e.story) + '</td><td>' + escHtml((e.qText || '').slice(0, 60)) + '</td><td class="' + (e.correct ? 'good' : 'bad') + '">' +
       (e.correct ? '✓' : '✗') + '</td><td>' + (e.ms ? (e.ms / 1000).toFixed(0) : '') + '</td></tr>';
   });
   log += '</table>';

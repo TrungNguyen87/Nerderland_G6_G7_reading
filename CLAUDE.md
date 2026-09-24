@@ -56,7 +56,18 @@ Both must be clean before pushing — this is the project's entire CI.
   - Every event now carries `player: <name>` and export filenames include
     a slugified player name — this was the direct fix for the original
     complaint ("can't tell which kid's log I'm looking at").
-- `tools/validate.js` greps `js/app.js`, `js/spelling.js`, `js/log.js` and
+- **Rewards live in `js/rewards.js`** (`Rewards.track(ev, amount, extra)`,
+  `markPlayedToday()`, `grantChest(src)`, `renderToday()`, …). State is on
+  `Store.player`: `quests` (today's 3 quests, reseeded per local day +
+  profile id), `dayStreak {last,count,best}`, `questDays`, `chests` (queue of
+  unopened boxes), `owned.gift` (album), `missionDay` (the 30-min mission's
+  once-per-day guard). Chest coins deliberately bypass `DAILY_COIN_CAP`.
+  Gifts are `kind: 'gift', chestOnly: true` items in `data/shop.js` with no
+  cost; the shop hides them and shows them in the "Album" tab instead.
+- Shared helpers in `js/i18n.js`: `localDay(ts)` (use this, never
+  `toISOString().slice(0,10)`, which is UTC), `escHtml()` for anything a
+  child typed, and `FEEDBACK_EMAIL`.
+- `tools/validate.js` greps `js/app.js`, `js/spelling.js`, `js/log.js`, `js/rewards.js` and
   `index.html` for `t('key')` / `data-i18n="key"` usage to warn about
   unused or missing i18n strings — keep new UI strings wired through
   `t()`/`data-i18n` so this stays useful, not because it fails the build
@@ -162,3 +173,48 @@ level each); if more content is wanted, either add a third story per level
 across the board (same process as above) or go deeper on specific worlds
 the user calls out. If the multiplayer plan (`docs/plans/multiplayer-mode.md`)
 comes up again, that's still unstarted and unrelated to this session's work.
+
+### 2026-09-24 — bug sweep, rewards system, more content, feedback email, CI
+Prompted by: "debug and fix small errors, polish, improve visuals, add
+content, more gifts/characters/rewards to make kids read more, add a
+feedback email (nxtrung87@gmail.com), test everything for GitHub deploy."
+
+- Bugs found by reading the code (none were covered by the old smoke test):
+  shop equip crashed on an undefined `selectAvatar`; the 30-min mission
+  re-paid coins on every reload (flag lived only in memory); mission clock
+  ran on home/parent screens; Enter on spelling double-advanced; bonus-round
+  quit left live timers; result subtitle invisible (white on white); UTC day
+  keys; unescaped child input in innerHTML. Full list in `CHANGELOG.md`.
+- New `js/rewards.js` + `data/facts.js`; reward hooks in `app.js`
+  (`finishStory`, `checkAnswer`, word-help, `doneReading`, `endFlash`,
+  `addXP`) and `spelling.js` (`check`, `finish`). `FX.toast` is now a queue
+  (several reward messages arrive at once after a story) and `FX.countUp`
+  / `FX.levelUp(text, sub)` were added.
+- Content: 10 new level-1 stories `<topic>-11` (so level 1 now has 3
+  stories per world, other levels 2), 50 fun facts, 24 shop items, 26
+  gifts, 5 badges. Adding badges makes the legendary shop item (needs *all*
+  badges) harder — `days7` means it now takes a real week of play.
+  Wrote the stories myself this time (no subagents — not requested); same
+  template as the existing level-1 stories, and a scratch Playwright run
+  answered all 10 from the data to confirm they grade correctly.
+- `tools/validate.js`: accepts `kind: 'gift'` (must be chestOnly, no cost),
+  validates `FUN_FACTS`, warns on duplicate collectable emoji.
+  `tools/smoke.mjs` gained section 7b: quests shown and moving, a gift box
+  opens and is used up, album count, buy + wear an icon (catches the equip
+  crash), mission pays once across a reload. Animated click targets need
+  the animation on an inner element or Playwright never sees them "stable"
+  (that is why `#chest-gift` wraps `.gift-inner`).
+- Added `.github/workflows/check.yml` (validate + smoke on every push/PR,
+  installs Playwright in CI only) and a validate step in `pages.yml` before
+  upload. Pages still deploys only from `Main/dutch-reading-game-kids-g67`
+  / `main`.
+- `node tools/validate.js` and `node tools/smoke.mjs` both clean before
+  committing (smoke again needed
+  `PLAYWRIGHT_CHROMIUM=/opt/pw-browsers/chromium-1194/chrome-linux/chrome`).
+
+**Next likely steps:** watch the first `Check` workflow run on GitHub (it
+installs its own Chromium, so the sandbox's path override does not apply).
+Possible follow-ups: more level 2–5 stories so every level has 3; a
+"reading buddy" pet that grows with the day streak; the multiplayer plan is
+still unstarted.
+

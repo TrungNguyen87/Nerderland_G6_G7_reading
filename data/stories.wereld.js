@@ -1061,5 +1061,77 @@ addStories([
       explain: { nl: 'Alinea 6: sommige scholen proberen een middenweg tussen niets doen en een streng examen.',
                  en: 'Paragraph 6: some schools try a middle way between doing nothing and a strict exam.' } }
   ]
+},
+{
+  id: 'wereld-11', topic: 'wereld', level: 1, emoji: '🧊', scene: 'ice',
+  title: { nl: 'Slapen in een hotel van ijs', en: 'Sleeping in a hotel made of ice' },
+  text: {
+    nl: [
+      "Ver in het noorden van Zweden ligt het dorpje Jukkasjärvi. In de winter is het daar heel koud en bijna de hele dag donker. Toch komen er dan mensen uit de hele wereld naartoe. Ze willen slapen in een hotel van ijs.",
+      "Elk jaar in november zagen bouwers grote blokken ijs uit de rivier. Van dat ijs en van sneeuw bouwen ze het hotel. De muren, de bedden en zelfs de lampen zijn van ijs gemaakt.",
+      "Kunstenaars maken van elke kamer een kunstwerk. In de ene kamer staat een ijsbeer van ijs, in een andere een draak. Geen enkel jaar ziet het hotel er hetzelfde uit.",
+      "Binnen is het ongeveer vijf graden onder nul. Gasten slapen in een dikke slaapzak op een rendiervel. 's Ochtends krijgen ze een warme beker bosbessensap.",
+      "In het voorjaar wordt het warmer. Dan smelt het hotel langzaam. Het water stroomt terug in de rivier. En in de winter daarop begint alles weer opnieuw."
+    ],
+    en: [
+      "Far in the north of Sweden lies the little village of Jukkasjärvi. In winter it is very cold there and dark for almost the whole day. Yet people come from all over the world at that time. They want to sleep in a hotel made of ice.",
+      "Every year in November, builders saw big blocks of ice out of the river. From that ice and from snow they build the hotel. The walls, the beds and even the lamps are made of ice.",
+      "Artists turn every room into a work of art. In one room there is a polar bear made of ice, in another a dragon. The hotel never looks the same two years in a row.",
+      "Inside, it is about five degrees below zero. Guests sleep in a thick sleeping bag on a reindeer skin. In the morning they get a warm mug of blueberry juice.",
+      "In spring it gets warmer. Then the hotel slowly melts. The water flows back into the river. And the following winter, everything starts all over again."
+    ]
+  },
+  words: [
+    { nl: 'zagen', en: 'to saw', defNl: 'met een zaag iets in stukken snijden', defEn: 'to cut something into pieces with a saw' },
+    { nl: 'kunstenaars', en: 'artists', defNl: 'mensen die kunst maken, zoals beelden of schilderijen', defEn: 'people who make art, such as sculptures or paintings' },
+    { nl: 'rendiervel', en: 'reindeer skin', defNl: 'de huid met haar van een rendier', defEn: 'the hairy skin of a reindeer' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar halen de bouwers het ijs vandaan?', en: 'Where do the builders get the ice from?' },
+      options: [
+        { nl: 'Uit een grote vriezer', en: 'From a big freezer' },
+        { nl: 'Uit de rivier', en: 'From the river' },
+        { nl: 'Van de Noordpool', en: 'From the North Pole' },
+        { nl: 'Uit de zee bij Nederland', en: 'From the sea near the Netherlands' }
+      ], answer: 1,
+      explain: { nl: 'Alinea 2: "zagen bouwers grote blokken ijs uit de rivier."',
+                 en: 'Paragraph 2: "builders saw big blocks of ice out of the river."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Het ijshotel ziet er elk jaar precies hetzelfde uit.', en: 'The ice hotel looks exactly the same every year.' },
+      answer: false,
+      explain: { nl: 'Niet waar. Alinea 3: "Geen enkel jaar ziet het hotel er hetzelfde uit."',
+                 en: 'False. Paragraph 3: "The hotel never looks the same two years in a row."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Mensen die van elke kamer een kunstwerk maken, heten ___.', en: 'People who turn every room into a work of art are called ___.' },
+      options: [
+        { nl: 'gasten', en: 'guests' },
+        { nl: 'bouwers', en: 'builders' },
+        { nl: 'kunstenaars', en: 'artists' },
+        { nl: 'koks', en: 'cooks' }
+      ], answer: 2,
+      explain: { nl: 'Alinea 3: "Kunstenaars maken van elke kamer een kunstwerk."',
+                 en: 'Paragraph 3: "Artists turn every room into a work of art."' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet het jaar van het ijshotel in de goede volgorde.', en: 'Put the year of the ice hotel in the right order.' },
+      items: [
+        { nl: 'In november wordt ijs uit de rivier gezaagd.', en: 'In November ice is sawn out of the river.' },
+        { nl: 'Het hotel wordt gebouwd en versierd.', en: 'The hotel is built and decorated.' },
+        { nl: 'Gasten slapen in de koude kamers.', en: 'Guests sleep in the cold rooms.' },
+        { nl: 'In het voorjaar smelt het hotel.', en: 'In spring the hotel melts.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst het ijs, dan bouwen, dan de gasten, en in het voorjaar het smelten.',
+                 en: 'First the ice, then building, then the guests, and melting in spring.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat deze tekst vooral over?', en: 'What is this text mainly about?' },
+      options: [
+        { nl: 'Een hotel van ijs dat elk jaar opnieuw gebouwd wordt', en: 'A hotel made of ice that is built again every year' },
+        { nl: 'Hoe je een ijsbeer tekent', en: 'How to draw a polar bear' },
+        { nl: 'Waarom het in Zweden donker is', en: 'Why it is dark in Sweden' },
+        { nl: 'Hoe je bosbessensap maakt', en: 'How to make blueberry juice' }
+      ], answer: 0,
+      explain: { nl: 'De tekst beschrijft het ijshotel: hoe het gebouwd wordt, hoe je er slaapt en hoe het smelt.',
+                 en: 'The text describes the ice hotel: how it is built, how you sleep there and how it melts.' } }
+  ]
 }
 ]);

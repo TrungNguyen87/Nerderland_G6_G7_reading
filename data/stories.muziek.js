@@ -1034,5 +1034,77 @@ addStories([
       explain: { nl: 'De tekst gebruikt het woord om te beschrijven hoe wilde graffiti een straat verwaarloosd kan laten aanvoelen.',
                  en: 'The text uses the word to describe how wild graffiti can make a street feel neglected.' } }
   ]
+},
+{
+  id: 'muziek-11', topic: 'muziek', level: 1, emoji: '🍾', scene: 'stage',
+  title: { nl: 'Muziek uit een fles', en: 'Music from a bottle' },
+  text: {
+    nl: [
+      "Juf Anouk zet zeven lege glazen flessen op een rij. \"Vandaag maken we een orgel,\" zegt ze. De klas kijkt verbaasd. Een orgel van flessen? Dat kan toch niet?",
+      "Eerst giet Noah water in de flessen. In de eerste fles doet hij een klein beetje. In de volgende steeds wat meer. De laatste fles is bijna helemaal vol.",
+      "Dan blaast Fatima zachtjes over de rand van de eerste fles. Er klinkt een lage toon, als een misthoorn. Bij de volle fles klinkt de toon hoog en fluitend.",
+      "Juf Anouk legt uit hoe dat komt. \"Geluid is trillende lucht. In een fles met weinig water zit veel lucht. Die lucht trilt langzaam, en dan hoor je een lage toon. Met meer water zit er minder lucht in de fles. Die trilt sneller, en dan wordt de toon hoger.\"",
+      "Aan het eind van de les spelen de kinderen samen een liedje. Het klinkt een beetje vals, maar iedereen lacht. Thuis wil Noah het meteen nog eens proberen."
+    ],
+    en: [
+      "Miss Anouk puts seven empty glass bottles in a row. \"Today we are making an organ,\" she says. The class looks surprised. An organ made of bottles? That cannot be right, can it?",
+      "First Noah pours water into the bottles. He puts just a little in the first bottle. A bit more in each next one. The last bottle is almost completely full.",
+      "Then Fatima gently blows across the top of the first bottle. A low note sounds, like a foghorn. With the full bottle the note sounds high and whistling.",
+      "Miss Anouk explains why. \"Sound is vibrating air. A bottle with little water has a lot of air in it. That air vibrates slowly, and then you hear a low note. With more water there is less air in the bottle. It vibrates faster, and then the note gets higher.\"",
+      "At the end of the lesson the children play a song together. It sounds a little out of tune, but everyone laughs. Noah wants to try it again at home straight away."
+    ]
+  },
+  words: [
+    { nl: 'toon', en: 'note', defNl: 'één geluid met een bepaalde hoogte', defEn: 'one sound with a certain pitch' },
+    { nl: 'trilt', en: 'vibrates', defNl: 'heel snel heen en weer bewegen', defEn: 'moves back and forth very quickly' },
+    { nl: 'vals', en: 'out of tune', defNl: 'net niet de goede toon, zodat het raar klinkt', defEn: 'not quite the right note, so it sounds odd' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe klinkt de toon als Fatima over de eerste fles blaast?', en: 'What does the note sound like when Fatima blows across the first bottle?' },
+      options: [
+        { nl: 'Hoog en fluitend', en: 'High and whistling' },
+        { nl: 'Laag, als een misthoorn', en: 'Low, like a foghorn' },
+        { nl: 'Je hoort niets', en: 'You hear nothing' },
+        { nl: 'Als een trommel', en: 'Like a drum' }
+      ], answer: 1,
+      explain: { nl: 'Alinea 3: "Er klinkt een lage toon, als een misthoorn."',
+                 en: 'Paragraph 3: "A low note sounds, like a foghorn."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'De laatste fles is bijna helemaal vol met water.', en: 'The last bottle is almost completely full of water.' },
+      answer: true,
+      explain: { nl: 'Waar. Alinea 2: "De laatste fles is bijna helemaal vol."',
+                 en: 'True. Paragraph 2: "The last bottle is almost completely full."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Het liedje klinkt een beetje ___: net niet de goede tonen.', en: 'The song sounds a little ___: not quite the right notes.' },
+      options: [
+        { nl: 'vals', en: 'out of tune' },
+        { nl: 'hard', en: 'loud' },
+        { nl: 'mooi', en: 'beautiful' },
+        { nl: 'stil', en: 'quiet' }
+      ], answer: 0,
+      explain: { nl: 'Vals spelen betekent dat de tonen net niet kloppen.',
+                 en: 'Playing out of tune means the notes are not quite right.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de les in de goede volgorde.', en: 'Put the lesson in the right order.' },
+      items: [
+        { nl: 'De juf zet zeven lege flessen op een rij.', en: 'The teacher puts seven empty bottles in a row.' },
+        { nl: 'Noah giet water in de flessen.', en: 'Noah pours water into the bottles.' },
+        { nl: 'Fatima blaast over de flessen.', en: 'Fatima blows across the bottles.' },
+        { nl: 'De klas speelt samen een liedje.', en: 'The class plays a song together.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Let op "eerst", "dan" en "aan het eind van de les".',
+                 en: 'Look at "first", "then" and "at the end of the lesson".' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat leren de kinderen vooral in deze les?', en: 'What do the children mainly learn in this lesson?' },
+      options: [
+        { nl: 'Hoe je flessen afwast', en: 'How to wash bottles' },
+        { nl: 'Dat een orgel in de kerk staat', en: 'That an organ stands in a church' },
+        { nl: 'Dat minder lucht in de fles een hogere toon geeft', en: 'That less air in the bottle gives a higher note' },
+        { nl: 'Hoe je een misthoorn bouwt', en: 'How to build a foghorn' }
+      ], answer: 2,
+      explain: { nl: 'De uitleg van juf Anouk is de kern: veel lucht trilt langzaam (laag), weinig lucht trilt snel (hoog).',
+                 en: 'Miss Anouk’s explanation is the key: lots of air vibrates slowly (low), little air vibrates fast (high).' } }
+  ]
 }
 ]);

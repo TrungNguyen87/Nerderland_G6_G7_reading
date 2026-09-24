@@ -990,5 +990,77 @@ addStories([
       explain: { nl: 'Een voortvluchtige verdachte is iemand die de politie nog zoekt omdat hij op de vlucht is.',
                  en: 'A fugitive suspect is someone the police are still looking for because they are on the run.' } }
   ]
+},
+{
+  id: 'mysterie-11', topic: 'mysterie', level: 1, emoji: '🐾', scene: 'night',
+  title: { nl: 'Wie at de taart van de buren?', en: 'Who ate the neighbours’ cake?' },
+  text: {
+    nl: [
+      "Mevrouw De Wit had een appeltaart gebakken. Ze zette hem in de vensterbank om af te koelen en ging even de was ophangen. Toen ze terugkwam, was er een groot stuk uit de taart verdwenen!",
+      "Mila en haar broertje Ties wonen naast mevrouw De Wit. Ze houden van raadsels. \"Wij zoeken het uit,\" zei Mila, en ze pakte haar vergrootglas.",
+      "Op de vensterbank lagen kruimels. Op de grond eronder zagen ze kleine pootafdrukken in de modder. Het waren vier ronde teentjes en een kussentje, zonder nageltjes ervoor.",
+      "\"Een hond!\" riep Ties. Maar Mila schudde haar hoofd. \"Een hond laat altijd krassen van zijn nagels achter. Een kat trekt haar nagels in als ze loopt.\" Ze keken omhoog. Op het schuurdak lag Minoes, de kat van de overkant. Aan haar snorharen hing nog een stukje appel.",
+      "Mevrouw De Wit moest lachen. \"Dan bak ik voortaan een extra taartje,\" zei ze. \"Eén voor mij en één voor de speurders.\""
+    ],
+    en: [
+      "Mrs De Wit had baked an apple pie. She put it on the windowsill to cool down and went to hang out the washing. When she came back, a big piece of the pie had disappeared!",
+      "Mila and her little brother Ties live next door to Mrs De Wit. They love mysteries. \"We will find out,\" said Mila, and she grabbed her magnifying glass.",
+      "There were crumbs on the windowsill. On the ground below, they saw small paw prints in the mud. There were four round toes and a pad, with no claw marks in front of them.",
+      "\"A dog!\" shouted Ties. But Mila shook her head. \"A dog always leaves scratches from its claws. A cat pulls its claws in when it walks.\" They looked up. On the shed roof lay Minoes, the cat from across the street. A little piece of apple was still hanging from her whiskers.",
+      "Mrs De Wit burst out laughing. \"From now on I will bake an extra little pie,\" she said. \"One for me and one for the detectives.\""
+    ]
+  },
+  words: [
+    { nl: 'vensterbank', en: 'windowsill', defNl: 'de smalle plank onder een raam', defEn: 'the narrow shelf below a window' },
+    { nl: 'vergrootglas', en: 'magnifying glass', defNl: 'een glas waardoor kleine dingen groter lijken', defEn: 'a glass that makes small things look bigger' },
+    { nl: 'speurders', en: 'detectives', defNl: 'mensen die sporen zoeken om iets op te lossen', defEn: 'people who look for clues to solve something' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar zette mevrouw De Wit de taart neer?', en: 'Where did Mrs De Wit put the pie?' },
+      options: [
+        { nl: 'Op het schuurdak', en: 'On the shed roof' },
+        { nl: 'In de koelkast', en: 'In the fridge' },
+        { nl: 'In de vensterbank', en: 'On the windowsill' },
+        { nl: 'Op de tafel in de tuin', en: 'On the garden table' }
+      ], answer: 2,
+      explain: { nl: 'In de eerste alinea staat: "Ze zette hem in de vensterbank om af te koelen."',
+                 en: 'The first paragraph says: "She put it on the windowsill to cool down."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Bij de pootafdrukken zagen Mila en Ties krassen van nagels.', en: 'Next to the paw prints Mila and Ties saw claw scratches.' },
+      answer: false,
+      explain: { nl: 'Niet waar. Er stonden pootafdrukken "zonder nageltjes ervoor". Juist daarom was het geen hond.',
+                 en: 'False. The prints had "no claw marks in front of them". That is exactly why it was not a dog.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Mila en Ties zoeken sporen om het raadsel op te lossen. Ze zijn echte ___.', en: 'Mila and Ties look for clues to solve the mystery. They are real ___.' },
+      options: [
+        { nl: 'bakkers', en: 'bakers' },
+        { nl: 'speurders', en: 'detectives' },
+        { nl: 'buren', en: 'neighbours' },
+        { nl: 'dieven', en: 'thieves' }
+      ], answer: 1,
+      explain: { nl: 'Speurders zoeken sporen om iets op te lossen, precies wat Mila en Ties doen.',
+                 en: 'Detectives look for clues to solve something, exactly what Mila and Ties do.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet het speurwerk in de goede volgorde.', en: 'Put the detective work in the right order.' },
+      items: [
+        { nl: 'Er is een stuk uit de taart verdwenen.', en: 'A piece of the pie has disappeared.' },
+        { nl: 'Mila pakt haar vergrootglas.', en: 'Mila grabs her magnifying glass.' },
+        { nl: 'Ze vinden pootafdrukken zonder nagels.', en: 'They find paw prints without claw marks.' },
+        { nl: 'Ze zien Minoes met appel aan haar snorharen.', en: 'They see Minoes with apple on her whiskers.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst verdwijnt de taart, dan gaan ze zoeken, dan vinden ze het spoor en tot slot de dader.',
+                 en: 'First the pie disappears, then they search, then they find the clue and finally the culprit.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat dit verhaal vooral over?', en: 'What is this story mainly about?' },
+      options: [
+        { nl: 'Hoe je een appeltaart bakt', en: 'How to bake an apple pie' },
+        { nl: 'Twee kinderen die met slim speurwerk ontdekken dat een kat de taart at', en: 'Two children who use clever detective work to discover a cat ate the pie' },
+        { nl: 'Waarom honden nagels hebben', en: 'Why dogs have claws' },
+        { nl: 'Hoe je de was ophangt', en: 'How to hang out the washing' }
+      ], answer: 1,
+      explain: { nl: 'Het verhaal volgt het speurwerk van Mila en Ties, van verdwenen taart tot de kat als dader.',
+                 en: 'The story follows the detective work of Mila and Ties, from the missing pie to the cat as culprit.' } }
+  ]
 }
 ]);

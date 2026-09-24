@@ -157,7 +157,7 @@ const Store = (function () {
   /* telt elke gebeurtenis mee in het dagoverzicht van die kalenderdag */
   function bumpDaily(ev) {
     if (!data.daily) data.daily = {};
-    const day = new Date(ev.ts).toISOString().slice(0, 10);
+    const day = localDay(ev.ts);
     if (!data.daily[day]) {
       data.daily[day] = {
         sessions: {}, readMs: 0, quizMs: 0, stories: 0, questions: 0, correct: 0,
@@ -236,7 +236,7 @@ const Stats = (function () {
     const skimmed = reads.filter(function (e) { return e.skimmed; }).length;
 
     const days = {};
-    events.forEach(function (e) { days[new Date(e.ts).toISOString().slice(0, 10)] = 1; });
+    events.forEach(function (e) { days[localDay(e.ts)] = 1; });
 
     return {
       stories: done.length,
@@ -342,18 +342,18 @@ const Stats = (function () {
     const sum = summary(events);
     if (sum.wpm && sum.wpm < 90) {
       tips.push(lang === 'nl'
-        ? '📖 Het leestempo is ongeveer ' + sum.wpm + ' woorden per minuut. Laat hem elke dag 10 minuten hardop lezen; tempo groeit vooral door hardop lezen.'
+        ? '📖 Het leestempo is ongeveer ' + sum.wpm + ' woorden per minuut. Laat uw kind elke dag 10 minuten hardop lezen; tempo groeit vooral door hardop lezen.'
         : '📖 Reading pace is about ' + sum.wpm + ' words per minute. Ten minutes of reading out loud each day is what builds pace.');
     }
     if (sum.accuracy >= 85 && sum.stories >= 3) {
       tips.push(lang === 'nl'
-        ? '🏔️ Het gaat goed op dit niveau. Laat hem vaker niveau 3 (groep 7) kiezen.'
-        : '🏔️ This level is going well. Let him pick level 3 (group 7) more often.');
+        ? '🏔️ Het gaat goed op dit niveau. Laat uw kind vaker een niveau hoger kiezen.'
+        : '🏔️ This level is going well. Let your child pick a harder level more often.');
     }
     if (sum.skimmed >= 2) {
       tips.push(lang === 'nl'
-        ? '⏭️ ' + sum.skimmed + ' van de ' + sum.reads + ' keer is er binnen enkele seconden op "Ik heb het gelezen" geklikt. Vraag hem het verhaal eerst hardop na te vertellen voordat hij doorgaat.'
-        : '⏭️ ' + sum.skimmed + ' out of ' + sum.reads + ' times "I have read it" was clicked within seconds. Ask him to retell the story before moving on.');
+        ? '⏭️ ' + sum.skimmed + ' van de ' + sum.reads + ' keer is er binnen enkele seconden op "Ik heb het gelezen" geklikt. Vraag uw kind het verhaal eerst hardop na te vertellen voordat het verder gaat.'
+        : '⏭️ ' + sum.skimmed + ' out of ' + sum.reads + ' times "I have read it" was clicked within seconds. Ask your child to retell the story before moving on.');
     }
     if (sum.accuracy > 0 && sum.accuracy < 55) {
       tips.push(lang === 'nl'
@@ -374,9 +374,9 @@ const Stats = (function () {
         const emoji = c ? c.emoji : '✍️';
         tips.push(lang === 'nl'
           ? emoji + ' Spelling: <b>' + name + '</b> ligt op ' + Math.round(weak.pct * 100) +
-            '% goed. Laat hem die regel hardop opzeggen voordat hij het woord opschrijft.'
+            '% goed. Laat uw kind die regel hardop opzeggen voordat het het woord opschrijft.'
           : emoji + ' Spelling: <b>' + name + '</b> is at ' + Math.round(weak.pct * 100) +
-            '% correct. Have him say the rule out loud before writing the word.');
+            '% correct. Have your child say the rule out loud before writing the word.');
       }
       const missed = spellMistakes(events).slice(0, 4).map(function (m) { return m.word; });
       if (missed.length >= 3) {
@@ -477,7 +477,7 @@ const Exporter = (function () {
       if (e.t !== 'answer') return;
       const d = new Date(e.ts);
       rows.push([
-        d.toISOString().slice(0, 10),
+        localDay(e.ts),
         d.toTimeString().slice(0, 8),
         e.player || '',
         e.session || '',
@@ -504,7 +504,7 @@ const Exporter = (function () {
       if (e.t !== 'read_done') return;
       const d = new Date(e.ts);
       rows.push([
-        d.toISOString().slice(0, 10), d.toTimeString().slice(0, 8), e.player || '', e.session || '',
+        localDay(e.ts), d.toTimeString().slice(0, 8), e.player || '', e.session || '',
         e.topic || '', e.level || '', e.story || '',
         e.readMs ? Math.round(e.readMs / 1000) : '', e.words || '', e.wpm || '', e.tts ? 1 : 0
       ].map(esc).join(','));
@@ -518,7 +518,7 @@ const Exporter = (function () {
       if (e.t !== 'spell_item') return;
       const d = new Date(e.ts);
       rows.push([
-        d.toISOString().slice(0, 10), d.toTimeString().slice(0, 8), e.player || '', e.session || '',
+        localDay(e.ts), d.toTimeString().slice(0, 8), e.player || '', e.session || '',
         e.cat || '', e.level || '', e.set || '', e.itype || '',
         e.word || '', e.given || '', e.correct ? 1 : 0,
         e.ms ? (e.ms / 1000).toFixed(1) : ''
@@ -600,19 +600,19 @@ const Exporter = (function () {
     let missedRows = '';
     Stats.spellMistakes().slice(0, 25).forEach(function (m) {
       const c = (window.SPELL_CATS || []).filter(function (x) { return x.id === m.cat; })[0];
-      missedRows += '<tr><td style="color:#22a86b"><b>' + m.word + '</b></td><td style="color:#e4483f">' +
-        (m.given || '-') + '</td><td>' + (c ? (nl ? c.nl : c.en) : '') + '</td><td>' + m.n + '×</td></tr>';
+      missedRows += '<tr><td style="color:#22a86b"><b>' + escHtml(m.word) + '</b></td><td style="color:#e4483f">' +
+        escHtml(m.given || '-') + '</td><td>' + (c ? (nl ? c.nl : c.en) : '') + '</td><td>' + m.n + '×</td></tr>';
     });
 
     let wrongRows = '';
     Stats.answers().filter(function (e) { return !e.correct; }).slice(-25).reverse().forEach(function (e) {
       wrongRows += '<tr><td>' + new Date(e.ts).toLocaleDateString() + '</td><td>' + titleOf(e.story) +
-        '</td><td>' + (e.qText || e.qId) + '</td><td style="color:#e4483f">' + (e.given || '-') +
-        '</td><td style="color:#22a86b">' + (e.expected || '-') + '</td></tr>';
+        '</td><td>' + escHtml(e.qText || e.qId) + '</td><td style="color:#e4483f">' + escHtml(e.given || '-') +
+        '</td><td style="color:#22a86b">' + escHtml(e.expected || '-') + '</td></tr>';
     });
 
     const html = '<!DOCTYPE html><html lang="' + (nl ? 'nl' : 'en') + '"><head><meta charset="utf-8">' +
-      '<title>' + (nl ? 'Leesrapport' : 'Reading report') + ' - ' + (p.name || 'speler') + '</title>' +
+      '<title>' + (nl ? 'Leesrapport' : 'Reading report') + ' - ' + escHtml(p.name || 'speler') + '</title>' +
       '<style>body{font-family:system-ui,Segoe UI,sans-serif;max-width:820px;margin:32px auto;padding:0 20px;color:#23243a;line-height:1.6}' +
       'h1{margin-bottom:4px}h2{margin-top:32px;border-bottom:2px solid #eee;padding-bottom:6px}' +
       'table{border-collapse:collapse;width:100%;margin-top:10px}td,th{padding:8px 10px;border-bottom:1px solid #eee;text-align:left;font-size:14px}' +
@@ -622,7 +622,7 @@ const Exporter = (function () {
       '.tile b{display:block;font-size:22px}.tile small{color:#666}' +
       'li{margin-bottom:8px}@media print{body{margin:0}}</style></head><body>' +
       '<h1>' + (nl ? '📚 Leesrapport' : '📚 Reading report') + '</h1>' +
-      '<p><b>' + (p.name || (nl ? 'Speler' : 'Player')) + '</b> ' + p.avatar + ' &middot; ' +
+      '<p><b>' + escHtml(p.name || (nl ? 'Speler' : 'Player')) + '</b> ' + p.avatar + ' &middot; ' +
       (nl ? 'gemaakt op ' : 'generated ') + new Date().toLocaleString() + '</p>' +
       '<div class="tiles">' +
       '<div class="tile"><b>' + s.stories + '</b><small>' + (nl ? 'verhalen' : 'stories') + '</small></div>' +
@@ -655,6 +655,8 @@ const Exporter = (function () {
       (nl ? 'Vraag' : 'Question') + '</th><th>' + (nl ? 'Gaf' : 'Gave') + '</th><th>' + (nl ? 'Moest zijn' : 'Should be') +
       '</th></tr>' + (wrongRows || '<tr><td colspan="5">' + (nl ? 'Geen fouten. Netjes!' : 'No mistakes. Well done!') + '</td></tr>') + '</table>' +
       '<h2>' + (nl ? 'Advies voor thuis' : 'Advice for home') + '</h2><ul><li>' + tips.join('</li><li>') + '</li></ul>' +
+      '<p style="margin-top:36px;color:#888;font-size:12px">Leeskampioen &middot; ' +
+      (nl ? 'feedback of vragen: ' : 'feedback or questions: ') + FEEDBACK_EMAIL + '</p>' +
       '</body></html>';
 
     download('leesrapport' + nameSlug() + '_' + stamp() + '.html', html, 'text/html');

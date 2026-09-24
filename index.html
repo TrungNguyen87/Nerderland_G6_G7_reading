@@ -43,6 +43,7 @@
   </div>
 
   <button id="btn-shop" class="coin-btn" title="Winkel"><span class="coin-emoji">🪙</span><span id="hud-coins">0</span></button>
+  <button id="btn-chest" class="chest-btn hidden" title="Cadeau openen" aria-label="Cadeau openen">🎁<span id="chest-n" class="chest-n">1</span></button>
 
   <button id="btn-lang" class="lang-btn" title="Nederlands / English"><span class="flag">🇳🇱</span><span id="lang-label">NL</span></button>
   <button id="btn-sound" class="icon-btn" title="Geluid aan/uit">🔊</button>
@@ -78,11 +79,33 @@
       <button id="btn-cancel-new" class="ghost-btn hidden" data-i18n="backToProfiles">← Terug</button>
       <p class="mini-note" data-i18n="privacyNote">Alles blijft op dit apparaat. Niets wordt verstuurd.</p>
     </div>
+
+    <p class="home-feedback"><span data-i18n="feedbackText">Tips, ideeën of een foutje gezien? Mail ons:</span> <a class="mail-link" href="mailto:nxtrung87@gmail.com?subject=Leeskampioen%20feedback">nxtrung87@gmail.com</a></p>
   </div>
 </section>
 
 <!-- ============ WORLDS ============ -->
 <section id="screen-worlds" class="screen">
+  <div id="today-card" class="card today-card hidden">
+    <div class="today-head">
+      <span id="today-avatar" class="today-avatar">🦸</span>
+      <div class="today-hi">
+        <h3 id="today-hello">Hoi!</h3>
+        <p id="today-streak" class="today-streak"></p>
+      </div>
+      <button id="btn-album" class="ghost-btn album-btn" data-i18n="albumBtn">🎁 Mijn album</button>
+    </div>
+    <button id="btn-today-chest" class="big-btn alt chest-cta hidden">🎁 Open je cadeau!</button>
+    <h4 class="quest-head" data-i18n="questsTitle">Dagopdrachten</h4>
+    <div id="quest-list" class="quest-list"></div>
+    <p id="quest-note" class="mini-note"></p>
+    <div class="fact-box">
+      <span class="fact-owl" aria-hidden="true">🦉</span>
+      <p><b data-i18n="didYouKnow">Wist je dat...</b> <span id="fact-text"></span></p>
+      <button id="btn-fact" class="icon-btn" title="Nog een weetje" aria-label="Nog een weetje">🔄</button>
+    </div>
+  </div>
+
   <div class="mode-tabs">
     <button class="mode-tab on" data-mode="read" data-i18n="modeRead">📖 Lezen</button>
     <button class="mode-tab" data-mode="spell" data-i18n="modeSpell">✍️ Spelling</button>
@@ -189,6 +212,8 @@
 
     <div id="result-skills" class="result-skills"></div>
     <div id="result-new-badges" class="new-badges"></div>
+    <div id="result-quests" class="quest-strip"></div>
+    <p id="result-fact" class="result-fact hidden"></p>
 
     <div class="result-actions">
       <button id="btn-again" class="ghost-btn" data-i18n="tryAgain">🔁 Nog eens</button>
@@ -267,6 +292,7 @@
 
     <div id="sp-wordlist" class="sp-wordlist"></div>
     <div id="sp-new-badges" class="new-badges"></div>
+    <div id="sp-result-quests" class="quest-strip"></div>
 
     <div class="result-actions">
       <button id="btn-sp-again" class="ghost-btn" data-i18n="spellAgain">🔁 Nog eens oefenen</button>
@@ -288,6 +314,7 @@
     <button class="shop-tab" data-kind="icon" data-i18n="shopTabIcons">🧢 Iconen</button>
     <button class="shop-tab" data-kind="character" data-i18n="shopTabCharacters">🎭 Personages</button>
     <button class="shop-tab" data-kind="tool" data-i18n="shopTabTools">🧰 Gereedschap</button>
+    <button class="shop-tab" data-kind="gift" data-i18n="shopTabAlbum">🎁 Album</button>
   </div>
 
   <p id="shop-note" class="mini-note hidden"></p>
@@ -323,6 +350,8 @@
       <div class="result-tile"><span class="rt-icon">🅰️</span><b id="p-spell-acc">0%</b><small data-i18n="pSpellAcc">spelling goed</small></div>
       <div class="result-tile"><span class="rt-icon">🪙</span><b id="p-coins">0</b><small data-i18n="pCoins">munten gespaard</small></div>
       <div class="result-tile"><span class="rt-icon">🛍️</span><b id="p-owned">0</b><small data-i18n="pOwned">items gekocht</small></div>
+      <div class="result-tile"><span class="rt-icon">🔥</span><b id="p-streak">0</b><small data-i18n="pStreak">langste dagreeks</small></div>
+      <div class="result-tile"><span class="rt-icon">🎁</span><b id="p-gifts">0</b><small data-i18n="pGifts">cadeaus</small></div>
     </div>
 
     <div class="card">
@@ -368,13 +397,36 @@
         <button id="btn-wipe" class="ghost-btn danger" data-i18n="pWipe">🗑 Wis alles</button>
       </div>
     </div>
+
+    <div class="card">
+      <h3 data-i18n="pFeedback">Feedback</h3>
+      <p class="mini-note" data-i18n="pFeedbackNote">Mist u iets, klopt er een vraag niet of heeft uw kind een idee? We horen het graag.</p>
+      <p class="feedback-line">💌 <a class="mail-link" href="mailto:nxtrung87@gmail.com?subject=Leeskampioen%20feedback">nxtrung87@gmail.com</a></p>
+    </div>
   </div>
 </section>
 
 </main>
 
 <div id="toast" class="toast"></div>
-<div id="levelup" class="levelup hidden"><div class="levelup-inner"><span class="lu-emoji">🎉</span><h2 id="lu-text">Level up!</h2></div></div>
+<div id="levelup" class="levelup hidden"><div class="levelup-inner"><span class="lu-emoji">🎉</span><h2 id="lu-text">Level up!</h2><p id="lu-sub" class="lu-sub hidden"></p></div></div>
+
+<!-- ============ CADEAUDOOS ============ -->
+<div id="chest-overlay" class="chest-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="chest-src">
+  <div class="chest-box">
+    <div class="chest-rays" aria-hidden="true"></div>
+    <p id="chest-src" class="chest-src"></p>
+    <button id="chest-gift" class="chest-gift" aria-label="Open"><span class="gift-inner">🎁</span></button>
+    <p id="chest-tap" class="chest-tap"></p>
+    <div id="chest-reward" class="chest-reward hidden">
+      <span id="chest-tier" class="sc-tier"></span>
+      <span id="chest-emoji" class="chest-emoji"></span>
+      <h2 id="chest-name"></h2>
+      <p id="chest-desc"></p>
+    </div>
+    <button id="chest-close" class="big-btn hidden">Super! 🎉</button>
+  </div>
+</div>
 
 <script src="data/bootstrap.js"></script>
 <script src="data/stories.dieren.js"></script>
@@ -390,10 +442,12 @@
 <script src="data/spelling.js"></script>
 <script src="data/spelling.sets.js"></script>
 <script src="data/shop.js"></script>
+<script src="data/facts.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/audio.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/log.js"></script>
+<script src="js/rewards.js"></script>
 <script src="js/app.js"></script>
 <script src="js/spelling.js"></script>
 </body>

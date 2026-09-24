@@ -375,10 +375,93 @@ try {
   else ok('a flawless spelling round gives three stars');
 
   /* =================================================================
-     8. Language switch across the whole interface
+     7b. Rewards: daily quests, gift boxes, the album and the shop
      ================================================================= */
   await sel('.back-btn[data-back="spell-cats"]').last().click();
   await page.waitForSelector('#screen-worlds.active');
+  await sel('.mode-tab[data-mode="read"]').click();
+
+  const quests = await sel('#quest-list .quest').count();
+  if (quests !== 3) bad(`the "today" card shows ${quests} daily quests (expected 3)`);
+  const questState = await page.evaluate(() => Rewards.today());
+  const anyProgress = Object.values(questState.prog).some((n) => n > 0);
+  if (!anyProgress) bad('none of today\'s quests moved after two stories and a spelling exercise');
+  else ok(`three daily quests are shown and track progress (${questState.ids.join(', ')})`);
+
+  /* two flawless stories = two first-time three-star gift boxes */
+  const chestsBefore = await page.evaluate(() => (Store.player.chests || []).length);
+  if (chestsBefore < 1) bad('a first three-star story did not earn a gift box');
+  else if (!(await sel('#btn-chest').isVisible())) bad('the gift button in the top bar is hidden although a gift is waiting');
+  else {
+    const before = await page.evaluate(() => ({
+      gifts: ((Store.player.owned || {}).gift || []).length,
+      coins: Store.player.coins, jokers: (Store.player.tools || {}).jokers || 0
+    }));
+    await sel('#btn-chest').click();
+    await page.waitForSelector('#chest-overlay:not(.hidden)');
+    await sel('#chest-gift').click();
+    await page.waitForSelector('#chest-reward:not(.hidden)');
+    const after = await page.evaluate(() => ({
+      gifts: ((Store.player.owned || {}).gift || []).length,
+      coins: Store.player.coins, jokers: (Store.player.tools || {}).jokers || 0,
+      left: Store.player.chests.length
+    }));
+    const got = after.gifts > before.gifts || after.coins > before.coins || after.jokers > before.jokers;
+    if (!got) bad('opening a gift box gave nothing');
+    else if (after.left !== chestsBefore - 1) bad('opening a gift box did not use it up');
+    else ok(`a gift box opens with a reward (${chestsBefore} waiting, ${after.left} left)`);
+    /* close, and open the rest that open automatically one after another */
+    for (let i = 0; i < 12; i++) {
+      await sel('#chest-close').click();
+      await page.waitForTimeout(300);
+      if (await sel('#chest-overlay').isHidden()) break;
+      await sel('#chest-gift').click();
+      await page.waitForSelector('#chest-reward:not(.hidden)');
+    }
+    if (!(await sel('#chest-overlay').isHidden())) bad('the gift overlay does not close');
+  }
+
+  /* the album shows every chest-only gift, found or not */
+  await sel('#btn-album').click();
+  await page.waitForSelector('#screen-shop.active');
+  const albumCards = await sel('#shop-grid .album-card').count();
+  const giftTotal = await page.evaluate(() => window.SHOP_ITEMS.filter((it) => it.kind === 'gift').length);
+  if (albumCards !== giftTotal) bad(`the album shows ${albumCards} of ${giftTotal} gifts`);
+  else ok(`the album shows all ${giftTotal} collectable gifts`);
+
+  /* buy an icon and wear it: this used to crash (selectAvatar was undefined) */
+  await page.evaluate(() => { Store.player.coins = 400; Store.player.xp = 5 * 160; Store.save(); updateHUD(); });
+  await sel('.shop-tab[data-kind="icon"]').click();
+  await sel('#shop-grid .shop-card .sc-buy').first().click();
+  await sel('#shop-grid .shop-card .sc-equip').first().click();
+  const worn = await page.evaluate(() => ({
+    avatar: Store.player.avatar, hud: document.getElementById('hud-avatar').textContent,
+    registry: Store.profiles.find((p) => p.id === Store.activeProfileId).avatar
+  }));
+  const icon = await page.evaluate(() => window.SHOP_ITEMS.find((it) => it.kind === 'icon' &&
+    (Store.player.owned.icon || []).indexOf(it.id) !== -1).emoji);
+  if (worn.avatar !== icon || worn.hud !== icon || worn.registry !== icon) {
+    bad(`buying and wearing an icon did not change the avatar everywhere (${JSON.stringify(worn)})`);
+  } else ok(`an icon bought in the shop can be worn as the avatar (${icon})`);
+
+  /* the 30-minute mission pays out once per day, not on every reload */
+  await sel('#btn-home').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await page.evaluate(() => { Store.player.daily[todayKey()] = MISSION_MS - 1500; Store.player.missionDay = ''; });
+  await page.waitForTimeout(2600);
+  const missionOnce = await page.evaluate(() => Store.events.filter((e) => e.t === 'mission_done').length);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('#profile-chips .profile-chip', { hasText: 'Testkind' }).click();
+  await page.waitForSelector('#screen-worlds.active');
+  await page.waitForTimeout(2600);
+  const missionAfterReload = await page.evaluate(() => Store.events.filter((e) => e.t === 'mission_done').length);
+  if (missionOnce !== 1) bad(`the 30-minute mission fired ${missionOnce} times instead of once`);
+  else if (missionAfterReload !== 1) bad('the 30-minute mission paid out again after a reload');
+  else ok('the 30-minute mission pays out once per day, also after a reload');
+
+  /* =================================================================
+     8. Language switch across the whole interface
+     ================================================================= */
   await sel('#btn-lang').click();
   const englishTab = await sel('.mode-tab[data-mode="read"]').innerText();
   if (!/Reading/.test(englishTab)) bad('the interface did not switch to English');

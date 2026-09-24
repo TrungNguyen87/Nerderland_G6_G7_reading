@@ -1,0 +1,30 @@
+# Controleert elke push en elke pull request: de data (tools/validate.js) en
+# een volledige speelronde in een echte browser (tools/smoke.mjs).
+# Dit publiceert niets; dat doet deploy.yml.
+name: Check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate data and interface strings
+        run: node tools/validate.js
+      - name: Install Playwright (not committed, see CLAUDE.md)
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Play the whole game in a browser
+        run: node tools/smoke.mjs

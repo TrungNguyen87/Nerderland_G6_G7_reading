@@ -1004,5 +1004,77 @@ addStories([
       explain: { nl: 'Alinea 6: het programma wordt gebruikt "als adviseur, niet als baas"; de keuze blijft bij de arts.',
                  en: 'Paragraph 6: the program is used "as an advisor, not as a boss"; the choice stays with the doctor.' } }
   ]
+},
+{
+  id: 'techniek-11', topic: 'techniek', level: 1, emoji: '🧭', scene: 'lab',
+  title: { nl: 'De naald die altijd naar het noorden wijst', en: 'The needle that always points north' },
+  text: {
+    nl: [
+      "Stel je voor: je vaart op zee. Overal om je heen is water. Er is geen land en geen weg. Hoe weet je dan welke kant je op moet? Daarvoor bestaat het kompas.",
+      "In een kompas zit een dun naaldje van ijzer dat magnetisch is. Het naaldje kan vrij ronddraaien. Maar wat je ook doet, het wijst altijd dezelfde kant op: naar het noorden.",
+      "Dat komt doordat de aarde zelf een soort reusachtige magneet is. Die grote magneet trekt aan het kleine naaldje. Daardoor draait het naaldje steeds naar het noorden.",
+      "Meer dan duizend jaar geleden gebruikten mensen in China al een kompas. Later namen zeelieden het mee op hun schepen. Zo konden ze verre reizen maken zonder te verdwalen.",
+      "Je kunt zelf een kompas maken. Wrijf een naald een paar keer in dezelfde richting langs een magneet. Leg de naald op een blaadje dat in een bak water drijft. Het blaadje draait langzaam, tot de naald naar het noorden wijst."
+    ],
+    en: [
+      "Imagine you are sailing at sea. There is water all around you. There is no land and no road. How do you know which way to go? That is what the compass is for.",
+      "Inside a compass is a thin iron needle that is magnetic. The needle can turn freely. But whatever you do, it always points the same way: north.",
+      "That is because the Earth itself is a kind of gigantic magnet. That big magnet pulls on the little needle. That is why the needle keeps turning towards the north.",
+      "More than a thousand years ago, people in China were already using a compass. Later, sailors took it along on their ships. That way they could make long journeys without getting lost.",
+      "You can make a compass yourself. Rub a needle a few times in the same direction along a magnet. Lay the needle on a leaf floating in a bowl of water. The leaf turns slowly, until the needle points north."
+    ]
+  },
+  words: [
+    { nl: 'kompas', en: 'compass', defNl: 'een ding met een naald die de richting van het noorden aanwijst', defEn: 'a device with a needle that shows which way north is' },
+    { nl: 'magnetisch', en: 'magnetic', defNl: 'ijzer aantrekken of aangetrokken worden, zoals een magneet', defEn: 'attracting iron or being attracted, like a magnet' },
+    { nl: 'verdwalen', en: 'to get lost', defNl: 'de weg niet meer weten', defEn: 'to no longer know the way' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Naar welke kant wijst de naald van een kompas altijd?', en: 'Which way does the needle of a compass always point?' },
+      options: [
+        { nl: 'Naar het zuiden', en: 'South' },
+        { nl: 'Naar de zon', en: 'Towards the Sun' },
+        { nl: 'Naar het noorden', en: 'North' },
+        { nl: 'Naar het dichtstbijzijnde land', en: 'Towards the nearest land' }
+      ], answer: 2,
+      explain: { nl: 'Alinea 2: "het wijst altijd dezelfde kant op: naar het noorden."',
+                 en: 'Paragraph 2: "it always points the same way: north."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Het kompas is pas honderd jaar geleden uitgevonden.', en: 'The compass was only invented a hundred years ago.' },
+      answer: false,
+      explain: { nl: 'Niet waar. "Meer dan duizend jaar geleden gebruikten mensen in China al een kompas."',
+                 en: 'False. "More than a thousand years ago, people in China were already using a compass."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Met een kompas kun je op zee niet ___: je weet steeds welke kant je op moet.', en: 'With a compass you cannot ___ at sea: you always know which way to go.' },
+      options: [
+        { nl: 'drijven', en: 'float' },
+        { nl: 'verdwalen', en: 'get lost' },
+        { nl: 'vissen', en: 'fish' },
+        { nl: 'zinken', en: 'sink' }
+      ], answer: 1,
+      explain: { nl: 'Verdwalen betekent de weg niet meer weten. Een kompas voorkomt dat.',
+                 en: 'Getting lost means no longer knowing the way. A compass prevents that.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zo maak je zelf een kompas. Zet de stappen in de goede volgorde.', en: 'This is how you make your own compass. Put the steps in the right order.' },
+      items: [
+        { nl: 'Wrijf een naald een paar keer langs een magneet.', en: 'Rub a needle along a magnet a few times.' },
+        { nl: 'Leg de naald op een blaadje in een bak water.', en: 'Lay the needle on a leaf in a bowl of water.' },
+        { nl: 'Het blaadje draait langzaam rond.', en: 'The leaf turns slowly.' },
+        { nl: 'De naald wijst naar het noorden.', en: 'The needle points north.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Alinea 5 geeft de stappen in deze volgorde.',
+                 en: 'Paragraph 5 gives the steps in this order.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Welke zin past het best bij de hele tekst?', en: 'Which sentence best fits the whole text?' },
+      options: [
+        { nl: 'Zeelieden zijn vaak zeeziek.', en: 'Sailors are often seasick.' },
+        { nl: 'In China is het altijd koud.', en: 'It is always cold in China.' },
+        { nl: 'Magneten zijn gevaarlijk speelgoed.', en: 'Magnets are dangerous toys.' },
+        { nl: 'Een kompas wijst de weg omdat de aarde een grote magneet is.', en: 'A compass shows the way because the Earth is a big magnet.' }
+      ], answer: 3,
+      explain: { nl: 'De tekst legt uit wat een kompas doet, waarom het werkt en hoe het gebruikt werd.',
+                 en: 'The text explains what a compass does, why it works and how it was used.' } }
+  ]
 }
 ]);
