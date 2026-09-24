@@ -1056,5 +1056,77 @@ addStories([
       explain: { nl: '"Uitwijken naar" betekent hier overstappen op iets anders: in dit geval een goedkoper product met evenveel suiker.',
                  en: '"Switch to" here means moving to something else: in this case a cheaper product with just as much sugar.' } }
   ]
+},
+{
+  id: 'eten-11', topic: 'eten', level: 1, emoji: '🍓', scene: 'farm',
+  title: { nl: 'Aardbeien in de winter?', en: 'Strawberries in winter?' },
+  text: {
+    nl: [
+      "In de zomer kun je bij veel boeren zelf aardbeien plukken. Ze zijn rood, zoet en sappig. Maar in de supermarkt liggen er ook aardbeien als het buiten sneeuwt. Hoe kan dat?",
+      "Een aardbeiplant heeft zon en warmte nodig. In Nederland groeien aardbeien buiten daarom vooral in juni en juli. Dat noemen we het seizoen van de aardbei.",
+      "In de winter komen aardbeien vaak uit een kas. Een kas is een huis van glas. De boer verwarmt de kas en zet er lampen aan. Zo lijkt het voor de plant elke dag zomer.",
+      "Andere aardbeien komen van ver weg, bijvoorbeeld uit Spanje of Egypte. Daar is het in de winter warmer. De aardbeien reizen dan met vrachtwagens of vliegtuigen naar onze winkels.",
+      "Een verwarmde kas en een lange reis kosten veel energie. Daarom kiezen sommige mensen ervoor om aardbeien alleen in de zomer te eten. Dan smaken ze volgens hen ook het lekkerst."
+    ],
+    en: [
+      "In summer you can pick your own strawberries at many farms. They are red, sweet and juicy. But there are also strawberries in the supermarket when it is snowing outside. How is that possible?",
+      "A strawberry plant needs sun and warmth. That is why, in the Netherlands, strawberries grow outdoors mainly in June and July. We call that the strawberry season.",
+      "In winter, strawberries often come from a greenhouse. A greenhouse is a house made of glass. The farmer heats the greenhouse and switches on lamps. That way, for the plant it seems like summer every day.",
+      "Other strawberries come from far away, for example from Spain or Egypt. It is warmer there in winter. The strawberries then travel by lorry or by plane to our shops.",
+      "A heated greenhouse and a long journey use a lot of energy. That is why some people choose to eat strawberries only in summer. They say that is when they taste best, too."
+    ]
+  },
+  words: [
+    { nl: 'seizoen', en: 'season', defNl: 'de tijd van het jaar waarin iets gebeurt of groeit', defEn: 'the time of year when something happens or grows' },
+    { nl: 'kas', en: 'greenhouse', defNl: 'een huis van glas waarin planten groeien', defEn: 'a glass house in which plants grow' },
+    { nl: 'energie', en: 'energy', defNl: 'wat je nodig hebt om iets warm te maken of te laten bewegen', defEn: 'what you need to heat something or make it move' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'In welke maanden groeien aardbeien in Nederland vooral buiten?', en: 'In which months do strawberries mainly grow outdoors in the Netherlands?' },
+      options: [
+        { nl: 'In juni en juli', en: 'In June and July' },
+        { nl: 'In december en januari', en: 'In December and January' },
+        { nl: 'In maart en april', en: 'In March and April' },
+        { nl: 'Het hele jaar door', en: 'All year round' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "In Nederland groeien aardbeien buiten daarom vooral in juni en juli."',
+                 en: 'Paragraph 2: "in the Netherlands, strawberries grow outdoors mainly in June and July."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Een boer zet in een kas lampen aan, zodat het voor de plant lijkt alsof het zomer is.', en: 'A farmer switches on lamps in a greenhouse, so that it seems like summer to the plant.' },
+      answer: true,
+      explain: { nl: 'Waar. Alinea 3: "De boer verwarmt de kas en zet er lampen aan. Zo lijkt het voor de plant elke dag zomer."',
+                 en: 'True. Paragraph 3: "The farmer heats the greenhouse and switches on lamps. That way, for the plant it seems like summer every day."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een huis van glas waarin planten groeien, heet een ___.', en: 'A glass house in which plants grow is called a ___.' },
+      options: [
+        { nl: 'schuur', en: 'shed' },
+        { nl: 'stal', en: 'stable' },
+        { nl: 'kas', en: 'greenhouse' },
+        { nl: 'kelder', en: 'cellar' }
+      ], answer: 2,
+      explain: { nl: 'De tekst zegt letterlijk: "Een kas is een huis van glas."',
+                 en: 'The text says it directly: "A greenhouse is a house made of glass."' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Een winteraardbei uit Spanje: zet de reis in de goede volgorde.', en: 'A winter strawberry from Spain: put the journey in the right order.' },
+      items: [
+        { nl: 'De aardbei groeit in het warme Spanje.', en: 'The strawberry grows in warm Spain.' },
+        { nl: 'Hij wordt geplukt.', en: 'It is picked.' },
+        { nl: 'Een vrachtwagen rijdt hem naar Nederland.', en: 'A lorry drives it to the Netherlands.' },
+        { nl: 'Hij ligt in de supermarkt.', en: 'It is in the supermarket.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst groeien, dan plukken, dan reizen, en pas dan ligt hij in de winkel.',
+                 en: 'First growing, then picking, then travelling, and only then is it in the shop.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Welke vraag beantwoordt deze tekst?', en: 'Which question does this text answer?' },
+      options: [
+        { nl: 'Hoe maak je aardbeienjam?', en: 'How do you make strawberry jam?' },
+        { nl: 'Waarom zijn aardbeien rood?', en: 'Why are strawberries red?' },
+        { nl: 'Hoe komen er aardbeien in de winkel als het winter is?', en: 'How do strawberries get into the shop in winter?' },
+        { nl: 'Wat eten ze in Egypte?', en: 'What do people eat in Egypt?' }
+      ], answer: 2,
+      explain: { nl: 'De tekst begint met die vraag en legt uit: uit een kas, of van ver weg.',
+                 en: 'The text starts with that question and explains: from a greenhouse, or from far away.' } }
+  ]
 }
 ]);

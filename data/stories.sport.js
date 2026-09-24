@@ -912,5 +912,77 @@ addStories([
       ], answer: 0,
       explain: { nl: 'Opzet staat tegenover per ongeluk: het is iets bewust en expres doen.', en: 'Intent is the opposite of accidental: it means doing something consciously and on purpose.' } }
   ]
+},
+{
+  id: 'sport-11', topic: 'sport', level: 1, emoji: '🏊', scene: 'water',
+  title: { nl: 'Het zwemdiploma van Sara', en: 'Sara’s swimming certificate' },
+  text: {
+    nl: [
+      "Het is zaterdagochtend. Sara staat in haar kleren aan de rand van het zwembad. Haar knieën trillen een beetje. Vandaag doet ze examen voor haar zwemdiploma A.",
+      "In Nederland is er veel water: sloten, rivieren en de zee. Daarom leren bijna alle kinderen zwemmen. Met een zwemdiploma laat je zien dat je jezelf kunt redden als je per ongeluk in het water valt.",
+      "Eerst springt Sara met haar kleren en schoenen aan in het water. Die kleren zijn zwaar! Dan zwemt ze naar de overkant. Daarna moet ze onder een mat door zwemmen, met haar ogen open. Als laatste blijft ze een hele minuut drijven.",
+      "Op de kant klappen papa en haar kleine broertje. De badmeester steekt zijn duim op. Sara klimt uit het water en rilt, maar ze lacht van oor tot oor.",
+      "Na afloop krijgt ze een diploma met haar naam erop. Maar Sara weet dat ze nog niet klaar is. Ze wil ook diploma B en C halen, zodat ze later veilig in de zee kan zwemmen."
+    ],
+    en: [
+      "It is Saturday morning. Sara stands fully dressed at the edge of the swimming pool. Her knees are shaking a little. Today she takes the test for her swimming certificate A.",
+      "The Netherlands has a lot of water: ditches, rivers and the sea. That is why almost all children learn to swim. With a swimming certificate you show that you can save yourself if you fall into the water by accident.",
+      "First Sara jumps into the water with her clothes and shoes on. Those clothes are heavy! Then she swims to the other side. After that she has to swim under a mat, with her eyes open. Finally she floats for a whole minute.",
+      "At the side of the pool, Dad and her little brother clap. The lifeguard gives a thumbs up. Sara climbs out of the water and shivers, but she is grinning from ear to ear.",
+      "Afterwards she gets a certificate with her name on it. But Sara knows she is not finished yet. She also wants to get certificates B and C, so that later she can swim safely in the sea."
+    ]
+  },
+  words: [
+    { nl: 'examen', en: 'test / exam', defNl: 'een toets waarbij je laat zien wat je kunt', defEn: 'a test where you show what you can do' },
+    { nl: 'drijven', en: 'to float', defNl: 'bovenop het water blijven zonder te zinken', defEn: 'to stay on top of the water without sinking' },
+    { nl: 'badmeester', en: 'lifeguard', defNl: 'iemand die in het zwembad let op de zwemmers', defEn: 'someone at the pool who watches over the swimmers' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waarom leren bijna alle kinderen in Nederland zwemmen?', en: 'Why do almost all children in the Netherlands learn to swim?' },
+      options: [
+        { nl: 'Omdat zwemmen een schoolvak is', en: 'Because swimming is a school subject' },
+        { nl: 'Omdat er in Nederland veel water is', en: 'Because there is a lot of water in the Netherlands' },
+        { nl: 'Omdat je dan een prijs wint', en: 'Because you win a prize' },
+        { nl: 'Omdat het zwembad gratis is', en: 'Because the pool is free' }
+      ], answer: 1,
+      explain: { nl: 'Alinea 2: "In Nederland is er veel water... Daarom leren bijna alle kinderen zwemmen."',
+                 en: 'Paragraph 2: "The Netherlands has a lot of water... That is why almost all children learn to swim."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Sara springt in haar badpak in het water.', en: 'Sara jumps into the water in her swimsuit.' },
+      answer: false,
+      explain: { nl: 'Niet waar. Ze springt "met haar kleren en schoenen aan" in het water.',
+                 en: 'False. She jumps in "with her clothes and shoes on".' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een hele minuut ___ betekent: bovenop het water blijven zonder te zinken.', en: 'To ___ for a whole minute means: staying on top of the water without sinking.' },
+      options: [
+        { nl: 'duiken', en: 'dive' },
+        { nl: 'drijven', en: 'float' },
+        { nl: 'rillen', en: 'shiver' },
+        { nl: 'klappen', en: 'clap' }
+      ], answer: 1,
+      explain: { nl: 'Drijven is bovenop het water blijven liggen. Duiken is juist onder water gaan.',
+                 en: 'Floating is staying on top of the water. Diving is the opposite: going under.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de onderdelen van het examen in de goede volgorde.', en: 'Put the parts of the test in the right order.' },
+      items: [
+        { nl: 'Met kleren en schoenen aan in het water springen.', en: 'Jump into the water with clothes and shoes on.' },
+        { nl: 'Naar de overkant zwemmen.', en: 'Swim to the other side.' },
+        { nl: 'Onder een mat door zwemmen.', en: 'Swim under a mat.' },
+        { nl: 'Een minuut blijven drijven.', en: 'Float for a minute.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Let op de woorden "eerst", "dan", "daarna" en "als laatste" in alinea 3.',
+                 en: 'Look at the words "first", "then", "after that" and "finally" in paragraph 3.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat dit verhaal vooral over?', en: 'What is this story mainly about?' },
+      options: [
+        { nl: 'Hoe je een zwembad schoonmaakt', en: 'How to clean a swimming pool' },
+        { nl: 'Waarom zee gevaarlijk is', en: 'Why the sea is dangerous' },
+        { nl: 'De broer van Sara', en: 'Sara’s brother' },
+        { nl: 'Hoe Sara haar zwemdiploma A haalt', en: 'How Sara gets her swimming certificate A' }
+      ], answer: 3,
+      explain: { nl: 'Het hele verhaal volgt Sara tijdens haar zwemexamen, van zenuwen tot diploma.',
+                 en: 'The whole story follows Sara during her swimming test, from nerves to certificate.' } }
+  ]
 }
 ]);

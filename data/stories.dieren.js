@@ -981,5 +981,77 @@ addStories([
       explain: { nl: 'De tekst legt uit dat fokprogramma\'s dieren koppelen "om de genenpool gezond te houden": het gaat om erfelijke eigenschappen, niet om zwemmen.',
                  en: 'The text explains breeding programmes pair animals "to keep the gene pool healthy": it is about hereditary traits, not swimming.' } }
   ]
+},
+{
+  id: 'dieren-11', topic: 'dieren', level: 1, emoji: '🐸', scene: 'forest',
+  title: { nl: 'De kikker die bevriest', en: 'The frog that freezes' },
+  text: {
+    nl: [
+      "In de bossen van Canada woont een bijzondere kikker: de boskikker. Hij is bruin, zo groot als een lucifersdoosje en hij heeft een zwart vlekje rond zijn ogen, net een masker.",
+      "De winter is daar heel koud. Veel dieren vluchten naar het zuiden of kruipen diep onder de grond. De boskikker doet iets anders. Hij kruipt onder een laagje bladeren en laat zich gewoon bevriezen.",
+      "Zijn hart stopt met kloppen. Hij ademt niet meer. Er zit zelfs ijs in zijn buik. Toch gaat hij niet dood. In zijn bloed zit veel suiker, en die suiker beschermt zijn lijf van binnen, zoals antivries in een auto.",
+      "Als het in het voorjaar warmer wordt, ontdooit de kikker langzaam. Eerst gaat zijn hart weer kloppen. Daarna begint hij te ademen. Na een dag springt hij weer rond, alsof er niets gebeurd is.",
+      "Wetenschappers bestuderen de boskikker. Ze willen weten hoe hij dat doet. Misschien kunnen we later zo ook organen voor een operatie langer goed houden."
+    ],
+    en: [
+      "In the forests of Canada lives a special frog: the wood frog. It is brown, about the size of a matchbox, and it has a black patch around its eyes, just like a mask.",
+      "Winter there is very cold. Many animals flee south or crawl deep underground. The wood frog does something else. It crawls under a layer of leaves and simply lets itself freeze.",
+      "Its heart stops beating. It no longer breathes. There is even ice in its belly. Yet it does not die. Its blood contains a lot of sugar, and that sugar protects its body from the inside, like antifreeze in a car.",
+      "When it gets warmer in spring, the frog slowly thaws. First its heart starts beating again. Then it begins to breathe. After a day it is hopping around again, as if nothing had happened.",
+      "Scientists study the wood frog. They want to know how it does this. Maybe one day we can use the same trick to keep organs for an operation healthy for longer."
+    ]
+  },
+  words: [
+    { nl: 'bevriezen', en: 'to freeze', defNl: 'zo koud worden dat er ijs ontstaat', defEn: 'to get so cold that ice forms' },
+    { nl: 'ontdooit', en: 'thaws', defNl: 'wordt weer warm, zodat het ijs smelt', defEn: 'warms up again, so the ice melts' },
+    { nl: 'antivries', en: 'antifreeze', defNl: 'een middel dat ervoor zorgt dat iets niet bevriest', defEn: 'a liquid that stops something from freezing' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar kruipt de boskikker in de winter onder?', en: 'What does the wood frog crawl under in winter?' },
+      options: [
+        { nl: 'Onder een steen in de rivier', en: 'Under a stone in the river' },
+        { nl: 'Onder een laagje bladeren', en: 'Under a layer of leaves' },
+        { nl: 'Diep onder de grond', en: 'Deep underground' },
+        { nl: 'In een holle boom', en: 'Inside a hollow tree' }
+      ], answer: 1,
+      explain: { nl: 'Alinea 2 zegt: "Hij kruipt onder een laagje bladeren en laat zich gewoon bevriezen."',
+                 en: 'Paragraph 2 says: "It crawls under a layer of leaves and simply lets itself freeze."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Als de kikker bevroren is, klopt zijn hart nog heel zachtjes.', en: 'When the frog is frozen, its heart still beats very softly.' },
+      answer: false,
+      explain: { nl: 'Niet waar. In alinea 3 staat: "Zijn hart stopt met kloppen."',
+                 en: 'False. Paragraph 3 says: "Its heart stops beating."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'In het voorjaar ontdooit de kikker. Dat betekent dat hij ___.', en: 'In spring the frog thaws. That means it ___.' },
+      options: [
+        { nl: 'weer warm wordt en het ijs in hem smelt', en: 'warms up again and the ice inside melts' },
+        { nl: 'nieuwe eitjes legt in het water', en: 'lays new eggs in the water' },
+        { nl: 'naar het zuiden vliegt', en: 'flies south' },
+        { nl: 'een nieuw masker krijgt', en: 'gets a new mask' }
+      ], answer: 0,
+      explain: { nl: 'Ontdooien is het omgekeerde van bevriezen: het ijs smelt weer.',
+                 en: 'Thawing is the opposite of freezing: the ice melts again.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Wat gebeurt er in het voorjaar? Zet het in de goede volgorde.', en: 'What happens in spring? Put it in the right order.' },
+      items: [
+        { nl: 'Het wordt warmer en de kikker ontdooit langzaam.', en: 'It gets warmer and the frog slowly thaws.' },
+        { nl: 'Zijn hart gaat weer kloppen.', en: 'Its heart starts beating again.' },
+        { nl: 'Hij begint weer te ademen.', en: 'It begins to breathe again.' },
+        { nl: 'Hij springt weer rond.', en: 'It is hopping around again.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Alinea 4 gebruikt de woorden "eerst", "daarna" en "na een dag". Die laten de volgorde zien.',
+                 en: 'Paragraph 4 uses the words "first", "then" and "after a day". They show the order.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat deze tekst vooral over?', en: 'What is this text mainly about?' },
+      options: [
+        { nl: 'Waarom kikkers een masker dragen', en: 'Why frogs wear a mask' },
+        { nl: 'Hoe je een auto winterklaar maakt', en: 'How to get a car ready for winter' },
+        { nl: 'Hoe de boskikker de winter overleeft door te bevriezen', en: 'How the wood frog survives winter by freezing' },
+        { nl: 'Welke dieren naar het zuiden vluchten', en: 'Which animals flee south' }
+      ], answer: 2,
+      explain: { nl: 'De hele tekst gaat over de boskikker en zijn truc om bevroren de winter door te komen.',
+                 en: 'The whole text is about the wood frog and its trick of getting through winter frozen.' } }
+  ]
 }
 ]);

@@ -985,5 +985,77 @@ addStories([
       explain: { nl: 'Alinea 3: een beeld is "een aanknopingspunt om juist over die geschiedenis te praten".',
                  en: 'Paragraph 3: a statue is "a starting point for talking about that history".' } }
   ]
+},
+{
+  id: 'ridders-11', topic: 'ridders', level: 1, emoji: '🌉', scene: 'castle',
+  title: { nl: 'Hoe verdedig je een kasteel?', en: 'How do you defend a castle?' },
+  text: {
+    nl: [
+      "Een kasteel was vroeger niet alleen een huis voor een heer of een koning. Het was ook een fort. Als er vijanden kwamen, moest iedereen binnen veilig zijn.",
+      "Rond veel kastelen lag een brede sloot vol water: de slotgracht. Vijanden konden daar niet zomaar overheen lopen. Wie toch wilde zwemmen, werd met zware kleren of een harnas aan snel moe.",
+      "Over de gracht lag een ophaalbrug. Kwam er gevaar, dan trokken de soldaten de brug met kettingen omhoog. Achter de brug zat een zware poort van hout en ijzer.",
+      "De muren waren dik en hoog. Bovenop liepen de verdedigers achter kantelen: stukken muur met gaten ertussen. Door die gaten konden ze pijlen schieten en zich daarna weer verstoppen.",
+      "Binnen de muren lag genoeg eten en was er een waterput. Zo kon het kasteel het wekenlang volhouden. Vaak gaven de vijanden het daarom na een tijdje op."
+    ],
+    en: [
+      "Long ago a castle was not just a home for a lord or a king. It was also a fortress. When enemies came, everyone inside had to be safe.",
+      "Around many castles lay a wide ditch full of water: the moat. Enemies could not simply walk across it. Anyone who tried to swim got tired quickly in heavy clothes or armour.",
+      "Across the moat lay a drawbridge. When danger came, the soldiers pulled the bridge up with chains. Behind the bridge was a heavy gate of wood and iron.",
+      "The walls were thick and high. On top, the defenders walked behind battlements: pieces of wall with gaps in between. Through those gaps they could shoot arrows and then hide again.",
+      "Inside the walls there was plenty of food and a well for water. That way the castle could hold out for weeks. So the enemies often gave up after a while."
+    ]
+  },
+  words: [
+    { nl: 'slotgracht', en: 'moat', defNl: 'een brede sloot met water rond een kasteel', defEn: 'a wide ditch of water around a castle' },
+    { nl: 'ophaalbrug', en: 'drawbridge', defNl: 'een brug die je omhoog kunt trekken', defEn: 'a bridge that can be pulled up' },
+    { nl: 'kantelen', en: 'battlements', defNl: 'stukken muur met gaten ertussen, bovenop een kasteel', defEn: 'pieces of wall with gaps between them, on top of a castle' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat deden de soldaten met de ophaalbrug als er gevaar kwam?', en: 'What did the soldiers do with the drawbridge when danger came?' },
+      options: [
+        { nl: 'Ze staken hem in brand', en: 'They set it on fire' },
+        { nl: 'Ze trokken hem met kettingen omhoog', en: 'They pulled it up with chains' },
+        { nl: 'Ze lieten hem in de gracht vallen', en: 'They dropped it into the moat' },
+        { nl: 'Ze verfden hem zwart', en: 'They painted it black' }
+      ], answer: 1,
+      explain: { nl: 'Alinea 3: "Kwam er gevaar, dan trokken de soldaten de brug met kettingen omhoog."',
+                 en: 'Paragraph 3: "When danger came, the soldiers pulled the bridge up with chains."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Binnen de muren van het kasteel was een waterput.', en: 'There was a well inside the castle walls.' },
+      answer: true,
+      explain: { nl: 'Waar. Alinea 5: "Binnen de muren lag genoeg eten en was er een waterput."',
+                 en: 'True. Paragraph 5: "Inside the walls there was plenty of food and a well for water."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'De brede sloot met water rond een kasteel heet de ___.', en: 'The wide ditch of water around a castle is called the ___.' },
+      options: [
+        { nl: 'kantelen', en: 'battlements' },
+        { nl: 'poort', en: 'gate' },
+        { nl: 'slotgracht', en: 'moat' },
+        { nl: 'toren', en: 'tower' }
+      ], answer: 2,
+      explain: { nl: 'Alinea 2 legt het uit: "een brede sloot vol water: de slotgracht."',
+                 en: 'Paragraph 2 explains it: "a wide ditch full of water: the moat."' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Een vijand komt van buiten. Wat moet hij achter elkaar voorbij? Zet het in de goede volgorde.', en: 'An enemy comes from outside. What must he get past, one after another? Put it in the right order.' },
+      items: [
+        { nl: 'De slotgracht met water', en: 'The moat with water' },
+        { nl: 'De opgetrokken ophaalbrug', en: 'The raised drawbridge' },
+        { nl: 'De zware poort van hout en ijzer', en: 'The heavy gate of wood and iron' },
+        { nl: 'De binnenplaats van het kasteel', en: 'The courtyard inside the castle' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst ligt de gracht, daarover de brug, achter de brug de poort, en pas dan ben je binnen.',
+                 en: 'First comes the moat, across it the bridge, behind the bridge the gate, and only then are you inside.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat de tekst vooral over?', en: 'What is the text mainly about?' },
+      options: [
+        { nl: 'Hoe een kasteel gebouwd was om vijanden buiten te houden', en: 'How a castle was built to keep enemies out' },
+        { nl: 'Wat een koning at', en: 'What a king ate' },
+        { nl: 'Hoe je leert zwemmen in een harnas', en: 'How to learn to swim in armour' },
+        { nl: 'Waarom kastelen nu musea zijn', en: 'Why castles are museums now' }
+      ], answer: 0,
+      explain: { nl: 'Elke alinea noemt een manier om het kasteel te verdedigen: gracht, brug, muren en voorraad.',
+                 en: 'Every paragraph names a way to defend the castle: moat, bridge, walls and supplies.' } }
+  ]
 }
 ]);

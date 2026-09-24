@@ -355,7 +355,7 @@ CATS.forEach(function (c) {
    5b. Shop
    --------------------------------------------------------------------- */
 const SHOP = W.SHOP_ITEMS || [];
-const SHOP_KINDS = ['sticker', 'icon', 'character', 'tool'];
+const SHOP_KINDS = ['sticker', 'icon', 'character', 'tool', 'gift'];
 const SHOP_TIERS = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 const UNLOCK_FLAGS = ['allStories', 'allSpelling', 'allBadges'];
 const shopIds = {};
@@ -367,7 +367,12 @@ SHOP.forEach(function (it) {
   if (shopIds[it.id]) err(where, 'duplicate id');
   shopIds[it.id] = true;
   if (!it.emoji) err(where, 'missing emoji');
-  if (typeof it.cost !== 'number' || it.cost <= 0) err(where, 'cost must be a positive number');
+  if (it.kind === 'gift') {
+    /* verzamelcadeaus zitten alleen in een cadeaudoos: nooit een prijs */
+    if (!it.chestOnly) err(where, 'a gift must be chestOnly: true');
+    if (it.cost !== undefined) err(where, 'a chest-only gift cannot have a cost');
+    if (['common', 'uncommon', 'rare', 'epic'].indexOf(it.tier) === -1) err(where, 'a gift needs a tier from common to epic');
+  } else if (typeof it.cost !== 'number' || it.cost <= 0) err(where, 'cost must be a positive number');
   else shopCoinTotal += it.cost;
   if (!it.nl || !it.en) err(where, 'missing nl or en name');
   if (SHOP_KINDS.indexOf(it.kind) === -1) err(where, 'unknown kind "' + it.kind + '"');
@@ -409,6 +414,27 @@ legendaryItems.forEach(function (it) {
 });
 
 /* ---------------------------------------------------------------------
+   5c. Weetjes
+   --------------------------------------------------------------------- */
+const FACTS = W.FUN_FACTS || [];
+if (!FACTS.length) warn('data/facts.js', 'no fun facts defined');
+FACTS.forEach(function (f, i) {
+  const where = 'fun fact ' + (i + 1);
+  bilingual(where, f, 'text');
+  if (f.topic && !topicIds[f.topic]) err(where, 'unknown topic "' + f.topic + '"');
+});
+
+/* the same emoji twice in the collectable parts of the shop is confusing */
+const seenEmoji = {};
+SHOP.forEach(function (it) {
+  if (it.kind === 'tool') return;
+  const k = it.kind === 'gift' ? 'gift' : 'buy';
+  const key = k + it.emoji;
+  if (seenEmoji[key]) warn('shop item ' + it.id, 'uses the same emoji as ' + seenEmoji[key]);
+  seenEmoji[key] = it.id;
+});
+
+/* ---------------------------------------------------------------------
    6. Interface strings: every key used must exist in both languages
    --------------------------------------------------------------------- */
 const i18nBox = { window: { LANG: 'nl' }, console: console };
@@ -425,7 +451,7 @@ try {
 
 const usedKeys = new Set();
 html.replace(/data-i18n="([^"]+)"/g, function (_, k) { usedKeys.add(k); return _; });
-['js/app.js', 'js/spelling.js', 'js/log.js'].forEach(function (f) {
+['js/app.js', 'js/spelling.js', 'js/log.js', 'js/rewards.js'].forEach(function (f) {
   const code = fs.readFileSync(path.join(ROOT, f), 'utf8');
   code.replace(/\bt\('([A-Za-z0-9]+)'\)/g, function (_, k) { usedKeys.add(k); return _; });
   code.replace(/\btRandom\('([A-Za-z0-9]+)'\)/g, function (_, k) { usedKeys.add(k); return _; });
@@ -496,7 +522,9 @@ console.log('  spelling sets : ' + SETS.length);
 console.log('  spelling items: ' + spellItemTotal);
 console.log('  exercise types: ' + Object.keys(spellTypeCount).sort().map(function (k) { return k + ' ' + spellTypeCount[k]; }).join(', '));
 console.log('');
-console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins to unlock everything once)');
+console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins to unlock everything once, ' +
+            SHOP.filter(function (it) { return it.kind === 'gift'; }).length + ' chest-only gifts)');
+console.log('  fun facts     : ' + FACTS.length);
 console.log('───────────────────────────────────────────────');
 
 warnings.forEach(function (w) { console.log('  ⚠️  ' + w); });

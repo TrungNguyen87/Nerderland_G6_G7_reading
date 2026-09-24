@@ -950,5 +950,77 @@ addStories([
       explain: { nl: 'Bemand betekent met mensen aan boord; het tegenovergestelde is onbemand.',
                  en: 'Crewed means with people on board; the opposite is uncrewed.' } }
   ]
+},
+{
+  id: 'ruimte-11', topic: 'ruimte', level: 1, emoji: '🌙', scene: 'space',
+  title: { nl: 'Waarom verandert de maan van vorm?', en: 'Why does the Moon change shape?' },
+  text: {
+    nl: [
+      "Kijk maar eens een paar avonden achter elkaar naar de maan. De ene keer is hij rond, de andere keer zie je maar een smal randje. Soms zie je hem helemaal niet. Hoe kan dat?",
+      "De maan geeft zelf geen licht. Hij is een grote, grijze bol van steen. We zien hem alleen omdat de zon erop schijnt. Net zoals je een bal ziet als er een lamp op schijnt.",
+      "De maan draait in ongeveer vier weken een rondje om de aarde. Daardoor kijken wij steeds van een andere kant naar de maan. Soms zien we de hele verlichte kant: dat heet volle maan.",
+      "Staat de maan tussen de aarde en de zon, dan zien we alleen de donkere kant. Dat heet nieuwe maan. Daarna wordt het lichte stukje elke avond een beetje groter, tot het weer volle maan is. Dan wordt het stukje weer kleiner.",
+      "De maan verandert dus niet echt van vorm. Hij is altijd rond. Alleen het stuk dat wij verlicht zien, verandert. Die verschillende vormen heten de schijngestalten van de maan."
+    ],
+    en: [
+      "Try looking at the Moon for a few evenings in a row. One time it is round, another time you only see a thin edge. Sometimes you cannot see it at all. How is that possible?",
+      "The Moon does not give off light itself. It is a big, grey ball of rock. We only see it because the Sun shines on it. Just like you see a ball when a lamp shines on it.",
+      "The Moon travels once around the Earth in about four weeks. Because of that, we keep looking at the Moon from a different side. Sometimes we see the whole lit-up side: that is called a full moon.",
+      "When the Moon is between the Earth and the Sun, we only see its dark side. That is called a new moon. After that the bright part grows a little every evening, until it is full moon again. Then the bright part shrinks again.",
+      "So the Moon does not really change shape. It is always round. Only the part we see lit up changes. Those different shapes are called the phases of the Moon."
+    ]
+  },
+  words: [
+    { nl: 'verlicht', en: 'lit up', defNl: 'er schijnt licht op', defEn: 'light is shining on it' },
+    { nl: 'volle maan', en: 'full moon', defNl: 'als je de maan helemaal rond en licht ziet', defEn: 'when you see the Moon completely round and bright' },
+    { nl: 'schijngestalten', en: 'phases', defNl: 'de verschillende vormen waarin je de maan ziet', defEn: 'the different shapes in which you see the Moon' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waarom kunnen we de maan zien?', en: 'Why can we see the Moon?' },
+      options: [
+        { nl: 'Omdat de maan zelf licht geeft', en: 'Because the Moon gives off its own light' },
+        { nl: 'Omdat er lampen op de maan staan', en: 'Because there are lamps on the Moon' },
+        { nl: 'Omdat de zon op de maan schijnt', en: 'Because the Sun shines on the Moon' },
+        { nl: 'Omdat de maan heel dichtbij is', en: 'Because the Moon is very close' }
+      ], answer: 2,
+      explain: { nl: 'In alinea 2 staat: "We zien hem alleen omdat de zon erop schijnt."',
+                 en: 'Paragraph 2 says: "We only see it because the Sun shines on it."' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'De maan draait in ongeveer vier weken om de aarde.', en: 'The Moon travels around the Earth in about four weeks.' },
+      answer: true,
+      explain: { nl: 'Waar. Alinea 3: "De maan draait in ongeveer vier weken een rondje om de aarde."',
+                 en: 'True. Paragraph 3: "The Moon travels once around the Earth in about four weeks."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'De verschillende vormen waarin je de maan ziet, heten de ___.', en: 'The different shapes in which you see the Moon are called the ___.' },
+      options: [
+        { nl: 'kraters', en: 'craters' },
+        { nl: 'schijngestalten', en: 'phases' },
+        { nl: 'sterrenbeelden', en: 'constellations' },
+        { nl: 'getijden', en: 'tides' }
+      ], answer: 1,
+      explain: { nl: 'De laatste zin van de tekst: "Die verschillende vormen heten de schijngestalten van de maan."',
+                 en: 'The last sentence of the text: "Those different shapes are called the phases of the Moon."' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de vormen van de maan in de goede volgorde, te beginnen bij nieuwe maan.', en: 'Put the shapes of the Moon in the right order, starting with the new moon.' },
+      items: [
+        { nl: 'Nieuwe maan: je ziet de maan niet.', en: 'New moon: you cannot see the Moon.' },
+        { nl: 'Het lichte stukje wordt elke avond groter.', en: 'The bright part grows every evening.' },
+        { nl: 'Volle maan: de maan is helemaal rond.', en: 'Full moon: the Moon is completely round.' },
+        { nl: 'Het lichte stukje wordt weer kleiner.', en: 'The bright part shrinks again.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Alinea 4 beschrijft het: eerst nieuwe maan, dan groter tot volle maan, dan weer kleiner.',
+                 en: 'Paragraph 4 describes it: first new moon, then growing to full moon, then shrinking again.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de belangrijkste boodschap van de tekst?', en: 'What is the main message of the text?' },
+      options: [
+        { nl: 'De maan is eigenlijk plat', en: 'The Moon is actually flat' },
+        { nl: 'De maan is altijd rond; alleen het verlichte stuk dat wij zien verandert', en: 'The Moon is always round; only the lit part we see changes' },
+        { nl: 'Je mag niet naar de maan kijken', en: 'You should not look at the Moon' },
+        { nl: 'De maan is groter dan de zon', en: 'The Moon is bigger than the Sun' }
+      ], answer: 1,
+      explain: { nl: 'De laatste alinea vat het samen: "De maan verandert dus niet echt van vorm."',
+                 en: 'The last paragraph sums it up: "So the Moon does not really change shape."' } }
+  ]
 }
 ]);

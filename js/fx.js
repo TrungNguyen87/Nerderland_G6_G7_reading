@@ -67,25 +67,67 @@ const FX = (function () {
     }
   }
 
-  /* ---- toast ---- */
+  /* ---- toast ----
+     Berichten komen in een rij: na een verhaal kunnen er tegelijk een
+     dagopdracht, een cadeau en een badge binnenkomen, en die moet het kind
+     alle drie kunnen lezen in plaats van alleen de laatste. */
   const toastEl = document.getElementById('toast');
-  let toastTimer = null;
+  const queue = [];
+  let showing = false;
   function toast(msg, ms) {
-    toastEl.textContent = msg;
+    if (queue.length && queue[queue.length - 1].msg === msg) return;   /* geen dubbele */
+    if (showing && queue.length >= 4) queue.shift();                   /* niet eindeloos opstapelen */
+    queue.push({ msg: msg, ms: ms || 2600 });
+    if (!showing) nextToast();
+  }
+  function nextToast() {
+    const item = queue.shift();
+    if (!item) { showing = false; return; }
+    showing = true;
+    toastEl.textContent = item.msg;
     toastEl.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, ms || 2600);
+    /* staan er nog meer klaar, dan iets sneller door naar de volgende */
+    const ms = queue.length ? Math.min(item.ms, 2200) : item.ms;
+    setTimeout(function () {
+      toastEl.classList.remove('show');
+      setTimeout(nextToast, 260);
+    }, ms);
+  }
+
+  /* ---- getal dat optelt (XP en munten op het resultaatscherm) ---- */
+  function countUp(el, to, prefix) {
+    if (!el) return;
+    const start = performance.now();
+    const dur = Math.min(900, 250 + to * 12);
+    prefix = prefix || '';
+    if (!to) { el.textContent = prefix + '0'; return; }
+    function step(now) {
+      const f = Math.min((now - start) / dur, 1);
+      el.textContent = prefix + Math.round(to * (1 - Math.pow(1 - f, 3)));
+      if (f < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
   /* ---- level-up overlay ---- */
-  function levelUp(text) {
+  let levelTimer = null;
+  function levelUp(text, sub) {
     const el = document.getElementById('levelup');
     document.getElementById('lu-text').textContent = text;
+    const subEl = document.getElementById('lu-sub');
+    subEl.textContent = sub || '';
+    subEl.classList.toggle('hidden', !sub);
     el.classList.remove('hidden');
     burst(120);
     Sound.levelup();
-    setTimeout(function () { el.classList.add('hidden'); }, 2200);
+    clearTimeout(levelTimer);
+    levelTimer = setTimeout(function () { el.classList.add('hidden'); }, sub ? 3000 : 2200);
   }
+  /* wie niet wil wachten, tikt het scherm weg */
+  document.getElementById('levelup').addEventListener('click', function () {
+    clearTimeout(levelTimer);
+    this.classList.add('hidden');
+  });
 
   /* ---- uil ---- */
   const owl = document.querySelector('.owl');
@@ -107,5 +149,5 @@ const FX = (function () {
   }
   function hush() { if (bubble) bubble.classList.remove('show'); }
 
-  return { burst: burst, setShapes: setShapes, toast: toast, levelUp: levelUp, say: say, hush: hush };
+  return { burst: burst, setShapes: setShapes, toast: toast, countUp: countUp, levelUp: levelUp, say: say, hush: hush };
 })();

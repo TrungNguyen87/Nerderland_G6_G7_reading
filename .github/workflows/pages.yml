@@ -28,6 +28,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # nooit een kapotte versie publiceren: eerst de data controleren
+      - name: Validate data
+        run: node tools/validate.js
       - uses: actions/configure-pages@v5
       - name: Upload site
         uses: actions/upload-pages-artifact@v3

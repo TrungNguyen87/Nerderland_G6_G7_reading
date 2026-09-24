@@ -1025,5 +1025,77 @@ addStories([
       explain: { nl: 'Alinea 6: sommige scholen kiezen een tussenweg, zoals een kwartier of half uur later beginnen.',
                  en: 'Paragraph 6: some schools choose a middle way, such as starting a quarter or half an hour later.' } }
   ]
+},
+{
+  id: 'lichaam-11', topic: 'lichaam', level: 1, emoji: '🦷', scene: 'body',
+  title: { nl: 'Waarom krijg je nieuwe tanden?', en: 'Why do you get new teeth?' },
+  text: {
+    nl: [
+      "Je eerste tandjes kreeg je toen je nog een baby was. Die heten melktanden. Een kind heeft er twintig. Ze zijn klein, want ze moeten passen in een klein kaakje.",
+      "Maar jij groeit. Je kaak wordt groter, en dan passen die kleine tandjes niet meer goed. Daarom maakt je lichaam nieuwe, grotere tanden: de blijvende tanden.",
+      "Die nieuwe tanden groeien eerst verstopt in je kaak, onder je melktanden. Als ze klaar zijn, duwen ze tegen de wortel van de melktand. Die wortel lost langzaam op. De melktand gaat wiebelen, en op een dag valt hij eruit.",
+      "Rond je zesde jaar valt de eerste tand vaak uit. Rond je twaalfde zijn de meeste gewisseld. Een volwassene heeft wel 32 tanden, veel meer dan een kind.",
+      "Let goed op je nieuwe tanden, want er komen er geen nieuwe meer bij. Poets ze twee keer per dag, en eet niet te vaak snoep. Dan heb je er je hele leven plezier van."
+    ],
+    en: [
+      "You got your first little teeth when you were still a baby. They are called milk teeth. A child has twenty of them. They are small, because they have to fit in a small jaw.",
+      "But you grow. Your jaw gets bigger, and then those small teeth no longer fit well. That is why your body makes new, bigger teeth: the permanent teeth.",
+      "Those new teeth first grow hidden in your jaw, under your milk teeth. When they are ready, they push against the root of the milk tooth. That root slowly dissolves. The milk tooth starts to wobble, and one day it falls out.",
+      "Around the age of six the first tooth often falls out. By about twelve most of them have been replaced. An adult has as many as 32 teeth, far more than a child.",
+      "Take good care of your new teeth, because no new ones will come after them. Brush them twice a day, and do not eat sweets too often. Then you will enjoy them for the rest of your life."
+    ]
+  },
+  words: [
+    { nl: 'melktanden', en: 'milk teeth', defNl: 'de eerste tanden die een kind krijgt', defEn: 'the first teeth a child gets' },
+    { nl: 'kaak', en: 'jaw', defNl: 'het bot in je mond waar je tanden in zitten', defEn: 'the bone in your mouth that holds your teeth' },
+    { nl: 'blijvende', en: 'permanent', defNl: 'die blijven en niet meer vervangen worden', defEn: 'that stay and are not replaced again' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel melktanden heeft een kind?', en: 'How many milk teeth does a child have?' },
+      options: [
+        { nl: 'Twaalf', en: 'Twelve' },
+        { nl: 'Twintig', en: 'Twenty' },
+        { nl: 'Tweeëndertig', en: 'Thirty-two' },
+        { nl: 'Zes', en: 'Six' }
+      ], answer: 1,
+      explain: { nl: 'Alinea 1: "Een kind heeft er twintig." 32 is het aantal tanden van een volwassene.',
+                 en: 'Paragraph 1: "A child has twenty of them." 32 is the number of teeth an adult has.' } },
+    { id: 'q2', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'De nieuwe tanden groeien eerst verstopt in je kaak.', en: 'The new teeth first grow hidden in your jaw.' },
+      answer: true,
+      explain: { nl: 'Waar. Alinea 3: "Die nieuwe tanden groeien eerst verstopt in je kaak."',
+                 en: 'True. Paragraph 3: "Those new teeth first grow hidden in your jaw."' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Je blijvende tanden heten zo, omdat ze ___.', en: 'Your permanent teeth have that name because they ___.' },
+      options: [
+        { nl: 'blijven en niet meer vervangen worden', en: 'stay and are not replaced again' },
+        { nl: 'altijd blijven wiebelen', en: 'always keep wobbling' },
+        { nl: 'van melk gemaakt zijn', en: 'are made of milk' },
+        { nl: 'in de kaak blijven zitten en nooit te zien zijn', en: 'stay inside the jaw and are never seen' }
+      ], answer: 0,
+      explain: { nl: 'De laatste alinea zegt: "er komen er geen nieuwe meer bij." Ze blijven dus.',
+                 en: 'The last paragraph says: "no new ones will come after them." So they stay.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Hoe wisselt een tand? Zet het in de goede volgorde.', en: 'How does a tooth get replaced? Put it in the right order.' },
+      items: [
+        { nl: 'Een nieuwe tand groeit verstopt in de kaak.', en: 'A new tooth grows hidden in the jaw.' },
+        { nl: 'Hij duwt tegen de wortel van de melktand.', en: 'It pushes against the root of the milk tooth.' },
+        { nl: 'De melktand gaat wiebelen.', en: 'The milk tooth starts to wobble.' },
+        { nl: 'De melktand valt eruit.', en: 'The milk tooth falls out.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Alinea 3 beschrijft precies deze stappen, in deze volgorde.',
+                 en: 'Paragraph 3 describes exactly these steps, in this order.' } },
+    { id: 'q5', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Waar gaat de tekst vooral over?', en: 'What is the text mainly about?' },
+      options: [
+        { nl: 'Waarom snoep lekker is', en: 'Why sweets taste good' },
+        { nl: 'Hoe je een tandarts wordt', en: 'How to become a dentist' },
+        { nl: 'Wat baby’s eten', en: 'What babies eat' },
+        { nl: 'Waarom en hoe je melktanden plaatsmaken voor blijvende tanden', en: 'Why and how your milk teeth make way for permanent teeth' }
+      ], answer: 3,
+      explain: { nl: 'De tekst legt uit waarom je nieuwe tanden krijgt en hoe het wisselen gaat.',
+                 en: 'The text explains why you get new teeth and how the swap happens.' } }
+  ]
 }
 ]);

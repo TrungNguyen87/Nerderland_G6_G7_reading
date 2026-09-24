@@ -594,3 +594,156 @@ td.bad{color:var(--no);font-weight:800}
   .sort-bins{width:100%}
   .sort-bin{flex:1}
 }
+
+/* =====================================================================
+   BELONINGEN: dagopdrachten, dagreeks, cadeaudozen en album
+   ===================================================================== */
+/* toetsenbordgebruikers zien altijd waar ze zijn */
+button:focus-visible,a:focus-visible,.text-input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+.chest-btn{
+  position:relative;font-size:1.35rem;width:44px;height:42px;border-radius:14px;
+  background:linear-gradient(140deg,#ffe07a,#ffb703);box-shadow:0 3px 0 #d98e00;
+  animation:wiggle 2.4s ease-in-out infinite;
+}
+.chest-n{
+  position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;
+  background:var(--no);color:#fff;font-size:.72rem;font-weight:800;display:grid;place-items:center;
+  box-shadow:0 0 0 2px #fff;
+}
+@keyframes wiggle{0%,70%,100%{transform:rotate(0)}75%{transform:rotate(-12deg)}80%{transform:rotate(10deg)}85%{transform:rotate(-8deg)}90%{transform:rotate(6deg)}}
+
+/* ---- kaartje "Vandaag" ---- */
+.today-card{position:relative;overflow:hidden;padding-top:20px}
+.today-card::after{
+  content:'';position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,hsl(var(--hue) 90% 92%),transparent 70%);pointer-events:none;
+}
+.today-head{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.today-avatar{
+  font-size:2.3rem;width:58px;height:58px;flex:none;border-radius:50%;display:grid;place-items:center;
+  background:var(--brand-light);box-shadow:0 0 0 3px #fff,0 0 0 6px var(--brand);
+}
+.today-hi{flex:1;min-width:0}
+.today-hi h3{font-size:1.35rem;margin:0}
+.today-streak{margin:2px 0 0;font-weight:800;font-size:.86rem;color:#b35c00}
+.album-btn{flex:none;padding:10px 14px;font-size:.85rem}
+.chest-cta{margin-top:14px;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.quest-head{font-family:var(--font-head);font-size:1.02rem;margin:16px 0 8px}
+.quest-list{display:grid;gap:8px}
+.quest{
+  display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:14px;background:#f6f6fc;
+  transition:background .3s;
+}
+.quest.done{background:var(--ok-light)}
+.quest-emoji{font-size:1.35rem;width:30px;text-align:center;flex:none}
+.quest-main{flex:1;min-width:0;display:grid;gap:5px}
+.quest-name{font-weight:800;font-size:.9rem}
+.quest.done .quest-name{color:#136e45}
+.quest-track{height:8px;border-radius:99px;background:#e6e6f2;overflow:hidden}
+.quest-track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),#ff8a00);transition:width .8s cubic-bezier(.2,.9,.3,1)}
+.quest.done .quest-track i{background:var(--ok)}
+.quest-count{font-weight:800;font-size:.82rem;color:var(--ink-soft);flex:none}
+.quest.compact{padding:7px 10px}
+.quest.compact .quest-name{font-size:.82rem}
+
+.quest-strip{display:grid;gap:6px;text-align:left;margin:14px 0 4px}
+.quest-strip:empty{display:none}
+.quest-strip-head{margin:0 0 2px;font-weight:800;font-size:.86rem;color:var(--ink-soft)}
+
+.fact-box{
+  display:flex;align-items:center;gap:11px;margin-top:14px;padding:12px 14px;border-radius:16px;
+  background:#fffbe8;border:2px dashed #f3d77a;
+}
+.fact-box p{margin:0;flex:1;font-size:.9rem;line-height:1.5}
+.fact-owl{font-size:1.7rem;flex:none;animation:bob 3.4s ease-in-out infinite}
+.fact-box .icon-btn{flex:none;width:38px;height:38px;font-size:1rem;background:#fff}
+.result-fact{
+  margin:12px 0 0;padding:12px 14px;border-radius:16px;background:#fffbe8;text-align:left;
+  font-size:.92rem;line-height:1.5;
+}
+
+/* ---- wereldkaarten: sterren en de kroon voor een uitgespeelde wereld ---- */
+.wc-count{display:flex;justify-content:space-between;gap:8px}
+.wc-stars{color:#b37700}
+.wc-crown{position:absolute;top:12px;right:14px;font-size:1.6rem;animation:bob 3s ease-in-out infinite}
+.world-card.complete{box-shadow:0 0 0 3px hsl(var(--wh) 75% 60%),var(--shadow)}
+.world-card:active{transform:scale(.98)}
+.level-card:active{transform:scale(.98)}
+
+/* ---- level-up: wat er nu in de winkel open gaat ---- */
+.levelup{cursor:pointer}
+.lu-sub{margin:8px 0 0;font-weight:800;font-size:1.1rem;color:var(--ink-soft)}
+
+/* ---- de cadeaudoos ---- */
+.chest-overlay{
+  position:fixed;inset:0;z-index:66;display:grid;place-items:center;padding:16px;
+  background:rgba(20,16,50,.72);backdrop-filter:blur(5px);animation:fadeIn .25s;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.chest-box{
+  position:relative;overflow:hidden;width:min(420px,100%);text-align:center;border-radius:30px;padding:30px 24px 26px;
+  background:linear-gradient(170deg,#fff,#fff6db);box-shadow:0 30px 80px rgba(0,0,0,.4);animation:pop .5s cubic-bezier(.2,1.4,.4,1);
+}
+.chest-rays{
+  position:absolute;left:50%;top:44%;width:560px;height:560px;margin:-280px 0 0 -280px;pointer-events:none;opacity:0;
+  background:repeating-conic-gradient(rgba(255,183,3,.22) 0 10deg,transparent 10deg 20deg);
+  transition:opacity .4s;animation:legendSpin 14s linear infinite;
+}
+.chest-overlay.opened .chest-rays{opacity:1}
+.chest-src{position:relative;margin:0 0 6px;font-weight:800;color:var(--ink-soft)}
+.chest-gift{
+  position:relative;font-size:6.5rem;line-height:1.1;padding:6px 18px;border-radius:24px;
+  filter:drop-shadow(0 10px 14px rgba(0,0,0,.18));
+}
+.gift-inner{display:inline-block;animation:bob 2s ease-in-out infinite;transition:transform .15s}
+.chest-gift:hover .gift-inner{transform:scale(1.06)}
+.chest-gift.shake .gift-inner{animation:giftShake .9s ease-in-out forwards}
+@keyframes giftShake{
+  0%{transform:rotate(0) scale(1)}15%{transform:rotate(-14deg) scale(1.05)}30%{transform:rotate(12deg) scale(1.08)}
+  45%{transform:rotate(-10deg) scale(1.1)}60%{transform:rotate(8deg) scale(1.14)}80%{transform:rotate(-4deg) scale(1.2)}100%{transform:scale(1.35);opacity:.2}
+}
+.chest-overlay.opened .chest-gift{display:none}
+.chest-tap{position:relative;margin:4px 0 0;font-weight:800;color:var(--brand-dark)}
+.chest-tap:empty{display:none}
+.chest-reward{position:relative;display:grid;justify-items:center;gap:4px;animation:starIn .6s cubic-bezier(.2,1.4,.4,1)}
+.chest-reward .sc-tier{align-self:center}
+.chest-emoji{font-size:5.6rem;line-height:1.1;filter:drop-shadow(0 8px 16px rgba(255,183,3,.55))}
+.chest-reward h2{margin:4px 0 0;font-size:1.7rem}
+.chest-reward p{margin:0;color:var(--ink-soft);font-weight:700}
+.chest-box .big-btn{position:relative}
+
+/* ---- album ---- */
+.album-card.missing{background:#f1f1f8;box-shadow:none;border:2px dashed #d6d6e6}
+.album-card.missing .sc-emoji{opacity:.45;filter:grayscale(1)}
+.album-card.missing .sc-name{color:#9a9aad}
+.album-card.tier-epic.missing{background:#2c1f5e;border-color:#7a5bd6}
+
+/* ---- feedback ---- */
+.home-feedback{margin:22px auto 0;max-width:460px;font-size:.85rem;font-weight:700;color:rgba(255,255,255,.95)}
+.home-feedback .mail-link{color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:3px;word-break:break-all}
+.feedback-line{margin:10px 0 0;font-weight:800}
+.feedback-line .mail-link{color:var(--brand-dark);word-break:break-all}
+
+@media (max-width:640px){
+  .today-head{flex-wrap:wrap}
+  .album-btn{width:100%;margin-top:4px}
+  .chest-btn{width:40px;height:40px;font-size:1.2rem}
+  .chest-gift{font-size:5.2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .chest-btn,.chest-cta,.chest-rays,.gift-inner{animation:none}
+}
+
+/* ---- kleine reparaties ---- */
+/* de ondertitel op het resultaatscherm was wit op een witte kaart */
+.result-card .screen-sub{color:var(--ink-soft)}
+.result-actions{align-items:stretch}
+.result-actions .big-btn{margin-top:0}
+/* confetti hoort bóven de cadeaudoos en het level-up scherm */
+#confetti{z-index:68}
+/* vijf tabbladen in de winkel passen niet naast elkaar op een telefoon */
+#shop-tabs{flex-wrap:wrap;justify-content:center;border-radius:24px}
+.album-card{gap:4px;padding:12px 10px}
+.album-card .sc-emoji{font-size:2.2rem}

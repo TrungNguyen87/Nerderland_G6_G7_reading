@@ -4,7 +4,10 @@
    ===================================================================== */
 const Sound = (function () {
   let ctx = null;
+  const PREF_KEY = 'leeskampioen.sound';
+  /* geluid aan/uit wordt per apparaat onthouden */
   let on = true;
+  try { on = localStorage.getItem(PREF_KEY) !== 'off'; } catch (e) { /* privémodus */ }
 
   function ensure() {
     if (!ctx) {
@@ -37,7 +40,10 @@ const Sound = (function () {
   }
 
   return {
-    setOn: function (v) { on = v; },
+    setOn: function (v) {
+      on = v;
+      try { localStorage.setItem(PREF_KEY, v ? 'on' : 'off'); } catch (e) { /* privémodus */ }
+    },
     isOn: function () { return on; },
     click:    function () { melody([[520, 0, 0.06, 'triangle', 0.10]]); },
     correct:  function () { melody([[660, 0, 0.10, 'triangle', 0.16], [880, 0.09, 0.10, 'triangle', 0.16], [1180, 0.18, 0.22, 'triangle', 0.14]]); },
@@ -45,6 +51,8 @@ const Sound = (function () {
     star:     function () { melody([[880, 0, 0.09, 'sine', 0.14], [1180, 0.08, 0.09, 'sine', 0.14], [1560, 0.16, 0.30, 'sine', 0.13]]); },
     levelup:  function () { melody([[520, 0, 0.11, 'square', 0.12], [660, 0.10, 0.11, 'square', 0.12], [790, 0.20, 0.11, 'square', 0.12], [1050, 0.30, 0.40, 'square', 0.12]]); },
     flash:    function () { melody([[1200, 0, 0.05, 'sine', 0.10]]); },
+    coin:     function () { melody([[1320, 0, 0.07, 'square', 0.07], [1760, 0.06, 0.16, 'square', 0.07]]); },
+    chest:    function () { melody([[392,0,0.1,'triangle',.14],[523,.1,0.1,'triangle',.14],[659,.2,0.1,'triangle',.14],[784,.3,0.1,'triangle',.14],[1047,.4,0.45,'triangle',.16],[1319,.4,0.45,'sine',.08]]); },
     finish:   function () { melody([[520,0,0.12,'triangle',.14],[660,.12,0.12,'triangle',.14],[790,.24,0.12,'triangle',.14],[1050,.36,0.5,'triangle',.14]]); }
   };
 })();

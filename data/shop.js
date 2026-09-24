@@ -23,6 +23,8 @@
      character - groter avatar-personage, hoe hoger de tier hoe zeldzamer
      tool      - gereedschap: een jokerkaart (verbruiksartikel) of een
                  kleurenthema (eenmalig vrij te spelen, daarna te kiezen)
+     gift      - verzamelcadeau voor het album. NIET te koop (chestOnly,
+                 geen prijs): zit alleen in een cadeaudoos, zie js/rewards.js
 
    unlock (alleen op het legendarische item): extra eis bovenop munten en
    niveau, gecontroleerd in js/app.js (itemUnlockOk). Alle velden moeten
@@ -55,6 +57,12 @@ window.SHOP_ITEMS = [
   { id: 'sticker-sparkstar', kind: 'sticker', tier: 'common', emoji: '🌟', cost: 30, nl: 'Fonkelster',  en: 'Sparkle star' },
   { id: 'sticker-trophy',  kind: 'sticker', tier: 'common', emoji: '🏆', cost: 32, nl: 'Beker',         en: 'Trophy' },
   { id: 'sticker-gem',     kind: 'sticker', tier: 'common', emoji: '💎', cost: 34, nl: 'Diamant',       en: 'Gem' },
+  { id: 'sticker-pizza',   kind: 'sticker', tier: 'common', emoji: '🍕', cost: 18, nl: 'Pizza',         en: 'Pizza' },
+  { id: 'sticker-cat',     kind: 'sticker', tier: 'common', emoji: '🐱', cost: 20, nl: 'Poes',          en: 'Kitten' },
+  { id: 'sticker-guitar',  kind: 'sticker', tier: 'common', emoji: '🎸', cost: 24, nl: 'Gitaar',        en: 'Guitar' },
+  { id: 'sticker-rocket',  kind: 'sticker', tier: 'common', emoji: '🚀', cost: 26, nl: 'Raket',         en: 'Rocket' },
+  { id: 'sticker-palette', kind: 'sticker', tier: 'common', emoji: '🎨', cost: 26, nl: 'Verfpalet',     en: 'Paint palette' },
+  { id: 'sticker-books',   kind: 'sticker', tier: 'common', emoji: '📚', cost: 30, nl: 'Boekenstapel',  en: 'Pile of books' },
 
   /* ---------------------------------------------------------------------
      Iconen - extra avatars, een beetje niveau nodig
@@ -73,6 +81,12 @@ window.SHOP_ITEMS = [
   { id: 'icon-vampire',   kind: 'icon', tier: 'uncommon', minLevel: 5, emoji: '🧛', cost: 60, nl: 'Vampier',    en: 'Vampire' },
   { id: 'icon-mermaid',   kind: 'icon', tier: 'uncommon', minLevel: 5, emoji: '🧜', cost: 60, nl: 'Zeemeermin', en: 'Mermaid' },
   { id: 'icon-fairy',     kind: 'icon', tier: 'uncommon', minLevel: 5, emoji: '🧚', cost: 60, nl: 'Fee',        en: 'Fairy' },
+  { id: 'icon-hedgehog',  kind: 'icon', tier: 'uncommon', minLevel: 2, emoji: '🦔', cost: 40, nl: 'Egel',       en: 'Hedgehog' },
+  { id: 'icon-ladybug',   kind: 'icon', tier: 'uncommon', minLevel: 2, emoji: '🐞', cost: 40, nl: 'Lieveheersbeestje', en: 'Ladybird' },
+  { id: 'icon-otter',     kind: 'icon', tier: 'uncommon', minLevel: 3, emoji: '🦦', cost: 48, nl: 'Otter',      en: 'Otter' },
+  { id: 'icon-flamingo',  kind: 'icon', tier: 'uncommon', minLevel: 4, emoji: '🦩', cost: 52, nl: 'Flamingo',   en: 'Flamingo' },
+  { id: 'icon-sloth',     kind: 'icon', tier: 'uncommon', minLevel: 4, emoji: '🦥', cost: 52, nl: 'Luiaard',    en: 'Sloth' },
+  { id: 'icon-kangaroo',  kind: 'icon', tier: 'uncommon', minLevel: 6, emoji: '🦘', cost: 62, nl: 'Kangoeroe',  en: 'Kangaroo' },
 
   /* ---------------------------------------------------------------------
      Personages (rare) - grotere, duurdere avatars, elk bij een wereld
@@ -89,6 +103,11 @@ window.SHOP_ITEMS = [
   { id: 'char-firefighter', kind: 'character', tier: 'rare', minLevel: 8, emoji: '🧑‍🚒', cost: 145, nl: 'Brandweer',   en: 'Firefighter' },
   { id: 'char-elf',        kind: 'character', tier: 'rare', minLevel: 8, emoji: '🧝',   cost: 150, nl: 'Elf',          en: 'Elf' },
   { id: 'char-genie',      kind: 'character', tier: 'rare', minLevel: 8, emoji: '🧞',   cost: 160, nl: 'Geest',        en: 'Genie' },
+  { id: 'char-teacher',    kind: 'character', tier: 'rare', minLevel: 9, emoji: '🧑‍🏫', cost: 150, nl: 'Juf of meester', en: 'Teacher' },
+  { id: 'char-farmer',     kind: 'character', tier: 'rare', minLevel: 9, emoji: '🧑‍🌾', cost: 150, nl: 'Boer',          en: 'Farmer' },
+  { id: 'char-coder',      kind: 'character', tier: 'rare', minLevel: 10, emoji: '🧑‍💻', cost: 165, nl: 'Programmeur',  en: 'Coder' },
+  { id: 'char-superhero',  kind: 'character', tier: 'rare', minLevel: 11, emoji: '🦸‍♀️', cost: 175, nl: 'Superheldin',  en: 'Superheroine' },
+  { id: 'char-mechanic',   kind: 'character', tier: 'rare', minLevel: 12, emoji: '🧑‍🔧', cost: 180, nl: 'Uitvinder',    en: 'Inventor' },
 
   /* ---------------------------------------------------------------------
      Personages (epic) - zeldzame, anime-achtige helden voor wie al lang
@@ -101,6 +120,10 @@ window.SHOP_ITEMS = [
   { id: 'epic-ninja',    kind: 'character', tier: 'epic', minLevel: 15, emoji: '🥋',   cost: 260, nl: 'Ninjameester',    en: 'Ninja Master' },
   { id: 'epic-dragon',   kind: 'character', tier: 'epic', minLevel: 16, emoji: '🐲',   cost: 280, nl: 'Drakenkrijger',   en: 'Dragon Warrior' },
   { id: 'epic-mecha',    kind: 'character', tier: 'epic', minLevel: 17, emoji: '🦾',   cost: 300, nl: 'Cyberheld',       en: 'Cyber Hero' },
+  { id: 'epic-sorceress', kind: 'character', tier: 'epic', minLevel: 18, emoji: '🧙‍♀️', cost: 320, nl: 'Tovenares',      en: 'Sorceress' },
+  { id: 'epic-princess', kind: 'character', tier: 'epic', minLevel: 19, emoji: '👸',   cost: 340, nl: 'Prinses',         en: 'Princess' },
+  { id: 'epic-prince',   kind: 'character', tier: 'epic', minLevel: 19, emoji: '🤴',   cost: 340, nl: 'Prins',           en: 'Prince' },
+  { id: 'epic-trex',     kind: 'character', tier: 'epic', minLevel: 21, emoji: '🦕',   cost: 380, nl: 'Oerreus',         en: 'Dino Giant' },
 
   /* ---------------------------------------------------------------------
      Legendarisch - het felbegeerde 3D-kaart-personage. Pas te koop als
@@ -123,5 +146,42 @@ window.SHOP_ITEMS = [
   { id: 'tool-theme-sunset', kind: 'tool', effect: 'theme', hue: 15, emoji: '🌅', cost: 30,
     nl: 'Zonsondergangthema', en: 'Sunset theme' },
   { id: 'tool-theme-blossom', kind: 'tool', effect: 'theme', hue: 320, emoji: '🌸', cost: 30,
-    nl: 'Lentethema', en: 'Blossom theme' }
+    nl: 'Lentethema', en: 'Blossom theme' },
+  { id: 'tool-theme-forest', kind: 'tool', effect: 'theme', hue: 130, emoji: '🌲', cost: 30,
+    nl: 'Bosthema', en: 'Forest theme' },
+  { id: 'tool-theme-sun', kind: 'tool', effect: 'theme', hue: 45, emoji: '🌻', cost: 30,
+    nl: 'Zonnethema', en: 'Sunshine theme' },
+  { id: 'tool-theme-night', kind: 'tool', effect: 'theme', hue: 232, emoji: '🌙', cost: 30,
+    nl: 'Nachtthema', en: 'Night theme' },
+
+  /* ---------------------------------------------------------------------
+     Verzamelcadeaus voor het album - alleen uit een cadeaudoos, nooit
+     te koop. Hoe zeldzamer, hoe kleiner de kans (zie js/rewards.js).
+     --------------------------------------------------------------------- */
+  { id: 'gift-teddy',     kind: 'gift', chestOnly: true, tier: 'common', emoji: '🧸', nl: 'Knuffelbeer',   en: 'Teddy bear' },
+  { id: 'gift-kite',      kind: 'gift', chestOnly: true, tier: 'common', emoji: '🪁', nl: 'Vlieger',       en: 'Kite' },
+  { id: 'gift-yoyo',      kind: 'gift', chestOnly: true, tier: 'common', emoji: '🪀', nl: 'Jojo',          en: 'Yo-yo' },
+  { id: 'gift-donut',     kind: 'gift', chestOnly: true, tier: 'common', emoji: '🍩', nl: 'Donut',         en: 'Doughnut' },
+  { id: 'gift-melon',     kind: 'gift', chestOnly: true, tier: 'common', emoji: '🍉', nl: 'Watermeloen',   en: 'Watermelon' },
+  { id: 'gift-sunflower', kind: 'gift', chestOnly: true, tier: 'common', emoji: '🌻', nl: 'Zonnebloem',    en: 'Sunflower' },
+  { id: 'gift-shell',     kind: 'gift', chestOnly: true, tier: 'common', emoji: '🐚', nl: 'Schelp',        en: 'Seashell' },
+  { id: 'gift-mushroom',  kind: 'gift', chestOnly: true, tier: 'common', emoji: '🍄', nl: 'Paddenstoel',   en: 'Toadstool' },
+  { id: 'gift-pinata',    kind: 'gift', chestOnly: true, tier: 'common', emoji: '🪅', nl: 'Piñata',        en: 'Piñata' },
+  { id: 'gift-carousel',  kind: 'gift', chestOnly: true, tier: 'uncommon', emoji: '🎠', nl: 'Draaimolen',  en: 'Carousel' },
+  { id: 'gift-ferris',    kind: 'gift', chestOnly: true, tier: 'uncommon', emoji: '🎡', nl: 'Reuzenrad',   en: 'Ferris wheel' },
+  { id: 'gift-skates',    kind: 'gift', chestOnly: true, tier: 'uncommon', emoji: '🛼', nl: 'Rolschaatsen', en: 'Roller skates' },
+  { id: 'gift-cactus',    kind: 'gift', chestOnly: true, tier: 'uncommon', emoji: '🌵', nl: 'Cactus',      en: 'Cactus' },
+  { id: 'gift-island',    kind: 'gift', chestOnly: true, tier: 'uncommon', emoji: '🏝️', nl: 'Onbewoond eiland', en: 'Desert island' },
+  { id: 'gift-moai',      kind: 'gift', chestOnly: true, tier: 'uncommon', emoji: '🗿', nl: 'Stenen reus', en: 'Stone giant' },
+  { id: 'gift-planet',    kind: 'gift', chestOnly: true, tier: 'uncommon', emoji: '🪐', nl: 'Ringplaneet', en: 'Ringed planet' },
+  { id: 'gift-crystal',   kind: 'gift', chestOnly: true, tier: 'rare', emoji: '🔮', nl: 'Glazen bol',      en: 'Crystal ball' },
+  { id: 'gift-wand',      kind: 'gift', chestOnly: true, tier: 'rare', emoji: '🪄', nl: 'Toverstaf',       en: 'Magic wand' },
+  { id: 'gift-volcano',   kind: 'gift', chestOnly: true, tier: 'rare', emoji: '🌋', nl: 'Vulkaan',         en: 'Volcano' },
+  { id: 'gift-alien',     kind: 'gift', chestOnly: true, tier: 'rare', emoji: '👾', nl: 'Ruimtemonstertje', en: 'Space critter' },
+  { id: 'gift-ufo',       kind: 'gift', chestOnly: true, tier: 'rare', emoji: '🛸', nl: 'Vliegende schotel', en: 'Flying saucer' },
+  { id: 'gift-key',       kind: 'gift', chestOnly: true, tier: 'rare', emoji: '🗝️', nl: 'Geheime sleutel', en: 'Secret key' },
+  { id: 'gift-galaxy',    kind: 'gift', chestOnly: true, tier: 'epic', emoji: '🌌', nl: 'Melkweg',         en: 'Milky Way' },
+  { id: 'gift-fireworks', kind: 'gift', chestOnly: true, tier: 'epic', emoji: '🎆', nl: 'Vuurwerk',        en: 'Fireworks' },
+  { id: 'gift-map',       kind: 'gift', chestOnly: true, tier: 'epic', emoji: '🗺️', nl: 'Schatkaart',      en: 'Treasure map' },
+  { id: 'gift-stardust',  kind: 'gift', chestOnly: true, tier: 'epic', emoji: '💫', nl: 'Sterrenstof',     en: 'Stardust' }
 ];

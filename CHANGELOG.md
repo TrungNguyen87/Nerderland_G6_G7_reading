@@ -5,7 +5,63 @@ All notable changes to Leeskampioen are recorded here. Format loosely follows
 
 ## Unreleased
 
-### Added
+### Added — rewards update (2026-09-24)
+- **Daily quests.** Three small goals a day on a new "Hoi {naam}!" card at
+  the top of the world screen (e.g. read 2 stories, answer 8 questions
+  correctly, tap 3 tricky words, do a spelling exercise). Progress also shows
+  on both result screens. All three done = a gift box. The same three all
+  day, different every day, different per child.
+- **Day streak** 🔥 — days in a row with a finished story or spelling set,
+  with a gift box at 3, 7, 14 and 30 days.
+- **Gift boxes** 🎁 — an animated box to tap open, from a wiggling gift
+  button in the top bar or on the world screen. Contains a collectable gift,
+  a joker card or bonus coins. Earned for all daily quests, the first
+  three-star score on each story, the day streak and every fifth level.
+- **Collector's album** — a new "🎁 Album" shop tab with 26 chest-only gifts
+  in four rarities; missing ones show as ❓.
+- **"Did you know?"** — 50 short fun facts (five per world) from Oscar the owl
+  on the world screen and after every story, matched to that story's world.
+- **Level-up shows what unlocked** in the shop ("New in the shop: 🦋 🦜").
+- **24 new shop items**: 6 stickers, 6 animal icons, 5 characters, 4 epic
+  heroes and 3 colour themes.
+- **5 new badges** (21 total): Bookworm (25 stories), Three days, Week
+  champion, Quest hero, Collector.
+- **10 new stories**, one per world at the Startklaar entry level (110
+  stories, 730 questions): the frog that freezes, why the Moon changes shape,
+  Sara's swimming certificate, how to defend a castle, the compass, who ate
+  the neighbours' pie?, strawberries in winter, music from a bottle, the ice
+  hotel, why you get new teeth.
+- **Feedback email** (nxtrung87@gmail.com) on the home screen, in the parent
+  area and at the bottom of the HTML report, as a plain `mailto:` link —
+  nothing is sent automatically.
+- Parent dashboard: longest day streak and gifts collected.
+- XP and coins count up on the result screens; toasts queue instead of
+  overwriting each other; the sound on/off choice is remembered.
+- CI: `.github/workflows/check.yml` runs `validate.js` and the full browser
+  smoke test on every push and PR; the Pages deploy now validates first.
+
+### Fixed (2026-09-24)
+- **Equipping a bought icon or character crashed** (`selectAvatar` was never
+  defined), so shop avatars could be bought but never worn.
+- **The 30-minute mission paid 15 coins again on every page reload** once
+  the half hour was reached; it is now once per day per child.
+- Mission time was also counted on the start screen and in the parent area.
+- Pressing Enter after checking a spelling word could skip the next word
+  (the browser also "clicked" the focused Next button).
+- Quitting the flash-word bonus round mid-round could bounce you back to the
+  world screen a second later with a stray score toast.
+- The result screen's subtitle was white text on a white card (invisible).
+- Days were keyed in UTC, so in the Netherlands "today" started at 01:00 or
+  02:00; the daily log, streak and CSV dates now use the device's local date.
+- Child-typed spelling answers and names are HTML-escaped in the dashboard
+  and the downloaded report.
+- The answer streak no longer carries over when switching to another child.
+- English UI said "punten" after the bonus round; parent advice no longer
+  assumes the child is a boy.
+- The five shop tabs no longer overflow on phones; confetti now shows above
+  the level-up and gift overlays.
+
+### Added — earlier
 - **Multiple player profiles on one device.** Each child now gets their own
   named profile (avatar, XP, coins, badges and log), stored separately, so
   two kids sharing a tablet no longer see each other's results mixed
