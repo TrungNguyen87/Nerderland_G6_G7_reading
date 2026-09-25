@@ -1053,5 +1053,142 @@ addStories([
       explain: { nl: 'De hele tekst gaat over de boskikker en zijn truc om bevroren de winter door te komen.',
                  en: 'The whole text is about the wood frog and its trick of getting through winter frozen.' } }
   ]
+},
+
+{
+  id: 'dieren-12', topic: 'dieren', level: 6, emoji: '🐞', scene: 'forest',
+  title: { nl: 'Waar zijn de insecten gebleven?', en: 'Where have all the insects gone?' },
+  text: {
+    nl: [
+      "Vraag je opa of oma eens hoe hun auto eruitzag na een lange rit op een zomerse dag. Grote kans dat ze vertellen dat de voorruit vol zat met platgeslagen muggen, vliegen en motten. Wie nu in de zomer over de snelweg rijdt, komt vaak met een bijna schone ruit thuis. Dat klinkt als goed nieuws, maar onderzoekers maken zich er juist grote zorgen over.",
+      "In 2017 verscheen een Duits onderzoek dat veel mensen liet schrikken. Vrijwilligers hadden bijna dertig jaar lang op dezelfde plekken insecten gevangen in speciale vallen. Ze woogen elk jaar wat erin zat. De uitkomst: het gewicht van alle gevangen insecten samen was met meer dan driekwart gedaald. En dat was gemeten in natuurgebieden, dus niet eens op plekken vol verkeer of fabrieken. Ook in Nederland zien tellers dat veel soorten vlinders en kevers achteruitgaan.",
+      "Waarom is dat erg? Insecten zijn klein, maar ze doen enorm veel werk. Bijen, hommels en zweefvliegen bestuiven bloemen, zodat er appels, aardbeien en tomaten kunnen groeien. Zonder bestuivers zou ongeveer driekwart van onze soorten groente en fruit veel minder opleveren. Kevers en wormen ruimen dode bladeren en uitwerpselen op. En heel veel vogels, vleermuizen en kikkers eten insecten. Als de insecten verdwijnen, krijgen die dieren dus ook honger.",
+      "Er is niet één schuldige. Boeren gebruiken gif tegen plagen, maar dat gif treft ook insecten die helemaal geen kwaad doen. Bermen en weilanden worden vaak kort gemaaid, waardoor er weinig bloemen overblijven. In steden zijn tuinen steeds vaker betegeld. Ook licht speelt een rol: straatlantaarns lokken 's nachts motten, die daardoor uitgeput raken of worden opgegeten. Daarnaast verandert het klimaat, en niet elke soort kan zich snel genoeg aanpassen.",
+      "Gelukkig kan iedereen iets doen. Laat een hoekje van de tuin wild groeien of zaai bloemen die bijen lekker vinden, zoals lavendel en klaver. Haal een paar tegels weg. Hang een insectenhotel op: een kastje met holle stengels en gaatjes waarin wilde bijen hun eitjes leggen. Sommige gemeenten maaien hun bermen nu nog maar twee keer per jaar, zodat er weer meer bloemen bloeien.",
+      "Het lastige is dat veel mensen insecten vies of eng vinden. Maar zonder hen zou de natuur stilvallen. Een schone voorruit is dus eigenlijk een waarschuwing. Misschien zeggen onze kleinkinderen later tegen elkaar: 'Vroeger zat de ruit na een ritje weer vol, en daar waren we blij om.'"
+    ],
+    en: [
+      "Ask your grandpa or grandma what their car looked like after a long drive on a summer's day. Chances are they will tell you the windscreen was covered in squashed mosquitoes, flies and moths. Anyone driving on the motorway in summer now often gets home with an almost clean windscreen. That sounds like good news, but researchers are actually very worried about it.",
+      "In 2017 a German study came out that gave many people a shock. Volunteers had spent almost thirty years catching insects in special traps at the same places. Every year they weighed what was inside. The result: the weight of all the insects caught together had fallen by more than three quarters. And that was measured in nature reserves, so not even in places full of traffic or factories. In the Netherlands too, counters see that many kinds of butterflies and beetles are declining.",
+      "Why does that matter? Insects are small, but they do an enormous amount of work. Bees, bumblebees and hoverflies pollinate flowers, so that apples, strawberries and tomatoes can grow. Without pollinators, about three quarters of our kinds of fruit and vegetables would produce much less. Beetles and worms clear away dead leaves and droppings. And lots of birds, bats and frogs eat insects. So if the insects disappear, those animals go hungry too.",
+      "There is not one single culprit. Farmers use poison against pests, but that poison also hits insects that do no harm at all. Verges and meadows are often mown short, which leaves few flowers. In towns, gardens are more and more often paved over. Light plays a part too: at night street lamps attract moths, which then get exhausted or eaten. On top of that the climate is changing, and not every species can adapt fast enough.",
+      "Fortunately everyone can do something. Let a corner of the garden grow wild or sow flowers that bees love, such as lavender and clover. Take out a few paving stones. Hang up an insect hotel: a little box with hollow stems and holes in which wild bees lay their eggs. Some councils now mow their verges only twice a year, so that more flowers bloom again.",
+      "The tricky thing is that many people find insects dirty or scary. But without them nature would grind to a halt. So a clean windscreen is really a warning. Perhaps our grandchildren will one day say to each other: 'In the old days the windscreen was full again after a drive, and we were glad of it.'"
+    ]
+  },
+  words: [
+    { nl: 'bestuiven', en: 'to pollinate', defNl: 'stuifmeel van de ene bloem naar de andere brengen, zodat er vruchten groeien', defEn: 'to carry pollen from one flower to another, so that fruit can grow' },
+    { nl: 'uitwerpselen', en: 'droppings', defNl: 'de poep van dieren', defEn: 'animal poo' },
+    { nl: 'berm', en: 'verge', defNl: 'de strook gras en bloemen langs een weg', defEn: 'the strip of grass and flowers alongside a road' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoe lang vingen de Duitse vrijwilligers insecten?', en: 'For how long did the German volunteers catch insects?' },
+      options: [
+        { nl: 'Bijna dertig jaar', en: 'Almost thirty years' },
+        { nl: 'Eén zomer', en: 'One summer' },
+        { nl: 'Tien jaar', en: 'Ten years' },
+        { nl: 'Honderd jaar', en: 'A hundred years' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "Vrijwilligers hadden bijna dertig jaar lang op dezelfde plekken insecten gevangen."',
+                 en: 'Paragraph 2: "Volunteers had spent almost thirty years catching insects at the same places."' } },
+    { id: 'q2', type: 'find', skill: 'gevolgtrekking',
+      q: { nl: 'Welke zin uit de tekst laat zien waarom ook vogels last krijgen als insecten verdwijnen?',
+           en: 'Which sentence from the text shows why birds suffer too when insects disappear?' },
+      options: [
+        { nl: 'Kevers en wormen ruimen dode bladeren en uitwerpselen op.', en: 'Beetles and worms clear away dead leaves and droppings.' },
+        { nl: 'En heel veel vogels, vleermuizen en kikkers eten insecten.', en: 'And lots of birds, bats and frogs eat insects.' },
+        { nl: 'Bermen en weilanden worden vaak kort gemaaid, waardoor er weinig bloemen overblijven.', en: 'Verges and meadows are often mown short, which leaves few flowers.' },
+        { nl: 'Hang een insectenhotel op: een kastje met holle stengels en gaatjes waarin wilde bijen hun eitjes leggen.', en: 'Hang up an insect hotel: a little box with hollow stems and holes in which wild bees lay their eggs.' }
+      ], answer: 1,
+      explain: { nl: 'Vogels eten insecten. Zijn er minder insecten, dan hebben vogels minder eten. Dat bewijst de zin uit alinea 3.',
+                 en: 'Birds eat insects. With fewer insects, birds have less food. The sentence from paragraph 3 proves it.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Bijen bestuiven bloemen. Bestuiven betekent: ___.', en: 'Bees pollinate flowers. Pollinate means: ___.' },
+      options: [
+        { nl: 'stuifmeel van bloem naar bloem brengen', en: 'carrying pollen from flower to flower' },
+        { nl: 'bloemen water geven', en: 'watering flowers' },
+        { nl: 'bloemen opeten', en: 'eating flowers' },
+        { nl: 'bloemen plukken', en: 'picking flowers' }
+      ], answer: 0,
+      explain: { nl: 'Door het stuifmeel rond te brengen, kunnen er appels en aardbeien groeien. Dat is bestuiven.',
+                 en: 'By carrying pollen around, apples and strawberries can grow. That is pollinating.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Als de insecten verdwijnen, krijgen die dieren dus ook honger." Welke dieren zijn "die dieren"?',
+           en: '"So if the insects disappear, those animals go hungry too." Which animals are "those animals"?' },
+      options: [
+        { nl: 'Vogels, vleermuizen en kikkers', en: 'Birds, bats and frogs' },
+        { nl: 'Bijen en hommels', en: 'Bees and bumblebees' },
+        { nl: 'Kevers en wormen', en: 'Beetles and worms' },
+        { nl: 'Koeien in de wei', en: 'Cows in the meadow' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor noemt vogels, vleermuizen en kikkers die insecten eten. Naar hen verwijst "die dieren".',
+                 en: 'The sentence before names birds, bats and frogs that eat insects. "Those animals" points back to them.' } },
+    { id: 'q5', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Het gewicht van de gevangen insecten daalde met meer dan driekwart.', en: 'The weight of the insects caught fell by more than three quarters.', bin: 0 },
+        { nl: 'Insecten zijn vies en eng.', en: 'Insects are dirty and scary.', bin: 1 },
+        { nl: 'Sommige gemeenten maaien hun bermen nog maar twee keer per jaar.', en: 'Some councils mow their verges only twice a year.', bin: 0 },
+        { nl: 'Iedereen zou een insectenhotel moeten ophangen.', en: 'Everyone should hang up an insect hotel.', bin: 1 }
+      ],
+      explain: { nl: 'Een meting en wat gemeenten doen, kun je nagaan: feiten. "Vies en eng" en "zou moeten" zijn wat iemand vindt: meningen.',
+                 en: 'A measurement and what councils do can be checked: facts. "Dirty and scary" and "should" are what someone thinks: opinions.' } },
+    { id: 'q6', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee oorzaken van het verdwijnen van insecten noemt de tekst? Kies er 2.',
+           en: 'Which two causes of the insects disappearing does the text mention? Pick 2.' },
+      options: [
+        { nl: 'Gif dat boeren tegen plagen gebruiken', en: 'Poison that farmers use against pests' },
+        { nl: 'Tuinen die betegeld zijn', en: 'Gardens that are paved over' },
+        { nl: 'Te veel insectenhotels', en: 'Too many insect hotels' },
+        { nl: 'Vogels die te veel insecten eten', en: 'Birds eating too many insects' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 4 noemt gif, kort maaien, tegels, licht en het klimaat. Insectenhotels helpen juist.',
+                 en: 'Paragraph 4 names poison, short mowing, paving, light and the climate. Insect hotels actually help.' } },
+    { id: 'q7', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver vooral bereiken met deze tekst?', en: 'What does the writer mainly want to achieve with this text?' },
+      options: [
+        { nl: 'Uitleggen dat insecten verdwijnen, waarom dat erg is en wat je eraan kunt doen', en: 'Explain that insects are disappearing, why that matters and what you can do' },
+        { nl: 'Reclame maken voor een bepaald insectenhotel', en: 'Advertise a particular insect hotel' },
+        { nl: 'Laten zien dat autoruiten nu schoner zijn dan vroeger', en: 'Show that car windscreens are cleaner than before' },
+        { nl: 'Vertellen hoe je een mug vangt', en: 'Explain how to catch a mosquito' }
+      ], answer: 0,
+      explain: { nl: 'De tekst informeert (onderzoek, oorzaken) en eindigt met tips en een waarschuwing. De schone ruit is maar een voorbeeld.',
+                 en: 'The text informs (research, causes) and ends with tips and a warning. The clean windscreen is only an example.' } },
+    { id: 'q8', type: 'order', skill: 'structuur',
+      q: { nl: 'In welke volgorde komt dit in de tekst aan bod?', en: 'In which order does the text deal with these?' },
+      items: [
+        { nl: 'Een voorbeeld van vroeger: de volle voorruit', en: 'An example from the past: the full windscreen' },
+        { nl: 'Onderzoek dat laat zien hoeveel insecten verdwenen zijn', en: 'Research showing how many insects have gone' },
+        { nl: 'Waarom insecten zo belangrijk zijn', en: 'Why insects are so important' },
+        { nl: 'Wat de oorzaken zijn', en: 'What the causes are' },
+        { nl: 'Wat jij eraan kunt doen', en: 'What you can do about it' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'Elke alinea heeft één onderwerp: voorbeeld, onderzoek, belang, oorzaken, oplossingen, en dan het slot.',
+                 en: 'Each paragraph has one topic: example, research, importance, causes, solutions, and then the ending.' } },
+    { id: 'q9', type: 'find', skill: 'structuur',
+      q: { nl: 'Met welke zin laat de schrijver merken dat hij overstapt naar de oplossingen?',
+           en: 'With which sentence does the writer show he is moving on to the solutions?' },
+      options: [
+        { nl: 'Waarom is dat erg?', en: 'Why does that matter?' },
+        { nl: 'Er is niet één schuldige.', en: 'There is not one single culprit.' },
+        { nl: 'Gelukkig kan iedereen iets doen.', en: 'Fortunately everyone can do something.' },
+        { nl: 'Het lastige is dat veel mensen insecten vies of eng vinden.', en: 'The tricky thing is that many people find insects dirty or scary.' }
+      ], answer: 2,
+      explain: { nl: '"Gelukkig" is een signaalwoord: na het probleem komt nu iets positiefs, de oplossingen.',
+                 en: '"Fortunately" is a signal word: after the problem comes something positive, the solutions.' } },
+    { id: 'q10', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het best bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Er zijn veel minder insecten dan vroeger, terwijl ze onmisbaar zijn voor de natuur; er zijn meerdere oorzaken, maar iedereen kan helpen.',
+          en: 'There are far fewer insects than before, while they are essential for nature; there are several causes, but everyone can help.' },
+        { nl: 'In 2017 verscheen een Duits onderzoek over insecten.', en: 'In 2017 a German study about insects came out.' },
+        { nl: 'Autoruiten zijn tegenwoordig schoner, dus alles gaat goed met de natuur.', en: 'Windscreens are cleaner nowadays, so all is well with nature.' },
+        { nl: 'Bijen houden van lavendel en klaver.', en: 'Bees love lavender and clover.' }
+      ], answer: 0,
+      explain: { nl: 'Een goede samenvatting noemt het probleem, het belang, de oorzaken en de oplossing. De andere keuzes zijn losse details of kloppen niet.',
+                 en: 'A good summary names the problem, the importance, the causes and the solution. The other options are details or wrong.' } }
+  ]
 }
 ]);

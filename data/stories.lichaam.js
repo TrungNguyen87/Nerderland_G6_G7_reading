@@ -1097,5 +1097,137 @@ addStories([
       explain: { nl: 'De tekst legt uit waarom je nieuwe tanden krijgt en hoe het wisselen gaat.',
                  en: 'The text explains why you get new teeth and how the swap happens.' } }
   ]
+},
+
+{
+  id: 'lichaam-12', topic: 'lichaam', level: 6, emoji: '🧘', scene: 'body',
+  title: { nl: 'Stress: je lichaam in de alarmstand', en: 'Stress: your body on alert' },
+  text: {
+    nl: [
+      "Je staat achter de schermen van de eindmusical. Over een minuut moet je op. Je hart bonkt, je handen zijn klam en je mond is kurkdroog. Misschien moet je ineens nodig naar de wc. Wat er in je lichaam gebeurt, is eeuwenoud: je zit in de alarmstand. Dat noemen we stress.",
+      "Die alarmstand is ontstaan in de tijd dat mensen nog tussen wilde dieren leefden. Zag een van onze voorouders een beer, dan moest hij in een paar tellen kunnen vechten of vluchten. Zijn hersenen gaven daarom een seintje aan de bijnieren, twee kleine klieren boven op de nieren. Die maakten adrenaline en cortisol aan. Door die stoffen gaat je hart sneller kloppen, adem je sneller en stroomt er extra bloed naar je spieren. Je spijsvertering wordt juist even op een laag pitje gezet, want eten verteren kan later ook nog.",
+      "Voor een korte tijd is stress dus handig. Een beetje spanning helpt je om scherp te zijn tijdens een toets of een wedstrijd. Sporters en artiesten zeggen vaak dat ze juist beter presteren met wat zenuwen. Het wordt een probleem als de alarmstand niet meer uitgaat. Wie weken achter elkaar stress heeft, slaapt slechter, wordt sneller ziek en kan zich minder goed concentreren.",
+      "Tegenwoordig komt de beer niet meer uit het bos. Stress komt nu uit andere hoeken: een ruzie met een vriend, een volle agenda, zorgen thuis, of het gevoel dat je op sociale media steeds iets moet laten zien. Je lichaam maakt geen verschil tussen een beer en een lastig appje. Het reageert op dezelfde manier.",
+      "Gelukkig kun je de alarmstand zelf helpen uitzetten. Rustig en diep ademhalen is een van de snelste trucs: adem vier tellen in en zes tellen uit. Daardoor krijgt je lichaam het signaal dat het gevaar voorbij is. Ook bewegen helpt, omdat je dan de stresstoffen als het ware opgebruikt. Genoeg slapen geeft je lichaam de kans om te herstellen. En praten met iemand die je vertrouwt, maakt een probleem vaak een stuk kleiner.",
+      "Stress is dus geen teken van zwakte. Het is een slim systeem dat je lichaam beschermt. Het is alleen gemaakt voor korte sprintjes, niet voor een marathon. Merk je dat je al een tijd gespannen bent? Vertel het dan aan een ouder, je juf of je meester. Je hoeft een beer nooit in je eentje te verslaan."
+    ],
+    en: [
+      "You are standing backstage at the leavers' musical. In a minute you have to go on. Your heart is pounding, your hands are clammy and your mouth is bone dry. Perhaps you suddenly need the toilet. What is happening in your body is ancient: you are on alert. We call that stress.",
+      "That alert mode came about in the days when people still lived among wild animals. If one of our ancestors saw a bear, he had to be able to fight or run away within seconds. So his brain sent a signal to the adrenal glands, two small glands on top of the kidneys. They made adrenaline and cortisol. Because of those substances your heart beats faster, you breathe faster and extra blood flows to your muscles. Your digestion, on the other hand, is turned down for a while, because digesting food can wait.",
+      "So for a short time stress is useful. A little tension helps you stay sharp during a test or a match. Athletes and performers often say they actually perform better with some nerves. It becomes a problem when the alert mode no longer switches off. Anyone who has stress for weeks on end sleeps worse, gets ill more quickly and finds it harder to concentrate.",
+      "Nowadays the bear no longer comes out of the woods. Stress now comes from other directions: a fight with a friend, a busy schedule, worries at home, or the feeling that you always have to show something on social media. Your body makes no difference between a bear and an awkward message. It reacts in the same way.",
+      "Fortunately you can help switch off the alert mode yourself. Breathing calmly and deeply is one of the quickest tricks: breathe in for four counts and out for six. That gives your body the signal that the danger is over. Moving helps too, because then you use up the stress substances, as it were. Getting enough sleep gives your body the chance to recover. And talking to someone you trust often makes a problem a lot smaller.",
+      "So stress is not a sign of weakness. It is a clever system that protects your body. It is just made for short sprints, not for a marathon. Do you notice that you have been tense for a while? Then tell a parent or your teacher. You never have to beat a bear on your own."
+    ]
+  },
+  words: [
+    { nl: 'klam', en: 'clammy', defNl: 'een beetje nat en koud van het zweet', defEn: 'a bit damp and cold with sweat' },
+    { nl: 'bijnieren', en: 'adrenal glands', defNl: 'twee kleine klieren boven op je nieren die stresstoffen maken', defEn: 'two small glands on top of your kidneys that make stress substances' },
+    { nl: 'spijsvertering', en: 'digestion', defNl: 'het verwerken van eten in je maag en darmen', defEn: 'the processing of food in your stomach and gut' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar liggen de bijnieren?', en: 'Where are the adrenal glands?' },
+      options: [
+        { nl: 'Boven op de nieren', en: 'On top of the kidneys' },
+        { nl: 'In de hersenen', en: 'In the brain' },
+        { nl: 'Naast het hart', en: 'Next to the heart' },
+        { nl: 'In de spieren', en: 'In the muscles' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 2: "de bijnieren, twee kleine klieren boven op de nieren."',
+                 en: 'Paragraph 2: "the adrenal glands, two small glands on top of the kidneys."' } },
+    { id: 'q2', type: 'find', skill: 'letterlijk',
+      q: { nl: 'Welke zin vertelt wat adrenaline en cortisol met je lichaam doen?', en: 'Which sentence tells what adrenaline and cortisol do to your body?' },
+      options: [
+        { nl: 'Die maakten adrenaline en cortisol aan.', en: 'They made adrenaline and cortisol.' },
+        { nl: 'Je hart bonkt, je handen zijn klam en je mond is kurkdroog.', en: 'Your heart is pounding, your hands are clammy and your mouth is bone dry.' },
+        { nl: 'Door die stoffen gaat je hart sneller kloppen, adem je sneller en stroomt er extra bloed naar je spieren.', en: 'Because of those substances your heart beats faster, you breathe faster and extra blood flows to your muscles.' },
+        { nl: 'Ook bewegen helpt, omdat je dan de stresstoffen als het ware opgebruikt.', en: 'Moving helps too, because then you use up the stress substances, as it were.' }
+      ], answer: 2,
+      explain: { nl: '"Door die stoffen" is het signaal: nu komt het gevolg van adrenaline en cortisol.',
+                 en: '"Because of those substances" is the signal: now comes the effect of adrenaline and cortisol.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Als je handen klam zijn, dan zijn ze ___.', en: 'If your hands are clammy, they are ___.' },
+      options: [
+        { nl: 'een beetje nat en koud van het zweet', en: 'a bit damp and cold with sweat' },
+        { nl: 'heel warm en droog', en: 'very warm and dry' },
+        { nl: 'vies van de verf', en: 'dirty with paint' },
+        { nl: 'sterk van het sporten', en: 'strong from sport' }
+      ], answer: 0,
+      explain: { nl: 'Klam hoort bij de zenuwen voor de musical: je zweet een beetje en je handen voelen nat en koud.',
+                 en: 'Clammy goes with the nerves before the musical: you sweat a little and your hands feel damp and cold.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Die maakten adrenaline en cortisol aan." Wie of wat zijn "die"?', en: '"They made adrenaline and cortisol." Who or what are "they"?' },
+      options: [
+        { nl: 'De bijnieren', en: 'The adrenal glands' },
+        { nl: 'De wilde dieren', en: 'The wild animals' },
+        { nl: 'De voorouders', en: 'The ancestors' },
+        { nl: 'De spieren', en: 'The muscles' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor eindigt met de bijnieren. "Die" verwijst daarnaar.',
+                 en: 'The sentence before ends with the adrenal glands. "They" points to them.' } },
+    { id: 'q5', type: 'order', skill: 'volgorde',
+      q: { nl: 'Wat gebeurde er als een voorouder een beer zag? Zet op volgorde.', en: 'What happened when an ancestor saw a bear? Put in order.' },
+      items: [
+        { nl: 'Hij ziet een beer.', en: 'He sees a bear.' },
+        { nl: 'De hersenen geven een seintje aan de bijnieren.', en: 'The brain sends a signal to the adrenal glands.' },
+        { nl: 'De bijnieren maken adrenaline en cortisol.', en: 'The adrenal glands make adrenaline and cortisol.' },
+        { nl: 'Het hart klopt sneller en er gaat extra bloed naar de spieren.', en: 'The heart beats faster and extra blood goes to the muscles.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Alinea 2 beschrijft een ketting van oorzaak en gevolg, van de beer tot het bonzende hart.',
+                 en: 'Paragraph 2 describes a chain of cause and effect, from the bear to the pounding heart.' } },
+    { id: 'q6', type: 'sort', skill: 'gevolgtrekking',
+      q: { nl: 'Helpt deze stress, of is het een probleem? Zet elke zin in de goede groep.', en: 'Does this stress help, or is it a problem? Put every sentence in the right group.' },
+      bins: [{ nl: 'Stress die helpt', en: 'Stress that helps' }, { nl: 'Stress die een probleem is', en: 'Stress that is a problem' }],
+      items: [
+        { nl: 'Een beetje spanning vlak voor een wedstrijd', en: 'A little tension just before a match', bin: 0 },
+        { nl: 'Weken achter elkaar slecht slapen door zorgen', en: 'Sleeping badly for weeks because of worries', bin: 1 },
+        { nl: 'Scherp zijn tijdens een toets', en: 'Being sharp during a test', bin: 0 },
+        { nl: 'Vaker ziek worden omdat de alarmstand niet uitgaat', en: 'Getting ill more often because the alert mode stays on', bin: 1 }
+      ],
+      explain: { nl: 'Kort is stress handig, lang is het een probleem. Dat is precies wat alinea 3 uitlegt.',
+                 en: 'Short stress is useful, long stress is a problem. That is exactly what paragraph 3 explains.' } },
+    { id: 'q7', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Bij stress maken de bijnieren adrenaline aan.', en: 'With stress the adrenal glands make adrenaline.', bin: 0 },
+        { nl: 'Een eindmusical is het spannendste wat er bestaat.', en: 'A leavers\' musical is the most exciting thing there is.', bin: 1 },
+        { nl: 'Bij stress gaat je hart sneller kloppen.', en: 'With stress your heart beats faster.', bin: 0 },
+        { nl: 'Sociale media zouden verboden moeten worden.', en: 'Social media should be banned.', bin: 1 }
+      ],
+      explain: { nl: 'Hoe het lichaam werkt, is onderzocht: feiten. "Het spannendste" en "zou verboden moeten" zijn meningen.',
+                 en: 'How the body works has been researched: facts. "The most exciting" and "should be banned" are opinions.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke manieren om de alarmstand uit te zetten noemt de tekst? Kies er 2.', en: 'Which ways to switch off the alert mode does the text name? Pick 2.' },
+      options: [
+        { nl: 'Rustig en diep ademhalen', en: 'Breathing calmly and deeply' },
+        { nl: 'Praten met iemand die je vertrouwt', en: 'Talking to someone you trust' },
+        { nl: 'Nog harder werken', en: 'Working even harder' },
+        { nl: 'Vaker op je telefoon kijken', en: 'Checking your phone more often' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 noemt ademhalen, bewegen, slapen en praten. Harder werken of je telefoon helpen niet.',
+                 en: 'Paragraph 5 names breathing, moving, sleeping and talking. Working harder or your phone do not help.' } },
+    { id: 'q9', type: 'mc', skill: 'doel',
+      q: { nl: 'Waarom schrijft de schrijver aan het eind: "Je hoeft een beer nooit in je eentje te verslaan"?', en: 'Why does the writer end with: "You never have to beat a bear on your own"?' },
+      options: [
+        { nl: 'Om de lezer aan te moedigen hulp te vragen als stress te lang duurt', en: 'To encourage the reader to ask for help if stress lasts too long' },
+        { nl: 'Om te waarschuwen voor beren in het bos', en: 'To warn about bears in the woods' },
+        { nl: 'Om uit te leggen hoe je met een beer vecht', en: 'To explain how to fight a bear' },
+        { nl: 'Om te zeggen dat stress niet bestaat', en: 'To say that stress does not exist' }
+      ], answer: 0,
+      explain: { nl: 'De beer staat hier voor stress. De schrijver zegt: je mag hulp vragen, je hoeft het niet alleen op te lossen.',
+                 en: 'The bear stands for stress here. The writer is saying: you may ask for help, you do not have to solve it alone.' } },
+    { id: 'q10', type: 'find', skill: 'samenvatten',
+      q: { nl: 'Welke zin vat het best samen wanneer stress goed is én wanneer niet?', en: 'Which sentence best sums up when stress is good and when it is not?' },
+      options: [
+        { nl: 'Je hart bonkt, je handen zijn klam en je mond is kurkdroog.', en: 'Your heart is pounding, your hands are clammy and your mouth is bone dry.' },
+        { nl: 'Tegenwoordig komt de beer niet meer uit het bos.', en: 'Nowadays the bear no longer comes out of the woods.' },
+        { nl: 'Het is alleen gemaakt voor korte sprintjes, niet voor een marathon.', en: 'It is just made for short sprints, not for a marathon.' },
+        { nl: 'Rustig en diep ademhalen is een van de snelste trucs: adem vier tellen in en zes tellen uit.', en: 'Breathing calmly and deeply is one of the quickest tricks: breathe in for four counts and out for six.' }
+      ], answer: 2,
+      explain: { nl: 'Korte sprintjes = korte stress is prima. Een marathon = lange stress is te veel. Deze vergelijking vat de hele tekst samen.',
+                 en: 'Short sprints = short stress is fine. A marathon = long stress is too much. This comparison sums up the whole text.' } }
+  ]
 }
 ]);

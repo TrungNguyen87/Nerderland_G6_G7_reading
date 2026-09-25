@@ -1,7 +1,7 @@
 # 📚 Leeskampioen
 
-An interactive **reading and spelling** game for **Dutch primary school groups 6
-and 7** (ages 9–11). The stories and the spelling exercises are in Dutch, with
+An interactive **reading and spelling** game for **Dutch primary school groups 6,
+7 and 8** (ages 9–12). The stories and the spelling exercises are in Dutch, with
 one button that translates the interface into English, plus a parent area where
 you can download a report at the end of the day.
 
@@ -12,14 +12,15 @@ you can download a report at the end of the day.
 
 ## What is in it
 
-**Two games in one, sharing the same XP, coins, badges and report:**
+**Three tabs, sharing the same XP, coins, badges and report:**
 
 | | |
 |---|---|
-| 📖 **Lezen** | 110 stories · 730 questions · 10 worlds · 5 difficulty levels |
-| ✍️ **Spelling** | 292 exercises · 15 spelling rules · 3 levels each |
+| 📖 **Lezen** | 120 stories · 830 questions · 10 worlds · 6 difficulty levels, up to groep 8 |
+| ✍️ **Spelling** | 503 exercises · 20 spelling rules (5 of them new in groep 8) · 75 sets |
+| 🎮 **Spellen** | Three arcade games (Flappy Uil, Springheld, Woordregen) that practise spelling and word meaning, plus the 🗃️ Woordkist for daily spaced-repetition micro-learning |
 | 🪙 **Winkel** | Spend earned coins on stickers, avatars, characters and tools |
-| 🎁 **Beloningen** | Daily quests, a day streak, gift boxes and a collector's album of 26 chest-only gifts |
+| 🎁 **Beloningen** | Daily quests, a day streak, a reading dragon that grows, gift boxes and a collector's album of 26 chest-only gifts |
 
 Pick the game with the tab at the top of the world screen, and the coin
 button in the top bar opens the shop any time.
@@ -43,11 +44,19 @@ button in the top bar opens the shop any time.
 | 🌍 | World & Cultures — New Year in February, the whistled language, time zones, salt caravans, vanishing languages · the festival of lights, eating with chopsticks, the longest wall in the world, why some countries drive on the left, should everyone learn a second language? · sleeping in a hotel made of ice |
 | 🫀 | Body & Health — why you sleep, bones that repair themselves, gut bacteria, how your body learns to fight, do screens make you unhappy? · why you sneeze, your skin as an organ, why growth spurts differ, how memories are stored, should school start later? · why you get new teeth |
 
-## Five difficulty levels
+The groep 8 **Eindbaas** level adds one longer text per world: where have
+all the insects gone? (animals), looking for a second Earth (space), is
+gaming a real sport? (sport), the night the water came — the 1953 flood
+(history), power for when the wind drops (tech), become a fake-news
+detective (mystery), a burger from the lab (food), goosebumps from music
+(music), rights for every child (world) and stress: your body on alert
+(body).
 
-Every world has at least two stories at every level (and three at the
-Startklaar entry level), so the ladder never has a hole in it and a second
-run through a world is never the same story twice.
+## Six difficulty levels
+
+Every world has at least two stories at levels 1–5 (and three at the
+Startklaar entry level) and one groep 8 story, so the ladder never has a
+hole in it.
 
 | Level | Reading level | Length | What is new |
 |---|---|---|---|
@@ -56,13 +65,14 @@ run through a world is never the same story twice.
 | ⭐⭐⭐ Kampioen | AVI M7 | ± 260 words | More paragraphs, main-idea questions |
 | ⭐⭐⭐⭐ Expert | AVI E7 | ± 325 words | Referring words and signal words, 8 questions |
 | ⭐⭐⭐⭐⭐ Cito-meester | AVI Plus | ± 360 words | Fact or opinion, the writer's purpose, 9 questions |
+| 👑 Eindbaas | Groep 8 · 2F | ± 390 words | Informative and argumentative texts like the groep 8 *doorstroomtoets*; "find the proof" questions, 10 questions |
 
 A level only unlocks once the previous one has been played.
 
-## Seven kinds of questions
+## Eight kinds of questions
 
-Not just multiple choice, so it does not get boring — and the last two are the
-ones the real Cito test keeps using:
+Not just multiple choice, so it does not get boring — and the last three are
+the ones the real Cito and doorstroom tests keep using:
 
 - **Multiple choice** — find the answer in the text
 - **True / false** — quick and tense
@@ -71,6 +81,7 @@ ones the real Cito test keeps using:
 - **Matching** — connect a word to its meaning
 - **Pick two or three** — more than one answer is correct *(Cito-style)*
 - **Sorting** — put each sentence in the right bin, e.g. fact vs opinion *(Cito-style)*
+- **Find the proof** — tap the sentence from the text that proves the answer *(groep 8)*
 
 ## Ten reading skills
 
@@ -91,7 +102,7 @@ back to again and again.
 
 # ✍️ The spelling game
 
-Fifteen spelling rules from group 6 and 7, matching the **spellingcategorieën**
+Twenty spelling rules from group 6, 7 and 8, matching the **spellingcategorieën**
 Dutch schools actually use (Cito, Staal, Taal actief). Every rule has a
 plain-language explanation that stays one tap away while he works, and three
 exercises that get harder.
@@ -131,7 +142,20 @@ sorting a mixed list of words into klankwoord / regelwoord / weetwoord bins.
 | 🚕 **Taxiwoord: x en -tie** | weet | x always sounds like ks; -tie/-cie always sounds like tsie |
 | 🧭 **Cito-check: welke categorie?** | — | Identifying klankwoord / regelwoord / weetwoord itself |
 
-## Five kinds of exercises
+Every one of those fifteen rules also has a fourth, **groep 8** exercise
+(longer words, harder sentences), which opens once the third one is done.
+Then there are five rules that only come up in **groep 8**, three exercises
+each, under their own "🎓 Nieuw in groep 8" heading:
+
+| Rule | Meta | What it practises |
+|---|---|---|
+| 🧾 **De verhuisde kast** | regel | The past participle as an adjective: de gefietste route, de verbrande pannenkoek vs oma verbrandde, de vergrote foto vs zij vergrootte |
+| 💻 **Engelse werkwoorden** | regel | hij downloadt, hij printt, ik updatete, geüpdatet, gerecycled |
+| 🗼 **Leenwoorden** | weet | cadeau, bureau, chauffeur, garage, trottoir, portemonnee, computer |
+| 🔢 **Getallen in letters** | regel | veertig, achttien, tachtig, tweeëntwintig, achtste, twintigste |
+| ➖ **Het koppelteken** | regel | zee-egel, auto-ongeluk, na-apen, Noord-Holland, tv-programma, privé-eigendom |
+
+## Six kinds of exercises
 
 | Exercise | What he does |
 |---|---|
@@ -140,10 +164,44 @@ sorting a mixed list of words into klankwoord / regelwoord / weetwoord bins.
 | **Dictee** | The device says the word; he types it |
 | **Zoek de fout** | Click the misspelled word in the sentence |
 | **Sorteer** | Put each word in the right group |
+| **Bouw het woord** | Tap the pieces (plus a few decoys) in the right order to build the word |
 
 Every answer, right or wrong, is followed by the **rule that explains it** — not
 just "wrong", but *why*. The words he got wrong are listed again at the end of
 the round, with their rule, so you can go through them together.
+
+---
+
+# 🎮 The arcade and the Woordkist
+
+The third tab, **Spellen**, is where the practice turns into a game. Each
+arcade round is 15 "duels" — one right and one wrong word — taken from the
+spelling exercises (words the child got wrong before come up more often) or
+from the vocabulary of the stories:
+
+| Game | How it plays |
+|---|---|
+| 🦉 **Flappy Uil** | Tap (or space) to flap and fly through the gate with the right word. Forgiving on purpose: wide gates and a soft flap |
+| 🏃 **Springheld** | A platform runner: if the right word is on the high block, jump; if it is on the ground, keep running. Jump over the snails |
+| ☔ **Woordregen** | Slide the bucket (finger, mouse or arrow keys) and catch only the right words |
+
+Three hearts, combo points and a record per game; the result screen lists
+every missed word with the rule that explains it.
+
+**🎟️ Game tickets** keep reading the main thing: every game costs one
+ticket, and tickets are only earned by finishing a story (+2), a spelling
+exercise (+1) or a Woordkist round (+1). A new player starts with three,
+and at most twenty can be saved up. Arcade time does not count towards the
+30-minute reading mission.
+
+**🗃️ The Woordkist** is daily micro-learning with spaced repetition: eight
+flash cards, each with four possible meanings. It is a five-box Leitner
+system — a right answer moves the card up a box and it only returns after
+1, 2, 4, 7 or 14 days; a wrong answer sends it back to box 1 and it comes
+round once more in the same session. Two piles: *words from your stories*
+(each shown with the sentence it came from) and **42 groep 8 sayings**
+(*de kat uit de boom kijken*, *door de mand vallen*, *nattigheid voelen*…).
+The Woordkist is free and earns a ticket.
 
 ---
 
@@ -167,7 +225,13 @@ the round, with their rule, so you can go through them together.
   as ❓ so there is always something left to find
 - 🦉 **Oscar the owl** reacts to every answer, gives hints and tells a
   "did you know?" fact (50 of them, matched to the world you just read)
-- 🎉 Confetti, stars, sound effects and **21 collectable badges**
+- 🐉 **The reading dragon** — hatches from an egg and grows through six
+  stages (up to Koningsdraak) from everything the child finishes; reading
+  feeds it most. It is sleepy on days nobody has read yet, and every new
+  stage brings a gift box
+- 🔥 **Combo pop-ups** — "3× OP EEN RIJ!", "5× SUPERREEKS!" — and a
+  "better than last time" message when a replay beats the old score
+- 🎉 Confetti, stars, sound effects and **26 collectable badges**
 - ⚡ **Flash-words bonus round** — a word flashes briefly; which word was it?
 
 ## 🪙 The rewards shop
@@ -248,6 +312,9 @@ Behind a small multiplication sum, so he cannot wander in:
 - The last 20 answers, with the question itself
 - A warning if he **clicked through** without really reading
 - **Coins saved and items bought**, so you can see how the shop is going too
+- **Arcade games played and Woordkist words known** — games cost tickets
+  that are only earned by reading, and the daily log shows games and
+  reviewed cards per day, so you can see the balance
 - **A daily activity log** — sessions, time played, stories, questions,
   accuracy, spelling and coins earned, one row per day for at least the
   last three weeks. It is stored separately from the detailed answer log,
@@ -293,7 +360,9 @@ Open a file in `data/` and paste in another story. The pattern:
 }
 ```
 
-Question types are `mc`, `tf`, `gap`, `order`, `match`, `multi` and `sort`.
+Question types are `mc`, `tf`, `gap`, `order`, `match`, `multi`, `sort` and
+`find` (like `mc`, but the options are sentences copied word for word from
+the story, in text order; the validator checks they really are in the text).
 Skills are `letterlijk`, `gevolgtrekking`, `woordenschat`, `volgorde`,
 `hoofdgedachte`, `verwijswoorden`, `structuur`, `doel`, `feitmening` and
 `samenvatten`. A new world goes into `data/bootstrap.js` plus one `<script>`
@@ -307,9 +376,20 @@ A spelling exercise goes into `data/spelling.sets.js`:
   why: { nl: 'Bij hij komt er een t achter de stam.', en: 'With "hij" you add a t to the stem.' } }
 ```
 
+A word-builder exercise lists the pieces in order (`tiles`) and a few decoys
+(`extra`); the validator checks the tiles spell the word:
+
+```js
+{ type: 'build', word: 'boterhammen', tiles: ['bo', 'ter', 'ham', 'men'], extra: ['boo', 'ha'],
+  sentence: { nl: 'Ik neem twee ___ mee.', en: 'I take two ___.' },
+  why: { nl: 'Bo-ter: lange o. Ham-men: korte a.', en: 'Bo-ter: long o. Ham-men: short a.' } }
+```
+
 A new rule (category) goes into `window.SPELL_CATS` in `data/spelling.js`,
 tagged with a `meta` of `'klank'`, `'regel'` or `'weet'` so it gets the right
-badge on its card.
+badge on its card (and `grade: 8` for a groep 8 rule). The groep 8 rules and
+sets live in `data/spelling.groep8.js`; sayings for the Woordkist in
+`data/idioms.js`.
 
 A shop item goes into `window.SHOP_ITEMS` in `data/shop.js`:
 
@@ -357,9 +437,11 @@ node tools/smoke.mjs       # plays the game in a real browser
 ```
 
 This serves the folder over plain HTTP exactly like GitHub Pages does, then
-reads a story, answers every question type, plays a spelling round, switches
-language mid-question, opens the parent dashboard, downloads all three reports
-and reloads to check the progress was saved. Any console error, failed request
+reads a story, answers every question type, plays a spelling round, a groep 8
+story and a groep 8 spelling set, the three arcade games (one with real
+physics) and a Woordkist round, switches language mid-question, opens the
+parent dashboard, downloads all three reports and reloads to check the
+progress was saved. Any console error, failed request
 or wrongly graded answer fails the run. If Chromium is already on the machine,
 point at it with `PLAYWRIGHT_CHROMIUM=/path/to/chromium`.
 
@@ -379,16 +461,21 @@ js/i18n.js              every interface string, in NL and EN
 js/audio.js             sound effects (WebAudio) and read-aloud (SpeechSynthesis)
 js/fx.js                confetti, background, the owl
 js/log.js               storage, statistics and the export buttons
-js/rewards.js           daily quests, day streak, gift boxes, the album, fun facts
+js/rewards.js           daily quests, day streak, gift boxes, the album, fun facts, tickets, the reading dragon
+js/arcade.js            the arcade: Flappy Uil, Springheld and Woordregen on one canvas
+js/woordkist.js         the Woordkist: spaced-repetition flash cards
 js/app.js               reading game: screens, questions, scoring, dashboard, shop, coins, joker
 js/spelling.js          spelling game: rules, exercises, scoring, joker
 data/bootstrap.js       worlds, levels and reading skills
 data/stories.*.js       the stories, one file per world
-data/spelling.js        the fifteen spelling rules, their meta-category and explanation
+data/spelling.js        the fifteen group 6-7 spelling rules, their meta-category and explanation
 data/spelling.sets.js   the spelling exercises
 data/shop.js            the stickers, icons, characters and tools in the coin shop, plus the chest-only gifts
+data/spelling.groep8.js the groep 8 exercise for every rule, plus the five groep 8 rules
 data/facts.js           Oscar's "did you know?" facts, five per world
+data/idioms.js          the groep 8 sayings for the Woordkist
 tools/validate.js       checks the data (no dependencies)
+tools/autopilot.mjs     optional: plays a full round of every arcade game with real physics
 tools/smoke.mjs         plays the game in a browser (needs playwright)
 ```
 

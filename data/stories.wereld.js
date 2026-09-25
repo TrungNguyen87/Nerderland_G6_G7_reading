@@ -1133,5 +1133,134 @@ addStories([
       explain: { nl: 'De tekst beschrijft het ijshotel: hoe het gebouwd wordt, hoe je er slaapt en hoe het smelt.',
                  en: 'The text describes the ice hotel: how it is built, how you sleep there and how it melts.' } }
   ]
+},
+
+{
+  id: 'wereld-12', topic: 'wereld', level: 6, emoji: '🧒', scene: 'world',
+  title: { nl: 'Rechten voor elk kind', en: 'Rights for every child' },
+  text: {
+    nl: [
+      "Op 20 november 1989 namen de Verenigde Naties iets bijzonders aan: het Verdrag inzake de Rechten van het Kind. Daarin staat in 54 artikelen wat elk kind op de wereld nodig heeft om veilig op te groeien. Bijna alle landen hebben het verdrag inmiddels goedgekeurd. Nederland deed dat in 1995. Daarom is 20 november nu elk jaar de Internationale Dag van de Rechten van het Kind.",
+      "Wat staat er zoal in? Dat elk kind recht heeft op onderwijs, op gezondheidszorg en op een naam en een nationaliteit. Dat kinderen beschermd moeten worden tegen geweld en tegen zwaar werk. Maar ook dingen waar je misschien niet meteen aan denkt, zoals het recht op spelen en vrije tijd. Ook staat erin dat kinderen met een handicap recht hebben op extra hulp, zodat ze zoveel mogelijk mee kunnen doen. Volwassenen vergeten soms dat spelen geen luxe is, maar belangrijk om te leren en te ontspannen.",
+      "Een bijzonder artikel is artikel 12. Daarin staat dat kinderen hun mening mogen geven over zaken die over hen gaan, en dat volwassenen daar serieus naar moeten luisteren. Dat betekent niet dat een kind altijd zijn zin krijgt. Het betekent wel dat een rechter of een school niet zomaar over een kind mag beslissen zonder het te vragen. Kinderen weten vaak zelf het best wat er in hun leven speelt.",
+      "Op papier klinkt alles mooi, maar in de praktijk gaat het lang niet overal goed. Wereldwijd moeten ongeveer 160 miljoen kinderen werken, bijvoorbeeld op het land, in fabrieken of in mijnen. Miljoenen kinderen gaan niet naar school, vaak omdat hun ouders het geld niet hebben of omdat er geen school in de buurt is. En in landen waar oorlog is, worden kinderrechten vaak met voeten getreden.",
+      "Ook in Nederland is er werk aan de winkel. Sommige kinderen groeien op in armoede en kunnen niet mee op schoolreisje. Anderen voelen zich niet gehoord als hun ouders gaan scheiden. Daarom bestaat sinds 2011 de Kinderombudsman. Iedereen tot achttien jaar kan daar terecht met een klacht als hij vindt dat zijn rechten niet goed worden beschermd.",
+      "Het verdrag is dus geen toverstaf die alles meteen oplost. Het is eerder een belofte die volwassenen aan kinderen hebben gedaan. En je kunt iemand aan een belofte herinneren. Dat is misschien wel het krachtigste aan het hele verdrag: het geeft kinderen woorden om te zeggen wat ze nodig hebben."
+    ],
+    en: [
+      "On 20 November 1989 the United Nations adopted something special: the Convention on the Rights of the Child. In 54 articles it sets out what every child in the world needs to grow up safely. By now almost every country has approved the convention. The Netherlands did so in 1995. That is why 20 November is now International Children's Rights Day every year.",
+      "What does it say? That every child has the right to education, to health care and to a name and a nationality. That children must be protected from violence and from hard labour. But also things you might not think of straight away, such as the right to play and free time. It also says that children with a disability have the right to extra help, so that they can join in as much as possible. Adults sometimes forget that playing is not a luxury, but important for learning and relaxing.",
+      "A special article is article 12. It says that children may give their opinion on matters that concern them, and that adults must listen to it seriously. That does not mean a child always gets their way. It does mean that a judge or a school may not simply decide about a child without asking them. Children often know best themselves what is going on in their lives.",
+      "On paper it all sounds fine, but in practice things are far from good everywhere. Around the world about 160 million children have to work, for example on the land, in factories or in mines. Millions of children do not go to school, often because their parents cannot afford it or because there is no school nearby. And in countries at war, children's rights are often trampled on.",
+      "In the Netherlands too there is work to be done. Some children grow up in poverty and cannot go on the school trip. Others do not feel heard when their parents divorce. That is why the Children's Ombudsman has existed since 2011. Anyone up to eighteen can go there with a complaint if they feel their rights are not being properly protected.",
+      "So the convention is not a magic wand that solves everything at once. It is more a promise that adults have made to children. And you can remind someone of a promise. That may be the most powerful thing about the whole convention: it gives children words to say what they need."
+    ]
+  },
+  words: [
+    { nl: 'verdrag', en: 'convention / treaty', defNl: 'een afspraak op papier tussen landen', defEn: 'a written agreement between countries' },
+    { nl: 'met voeten treden', en: 'to trample on', defNl: 'helemaal niet respecteren', defEn: 'to not respect at all' },
+    { nl: 'ombudsman', en: 'ombudsman', defNl: 'iemand bij wie je terechtkunt met een klacht over hoe je behandeld wordt', defEn: 'someone you can go to with a complaint about how you are treated' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel artikelen staan er in het Kinderrechtenverdrag?', en: 'How many articles are in the Convention on the Rights of the Child?' },
+      options: [
+        { nl: '54', en: '54' },
+        { nl: '12', en: '12' },
+        { nl: '20', en: '20' },
+        { nl: '1989', en: '1989' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "Daarin staat in 54 artikelen wat elk kind op de wereld nodig heeft." 12 is het nummer van één artikel.',
+                 en: 'Paragraph 1: "In 54 articles it sets out what every child needs." 12 is the number of one article.' } },
+    { id: 'q2', type: 'find', skill: 'letterlijk',
+      q: { nl: 'Welke zin laat zien dat spelen ook een kinderrecht is?', en: 'Which sentence shows that playing is also a children\'s right?' },
+      options: [
+        { nl: 'Dat kinderen beschermd moeten worden tegen geweld en tegen zwaar werk.', en: 'That children must be protected from violence and from hard labour.' },
+        { nl: 'Maar ook dingen waar je misschien niet meteen aan denkt, zoals het recht op spelen en vrije tijd.', en: 'But also things you might not think of straight away, such as the right to play and free time.' },
+        { nl: 'Nederland deed dat in 1995.', en: 'The Netherlands did so in 1995.' },
+        { nl: 'Daarom bestaat sinds 2011 de Kinderombudsman.', en: 'That is why the Children\'s Ombudsman has existed since 2011.' }
+      ], answer: 1,
+      explain: { nl: 'In alinea 2 staat het letterlijk: "het recht op spelen en vrije tijd".',
+                 en: 'Paragraph 2 says it literally: "the right to play and free time".' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Rechten die met voeten getreden worden, zijn rechten die ___.', en: 'Rights that are trampled on are rights that ___.' },
+      options: [
+        { nl: 'helemaal niet gerespecteerd worden', en: 'are not respected at all' },
+        { nl: 'heel goed beschermd worden', en: 'are very well protected' },
+        { nl: 'net nieuw bedacht zijn', en: 'have just been invented' },
+        { nl: 'alleen voor voetballers gelden', en: 'only apply to footballers' }
+      ], answer: 0,
+      explain: { nl: 'Dit is een uitdrukking: wat met voeten getreden wordt, wordt totaal niet gerespecteerd, zoals in oorlogsgebieden.',
+                 en: 'This is an expression: what is trampled on is not respected at all, as in war zones.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Iedereen tot achttien jaar kan daar terecht met een klacht." Wat is "daar"?', en: '"Anyone up to eighteen can go there with a complaint." What is "there"?' },
+      options: [
+        { nl: 'De Kinderombudsman', en: 'The Children\'s Ombudsman' },
+        { nl: 'Het schoolreisje', en: 'The school trip' },
+        { nl: 'De Verenigde Naties', en: 'The United Nations' },
+        { nl: 'De rechter', en: 'The judge' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor noemt de Kinderombudsman. "Daar" verwijst ernaar terug.',
+                 en: 'The sentence before names the Children\'s Ombudsman. "There" points back to it.' } },
+    { id: 'q5', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Wat betekent artikel 12 NIET?', en: 'What does article 12 NOT mean?' },
+      options: [
+        { nl: 'Dat een kind altijd zijn zin krijgt', en: 'That a child always gets their way' },
+        { nl: 'Dat kinderen hun mening mogen geven', en: 'That children may give their opinion' },
+        { nl: 'Dat volwassenen serieus moeten luisteren', en: 'That adults must listen seriously' },
+        { nl: 'Dat een school een kind eerst moet vragen', en: 'That a school must ask a child first' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "Dat betekent niet dat een kind altijd zijn zin krijgt." Let op het woordje NIET in de vraag.',
+                 en: 'Paragraph 3: "That does not mean a child always gets their way." Watch the word NOT in the question.' } },
+    { id: 'q6', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Nederland keurde het verdrag in 1995 goed.', en: 'The Netherlands approved the convention in 1995.', bin: 0 },
+        { nl: 'Spelen is belangrijker dan huiswerk.', en: 'Playing is more important than homework.', bin: 1 },
+        { nl: 'De Kinderombudsman bestaat sinds 2011.', en: 'The Children\'s Ombudsman has existed since 2011.', bin: 0 },
+        { nl: 'Het verdrag is het belangrijkste papier ter wereld.', en: 'The convention is the most important document in the world.', bin: 1 }
+      ],
+      explain: { nl: 'Jaartallen kun je opzoeken: feiten. "Belangrijker" en "het belangrijkste" zijn meningen.',
+                 en: 'Years can be looked up: facts. "More important" and "the most important" are opinions.' } },
+    { id: 'q7', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de gebeurtenissen in de goede volgorde.', en: 'Put the events in the right order.' },
+      items: [
+        { nl: 'De Verenigde Naties nemen het verdrag aan.', en: 'The United Nations adopt the convention.' },
+        { nl: 'Nederland keurt het verdrag goed.', en: 'The Netherlands approves the convention.' },
+        { nl: 'De Kinderombudsman begint.', en: 'The Children\'s Ombudsman starts.' }
+      ], answer: [0, 1, 2],
+      explain: { nl: 'Kijk naar de jaartallen: 1989, 1995 en 2011.', en: 'Look at the years: 1989, 1995 and 2011.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke problemen in Nederland noemt de tekst? Kies er 2.', en: 'Which problems in the Netherlands does the text name? Pick 2.' },
+      options: [
+        { nl: 'Kinderen in armoede die niet mee kunnen op schoolreisje', en: 'Children in poverty who cannot go on the school trip' },
+        { nl: 'Kinderen die zich niet gehoord voelen bij een scheiding', en: 'Children who do not feel heard in a divorce' },
+        { nl: 'Kinderen die in mijnen moeten werken', en: 'Children who have to work in mines' },
+        { nl: 'Kinderen die geen naam krijgen', en: 'Children who are not given a name' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 gaat over Nederland: armoede en scheidingen. Werken in mijnen staat bij de problemen wereldwijd.',
+                 en: 'Paragraph 5 is about the Netherlands: poverty and divorce. Working in mines is among the worldwide problems.' } },
+    { id: 'q9', type: 'mc', skill: 'doel',
+      q: { nl: 'Waarom vergelijkt de schrijver het verdrag met een belofte?', en: 'Why does the writer compare the convention to a promise?' },
+      options: [
+        { nl: 'Omdat je volwassenen eraan kunt herinneren wat ze kinderen beloofd hebben', en: 'Because you can remind adults of what they promised children' },
+        { nl: 'Omdat beloftes altijd meteen uitkomen', en: 'Because promises always come true at once' },
+        { nl: 'Omdat het verdrag een toverstaf is', en: 'Because the convention is a magic wand' },
+        { nl: 'Omdat kinderen zelf het verdrag geschreven hebben', en: 'Because children wrote the convention themselves' }
+      ], answer: 0,
+      explain: { nl: 'De schrijver zegt: "je kunt iemand aan een belofte herinneren". Zo krijgen kinderen er houvast aan.',
+                 en: 'The writer says: "you can remind someone of a promise". That gives children something to hold on to.' } },
+    { id: 'q10', type: 'find', skill: 'hoofdgedachte',
+      q: { nl: 'Welke zin vertelt wat volgens de schrijver het krachtigste is aan het verdrag?', en: 'Which sentence tells what the writer thinks is the most powerful thing about the convention?' },
+      options: [
+        { nl: 'Het verdrag is dus geen toverstaf die alles meteen oplost.', en: 'So the convention is not a magic wand that solves everything at once.' },
+        { nl: 'Op papier klinkt alles mooi, maar in de praktijk gaat het lang niet overal goed.', en: 'On paper it all sounds fine, but in practice things are far from good everywhere.' },
+        { nl: 'Wat staat er zoal in?', en: 'What does it say?' },
+        { nl: 'Dat is misschien wel het krachtigste aan het hele verdrag: het geeft kinderen woorden om te zeggen wat ze nodig hebben.', en: 'That may be the most powerful thing about the whole convention: it gives children words to say what they need.' }
+      ], answer: 3,
+      explain: { nl: 'De schrijver zegt het zelf met het woord "krachtigste" in de laatste zin.',
+                 en: 'The writer says it with the words "most powerful" in the last sentence.' } }
+  ]
 }
 ]);

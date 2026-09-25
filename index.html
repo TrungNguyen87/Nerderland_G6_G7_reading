@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Leeskampioen · Lezen groep 6-7</title>
-<meta name="description" content="Nederlands leesspel voor groep 6 en 7, met Engelse vertaling en voortgangsrapport voor ouders.">
+<title>Leeskampioen · Lezen groep 6-8</title>
+<meta name="description" content="Nederlands lees- en spellingspel voor groep 6, 7 en 8, met arcadespellen, een Woordkist, Engelse vertaling en een voortgangsrapport voor ouders.">
 <meta name="theme-color" content="#6c4cf1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,6 +95,16 @@
       </div>
       <button id="btn-album" class="ghost-btn album-btn" data-i18n="albumBtn">🎁 Mijn album</button>
     </div>
+    <div id="pet-box" class="pet-box">
+      <button id="pet-emoji" class="pet-emoji" title="Aai je draak" aria-label="Leesdraak">🥚</button>
+      <div class="pet-main">
+        <b id="pet-name">Leesdraak</b>
+        <div class="quest-track pet-track"><i id="pet-fill"></i></div>
+        <small id="pet-next"></small>
+        <p id="pet-say" class="pet-say"></p>
+      </div>
+    </div>
+    <button id="btn-today-tickets" class="ghost-btn ticket-btn">🎟️ 3</button>
     <button id="btn-today-chest" class="big-btn alt chest-cta hidden">🎁 Open je cadeau!</button>
     <h4 class="quest-head" data-i18n="questsTitle">Dagopdrachten</h4>
     <div id="quest-list" class="quest-list"></div>
@@ -109,11 +119,13 @@
   <div class="mode-tabs">
     <button class="mode-tab on" data-mode="read" data-i18n="modeRead">📖 Lezen</button>
     <button class="mode-tab" data-mode="spell" data-i18n="modeSpell">✍️ Spelling</button>
+    <button class="mode-tab" data-mode="play" data-i18n="modePlay">🎮 Spellen</button>
   </div>
   <h2 id="worlds-title" class="screen-title">Kies een wereld</h2>
   <p id="worlds-sub" class="screen-sub">Waar wil je vandaag over lezen?</p>
   <div id="world-grid" class="world-grid"></div>
   <div id="spell-grid" class="world-grid hidden"></div>
+  <div id="play-grid" class="play-grid hidden"></div>
   <div id="badge-shelf" class="badge-shelf"></div>
   <div id="sticker-shelf" class="badge-shelf"></div>
 </section>
@@ -206,6 +218,7 @@
       <div class="result-tile"><span class="rt-icon">✅</span><b id="rt-correct">0/0</b><small data-i18n="correctLabel">goed</small></div>
       <div class="result-tile"><span class="rt-icon">⚡</span><b id="rt-xp">+0</b><small>XP</small></div>
       <div class="result-tile"><span class="rt-icon">🪙</span><b id="rt-coins">+0</b><small data-i18n="coinsLabel">munten</small></div>
+      <div class="result-tile"><span class="rt-icon">🎟️</span><b id="rt-tickets">+0</b><small data-i18n="ticketsLabel">kaartjes</small></div>
       <div class="result-tile"><span class="rt-icon">📖</span><b id="rt-wpm">0</b><small data-i18n="wpmLabel">woorden/min</small></div>
       <div class="result-tile"><span class="rt-icon">⏱</span><b id="rt-time">0:00</b><small data-i18n="timeLabel">tijd</small></div>
     </div>
@@ -287,6 +300,7 @@
       <div class="result-tile"><span class="rt-icon">✅</span><b id="spt-correct">0/0</b><small data-i18n="correctLabel">goed</small></div>
       <div class="result-tile"><span class="rt-icon">⚡</span><b id="spt-xp">+0</b><small>XP</small></div>
       <div class="result-tile"><span class="rt-icon">🪙</span><b id="spt-coins">+0</b><small data-i18n="coinsLabel">munten</small></div>
+      <div class="result-tile"><span class="rt-icon">🎟️</span><b id="spt-tickets">+0</b><small data-i18n="ticketsLabel">kaartjes</small></div>
       <div class="result-tile"><span class="rt-icon">⏱</span><b id="spt-time">0:00</b><small data-i18n="timeLabel">tijd</small></div>
     </div>
 
@@ -301,6 +315,70 @@
   </div>
 
   <button class="back-btn" data-back="spell-cats">← <span data-i18n="spellBack">Terug naar de regels</span></button>
+</section>
+
+<!-- ============ SPEELHAL: EEN SPEL ============ -->
+<section id="screen-arcade" class="screen">
+  <div class="card arc-card">
+    <div class="arc-head">
+      <h2 id="arc-title" class="arc-title">🎮</h2>
+      <span id="arc-count" class="arc-pill">1/15</span>
+      <span id="arc-hearts" class="arc-hearts">❤️❤️❤️</span>
+      <span class="arc-pill arc-score">⭐ <b id="arc-score">0</b></span>
+      <button id="btn-arc-quit" class="icon-btn" title="Stoppen" aria-label="Stoppen">✕</button>
+    </div>
+    <p id="arc-goal" class="arc-goal"></p>
+    <div id="arc-prompt" class="arc-prompt"></div>
+    <div class="arc-stage">
+      <canvas id="arc-canvas" class="arc-canvas" aria-label="Spel"></canvas>
+      <div id="arc-feedback" class="arc-feedback"></div>
+      <button id="arc-start" class="arc-start">
+        <b id="arc-start-title">🎮</b>
+        <span id="arc-start-how"></span>
+        <span id="arc-start-go" class="arc-go">Tik om te starten ▶</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPEELHAL: RESULTAAT ============ -->
+<section id="screen-arcade-result" class="screen">
+  <div class="card result-card">
+    <div id="arr-emoji" class="arr-emoji">🏆</div>
+    <h2 id="arr-title">Goed gedaan!</h2>
+    <p id="arr-sub" class="screen-sub"></p>
+    <div class="result-grid">
+      <div class="result-tile"><span class="rt-icon">⭐</span><b id="arr-score">0</b><small data-i18n="arcadeScore">punten</small></div>
+      <div class="result-tile"><span class="rt-icon">✅</span><b id="arr-correct">0/0</b><small data-i18n="correctLabel">goed</small></div>
+      <div class="result-tile"><span class="rt-icon">⚡</span><b id="arr-xp">+0</b><small>XP</small></div>
+      <div class="result-tile"><span class="rt-icon">🪙</span><b id="arr-coins">+0</b><small data-i18n="coinsLabel">munten</small></div>
+      <div class="result-tile"><span class="rt-icon">🏆</span><b id="arr-best">0</b><small data-i18n="arcadeBestLabel">record</small></div>
+    </div>
+    <div id="arr-missed" class="sp-wordlist"></div>
+    <div id="arr-badges" class="new-badges"></div>
+    <div id="arr-quests" class="quest-strip"></div>
+    <div class="result-actions">
+      <button id="btn-arc-menu" class="ghost-btn">← Speelhal</button>
+      <button id="btn-arc-again" class="big-btn alt">Nog een keer</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WOORDKIST ============ -->
+<section id="screen-woordkist" class="screen">
+  <button class="back-btn" data-back="play">← <span data-i18n="back">Terug</span></button>
+  <h2 class="screen-title" data-i18n="kistTitleFull">🗃️ Woordkist</h2>
+  <p class="screen-sub" data-i18n="kistSub">Elke dag een paar kaartjes. Wat je goed hebt, komt later pas terug.</p>
+  <div class="mode-tabs kist-tabs">
+    <button class="mode-tab kist-tab on" data-deck="story" data-i18n="kistDeckStory">📖 Woorden uit je verhalen</button>
+    <button class="mode-tab kist-tab" data-deck="idiom" data-i18n="kistDeckIdiom">💬 Spreekwoorden</button>
+  </div>
+  <div class="quiz-top"><div id="kist-progress" class="q-progress"></div></div>
+  <div class="card kist-card">
+    <div id="kist-body"></div>
+    <div id="kist-feedback" class="q-feedback"></div>
+    <div class="quiz-actions"><button id="btn-kist-next" class="big-btn hidden" data-i18n="next">Verder →</button></div>
+  </div>
 </section>
 
 <!-- ============ WINKEL ============ -->
@@ -352,6 +430,8 @@
       <div class="result-tile"><span class="rt-icon">🛍️</span><b id="p-owned">0</b><small data-i18n="pOwned">items gekocht</small></div>
       <div class="result-tile"><span class="rt-icon">🔥</span><b id="p-streak">0</b><small data-i18n="pStreak">langste dagreeks</small></div>
       <div class="result-tile"><span class="rt-icon">🎁</span><b id="p-gifts">0</b><small data-i18n="pGifts">cadeaus</small></div>
+      <div class="result-tile"><span class="rt-icon">🎮</span><b id="p-arcade">0</b><small data-i18n="pArcade">spellen gespeeld</small></div>
+      <div class="result-tile"><span class="rt-icon">🗃️</span><b id="p-kist">0</b><small data-i18n="pKist">woorden gekend</small></div>
     </div>
 
     <div class="card">
@@ -409,6 +489,7 @@
 </main>
 
 <div id="toast" class="toast"></div>
+<div id="combo" class="combo" aria-hidden="true"></div>
 <div id="levelup" class="levelup hidden"><div class="levelup-inner"><span class="lu-emoji">🎉</span><h2 id="lu-text">Level up!</h2><p id="lu-sub" class="lu-sub hidden"></p></div></div>
 
 <!-- ============ CADEAUDOOS ============ -->
@@ -441,8 +522,10 @@
 <script src="data/stories.lichaam.js"></script>
 <script src="data/spelling.js"></script>
 <script src="data/spelling.sets.js"></script>
+<script src="data/spelling.groep8.js"></script>
 <script src="data/shop.js"></script>
 <script src="data/facts.js"></script>
+<script src="data/idioms.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/audio.js"></script>
 <script src="js/fx.js"></script>
@@ -450,5 +533,7 @@
 <script src="js/rewards.js"></script>
 <script src="js/app.js"></script>
 <script src="js/spelling.js"></script>
+<script src="js/arcade.js"></script>
+<script src="js/woordkist.js"></script>
 </body>
 </html>

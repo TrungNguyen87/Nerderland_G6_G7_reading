@@ -16,6 +16,9 @@ const Store = (function () {
   const blankPlayer = {
     name: '', avatar: '🦸', xp: 0, level: 1, badges: [], best: {}, flashBest: 0,
     coins: 0, tools: { jokers: 0 }, theme: null,
+    /* speelkaartjes voor de speelhal: een nieuwe (of bestaande) speler
+       begint met drie, zodat de spellen meteen te proberen zijn */
+    tickets: 3,
     coinsDaily: { date: '', earned: 0, toastShown: false },
     owned: { sticker: [], icon: [], character: [], tool: [] }
   };
@@ -162,7 +165,7 @@ const Store = (function () {
       data.daily[day] = {
         sessions: {}, readMs: 0, quizMs: 0, stories: 0, questions: 0, correct: 0,
         spellWords: 0, spellCorrect: 0, spellSets: 0, coinsEarned: 0, badges: 0,
-        first: ev.ts, last: ev.ts
+        games: 0, kist: 0, first: ev.ts, last: ev.ts
       };
     }
     const d = data.daily[day];
@@ -175,6 +178,8 @@ const Store = (function () {
     else if (ev.t === 'spell_done') { d.spellSets++; }
     else if (ev.t === 'badge') { d.badges++; }
     else if (ev.t === 'coins_earned') { d.coinsEarned += ev.amount || 0; }
+    else if (ev.t === 'arcade_done') { d.games = (d.games || 0) + 1; }
+    else if (ev.t === 'kist_card') { d.kist = (d.kist || 0) + 1; }
 
     /* nooit onbeperkt laten groeien: alleen de recentste MAX_DAYS bewaren */
     const days = Object.keys(data.daily).sort();
@@ -418,7 +423,9 @@ const Stats = (function () {
         spellWords: d.spellWords || 0,
         spellSets: d.spellSets || 0,
         coinsEarned: d.coinsEarned || 0,
-        badges: d.badges || 0
+        badges: d.badges || 0,
+        games: d.games || 0,
+        kist: d.kist || 0
       };
     });
   }
@@ -522,6 +529,22 @@ const Exporter = (function () {
         e.cat || '', e.level || '', e.set || '', e.itype || '',
         e.word || '', e.given || '', e.correct ? 1 : 0,
         e.ms ? (e.ms / 1000).toFixed(1) : ''
+      ].map(esc).join(','));
+    });
+
+    /* de speelhal en de Woordkist, zodat de ouder ziet hoeveel er gespeeld
+       en herhaald is naast het echte lezen */
+    rows.push('');
+    rows.push(['datum', 'tijd', 'speler', 'sessie', 'activiteit', 'soort', 'goed', 'van', 'score', 'gemiste_woorden'].join(','));
+    Store.events.forEach(function (e) {
+      if (e.t !== 'arcade_done' && e.t !== 'woordkist_done') return;
+      const d = new Date(e.ts);
+      const arcade = e.t === 'arcade_done';
+      rows.push([
+        localDay(e.ts), d.toTimeString().slice(0, 8), e.player || '', e.session || '',
+        arcade ? 'speelhal:' + (e.game || '') : 'woordkist', e.deck || '',
+        e.correct || 0, arcade ? (e.total || 0) : (e.cards || 0), arcade ? (e.score || 0) : '',
+        arcade ? (e.missed || '') : ''
       ].map(esc).join(','));
     });
 
@@ -655,6 +678,17 @@ const Exporter = (function () {
       (nl ? 'Vraag' : 'Question') + '</th><th>' + (nl ? 'Gaf' : 'Gave') + '</th><th>' + (nl ? 'Moest zijn' : 'Should be') +
       '</th></tr>' + (wrongRows || '<tr><td colspan="5">' + (nl ? 'Geen fouten. Netjes!' : 'No mistakes. Well done!') + '</td></tr>') + '</table>' +
       '<h2>' + (nl ? 'Advies voor thuis' : 'Advice for home') + '</h2><ul><li>' + tips.join('</li><li>') + '</li></ul>' +
+      /* speelhal en Woordkist: zo ziet de ouder ook hoeveel er gespeeld
+         werd naast het echte lezen (spellen kosten kaartjes die je met
+         lezen verdient) */
+      '<h2>' + (nl ? '🎮 Speelhal en 🗃️ Woordkist' : '🎮 Arcade and 🗃️ Word box') + '</h2><p>' +
+      (nl ? 'Spellen gespeeld: ' : 'Games played: ') + (Store.player.arcadePlays || 0) + ' &middot; ' +
+      (nl ? 'Woordkist-rondes: ' : 'Word box rounds: ') + ((Store.player.kist || {}).sessions || 0) + ' &middot; ' +
+      (nl ? 'woorden gekend (vakje 3 of hoger): ' : 'words known (box 3 or higher): ') +
+      Object.keys((Store.player.kist || {}).cards || {}).filter(function (k) { return Store.player.kist.cards[k].box >= 3; }).length +
+      '</p><p style="color:#666;font-size:13px">' +
+      (nl ? 'Een spel in de speelhal kost een kaartje; kaartjes verdient uw kind alleen met lezen, spelling en de Woordkist.'
+          : 'A game in the arcade costs a ticket; your child only earns tickets through reading, spelling and the Word box.') + '</p>' +
       '<p style="margin-top:36px;color:#888;font-size:12px">Leeskampioen &middot; ' +
       (nl ? 'feedback of vragen: ' : 'feedback or questions: ') + FEEDBACK_EMAIL + '</p>' +
       '</body></html>';

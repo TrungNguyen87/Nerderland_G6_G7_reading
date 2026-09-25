@@ -52,7 +52,12 @@ window.LEVELS = [
     descEn: 'Long text with referring words and signal words.' },
   { level: 5, avi: 'AVI Plus', nl: 'Cito-meester', en: 'Cito master', stars: '⭐⭐⭐⭐⭐', hue: 205,
     descNl: 'Zoals de echte Cito-toets: feit of mening, doel van de schrijver.',
-    descEn: 'Like the real Cito test: fact or opinion, the writer’s purpose.' }
+    descEn: 'Like the real Cito test: fact or opinion, the writer’s purpose.' },
+  /* groep 8: lange, zakelijke teksten op het niveau van de doorstroomtoets
+     (referentieniveau 2F). Nieuw vraagtype: zoek het bewijs in de tekst. */
+  { level: 6, avi: 'Groep 8 · 2F', nl: 'Eindbaas', en: 'Final boss', stars: '👑', hue: 45, grade: 8,
+    descNl: 'Groep 8: lange teksten zoals op de doorstroomtoets. Zoek het bewijs in de tekst.',
+    descEn: 'Group 8: long texts like the final primary-school test. Find the proof in the text.' }
 ];
 
 /* Reading skills we measure, so the report shows WHAT to practise.

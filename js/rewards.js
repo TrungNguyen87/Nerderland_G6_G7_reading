@@ -13,6 +13,12 @@
    - Het album: alle verzamelcadeaus, met de nog-niet-gevonden als ❓.
    - Weetjes: een korte "wist je dat?" van Oscar bij de werelden en na een
      verhaal, uit data/facts.js.
+   - Speelkaartjes 🎟️: verdiend met een verhaal (+2), een spellingoefening
+     (+1) of de Woordkist (+1); één kaartje = één spel in de speelhal
+     (js/arcade.js). Zo blijft lezen de hoofdzaak.
+   - De leesdraak: een huisdiertje dat uit een ei komt en groeit van alles
+     wat het kind afmaakt, het meest van lezen. Bij elke nieuwe vorm een
+     cadeau.
 
    Alles staat in Store.player, dus per kind en alleen op dit apparaat.
    Munten uit een cadeaudoos tellen NIET mee voor de dagelijkse muntengrens
@@ -35,7 +41,9 @@ const Rewards = (function () {
     { id: 'spell6',    ev: 'spellCorrect', goal: 6,  emoji: '🅰️', nl: 'Spel 6 woorden goed',              en: 'Spell 6 words correctly' },
     { id: 'words3',    ev: 'wordHelp',     goal: 3,  emoji: '📌', nl: 'Tik op 3 moeilijke woorden',       en: 'Tap 3 tricky words' },
     { id: 'minutes10', ev: 'readMin',      goal: 10, emoji: '⏱', nl: 'Lees 10 minuten',                  en: 'Read for 10 minutes' },
-    { id: 'flash1',    ev: 'flash',        goal: 1,  emoji: '⚡', nl: 'Speel een bonusronde',             en: 'Play a bonus round' }
+    { id: 'flash1',    ev: 'flash',        goal: 1,  emoji: '⚡', nl: 'Speel een bonusronde',             en: 'Play a bonus round' },
+    { id: 'arcade1',   ev: 'arcade',       goal: 1,  emoji: '🎮', nl: 'Speel een spel in de speelhal',    en: 'Play a game in the arcade' },
+    { id: 'kist1',     ev: 'woordkist',    goal: 1,  emoji: '🗃️', nl: 'Herhaal je Woordkist',            en: 'Review your Word box' }
   ];
   const STREAK_GIFTS = [3, 7, 14, 30];
   const TIER_WEIGHT = { common: 8, uncommon: 5, rare: 2.5, epic: 1 };
@@ -46,6 +54,7 @@ const Rewards = (function () {
     if (src === 'daily') return heading ? t('chestFromDaily') : t('chestEarnedDaily');
     if (src === 'streak') return heading ? t('chestFromStreak') : t('chestEarnedStreak');
     if (src === 'level') return heading ? t('chestFromLevel') : t('chestEarnedLevel');
+    if (src === 'pet') return heading ? t('chestFromPet') : t('chestEarnedPet');
     return heading ? t('chestFromStar') : t('chestEarnedStar');
   }
 
@@ -144,6 +153,138 @@ const Rewards = (function () {
     const ds = Store.player.dayStreak;
     if (!ds || !ds.last) return 0;
     return (ds.last === localDay() || ds.last === yesterday()) ? ds.count : 0;
+  }
+
+  /* =====================================================================
+     Speelkaartjes
+     ===================================================================== */
+  const TICKET_FOR = { story: 2, spell: 1, woordkist: 1 };
+  const TICKET_MAX = 20;   /* niet eindeloos opsparen: dan blijft lezen de motor */
+
+  function tickets() { return active() ? (Store.player.tickets || 0) : 0; }
+  function addTickets(n, why, silent) {
+    if (!active() || !n) return 0;
+    const p = Store.player;
+    const before = p.tickets || 0;
+    p.tickets = Math.min(TICKET_MAX, before + n);
+    const got = p.tickets - before;
+    if (got > 0) {
+      Store.log('tickets', { amount: got, reason: why || '' });
+      if (!silent) FX.toast('🎟️ +' + got + ' ' + t('ticketsToast'), 2600);
+    }
+    Store.save();
+    return got;
+  }
+  function spendTicket() {
+    if (!active()) return false;
+    const p = Store.player;
+    if ((p.tickets || 0) < 1) return false;
+    p.tickets--;
+    Store.log('tickets', { amount: -1, reason: 'play' });
+    Store.save();
+    return true;
+  }
+
+  /* =====================================================================
+     De leesdraak
+     ===================================================================== */
+  const PET_STAGES = [
+    { min: 0,  emoji: '🥚', fx: '',     nl: 'Drakenei',     en: 'Dragon egg' },
+    { min: 4,  emoji: '🦎', fx: '',     nl: 'Babydraakje',  en: 'Baby dragon' },
+    { min: 12, emoji: '🐲', fx: '',     nl: 'Jonge draak',  en: 'Young dragon' },
+    { min: 28, emoji: '🐉', fx: '',     nl: 'Grote draak',  en: 'Big dragon' },
+    { min: 55, emoji: '🐉', fx: 'fire', nl: 'Vuurdraak',    en: 'Fire dragon' },
+    { min: 95, emoji: '🐉', fx: 'king', nl: 'Koningsdraak', en: 'King dragon' }
+  ];
+  /* lezen voedt het meest; een spelletje maar een beetje, en maximaal
+     drie keer per dag */
+  const PET_FOOD = { story: 3, spell: 2, woordkist: 2, arcade: 1 };
+  const PET_SAY = {
+    egg:    { nl: ['Ik ben nog een ei... Lees een verhaal, dan kom ik uit! 🥚', 'Tik tik... Ik hoor je lezen! Nog even!'],
+              en: ['I am still an egg... Read a story and I will hatch! 🥚', 'Tap tap... I can hear you reading! Almost there!'] },
+    happy:  { nl: ['Mmm, wat een lekker verhaal! 📖', 'Jij bent mijn beste leesmaatje!', 'Ik word sterker van elk woord!', 'Nog eentje? Dan groei ik nog meer! 💪', 'Wat ben jij goed bezig vandaag!'],
+              en: ['Mmm, what a tasty story! 📖', 'You are my best reading buddy!', 'Every word makes me stronger!', 'One more? Then I grow even more! 💪', 'You are doing so well today!'] },
+    hungry: { nl: ['Ik heb honger naar een verhaal... 📚', 'Lees je iets met me? Dan groei ik!', 'Een spellingoefening is ook lekker hoor!', 'Ik mis je! Zullen we samen lezen?'],
+              en: ['I am hungry for a story... 📚', 'Will you read with me? Then I grow!', 'A spelling exercise is tasty too!', 'I missed you! Shall we read together?'] }
+  };
+
+  function pet() {
+    const p = Store.player;
+    if (!p.pet || typeof p.pet !== 'object') p.pet = { pts: 0, fedDay: '', arcadeDay: '', arcadeN: 0 };
+    return p.pet;
+  }
+  function petStageIdx(pts) {
+    let idx = 0;
+    PET_STAGES.forEach(function (st, i) { if (pts >= st.min) idx = i; });
+    return idx;
+  }
+  function feedPet(kind) {
+    if (!active()) return 0;
+    const pp = pet();
+    const today = localDay();
+    let food = PET_FOOD[kind] || 0;
+    if (kind === 'arcade') {
+      if (pp.arcadeDay !== today) { pp.arcadeDay = today; pp.arcadeN = 0; }
+      if (pp.arcadeN >= 3) food = 0; else pp.arcadeN++;
+    }
+    if (!food) return 0;
+    const before = petStageIdx(pp.pts);
+    pp.pts += food;
+    pp.fedDay = today;
+    const after = petStageIdx(pp.pts);
+    Store.save();
+    if (after > before) {
+      const st = PET_STAGES[after];
+      Store.log('pet_grow', { stage: after, name: st.nl });
+      FX.levelUp(st.emoji + ' ' + (before === 0 ? t('petHatched') : t('petGrew')), L(st));
+      grantChest('pet');
+    }
+    return food;
+  }
+
+  /* een beloning voor iets afmaken: kaartjes en eten voor de draak */
+  function earn(kind) {
+    if (!active()) return { tickets: 0, pet: 0 };
+    const tk = TICKET_FOR[kind] ? addTickets(TICKET_FOR[kind], kind) : 0;
+    return { tickets: tk, pet: feedPet(kind) };
+  }
+
+  function renderPet() {
+    const box = $('pet-box');
+    if (!box) return;
+    const pp = pet();
+    const idx = petStageIdx(pp.pts);
+    const st = PET_STAGES[idx];
+    const nextSt = PET_STAGES[idx + 1];
+    const emo = $('pet-emoji');
+    emo.textContent = st.emoji;
+    emo.className = 'pet-emoji' + (st.fx ? ' pet-' + st.fx : '') + (pp.fedDay === localDay() ? '' : ' sleepy');
+    $('pet-name').textContent = t('petTitle') + ': ' + L(st);
+    const fill = $('pet-fill');
+    if (nextSt) {
+      const pct = Math.round((pp.pts - st.min) / (nextSt.min - st.min) * 100);
+      fill.style.width = Math.max(4, pct) + '%';
+      $('pet-next').textContent = t('petNext').replace('{n}', nextSt.min - pp.pts).replace('{name}', L(nextSt));
+    } else {
+      fill.style.width = '100%';
+      $('pet-next').textContent = t('petMax');
+    }
+    petSay(false);
+  }
+  function petSay(tapped) {
+    const el = $('pet-say');
+    if (!el) return;
+    const pp = pet();
+    const mood = pp.pts === 0 ? 'egg' : (pp.fedDay === localDay() ? 'happy' : 'hungry');
+    const list = PET_SAY[mood][window.LANG] || PET_SAY[mood].nl;
+    el.textContent = list[Math.floor(Math.random() * list.length)];
+    if (tapped) {
+      const emo = $('pet-emoji');
+      emo.classList.remove('hop');
+      void emo.offsetWidth;   /* animatie opnieuw starten */
+      emo.classList.add('hop');
+      Sound.star();
+    }
   }
 
   /* =====================================================================
@@ -356,6 +497,10 @@ const Rewards = (function () {
       ? '🎁 ' + t('questsAllDone')
       : '🎁 ' + t('questsReward').replace('{n}', 3 - doneN);
 
+    renderPet();
+    const tk = $('btn-today-tickets');
+    if (tk) tk.textContent = '🎟️ ' + t('ticketsButton').replace('{n}', tickets());
+
     const n = chests().length;
     const cta = $('btn-today-chest');
     cta.classList.toggle('hidden', !n);
@@ -417,6 +562,13 @@ const Rewards = (function () {
     $('chest-gift').addEventListener('click', crackChest);
     $('chest-close').addEventListener('click', closeChest);
     $('btn-fact').addEventListener('click', function () { Sound.click(); showFact(true); });
+    $('pet-emoji').addEventListener('click', function () { petSay(true); });
+    $('btn-today-tickets').addEventListener('click', function () {
+      Sound.click();
+      setMode('play');
+      const tabs = document.querySelector('.mode-tabs');
+      if (tabs) tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
     $('btn-album').addEventListener('click', function () {
       Sound.click();
       S.shopKind = 'gift';
@@ -437,6 +589,14 @@ const Rewards = (function () {
     renderQuestStrip: renderQuestStrip,
     renderAlbum: renderAlbum,
     factFor: factFor,
+    tickets: tickets,
+    addTickets: addTickets,
+    spendTicket: spendTicket,
+    earn: earn,
+    feedPet: feedPet,
+    petStage: function () { return active() ? petStageIdx(pet().pts) : 0; },
+    petStages: PET_STAGES,
+    renderPet: renderPet,
     quests: QUESTS,
     today: function () { return active() ? today() : null; }
   };

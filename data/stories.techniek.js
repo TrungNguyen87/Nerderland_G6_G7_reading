@@ -1076,5 +1076,136 @@ addStories([
       explain: { nl: 'De tekst legt uit wat een kompas doet, waarom het werkt en hoe het gebruikt werd.',
                  en: 'The text explains what a compass does, why it works and how it was used.' } }
   ]
+},
+
+{
+  id: 'techniek-12', topic: 'techniek', level: 6, emoji: '🔋', scene: 'lab',
+  title: { nl: 'Stroom voor als het windstil is', en: 'Power for when the wind drops' },
+  text: {
+    nl: [
+      "Op een zonnige, winderige dag in de lente gebeurt er soms iets vreemds in Nederland: er is zoveel stroom dat de prijs onder nul zakt. Grote bedrijven die dan stroom gebruiken, krijgen er zelfs geld bij. Een paar dagen later, op een donkere, windstille avond in de winter, is er juist te weinig. Dat is het grote probleem van zonnepanelen en windmolens: ze leveren stroom wanneer het weer dat wil, niet wanneer wij hem nodig hebben.",
+      "Vroeger was dat minder lastig. Kolen- en gascentrales konden gewoon harder of zachter branden. Maar die centrales stoten veel CO2 uit, en dat warmt de aarde op. Daarom moeten ze de komende jaren verdwijnen. De vraag is dus: hoe bewaar je de stroom van een zonnige middag voor een donkere avond?",
+      "Het eerste antwoord ken je al: een accu, zoals in je telefoon. Er worden steeds grotere batterijen gebouwd, soms een heel terrein vol containers. Ook elektrische auto's zijn eigenlijk rijdende accu's. Als duizenden auto's 's avonds een deel van hun stroom teruggeven aan het net, helpt dat. Het nadeel: accu's raken na een paar uur leeg, en er zijn zeldzame metalen voor nodig die op sommige plekken onder slechte omstandigheden uit de grond worden gehaald.",
+      "Een tweede idee is waterstof. Met overtollige stroom kun je water splitsen in zuurstof en waterstof. Dat gas kun je maandenlang opslaan, bijvoorbeeld in holtes in zoutlagen diep onder de grond. In de winter maak je er in een brandstofcel weer stroom van. Daarbij komt alleen waterdamp vrij. Helaas gaat bij elke stap energie verloren: van de stroom die je erin stopt, krijg je maar een deel terug.",
+      "Het derde idee is misschien het slimste: minder bewaren door slimmer te gebruiken. Een wasmachine, een warmtepomp of een laadpaal hoeft niet altijd meteen aan. Als apparaten zelf wachten tot er veel stroom is, heb je minder opslag nodig. Zo past het gebruik zich aan het weer aan, in plaats van andersom. Sommige energiebedrijven geven klanten al korting als ze hun auto opladen wanneer de zon schijnt of het hard waait.",
+      "Er is dus niet één oplossing die alles regelt. Deskundigen verwachten dat we alle drie nodig hebben: accu's voor een paar uur, waterstof voor lange donkere weken, en slimme apparaten die met het weer meebewegen. Wie nu op de basisschool zit, gaat dat nieuwe energiesysteem later misschien zelf bouwen."
+    ],
+    en: [
+      "On a sunny, windy spring day something strange sometimes happens in the Netherlands: there is so much power that the price drops below zero. Big companies that use electricity then even get paid for it. A few days later, on a dark, windless winter evening, there is too little. That is the big problem with solar panels and wind turbines: they deliver power when the weather wants, not when we need it.",
+      "In the past that was less of a problem. Coal and gas power stations could simply burn harder or softer. But those power stations give off a lot of CO2, and that warms up the earth. That is why they have to disappear in the coming years. So the question is: how do you save the power of a sunny afternoon for a dark evening?",
+      "You already know the first answer: a battery, like the one in your phone. Bigger and bigger batteries are being built, sometimes a whole site full of containers. Electric cars are really batteries on wheels as well. If thousands of cars give some of their power back to the grid in the evening, that helps. The downside: batteries run flat after a few hours, and they need rare metals that in some places are dug out of the ground in bad conditions.",
+      "A second idea is hydrogen. With surplus power you can split water into oxygen and hydrogen. You can store that gas for months, for example in hollows in salt layers deep underground. In winter you turn it back into power in a fuel cell. Only water vapour comes out. Unfortunately energy is lost at every step: of the power you put in, you only get part back.",
+      "The third idea may be the cleverest: store less by using power more cleverly. A washing machine, a heat pump or a charging point does not always have to switch on straight away. If appliances wait by themselves until there is plenty of power, you need less storage. That way the use adapts to the weather, instead of the other way round. Some energy companies already give customers a discount if they charge their car when the sun shines or the wind blows hard.",
+      "So there is not one solution that sorts everything out. Experts expect that we will need all three: batteries for a few hours, hydrogen for long dark weeks, and smart appliances that move with the weather. Anyone who is at primary school now may one day build that new energy system themselves."
+    ]
+  },
+  words: [
+    { nl: 'overtollig', en: 'surplus', defNl: 'wat over is, omdat niemand het op dat moment nodig heeft', defEn: 'left over, because nobody needs it at that moment' },
+    { nl: 'brandstofcel', en: 'fuel cell', defNl: 'een apparaat dat van waterstof en zuurstof stroom maakt', defEn: 'a device that makes electricity from hydrogen and oxygen' },
+    { nl: 'deskundigen', en: 'experts', defNl: 'mensen die ergens heel veel van weten', defEn: 'people who know a lot about something' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wat gebeurt er soms op een zonnige, winderige dag?', en: 'What sometimes happens on a sunny, windy day?' },
+      options: [
+        { nl: 'De stroomprijs zakt onder nul', en: 'The price of power drops below zero' },
+        { nl: 'Alle windmolens gaan kapot', en: 'All the wind turbines break' },
+        { nl: 'De kolencentrales gaan harder branden', en: 'The coal power stations burn harder' },
+        { nl: 'Er is te weinig stroom', en: 'There is too little power' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: er is dan zoveel stroom "dat de prijs onder nul zakt".',
+                 en: 'Paragraph 1: there is so much power "that the price drops below zero".' } },
+    { id: 'q2', type: 'find', skill: 'gevolgtrekking',
+      q: { nl: 'Welke zin legt uit waarom kolen- en gascentrales moeten verdwijnen?', en: 'Which sentence explains why coal and gas power stations have to disappear?' },
+      options: [
+        { nl: 'Kolen- en gascentrales konden gewoon harder of zachter branden.', en: 'Coal and gas power stations could simply burn harder or softer.' },
+        { nl: 'Maar die centrales stoten veel CO2 uit, en dat warmt de aarde op.', en: 'But those power stations give off a lot of CO2, and that warms up the earth.' },
+        { nl: "Ook elektrische auto's zijn eigenlijk rijdende accu's.", en: 'Electric cars are really batteries on wheels as well.' },
+        { nl: 'Daarbij komt alleen waterdamp vrij.', en: 'Only water vapour comes out.' }
+      ], answer: 1,
+      explain: { nl: 'Direct na deze zin staat "Daarom moeten ze de komende jaren verdwijnen." Het signaalwoord "daarom" wijst terug naar de reden.',
+                 en: 'Right after this sentence comes "That is why they have to disappear." The signal words "that is why" point back to the reason.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Overtollige stroom is stroom die ___.', en: 'Surplus power is power that ___.' },
+      options: [
+        { nl: 'over is, omdat niemand hem op dat moment nodig heeft', en: 'is left over, because nobody needs it at that moment' },
+        { nl: 'heel duur is', en: 'is very expensive' },
+        { nl: 'uit kolen komt', en: 'comes from coal' },
+        { nl: 'niet werkt', en: 'does not work' }
+      ], answer: 0,
+      explain: { nl: 'Overtollig betekent: meer dan nodig. Die extra stroom kun je gebruiken om waterstof te maken.',
+                 en: 'Surplus means: more than needed. You can use that extra power to make hydrogen.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Dat gas kun je maandenlang opslaan." Welk gas?', en: '"You can store that gas for months." Which gas?' },
+      options: [
+        { nl: 'Waterstof', en: 'Hydrogen' },
+        { nl: 'Zuurstof', en: 'Oxygen' },
+        { nl: 'CO2', en: 'CO2' },
+        { nl: 'Waterdamp', en: 'Water vapour' }
+      ], answer: 0,
+      explain: { nl: 'De hele alinea gaat over waterstof als opslag. "Dat gas" is de waterstof uit de zin ervoor.',
+                 en: 'The whole paragraph is about hydrogen as storage. "That gas" is the hydrogen from the sentence before.' } },
+    { id: 'q5', type: 'sort', skill: 'structuur',
+      q: { nl: 'Bij welke oplossing hoort het? Zet elke zin in de goede groep.', en: 'Which solution does it belong to? Put every sentence in the right group.' },
+      bins: [{ nl: 'Accu', en: 'Battery' }, { nl: 'Waterstof', en: 'Hydrogen' }],
+      items: [
+        { nl: 'Raakt na een paar uur leeg.', en: 'Runs flat after a few hours.', bin: 0 },
+        { nl: 'Kan maandenlang bewaard worden.', en: 'Can be stored for months.', bin: 1 },
+        { nl: 'Er zijn zeldzame metalen voor nodig.', en: 'Needs rare metals.', bin: 0 },
+        { nl: 'Er gaat bij elke stap energie verloren.', en: 'Energy is lost at every step.', bin: 1 }
+      ],
+      explain: { nl: 'De schrijver vergelijkt de oplossingen. De voor- en nadelen van de accu staan in alinea 3, die van waterstof in alinea 4.',
+                 en: 'The writer compares the solutions. The pros and cons of batteries are in paragraph 3, those of hydrogen in paragraph 4.' } },
+    { id: 'q6', type: 'order', skill: 'structuur',
+      q: { nl: 'In welke volgorde bespreekt de schrijver de drie oplossingen?', en: 'In which order does the writer discuss the three solutions?' },
+      items: [
+        { nl: 'Accu\'s', en: 'Batteries' },
+        { nl: 'Waterstof', en: 'Hydrogen' },
+        { nl: 'Slimmer gebruiken', en: 'Using power more cleverly' }
+      ], answer: [0, 1, 2],
+      explain: { nl: 'De schrijver nummert ze zelf: "Het eerste antwoord", "Een tweede idee", "Het derde idee".',
+                 en: 'The writer numbers them: "the first answer", "a second idea", "the third idea".' } },
+    { id: 'q7', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: "Elektrische auto's kunnen stroom teruggeven aan het net.", en: 'Electric cars can give power back to the grid.', bin: 0 },
+        { nl: 'Slimme apparaten zijn de allerbeste oplossing.', en: 'Smart appliances are the very best solution.', bin: 1 },
+        { nl: 'In een brandstofcel komt alleen waterdamp vrij.', en: 'Only water vapour comes out of a fuel cell.', bin: 0 },
+        { nl: 'Iedereen zou een warmtepomp moeten kopen.', en: 'Everyone should buy a heat pump.', bin: 1 }
+      ],
+      explain: { nl: 'Hoe iets werkt, kun je nagaan: feiten. "De allerbeste" en "zou moeten" zijn meningen.',
+                 en: 'How something works can be checked: facts. "The very best" and "should" are opinions.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke apparaten kunnen volgens de tekst wachten tot er veel stroom is? Kies er 2.', en: 'According to the text, which appliances can wait until there is plenty of power? Pick 2.' },
+      options: [
+        { nl: 'Een wasmachine', en: 'A washing machine' },
+        { nl: 'Een laadpaal', en: 'A charging point' },
+        { nl: 'Een telefoon', en: 'A phone' },
+        { nl: 'Een kolencentrale', en: 'A coal power station' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 noemt een wasmachine, een warmtepomp en een laadpaal.',
+                 en: 'Paragraph 5 names a washing machine, a heat pump and a charging point.' } },
+    { id: 'q9', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat wil de schrijver met de laatste zin?', en: 'What does the writer want with the last sentence?' },
+      options: [
+        { nl: 'Laten zien dat de lezer later zelf kan meehelpen aan de oplossing', en: 'Show that the reader may help with the solution later' },
+        { nl: 'Zeggen dat kinderen nu al stroom moeten opslaan', en: 'Say that children must already store power now' },
+        { nl: 'Uitleggen hoe je een accu bouwt', en: 'Explain how to build a battery' },
+        { nl: 'Waarschuwen dat de basisschool te kort duurt', en: 'Warn that primary school is too short' }
+      ], answer: 0,
+      explain: { nl: 'De schrijver betrekt de lezer erbij: jij bent misschien later een van de bouwers.',
+                 en: 'The writer involves the reader: you might be one of the builders later.' } },
+    { id: 'q10', type: 'find', skill: 'hoofdgedachte',
+      q: { nl: 'Welke zin is de hoofdgedachte van de hele tekst?', en: 'Which sentence is the main idea of the whole text?' },
+      options: [
+        { nl: 'Het eerste antwoord ken je al: een accu, zoals in je telefoon.', en: 'You already know the first answer: a battery, like the one in your phone.' },
+        { nl: 'Een tweede idee is waterstof.', en: 'A second idea is hydrogen.' },
+        { nl: 'Vroeger was dat minder lastig.', en: 'In the past that was less of a problem.' },
+        { nl: 'Deskundigen verwachten dat we alle drie nodig hebben: accu\'s voor een paar uur, waterstof voor lange donkere weken, en slimme apparaten die met het weer meebewegen.', en: 'Experts expect that we will need all three: batteries for a few hours, hydrogen for long dark weeks, and smart appliances that move with the weather.' }
+      ], answer: 3,
+      explain: { nl: 'Deze zin combineert alle drie de oplossingen tot één antwoord op de vraag uit alinea 2. De andere zinnen gaan over een deel.',
+                 en: 'This sentence combines all three solutions into one answer to the question from paragraph 2. The others cover just a part.' } }
+  ]
 }
 ]);

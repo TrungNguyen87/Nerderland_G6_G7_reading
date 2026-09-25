@@ -747,3 +747,187 @@ button:focus-visible,a:focus-visible,.text-input:focus-visible{outline:3px solid
 #shop-tabs{flex-wrap:wrap;justify-content:center;border-radius:24px}
 .album-card{gap:4px;padding:12px 10px}
 .album-card .sc-emoji{font-size:2.2rem}
+
+/* =====================================================================
+   GROEP 8: bewijs zoeken, woordbouwer en de groep 8-labels
+   ===================================================================== */
+.find-list{gap:9px}
+.find-opt{align-items:flex-start;background:#fffbe8;border-left:6px solid #f3d77a}
+.find-opt .find-quote{font-style:italic;line-height:1.55}
+.find-opt .find-quote::before{content:'“'}
+.find-opt .find-quote::after{content:'”'}
+.find-opt.sel{border-left-color:var(--brand)}
+
+.g8-pill{background:linear-gradient(120deg,#ffe28a,#ffb703);color:#5a3a00;margin-left:4px}
+.grid-heading{grid-column:1/-1;color:#fff;font-size:1.3rem;margin:14px 0 -4px;text-shadow:0 2px 0 rgba(0,0,0,.14)}
+
+.sp-build{
+  display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;min-height:66px;
+  padding:12px;border-radius:18px;background:var(--brand-light);border:3px dashed hsl(var(--hue) 70% 75%);margin-bottom:14px;
+  transition:background .2s,border-color .2s;
+}
+.sp-build.ok{background:var(--ok-light);border:3px solid var(--ok)}
+.sp-build.no{background:var(--no-light);border:3px solid var(--no);animation:shake .4s}
+.sp-build-empty{font-weight:800;color:var(--ink-soft);font-size:.9rem}
+.sp-built{
+  font-family:var(--font-head);font-size:1.45rem;font-weight:800;padding:6px 12px;border-radius:12px;
+  background:#fff;box-shadow:0 3px 0 rgba(0,0,0,.08);animation:pop .25s;
+}
+.sp-pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.sp-tile{
+  font-family:var(--font-head);font-size:1.35rem;font-weight:800;min-width:58px;padding:12px 16px;border-radius:14px;
+  background:#fff3d6;box-shadow:0 4px 0 #e8c266;transition:transform .12s,opacity .2s;
+}
+.sp-tile:hover{transform:translateY(-3px)}
+.sp-tile:active{transform:translateY(3px);box-shadow:none}
+.sp-tile.used{opacity:.25;pointer-events:none;box-shadow:none}
+
+/* drie tabbladen (lezen, spelling, spellen) moeten ook op een telefoon passen */
+.mode-tabs{flex-wrap:wrap;justify-content:center;border-radius:26px}
+
+/* =====================================================================
+   DE SPEELHAL
+   ===================================================================== */
+.play-grid{display:grid;gap:16px}
+.ticket-card{display:flex;align-items:center;gap:16px;margin-bottom:0}
+.ticket-big{
+  display:flex;align-items:center;gap:6px;flex:none;padding:10px 16px;border-radius:18px;
+  background:linear-gradient(140deg,#fff3d6,#ffe08a);box-shadow:0 4px 0 #e8c266;
+}
+.ticket-big b{font-family:var(--font-head);font-size:2rem;line-height:1;color:#8a5a00}
+.ticket-emoji{font-size:1.9rem}
+.ticket-text p{margin:2px 0 0;font-size:.86rem;color:var(--ink-soft);font-weight:600;line-height:1.45}
+.deck-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:center}
+.deck-label{color:#fff;font-weight:800}
+.deck-btn{
+  padding:9px 16px;border-radius:99px;font-weight:800;background:rgba(255,255,255,.25);color:#fff;
+  transition:transform .15s,background .2s;
+}
+.deck-btn:hover{transform:translateY(-2px)}
+.deck-btn.on{background:#fff;color:var(--brand-dark);box-shadow:0 4px 12px rgba(35,36,58,.18)}
+.game-card{padding-top:26px}
+.game-card .wc-emoji{font-size:3.1rem;animation:bob 3s ease-in-out infinite}
+.game-cost{
+  position:absolute;top:14px;right:14px;font-size:.78rem;font-weight:800;padding:4px 10px;border-radius:99px;
+  background:#fff3d6;color:#8a5a00;
+}
+.game-cost.free{background:var(--ok-light);color:#136e45}
+.game-card.no-ticket{opacity:.62}
+.game-card.no-ticket .game-cost{background:var(--no-light);color:#a32b23}
+
+.arc-card{padding:14px clamp(10px,3vw,20px) 18px}
+.arc-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.arc-title{flex:1;margin:0;font-size:1.3rem;min-width:140px}
+.arc-pill{font-weight:800;font-size:.85rem;padding:6px 11px;border-radius:99px;background:#f2f2fa}
+.arc-score b{font-family:var(--font-head);font-size:1rem}
+.arc-hearts{font-size:1.05rem;letter-spacing:1px}
+.arc-goal{margin:8px 0 6px;font-weight:800;font-size:.84rem;color:var(--ink-soft)}
+.arc-prompt{
+  min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:10px 14px;border-radius:14px;background:#fffbe8;font-weight:800;font-size:1.05rem;line-height:1.4;margin-bottom:10px;
+}
+.arc-stage{position:relative;border-radius:18px;overflow:hidden;box-shadow:inset 0 0 0 3px rgba(0,0,0,.06)}
+.arc-canvas{display:block;width:100%;height:340px;touch-action:none;cursor:pointer;-webkit-user-select:none;user-select:none}
+.arc-feedback{
+  position:absolute;left:50%;top:10px;transform:translate(-50%,-160%);max-width:92%;
+  padding:9px 14px;border-radius:14px;font-weight:800;font-size:.92rem;text-align:center;
+  background:#fff;box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.2,1.3,.4,1);pointer-events:none;
+}
+.arc-feedback.show{transform:translate(-50%,0)}
+.arc-feedback.good{background:var(--ok-light);color:#136e45}
+.arc-feedback.bad{background:var(--no-light);color:#a32b23}
+.arc-start{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:20px;background:rgba(20,16,50,.55);color:#fff;text-align:center;backdrop-filter:blur(2px);
+}
+.arc-start b{font-family:var(--font-head);font-size:1.8rem}
+.arc-start span{max-width:460px;font-weight:700;line-height:1.5}
+.arc-go{
+  margin-top:6px;padding:12px 24px;border-radius:99px;background:var(--gold);color:#3a2600;font-weight:800;
+  font-family:var(--font-head);font-size:1.15rem;animation:pulse 1.4s ease-in-out infinite;
+}
+.arr-emoji{font-size:4rem;line-height:1.1;animation:bob 2.4s ease-in-out infinite}
+.arr-wrong{color:var(--no);font-weight:700;margin-left:6px}
+
+/* =====================================================================
+   DE WOORDKIST
+   ===================================================================== */
+.kist-tabs{margin-bottom:12px}
+.kist-card{padding-top:18px}
+.kist-front{
+  position:relative;text-align:center;padding:22px 16px 18px;border-radius:20px;margin-bottom:12px;
+  background:linear-gradient(160deg,#fff8e6,#ffefc2);box-shadow:inset 0 -5px 0 rgba(0,0,0,.05);
+}
+.kist-front.idiom{background:linear-gradient(160deg,#eef3ff,#dbe6ff)}
+.kist-box-tag{display:inline-block;font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:99px;background:#fff;color:var(--ink-soft)}
+.kist-word{font-size:clamp(1.6rem,6vw,2.3rem);margin:10px 0 4px}
+.kist-front.idiom .kist-word{font-size:clamp(1.25rem,4.6vw,1.7rem)}
+.kist-context{margin:6px auto 0;max-width:560px;font-size:.95rem;line-height:1.55;color:var(--ink-soft);font-style:italic}
+.kist-context mark{background:#ffe08a;border-radius:4px;padding:0 3px;color:var(--ink);font-style:normal;font-weight:800}
+.kist-say{position:absolute;top:10px;right:10px;background:#fff}
+.kist-q{font-weight:800;margin:4px 0 10px}
+.kist-empty{text-align:center;padding:12px}
+.kist-empty span{font-size:3.4rem}
+.kist-boxes{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px}
+.kist-slot{display:grid;justify-items:center;gap:3px;padding:10px 4px;border-radius:14px;background:#f6f6fc}
+.kist-slot b{font-family:var(--font-head);font-size:1.15rem}
+.kist-slot small{font-size:.68rem;font-weight:700;color:var(--ink-soft)}
+.kist-bar{display:flex;align-items:flex-end;width:22px;height:54px;border-radius:8px;background:#e6e6f2;overflow:hidden}
+.kist-bar i{display:block;width:100%;background:linear-gradient(0deg,var(--gold),#ff8a00);border-radius:8px}
+.kist-slot:nth-child(n+3) .kist-bar i{background:linear-gradient(0deg,#22a86b,#6fdc9c)}
+.kist-note{text-align:center}
+.kist-done{text-align:center}
+.kist-done-emoji{font-size:3.6rem;display:block;animation:bob 2.4s ease-in-out infinite}
+
+/* =====================================================================
+   DE LEESDRAAK EN AANMOEDIGING
+   ===================================================================== */
+.pet-box{
+  display:flex;align-items:center;gap:14px;margin-top:14px;padding:12px 14px;border-radius:18px;
+  background:linear-gradient(140deg,#f1ecff,#e6f7ff);position:relative;z-index:1;
+}
+.pet-emoji{
+  font-size:3rem;width:74px;height:74px;flex:none;border-radius:50%;display:grid;place-items:center;
+  background:#fff;box-shadow:0 6px 0 rgba(0,0,0,.06);animation:bob 2.8s ease-in-out infinite;
+}
+.pet-emoji.sleepy{filter:saturate(.55);animation-duration:5s}
+.pet-emoji.pet-fire{box-shadow:0 0 0 4px #ffb703,0 0 22px rgba(255,120,0,.7)}
+.pet-emoji.pet-king{box-shadow:0 0 0 4px #ffd76a,0 0 28px rgba(255,215,106,.9);background:linear-gradient(140deg,#fff7d1,#ffe08a)}
+.pet-emoji.hop{animation:petHop .6s cubic-bezier(.2,1.4,.4,1)}
+@keyframes petHop{0%{transform:scale(1)}35%{transform:translateY(-18px) scale(1.12) rotate(-8deg)}70%{transform:translateY(0) scale(.94)}100%{transform:scale(1)}}
+.pet-main{flex:1;min-width:0;display:grid;gap:5px}
+.pet-main b{font-family:var(--font-head);font-size:1.02rem}
+.pet-track{height:10px}
+.pet-track i{background:linear-gradient(90deg,#b388ff,#6c4cf1) !important}
+.pet-main small{font-weight:700;color:var(--ink-soft);font-size:.78rem}
+.pet-say{margin:2px 0 0;font-weight:800;font-size:.86rem;color:#5a34b8}
+.ticket-btn{width:100%;margin-top:10px;background:#fff3d6;color:#8a5a00}
+
+.combo{
+  position:fixed;left:50%;top:22%;z-index:69;pointer-events:none;text-align:center;
+  transform:translate(-50%,0) scale(.3);opacity:0;
+}
+.combo b{display:block;font-family:var(--font-head);font-size:clamp(3rem,12vw,5rem);line-height:1;color:#fff;
+  text-shadow:0 4px 0 #ff8a00,0 0 24px rgba(255,183,3,.9)}
+.combo span{display:inline-block;margin-top:4px;padding:6px 14px;border-radius:99px;background:#20203a;color:#ffd76a;font-weight:800;letter-spacing:.5px}
+.combo.show{animation:comboIn 1.3s cubic-bezier(.2,1.3,.4,1) forwards}
+@keyframes comboIn{
+  0%{opacity:0;transform:translate(-50%,0) scale(.3) rotate(-8deg)}
+  18%{opacity:1;transform:translate(-50%,0) scale(1.12) rotate(3deg)}
+  30%{transform:translate(-50%,0) scale(1) rotate(0)}
+  80%{opacity:1;transform:translate(-50%,-10px) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-40px) scale(.9)}
+}
+
+@media (max-width:640px){
+  .ticket-card{flex-direction:column;text-align:center}
+  .arc-title{font-size:1.1rem;flex-basis:100%;min-width:0}
+  .arc-head{gap:6px}
+  .arc-head #btn-arc-quit{margin-left:auto}
+  .arc-prompt{font-size:.95rem}
+  .kist-boxes{gap:5px}
+  .pet-emoji{width:62px;height:62px;font-size:2.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .pet-emoji,.game-card .wc-emoji,.arc-go,.arr-emoji{animation:none}
+}

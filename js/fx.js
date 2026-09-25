@@ -129,6 +129,22 @@ const FX = (function () {
     this.classList.add('hidden');
   });
 
+  /* ---- combo: "3 op een rij!" groot in beeld, als extra aanmoediging ---- */
+  const comboEl = document.getElementById('combo');
+  let comboTimer = null;
+  function combo(n) {
+    if (!comboEl) return;
+    const nl = window.LANG !== 'en';
+    const word = n >= 10 ? (nl ? 'ONSTOPBAAR!' : 'UNSTOPPABLE!') : n >= 5 ? (nl ? 'SUPERREEKS!' : 'SUPER STREAK!') : (nl ? 'OP EEN RIJ!' : 'IN A ROW!');
+    comboEl.innerHTML = '<b>' + n + '×</b><span>' + (n >= 5 ? '🔥 ' : '⚡ ') + word + '</span>';
+    comboEl.classList.remove('show');
+    void comboEl.offsetWidth;   /* animatie opnieuw starten */
+    comboEl.classList.add('show');
+    clearTimeout(comboTimer);
+    comboTimer = setTimeout(function () { comboEl.classList.remove('show'); }, 1300);
+    if (n >= 5) burst(70);
+  }
+
   /* ---- uil ---- */
   const owl = document.querySelector('.owl');
   const bubble = document.getElementById('mascot-bubble');
@@ -149,5 +165,5 @@ const FX = (function () {
   }
   function hush() { if (bubble) bubble.classList.remove('show'); }
 
-  return { burst: burst, setShapes: setShapes, toast: toast, countUp: countUp, levelUp: levelUp, say: say, hush: hush };
+  return { burst: burst, setShapes: setShapes, toast: toast, countUp: countUp, levelUp: levelUp, combo: combo, say: say, hush: hush };
 })();

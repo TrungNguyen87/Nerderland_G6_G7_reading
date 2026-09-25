@@ -12,7 +12,7 @@ const Spell = (function () {
   const SP = {
     cat: null, set: null, i: 0,
     items: [], results: [], wrong: [],
-    selected: null, sortPick: null,
+    selected: null, sortPick: null, build: [],
     checked: false, ruleOpen: false, jokerUsed: false,
     setStart: 0, itemStart: 0,
     last: null
@@ -39,7 +39,7 @@ const Spell = (function () {
   }
   /* het hele woord dat bij een opdracht hoort - ook voor het logboek */
   function wordOf(it) {
-    if (it.type === 'type') return it.word;
+    if (it.type === 'type' || it.type === 'build') return it.word;
     if (it.type === 'fill') return it.before + it.gap[it.answer] + it.after;
     if (it.type === 'pick') return it.options[it.answer];
     if (it.type === 'error') return it.fix;
@@ -75,21 +75,33 @@ const Spell = (function () {
   function renderCats() {
     const grid = $('spell-grid');
     grid.innerHTML = '';
+    let g8Head = false;
 
     window.SPELL_CATS.forEach(function (c) {
+      /* de regels die pas in groep 8 aan bod komen krijgen een eigen kopje */
+      if (c.grade === 8 && !g8Head) {
+        g8Head = true;
+        const h = document.createElement('h3');
+        h.className = 'grid-heading';
+        h.textContent = '🎓 ' + t('grade8Rules');
+        grid.appendChild(h);
+      }
       const sets = setsOf(c.id);
       const doneN = sets.filter(function (s) { return bestOf(s.id); }).length;
       const pct = sets.length ? Math.round(doneN / sets.length * 100) : 0;
       const words = sets.reduce(function (n, s) { return n + s.items.length; }, 0);
 
       const meta = c.meta && window.SPELL_META && window.SPELL_META[c.meta];
+      const hasG8 = c.grade !== 8 && sets.some(function (s) { return s.grade === 8; });
 
       const card = document.createElement('button');
-      card.className = 'world-card';
+      card.className = 'world-card' + (doneN === sets.length && sets.length ? ' complete' : '');
       card.style.setProperty('--wh', c.hue);
       card.innerHTML =
         '<span class="wc-emoji">' + c.emoji + '</span>' +
         (meta ? '<span class="q-skill">' + meta.emoji + ' ' + (window.LANG === 'nl' ? meta.nl : meta.en) + '</span>' : '') +
+        (c.grade === 8 ? '<span class="q-skill g8-pill">🎓 ' + t('grade8') + '</span>' : '') +
+        (hasG8 ? '<span class="q-skill g8-pill">+ 🎓 ' + t('grade8') + '</span>' : '') +
         '<h3 class="wc-title">' + (window.LANG === 'nl' ? c.nl : c.en) + '</h3>' +
         '<p class="wc-sub">' + (window.LANG === 'nl' ? c.subNl : c.subEn) + '</p>' +
         '<div class="wc-progress"><i style="width:' + pct + '%"></i></div>' +
@@ -131,7 +143,8 @@ const Spell = (function () {
       card.className = 'level-card';
       card.innerHTML =
         '<span class="lc-stars">' + (open ? (b ? '⭐'.repeat(b.stars) + '☆'.repeat(3 - b.stars) : stars) : '🔒') + '</span>' +
-        '<span><span class="lc-name">' + L(s.title) + '</span><br>' +
+        '<span><span class="lc-name">' + L(s.title) + '</span>' +
+        (s.grade === 8 ? ' <span class="q-skill g8-pill">🎓 ' + t('grade8') + '</span>' : '') + '<br>' +
         '<span class="lc-meta">' + s.items.length + ' ' + t('spellWords') + '</span></span>' +
         '<span class="lc-right">' + (b
           ? '<span class="lc-done">' + t('bestScore') + ' ' + b.correct + '/' + b.total + '</span>'
@@ -163,6 +176,12 @@ const Spell = (function () {
     SP.views = SP.items.map(function (it) {
       if (it.type === 'pick') return { opts: shuffle(it.options.map(function (o, i) { return { o: o, i: i }; })) };
       if (it.type === 'sort') return { words: shuffle(it.words.slice()) };
+      if (it.type === 'build') {
+        /* echte stukjes (t0, t1, ...) en afleiders (x0, ...) door elkaar */
+        const pool = it.tiles.map(function (p, i) { return { p: p, k: 't' + i }; })
+          .concat((it.extra || []).map(function (p, i) { return { p: p, k: 'x' + i }; }));
+        return { pool: shuffle(pool) };
+      }
       return {};
     });
 
@@ -197,6 +216,7 @@ const Spell = (function () {
 
     SP.selected = null;
     SP.sortPick = null;
+    SP.build = [];
     SP.checked = false;
     SP.jokerUsed = false;
     SP.itemStart = Date.now();
@@ -223,6 +243,78 @@ const Spell = (function () {
     else if (it.type === 'type') { $('sp-question').textContent = t('spellTypeHint'); renderType(body, it); }
     else if (it.type === 'error') { $('sp-question').textContent = t('spellErrorHint'); renderError(body, it); }
     else if (it.type === 'sort') { $('sp-question').textContent = t('spellSortHint'); renderSortItem(body, it, v); }
+    else if (it.type === 'build') { $('sp-question').textContent = t('spellBuildHint'); renderBuild(body, it, v); }
+  }
+
+  /* ---- woordbouwer: tik de stukjes in de goede volgorde ---- */
+  function renderBuild(body, it, v) {
+    if (it.sentence) {
+      const sent = document.createElement('div');
+      sent.className = 'gap-sentence';
+      sent.innerHTML = L(it.sentence).replace('___', '<span class="blank" id="sp-blank">?</span>');
+      body.appendChild(sent);
+    }
+    const slots = document.createElement('div');
+    slots.className = 'sp-build';
+    slots.id = 'sp-build';
+    body.appendChild(slots);
+
+    const pool = document.createElement('div');
+    pool.className = 'sp-pool';
+    body.appendChild(pool);
+    v.pool.forEach(function (tile, n) {
+      const b = document.createElement('button');
+      b.className = 'sp-tile';
+      b.dataset.k = tile.k;
+      b.dataset.n = n;
+      b.textContent = tile.p;
+      b.addEventListener('click', function () {
+        if (SP.checked || b.classList.contains('used')) return;
+        Sound.click();
+        SP.build.push(n);
+        drawBuild();
+      });
+      pool.appendChild(b);
+    });
+    drawBuild();
+  }
+
+  function builtWord() {
+    const v = SP.views[SP.i];
+    return SP.build.map(function (n) { return v.pool[n].p; }).join('');
+  }
+
+  function drawBuild() {
+    const v = SP.views[SP.i];
+    const slots = $('sp-build');
+    if (!slots) return;
+    slots.innerHTML = '';
+    if (!SP.build.length) {
+      const p = document.createElement('span');
+      p.className = 'sp-build-empty';
+      p.textContent = t('spellBuildEmpty');
+      slots.appendChild(p);
+    }
+    SP.build.forEach(function (n, pos) {
+      const c = document.createElement('button');
+      c.className = 'sp-built';
+      c.textContent = v.pool[n].p;
+      c.title = t('orderUndo');
+      c.addEventListener('click', function () {
+        if (SP.checked) return;
+        Sound.click();
+        SP.build.splice(pos, 1);
+        drawBuild();
+      });
+      slots.appendChild(c);
+    });
+    $$('#sp-body .sp-tile').forEach(function (b) {
+      b.classList.toggle('used', SP.build.indexOf(parseInt(b.dataset.n, 10)) !== -1);
+    });
+    const word = builtWord();
+    SP.selected = word ? word : null;
+    const blank = $('sp-blank');
+    if (blank) blank.textContent = word || '?';
   }
 
   /* ---- welk woord is goed geschreven? ---- */
@@ -401,6 +493,7 @@ const Spell = (function () {
     if (it.type === 'pick') return SP.selected === null ? '-' : it.options[SP.selected];
     if (it.type === 'fill') return SP.selected === null ? '-' : it.before + it.gap[SP.selected] + it.after;
     if (it.type === 'type') return tidy(SP.selected) || '-';
+    if (it.type === 'build') return tidy(SP.selected) || '-';
     if (it.type === 'error') return SP.selected === null ? '-' : it.words[SP.selected];
     if (it.type === 'sort') {
       if (!Array.isArray(SP.selected)) return '-';
@@ -416,6 +509,8 @@ const Spell = (function () {
     if (it.type === 'pick') return SP.selected === it.answer;
     if (it.type === 'fill') return SP.selected === it.answer;
     if (it.type === 'type') return sameWord(SP.selected, it.word);
+    /* bij de woordbouwer staan de stukjes er al: hoofdletters tellen dus mee */
+    if (it.type === 'build') return tidy(SP.selected) === tidy(it.word);
     if (it.type === 'error') return SP.selected === it.answer;
     if (it.type === 'sort') {
       if (!Array.isArray(SP.selected)) return false;
@@ -450,6 +545,7 @@ const Spell = (function () {
         S.streak++;
         addXP(8 + Math.min(S.streak, 5) * 2);
         FX.burst(S.streak >= 3 ? 50 : 22);
+        if ([3, 5, 10, 15, 20].indexOf(S.streak) !== -1) FX.combo(S.streak);
       }
       Sound.correct();
       Rewards.track('spellCorrect');
@@ -489,6 +585,10 @@ const Spell = (function () {
     } else if (it.type === 'type') {
       const input = $('sp-input');
       if (input) { input.classList.add(SP.results[SP.i] ? 'ok' : 'no'); input.readOnly = true; }
+    } else if (it.type === 'build') {
+      const box = $('sp-build');
+      if (box) box.classList.add(SP.results[SP.i] ? 'ok' : 'no');
+      $$('#sp-body .sp-tile, #sp-body .sp-built').forEach(function (b) { b.style.pointerEvents = 'none'; });
     } else if (it.type === 'sort') {
       $$('#sp-body .sort-row').forEach(function (row, n) {
         row.classList.add(SP.sortPick[n] === v.words[n].bin ? 'ok' : 'no');
@@ -502,7 +602,7 @@ const Spell = (function () {
     const fb = $('sp-feedback');
     fb.className = 'q-feedback show ' + (ok ? 'good' : 'bad');
     let html = '<b>' + (ok ? '✅ ' + t('correct') : '❌ ' + t('wrong')) + '</b>';
-    if (!ok && it.type === 'type') {
+    if (!ok && (it.type === 'type' || it.type === 'build')) {
       html += '<p class="sp-answer">' + t('spellRightWord') + ' <b>' + it.word + '</b></p>';
     }
     if (it.type === 'sort') {
@@ -528,6 +628,7 @@ const Spell = (function () {
     const keep = {
       checked: SP.checked, selected: SP.selected, jokerUsed: SP.jokerUsed,
       sortPick: SP.sortPick ? SP.sortPick.slice() : null,
+      build: SP.build.slice(),
       itemStart: SP.itemStart
     };
     renderItem();
@@ -537,6 +638,7 @@ const Spell = (function () {
     SP.selected = keep.selected;
     SP.jokerUsed = keep.jokerUsed;
     SP.sortPick = keep.sortPick;
+    SP.build = keep.build;
     SP.itemStart = keep.itemStart;
 
     if (it.type === 'pick' || it.type === 'fill') {
@@ -551,6 +653,8 @@ const Spell = (function () {
     } else if (it.type === 'type') {
       const input = $('sp-input');
       if (input) input.value = SP.selected || '';
+    } else if (it.type === 'build') {
+      drawBuild();
     } else if (it.type === 'sort') {
       $$('#sp-body .sort-row').forEach(function (row, n) {
         const bin = SP.sortPick[n];
@@ -593,14 +697,16 @@ const Spell = (function () {
 
     Rewards.markPlayedToday();
     Rewards.track('spellSet');
+    const earned = stars >= 1 ? Rewards.earn('spell') : { tickets: 0 };
+    if (prev && correct > prev.correct) FX.toast('📈 ' + t('improved').replace('{a}', prev.correct).replace('{b}', correct), 3000);
 
     Store.log('spell_done', {
       session: S.sessionId, set: SP.set.id, cat: SP.cat, level: SP.set.level,
       correct: correct, total: total, stars: stars, xp: xp, ms: ms, lang: window.LANG
     });
 
-    const badges = checkBadges({ spellPerfect: ratio === 1 });
-    SP.last = { correct: correct, total: total, stars: stars, xp: xp, coins: coinsGain, ms: ms, badges: badges, wrong: SP.wrong.slice() };
+    const badges = checkBadges({ spellPerfect: ratio === 1, spellG8: SP.set.grade === 8 && stars >= 2 });
+    SP.last = { correct: correct, total: total, stars: stars, xp: xp, coins: coinsGain, tickets: earned.tickets, ms: ms, badges: badges, wrong: SP.wrong.slice() };
 
     renderResult();
     show('spell-result');
@@ -625,6 +731,7 @@ const Spell = (function () {
     $('spt-correct').textContent = r.correct + '/' + r.total;
     FX.countUp($('spt-xp'), r.xp, '+');
     FX.countUp($('spt-coins'), r.coins || 0, '+');
+    $('spt-tickets').textContent = '+' + (r.tickets || 0);
     const m = Math.floor(r.ms / 60000), s = Math.floor(r.ms % 60000 / 1000);
     $('spt-time').textContent = m + ':' + String(s).padStart(2, '0');
 
@@ -700,7 +807,7 @@ const Spell = (function () {
       if (S.screen !== 'spell' || e.ctrlKey || e.metaKey || e.altKey) return;
       if (current() && current().type === 'type') return;   /* daar typ je gewoon */
       if (e.key >= '1' && e.key <= '9') {
-        const opts = $$('#sp-body .opt, #sp-body .sp-piece, #sp-body .sp-chip');
+        const opts = $$('#sp-body .opt, #sp-body .sp-piece, #sp-body .sp-chip, #sp-body .sp-tile');
         const i = parseInt(e.key, 10) - 1;
         if (opts[i]) opts[i].click();
       } else if (e.key === 'Enter') {

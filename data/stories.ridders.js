@@ -1057,5 +1057,135 @@ addStories([
       explain: { nl: 'Elke alinea noemt een manier om het kasteel te verdedigen: gracht, brug, muren en voorraad.',
                  en: 'Every paragraph names a way to defend the castle: moat, bridge, walls and supplies.' } }
   ]
+},
+
+{
+  id: 'ridders-12', topic: 'ridders', level: 6, emoji: '🌊', scene: 'water',
+  title: { nl: 'De nacht dat het water kwam', en: 'The night the water came' },
+  text: {
+    nl: [
+      "Op zaterdagavond 31 januari 1953 ging Zeeland gewoon slapen. Het stormde wel hard, maar dat waren de mensen aan de kust gewend. Bijna niemand wist dat er die nacht twee dingen tegelijk gebeurden: een zware noordwesterstorm blies het zeewater de kust op, en het was springtij, waardoor het water toch al extra hoog stond. Samen duwden ze de zee hoger op dan iemand ooit had meegemaakt.",
+      "Midden in de nacht bezweken de dijken. Op tientallen plekken in Zeeland, Zuid-Holland en West-Brabant stroomde het zeewater de polders in. Mensen werden wakker van het geraas en van water dat onder de deur door kwam. Wie kon, vluchtte naar de zolder of klom op het dak. Daar wachtten sommigen een dag of zelfs langer, in de ijskoude wind, op hulp.",
+      "Die hulp kwam traag op gang. Telefoonlijnen waren kapot en veel radio's werkten niet. Op zondagochtend begreep de rest van Nederland nog niet hoe groot de ramp was. Radioamateurs, gewone mensen met een zender op zolder, zorgden ervoor dat berichten toch doorkwamen. Later kwamen soldaten, vissers met hun boten, en helikopters uit andere landen om mensen van de daken te halen.",
+      "De schade was enorm. Er verdronken 1836 mensen en tienduizenden dieren. Meer dan zeventigduizend mensen moesten hun huis uit. Uit binnen- en buitenland kwamen kleding, dekens en geld. Het laatste gat in de dijk, bij het dorp Ouwerkerk, werd pas in november gedicht. Daarvoor gebruikten ze grote betonnen bakken uit de Tweede Wereldoorlog, die ze in het gat lieten zakken.",
+      "De regering besloot dat zoiets nooit meer mocht gebeuren. Zo ontstond het Deltaplan: een reeks dammen, sluizen en stormvloedkeringen die de zeearmen konden afsluiten. Het werk duurde tientallen jaren. De bekendste is de Oosterscheldekering, die in 1986 klaar was. Die kering heeft grote schuiven die gewoonlijk open staan, zodat eb en vloed doorgaan en de natuur erachter blijft leven, maar die dicht kunnen bij storm.",
+      "Nog elk jaar wordt de ramp herdacht. Opa's en oma's die het als kind meemaakten, vertellen erover op scholen. Zo blijft de ramp niet alleen een gebeurtenis uit een geschiedenisboek, maar een verhaal van echte mensen. In het dorp Ouwerkerk staat nu een museum in de betonnen bakken die het laatste gat dichtten. De verhalen herinneren ons eraan dat een groot deel van Nederland onder zeeniveau ligt, en dat veiligheid tegen het water nooit vanzelf gaat."
+    ],
+    en: [
+      "On Saturday evening 31 January 1953, Zeeland went to bed as usual. There was a strong storm, but people on the coast were used to that. Hardly anyone knew that two things were happening at once that night: a heavy north-westerly storm was blowing the seawater onto the coast, and it was spring tide, so the water was already extra high. Together they pushed the sea higher than anyone had ever known.",
+      "In the middle of the night the dykes gave way. At dozens of places in Zeeland, South Holland and West Brabant the seawater poured into the polders. People woke up to the roaring and to water coming in under the door. Whoever could fled to the attic or climbed onto the roof. There some of them waited a day or even longer, in the icy wind, for help.",
+      "That help was slow to get going. Telephone lines were broken and many radios did not work. On Sunday morning the rest of the Netherlands did not yet understand how big the disaster was. Radio amateurs, ordinary people with a transmitter in the attic, made sure messages still got through. Later soldiers came, fishermen with their boats, and helicopters from other countries to lift people off the roofs.",
+      "The damage was enormous. 1836 people drowned, along with tens of thousands of animals. More than seventy thousand people had to leave their homes. Clothes, blankets and money came from at home and abroad. The last hole in the dyke, near the village of Ouwerkerk, was only closed in November. For that they used large concrete boxes from the Second World War, which they lowered into the gap.",
+      "The government decided that something like this must never happen again. That is how the Delta Plan came about: a series of dams, locks and storm surge barriers that could close off the sea inlets. The work took decades. The best known is the Eastern Scheldt barrier, which was finished in 1986. That barrier has large gates that are normally open, so that the tides carry on and nature behind it stays alive, but which can close in a storm.",
+      "The disaster is still remembered every year. Grandpas and grandmas who lived through it as children talk about it in schools. That way the disaster is not just an event from a history book, but a story of real people. In the village of Ouwerkerk there is now a museum inside the concrete boxes that closed the last gap. The stories remind us that a large part of the Netherlands lies below sea level, and that safety from the water never comes by itself."
+    ]
+  },
+  words: [
+    { nl: 'springtij', en: 'spring tide', defNl: 'een tijd waarin hoogwater extra hoog komt, door de stand van zon en maan', defEn: 'a time when high tide comes extra high, because of the position of the sun and moon' },
+    { nl: 'bezwijken', en: 'to give way', defNl: 'kapotgaan omdat de druk te groot wordt', defEn: 'to break because the pressure gets too great' },
+    { nl: 'stormvloedkering', en: 'storm surge barrier', defNl: 'een dam met schuiven die dicht kunnen als het water te hoog komt', defEn: 'a dam with gates that can close when the water gets too high' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Welke twee dingen gebeurden in de nacht van 31 januari 1953 tegelijk?', en: 'Which two things happened at the same time on the night of 31 January 1953?' },
+      options: [
+        { nl: 'Een zware storm en springtij', en: 'A heavy storm and spring tide' },
+        { nl: 'Een aardbeving en regen', en: 'An earthquake and rain' },
+        { nl: 'Sneeuw en ijzel', en: 'Snow and black ice' },
+        { nl: 'Een oorlog en een storm', en: 'A war and a storm' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1 noemt de noordwesterstorm en het springtij, die samen het water opstuwden.',
+                 en: 'Paragraph 1 names the north-westerly storm and the spring tide, which pushed the water up together.' } },
+    { id: 'q2', type: 'find', skill: 'gevolgtrekking',
+      q: { nl: 'Welke zin laat het best zien waarom de hulp traag op gang kwam?', en: 'Which sentence best shows why the help was slow to get going?' },
+      options: [
+        { nl: 'Het stormde wel hard, maar dat waren de mensen aan de kust gewend.', en: 'There was a strong storm, but people on the coast were used to that.' },
+        { nl: "Telefoonlijnen waren kapot en veel radio's werkten niet.", en: 'Telephone lines were broken and many radios did not work.' },
+        { nl: 'Er verdronken 1836 mensen en tienduizenden dieren.', en: '1836 people drowned, along with tens of thousands of animals.' },
+        { nl: 'Het werk duurde tientallen jaren.', en: 'The work took decades.' }
+      ], answer: 1,
+      explain: { nl: 'Zonder telefoon en radio hoorde de rest van het land niet wat er gebeurde. Daarom duurde het lang voor er hulp kwam.',
+                 en: 'Without telephones and radio the rest of the country did not hear what was happening. That is why help took so long.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Bij springtij ___.', en: 'At spring tide ___.' },
+      options: [
+        { nl: 'komt het hoogwater extra hoog', en: 'high tide comes extra high' },
+        { nl: 'springen de vissen uit het water', en: 'the fish jump out of the water' },
+        { nl: 'is het altijd lente', en: 'it is always spring' },
+        { nl: 'waait er nooit wind', en: 'there is never any wind' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: het was springtij, "waardoor het water toch al extra hoog stond".',
+                 en: 'Paragraph 1: it was spring tide, "so the water was already extra high".' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de gebeurtenissen in de goede volgorde.', en: 'Put the events in the right order.' },
+      items: [
+        { nl: 'Het is springtij en er waait een zware storm.', en: 'It is spring tide and a heavy storm is blowing.' },
+        { nl: 'De dijken breken door.', en: 'The dykes give way.' },
+        { nl: 'Radioamateurs geven berichten door.', en: 'Radio amateurs pass on messages.' },
+        { nl: 'Het laatste gat bij Ouwerkerk wordt gedicht.', en: 'The last gap near Ouwerkerk is closed.' },
+        { nl: 'De Oosterscheldekering is klaar.', en: 'The Eastern Scheldt barrier is finished.' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'De nacht van de storm, dan de doorbraken, de hulp, het dichten in november 1953, en in 1986 de kering.',
+                 en: 'The night of the storm, then the breaches, the help, the closing in November 1953, and the barrier in 1986.' } },
+    { id: 'q5', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Daarvoor gebruikten ze grote betonnen bakken uit de Tweede Wereldoorlog." Waarvoor?', en: '"For that they used large concrete boxes from the Second World War." For what?' },
+      options: [
+        { nl: 'Om het laatste gat in de dijk te dichten', en: 'To close the last hole in the dyke' },
+        { nl: 'Om mensen van de daken te halen', en: 'To lift people off the roofs' },
+        { nl: 'Om kleding en dekens in te bewaren', en: 'To store clothes and blankets' },
+        { nl: 'Om een museum te bouwen', en: 'To build a museum' }
+      ], answer: 0,
+      explain: { nl: '"Daarvoor" wijst terug naar de zin ervoor: het laatste gat bij Ouwerkerk dichten.',
+                 en: '"For that" points back to the sentence before: closing the last gap near Ouwerkerk.' } },
+    { id: 'q6', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Klik het woord en daarna de juiste betekenis.', en: 'Click the word and then the correct meaning.' },
+      pairs: [
+        { word: { nl: 'bezwijken', en: 'to give way' }, meaning: { nl: 'kapotgaan omdat de druk te groot wordt', en: 'to break because the pressure is too great' } },
+        { word: { nl: 'herdenken', en: 'to commemorate' }, meaning: { nl: 'samen terugdenken aan iets wat gebeurd is', en: 'to remember together something that happened' } },
+        { word: { nl: 'stormvloedkering', en: 'storm surge barrier' }, meaning: { nl: 'een dam die dicht kan als het water te hoog komt', en: 'a dam that can close when the water gets too high' } }
+      ],
+      explain: { nl: 'Deze drie woorden komen allemaal uit de tekst.', en: 'All three words come from the text.' } },
+    { id: 'q7', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Bij de ramp verdronken 1836 mensen.', en: '1836 people drowned in the disaster.', bin: 0 },
+        { nl: 'De regering had veel eerder betere dijken moeten bouwen.', en: 'The government should have built better dykes much earlier.', bin: 1 },
+        { nl: 'De Oosterscheldekering was in 1986 klaar.', en: 'The Eastern Scheldt barrier was finished in 1986.', bin: 0 },
+        { nl: 'De Oosterscheldekering is het mooiste bouwwerk van Nederland.', en: 'The Eastern Scheldt barrier is the most beautiful structure in the Netherlands.', bin: 1 }
+      ],
+      explain: { nl: 'Aantallen en jaartallen zijn na te gaan: feiten. "Had moeten" en "het mooiste" zijn meningen.',
+                 en: 'Numbers and years can be checked: facts. "Should have" and "the most beautiful" are opinions.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Wie hielpen volgens de tekst om mensen van de daken te halen? Kies er 2.', en: 'According to the text, who helped lift people off the roofs? Pick 2.' },
+      options: [
+        { nl: 'Vissers met hun boten', en: 'Fishermen with their boats' },
+        { nl: 'Soldaten', en: 'Soldiers' },
+        { nl: 'Brandweerauto\'s uit Amsterdam', en: 'Fire engines from Amsterdam' },
+        { nl: 'Treinen uit Duitsland', en: 'Trains from Germany' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 3 noemt soldaten, vissers met hun boten en helikopters uit andere landen.',
+                 en: 'Paragraph 3 names soldiers, fishermen with their boats and helicopters from other countries.' } },
+    { id: 'q9', type: 'mc', skill: 'doel',
+      q: { nl: 'Waarom vertelt de schrijver aan het eind over opa\'s en oma\'s die op scholen vertellen?', en: 'Why does the writer end by mentioning grandparents who talk in schools?' },
+      options: [
+        { nl: 'Om te laten zien dat de ramp nog steeds belangrijk is om te onthouden', en: 'To show that the disaster is still important to remember' },
+        { nl: 'Om reclame te maken voor een museum', en: 'To advertise a museum' },
+        { nl: 'Om uit te leggen hoe een stormvloedkering werkt', en: 'To explain how a storm surge barrier works' },
+        { nl: 'Om te zeggen dat opa\'s en oma\'s goed kunnen vertellen', en: 'To say that grandparents are good storytellers' }
+      ], answer: 0,
+      explain: { nl: 'De laatste alinea gaat over herdenken: de verhalen houden de les van 1953 levend.',
+                 en: 'The last paragraph is about remembering: the stories keep the lesson of 1953 alive.' } },
+    { id: 'q10', type: 'find', skill: 'hoofdgedachte',
+      q: { nl: 'Welke zin vat de les van deze ramp het best samen?', en: 'Which sentence best sums up the lesson of this disaster?' },
+      options: [
+        { nl: 'De schade was enorm.', en: 'The damage was enormous.' },
+        { nl: 'Midden in de nacht bezweken de dijken.', en: 'In the middle of the night the dykes gave way.' },
+        { nl: 'Die hulp kwam traag op gang.', en: 'That help was slow to get going.' },
+        { nl: 'De verhalen herinneren ons eraan dat een groot deel van Nederland onder zeeniveau ligt, en dat veiligheid tegen het water nooit vanzelf gaat.', en: 'The stories remind us that a large part of the Netherlands lies below sea level, and that safety from the water never comes by itself.' }
+      ], answer: 3,
+      explain: { nl: 'De andere zinnen vertellen wat er gebeurde. Alleen de laatste zin zegt wat we ervan moeten leren.',
+                 en: 'The other sentences tell what happened. Only the last one says what we should learn from it.' } }
+  ]
 }
 ]);

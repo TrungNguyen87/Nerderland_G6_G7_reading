@@ -225,10 +225,10 @@ try {
     window.STORY_DB.forEach((s) => s.questions.forEach((q) => { seen[q.type] = (seen[q.type] || 0) + 1; }));
     return seen;
   });
-  for (const t of ['mc', 'tf', 'gap', 'order', 'match', 'multi', 'sort']) {
+  for (const t of ['mc', 'tf', 'gap', 'order', 'match', 'multi', 'sort', 'find']) {
     if (!typesSeen[t]) bad(`question type "${t}" is never used`);
   }
-  ok('all seven question types appear in the story database');
+  ok('all eight question types appear in the story database');
 
   /* open a Cito-level story straight away, without grinding through the ladder */
   const hardest = await page.evaluate(() => {
@@ -460,6 +460,262 @@ try {
   else ok('the 30-minute mission pays out once per day, also after a reload');
 
   /* =================================================================
+     7c. Groep 8, the arcade, the Woordkist and the reading dragon
+     ================================================================= */
+  /* tickets: 3 to start, +2 per finished story, +1 per spelling set.
+     So far: two flawless stories and one flawless spelling set. */
+  const tickets0 = await page.evaluate(() => Store.player.tickets);
+  if (tickets0 !== 3 + 2 + 2 + 1) bad(`expected 8 game tickets after two stories and a spelling set, found ${tickets0}`);
+  else ok('game tickets are earned by reading (+2 per story) and spelling (+1 per set)');
+
+  /* the reading dragon has hatched from all that reading */
+  const pet = await page.evaluate(() => ({ stage: Rewards.petStage(), emoji: document.getElementById('pet-emoji').textContent,
+    grew: Store.events.filter((e) => e.t === 'pet_grow').length }));
+  if (pet.stage < 1 || pet.emoji === '🥚' || pet.grew < 1) bad(`the reading dragon did not hatch after reading (${JSON.stringify(pet)})`);
+  else ok(`the reading dragon hatched and is shown on the world screen (${pet.emoji})`);
+
+  /* a groep 8 story: the level-6 card is there, and a whole Eindbaas
+     story plays through, including the new "find the proof" questions */
+  const g8 = await page.evaluate(() => {
+    const s = window.STORY_DB.find((x) => x.level === 6 && x.questions.some((q) => q.type === 'find'));
+    openStory(s);
+    return { id: s.id, n: s.questions.length, finds: s.questions.filter((q) => q.type === 'find').length };
+  });
+  await page.waitForSelector('#screen-read.active');
+  await sel('#btn-done-reading').click();
+  await page.waitForSelector('#screen-quiz.active');
+  const g8Types = new Set();
+  for (let i = 0; i < g8.n; i++) {
+    const q = await page.evaluate(() => {
+      const qq = S.story.questions[S.qi];
+      return { type: qq.type, answer: qq.answer, bins: qq.type === 'sort' ? S.views[S.qi].items.map((x) => x.o.bin) : null,
+        pairs: qq.type === 'match' ? qq.pairs.length : null };
+    });
+    g8Types.add(q.type);
+    if (q.type === 'find') {
+      /* the sentences must stay in the order of the text, not shuffled */
+      const inOrder = await page.evaluate(() => S.views[S.qi].opts.every((o, n) => o.i === n));
+      if (!inOrder) bad('the sentences of a "find the proof" question were shuffled');
+      await sel(`#q-body .find-opt[data-orig="${q.answer}"]`).click();
+    } else if (q.type === 'mc' || q.type === 'gap') await sel(`#q-body .opt[data-orig="${q.answer}"]`).click();
+    else if (q.type === 'multi') { for (const o of q.answer) await sel(`#q-body .opt[data-orig="${o}"]`).click(); }
+    else if (q.type === 'tf') await sel(`#q-body .tf-btn[data-val="${q.answer ? '1' : '0'}"]`).click();
+    else if (q.type === 'order') { for (const o of q.answer) await sel(`#order-pool .order-item[data-orig="${o}"]`).click(); }
+    else if (q.type === 'sort') {
+      for (let r = 0; r < q.bins.length; r++) await sel('#q-body .sort-row').nth(r).locator('.sort-bin').nth(q.bins[r]).click();
+    } else if (q.type === 'match') {
+      for (let p = 0; p < q.pairs; p++) {
+        await sel(`#q-body .match-col:first-child .match-item[data-pair="${p}"]`).click();
+        await sel(`#q-body .match-col:last-child .match-item[data-pair="${p}"]`).click();
+      }
+      await page.waitForTimeout(600);
+    }
+    if (q.type !== 'match') await sel('#btn-check').click();
+    await page.waitForSelector('#q-feedback.show');
+    if (await page.evaluate(() => S.results[S.qi]) !== true) bad(`groep 8 question ${i + 1} (${q.type}) was marked wrong although the data says it is right`);
+    await sel('#btn-next').click();
+  }
+  await page.waitForSelector('#screen-result.active');
+  const g8Result = await page.evaluate(() => ({ stars: S.lastResult.stars, badge: (Store.player.badges || []).indexOf('g8') !== -1 }));
+  if (g8Result.stars !== 3) bad(`a flawless groep 8 story gave ${g8Result.stars} stars`);
+  else if (!g8Result.badge) bad('a flawless groep 8 story did not earn the "Groep 8-baas" badge');
+  else ok(`played a groep 8 story (${g8.id}, ${g8.n} questions, ${g8.finds} "find the proof"): 3 stars and the Groep 8 badge`);
+  if (!g8Types.has('find')) bad('the groep 8 story never showed a "find the proof" question');
+
+  /* a wrong "find" answer is marked wrong */
+  await sel('#btn-again').click();
+  await page.waitForSelector('#screen-read.active');
+  await sel('#btn-done-reading').click();
+  await page.waitForSelector('#screen-quiz.active');
+  const findWrong = await page.evaluate(() => {
+    const i = S.story.questions.findIndex((q) => q.type === 'find');
+    S.qi = i; renderQuestion();
+    const q = S.story.questions[i];
+    return q.options.findIndex((o, n) => n !== q.answer);
+  });
+  await sel(`#q-body .find-opt[data-orig="${findWrong}"]`).click();
+  await sel('#btn-check').click();
+  await page.waitForSelector('#q-feedback.show');
+  if (await page.evaluate(() => S.results[S.qi]) !== false) bad('a wrong sentence in a "find the proof" question was accepted');
+  else ok('a wrong sentence in a "find the proof" question is marked wrong');
+
+  /* a groep 8 spelling set with the new word-builder exercise */
+  await sel('#btn-home').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await sel('.mode-tab[data-mode="spell"]').click();
+  const g8Head = await sel('#spell-grid .grid-heading').count();
+  if (g8Head !== 1) bad('the spelling tab has no "groep 8" heading for the new rules');
+  await page.evaluate(() => Spell.openSet(window.SPELL_SETS.find((s) => s.id === 'getal-2')));
+  await page.waitForSelector('#screen-spell.active');
+  const g8Items = await page.evaluate(() => Spell.state().items.length);
+  let builds = 0;
+  for (let i = 0; i < g8Items; i++) {
+    const it = await page.evaluate(() => {
+      const SP = Spell.state(); const item = Spell.current();
+      return { type: item.type, answer: item.answer, word: item.word, tiles: item.tiles ? item.tiles.length : 0,
+        bins: item.type === 'sort' ? SP.views[SP.i].words.map((w) => w.bin) : null };
+    });
+    if (it.type === 'build') {
+      builds++;
+      for (let k = 0; k < it.tiles; k++) await sel(`#sp-body .sp-tile[data-k="t${k}"]`).first().click();
+    } else if (it.type === 'type') await sel('#sp-input').fill(it.word);
+    else if (it.type === 'fill') await sel(`#sp-body .sp-piece[data-orig="${it.answer}"]`).click();
+    else if (it.type === 'pick') await sel(`#sp-body .opt[data-orig="${it.answer}"]`).click();
+    else if (it.type === 'error') await sel(`#sp-body .sp-chip[data-orig="${it.answer}"]`).click();
+    else if (it.type === 'sort') {
+      for (let r = 0; r < it.bins.length; r++) await sel('#sp-body .sort-row').nth(r).locator('.sort-bin').nth(it.bins[r]).click();
+    }
+    await sel('#btn-sp-check').click();
+    await page.waitForSelector('#sp-feedback.show');
+    if (await page.evaluate(() => { const SP = Spell.state(); return SP.results[SP.i]; }) !== true) {
+      bad(`groep 8 spelling item ${i + 1} (${it.type}) was marked wrong although the data says it is right`);
+    }
+    await sel('#btn-sp-next').click();
+  }
+  await page.waitForSelector('#screen-spell-result.active');
+  const sp8 = await page.evaluate(() => ({ stars: Spell.state().last.stars, badge: (Store.player.badges || []).indexOf('spell8') !== -1 }));
+  if (!builds) bad('the groep 8 spelling set had no word-builder exercise');
+  if (sp8.stars !== 3 || !sp8.badge) bad(`a flawless groep 8 spelling set gave ${sp8.stars} stars / badge ${sp8.badge}`);
+  else ok(`played a groep 8 spelling set with ${builds} word-builder item(s): 3 stars and the Groep 8 speller badge`);
+
+  /* a wrongly built word is marked wrong */
+  await page.evaluate(() => {
+    const s = window.SPELL_SETS.find((x) => x.id === 'getal-2');
+    Spell.openSet(s);
+    const SP = Spell.state();
+    SP.i = SP.items.findIndex((x) => x.type === 'build');
+    Spell.renderItem();
+  });
+  await sel('#sp-body .sp-tile[data-k="x0"]').click();
+  await sel('#btn-sp-check').click();
+  await page.waitForSelector('#sp-feedback.show');
+  if (await page.evaluate(() => { const SP = Spell.state(); return SP.results[SP.i]; }) !== false) bad('a wrongly built word was accepted');
+  else ok('a wrongly built word is marked wrong and the right word is shown');
+
+  /* the arcade: three games and the Woordkist in a third tab */
+  await sel('#btn-home').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await sel('.mode-tab[data-mode="play"]').click();
+  const gameCards = await sel('#play-grid .game-card').count();
+  if (gameCards !== 4) bad(`the arcade tab shows ${gameCards} cards (expected 3 games + the Woordkist)`);
+  else ok('the "Spellen" tab shows three arcade games and the Woordkist');
+
+  const pools = await page.evaluate(() => Arcade.pools());
+  if (pools.spell < 100 || pools.words < 100) bad(`the arcade has too few words to play with (${JSON.stringify(pools)})`);
+
+  const ticketsBefore = await page.evaluate(() => Store.player.tickets);
+  await sel('#play-grid .game-card[data-game="runner"]').click();
+  await page.waitForSelector('#screen-arcade.active');
+  if (await page.evaluate(() => Store.player.tickets) !== ticketsBefore - 1) bad('starting a game did not cost one ticket');
+  await sel('#arc-start').click();
+  /* real physics: an autopilot that jumps when the right word is high
+     must get the first two word pairs right without losing a heart */
+  await page.evaluate(() => {
+    const G = Arcade.state();
+    window.__pilot = setInterval(() => {
+      const m = G.game; if (!m || G.state !== 'play') return;
+      const h = m.hero; const front = h.x + h.w / 2;
+      for (const it of m.items) {
+        if (it.x + it.w < h.x - h.w) continue;
+        if (it.kind === 'snail') { if (it.x - front < 40 && it.x - front > 0) m.action(); break; }
+        if (G.duels[it.di].done) continue;
+        if (it.rightHigh && it.x - front < 62 && it.x - front > 20) m.action();
+        break;
+      }
+    }, 16);
+  });
+  await page.waitForFunction(() => Arcade.state().di >= 2, null, { timeout: 25000 });
+  const run2 = await page.evaluate(() => { clearInterval(window.__pilot); const G = Arcade.state(); return { correct: G.correct, hearts: G.hearts, frames: G.frames }; });
+  if (run2.correct !== 2 || run2.hearts !== 3) bad(`Springheld: jumping to the right word did not score (${JSON.stringify(run2)})`);
+  else ok(`Springheld plays with real physics: jumping or staying low picks the right word (${run2.frames} frames)`);
+
+  /* switching language mid-game keeps the game going */
+  await sel('#btn-lang').click();
+  const goalEn = await sel('#arc-goal').innerText();
+  await sel('#btn-lang').click();
+  if (!/Right word|Keep running/.test(goalEn)) bad('the arcade did not switch to English');
+
+  /* finish the round through the test hook: 12 right, 1 wrong */
+  await page.evaluate(() => { for (let i = 0; i < 13; i++) Arcade.debugResolve(i !== 5); });
+  await page.waitForSelector('#screen-arcade-result.active', { timeout: 5000 });
+  const arc = await page.evaluate(() => ({
+    correct: document.getElementById('arr-correct').textContent,
+    missed: document.querySelectorAll('#arr-missed .sp-missed').length,
+    best: (Store.player.arcadeBest || {}).runner || 0,
+    logged: Store.events.filter((e) => e.t === 'arcade_done').length,
+    badge: (Store.player.badges || []).indexOf('arcade') !== -1
+  }));
+  if (arc.correct !== '14/15' || arc.missed !== 1 || !arc.best || arc.logged !== 1) bad(`the arcade result is wrong (${JSON.stringify(arc)})`);
+  else if (!arc.badge) bad('12+ right in one arcade game did not earn the arcade badge');
+  else ok(`an arcade round ends with a result: ${arc.correct} right, the missed word listed with its rule, record ${arc.best}`);
+
+  /* Flappy Uil and Woordregen start and run too */
+  for (const g of ['flappy', 'rain']) {
+    await sel('#btn-arc-menu').click();
+    await page.waitForSelector('#screen-worlds.active');
+    await sel(`#play-grid .game-card[data-game="${g}"]`).click();
+    await page.waitForSelector('#screen-arcade.active');
+    await sel('#arc-start').click();
+    if (g === 'flappy') {
+      await page.keyboard.press('Space');
+      const vy = await page.evaluate(() => Arcade.state().game.owl.vy);
+      if (!(vy < 0)) bad('pressing space does not make the owl flap');
+    }
+    await page.waitForTimeout(800);
+    const frames = await page.evaluate(() => Arcade.state().frames);
+    if (frames < 15) bad(`${g}: the game loop is not running (${frames} frames)`);
+    await page.evaluate(() => { for (let i = 0; i < 15; i++) Arcade.debugResolve(true); });
+    await page.waitForSelector('#screen-arcade-result.active', { timeout: 5000 });
+  }
+  ok('Flappy Uil and Woordregen start, animate and finish a round');
+
+  /* no tickets, no game */
+  await sel('#btn-arc-menu').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await page.evaluate(() => { Store.player.tickets = 0; Arcade.renderMenu(); });
+  await sel('#play-grid .game-card[data-game="flappy"]').click();
+  await page.waitForTimeout(300);
+  if (!(await page.evaluate(() => S.screen === 'worlds'))) bad('a game could be started without a ticket');
+  else ok('without tickets the games stay closed (and say how to earn one)');
+
+  /* the Woordkist: 8 cards, one wrong (it comes back once), spaced repetition */
+  await sel('#play-grid .kist-card-btn').click();
+  await page.waitForSelector('#screen-woordkist.active');
+  const kistN = await page.evaluate(() => Woordkist.state().queue.length);
+  if (kistN !== 8) bad(`the Woordkist session has ${kistN} cards instead of 8`);
+  for (let i = 0; i < 20; i++) {
+    const st = await page.evaluate(() => { const K = Woordkist.state(); return { done: K.done, i: K.i, n: K.queue.length }; });
+    if (st.done) break;
+    const pickId = await page.evaluate((first) => {
+      const K = Woordkist.state(); const c = Woordkist.card();
+      return first ? K.opts.find((o) => o.id !== c.id).id : c.id;
+    }, i === 0);
+    await sel(`#kist-body .kist-opt[data-id="${pickId}"]`).click();
+    await sel('#btn-kist-next').click();
+  }
+  const kist = await page.evaluate(() => {
+    const cards = Store.player.kist.cards; const ids = Object.keys(cards);
+    return { done: Woordkist.state().done, total: ids.length, box1: ids.filter((k) => cards[k].box === 1).length,
+      box2: ids.filter((k) => cards[k].box === 2).length, dueLater: ids.every((k) => cards[k].due > localDay()) };
+  });
+  if (!kist.done || kist.total !== 8 || kist.box1 !== 1 || kist.box2 !== 7 || !kist.dueLater) bad(`the Woordkist schedule is wrong (${JSON.stringify(kist)})`);
+  else ok('the Woordkist: 8 cards, the missed one came back and went to box 1, the rest moved up and are due later');
+  const ticketsAfterKist = await page.evaluate(() => Store.player.tickets);
+  if (ticketsAfterKist !== 1) bad(`finishing the Woordkist gave ${ticketsAfterKist} tickets instead of 1`);
+
+  await page.evaluate(() => Woordkist.open('idiom'));
+  const idiom = await page.evaluate(() => ({ front: document.querySelector('.kist-word').textContent, opts: document.querySelectorAll('.kist-opt').length }));
+  if (!idiom.front || idiom.opts !== 4) bad('the sayings pile of the Woordkist does not show a card with four meanings');
+  else ok(`the Woordkist also has a groep 8 sayings pile ("${idiom.front}")`);
+  await sel('#btn-lang').click();
+  const kistQ = await sel('.kist-q').innerText();
+  await sel('#btn-lang').click();
+  if (!/mean/.test(kistQ)) bad('the Woordkist did not switch to English');
+
+  await sel('#btn-home').click();
+  await page.waitForSelector('#screen-worlds.active');
+
+  /* =================================================================
      8. Language switch across the whole interface
      ================================================================= */
   await sel('#btn-lang').click();
@@ -489,8 +745,15 @@ try {
     skillRows: document.querySelectorAll('#p-skills .sb-row').length,
     spellRows: document.querySelectorAll('#p-spell .sb-row').length,
     adviceRows: document.querySelectorAll('#p-advice li').length,
-    logRows: document.querySelectorAll('#p-log tr').length
+    logRows: document.querySelectorAll('#p-log tr').length,
+    arcade: document.getElementById('p-arcade').textContent,
+    kist: document.getElementById('p-kist').textContent,
+    dailyCols: document.querySelectorAll('#p-daily-log tr:first-child th').length,
+    dailyGames: document.querySelector('#p-daily-log tr:nth-child(2) td:nth-child(10)')?.textContent
   }));
+  if (Number(stats.arcade) < 3) bad(`the dashboard shows ${stats.arcade} arcade games (expected 3)`);
+  if (stats.dailyCols !== 11 || Number(stats.dailyGames) < 3) bad(`the daily log does not count today's arcade games (${stats.dailyCols} columns, ${stats.dailyGames} games)`);
+  else ok(`the parent dashboard also shows arcade games (${stats.arcade}) and Woordkist words known (${stats.kist}), per day too`);
   if (Number(stats.questions) < 5) bad('the dashboard logged no questions');
   if (Number(stats.spellWords) < 3) bad('the dashboard logged no spelling words');
   if (stats.skillRows < 10) bad(`only ${stats.skillRows} reading-skill bars (expected 10)`);
@@ -592,6 +855,18 @@ try {
     document.documentElement.scrollWidth - document.documentElement.clientWidth);
   if (overflow > 2) bad(`the page scrolls sideways on a phone (${overflow}px too wide)`);
   else ok('no sideways scrolling at phone width (390px)');
+
+  /* the arcade tab and a running game fit on a phone too */
+  await sel('.mode-tab[data-mode="play"]').click();
+  await page.evaluate(() => { Store.player.tickets = 1; Arcade.start('rain'); });
+  await page.waitForSelector('#screen-arcade.active');
+  const phoneArc = await page.evaluate(() => ({
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    canvas: document.getElementById('arc-canvas').getBoundingClientRect().width,
+    view: document.documentElement.clientWidth
+  }));
+  if (phoneArc.overflow > 2 || phoneArc.canvas > phoneArc.view) bad(`the arcade does not fit on a phone (${JSON.stringify(phoneArc)})`);
+  else ok(`an arcade game fits on a phone (canvas ${Math.round(phoneArc.canvas)}px wide)`);
 
   /* =================================================================
      13. Everything index.html asks for actually exists
