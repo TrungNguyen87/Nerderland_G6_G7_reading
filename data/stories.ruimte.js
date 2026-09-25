@@ -1022,5 +1022,138 @@ addStories([
       explain: { nl: 'De laatste alinea vat het samen: "De maan verandert dus niet echt van vorm."',
                  en: 'The last paragraph sums it up: "So the Moon does not really change shape."' } }
   ]
+},
+
+{
+  id: 'ruimte-12', topic: 'ruimte', level: 6, emoji: '🪐', scene: 'space',
+  title: { nl: 'Op zoek naar een tweede aarde', en: 'Looking for a second Earth' },
+  text: {
+    nl: [
+      "Eeuwenlang vroegen mensen zich af of er bij andere sterren ook planeten draaien. Niemand kon het bewijzen. Pas in 1995 vonden twee Zwitserse sterrenkundigen de eerste planeet bij een ster die op onze zon lijkt. Zo'n planeet buiten ons zonnestelsel heet een exoplaneet. Inmiddels kennen we er meer dan vijfduizend, en elk jaar komen er honderden bij.",
+      "Het vreemde is dat bijna niemand zo'n planeet ooit echt gezien heeft. Een ster geeft miljarden keren meer licht dan de planeet ernaast. Het is alsof je vanaf een kilometer afstand een vuurvliegje naast een vuurtoren probeert te zien. Daarom zoeken onderzoekers op een slimme manier: ze kijken niet naar de planeet, maar naar de ster.",
+      "Als een planeet precies tussen ons en zijn ster door schuift, wordt die ster heel even een klein beetje minder fel. Dat noemen sterrenkundigen een overgang. Een ruimtetelescoop meet het licht van duizenden sterren tegelijk, dag en nacht. Wordt een ster steeds na hetzelfde aantal dagen iets donkerder, dan draait er vrijwel zeker een planeet omheen. Uit de grootte van het dipje kun je zelfs uitrekenen hoe groot de planeet is.",
+      "Maar een planeet vinden is nog iets anders dan een tweede aarde vinden. Daarvoor moet een planeet in de leefbare zone liggen: niet te dicht bij de ster, want dan kookt het water weg, en niet te ver weg, want dan bevriest alles. Alleen daartussen kan er vloeibaar water zijn, en water is voor zover wij weten nodig voor leven. Sterrenkundigen noemen dat gebied daarom ook wel de Goudlokjezone, naar het sprookje waarin de pap niet te heet en niet te koud moest zijn.",
+      "Er zijn al tientallen planeten gevonden die ongeveer zo groot zijn als de aarde en in zo'n zone draaien. Toch betekent dat niet dat er ook leven is. Sommige hebben misschien geen dampkring, andere worden gebombardeerd door gevaarlijke straling van hun ster. De James Webb-telescoop probeert nu te meten welke gassen er in de lucht van zulke planeten zitten. Vindt hij bijvoorbeeld zuurstof en methaan samen, dan wordt het pas echt spannend.",
+      "Verhuizen kunnen we voorlopig niet. De dichtstbijzijnde exoplaneet staat ruim vier lichtjaar van ons vandaan. Met de snelste raket van nu zou de reis tienduizenden jaren duren. De zoektocht gaat dus niet over een nieuw huis, maar over een oude vraag: zijn wij alleen in het heelal?"
+    ],
+    en: [
+      "For centuries people wondered whether other stars also have planets going round them. Nobody could prove it. Only in 1995 did two Swiss astronomers find the first planet around a star that resembles our sun. Such a planet outside our solar system is called an exoplanet. By now we know more than five thousand, and hundreds more are added every year.",
+      "The strange thing is that almost nobody has ever really seen such a planet. A star gives off billions of times more light than the planet next to it. It is like trying to see a firefly next to a lighthouse from a kilometre away. That is why researchers search in a clever way: they do not look at the planet, but at the star.",
+      "When a planet slides exactly between us and its star, that star becomes a tiny bit less bright for a moment. Astronomers call that a transit. A space telescope measures the light of thousands of stars at once, day and night. If a star keeps getting slightly darker after the same number of days, a planet is almost certainly going round it. From the size of the dip you can even work out how big the planet is.",
+      "But finding a planet is something different from finding a second Earth. For that, a planet has to lie in the habitable zone: not too close to the star, because then the water boils away, and not too far away, because then everything freezes. Only in between can there be liquid water, and as far as we know water is needed for life. That is why astronomers also call the area the Goldilocks zone, after the fairy tale in which the porridge had to be not too hot and not too cold.",
+      "Dozens of planets have already been found that are roughly as big as the Earth and orbit in such a zone. Still, that does not mean there is life as well. Some may have no atmosphere, others are bombarded by dangerous radiation from their star. The James Webb telescope is now trying to measure which gases are in the air of such planets. If it finds oxygen and methane together, for example, then things get really exciting.",
+      "We cannot move there for the time being. The nearest exoplanet is more than four light years away from us. With today's fastest rocket the journey would take tens of thousands of years. So the search is not about a new home, but about an old question: are we alone in the universe?"
+    ]
+  },
+  words: [
+    { nl: 'exoplaneet', en: 'exoplanet', defNl: 'een planeet die om een andere ster dan onze zon draait', defEn: 'a planet that orbits a star other than our sun' },
+    { nl: 'leefbare zone', en: 'habitable zone', defNl: 'de afstand tot een ster waarop vloeibaar water kan bestaan', defEn: 'the distance from a star at which liquid water can exist' },
+    { nl: 'dampkring', en: 'atmosphere', defNl: 'de laag lucht rond een planeet', defEn: 'the layer of air around a planet' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Wanneer werd de eerste planeet bij een ster zoals onze zon gevonden?', en: 'When was the first planet around a star like our sun found?' },
+      options: [
+        { nl: 'In 1995', en: 'In 1995' },
+        { nl: 'Eeuwen geleden', en: 'Centuries ago' },
+        { nl: 'Vorig jaar', en: 'Last year' },
+        { nl: 'Nog nooit', en: 'Never' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "Pas in 1995 vonden twee Zwitserse sterrenkundigen de eerste planeet bij een ster die op onze zon lijkt."',
+                 en: 'Paragraph 1: "Only in 1995 did two Swiss astronomers find the first planet around a star that resembles our sun."' } },
+    { id: 'q2', type: 'find', skill: 'gevolgtrekking',
+      q: { nl: 'Welke zin legt uit waarom je een exoplaneet bijna nooit kunt zien?', en: 'Which sentence explains why you can almost never see an exoplanet?' },
+      options: [
+        { nl: 'Inmiddels kennen we er meer dan vijfduizend, en elk jaar komen er honderden bij.', en: 'By now we know more than five thousand, and hundreds more are added every year.' },
+        { nl: 'Een ster geeft miljarden keren meer licht dan de planeet ernaast.', en: 'A star gives off billions of times more light than the planet next to it.' },
+        { nl: 'Een ruimtetelescoop meet het licht van duizenden sterren tegelijk, dag en nacht.', en: 'A space telescope measures the light of thousands of stars at once, day and night.' },
+        { nl: 'De dichtstbijzijnde exoplaneet staat ruim vier lichtjaar van ons vandaan.', en: 'The nearest exoplanet is more than four light years away from us.' }
+      ], answer: 1,
+      explain: { nl: 'De ster straalt de planeet weg, net als een vuurtoren een vuurvliegje. Dat staat in alinea 2.',
+                 en: 'The star outshines the planet, like a lighthouse outshines a firefly. That is in paragraph 2.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een planeet in de leefbare zone ___.', en: 'A planet in the habitable zone ___.' },
+      options: [
+        { nl: 'staat zo ver van zijn ster dat er vloeibaar water kan zijn', en: 'is at such a distance from its star that there can be liquid water' },
+        { nl: 'wordt altijd door mensen bewoond', en: 'is always inhabited by people' },
+        { nl: 'draait heel snel om zichzelf', en: 'spins round very fast' },
+        { nl: 'heeft nooit een dampkring', en: 'never has an atmosphere' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 4: niet te dichtbij en niet te ver weg, zodat er vloeibaar water kan zijn.',
+                 en: 'Paragraph 4: not too close and not too far, so there can be liquid water.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Hoe vind je een planeet met de overgangsmethode? Zet de stappen op volgorde.', en: 'How do you find a planet with the transit method? Put the steps in order.' },
+      items: [
+        { nl: 'De telescoop meet het licht van heel veel sterren.', en: 'The telescope measures the light of very many stars.' },
+        { nl: 'Een planeet schuift tussen ons en de ster door.', en: 'A planet slides between us and the star.' },
+        { nl: 'De ster wordt heel even iets minder fel.', en: 'The star becomes slightly less bright for a moment.' },
+        { nl: 'Dat gebeurt steeds na evenveel dagen: er draait een planeet.', en: 'It keeps happening after the same number of days: a planet is going round.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Eerst meten, dan schuift de planeet voorlangs, dan dipt het licht, en de herhaling bewijst dat het een planeet is.',
+                 en: 'First measure, then the planet passes in front, then the light dips, and the repetition proves it is a planet.' } },
+    { id: 'q5', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Dat noemen sterrenkundigen een overgang." Wat is "dat"?', en: '"Astronomers call that a transit." What is "that"?' },
+      options: [
+        { nl: 'Een planeet die voor zijn ster langs schuift, zodat die ster iets minder fel wordt', en: 'A planet passing in front of its star so that the star gets slightly less bright' },
+        { nl: 'Een ster die ontploft', en: 'A star that explodes' },
+        { nl: 'Een telescoop die gaat draaien', en: 'A telescope that starts turning' },
+        { nl: 'Een raket die vertrekt', en: 'A rocket taking off' }
+      ], answer: 0,
+      explain: { nl: '"Dat" wijst terug naar de zin ervoor: de planeet schuift voor de ster en de ster wordt minder fel.',
+                 en: '"That" points back to the sentence before: the planet passes in front and the star gets less bright.' } },
+    { id: 'q6', type: 'mc', skill: 'gevolgtrekking',
+      q: { nl: 'Waarom wordt het "pas echt spannend" als de telescoop zuurstof en methaan samen vindt?', en: 'Why do things get "really exciting" if the telescope finds oxygen and methane together?' },
+      options: [
+        { nl: 'Omdat het een teken kan zijn dat er leven is', en: 'Because it might be a sign of life' },
+        { nl: 'Omdat raketten er dan kunnen tanken', en: 'Because rockets could refuel there' },
+        { nl: 'Omdat de planeet dan heel groot is', en: 'Because the planet is then very big' },
+        { nl: 'Omdat de ster dan minder fel is', en: 'Because the star is then less bright' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst gaat over de vraag of er leven is. Die gassen samen zouden daar een aanwijzing voor kunnen zijn.',
+                 en: 'The whole text is about whether there is life. Those gases together could be a clue.' } },
+    { id: 'q7', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Er zijn meer dan vijfduizend exoplaneten bekend.', en: 'More than five thousand exoplanets are known.', bin: 0 },
+        { nl: 'Het is zonde van het geld om naar exoplaneten te zoeken.', en: 'Searching for exoplanets is a waste of money.', bin: 1 },
+        { nl: 'De dichtstbijzijnde exoplaneet staat ruim vier lichtjaar weg.', en: 'The nearest exoplanet is more than four light years away.', bin: 0 },
+        { nl: 'De vraag of we alleen zijn, is de mooiste vraag die er bestaat.', en: 'Whether we are alone is the most beautiful question there is.', bin: 1 }
+      ],
+      explain: { nl: 'Aantallen en afstanden kun je meten: feiten. "Zonde" en "de mooiste" zijn oordelen: meningen.',
+                 en: 'Numbers and distances can be measured: facts. "A waste" and "the most beautiful" are judgements: opinions.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke twee redenen noemt de tekst waarom een planeet in de leefbare zone toch geen leven hoeft te hebben? Kies er 2.',
+           en: 'Which two reasons does the text give why a planet in the habitable zone need not have life? Pick 2.' },
+      options: [
+        { nl: 'Hij heeft misschien geen dampkring', en: 'It may have no atmosphere' },
+        { nl: 'Hij krijgt misschien gevaarlijke straling van zijn ster', en: 'It may get dangerous radiation from its star' },
+        { nl: 'Hij is te klein om te meten', en: 'It is too small to measure' },
+        { nl: 'Hij draait te langzaam', en: 'It turns too slowly' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 noemt precies deze twee: geen dampkring en gevaarlijke straling.',
+                 en: 'Paragraph 5 names exactly these two: no atmosphere and dangerous radiation.' } },
+    { id: 'q9', type: 'find', skill: 'hoofdgedachte',
+      q: { nl: 'Met welke zin laat de schrijver zien waar de zoektocht écht over gaat?', en: 'With which sentence does the writer show what the search is really about?' },
+      options: [
+        { nl: 'Verhuizen kunnen we voorlopig niet.', en: 'We cannot move there for the time being.' },
+        { nl: 'Toch betekent dat niet dat er ook leven is.', en: 'Still, that does not mean there is life as well.' },
+        { nl: 'De zoektocht gaat dus niet over een nieuw huis, maar over een oude vraag: zijn wij alleen in het heelal?', en: 'So the search is not about a new home, but about an old question: are we alone in the universe?' },
+        { nl: 'Daarom zoeken onderzoekers op een slimme manier: ze kijken niet naar de planeet, maar naar de ster.', en: 'That is why researchers search in a clever way: they do not look at the planet, but at the star.' }
+      ], answer: 2,
+      explain: { nl: 'Het signaalwoord "dus" in de laatste alinea leidt de conclusie in: het gaat om de vraag of we alleen zijn.',
+                 en: 'The signal word "so" in the last paragraph introduces the conclusion: it is about whether we are alone.' } },
+    { id: 'q10', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het best bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Sterrenkundigen vinden steeds meer planeten bij andere sterren door naar dipjes in sterrenlicht te kijken, en zoeken nu naar tekenen van leven op planeten in de leefbare zone.',
+          en: 'Astronomers find more and more planets around other stars by looking for dips in starlight, and are now searching for signs of life on planets in the habitable zone.' },
+        { nl: 'Met een raket kun je binnen een paar jaar naar een exoplaneet vliegen.', en: 'With a rocket you can fly to an exoplanet within a few years.' },
+        { nl: 'Een vuurvliegje is moeilijk te zien naast een vuurtoren.', en: 'A firefly is hard to see next to a lighthouse.' },
+        { nl: 'Op alle exoplaneten is vloeibaar water gevonden.', en: 'Liquid water has been found on all exoplanets.' }
+      ], answer: 0,
+      explain: { nl: 'Alleen de eerste keuze noemt het vinden, de methode en de zoektocht naar leven. De rest is een detail of klopt niet.',
+                 en: 'Only the first option names the finding, the method and the search for life. The rest is a detail or wrong.' } }
+  ]
 }
 ]);

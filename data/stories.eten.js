@@ -1128,5 +1128,138 @@ addStories([
       explain: { nl: 'De tekst begint met die vraag en legt uit: uit een kas, of van ver weg.',
                  en: 'The text starts with that question and explains: from a greenhouse, or from far away.' } }
   ]
+},
+
+{
+  id: 'eten-12', topic: 'eten', level: 6, emoji: '🍔', scene: 'lab',
+  title: { nl: 'Een hamburger uit het lab', en: 'A burger from the lab' },
+  text: {
+    nl: [
+      "In augustus 2013 zat een groepje journalisten in Londen klaar voor een bijzondere proeverij. Op het bord lag een hamburger die er heel gewoon uitzag. Toch was er geen koe voor gestorven. Het vlees was gegroeid in een laboratorium in Maastricht, onder leiding van professor Mark Post. Die ene burger had ongeveer 250.000 euro gekost. De proevers vonden hem wat droog, maar het was onmiskenbaar vlees.",
+      "Hoe maak je vlees zonder dier? Onderzoekers nemen met een klein prikje een paar cellen uit de spier van een levende koe. De koe merkt daar weinig van. In het lab leggen ze die cellen in een voedingsvloeistof, een soort soep vol suikers, zouten en eiwitten. Daarin gaan de cellen delen: uit één cel worden er twee, dan vier, dan acht. Na een paar weken zijn het er miljarden, genoeg voor een stukje gehakt.",
+      "Waarom zou je dat willen? De veehouderij heeft enorm veel land nodig voor weiden en voor voer. Koeien stoten bovendien methaan uit, een gas dat de aarde sterk opwarmt. Als vlees uit het lab op grote schaal gemaakt kan worden, zijn er veel minder dieren nodig. Voorstanders zeggen dat het ook diervriendelijker is: geen stallen vol dieren meer die alleen voor hun vlees leven.",
+      "Toch is het nog lang niet zover. Het grootste probleem is de prijs. De burger is sinds 2013 veel goedkoper geworden, maar nog altijd duurder dan gewoon vlees. Ook moeten de fabrieken enorm groot worden om miljoenen mensen te kunnen voeden. En die fabrieken hebben zelf veel energie nodig. Als die energie uit kolen komt, is de winst voor het klimaat een stuk kleiner.",
+      "Daarnaast twijfelen sommige mensen of ze het wel willen eten. Zij vinden het onnatuurlijk: 'Vlees hoort van een dier uit de wei te komen.' Veehouders maken zich zorgen over hun werk. In Singapore mag kweekvlees sinds 2020 in restaurants verkocht worden. In Nederland mogen mensen het sinds kort onder strenge regels proeven, maar in de winkel ligt het nog niet.",
+      "Misschien eten we over twintig jaar allemaal kweekvlees. Misschien blijft het een dure proef, en kiezen mensen liever voor bonen, noten of gewoon minder vlees. Eén ding is zeker: de vraag hoe we in de toekomst genoeg eten maken voor bijna tien miljard mensen, zonder de aarde uit te putten, is nog lang niet beantwoord."
+    ],
+    en: [
+      "In August 2013 a small group of journalists in London sat ready for a special tasting. On the plate lay a burger that looked perfectly ordinary. Yet no cow had died for it. The meat had been grown in a laboratory in Maastricht, led by professor Mark Post. That one burger had cost about 250,000 euros. The tasters found it a bit dry, but it was unmistakably meat.",
+      "How do you make meat without an animal? Researchers use a small needle to take a few cells from the muscle of a living cow. The cow hardly notices. In the lab they put those cells in a nutrient liquid, a kind of soup full of sugars, salts and proteins. In it the cells start to divide: one cell becomes two, then four, then eight. After a few weeks there are billions, enough for a piece of mince.",
+      "Why would you want that? Livestock farming needs an enormous amount of land for pastures and for feed. Cows also give off methane, a gas that strongly warms the earth. If lab-grown meat can be made on a large scale, far fewer animals are needed. Supporters say it is kinder to animals too: no more barns full of animals that live only for their meat.",
+      "Still, we are far from there. The biggest problem is the price. The burger has become much cheaper since 2013, but it is still more expensive than ordinary meat. The factories also have to become enormous to feed millions of people. And those factories need a lot of energy themselves. If that energy comes from coal, the gain for the climate is a lot smaller.",
+      "On top of that, some people doubt whether they want to eat it at all. They find it unnatural: 'Meat should come from an animal in the meadow.' Livestock farmers worry about their jobs. In Singapore cultured meat has been allowed on sale in restaurants since 2020. In the Netherlands people have recently been allowed to taste it under strict rules, but it is not in the shops yet.",
+      "Perhaps in twenty years we will all eat cultured meat. Perhaps it will stay an expensive experiment, and people will prefer beans, nuts or simply less meat. One thing is certain: the question of how we will make enough food in the future for almost ten billion people, without wearing out the earth, is far from answered."
+    ]
+  },
+  words: [
+    { nl: 'onmiskenbaar', en: 'unmistakably', defNl: 'zo duidelijk dat niemand kan zeggen dat het niet zo is', defEn: 'so clearly that nobody can deny it' },
+    { nl: 'voedingsvloeistof', en: 'nutrient liquid', defNl: 'een vloeistof met alles wat cellen nodig hebben om te groeien', defEn: 'a liquid with everything cells need to grow' },
+    { nl: 'veehouderij', en: 'livestock farming', defNl: 'het houden van dieren zoals koeien en varkens voor vlees of melk', defEn: 'keeping animals such as cows and pigs for meat or milk' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Waar werd het vlees van de eerste kweekburger gegroeid?', en: 'Where was the meat of the first cultured burger grown?' },
+      options: [
+        { nl: 'In een laboratorium in Maastricht', en: 'In a laboratory in Maastricht' },
+        { nl: 'In een restaurant in Londen', en: 'In a restaurant in London' },
+        { nl: 'Op een boerderij in Singapore', en: 'On a farm in Singapore' },
+        { nl: 'In een fabriek op kolen', en: 'In a coal-powered factory' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "Het vlees was gegroeid in een laboratorium in Maastricht." Geproefd werd er in Londen.',
+                 en: 'Paragraph 1: "The meat had been grown in a laboratory in Maastricht." The tasting was in London.' } },
+    { id: 'q2', type: 'find', skill: 'letterlijk',
+      q: { nl: 'Welke zin vertelt hoe de cellen zich vermenigvuldigen?', en: 'Which sentence tells how the cells multiply?' },
+      options: [
+        { nl: 'De koe merkt daar weinig van.', en: 'The cow hardly notices.' },
+        { nl: 'Die ene burger had ongeveer 250.000 euro gekost.', en: 'That one burger had cost about 250,000 euros.' },
+        { nl: 'Daarin gaan de cellen delen: uit één cel worden er twee, dan vier, dan acht.', en: 'In it the cells start to divide: one cell becomes two, then four, then eight.' },
+        { nl: 'Koeien stoten bovendien methaan uit, een gas dat de aarde sterk opwarmt.', en: 'Cows also give off methane, a gas that strongly warms the earth.' }
+      ], answer: 2,
+      explain: { nl: 'Vermenigvuldigen betekent: steeds meer worden. Dat staat precies in deze zin uit alinea 2.',
+                 en: 'Multiplying means: becoming more and more. This sentence from paragraph 2 says exactly that.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Als iets op grote schaal gemaakt wordt, dan ___.', en: 'If something is made on a large scale, then ___.' },
+      options: [
+        { nl: 'wordt er heel veel van gemaakt, bijvoorbeeld in grote fabrieken', en: 'a great deal of it is made, for example in big factories' },
+        { nl: 'wordt het op een weegschaal gewogen', en: 'it is weighed on scales' },
+        { nl: 'is het heel groot van formaat', en: 'it is very large in size' },
+        { nl: 'wordt het maar één keer gemaakt', en: 'it is made only once' }
+      ], answer: 0,
+      explain: { nl: 'Op grote schaal betekent: in grote hoeveelheden. Daarom moeten de fabrieken in alinea 4 ook zo groot worden.',
+                 en: 'On a large scale means: in large quantities. That is why the factories in paragraph 4 must become so big.' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Hoe wordt kweekvlees gemaakt? Zet de stappen op volgorde.', en: 'How is cultured meat made? Put the steps in order.' },
+      items: [
+        { nl: 'Met een prikje worden cellen uit een koe gehaald.', en: 'Cells are taken from a cow with a needle.' },
+        { nl: 'De cellen gaan in een voedingsvloeistof.', en: 'The cells go into a nutrient liquid.' },
+        { nl: 'De cellen delen zich steeds opnieuw.', en: 'The cells divide again and again.' },
+        { nl: 'Er zijn genoeg cellen voor een stukje gehakt.', en: 'There are enough cells for a piece of mince.' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Alinea 2 beschrijft de stappen in deze volgorde: prikje, soep, delen, na een paar weken genoeg.',
+                 en: 'Paragraph 2 describes the steps in this order: needle, soup, dividing, enough after a few weeks.' } },
+    { id: 'q5', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Zij vinden het onnatuurlijk." Wie zijn "zij"?', en: '"They find it unnatural." Who are "they"?' },
+      options: [
+        { nl: 'Mensen die twijfelen of ze kweekvlees willen eten', en: 'People who doubt whether they want to eat cultured meat' },
+        { nl: 'De journalisten in Londen', en: 'The journalists in London' },
+        { nl: 'De cellen in het lab', en: 'The cells in the lab' },
+        { nl: 'De restaurants in Singapore', en: 'The restaurants in Singapore' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor noemt "sommige mensen" die twijfelen. Naar hen verwijst "zij".',
+                 en: 'The sentence before names "some people" who doubt. "They" points to them.' } },
+    { id: 'q6', type: 'sort', skill: 'structuur',
+      q: { nl: 'Voordeel of probleem? Zet elke zin in de goede groep.', en: 'Advantage or problem? Put every sentence in the right group.' },
+      bins: [{ nl: 'Voordeel', en: 'Advantage' }, { nl: 'Probleem', en: 'Problem' }],
+      items: [
+        { nl: 'Er is veel minder land nodig.', en: 'Much less land is needed.', bin: 0 },
+        { nl: 'Het is nog duurder dan gewoon vlees.', en: 'It is still more expensive than ordinary meat.', bin: 1 },
+        { nl: 'Er zijn geen stallen vol dieren meer nodig.', en: 'Barns full of animals are no longer needed.', bin: 0 },
+        { nl: 'De fabrieken gebruiken veel energie.', en: 'The factories use a lot of energy.', bin: 1 }
+      ],
+      explain: { nl: 'De tekst zet voordelen (alinea 3) tegenover problemen (alinea 4 en 5). Het signaalwoord "Toch" markeert de overgang.',
+                 en: 'The text sets advantages (paragraph 3) against problems (paragraphs 4 and 5). The signal word "Still" marks the switch.' } },
+    { id: 'q7', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'In Singapore mag kweekvlees sinds 2020 verkocht worden.', en: 'Cultured meat has been allowed on sale in Singapore since 2020.', bin: 0 },
+        { nl: 'Vlees hoort van een dier uit de wei te komen.', en: 'Meat should come from an animal in the meadow.', bin: 1 },
+        { nl: 'Koeien stoten methaan uit.', en: 'Cows give off methane.', bin: 0 },
+        { nl: 'Kweekvlees smaakt vast lekkerder dan bonen.', en: 'Cultured meat must taste better than beans.', bin: 1 }
+      ],
+      explain: { nl: 'Wetten en metingen zijn feiten. "Hoort" en "lekkerder" zijn wat iemand vindt.',
+                 en: 'Laws and measurements are facts. "Should" and "better" are what someone thinks.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke problemen staan kweekvlees volgens de tekst nu nog in de weg? Kies er 2.', en: 'According to the text, which problems still stand in the way of cultured meat? Pick 2.' },
+      options: [
+        { nl: 'De prijs is nog te hoog', en: 'The price is still too high' },
+        { nl: 'De fabrieken moeten veel groter worden', en: 'The factories have to become much bigger' },
+        { nl: 'Koeien willen niet meewerken', en: 'Cows refuse to cooperate' },
+        { nl: 'Het mag nergens ter wereld verkocht worden', en: 'It may not be sold anywhere in the world' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 4 noemt de prijs en de grootte van de fabrieken. In Singapore mag het juist wel verkocht worden.',
+                 en: 'Paragraph 4 names the price and the size of the factories. In Singapore it can in fact be sold.' } },
+    { id: 'q9', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat doet de schrijver in de laatste alinea?', en: 'What does the writer do in the last paragraph?' },
+      options: [
+        { nl: 'Hij laat twee mogelijke toekomsten zien en zegt dat de grote vraag nog open is', en: 'Shows two possible futures and says the big question is still open' },
+        { nl: 'Hij raadt iedereen aan om kweekvlees te kopen', en: 'Advises everyone to buy cultured meat' },
+        { nl: 'Hij legt uit hoe je bonen kookt', en: 'Explains how to cook beans' },
+        { nl: 'Hij vertelt hoe de burger in 2013 smaakte', en: 'Tells how the burger tasted in 2013' }
+      ], answer: 0,
+      explain: { nl: 'Twee keer "misschien" en dan "Eén ding is zeker": de schrijver kiest geen kant, maar sluit af met de grote vraag.',
+                 en: 'Twice "perhaps" and then "one thing is certain": the writer takes no side but ends with the big question.' } },
+    { id: 'q10', type: 'mc', skill: 'samenvatten',
+      q: { nl: 'Welke samenvatting past het best bij de hele tekst?', en: 'Which summary fits the whole text best?' },
+      options: [
+        { nl: 'Vlees uit het lab kan goed zijn voor klimaat en dieren, maar is nog duur, lastig op grote schaal te maken en niet iedereen wil het eten.',
+          en: 'Lab-grown meat could be good for the climate and animals, but it is still expensive, hard to make on a large scale and not everyone wants to eat it.' },
+        { nl: 'In 2013 werd in Londen een hamburger geproefd.', en: 'In 2013 a burger was tasted in London.' },
+        { nl: 'Koeien stoten methaan uit en moeten daarom verdwijnen.', en: 'Cows give off methane and must therefore disappear.' },
+        { nl: 'Kweekvlees ligt al overal in de winkel.', en: 'Cultured meat is already in shops everywhere.' }
+      ], answer: 0,
+      explain: { nl: 'Een goede samenvatting noemt de belofte én de problemen. De andere keuzes zijn een detail, een mening of kloppen niet.',
+                 en: 'A good summary names the promise and the problems. The other options are a detail, an opinion or wrong.' } }
+  ]
 }
 ]);

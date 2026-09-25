@@ -63,8 +63,8 @@ const SETS = W.SPELL_SETS || [];
 /* ---------------------------------------------------------------------
    2. Little helpers
    --------------------------------------------------------------------- */
-const QUESTION_TYPES = ['mc', 'tf', 'gap', 'order', 'match', 'multi', 'sort'];
-const SPELL_TYPES = ['pick', 'fill', 'type', 'error', 'sort'];
+const QUESTION_TYPES = ['mc', 'tf', 'gap', 'order', 'match', 'multi', 'sort', 'find'];
+const SPELL_TYPES = ['pick', 'fill', 'type', 'error', 'sort', 'build'];
 
 /* every text shown to the child must exist in both languages */
 function bilingual(where, obj, field) {
@@ -188,6 +188,22 @@ STORIES.forEach(function (s) {
       if (q.type === 'gap' && q.q && q.q.en.indexOf('___') === -1) {
         err(qw, 'a gap question needs ___ in the English sentence');
       }
+    } else if (q.type === 'find') {
+      /* "zoek het bewijs": elke keuze is een zin die letterlijk in de tekst
+         staat, in beide talen, anders klopt het bewijs niet */
+      if (!Array.isArray(q.options) || q.options.length < 3) err(qw, 'a find question needs at least three sentences');
+      else {
+        q.options.forEach(function (o, i) {
+          bilingual(qw, o, 'options[' + i + ']');
+          ['nl', 'en'].forEach(function (lang) {
+            const full = (s.text && s.text[lang] || []).join(' ');
+            if (o[lang] && full.indexOf(o[lang]) === -1) {
+              err(qw, 'options[' + i + '].' + lang + ' is not a sentence from the ' + lang + ' text: "' + o[lang].slice(0, 60) + '"');
+            }
+          });
+        });
+        if (typeof q.answer !== 'number' || q.answer < 0 || q.answer >= q.options.length) err(qw, 'answer is outside the sentence list');
+      }
     } else if (q.type === 'tf') {
       if (typeof q.answer !== 'boolean') err(qw, 'a true/false answer must be true or false');
     } else if (q.type === 'multi') {
@@ -260,6 +276,7 @@ CATS.forEach(function (c) {
     if (!c[k]) err(where, 'missing ' + k);
   });
   if (typeof c.hue !== 'number') err(where, 'hue must be a number');
+  if (c.grade !== undefined && c.grade !== 8) err(where, 'grade can only be 8 (or left out)');
 });
 
 const setIds = {};
@@ -273,6 +290,7 @@ SETS.forEach(function (s) {
   setIds[s.id] = true;
   if (!catIds[s.cat]) err(where, 'unknown spelling rule "' + s.cat + '"');
   if (typeof s.level !== 'number' || s.level < 1) err(where, 'level must be 1 or higher');
+  if (s.grade !== undefined && s.grade !== 8) err(where, 'grade can only be 8 (or left out)');
   bilingual(where, s.title, 'title');
 
   if (!Array.isArray(s.items) || !s.items.length) { err(where, 'has no items'); return; }
@@ -313,6 +331,18 @@ SETS.forEach(function (s) {
       if (!it.sentence) err(iw, 'a dictation item needs a sentence for context');
       else if (it.sentence.nl.indexOf('___') === -1) err(iw, 'the Dutch sentence needs ___ where the word goes');
       if (/[‘’]/.test(it.word || '')) err(iw, 'a typed word should not contain a curly apostrophe');
+    } else if (it.type === 'build') {
+      /* woordbouwer: de stukjes achter elkaar moeten precies het woord zijn */
+      if (typeof it.word !== 'string' || !it.word.trim()) err(iw, 'needs a word to build');
+      if (!Array.isArray(it.tiles) || it.tiles.length < 2) err(iw, 'needs at least two tiles');
+      else {
+        it.tiles.concat(it.extra || []).forEach(function (tl, n) {
+          if (typeof tl !== 'string' || !tl) err(iw, 'tile ' + n + ' must be a non-empty string');
+        });
+        if (it.tiles.join('') !== it.word) err(iw, 'the tiles spell "' + it.tiles.join('') + '", not "' + it.word + '"');
+      }
+      if (it.extra !== undefined && !Array.isArray(it.extra)) err(iw, 'extra must be a list of distractor tiles');
+      if (it.sentence && it.sentence.nl.indexOf('___') === -1) err(iw, 'the Dutch sentence needs ___ where the word goes');
     } else if (it.type === 'error') {
       if (!Array.isArray(it.words) || it.words.length < 3) err(iw, 'needs at least three words');
       else if (typeof it.answer !== 'number' || it.answer < 0 || it.answer >= it.words.length) {
@@ -424,6 +454,26 @@ FACTS.forEach(function (f, i) {
   if (f.topic && !topicIds[f.topic]) err(where, 'unknown topic "' + f.topic + '"');
 });
 
+/* ---------------------------------------------------------------------
+   5d. Spreekwoorden (Woordkist)
+   --------------------------------------------------------------------- */
+const IDIOMS = W.IDIOMS || [];
+if (!IDIOMS.length) warn('data/idioms.js', 'no idioms defined');
+const idiomIds = {}, idiomMeanings = {};
+IDIOMS.forEach(function (it, i) {
+  const where = 'idiom ' + (it.id || i + 1);
+  if (!it.id) err(where, 'missing id');
+  if (idiomIds[it.id]) err(where, 'duplicate id');
+  idiomIds[it.id] = true;
+  ['nl', 'en', 'meaningNl', 'meaningEn'].forEach(function (k) {
+    if (typeof it[k] !== 'string' || !it[k].trim()) err(where, 'missing ' + k);
+  });
+  /* in de Woordkist zijn andere betekenissen de foute keuzes: twee gelijke
+     betekenissen zouden een goed antwoord fout laten lijken */
+  if (idiomMeanings[it.meaningNl]) err(where, 'has the same meaning as ' + idiomMeanings[it.meaningNl]);
+  idiomMeanings[it.meaningNl] = it.id;
+});
+
 /* the same emoji twice in the collectable parts of the shop is confusing */
 const seenEmoji = {};
 SHOP.forEach(function (it) {
@@ -451,7 +501,7 @@ try {
 
 const usedKeys = new Set();
 html.replace(/data-i18n="([^"]+)"/g, function (_, k) { usedKeys.add(k); return _; });
-['js/app.js', 'js/spelling.js', 'js/log.js', 'js/rewards.js'].forEach(function (f) {
+['js/app.js', 'js/spelling.js', 'js/log.js', 'js/rewards.js', 'js/arcade.js', 'js/woordkist.js'].forEach(function (f) {
   const code = fs.readFileSync(path.join(ROOT, f), 'utf8');
   code.replace(/\bt\('([A-Za-z0-9]+)'\)/g, function (_, k) { usedKeys.add(k); return _; });
   code.replace(/\btRandom\('([A-Za-z0-9]+)'\)/g, function (_, k) { usedKeys.add(k); return _; });
@@ -525,6 +575,10 @@ console.log('');
 console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins to unlock everything once, ' +
             SHOP.filter(function (it) { return it.kind === 'gift'; }).length + ' chest-only gifts)');
 console.log('  fun facts     : ' + FACTS.length);
+console.log('  idioms        : ' + IDIOMS.length);
+console.log('  groep 8       : ' + STORIES.filter(function (s) { return s.level === 6; }).length + ' stories, ' +
+            CATS.filter(function (c) { return c.grade === 8; }).length + ' new spelling rules, ' +
+            SETS.filter(function (s) { return s.grade === 8; }).length + ' spelling sets');
 console.log('───────────────────────────────────────────────');
 
 warnings.forEach(function (w) { console.log('  ⚠️  ' + w); });

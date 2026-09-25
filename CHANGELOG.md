@@ -5,6 +5,103 @@ All notable changes to Leeskampioen are recorded here. Format loosely follows
 
 ## Unreleased
 
+### Added — groep 8, the arcade and micro-learning (2026-09-25)
+Prompted by: "my son finished all the spelling games — add more levels,
+groep 8, more kinds of game play (like Flappy Bird or Mario), micro-learning,
+and make playing feel more encouraging."
+
+**Groep 8 — spelling**
+- **A fourth, groep 8 exercise for every one of the 15 existing spelling
+  rules** (e.g. *gebeurt/gebeurd*, *zonnebloem/ruggengraat*, *geïnteresseerd*,
+  *-tie of -sie*, *vriendschap*, *succes/circus*). It opens as soon as the
+  third exercise of that rule is done, so a child who finished everything
+  can carry on straight away.
+- **Five new groep 8 spelling rules**, three exercises each, under a new
+  "🎓 Nieuw in groep 8" heading: *De verhuisde kast* (past participle as an
+  adjective: gefietste, verbrande vs verbrandde, vergrote vs vergrootte),
+  *Engelse werkwoorden* (downloadt, printt, updatete, geüpdatet, gerecycled),
+  *Leenwoorden* (cadeau, chauffeur, trottoir, portemonnee), *Getallen in
+  letters* (veertig, achttien, tweeëntwintig, achtste) and *Het koppelteken*
+  (zee-egel, auto-ongeluk, Noord-Holland, tv-programma).
+- **New exercise type: the word builder** — tap the pieces (with a couple of
+  decoy pieces) in the right order to build the word. 26 of them.
+- Spelling now has 20 rules, 75 exercises and 503 items (was 15 / 45 / 292).
+
+**Groep 8 — reading**
+- **A sixth level, 👑 Eindbaas (groep 8, reference level 2F)**: one new story
+  per world (10 stories, ~390 words, 10 questions each) in the style of the
+  groep 8 *doorstroomtoets*: why insects are disappearing, the search for a
+  second Earth, is gaming a sport?, the 1953 flood, storing green power,
+  becoming a fake-news detective, lab-grown meat, goosebumps from music,
+  children's rights, and what stress does to your body.
+- **New question type: "find the proof"** — tap the sentence from the text
+  that proves the answer. The validator checks every such sentence really
+  appears word for word in the story, in both languages.
+- Reading now has 120 stories and 830 questions (was 110 / 730).
+
+**New ways to play**
+- **🎮 A third tab, "Spellen" (the arcade)**, with three canvas games that
+  are really spelling and vocabulary practice in disguise — each round is
+  15 "duels" of a right and a wrong word, taken from the existing exercises
+  (words the child spelled wrong before come up more often) or from the
+  story vocabulary:
+  - **🦉 Flappy Uil** — tap to flap; fly through the gate with the right word.
+  - **🏃 Springheld** — a platform runner: jump to the high block if the
+    right word is up there, stay low if it is on the ground, jump the snails.
+  - **☔ Woordregen** — slide a bucket and catch only the right words.
+  Three hearts, combo points, a record per game, and a result screen that
+  lists every missed word with its spelling rule.
+- **🎟️ Game tickets** keep reading the main thing: a game costs 1 ticket;
+  finishing a story earns 2, a spelling exercise or a Woordkist round 1
+  (new players start with 3, at most 20 can be saved). The arcade time does
+  not count towards the 30-minute reading mission.
+- **🗃️ The Woordkist (micro-learning)** — 8 flash cards a day with spaced
+  repetition (a five-box Leitner system: a right answer moves a card up and
+  it returns after 1, 2, 4, 7 or 14 days; a wrong one goes back to box 1 and
+  comes round again in the same session). Two piles: *words from your
+  stories* (shown with the sentence from the story they came from) and
+  **42 groep 8 sayings and idioms** (*de kat uit de boom kijken*, *door de
+  mand vallen*…). Free to play, and it earns a ticket.
+
+**More encouragement**
+- **🐉 The reading dragon** on the world screen hatches from an egg and grows
+  through six stages (Babydraakje → Koningsdraak) from everything the child
+  finishes — reading feeds it most, games only a little. It is sleepy on
+  days nobody has read yet, talks when you tap it, and every new stage
+  brings a gift box.
+- **Combo pop-ups** ("3× OP EEN RIJ!", "5× SUPERREEKS!") in reading,
+  spelling, the arcade and the Woordkist.
+- "Better than last time: 4 → 6 correct!" when a story or exercise is
+  replayed with a better score, and a "Welcome back, {name}! 🔥" greeting
+  with the day streak.
+- Two new daily quests (play an arcade game, review the Woordkist) and
+  **five new badges** (26 total): Groep 8-baas, Groep 8-speller,
+  Speelhalheld, Woordenkenner and Drakentemmer.
+- Result screens show the tickets earned.
+
+**For parents**
+- The dashboard shows games played and Woordkist words known; the daily
+  activity log gained 🎮 (games) and 🗃️ (cards reviewed) columns.
+- The CSV has a fourth table with every arcade and Woordkist round, and the
+  HTML report a short "Speelhal en Woordkist" section.
+
+**Checks**
+- `tools/validate.js` knows the `build` and `find` types, checks idioms for
+  duplicate meanings and reports the groep 8 totals.
+- `tools/smoke.mjs` now also plays a groep 8 story (including wrong "find"
+  answers), a groep 8 spelling set with word builders, the runner game with
+  real physics, all three arcade games, the ticket rules, a Woordkist round
+  (including the spaced-repetition schedule), the sayings pile, the parent
+  counters and the arcade at phone width.
+- New optional `tools/autopilot.mjs` plays a full round of each arcade game
+  with real physics (not part of CI; ~3 minutes).
+
+### Changed (2026-09-25)
+- Flappy Uil was tuned to be forgiving for 9–11-year-olds (wide gates, a
+  soft flap) after an autopilot showed the first version crashed every time.
+- The legendary shop card now also needs the groep 8 stories, spelling
+  sets and badges — it still means "finished the whole game".
+
 ### Added — rewards update (2026-09-24)
 - **Daily quests.** Three small goals a day on a new "Hoi {naam}!" card at
   the top of the world screen (e.g. read 2 stories, answer 8 questions

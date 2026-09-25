@@ -984,5 +984,132 @@ addStories([
       explain: { nl: 'Het hele verhaal volgt Sara tijdens haar zwemexamen, van zenuwen tot diploma.',
                  en: 'The whole story follows Sara during her swimming test, from nerves to certificate.' } }
   ]
+},
+
+{
+  id: 'sport-12', topic: 'sport', level: 6, emoji: '🎮', scene: 'stadium',
+  title: { nl: 'Is gamen een echte sport?', en: 'Is gaming a real sport?' },
+  text: {
+    nl: [
+      "In een uitverkochte hal zitten duizenden fans te schreeuwen. Op een reusachtig scherm zie je hoe twee teams het tegen elkaar opnemen. Toch staat er niemand op een veld: de spelers zitten achter een computer. Dit is e-sport, wedstrijden in videogames. Er wordt om prijzengeld van miljoenen euro's gespeeld, en sommige finales trekken online meer kijkers dan een grote voetbalwedstrijd.",
+      "Maar is dit eigenlijk wel sport? Daarover zijn mensen het flink oneens. Volgens het woordenboek is sport een activiteit waarbij je je lichaam beweegt en inspant, vaak in een wedstrijd. Critici zeggen daarom: wie alleen met zijn vingers klikt, beweegt te weinig om een sporter te heten. Voor hen hoort bij sport ook zweet. Zij vinden dat het woord sport zijn betekenis verliest als alles een sport mag worden.",
+      "Voorstanders zien dat anders. Een topgamer maakt soms meer dan driehonderd bewegingen per minuut met muis en toetsenbord. Hij moet razendsnel beslissen, samenwerken met zijn team en urenlang geconcentreerd blijven. Professionele teams hebben een trainer, een vast trainingsschema en soms zelfs een voedingsdeskundige. Ook wijzen voorstanders erop dat schaken en darten in veel landen als sport gelden, terwijl je daarbij nauwelijks rent.",
+      "Er is ook een groep die vooral twijfelt vanwege de gezondheid. Wie elke dag uren achter een scherm zit, beweegt te weinig. Artsen waarschuwen voor een slechte houding, pijn in polsen en ogen, en voor slecht slapen door het licht van het scherm. Serieuze e-sporters trainen daarom ook buiten de game: ze gaan hardlopen of naar de sportschool, zodat hun lichaam het volhoudt. Sommige teams hebben zelfs een fysiotherapeut in dienst.",
+      "Sportorganisaties moeten intussen kiezen. Het Internationaal Olympisch Comité organiseerde in 2023 voor het eerst een Olympische e-sportweek. Er werd vooral gespeeld met spellen die op een echte sport lijken, zoals virtueel fietsen en tennis. Spellen waarin spelers op elkaar schieten, bleven buiten de deur, hoewel die bij jongeren juist heel populair zijn. Zo koos het comité voor e-sport, maar wel op zijn eigen voorwaarden.",
+      "Wat vind jij? Misschien is de vraag niet eens of gamen sport is, maar of we het woord sport moeten veranderen. Honderd jaar geleden kende niemand snowboarden, en inmiddels is het gewoon een olympisch onderdeel. Ook skateboarden en breakdance mochten pas kort geleden naar de Spelen. Woorden groeien mee met de tijd, net als de spelletjes die we spelen."
+    ],
+    en: [
+      "In a sold-out hall thousands of fans are screaming. On a gigantic screen you see two teams taking each other on. Yet nobody is standing on a pitch: the players are sitting at computers. This is esports, competitions in video games. They play for prize money of millions of euros, and some finals attract more viewers online than a big football match.",
+      "But is this actually sport? People strongly disagree about that. According to the dictionary, sport is an activity in which you move and exert your body, often in a competition. So critics say: anyone who only clicks with their fingers moves too little to be called an athlete. For them, sport also means sweat. They feel the word sport loses its meaning if everything is allowed to be a sport.",
+      "Supporters see it differently. A top gamer sometimes makes more than three hundred movements a minute with mouse and keyboard. He has to decide lightning fast, work with his team and stay focused for hours. Professional teams have a coach, a fixed training schedule and sometimes even a nutritionist. Supporters also point out that chess and darts count as sports in many countries, even though you hardly run at all.",
+      "There is also a group that has doubts mainly because of health. Anyone who sits behind a screen for hours every day moves too little. Doctors warn about bad posture, pain in wrists and eyes, and poor sleep because of the light from the screen. That is why serious esports players also train outside the game: they go running or to the gym, so that their bodies can keep it up. Some teams even employ a physiotherapist.",
+      "Meanwhile sports organisations have to choose. In 2023 the International Olympic Committee held an Olympic Esports Week for the first time. Mostly they played games that resemble a real sport, such as virtual cycling and tennis. Games in which players shoot at each other were kept out, although those are especially popular with young people. So the committee chose esports, but on its own terms.",
+      "What do you think? Perhaps the question is not even whether gaming is sport, but whether we should change the word sport. A hundred years ago nobody knew snowboarding, and now it is simply an Olympic event. Skateboarding and breakdancing were also only allowed into the Games recently. Words grow with the times, just like the games we play."
+    ]
+  },
+  words: [
+    { nl: 'critici', en: 'critics', defNl: 'mensen die ergens kritiek op hebben', defEn: 'people who criticise something' },
+    { nl: 'voedingsdeskundige', en: 'nutritionist', defNl: 'iemand die veel weet over gezond eten', defEn: 'someone who knows a lot about healthy eating' },
+    { nl: 'voorwaarden', en: 'terms / conditions', defNl: 'de regels waaraan iets moet voldoen', defEn: 'the rules something has to meet' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel bewegingen per minuut maakt een topgamer soms?', en: 'How many movements a minute does a top gamer sometimes make?' },
+      options: [
+        { nl: 'Meer dan driehonderd', en: 'More than three hundred' },
+        { nl: 'Ongeveer dertig', en: 'About thirty' },
+        { nl: 'Precies honderd', en: 'Exactly a hundred' },
+        { nl: 'Meer dan duizend', en: 'More than a thousand' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 3: "Een topgamer maakt soms meer dan driehonderd bewegingen per minuut."',
+                 en: 'Paragraph 3: "A top gamer sometimes makes more than three hundred movements a minute."' } },
+    { id: 'q2', type: 'find', skill: 'structuur',
+      q: { nl: 'Welke zin uit de tekst geeft een argument van de critici?', en: 'Which sentence from the text gives an argument of the critics?' },
+      options: [
+        { nl: 'Critici zeggen daarom: wie alleen met zijn vingers klikt, beweegt te weinig om een sporter te heten.', en: 'So critics say: anyone who only clicks with their fingers moves too little to be called an athlete.' },
+        { nl: 'Professionele teams hebben een trainer, een vast trainingsschema en soms zelfs een voedingsdeskundige.', en: 'Professional teams have a coach, a fixed training schedule and sometimes even a nutritionist.' },
+        { nl: 'Hij moet razendsnel beslissen, samenwerken met zijn team en urenlang geconcentreerd blijven.', en: 'He has to decide lightning fast, work with his team and stay focused for hours.' },
+        { nl: 'Woorden groeien mee met de tijd, net als de spelletjes die we spelen.', en: 'Words grow with the times, just like the games we play.' }
+      ], answer: 0,
+      explain: { nl: 'Alleen de eerste zin is een argument tégen. De andere zinnen horen bij de voorstanders of bij de schrijver.',
+                 en: 'Only the first sentence is an argument against. The others belong to the supporters or to the writer.' } },
+    { id: 'q3', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Klik het woord en daarna de juiste betekenis.', en: 'Click the word and then the correct meaning.' },
+      pairs: [
+        { word: { nl: 'critici', en: 'critics' }, meaning: { nl: 'mensen die ergens kritiek op hebben', en: 'people who criticise something' } },
+        { word: { nl: 'voorstanders', en: 'supporters' }, meaning: { nl: 'mensen die ergens vóór zijn', en: 'people who are in favour of something' } },
+        { word: { nl: 'voedingsdeskundige', en: 'nutritionist' }, meaning: { nl: 'iemand die weet wat gezond eten is', en: 'someone who knows what healthy food is' } }
+      ],
+      explain: { nl: 'Deze drie woorden komen allemaal uit de tekst.', en: 'All three words come from the text.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Hij moet razendsnel beslissen." Wie is "hij"?', en: '"He has to decide lightning fast." Who is "he"?' },
+      options: [
+        { nl: 'Een topgamer', en: 'A top gamer' },
+        { nl: 'De trainer', en: 'The coach' },
+        { nl: 'Een arts', en: 'A doctor' },
+        { nl: 'De voedingsdeskundige', en: 'The nutritionist' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over een topgamer. "Hij" verwijst daarnaar terug.',
+                 en: 'The sentence before is about a top gamer. "He" points back to that.' } },
+    { id: 'q5', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'In 2023 organiseerde het IOC een Olympische e-sportweek.', en: 'In 2023 the IOC held an Olympic Esports Week.', bin: 0 },
+        { nl: 'Wie alleen klikt, is geen echte sporter.', en: 'Anyone who only clicks is not a real athlete.', bin: 1 },
+        { nl: 'Artsen waarschuwen voor pijn in polsen en ogen.', en: 'Doctors warn about pain in wrists and eyes.', bin: 0 },
+        { nl: 'E-sport is spannender om naar te kijken dan voetbal.', en: 'Esports is more exciting to watch than football.', bin: 1 }
+      ],
+      explain: { nl: 'Wat het IOC deed en waar artsen voor waarschuwen, kun je nagaan: feiten. De andere twee zijn oordelen.',
+                 en: 'What the IOC did and what doctors warn about can be checked: facts. The other two are judgements.' } },
+    { id: 'q6', type: 'mc', skill: 'structuur',
+      q: { nl: 'Hoe is deze tekst opgebouwd?', en: 'How is this text built up?' },
+      options: [
+        { nl: 'Een voorbeeld, dan de critici, de voorstanders en de twijfelaars, en aan het eind een vraag aan de lezer',
+          en: 'An example, then the critics, the supporters and the doubters, and at the end a question to the reader' },
+        { nl: 'Een verhaal over één gamer van begin tot eind', en: 'A story about one gamer from beginning to end' },
+        { nl: 'Alleen argumenten vóór e-sport', en: 'Only arguments for esports' },
+        { nl: 'Een handleiding om beter te worden in games', en: 'A manual for getting better at games' }
+      ], answer: 0,
+      explain: { nl: 'Het is een betoog met twee kanten: elke groep krijgt een eigen alinea, en de laatste alinea begint met "Wat vind jij?"',
+                 en: 'It is a two-sided argument: each group gets its own paragraph, and the last one starts with "What do you think?"' } },
+    { id: 'q7', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat is het doel van deze tekst?', en: 'What is the purpose of this text?' },
+      options: [
+        { nl: 'De lezer laten nadenken door beide kanten van de discussie te laten zien', en: 'Make the reader think by showing both sides of the discussion' },
+        { nl: 'De lezer overhalen om e-sporter te worden', en: 'Persuade the reader to become an esports player' },
+        { nl: 'Uitleggen hoe een schietspel werkt', en: 'Explain how a shooting game works' },
+        { nl: 'Vertellen hoe laat de finale begint', en: 'Say what time the final starts' }
+      ], answer: 0,
+      explain: { nl: 'De schrijver kiest geen kant en vraagt de lezer om zelf een mening te vormen.',
+                 en: 'The writer takes no side and asks the reader to form their own opinion.' } },
+    { id: 'q8', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Wat doen serieuze e-sporters volgens de tekst om gezond te blijven en beter te worden? Kies er 2.',
+           en: 'According to the text, what do serious esports players do to stay healthy and get better? Pick 2.' },
+      options: [
+        { nl: 'Ze gaan hardlopen of naar de sportschool', en: 'They go running or to the gym' },
+        { nl: 'Ze trainen volgens een vast schema', en: 'They train to a fixed schedule' },
+        { nl: 'Ze spelen alleen schietspellen', en: 'They only play shooting games' },
+        { nl: 'Ze slapen zo weinig mogelijk', en: 'They sleep as little as possible' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 3 noemt het vaste trainingsschema, alinea 4 het hardlopen en de sportschool.',
+                 en: 'Paragraph 3 names the fixed training schedule, paragraph 4 the running and the gym.' } },
+    { id: 'q9', type: 'tf', skill: 'letterlijk',
+      q: { nl: 'Bij de Olympische e-sportweek mochten ook spellen meedoen waarin spelers op elkaar schieten.',
+           en: 'Games in which players shoot at each other were allowed at the Olympic Esports Week.' },
+      answer: false,
+      explain: { nl: 'Alinea 5: "Spellen waarin spelers op elkaar schieten, bleven buiten de deur."',
+                 en: 'Paragraph 5: "Games in which players shoot at each other were kept out."' } },
+    { id: 'q10', type: 'find', skill: 'hoofdgedachte',
+      q: { nl: 'Welke zin laat het best zien wat de schrijver zelf denkt?', en: 'Which sentence best shows what the writer thinks?' },
+      options: [
+        { nl: 'Maar is dit eigenlijk wel sport?', en: 'But is this actually sport?' },
+        { nl: 'Sportorganisaties moeten intussen kiezen.', en: 'Meanwhile sports organisations have to choose.' },
+        { nl: 'Wie elke dag uren achter een scherm zit, beweegt te weinig.', en: 'Anyone who sits behind a screen for hours every day moves too little.' },
+        { nl: 'Misschien is de vraag niet eens of gamen sport is, maar of we het woord sport moeten veranderen.', en: 'Perhaps the question is not even whether gaming is sport, but whether we should change the word sport.' }
+      ], answer: 3,
+      explain: { nl: 'Pas in de laatste alinea geeft de schrijver een eigen gedachte: misschien moet de betekenis van het woord sport meegroeien.',
+                 en: 'Only in the last paragraph does the writer give a thought of their own: perhaps the meaning of the word sport should grow.' } }
+  ]
 }
 ]);

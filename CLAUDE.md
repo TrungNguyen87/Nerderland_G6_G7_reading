@@ -64,11 +64,38 @@ Both must be clean before pushing — this is the project's entire CI.
   once-per-day guard). Chest coins deliberately bypass `DAILY_COIN_CAP`.
   Gifts are `kind: 'gift', chestOnly: true` items in `data/shop.js` with no
   cost; the shop hides them and shows them in the "Album" tab instead.
+- **Groep 8 / arcade / micro-learning** (added 2026-09-25):
+  - Reading level 6 (`grade: 8`, "Eindbaas") exists in `LEVELS`; every
+    world has exactly one level-6 story (`<topic>-12`). `validate.js`
+    requires every topic to have every level, so a new level means a story
+    for all ten worlds.
+  - Question type `find` = `mc` whose `options` are sentences copied
+    verbatim from the story (kept in text order, not shuffled).
+    `validate.js` fails if a sentence is not literally in `text.nl` /
+    `text.en` — when editing a level-6 story, edit the find options too.
+  - Spelling type `build` (`word`, `tiles`, `extra`); compared exactly
+    (case-sensitive), unlike `type`. Groep 8 spelling lives in
+    `data/spelling.groep8.js`: a level-4 set for each old rule plus five
+    new `grade: 8` rules pushed onto `SPELL_CATS`.
+  - `js/arcade.js` (`Arcade`): one canvas loop, three game modules
+    (Flappy/Runner/Rain) over 15 "duels" built from pick/fill/error spelling
+    items or story vocab. `Arcade.debugResolve(ok)` and `Arcade.state()`
+    exist for tests. Physics constants are tuned for 9–11-year-olds; after
+    changing any of them run `node tools/autopilot.mjs [width]` (full real-
+    physics rounds, must end 15/15) — the smoke test only plays 2 duels.
+  - `js/woordkist.js` (`Woordkist`): Leitner boxes in `Store.player.kist`
+    (`cards[id] = {box, due, seen, ok}`), decks `story` and `idiom`
+    (`data/idioms.js`, meanings must be unique).
+  - `Rewards` gained tickets (`Store.player.tickets`, default 3 via
+    `blankPlayer`, `earn(kind)` gives story 2 / spell 1 / woordkist 1, cap
+    20, a game costs 1) and the reading dragon (`Store.player.pet.pts`,
+    six stages, arcade feeds it at most 3×/day). Arcade screens are in
+    `NO_CLOCK_SCREENS` so games never count as reading time.
 - Shared helpers in `js/i18n.js`: `localDay(ts)` (use this, never
   `toISOString().slice(0,10)`, which is UTC), `escHtml()` for anything a
   child typed, and `FEEDBACK_EMAIL`.
-- `tools/validate.js` greps `js/app.js`, `js/spelling.js`, `js/log.js`, `js/rewards.js` and
-  `index.html` for `t('key')` / `data-i18n="key"` usage to warn about
+- `tools/validate.js` greps `js/app.js`, `js/spelling.js`, `js/log.js`, `js/rewards.js`,
+  `js/arcade.js`, `js/woordkist.js` and `index.html` for `t('key')` / `data-i18n="key"` usage to warn about
   unused or missing i18n strings — keep new UI strings wired through
   `t()`/`data-i18n` so this stays useful, not because it fails the build
   (unused-key is only a warning).
@@ -218,3 +245,40 @@ Possible follow-ups: more level 2–5 stories so every level has 3; a
 "reading buddy" pet that grows with the day streak; the multiplayer plan is
 still unstarted.
 
+### 2026-09-25 — groep 8, the arcade, the Woordkist and the reading dragon
+Prompted by: "my son already finished all the spelling games — add more
+levels and more variety of game play, include groep 8 for spelling and
+reading, more interactive games (like Flappy Bird / Mario), micro-learning,
+more encouragement; test everything so the GitHub deploy runs smoothly."
+
+- Content (written by me, no subagents — not requested): 30 groep 8
+  spelling sets (a level-4 set for each of the 15 rules + 5 new rules × 3),
+  10 groep 8 stories (one per world, 383–395 words, 10 questions, 19
+  `find` questions in total), 42 idioms. Stories were drafted as separate
+  fragments and appended with a small insert script (pure appends — each
+  story file only changed its last `}` to `},`).
+- New engine pieces: `find` question type, `build` spelling type, level 6,
+  groep 8 pills/heading, `js/arcade.js`, `js/woordkist.js`, tickets and
+  the dragon in `js/rewards.js`, `FX.combo`, "better than last time" and
+  "welcome back" toasts, 5 badges, 2 quests, parent counters + CSV/HTML
+  report sections. Full user-facing list in `CHANGELOG.md`.
+- Lesson: the first Flappy Uil was far too hard (one flap rose ~59px while
+  the free space in a gate was ~85px); a real-physics autopilot crashed
+  3/3. Tuned to wide gates and a soft flap → 15/15 on desktop and phone.
+  The runner also needed snails centred between word pairs, or on narrow
+  screens a snail jump landed on the next (wrong) block. Keep
+  `tools/autopilot.mjs` for any future physics change.
+- `tools/smoke.mjs` section 7c covers all of it (see CHANGELOG "Checks");
+  the whole run went from ~2 to ~3 minutes. Playwright 1.56 matched the
+  pre-installed chromium-1194 this time, so no `PLAYWRIGHT_CHROMIUM`
+  override was needed (`npm install --no-save playwright@1.56`).
+- `node tools/validate.js`, `node tools/smoke.mjs` and
+  `node tools/autopilot.mjs` (1000px and 390px) were all run clean before
+  committing.
+
+**Next likely steps:** a second groep 8 story per world (same insert
+pattern; remember the verbatim `find` check), a fourth arcade game (e.g. a
+word snake) that reuses the duel generator, letting the child pick a
+spelling rule to practise in the arcade, and a parent setting to switch
+the arcade off. The multiplayer plan (`docs/plans/multiplayer-mode.md`) is
+still unstarted; the arcade's duel format would suit a hot-seat duel well.

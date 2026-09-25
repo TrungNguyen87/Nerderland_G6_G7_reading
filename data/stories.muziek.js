@@ -1106,5 +1106,130 @@ addStories([
       explain: { nl: 'De uitleg van juf Anouk is de kern: veel lucht trilt langzaam (laag), weinig lucht trilt snel (hoog).',
                  en: 'Miss Anouk’s explanation is the key: lots of air vibrates slowly (low), little air vibrates fast (high).' } }
   ]
+},
+
+{
+  id: 'muziek-12', topic: 'muziek', level: 6, emoji: '🎻', scene: 'stage',
+  title: { nl: 'Kippenvel van muziek', en: 'Goosebumps from music' },
+  text: {
+    nl: [
+      "Misschien ken je het: je luistert naar een lied, en precies op één moment loopt er een rilling over je rug. De haartjes op je armen gaan rechtop staan. Soms voelt het zelfs alsof er een golf over je hoofd trekt. Je hebt kippenvel, terwijl je het helemaal niet koud hebt. Wetenschappers noemen dat met een Frans woord een frisson. Ongeveer de helft tot twee derde van alle mensen krijgt het weleens van muziek.",
+      "Kippenvel is eigenlijk een overblijfsel uit de tijd dat onze voorouders nog een dikke vacht hadden. Als een dier het koud heeft of schrikt, gaan zijn haren overeind staan. Zo lijkt het groter en blijft het warmer. Bij mensen heeft dat weinig zin meer, want onze haartjes zijn dun en kort. Toch doet het lichaam het nog steeds, ook bij sterke gevoelens.",
+      "Onderzoekers in Canada lieten proefpersonen hun lievelingsmuziek meenemen. Terwijl ze luisterden, keken de onderzoekers met een scanner in hun hersenen. Op het moment van het kippenvel kwam er dopamine vrij, een stof die je een fijn, beloond gevoel geeft. Hetzelfde stofje komt vrij als je iets lekkers eet of een doelpunt maakt. Het verrassende was dat er al dopamine vrijkwam vlak vóór het mooie moment, alsof de hersenen zich er alvast op verheugden.",
+      "Wat maakt zo'n moment zo sterk? Vaak gebeurt er iets onverwachts. Een stem gaat ineens heel hoog, een koor valt in na een stil stuk, of een akkoord klinkt anders dan je verwachtte. Je hersenen voorspellen voortdurend hoe muziek verder gaat. Wordt die voorspelling op een mooie manier doorbroken, dan reageert je lichaam. Componisten gebruiken dat al eeuwen, vaak zonder te weten waarom het werkt.",
+      "Niet iedereen krijgt even snel kippenvel. Uit een ander onderzoek bleek dat mensen die het vaak krijgen, meer verbindingen hebben tussen het deel van de hersenen dat geluid verwerkt en de delen die met gevoel te maken hebben. Ook maakt het uit welke muziek je kent en mooi vindt. Muziek uit je eigen jeugd of van een belangrijk moment werkt vaak het sterkst. Een lied dat de ene persoon ontroert, laat de ander koud.",
+      "Je hoeft dus geen muziekkenner te zijn om het te voelen. Het is juist een teken dat je hersenen actief meeluisteren, voorspellen en genieten. De volgende keer dat je kippenvel krijgt van een liedje, weet je dat er binnen in je hoofd een klein feestje wordt gevierd."
+    ],
+    en: [
+      "Perhaps you know it: you are listening to a song, and at exactly one moment a shiver runs down your back. The little hairs on your arms stand up. Sometimes it even feels like a wave passing over your head. You have goosebumps, even though you are not cold at all. Scientists call that by a French word, a frisson. About half to two thirds of all people sometimes get it from music.",
+      "Goosebumps are really a leftover from the time when our ancestors still had a thick coat of fur. When an animal is cold or gets a fright, its hairs stand on end. That way it looks bigger and stays warmer. In humans that is not much use any more, because our little hairs are thin and short. Still, the body keeps doing it, also with strong feelings.",
+      "Researchers in Canada asked volunteers to bring their favourite music. While they listened, the researchers looked into their brains with a scanner. At the moment of the goosebumps, dopamine was released, a substance that gives you a nice, rewarded feeling. The same substance is released when you eat something tasty or score a goal. The surprising thing was that dopamine was already released just before the beautiful moment, as if the brain was already looking forward to it.",
+      "What makes such a moment so strong? Often something unexpected happens. A voice suddenly goes very high, a choir comes in after a quiet passage, or a chord sounds different from what you expected. Your brain is constantly predicting how music will go on. If that prediction is broken in a beautiful way, your body reacts. Composers have used that for centuries, often without knowing why it works.",
+      "Not everyone gets goosebumps equally easily. Another study found that people who get them often have more connections between the part of the brain that processes sound and the parts that deal with feelings. It also matters which music you know and like. Music from your own childhood or from an important moment often works most strongly. A song that moves one person leaves another cold.",
+      "So you do not have to be a music expert to feel it. It is actually a sign that your brain is actively listening along, predicting and enjoying. The next time you get goosebumps from a song, you will know that a little party is being held inside your head."
+    ]
+  },
+  words: [
+    { nl: 'overblijfsel', en: 'leftover', defNl: 'iets wat over is van vroeger', defEn: 'something left over from the past' },
+    { nl: 'proefpersoon', en: 'test subject', defNl: 'iemand die meedoet aan een onderzoek', defEn: 'someone who takes part in a study' },
+    { nl: 'ontroeren', en: 'to move (emotionally)', defNl: 'iemand een diep, warm gevoel geven', defEn: 'to give someone a deep, warm feeling' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Hoeveel mensen krijgen weleens kippenvel van muziek?', en: 'How many people sometimes get goosebumps from music?' },
+      options: [
+        { nl: 'Ongeveer de helft tot twee derde', en: 'About half to two thirds' },
+        { nl: 'Bijna niemand', en: 'Almost nobody' },
+        { nl: 'Alleen muzikanten', en: 'Only musicians' },
+        { nl: 'Iedereen, altijd', en: 'Everyone, always' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: "Ongeveer de helft tot twee derde van alle mensen krijgt het weleens van muziek."',
+                 en: 'Paragraph 1: "About half to two thirds of all people sometimes get it from music."' } },
+    { id: 'q2', type: 'find', skill: 'gevolgtrekking',
+      q: { nl: 'Welke zin laat zien dat je hersenen al weten dat er een mooi moment aankomt?', en: 'Which sentence shows that your brain already knows a beautiful moment is coming?' },
+      options: [
+        { nl: 'De haartjes op je armen gaan rechtop staan.', en: 'The little hairs on your arms stand up.' },
+        { nl: 'Hetzelfde stofje komt vrij als je iets lekkers eet of een doelpunt maakt.', en: 'The same substance is released when you eat something tasty or score a goal.' },
+        { nl: 'Het verrassende was dat er al dopamine vrijkwam vlak vóór het mooie moment, alsof de hersenen zich er alvast op verheugden.', en: 'The surprising thing was that dopamine was already released just before the beautiful moment, as if the brain was already looking forward to it.' },
+        { nl: 'Een lied dat de ene persoon ontroert, laat de ander koud.', en: 'A song that moves one person leaves another cold.' }
+      ], answer: 2,
+      explain: { nl: 'De dopamine komt al vóór het moment. Dus de hersenen zagen het aankomen.',
+                 en: 'The dopamine comes before the moment. So the brain saw it coming.' } },
+    { id: 'q3', type: 'match', skill: 'woordenschat',
+      q: { nl: 'Klik het woord en daarna de juiste betekenis.', en: 'Click the word and then the correct meaning.' },
+      pairs: [
+        { word: { nl: 'overblijfsel', en: 'leftover' }, meaning: { nl: 'iets wat over is van vroeger', en: 'something left over from the past' } },
+        { word: { nl: 'proefpersoon', en: 'test subject' }, meaning: { nl: 'iemand die meedoet aan een onderzoek', en: 'someone taking part in a study' } },
+        { word: { nl: 'ontroeren', en: 'to move' }, meaning: { nl: 'een diep, warm gevoel geven', en: 'to give a deep, warm feeling' } }
+      ],
+      explain: { nl: 'Deze drie woorden komen allemaal uit de tekst.', en: 'All three words come from the text.' } },
+    { id: 'q4', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Zo lijkt het groter en blijft het warmer." Wat is "het"?', en: '"That way it looks bigger and stays warmer." What is "it"?' },
+      options: [
+        { nl: 'Een dier met een vacht', en: 'An animal with fur' },
+        { nl: 'Een lied', en: 'A song' },
+        { nl: 'De hersenen', en: 'The brain' },
+        { nl: 'Een koor', en: 'A choir' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor gaat over een dier dat het koud heeft of schrikt. "Het" is dat dier.',
+                 en: 'The sentence before is about an animal that is cold or frightened. "It" is that animal.' } },
+    { id: 'q5', type: 'order', skill: 'structuur',
+      q: { nl: 'In welke volgorde komt dit in de tekst aan bod?', en: 'In which order does the text deal with these?' },
+      items: [
+        { nl: 'Wat kippenvel van muziek is', en: 'What goosebumps from music are' },
+        { nl: 'Waar kippenvel vandaan komt', en: 'Where goosebumps come from' },
+        { nl: 'Wat er in je hersenen gebeurt', en: 'What happens in your brain' },
+        { nl: 'Waardoor zo\'n moment ontstaat', en: 'What causes such a moment' },
+        { nl: 'Waarom niet iedereen het even snel krijgt', en: 'Why not everyone gets it equally easily' }
+      ], answer: [0, 1, 2, 3, 4],
+      explain: { nl: 'Elke alinea behandelt één vraag. Zo is de tekst opgebouwd als een reeks vragen en antwoorden.',
+                 en: 'Each paragraph deals with one question. The text is built as a series of questions and answers.' } },
+    { id: 'q6', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Bij kippenvel van muziek komt dopamine vrij.', en: 'Dopamine is released with goosebumps from music.', bin: 0 },
+        { nl: 'Koormuziek is de mooiste muziek die er bestaat.', en: 'Choir music is the most beautiful music there is.', bin: 1 },
+        { nl: 'Dieren zetten hun haren overeind als ze het koud hebben.', en: 'Animals make their hair stand on end when they are cold.', bin: 0 },
+        { nl: 'Wie geen kippenvel krijgt, luistert niet goed.', en: 'Anyone who gets no goosebumps is not listening properly.', bin: 1 }
+      ],
+      explain: { nl: 'Wat onderzoekers meten en wat dieren doen, zijn feiten. "De mooiste" en "luistert niet goed" zijn oordelen.',
+                 en: 'What researchers measure and what animals do are facts. "The most beautiful" and "not listening properly" are judgements.' } },
+    { id: 'q7', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Welke onverwachte momenten in muziek noemt de tekst? Kies er 2.', en: 'Which unexpected moments in music does the text name? Pick 2.' },
+      options: [
+        { nl: 'Een stem die ineens heel hoog gaat', en: 'A voice that suddenly goes very high' },
+        { nl: 'Een koor dat invalt na een stil stuk', en: 'A choir coming in after a quiet passage' },
+        { nl: 'Een liedje dat heel zacht blijft', en: 'A song that stays very quiet' },
+        { nl: 'Een drummer die te laat komt', en: 'A drummer who arrives late' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 4 noemt een hoge stem, een invallend koor en een onverwacht akkoord.',
+                 en: 'Paragraph 4 names a high voice, a choir coming in and an unexpected chord.' } },
+    { id: 'q8', type: 'mc', skill: 'hoofdgedachte',
+      q: { nl: 'Wat is de hoofdgedachte van de tekst?', en: 'What is the main idea of the text?' },
+      options: [
+        { nl: 'Kippenvel van muziek ontstaat doordat je hersenen meeluisteren, voorspellen en genieten', en: 'Goosebumps from music happen because your brain listens along, predicts and enjoys' },
+        { nl: 'Onze voorouders hadden een dikke vacht', en: 'Our ancestors had a thick coat of fur' },
+        { nl: 'In Canada wordt veel muziek gemaakt', en: 'A lot of music is made in Canada' },
+        { nl: 'Koren zingen altijd na een stil stuk', en: 'Choirs always sing after a quiet passage' }
+      ], answer: 0,
+      explain: { nl: 'De hele tekst legt uit wat er in je lichaam en hoofd gebeurt. De andere keuzes zijn details of kloppen niet.',
+                 en: 'The whole text explains what happens in your body and head. The other options are details or wrong.' } },
+    { id: 'q9', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de tekst krijgen alleen mensen die veel van muziek weten kippenvel.', en: 'According to the text, only people who know a lot about music get goosebumps.' },
+      answer: false,
+      explain: { nl: 'De laatste alinea zegt juist: "Je hoeft dus geen muziekkenner te zijn om het te voelen."',
+                 en: 'The last paragraph says the opposite: "So you do not have to be a music expert to feel it."' } },
+    { id: 'q10', type: 'find', skill: 'doel',
+      q: { nl: 'Met welke zin stelt de schrijver de lezer gerust?', en: 'With which sentence does the writer reassure the reader?' },
+      options: [
+        { nl: 'Niet iedereen krijgt even snel kippenvel.', en: 'Not everyone gets goosebumps equally easily.' },
+        { nl: "Wat maakt zo'n moment zo sterk?", en: 'What makes such a moment so strong?' },
+        { nl: 'Vaak gebeurt er iets onverwachts.', en: 'Often something unexpected happens.' },
+        { nl: 'Je hoeft dus geen muziekkenner te zijn om het te voelen.', en: 'So you do not have to be a music expert to feel it.' }
+      ], answer: 3,
+      explain: { nl: 'Deze zin haalt een zorg weg: iedereen kan het voelen, ook zonder veel van muziek te weten.',
+                 en: 'This sentence removes a worry: anyone can feel it, even without knowing much about music.' } }
+  ]
 }
 ]);

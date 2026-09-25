@@ -99,6 +99,10 @@ function chooseProfile(id) {
   setHue(defaultHue(), 'default');
   renderWorlds();
   show('worlds');
+  /* welkom terug, met de dagreeks erbij als die loopt */
+  const streak = Rewards.currentStreak();
+  FX.toast('👋 ' + t('welcomeBack').replace('{name}', Store.player.name || '') +
+    (streak > 1 ? ' 🔥 ' + t('dayStreak').replace('{n}', streak) : ''), 3200);
 }
 
 /* leeg formulier voor een gloednieuwe speler: nooit gevuld met de naam of
@@ -133,7 +137,8 @@ function selectDraftAvatar(a) {
 /* ---- klok die bijhoudt hoelang er echt gespeeld wordt ---- */
 /* op het startscherm (nog niemand gekozen) en in het ouderdeel telt de
    tijd niet mee voor de leesmissie van het kind */
-const NO_CLOCK_SCREENS = ['home', 'parent'];
+/* de speelhal telt ook niet mee: dat is spelen, geen lezen */
+const NO_CLOCK_SCREENS = ['home', 'parent', 'arcade', 'arcade-result'];
 
 function startTicker() {
   setInterval(function () {
@@ -260,6 +265,7 @@ function bindGlobal() {
       else if (to === 'levels') { renderLevels(); show('levels'); }
       else if (to === 'spell-cats') { setHue(defaultHue(), 'default'); S.mode = 'spell'; renderWorlds(); show('worlds'); }
       else if (to === 'spell-sets') { Spell.renderSets(); show('spell-sets'); }
+      else if (to === 'play') { setHue(defaultHue(), 'default'); S.mode = 'play'; renderWorlds(); show('worlds'); }
     });
   });
 
@@ -341,6 +347,9 @@ function toggleLang() {
   else if (S.screen === 'spell') Spell.renderItem();
   else if (S.screen === 'spell-result') Spell.renderResult();
   else if (S.screen === 'shop') renderShop();
+  else if (S.screen === 'arcade') Arcade.renderHud();
+  else if (S.screen === 'arcade-result') Arcade.renderResult();
+  else if (S.screen === 'woordkist') Woordkist.render();
 }
 
 function applyLang() {
@@ -480,6 +489,13 @@ function checkBadges(ctx) {
   if ((p.questDays || 0) >= 3) push('questhero');
   if (((p.owned || {}).gift || []).length >= 10) push('collector');
 
+  /* groep 8, de speelhal, de Woordkist en de leesdraak */
+  if (ctx && ctx.level === 6 && ctx.stars >= 2) push('g8');
+  if (ctx && ctx.spellG8) push('spell8');
+  if ((p.arcadeTop || 0) >= 12) push('arcade');
+  if (window.Woordkist && Woordkist.known() >= 25) push('kist');
+  if (Rewards.petStage() >= 3) push('dragon');
+
   return got;
 }
 
@@ -498,9 +514,11 @@ function setMode(mode) {
   $$('.mode-tab').forEach(function (b) { b.classList.toggle('on', b.dataset.mode === mode); });
   $('world-grid').classList.toggle('hidden', mode !== 'read');
   $('spell-grid').classList.toggle('hidden', mode !== 'spell');
-  $('worlds-title').textContent = mode === 'read' ? t('chooseWorld') : t('chooseSpell');
-  $('worlds-sub').textContent = mode === 'read' ? t('chooseWorldSub') : t('chooseSpellSub');
+  $('play-grid').classList.toggle('hidden', mode !== 'play');
+  $('worlds-title').textContent = mode === 'read' ? t('chooseWorld') : mode === 'spell' ? t('chooseSpell') : t('choosePlay');
+  $('worlds-sub').textContent = mode === 'read' ? t('chooseWorldSub') : mode === 'spell' ? t('chooseSpellSub') : t('choosePlaySub');
   if (mode === 'spell') Spell.renderCats();
+  if (mode === 'play') Arcade.renderMenu();
 }
 
 function renderWorlds() {
@@ -823,6 +841,10 @@ function shuffle(arr) {
    taal of het lezen van de uitleg de volgorde niet verandert. */
 function buildViews() {
   S.views = S.story.questions.map(function (q) {
+    /* bewijszinnen blijven in de volgorde van de tekst staan */
+    if (q.type === 'find') {
+      return { opts: q.options.map(function (o, i) { return { o: o, i: i }; }) };
+    }
     if (q.type === 'mc' || q.type === 'gap' || q.type === 'multi') {
       return { opts: shuffle(q.options.map(function (o, i) { return { o: o, i: i }; })) };
     }
@@ -893,7 +915,7 @@ function renderQuestion() {
   $('btn-next').classList.add('hidden');
   $('btn-hint').classList.toggle('hidden', q.type === 'match');
   $('btn-joker').classList.toggle('hidden',
-    ['mc', 'gap', 'tf', 'multi'].indexOf(q.type) === -1 || !((Store.player.tools || {}).jokers > 0));
+    !jokerFitsType(q.type) || !((Store.player.tools || {}).jokers > 0));
   $('btn-check').textContent = t('check');
   $('btn-next').textContent = (S.qi === S.story.questions.length - 1) ? t('finishStory') : t('next');
 
@@ -907,6 +929,33 @@ function renderQuestion() {
   else if (q.type === 'match') { $('q-text').textContent = L(q.q); renderMatch(body, q, v); }
   else if (q.type === 'multi') { $('q-text').textContent = L(q.q); renderMulti(body, q, v); }
   else if (q.type === 'sort') { $('q-text').textContent = L(q.q); renderSort(body, q, v); }
+  else if (q.type === 'find') { $('q-text').textContent = L(q.q); renderFind(body, v); }
+}
+
+/* ---- zoek het bewijs: tik de zin uit de tekst aan die het antwoord
+   bewijst (groep 8 / doorstroomtoets). Werkt verder precies als meerkeuze. ---- */
+function renderFind(body, v) {
+  const hint = document.createElement('p');
+  hint.className = 'order-hint';
+  hint.textContent = t('findHint');
+  body.appendChild(hint);
+  const wrap = document.createElement('div');
+  wrap.className = 'q-body find-list';
+  body.appendChild(wrap);
+  v.opts.forEach(function (item, n) {
+    const b = document.createElement('button');
+    b.className = 'opt find-opt';
+    b.dataset.orig = item.i;
+    b.innerHTML = '<span class="key">' + (n + 1) + '</span><span class="find-quote">' + escHtml(L(item.o)) + '</span>';
+    b.addEventListener('click', function () {
+      if (S.checked) return;
+      Sound.click();
+      $$('#q-body .opt').forEach(function (x) { x.classList.remove('sel'); });
+      b.classList.add('sel');
+      S.selected = item.i;
+    });
+    wrap.appendChild(b);
+  });
 }
 
 function renderChoices(body, opts) {
@@ -1188,7 +1237,7 @@ function useHint() {
   setTimeout(function () { FX.hush(); }, 6000);
 
   /* bij meerkeuze verdwijnt één fout antwoord */
-  if (q.type === 'mc' || q.type === 'gap' || q.type === 'multi') {
+  if (q.type === 'mc' || q.type === 'gap' || q.type === 'multi' || q.type === 'find') {
     const isAnswer = function (i) {
       return q.type === 'multi' ? q.answer.indexOf(i) !== -1 : i === q.answer;
     };
@@ -1236,7 +1285,7 @@ function togglePeek() {
 /* ---- nakijken ---- */
 function answerText(q, val) {
   if (q.type === 'tf') return val === true ? t('trueLabel') : val === false ? t('falseLabel') : '-';
-  if (q.type === 'mc' || q.type === 'gap') return (val === null || val === undefined) ? '-' : L(q.options[val]);
+  if (q.type === 'mc' || q.type === 'gap' || q.type === 'find') return (val === null || val === undefined) ? '-' : L(q.options[val]);
   if (q.type === 'multi') {
     if (!Array.isArray(val)) return '-';
     return val.slice().sort(function (a, b) { return a - b; })
@@ -1266,7 +1315,7 @@ function expectedText(q) {
 
 function isCorrect(q, val) {
   if (q.type === 'tf') return val === q.answer;
-  if (q.type === 'mc' || q.type === 'gap') return val === q.answer;
+  if (q.type === 'mc' || q.type === 'gap' || q.type === 'find') return val === q.answer;
   if (q.type === 'multi') {
     if (!Array.isArray(val) || val.length !== q.answer.length) return false;
     const a = val.slice().sort(function (x, y) { return x - y; });
@@ -1303,7 +1352,7 @@ function reRenderQuestion() {
   Object.assign(S, keep);
 
   /* de gemaakte keuzes weer zichtbaar maken in de nieuwe taal */
-  if (q.type === 'mc' || q.type === 'gap') {
+  if (q.type === 'mc' || q.type === 'gap' || q.type === 'find') {
     const b = $$('#q-body .opt').filter(function (x) { return parseInt(x.dataset.orig, 10) === S.selected; })[0];
     if (b) {
       b.classList.add('sel');
@@ -1343,7 +1392,7 @@ function reRenderQuestion() {
 
 /* de kleuren en vinkjes na het nakijken */
 function markAnswer(q) {
-  if (q.type === 'mc' || q.type === 'gap') {
+  if (q.type === 'mc' || q.type === 'gap' || q.type === 'find') {
     $$('#q-body .opt').forEach(function (b) {
       const orig = parseInt(b.dataset.orig, 10);
       if (orig === q.answer) b.classList.add('ok');
@@ -1395,7 +1444,7 @@ function showVerdict(q, ok) {
 
 /* ---- joker: verklap het goede antwoord, tegen een lagere beloning ---- */
 function jokerFitsType(type) {
-  return ['mc', 'gap', 'tf', 'multi'].indexOf(type) !== -1;
+  return ['mc', 'gap', 'tf', 'multi', 'find'].indexOf(type) !== -1;
 }
 function useJoker() {
   const q = currentQ();
@@ -1446,6 +1495,7 @@ function checkAnswer() {
       const bonus = Math.min(S.streak, 5) * 2;
       addXP((S.hintUsed ? 6 : 10) + bonus);
       FX.burst(S.streak >= 3 ? 60 : 26);
+      if ([3, 5, 10, 15, 20].indexOf(S.streak) !== -1) FX.combo(S.streak);
     }
     Sound.correct();
     FX.say(tRandom('praise'), 'happy');
@@ -1507,6 +1557,9 @@ function finishStory() {
   if (stars === 3) Rewards.track('perfect');
   if (!S.helpUsed && stars >= 1) Rewards.track('nohint');
   if (stars === 3 && !(prev && prev.stars === 3)) Rewards.grantChest('star');
+  /* speelkaartjes en eten voor de leesdraak: alleen voor echt lezen */
+  const earned = stars >= 1 ? Rewards.earn('story') : { tickets: 0 };
+  if (prev && correct > prev.correct) FX.toast('📈 ' + t('improved').replace('{a}', prev.correct).replace('{b}', correct), 3000);
 
   Store.log('story_done', {
     session: S.sessionId, story: S.story.id, topic: S.topic, level: S.level,
@@ -1516,7 +1569,7 @@ function finishStory() {
 
   const newBadges = checkBadges({ perfect: ratio === 1, level: S.level, stars: stars, wpm: wpm });
 
-  S.lastResult = { correct: correct, total: total, stars: stars, xp: xpGain, coins: coinsGain, wpm: wpm, totalMs: totalMs, badges: newBadges };
+  S.lastResult = { correct: correct, total: total, stars: stars, xp: xpGain, coins: coinsGain, tickets: earned.tickets, wpm: wpm, totalMs: totalMs, badges: newBadges };
   S.lastResult.fact = Rewards.factFor(S.topic);
   renderResult();
   show('result');
@@ -1539,6 +1592,7 @@ function renderResult() {
   $('rt-correct').textContent = r.correct + '/' + r.total;
   FX.countUp($('rt-xp'), r.xp, '+');
   FX.countUp($('rt-coins'), r.coins || 0, '+');
+  $('rt-tickets').textContent = '+' + (r.tickets || 0);
   $('rt-wpm').textContent = r.wpm || '–';
   const m = Math.floor(r.totalMs / 60000), s = Math.floor(r.totalMs % 60000 / 1000);
   $('rt-time').textContent = m + ':' + String(s).padStart(2, '0');
@@ -1962,6 +2016,8 @@ function renderParent() {
   $('p-coins').textContent = Store.player.coins || 0;
   $('p-streak').textContent = ((Store.player.dayStreak || {}).best || 0);
   $('p-gifts').textContent = ((Store.player.owned || {}).gift || []).length;
+  $('p-arcade').textContent = Store.player.arcadePlays || 0;
+  $('p-kist').textContent = Woordkist.known();
   const owned = Store.player.owned || {};
   $('p-owned').textContent = Object.keys(owned).reduce(function (n, k) { return n + (owned[k] || []).length; }, 0);
 
@@ -1974,14 +2030,15 @@ function renderParent() {
     (window.LANG === 'nl' ? 'Sessies' : 'Sessions') + '</th><th>' + (window.LANG === 'nl' ? 'Tijd' : 'Time') +
     '</th><th>' + (window.LANG === 'nl' ? 'Verhalen' : 'Stories') + '</th><th>' + (window.LANG === 'nl' ? 'Vragen' : 'Questions') +
     '</th><th>' + (window.LANG === 'nl' ? 'Goed' : 'Correct') + '</th><th>' + (window.LANG === 'nl' ? 'Spelling' : 'Spelling') +
-    '</th><th>🪙</th><th>🏅</th></tr>';
+    '</th><th>🪙</th><th>🏅</th><th>🎮</th><th>🗃️</th></tr>';
   if (!daily.length) {
-    dHtml += '<tr><td colspan="9">' + (window.LANG === 'nl' ? 'Nog geen dagen gespeeld.' : 'No days played yet.') + '</td></tr>';
+    dHtml += '<tr><td colspan="11">' + (window.LANG === 'nl' ? 'Nog geen dagen gespeeld.' : 'No days played yet.') + '</td></tr>';
   }
   daily.forEach(function (d) {
     dHtml += '<tr><td>' + d.date + '</td><td>' + d.sessions + '</td><td>' + d.minutes + 'm</td><td>' +
       d.stories + '</td><td>' + d.questions + '</td><td>' + (d.questions ? d.accuracy + '%' : '–') +
-      '</td><td>' + d.spellWords + '</td><td>' + d.coinsEarned + '</td><td>' + d.badges + '</td></tr>';
+      '</td><td>' + d.spellWords + '</td><td>' + d.coinsEarned + '</td><td>' + d.badges +
+      '</td><td>' + d.games + '</td><td>' + d.kist + '</td></tr>';
   });
   dHtml += '</table>';
   $('p-daily-log').innerHTML = dHtml;

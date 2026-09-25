@@ -1062,5 +1062,131 @@ addStories([
       explain: { nl: 'Het verhaal volgt het speurwerk van Mila en Ties, van verdwenen taart tot de kat als dader.',
                  en: 'The story follows the detective work of Mila and Ties, from the missing pie to the cat as culprit.' } }
   ]
+},
+
+{
+  id: 'mysterie-12', topic: 'mysterie', level: 6, emoji: '🕵️', scene: 'night',
+  title: { nl: 'Word een nepnieuwsdetective', en: 'Become a fake news detective' },
+  text: {
+    nl: [
+      "Op een woensdagmiddag gaat een filmpje rond in de klassenapp. Je ziet een haai die door een ondergelopen straat zwemt, vlak na een storm. 'Echt gebeurd in Rotterdam!' staat erbij. Binnen een uur hebben honderden mensen het doorgestuurd. Maar een foto van precies zo'n haai duikt al sinds 2011 op, bij bijna elke overstroming ter wereld. Hij is in elkaar geknutseld op een computer.",
+      "Nepnieuws is zo oud als nieuws zelf, maar door het internet verspreidt het zich sneller dan ooit. Onderzoekers ontdekten dat valse berichten op sociale media vaak vaker gedeeld worden dan echte. Dat komt niet doordat mensen dom zijn. Een saai maar waar bericht wordt veel minder vaak doorgestuurd. Nepnieuws is juist gemaakt om je te verrassen, bang te maken of boos te maken. En als je sterk iets voelt, druk je sneller op 'delen'.",
+      "Gelukkig kun je leren om een bericht te controleren, net als een detective die sporen onderzoekt. De eerste vraag is: wie zegt dit? Staat er een bekende nieuwsorganisatie onder, of een onbekend account dat gisteren is aangemaakt? De tweede vraag: wanneer is het gemaakt? Oude foto's worden vaak opnieuw gebruikt bij nieuwe gebeurtenissen, zoals bij die haai.",
+      "De derde vraag is: vertellen anderen hetzelfde? Als er echt een haai door Rotterdam zwemt, staat dat binnen een paar minuten op elke nieuwssite. Zie je het alleen in één filmpje, dan is dat verdacht. Ten slotte kun je een foto terugzoeken. Met een zoekmachine kun je een afbeelding uploaden en kijken waar die eerder verscheen. Zo zie je in een paar tellen dat de haai al jaren rondzwemt.",
+      "Nieuwe technieken maken het wel lastiger. Met slimme computerprogramma's kan tegenwoordig bijna iedereen een nepfoto of zelfs een nepstem maken die heel echt lijkt. Zulke vervalsingen heten deepfakes. Let daarom ook op kleine foutjes: handen met zes vingers, tekst op de achtergrond die nergens op slaat, of een stem die net iets te vlak klinkt. En onthoud: hoe schokkender een bericht is, hoe beter je moet kijken.",
+      "Het belangrijkste wapen van een nepnieuwsdetective is geen computer, maar geduld. Wacht even voordat je iets doorstuurt. Stel jezelf de vier vragen. Vraag het desnoods aan een ouder of je juf. Twijfel je nog steeds? Stuur het dan niet door. Zo zorg je ervoor dat een leugen bij jou ophoudt, in plaats van dat hij via jou verder reist."
+    ],
+    en: [
+      "One Wednesday afternoon a video goes round the class chat. You see a shark swimming down a flooded street, just after a storm. 'Really happened in Rotterdam!' it says. Within an hour hundreds of people have forwarded it. But a photo of exactly that kind of shark has been popping up since 2011, at almost every flood in the world. It was put together on a computer.",
+      "Fake news is as old as news itself, but thanks to the internet it spreads faster than ever. Researchers discovered that false messages on social media are often shared more than true ones. That is not because people are stupid. A boring but true message gets forwarded far less often. Fake news is made precisely to surprise you, frighten you or make you angry. And when you feel something strongly, you press 'share' more quickly.",
+      "Luckily you can learn to check a message, just like a detective investigating clues. The first question is: who is saying this? Is a well-known news organisation behind it, or an unknown account created yesterday? The second question: when was it made? Old photos are often reused for new events, as with that shark.",
+      "The third question is: are others saying the same? If a shark really is swimming through Rotterdam, it will be on every news site within minutes. If you only see it in one video, that is suspicious. Finally you can trace a photo back. With a search engine you can upload a picture and see where it appeared before. That way you see in a few seconds that the shark has been swimming around for years.",
+      "New techniques do make it harder. With clever computer programs almost anyone can now make a fake photo or even a fake voice that looks or sounds very real. Such forgeries are called deepfakes. So also look out for small mistakes: hands with six fingers, text in the background that makes no sense, or a voice that sounds just a little too flat. And remember: the more shocking a message is, the more closely you should look.",
+      "The most important weapon of a fake news detective is not a computer, but patience. Wait a moment before you forward something. Ask yourself the four questions. If you need to, ask a parent or your teacher. Still in doubt? Then do not forward it. That way you make sure a lie stops with you, instead of travelling on through you."
+    ]
+  },
+  words: [
+    { nl: 'verspreiden', en: 'to spread', defNl: 'overal naartoe gaan of gestuurd worden', defEn: 'to go or be sent everywhere' },
+    { nl: 'vervalsing', en: 'forgery', defNl: 'iets wat nagemaakt is om mensen te bedriegen', defEn: 'something copied in order to fool people' },
+    { nl: 'verdacht', en: 'suspicious', defNl: 'zo dat je denkt dat er iets niet klopt', defEn: 'making you think that something is not right' }
+  ],
+  questions: [
+    { id: 'q1', type: 'mc', skill: 'letterlijk',
+      q: { nl: 'Sinds wanneer duikt een foto van zo\'n haai al op?', en: 'Since when has a photo of such a shark been popping up?' },
+      options: [
+        { nl: 'Sinds 2011', en: 'Since 2011' },
+        { nl: 'Sinds vorige week', en: 'Since last week' },
+        { nl: 'Sinds de storm in Rotterdam', en: 'Since the storm in Rotterdam' },
+        { nl: 'Sinds 1953', en: 'Since 1953' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 1: de foto "duikt al sinds 2011 op, bij bijna elke overstroming ter wereld".',
+                 en: 'Paragraph 1: the photo "has been popping up since 2011, at almost every flood in the world".' } },
+    { id: 'q2', type: 'find', skill: 'gevolgtrekking',
+      q: { nl: 'Welke zin legt uit waarom mensen nepnieuws zo snel doorsturen?', en: 'Which sentence explains why people forward fake news so quickly?' },
+      options: [
+        { nl: 'Binnen een uur hebben honderden mensen het doorgestuurd.', en: 'Within an hour hundreds of people have forwarded it.' },
+        { nl: 'Hij is in elkaar geknutseld op een computer.', en: 'It was put together on a computer.' },
+        { nl: "En als je sterk iets voelt, druk je sneller op 'delen'.", en: "And when you feel something strongly, you press 'share' more quickly." },
+        { nl: 'Zulke vervalsingen heten deepfakes.', en: 'Such forgeries are called deepfakes.' }
+      ], answer: 2,
+      explain: { nl: 'Nepnieuws speelt in op je gevoel. Een sterk gevoel maakt dat je sneller deelt: dat is de oorzaak.',
+                 en: 'Fake news plays on your feelings. A strong feeling makes you share faster: that is the cause.' } },
+    { id: 'q3', type: 'gap', skill: 'woordenschat',
+      q: { nl: 'Een deepfake is ___.', en: 'A deepfake is ___.' },
+      options: [
+        { nl: 'een nepfoto, nepfilmpje of nepstem die met een computer gemaakt is', en: 'a fake photo, video or voice made with a computer' },
+        { nl: 'een heel diepe zee', en: 'a very deep sea' },
+        { nl: 'een bekende nieuwsorganisatie', en: 'a well-known news organisation' },
+        { nl: 'een zoekmachine voor foto\'s', en: 'a search engine for photos' }
+      ], answer: 0,
+      explain: { nl: 'Alinea 5: nepfoto\'s en nepstemmen die heel echt lijken, "zulke vervalsingen heten deepfakes".',
+                 en: 'Paragraph 5: fake photos and voices that seem real, "such forgeries are called deepfakes".' } },
+    { id: 'q4', type: 'order', skill: 'volgorde',
+      q: { nl: 'Zet de vragen van de nepnieuwsdetective in de volgorde van de tekst.', en: 'Put the fake news detective\'s questions in the order of the text.' },
+      items: [
+        { nl: 'Wie zegt dit?', en: 'Who is saying this?' },
+        { nl: 'Wanneer is het gemaakt?', en: 'When was it made?' },
+        { nl: 'Vertellen anderen hetzelfde?', en: 'Are others saying the same?' },
+        { nl: 'Waar verscheen de foto eerder?', en: 'Where did the photo appear before?' }
+      ], answer: [0, 1, 2, 3],
+      explain: { nl: 'Let op de signaalwoorden: "De eerste vraag", "De tweede vraag", "De derde vraag" en "Ten slotte".',
+                 en: 'Watch the signal words: "the first question", "the second question", "the third question" and "finally".' } },
+    { id: 'q5', type: 'mc', skill: 'verwijswoorden',
+      q: { nl: '"Zo zie je in een paar tellen dat de haai al jaren rondzwemt." Waar verwijst "zo" naar?', en: '"That way you see in a few seconds that the shark has been swimming around for years." What does "that way" refer to?' },
+      options: [
+        { nl: 'Naar het terugzoeken van de foto met een zoekmachine', en: 'To tracing the photo back with a search engine' },
+        { nl: 'Naar het doorsturen in de klassenapp', en: 'To forwarding it in the class chat' },
+        { nl: 'Naar het kijken naar handen met zes vingers', en: 'To looking at hands with six fingers' },
+        { nl: 'Naar het wachten voordat je iets deelt', en: 'To waiting before you share something' }
+      ], answer: 0,
+      explain: { nl: 'De zin ervoor legt uit hoe je met een zoekmachine een afbeelding terugzoekt. Daar wijst "zo" naar.',
+                 en: 'The sentence before explains how to trace a picture with a search engine. "That way" points to that.' } },
+    { id: 'q6', type: 'sort', skill: 'feitmening',
+      q: { nl: 'Feit of mening? Zet elke zin in de goede groep.', en: 'Fact or opinion? Put every sentence in the right group.' },
+      bins: [{ nl: 'Feit', en: 'Fact' }, { nl: 'Mening', en: 'Opinion' }],
+      items: [
+        { nl: 'Met een zoekmachine kun je een afbeelding terugzoeken.', en: 'You can trace a picture back with a search engine.', bin: 0 },
+        { nl: 'Geduld is het belangrijkste wapen tegen nepnieuws.', en: 'Patience is the most important weapon against fake news.', bin: 1 },
+        { nl: 'Een foto van zo\'n haai duikt al sinds 2011 op.', en: 'A photo of such a shark has been popping up since 2011.', bin: 0 },
+        { nl: 'Wie nepnieuws deelt, is dom.', en: 'Anyone who shares fake news is stupid.', bin: 1 }
+      ],
+      explain: { nl: 'Wat een zoekmachine kan en sinds wanneer de foto rondgaat, is na te gaan. "Het belangrijkste" en "dom" zijn oordelen.',
+                 en: 'What a search engine can do and since when the photo has been around can be checked. "Most important" and "stupid" are judgements.' } },
+    { id: 'q7', type: 'multi', skill: 'letterlijk',
+      q: { nl: 'Aan welke foutjes kun je een deepfake soms herkennen? Kies er 2.', en: 'By which mistakes can you sometimes recognise a deepfake? Pick 2.' },
+      options: [
+        { nl: 'Handen met zes vingers', en: 'Hands with six fingers' },
+        { nl: 'Een stem die net iets te vlak klinkt', en: 'A voice that sounds just a little too flat' },
+        { nl: 'Een datum onder de foto', en: 'A date under the photo' },
+        { nl: 'Een bekende nieuwsorganisatie eronder', en: 'A well-known news organisation behind it' }
+      ], answer: [0, 1],
+      explain: { nl: 'Alinea 5 noemt zes vingers, tekst die nergens op slaat en een te vlakke stem.',
+                 en: 'Paragraph 5 names six fingers, text that makes no sense and a voice that is too flat.' } },
+    { id: 'q8', type: 'mc', skill: 'doel',
+      q: { nl: 'Wat is het doel van de schrijver?', en: 'What is the writer\'s purpose?' },
+      options: [
+        { nl: 'De lezer leren hoe hij nepnieuws herkent en tegenhoudt', en: 'Teach the reader how to recognise and stop fake news' },
+        { nl: 'De lezer bang maken voor haaien', en: 'Make the reader afraid of sharks' },
+        { nl: 'Vertellen wat er in Rotterdam gebeurde', en: 'Tell what happened in Rotterdam' },
+        { nl: 'Reclame maken voor een zoekmachine', en: 'Advertise a search engine' }
+      ], answer: 0,
+      explain: { nl: 'De tekst geeft stappen en tips, en eindigt met een advies. Dat is een tekst die iets wil aanleren.',
+                 en: 'The text gives steps and tips and ends with advice. It is a text that wants to teach something.' } },
+    { id: 'q9', type: 'tf', skill: 'gevolgtrekking',
+      q: { nl: 'Volgens de schrijver sturen mensen nepnieuws door omdat ze dom zijn.', en: 'According to the writer, people forward fake news because they are stupid.' },
+      answer: false,
+      explain: { nl: 'Alinea 2 zegt juist: "Dat komt niet doordat mensen dom zijn." Het ligt aan hoe nepnieuws gemaakt is.',
+                 en: 'Paragraph 2 says the opposite: "That is not because people are stupid." It is down to how fake news is made.' } },
+    { id: 'q10', type: 'find', skill: 'hoofdgedachte',
+      q: { nl: 'Welke zin geeft de belangrijkste boodschap van de tekst?', en: 'Which sentence gives the most important message of the text?' },
+      options: [
+        { nl: 'Nepnieuws is zo oud als nieuws zelf, maar door het internet verspreidt het zich sneller dan ooit.', en: 'Fake news is as old as news itself, but thanks to the internet it spreads faster than ever.' },
+        { nl: 'Nieuwe technieken maken het wel lastiger.', en: 'New techniques do make it harder.' },
+        { nl: 'De derde vraag is: vertellen anderen hetzelfde?', en: 'The third question is: are others saying the same?' },
+        { nl: 'Zo zorg je ervoor dat een leugen bij jou ophoudt, in plaats van dat hij via jou verder reist.', en: 'That way you make sure a lie stops with you, instead of travelling on through you.' }
+      ], answer: 3,
+      explain: { nl: 'Alles in de tekst leidt naar dit doel: jij kunt nepnieuws tegenhouden. De andere zinnen zijn onderdelen.',
+                 en: 'Everything in the text leads to this goal: you can stop fake news. The other sentences are parts of it.' } }
+  ]
 }
 ]);
