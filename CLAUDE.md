@@ -349,6 +349,11 @@ diploma, and a parent switch can turn that off.
     it explicitly.
   - `.dip-kind` is `text-transform: uppercase`, so Playwright `innerText`
     is uppercase — match it case-insensitively in tests.
+  - The other way round: Playwright `{ hasText: 'maandag' }` is a
+    case-insensitive substring match, so it also finds `Maandag`. Spelling
+    duels can differ only in case (a real capital-letter item), so tests
+    must pick answer buttons by exact text. This only failed on some runs
+    (the duels are random), and a second smoke run caught it.
   - Word-search spelling decks produced case-only pairs (Maandag/maandag);
     those are filtered out. Blokbonk beetles must patrol inside the gap
     between sentences, or they walk under the blocks.

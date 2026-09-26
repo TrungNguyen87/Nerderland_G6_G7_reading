@@ -943,8 +943,12 @@ try {
     } else if (g === 'castle') {
       /* answer the questions by tapping, build a tower by tapping a spot, start a wave */
       for (let i = 0; i < 5; i++) {
-        const right = await page.evaluate(() => { const m = Arcade.state().game; return Arcade.state().duels[m.qi].right; });
-        await page.locator('#arc-panel .td-opt', { hasText: right }).first().click();
+        /* exact match: hasText ignores case, and "Maandag"/"maandag" is a real question */
+        const n = await page.evaluate(() => {
+          const right = Arcade.state().duels[Arcade.state().game.qi].right;
+          return [...document.querySelectorAll('#arc-panel .td-opt')].findIndex(b => b.lastChild.textContent === right);
+        });
+        await page.locator('#arc-panel .td-opt').nth(n).click();
         await page.waitForTimeout(800);
       }
       const box = await sel('#arc-canvas').boundingBox();
