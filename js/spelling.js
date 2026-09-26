@@ -21,6 +21,8 @@ const Spell = (function () {
   const JOKER_TYPES = ['pick', 'fill', 'error'];
 
   /* ---- kleine helpers ---- */
+  /* een moeilijkere oefening geeft meer XP */
+  function spellBonus(level) { return Math.max(0, (level || 1) - 1) * 3; }
   function catById(id) {
     return window.SPELL_CATS.filter(function (c) { return c.id === id; })[0];
   }
@@ -134,25 +136,40 @@ const Spell = (function () {
     const grid = $('spell-set-grid');
     grid.innerHTML = '';
 
+    /* de eerste oefening die open is en nog geen diploma heeft: daar is het
+       volgende diploma te halen */
+    const nextSet = setsOf(c.id).filter(function (s) {
+      return setUnlocked(c.id, s.level) && !Ladder.spellGraduated(s);
+    })[0];
     setsOf(c.id).forEach(function (s) {
       const b = bestOf(s.id);
       const open = setUnlocked(c.id, s.level);
+      const grad = Ladder.spellGraduated(s);
       const stars = '⭐'.repeat(s.level) ;
+      const bonus = spellBonus(s.level);
 
       const card = document.createElement('button');
-      card.className = 'level-card';
+      card.className = 'level-card' + (grad ? ' graduated' : '') + (nextSet === s && open ? ' next-dip' : '');
+      card.dataset.set = s.id;
+      const got = b ? '⭐'.repeat(b.stars) + '☆'.repeat(3 - b.stars) : '';
       card.innerHTML =
-        '<span class="lc-stars">' + (open ? (b ? '⭐'.repeat(b.stars) + '☆'.repeat(3 - b.stars) : stars) : '🔒') + '</span>' +
+        '<span class="lc-stars">' + (grad ? '🎓' : open ? (b ? got : stars) : '🔒') + '</span>' +
         '<span><span class="lc-name">' + L(s.title) + '</span>' +
-        (s.grade === 8 ? ' <span class="q-skill g8-pill">🎓 ' + t('grade8') + '</span>' : '') + '<br>' +
-        '<span class="lc-meta">' + s.items.length + ' ' + t('spellWords') + '</span></span>' +
-        '<span class="lc-right">' + (b
-          ? '<span class="lc-done">' + t('bestScore') + ' ' + b.correct + '/' + b.total + '</span>'
-          : (open ? t('notYet') : t('spellLocked'))) + '</span>';
+        (s.grade === 8 ? ' <span class="q-skill g8-pill">🎓 ' + t('grade8') + '</span>' : '') +
+        (bonus && open && !grad ? ' <span class="lc-bonus">' + t('levelBonus').replace('{n}', bonus) + '</span>' : '') + '<br>' +
+        '<span class="lc-meta">' + s.items.length + ' ' + t('spellWords') + '</span>' +
+        (grad ? '<br><span class="lc-desc">' + t('gradCardDesc') + '</span>' : '') + '</span>' +
+        '<span class="lc-right">' + (grad
+          ? '<span class="lc-dip">🎓 ' + t('gradCardRight') + '</span><span class="lc-done">' + got + '</span>'
+          : b
+            ? '<span class="lc-done">' + t('bestScore') + ' ' + b.correct + '/' + b.total + '</span>'
+            : (open ? t('notYet') : t('spellLocked'))) + '</span>';
 
       if (!open) {
         card.style.opacity = '.55';
         card.addEventListener('click', function () { FX.toast(t('spellLocked')); Sound.wrong(); });
+      } else if (grad && Ladder.lockOn()) {
+        card.addEventListener('click', function () { gradNudge(t('gradToastSpell')); });
       } else {
         card.addEventListener('click', function () { Sound.click(); openSet(s); });
       }
@@ -682,7 +699,7 @@ const Spell = (function () {
     const ratio = total ? correct / total : 0;
     const stars = ratio === 1 ? 3 : ratio >= 0.7 ? 2 : ratio >= 0.4 ? 1 : 0;
     const ms = Date.now() - SP.setStart;
-    const xp = stars * 12 + correct * 2;
+    const xp = stars * 12 + correct * 2 + (stars >= 1 ? spellBonus(SP.set.level) : 0);
     addXP(xp);
     addCoins(stars * 3, 'spell:' + SP.set.id);
     const coinsGain = (Store.player.coins || 0) - (SP.coinsBefore || 0);
@@ -705,13 +722,15 @@ const Spell = (function () {
       correct: correct, total: total, stars: stars, xp: xp, ms: ms, lang: window.LANG
     });
 
+    const diplomas = Ladder.checkSpell(SP.set);
     const badges = checkBadges({ spellPerfect: ratio === 1, spellG8: SP.set.grade === 8 && stars >= 2 });
-    SP.last = { correct: correct, total: total, stars: stars, xp: xp, coins: coinsGain, tickets: earned.tickets, ms: ms, badges: badges, wrong: SP.wrong.slice() };
+    SP.last = { correct: correct, total: total, stars: stars, xp: xp, coins: coinsGain, tickets: earned.tickets, ms: ms, badges: badges, wrong: SP.wrong.slice(), diplomas: diplomas };
 
     renderResult();
     show('spell-result');
     if (stars === 3) { FX.burst(200); Sound.finish(); }
     else if (stars >= 1) { FX.burst(80); Sound.star(); }
+    Ladder.present(diplomas);
   }
 
   function renderResult() {
@@ -759,7 +778,14 @@ const Spell = (function () {
     });
 
     $('btn-sp-again').textContent = t('spellAgain');
+    $('btn-sp-again').classList.toggle('hidden', !!SP.set && Ladder.spellLocked(SP.set));
     $('btn-sp-continue').textContent = t('spellNextSet');
+    const lad = $('sp-result-ladder');
+    const ladText = r.diplomas && r.diplomas.length ? '🎓 ' + t('resDiploma')
+      : (SP.set && !Ladder.spellGraduated(SP.set) && r.stars < 2 && setsOf(SP.set.cat).some(function (x) { return x.level > SP.set.level; }))
+        ? t('resSpellNeed') : '';
+    lad.innerHTML = ladText ? '<span>' + escHtml(ladText) + '</span>' : '';
+    lad.classList.toggle('hidden', !ladText);
     Rewards.renderQuestStrip($('sp-result-quests'));
   }
 
@@ -828,6 +854,16 @@ const Spell = (function () {
     renderItem: reRenderItem,
     renderResult: renderResult,
     openSet: openSet,
+    /* de oefeningen van één regel openen (vanaf een diploma) */
+    openCat: function (catId) {
+      const c = catById(catId);
+      if (!c) return;
+      SP.cat = catId;
+      S.mode = 'spell';
+      setHue(c.hue, 'school');
+      renderSets();
+      show('spell-sets');
+    },
     /* de huidige stand van de oefening, zoals S dat doet voor het leesspel.
        Handig om in de console mee te kijken en om mee te testen. */
     state: function () { return SP; },

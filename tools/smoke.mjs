@@ -87,6 +87,51 @@ page.on('response', (r) => {
 
 const sel = (s) => page.locator(s);
 
+/* A diploma appears a moment after a result screen when a level is
+   mastered. Wait for it and close it, and say how many there were. */
+async function closeDiplomas(waitMs = 1100) {
+  await page.waitForTimeout(waitMs);
+  let n = 0;
+  while (n < 8 && await page.evaluate(() => !document.getElementById('diploma-overlay').classList.contains('hidden'))) {
+    const closeVisible = await sel('#dip-close').isVisible();
+    await sel(closeVisible ? '#dip-close' : '#dip-go').click();
+    n++;
+    await page.waitForTimeout(400);
+  }
+  return n;
+}
+
+/* answer every question of the open story correctly, straight from the data */
+async function answerStory(label) {
+  const n = await page.evaluate(() => S.story.questions.length);
+  for (let i = 0; i < n; i++) {
+    const q = await page.evaluate(() => {
+      const qq = S.story.questions[S.qi];
+      return { type: qq.type, answer: qq.answer, bins: qq.type === 'sort' ? S.views[S.qi].items.map((x) => x.o.bin) : null,
+        pairs: qq.type === 'match' ? qq.pairs.length : null };
+    });
+    if (q.type === 'find') await sel(`#q-body .find-opt[data-orig="${q.answer}"]`).click();
+    else if (q.type === 'mc' || q.type === 'gap') await sel(`#q-body .opt[data-orig="${q.answer}"]`).click();
+    else if (q.type === 'multi') { for (const o of q.answer) await sel(`#q-body .opt[data-orig="${o}"]`).click(); }
+    else if (q.type === 'tf') await sel(`#q-body .tf-btn[data-val="${q.answer ? '1' : '0'}"]`).click();
+    else if (q.type === 'order') { for (const o of q.answer) await sel(`#order-pool .order-item[data-orig="${o}"]`).click(); }
+    else if (q.type === 'sort') {
+      for (let r = 0; r < q.bins.length; r++) await sel('#q-body .sort-row').nth(r).locator('.sort-bin').nth(q.bins[r]).click();
+    } else if (q.type === 'match') {
+      for (let p = 0; p < q.pairs; p++) {
+        await sel(`#q-body .match-col:first-child .match-item[data-pair="${p}"]`).click();
+        await sel(`#q-body .match-col:last-child .match-item[data-pair="${p}"]`).click();
+      }
+      await page.waitForTimeout(600);
+    }
+    if (q.type !== 'match') await sel('#btn-check').click();
+    await page.waitForSelector('#q-feedback.show');
+    if (await page.evaluate(() => S.results[S.qi]) !== true) bad(`${label}: question ${i + 1} (${q.type}) was marked wrong although the data says it is right`);
+    await sel('#btn-next').click();
+  }
+  await page.waitForSelector('#screen-result.active');
+}
+
 try {
   /* =================================================================
      1. Loading
@@ -132,7 +177,7 @@ try {
      not a fixed offset */
   const firstTopicId = await page.evaluate(() => window.TOPICS[0].id);
   const firstLevel5Index = await page.evaluate(
-    (topicId) => window.STORY_DB.filter((s) => s.topic === topicId && s.level < 5).length,
+    (topicId) => window.STORY_DB.filter((s) => !s.series && s.topic === topicId && s.level < 5).length,
     firstTopicId
   );
   const locked = await sel('#level-grid .level-card').nth(firstLevel5Index).innerText();
@@ -373,6 +418,14 @@ try {
   const spStars = await sel('#sp-stars').innerText();
   if (!/⭐⭐⭐/.test(spStars)) bad(`a flawless spelling round gave "${spStars}" instead of three stars`);
   else ok('a flawless spelling round gives three stars');
+  /* the first exercise of a rule, with three stars: that is a spelling
+     diploma, and "practise again" disappears because the set now closes */
+  const spDip = await page.evaluate(() => ({ again: !document.getElementById('btn-sp-again').classList.contains('hidden'),
+    key: Ladder.list().find((k) => k.startsWith('spell:')) }));
+  const spDipShown = await closeDiplomas();
+  if (!spDip.key || spDipShown < 1) bad(`a mastered first spelling exercise did not show a diploma (${JSON.stringify(spDip)}, shown ${spDipShown})`);
+  else if (spDip.again) bad('"practise again" is still offered on a spelling exercise that now has a diploma');
+  else ok(`a mastered spelling exercise gives a diploma (${spDip.key}) and is not offered again`);
 
   /* =================================================================
      7b. Rewards: daily quests, gift boxes, the album and the shop
@@ -577,6 +630,7 @@ try {
   if (!builds) bad('the groep 8 spelling set had no word-builder exercise');
   if (sp8.stars !== 3 || !sp8.badge) bad(`a flawless groep 8 spelling set gave ${sp8.stars} stars / badge ${sp8.badge}`);
   else ok(`played a groep 8 spelling set with ${builds} word-builder item(s): 3 stars and the Groep 8 speller badge`);
+  await closeDiplomas();
 
   /* a wrongly built word is marked wrong */
   await page.evaluate(() => {
@@ -597,8 +651,9 @@ try {
   await page.waitForSelector('#screen-worlds.active');
   await sel('.mode-tab[data-mode="play"]').click();
   const gameCards = await sel('#play-grid .game-card').count();
-  if (gameCards !== 4) bad(`the arcade tab shows ${gameCards} cards (expected 3 games + the Woordkist)`);
-  else ok('the "Spellen" tab shows three arcade games and the Woordkist');
+  const gameTotal = await page.evaluate(() => Arcade.games.length);
+  if (gameTotal < 9 || gameCards !== gameTotal + 1) bad(`the arcade tab shows ${gameCards} cards (expected ${gameTotal} games + the Woordkist)`);
+  else ok(`the "Spellen" tab shows ${gameTotal} games in ${await sel('#play-grid .grid-heading').count()} groups, plus the Woordkist`);
 
   const pools = await page.evaluate(() => Arcade.pools());
   if (pools.spell < 100 || pools.words < 100) bad(`the arcade has too few words to play with (${JSON.stringify(pools)})`);
@@ -648,6 +703,13 @@ try {
   if (arc.correct !== '14/15' || arc.missed !== 1 || !arc.best || arc.logged !== 1) bad(`the arcade result is wrong (${JSON.stringify(arc)})`);
   else if (!arc.badge) bad('12+ right in one arcade game did not earn the arcade badge');
   else ok(`an arcade round ends with a result: ${arc.correct} right, the missed word listed with its rule, record ${arc.best}`);
+  /* 14 of 15 and still hearts left = two stars: level 1 of Springheld gets
+     a diploma, and the result offers level 2 instead of the same level */
+  const arcLv = await page.evaluate(() => ({ stars: Arcade.state().last_result.stars, next: !document.getElementById('btn-arc-next').classList.contains('hidden'),
+    again: !document.getElementById('btn-arc-again').classList.contains('hidden'), sel: Arcade.selectedLevel('runner') }));
+  const arcDip = await closeDiplomas();
+  if (arcLv.stars !== 2 || !arcLv.next || arcLv.again || arcLv.sel !== 2 || arcDip < 1) bad(`two stars in level 1 did not give a diploma and open level 2 (${JSON.stringify(arcLv)}, diplomas ${arcDip})`);
+  else ok('two stars in a game level: a diploma, that level closes and the result offers level 2');
 
   /* Flappy Uil and Woordregen start and run too */
   for (const g of ['flappy', 'rain']) {
@@ -666,6 +728,7 @@ try {
     if (frames < 15) bad(`${g}: the game loop is not running (${frames} frames)`);
     await page.evaluate(() => { for (let i = 0; i < 15; i++) Arcade.debugResolve(true); });
     await page.waitForSelector('#screen-arcade-result.active', { timeout: 5000 });
+    await closeDiplomas();
   }
   ok('Flappy Uil and Woordregen start, animate and finish a round');
 
@@ -716,6 +779,215 @@ try {
   await page.waitForSelector('#screen-worlds.active');
 
   /* =================================================================
+     7d. The diploma ladder, the serial stories and the new games
+     ================================================================= */
+  /* reading: two of the three level-1 stories of the first world already
+     have two stars or more; reading the last one flawlessly earns the
+     reading diploma for that level, and then the level closes */
+  const lvl1 = await page.evaluate(() => {
+    const topic = window.TOPICS[0].id;
+    const list = storiesOf(topic, 1);
+    list.slice(0, -1).forEach((st) => {
+      if (!Store.player.best[st.id] || Store.player.best[st.id].stars < 2) Store.player.best[st.id] = { stars: 2, correct: 4, total: 5, wpm: 0, at: Date.now() };
+    });
+    Store.save();
+    return { topic, last: list[list.length - 1].id, n: list.length, chests: (Store.player.chests || []).length };
+  });
+  await sel('.mode-tab[data-mode="read"]').click();
+  await sel('#world-grid .world-card').first().click();
+  await page.waitForSelector('#screen-levels.active');
+  const ladderBefore = await sel('#level-ladder').innerText();
+  if (!/🎯/.test(ladderBefore)) bad('the reading ladder does not point at the next diploma');
+  await sel(`#level-grid .level-card[data-story="${lvl1.last}"]`).click();
+  await page.waitForSelector('#screen-read.active');
+  await sel('#btn-done-reading').click();
+  await page.waitForSelector('#screen-quiz.active');
+  await answerStory('the last level-1 story');
+  const readDip = await page.evaluate(() => ({
+    again: !document.getElementById('btn-again').classList.contains('hidden'),
+    line: document.getElementById('result-ladder').textContent
+  }));
+  await page.waitForSelector('#diploma-overlay:not(.hidden)', { timeout: 4000 });
+  const dipText = await sel('#dip-kind').innerText();
+  const dipTitle = await sel('#dip-title').innerText();
+  await sel('#dip-go').click();
+  await page.waitForSelector('#screen-levels.active');
+  const graduated = await page.evaluate(() => ({
+    cards: document.querySelectorAll('#level-grid .level-card.graduated').length,
+    step: document.querySelector('#level-ladder .ladder-step').classList.contains('grad'),
+    chests: Store.player.chests.filter((c) => c.src === 'diploma').length
+  }));
+  await sel('#level-grid .level-card.graduated').first().click();
+  await page.waitForTimeout(300);
+  const stayed = await page.evaluate(() => S.screen);
+  if (readDip.again || !/Diploma/i.test(readDip.line)) bad(`the result of a mastered level still offers "try again" or does not mention the diploma (${JSON.stringify(readDip)})`);
+  else if (!/Leesdiploma|Reading diploma/i.test(dipText) || !dipTitle) bad(`the reading diploma overlay is wrong ("${dipText}" / "${dipTitle}")`);
+  else if (graduated.cards !== lvl1.n || !graduated.step || stayed !== 'levels') bad(`a mastered level did not close with a diploma (${JSON.stringify(graduated)}, screen ${stayed})`);
+  else if (graduated.chests < 1) bad('a reading diploma did not come with a gift box');
+  else ok(`all ${lvl1.n} level-1 stories with ⭐⭐: a reading diploma ("${dipTitle}"), a gift box, and the level closes with 🎓 on the ladder`);
+
+  /* with the parent's lock switched off, a mastered level opens again */
+  await page.evaluate(() => { Ladder.setLock(false); renderLevels(); });
+  await sel('#level-grid .level-card.graduated').first().click();
+  const openedWithLockOff = await page.evaluate(() => S.screen === 'read');
+  await page.evaluate(() => { Ladder.setLock(true); });
+  if (!openedWithLockOff) bad('with "close finished levels" switched off, a mastered level still does not open');
+  else ok('with the lock switched off (parent setting), a mastered level can be read again');
+
+  /* the diploma collection */
+  await sel('#btn-home').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await sel('#btn-diplomas').click();
+  await page.waitForSelector('#screen-diplomas.active');
+  const dipScreen = await page.evaluate(() => ({ tiles: document.querySelectorAll('#dip-grid .dip-tile').length,
+    count: document.getElementById('dip-count').textContent, next: document.querySelectorAll('#dip-grid .dip-next').length,
+    have: Ladder.count(), total: Ladder.total() }));
+  if (dipScreen.tiles !== dipScreen.have || dipScreen.have < 5 || !dipScreen.next) bad(`the diploma screen is wrong (${JSON.stringify(dipScreen)})`);
+  else ok(`the diploma screen shows ${dipScreen.have} of ${dipScreen.total} diplomas and what is closest to the next one`);
+
+  /* serial stories: a shelf of books, chapter 2 opens after chapter 1,
+     with a "what happened before" and a "what happens next" */
+  await sel('#btn-home').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await sel('.mode-tab[data-mode="read"]').click();
+  const books = await page.evaluate(() => ({ shelf: document.querySelectorAll('#series-shelf .book-card').length, total: window.SERIES.length }));
+  if (books.total < 10 || books.shelf !== books.total) bad(`the book shelf shows ${books.shelf} of ${books.total} serial stories`);
+  await sel('#series-shelf .book-card').first().click();
+  await page.waitForSelector('#screen-book.active');
+  const ch = await page.evaluate(() => ({ n: document.querySelectorAll('#book-grid .chapter-card').length,
+    lock2: /🔒/.test(document.querySelectorAll('#book-grid .chapter-card')[1].querySelector('.lc-stars').textContent) }));
+  if (ch.n !== 3 || !ch.lock2) bad(`a book should show 3 chapters with chapter 2 locked (${JSON.stringify(ch)})`);
+  await sel('#book-grid .chapter-card').first().click();
+  await page.waitForSelector('#screen-read.active');
+  await sel('#btn-done-reading').click();
+  await page.waitForSelector('#screen-quiz.active');
+  await answerStory('chapter 1');
+  const teaser = await sel('#result-teaser').innerText();
+  const cont = await sel('#btn-continue').innerText();
+  await closeDiplomas(300);
+  await sel('#btn-continue').click();
+  await page.waitForSelector('#screen-read.active');
+  const ch2 = await page.evaluate(() => ({ chapter: S.story.chapter, recap: !document.getElementById('story-recap').classList.contains('hidden'),
+    meta: document.getElementById('story-meta').textContent }));
+  await sel('.back-btn[data-back="story"]').click();
+  await page.waitForSelector('#screen-book.active');
+  if (!teaser || !/2/.test(cont)) bad(`chapter 1 does not end with a teaser and a "read chapter 2" button ("${teaser}" / "${cont}")`);
+  else if (ch2.chapter !== 2 || !ch2.recap || !/7/.test(ch2.meta)) bad(`chapter 2 did not open with a recap at group 7 level (${JSON.stringify(ch2)})`);
+  else ok(`serial stories: ${books.total} books; chapter 1 (group 6) ends with a teaser, chapter 2 (group 7) opens with a recap`);
+
+  /* the six new games, each with real input first, then finished */
+  await page.evaluate(() => { Store.player.tickets = 20; Store.save(); });
+  const newGames = ['obby', 'bonk', 'race', 'memory', 'wordsearch', 'castle'];
+  for (const g of newGames) {
+    await page.evaluate(() => { S.mode = 'play'; renderWorlds(); show('worlds'); });
+    await sel(`#play-grid .game-card[data-game="${g}"] .wc-sub`).click();
+    await page.waitForSelector('#screen-arcade.active');
+    await sel('#arc-start').click();
+    let real = '';
+    if (g === 'obby') {
+      /* jump to the platform with the right word, for real */
+      await page.evaluate(() => { const m = Arcade.state().game; m.jump(m.floors[1].rightLeft ? 'L' : 'R'); });
+      await page.waitForTimeout(700);
+      const o = await page.evaluate(() => ({ at: Arcade.state().game.at, correct: Arcade.state().correct }));
+      if (o.at !== 1 || o.correct !== 1) bad(`Obby-toren: jumping to the right platform did not climb a floor (${JSON.stringify(o)})`);
+      real = 'climbed a floor';
+    } else if (g === 'bonk') {
+      /* a real bonk: jump under the misspelled block of the first sentence */
+      await page.evaluate(() => {
+        window.__bonk = setInterval(() => {
+          const m = Arcade.state().game; if (!m || !m.sentence) return;
+          const s = m.sentence(); if (!s || s.done || m.hero.h > 4) return;
+          const b = s.blocks.find((x) => x.err); const c = b.x + b.w / 2 - m.heroX();
+          if (c < 12 && c > 0) m.action();
+        }, 16);
+      });
+      await page.waitForFunction(() => Arcade.state().di >= 1, null, { timeout: 30000 });
+      const b = await page.evaluate(() => { clearInterval(window.__bonk); return { correct: Arcade.state().correct, hearts: Arcade.state().hearts }; });
+      if (b.correct !== 1 || b.hearts !== 3) bad(`Blokbonk: bonking the misspelled block did not score (${JSON.stringify(b)})`);
+      real = 'bonked the misspelled block';
+    } else if (g === 'race') {
+      await page.evaluate(() => {
+        window.__race = setInterval(() => {
+          const m = Arcade.state().game; if (!m || !m.rows) return;
+          const r = m.rows.find((x) => !x.judged); if (r) m.steer(r.lanes.indexOf('right'));
+        }, 16);
+      });
+      await page.waitForFunction(() => Arcade.state().di >= 1, null, { timeout: 20000 });
+      const r = await page.evaluate(() => { clearInterval(window.__race); return Arcade.state().correct; });
+      if (r !== 1) bad('Woordrace: driving through the right word did not score');
+      real = 'drove through the right gate';
+    } else if (g === 'memory') {
+      /* real taps: a matching pair, then two cards that do not match */
+      const k = await page.evaluate(() => document.querySelector('#arc-dom .mem-card').dataset.k);
+      await sel(`#arc-dom .mem-card[data-k="${k}"][data-face="word"]`).click();
+      await sel(`#arc-dom .mem-card[data-k="${k}"][data-face="def"]`).click();
+      const other = await page.evaluate((k) => [...document.querySelectorAll('#arc-dom .mem-card')].filter((c) => c.dataset.k !== k).map((c) => c.dataset.n), k);
+      const pairOk = await page.evaluate(() => Arcade.state().correct);
+      const firstOther = await page.evaluate((n) => document.querySelector(`#arc-dom .mem-card[data-n="${n}"]`).dataset.k, other[0]);
+      const second = await page.evaluate((a) => [...document.querySelectorAll('#arc-dom .mem-card')].find((c) => c.dataset.k !== a.k && c.dataset.k !== a.first && !c.classList.contains('found')).dataset.n, { k, first: firstOther });
+      await sel(`#arc-dom .mem-card[data-n="${other[0]}"]`).click();
+      await sel(`#arc-dom .mem-card[data-n="${second}"]`).click();
+      await page.waitForTimeout(1100);
+      const m = await page.evaluate(() => ({ misses: Arcade.state().game.misses, open: document.querySelectorAll('#arc-dom .mem-card.open:not(.found)').length }));
+      if (pairOk !== 1 || m.misses !== 1 || m.open !== 0) bad(`Woordmemory: a pair or a miss is not handled (${pairOk}, ${JSON.stringify(m)})`);
+      real = 'found a pair, turned a wrong pair back';
+    } else if (g === 'wordsearch') {
+      /* tap the first and the last letter of a hidden word */
+      const cells = await page.evaluate(() => Arcade.state().duels[0].cells);
+      const [a, b] = [cells[0], cells[cells.length - 1]];
+      await sel(`#arc-dom .ws-cell[data-r="${a[0]}"][data-c="${a[1]}"]`).click();
+      await sel(`#arc-dom .ws-cell[data-r="${b[0]}"][data-c="${b[1]}"]`).click();
+      const w = await page.evaluate(() => ({ correct: Arcade.state().correct, found: document.querySelectorAll('#arc-dom .ws-cell.found').length }));
+      if (w.correct !== 1 || w.found < 3) bad(`Woordzoeker: tapping the first and last letter did not find the word (${JSON.stringify(w)})`);
+      real = 'found a word by tapping its first and last letter';
+    } else if (g === 'castle') {
+      /* answer the questions by tapping, build a tower by tapping a spot, start a wave */
+      for (let i = 0; i < 5; i++) {
+        const right = await page.evaluate(() => { const m = Arcade.state().game; return Arcade.state().duels[m.qi].right; });
+        await page.locator('#arc-panel .td-opt', { hasText: right }).first().click();
+        await page.waitForTimeout(800);
+      }
+      const box = await sel('#arc-canvas').boundingBox();
+      const spot = await page.evaluate(() => Arcade.state().game.spots[2]);
+      await page.mouse.click(box.x + spot[0], box.y + spot[1]);
+      const built = await page.evaluate(() => Arcade.state().game.towers.length);
+      await sel('#arc-panel .td-wave').click();
+      await page.evaluate(() => Arcade.debugFast(60));
+      const c = await page.evaluate(() => { const G = Arcade.state(); return { phase: G.game.phase, wave: G.game.wave, gold: G.game.gold, correct: G.correct }; });
+      if (built !== 1 || c.wave !== 1 || c.phase !== 'build' || c.correct !== 5) bad(`Kasteelverdediging: answering, building or the first wave went wrong (built ${built}, ${JSON.stringify(c)})`);
+      real = 'answered 5 questions, built a tower, defended wave 1';
+      /* the rest of the waves: answer, build, upgrade, defend */
+      await page.evaluate(() => {
+        const G = Arcade.state(); const m = G.game;
+        for (let w = 0; w < 10 && G.state === 'play'; w++) {
+          while (m.canAsk() && m.phase === 'build') Arcade.debugResolve(true);
+          for (let i = 0; i < 7; i++) m.build(i, i % 3 === 2 ? 'wizard' : 'archer');
+          m.towers.forEach((tw) => m.upgrade(tw));
+          m.startWave();
+          Arcade.debugFast(120);
+        }
+      });
+    }
+    if (g !== 'castle') await page.evaluate(() => { for (let i = 0; i < 40; i++) Arcade.debugResolve(true); });
+    await page.waitForSelector('#screen-arcade-result.active', { timeout: 8000 });
+    const r = await page.evaluate(() => ({ win: Arcade.state().last_result.win, stars: Arcade.state().last_result.stars,
+      level: document.getElementById('arr-level').textContent, sub: document.getElementById('arr-sub').textContent }));
+    if (!r.win || r.stars < 1) bad(`${g}: a finished round did not end as a win with stars (${JSON.stringify(r)})`);
+    else ok(`${g}: real input works (${real}); the round ends with ${'⭐'.repeat(r.stars)} (${r.level})`);
+    await closeDiplomas();
+    await sel('#btn-arc-menu').click();
+    await page.waitForSelector('#screen-worlds.active');
+  }
+  /* level chips: a level with a diploma cannot be chosen again while locked */
+  await sel('#play-grid .game-card[data-game="flappy"] .lv-chip[data-lv="1"]').click();
+  const chip = await page.evaluate(() => ({ screen: S.screen, sel: Arcade.selectedLevel('flappy'),
+    grad: document.querySelector('#play-grid .game-card[data-game="flappy"] .lv-chip[data-lv="1"]').classList.contains('grad'),
+    allgames: (Store.player.badges || []).includes('allgames') }));
+  if (chip.screen !== 'worlds' || chip.sel !== 2 || !chip.grad) bad(`a game level with a diploma can still be chosen (${JSON.stringify(chip)})`);
+  else ok('a game level with a diploma shows 🎓 and stays closed; the game starts at the next level');
+  if (!chip.allgames) bad('playing every game did not earn the "all-round gamer" badge');
+
+  /* =================================================================
      8. Language switch across the whole interface
      ================================================================= */
   await sel('#btn-lang').click();
@@ -754,6 +1026,14 @@ try {
   if (Number(stats.arcade) < 3) bad(`the dashboard shows ${stats.arcade} arcade games (expected 3)`);
   if (stats.dailyCols !== 11 || Number(stats.dailyGames) < 3) bad(`the daily log does not count today's arcade games (${stats.dailyCols} columns, ${stats.dailyGames} games)`);
   else ok(`the parent dashboard also shows arcade games (${stats.arcade}) and Woordkist words known (${stats.kist}), per day too`);
+  const pDip = await page.evaluate(() => ({ tile: Number(document.getElementById('p-diplomas').textContent), lock: document.getElementById('p-lock-easy').checked }));
+  await sel('#p-lock-easy').uncheck();
+  const lockOff = await page.evaluate(() => Ladder.lockOn());
+  await sel('#p-lock-easy').check();
+  const lockOn = await page.evaluate(() => Ladder.lockOn());
+  if (pDip.tile < 5 || !pDip.lock) bad(`the dashboard does not show the diplomas or the lock setting (${JSON.stringify(pDip)})`);
+  else if (lockOff || !lockOn) bad('the parent setting "close finished easy levels" does not switch');
+  else ok(`the parent dashboard shows ${pDip.tile} diplomas and a working "close finished easy levels" switch`);
   if (Number(stats.questions) < 5) bad('the dashboard logged no questions');
   if (Number(stats.spellWords) < 3) bad('the dashboard logged no spelling words');
   if (stats.skillRows < 10) bad(`only ${stats.skillRows} reading-skill bars (expected 10)`);
@@ -867,6 +1147,16 @@ try {
   }));
   if (phoneArc.overflow > 2 || phoneArc.canvas > phoneArc.view) bad(`the arcade does not fit on a phone (${JSON.stringify(phoneArc)})`);
   else ok(`an arcade game fits on a phone (canvas ${Math.round(phoneArc.canvas)}px wide)`);
+  for (const g of ['memory', 'wordsearch', 'castle']) {
+    await page.evaluate((g) => { Store.player.tickets = 2; Arcade.quit(); Arcade.start(g); }, g);
+    await page.waitForSelector('#screen-arcade.active');
+    await sel('#arc-start').click();
+    const fit = await page.evaluate(() => ({ overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      board: (document.querySelector('#arc-dom:not(.hidden) > *') || document.getElementById('arc-canvas')).getBoundingClientRect().width,
+      view: document.documentElement.clientWidth }));
+    if (fit.overflow > 2 || fit.board > fit.view) bad(`${g} does not fit on a phone (${JSON.stringify(fit)})`);
+  }
+  ok('the memory game, the word search and the castle defence fit on a phone too');
 
   /* =================================================================
      13. Everything index.html asks for actually exists

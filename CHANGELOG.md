@@ -5,6 +5,109 @@ All notable changes to Leeskampioen are recorded here. Format loosely follows
 
 ## Unreleased
 
+### Added — six new games, game levels, diplomas and serial stories (2026-09-26)
+Prompted by: "add more kinds of interactive games (Roblox, Mario, arcade,
+puzzle, strategy…), with micro-learning; make playing feel more
+encouraging; close the easy levels a child has finished so they move up
+without feeling pushed; add stories with chapters that go from groep 6 to
+groep 7 to groep 8."
+
+**Six new games** (the arcade now has nine, under four headings)
+- **🧗 Obby-toren** (adventure, Roblox-style obby) — jump left or right to
+  the platform with the right word; the wrong one is a trap block. The lava
+  keeps rising, and there is a checkpoint 🚩 every five floors.
+- **🍄 Blokbonk** (adventure, Mario-style) — a sentence on ?-blocks with
+  one misspelled word: jump and bonk exactly that block for a coin, stomp
+  the beetles for bonus points.
+- **🏎️ Woordrace** (arcade) — a kart race: drive through the right word
+  for a turbo, dodge the oil, overtake the other karts; your place at the
+  finish depends on how many words were right.
+- **🧠 Woordmemory** (puzzle) — match every word, or groep 8 saying, to its
+  meaning; fewer misses = more stars.
+- **🔎 Woordzoeker** (puzzle) — a word search whose clues are meanings or
+  wrong spellings, so the child has to work out the word first. Swipe or
+  tap first and last letter; a 💡 hint shows the first letter.
+- **🏰 Kasteelverdediging** (strategy, tower defence) — answer questions
+  to earn gold, build and upgrade 🏹 and 🔮 towers, then start the wave.
+  Stars need both a won game and accurate answers, so guessing does not pay.
+
+**Three levels in every game**
+- ⭐ groep 6, ⭐⭐ groep 7, 👑 groep 8: a higher level takes its words from
+  harder spelling exercises and stories, is a little faster and gives more
+  points. ⭐ opens the next level, ⭐⭐ earns that level's diploma.
+- Level chips on every game card, "🔓 level 2 is open!" on the result
+  screen and a button straight to the next level.
+- All nine games share one engine (`Arcade.register()` and a small kit of
+  drawing, duel and scoring helpers), so a tenth game is one new file in
+  `js/games/`.
+
+**🎓 Diplomas: finished easy levels close (and it feels like winning)**
+- Reading all stories of a level in a world with ⭐⭐, a spelling exercise
+  with ⭐⭐, a game level with ⭐⭐ or chapters 1–2 of a serial story with
+  ⭐⭐ earns a **diploma** — a full-screen certificate with the child's
+  name, +20 XP, and a gift box for reading and book diplomas — and that
+  level **closes**. Its card turns gold with 🎓, and tapping it says "you
+  already have this diploma, a higher level gives more XP".
+- The highest level of every world, spelling rule and game never closes.
+- The diploma screen has one button that goes straight to the next level.
+- The world screen always shows the next diploma to earn and how many
+  stories with ⭐⭐ it still needs; a new 🎓 button on the "Hoi {naam}!"
+  card lists every diploma earned, with suggestions for what to do next.
+- **Harder levels give more XP**: a ⚡ bonus on each reading level (+4 XP
+  per level) and spelling exercise (+3), shown on the card.
+- Children who already mastered levels before this update get those
+  diplomas the first time they open the game ("🎓 5 diplomas for what you
+  could already do!").
+- **Parent switch** in the parent area: *Afgeronde makkelijke niveaus op
+  slot* (on by default, per child). Off = nothing closes; diplomas still
+  come.
+- Four new badges (30 total): Eerste diploma, Diplomajager (10 diplomas),
+  Boek uit! (a whole serial story) and Allround gamer (every game played).
+
+**📚 Serial stories: one story, three chapters, groep 6 → 7 → 8**
+- Ten books on a new bookshelf below the worlds, one per world:
+  *Het licht in de vuurtoren*, *Sporen in de sneeuw*, *Een jaar op de
+  Maan*, *De keeper die niet durfde*, *De sleutel van de tijd*, *Robot
+  Rik*, *Het geheime recept van oma*, *De stem achter het gordijn*,
+  *Brieven uit Tanzania* and *Zes weken gips*.
+- Chapter 1 is groep 6 (Doorzetter level, 6 questions), chapter 2 groep 7
+  (Expert, 8 questions), chapter 3 groep 8 (Eindbaas, 10 questions with
+  "find the proof"). Every chapter ends on a cliffhanger and the next one
+  starts with a recap; a chapter opens after ⭐ on the one before.
+- 30 chapters, 240 questions: reading now has 150 stories and 1070
+  questions (was 120 / 830).
+
+**For parents**
+- The dashboard shows the diplomas earned and has the closing switch; the
+  HTML report has a "🎓 Diploma's" section; the CSV's arcade rows say
+  which game level was played.
+
+**Checks**
+- `tools/validate.js` checks the serial stories (chapter order and ids,
+  every chapter harder than the last, recap and teaser in both languages,
+  the usual 2/4/6 levels), scans every script in `js/` (including
+  `js/games/`) for i18n keys, and no longer counts serial chapters as
+  world levels.
+- `tools/smoke.mjs` plays all six new games with real input and to the
+  result screen, checks game levels, reads a whole serial story, earns and
+  checks reading, spelling and game diplomas and the closed levels, turns
+  the parent switch off and on again, and checks the new games fit on a
+  phone.
+- `tools/autopilot.mjs [width] [games] [levels]` now also plays Obby-toren,
+  Blokbonk and Woordrace, at any level. All six action games end 15/15 at
+  every level on a 390px phone and on a 1000px desktop.
+
+### Changed (2026-09-26)
+- The arcade menu is grouped into Arcade, Adventure & platform, Puzzles and
+  Strategy, plus the free "learn every day" Woordkist.
+- The legendary shop card's "every story" now includes the 30 serial
+  chapters, so it still means "finished the whole game".
+
+### Fixed (2026-09-26)
+- The **Woordenkenner** badge (25 Woordkist cards in box 3+) could never
+  be earned: the check looked for `window.Woordkist`, but `Woordkist` is a
+  top-level `const` and is never on `window`.
+
 ### Added — groep 8, the arcade and micro-learning (2026-09-25)
 Prompted by: "my son finished all the spelling games — add more levels,
 groep 8, more kinds of game play (like Flappy Bird or Mario), micro-learning,

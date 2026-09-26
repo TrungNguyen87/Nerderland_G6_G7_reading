@@ -91,11 +91,46 @@ Both must be clean before pushing — this is the project's entire CI.
     20, a game costs 1) and the reading dragon (`Store.player.pet.pts`,
     six stages, arcade feeds it at most 3×/day). Arcade screens are in
     `NO_CLOCK_SCREENS` so games never count as reading time.
+- **Nine games, three levels, diplomas, serial stories** (added 2026-09-26):
+  - Module objects (`Arcade`, `Woordkist`, `Ladder`, `Books`, `Rewards`…)
+    are top-level `const`s, so they are **never on `window`**. Test for
+    them with `typeof X !== 'undefined'`, not `window.X` (that bug kept
+    the `kist` badge from ever being awarded).
+  - `js/arcade.js` is now an engine: `Arcade.register(meta, mod)` adds a
+    game (`meta`: id, emoji, hue, nl/en, `cat` arcade|adventure|puzzle|
+    strategy, `kind` canvas|dom, `panel`, `hearts`, `decks`, desc/how/
+    goal texts); `mod` gets `Arcade.kit` (G, ctx, drawing helpers,
+    `current()`, `answer()`, `resolve()`, `bonus()`, `loseHeart()`,
+    `endSoon()`, `duels()`, `pairs()`, `searchWords()`, `spd()`,
+    `level()`…). Six games live in `js/games/*.js`; Flappy/Runner/Rain are
+    still inside `arcade.js`. Each game has 3 levels (word pools groep
+    6/7/8, speed ×1/1.1/1.2, points ×1/1.5/2); results are saved as
+    `Store.player.games[id][lv] = {stars, best, plays, at}` (the old
+    `arcadeBest[id]` record is kept too), the chosen level in `gameSel`.
+    `Arcade.debugFast(sec)` and `Arcade.pools()` exist for tests.
+  - `js/ladder.js` (`Ladder`) decides what is mastered/closed/next:
+    reading level in a world = all its stories ≥⭐⭐; spelling set ≥⭐⭐;
+    game level ≥⭐⭐ (⭐ opens the next); serial chapters 1–2 ≥⭐⭐, book =
+    last chapter ≥⭐. The top rung of each ladder never closes. Diplomas
+    are `Store.player.diplomas {key: ts}` with keys `read:<topic>:<lv>`,
+    `spell:<set>`, `game:<id>:<lv>`, `book:<series>`. Closing is
+    `Store.player.lockEasy !== false` (parent switch). `Ladder.sync()`
+    awards silently for old saves. The diploma overlay waits while
+    `S.screen` is a BUSY screen (arcade/read/quiz/spell/flits/woordkist) —
+    tests must close it (`#dip-close`) before clicking on.
+  - Serial stories: `addSeries(book)` in `data/bootstrap.js` pushes each
+    chapter into `STORY_DB` with `series`, `chapter`, `id <book>-<n>` and
+    the topic, and the book into `window.SERIES`. Anything that lists a
+    world's stories must filter `!s.series` (`storiesOf`, Ladder,
+    validate's topic×level check). `js/books.js` (`Books`) renders the
+    shelf and book screen. Chapters are levels 2/4/6 with `recap` (ch 2+)
+    and `teaser` (all but last); `find` options must be verbatim, as usual.
 - Shared helpers in `js/i18n.js`: `localDay(ts)` (use this, never
   `toISOString().slice(0,10)`, which is UTC), `escHtml()` for anything a
   child typed, and `FEEDBACK_EMAIL`.
-- `tools/validate.js` greps `js/app.js`, `js/spelling.js`, `js/log.js`, `js/rewards.js`,
-  `js/arcade.js`, `js/woordkist.js` and `index.html` for `t('key')` / `data-i18n="key"` usage to warn about
+- `tools/validate.js` greps every `js/` script that `index.html` loads
+  (including `js/games/`) and `index.html` itself for `t('key')` /
+  `data-i18n="key"` usage to warn about
   unused or missing i18n strings — keep new UI strings wired through
   `t()`/`data-i18n` so this stays useful, not because it fails the build
   (unused-key is only a warning).
@@ -282,3 +317,48 @@ word snake) that reuses the duel generator, letting the child pick a
 spelling rule to practise in the arcade, and a parent setting to switch
 the arcade off. The multiplayer plan (`docs/plans/multiplayer-mode.md`) is
 still unstarted; the arcade's duel format would suit a hot-seat duel well.
+
+### 2026-09-26 — six new games, game levels, diplomas, serial stories
+Prompted by: "add more kinds of interactive games (Roblox, Mario, arcade,
+puzzle, strategy…) with micro-learning, make it more encouraging, 'log' the
+easy levels a player has finished so they move up to a higher level while
+feeling encouraged, add stories with chapters (ch 1 groep 6, ch 2 groep 7,
+ch 3 groep 8)". I read "log" as *lock*: mastered easy levels close with a
+diploma, and a parent switch can turn that off.
+
+- Games (written by me, no subagents — not requested): Obby-toren
+  (Roblox-style obby), Blokbonk (Mario ?-blocks), Woordrace (kart race),
+  Woordmemory, Woordzoeker, Kasteelverdediging (tower defence), each in
+  `js/games/`. `js/arcade.js` was refactored into an engine with
+  `register()`/`kit`, levels, category headings and a generic result
+  screen; the three old games were ported onto it unchanged in feel.
+- Diploma ladder (`js/ladder.js`) across reading, spelling, games and
+  books, with a certificate overlay, a diplomas screen, "next diploma" on
+  the world screen, ⚡ XP bonus for harder levels, retroactive diplomas for
+  old saves, a parent switch (`lockEasy`) and 4 new badges (30 total).
+- Content: 10 serial books × 3 chapters (`data/series.*.js`, 30 chapters,
+  240 questions; 150 stories / 1070 questions in total). Every chapter was
+  answered from the data in a scratch browser run to confirm it grades.
+- Lessons:
+  - Tower-defence balance took several rounds: an HP multiplier per level
+    wiped the child out at groep 8, the fix overshot into "always win".
+    It now has per-level wave lists, fixed gold (build 15, per answer 6,
+    kills 1/1/4), and stars that also require accurate answers.
+  - The diploma overlay used to pop up mid-game and swallow the next
+    click; it now waits for a non-BUSY screen. Smoke and autopilot close
+    it explicitly.
+  - `.dip-kind` is `text-transform: uppercase`, so Playwright `innerText`
+    is uppercase — match it case-insensitively in tests.
+  - Word-search spelling decks produced case-only pairs (Maandag/maandag);
+    those are filtered out. Blokbonk beetles must patrol inside the gap
+    between sentences, or they walk under the blocks.
+- Checks: `node tools/validate.js` (clean), `node tools/smoke.mjs` (clean,
+  ~4 min now), `node tools/autopilot.mjs` for obby/bonk/race/flappy/
+  runner/rain at levels 1–3 at 390px and 1000px (all 15/15).
+  Playwright 1.56 again matched the pre-installed chromium-1194.
+
+**Next likely steps:** a second serial book per world (or a fourth chapter
+for groep 8+), letting the child choose a spelling rule to practise in the
+arcade, a parent setting to switch the arcade off, and the multiplayer plan
+(`docs/plans/multiplayer-mode.md`, still unstarted — the duel-based games
+and levels would suit a hot-seat mode).

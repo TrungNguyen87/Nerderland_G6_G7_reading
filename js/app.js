@@ -103,6 +103,9 @@ function chooseProfile(id) {
   const streak = Rewards.currentStreak();
   FX.toast('👋 ' + t('welcomeBack').replace('{name}', Store.player.name || '') +
     (streak > 1 ? ' 🔥 ' + t('dayStreak').replace('{n}', streak) : ''), 3200);
+  /* wie al veel gespeeld had, krijgt meteen de diploma's voor wat hij al kon */
+  const synced = Ladder.sync();
+  if (synced) { FX.toast(t('dipSynced').replace('{n}', synced), 4200); renderWorlds(); }
 }
 
 /* leeg formulier voor een gloednieuwe speler: nooit gevuld met de naam of
@@ -266,6 +269,11 @@ function bindGlobal() {
       else if (to === 'spell-cats') { setHue(defaultHue(), 'default'); S.mode = 'spell'; renderWorlds(); show('worlds'); }
       else if (to === 'spell-sets') { Spell.renderSets(); show('spell-sets'); }
       else if (to === 'play') { setHue(defaultHue(), 'default'); S.mode = 'play'; renderWorlds(); show('worlds'); }
+      else if (to === 'story') {
+        /* terug vanaf het leesscherm: naar het boek of naar de niveaus van de wereld */
+        if (S.story && S.story.series) Books.openBook(S.story.series);
+        else { renderLevels(); show('levels'); }
+      }
     });
   });
 
@@ -350,6 +358,8 @@ function toggleLang() {
   else if (S.screen === 'arcade') Arcade.renderHud();
   else if (S.screen === 'arcade-result') Arcade.renderResult();
   else if (S.screen === 'woordkist') Woordkist.render();
+  else if (S.screen === 'diplomas') Ladder.render();
+  else if (S.screen === 'book') Books.renderBook();
 }
 
 function applyLang() {
@@ -474,8 +484,12 @@ function checkBadges(ctx) {
   spell.forEach(function (e) { cats[e.cat] = 1; });
   if (Object.keys(cats).length >= 5) push('ruler');
 
+  /* de wereld van een verhaal staat in het verhaal zelf: een vervolgverhaal
+     heeft een eigen id maar hoort wel bij een wereld */
   const topics = {};
-  done.forEach(function (id) { topics[id.split('-')[0]] = 1; });
+  const topicOf = {};
+  window.STORY_DB.forEach(function (s) { topicOf[s.id] = s.topic; });
+  done.forEach(function (id) { if (topicOf[id]) topics[topicOf[id]] = 1; });
   if (Object.keys(topics).length >= window.TOPICS.length) push('explorer');
 
   const vocabOk = Stats.answers().filter(function (e) { return e.skill === 'woordenschat' && e.correct; }).length;
@@ -493,8 +507,17 @@ function checkBadges(ctx) {
   if (ctx && ctx.level === 6 && ctx.stars >= 2) push('g8');
   if (ctx && ctx.spellG8) push('spell8');
   if ((p.arcadeTop || 0) >= 12) push('arcade');
-  if (window.Woordkist && Woordkist.known() >= 25) push('kist');
+  /* Woordkist is een const uit een ander script en staat dus niet op window:
+     "window.Woordkist" was altijd leeg, waardoor deze badge nooit kwam */
+  if (typeof Woordkist !== 'undefined' && Woordkist.known() >= 25) push('kist');
   if (Rewards.petStage() >= 3) push('dragon');
+
+  /* diploma's, boeken en alle spellen */
+  const dips = Ladder.count();
+  if (dips >= 1) push('diploma1');
+  if (dips >= 10) push('diploma10');
+  if (Ladder.list().some(function (k) { return k.indexOf('book:') === 0; })) push('book1');
+  if (typeof Arcade !== 'undefined' && Arcade.games.every(function (g) { return (p.games || {})[g.id]; })) push('allgames');
 
   return got;
 }
@@ -502,11 +525,15 @@ function checkBadges(ctx) {
 /* =====================================================================
    4. Werelden
    ===================================================================== */
+/* de verhalen van een wereld; vervolgverhalen staan apart in de boekenkast */
 function storiesOf(topic, level) {
   return window.STORY_DB.filter(function (s) {
-    return s.topic === topic && (level === undefined || s.level === level);
+    return !s.series && s.topic === topic && (level === undefined || s.level === level);
   });
 }
+
+/* hoger niveau = meer XP: zo loont het om door te gaan */
+function levelBonus(level) { return Math.max(0, (level || 1) - 1) * 4; }
 
 /* Twee spelmodes delen het wereldenscherm: lezen en spelling. */
 function setMode(mode) {
@@ -515,6 +542,7 @@ function setMode(mode) {
   $('world-grid').classList.toggle('hidden', mode !== 'read');
   $('spell-grid').classList.toggle('hidden', mode !== 'spell');
   $('play-grid').classList.toggle('hidden', mode !== 'play');
+  $('series-shelf').classList.toggle('hidden', mode !== 'read' || !(window.SERIES || []).length);
   $('worlds-title').textContent = mode === 'read' ? t('chooseWorld') : mode === 'spell' ? t('chooseSpell') : t('choosePlay');
   $('worlds-sub').textContent = mode === 'read' ? t('chooseWorldSub') : mode === 'spell' ? t('chooseSpellSub') : t('choosePlaySub');
   if (mode === 'spell') Spell.renderCats();
@@ -554,6 +582,7 @@ function renderWorlds() {
     grid.appendChild(card);
   });
 
+  Books.renderShelf();
   renderBadgeShelf();
   renderStickerShelf();
   setMode(S.mode || 'read');
@@ -606,38 +635,96 @@ function renderLevels() {
   const grid = $('level-grid');
   grid.innerHTML = '';
   const best = Store.player.best || {};
+  const next = Ladder.readNext(S.topic);
+  renderLadder(tp, next);
 
   window.LEVELS.forEach(function (lv) {
     const list = storiesOf(S.topic, lv.level);
     if (!list.length) return;
     const open = levelUnlocked(S.topic, lv.level);
+    const grad = Ladder.readGraduated(S.topic, lv.level);
+    const locked = grad && Ladder.lockOn();
+    const bonus = levelBonus(lv.level);
 
     /* elk niveau kan meerdere verhalen hebben; ze krijgen allemaal een kaart */
     list.forEach(function (story, n) {
       const b = best[story.id];
 
       const card = document.createElement('button');
-      card.className = 'level-card';
+      card.className = 'level-card' + (grad ? ' graduated' : '') + (lv.level === next && open ? ' next-dip' : '');
+      card.dataset.level = lv.level;
+      card.dataset.story = story.id;
+      const starsHtml = b ? '⭐'.repeat(b.stars) + '☆'.repeat(3 - b.stars) : lv.stars;
       card.innerHTML =
-        '<span class="lc-stars">' + (open ? (b ? '⭐'.repeat(b.stars) + '☆'.repeat(3 - b.stars) : lv.stars) : '🔒') + '</span>' +
+        '<span class="lc-stars">' + (grad ? '🎓' : (open ? starsHtml : '🔒')) + '</span>' +
         '<span><span class="lc-name">' + (window.LANG === 'nl' ? lv.nl : lv.en) +
-          (list.length > 1 ? ' ' + (n + 1) : '') + '</span><br>' +
+          (list.length > 1 ? ' ' + (n + 1) : '') + '</span>' +
+          (bonus && open && !grad ? ' <span class="lc-bonus">' + t('levelBonus').replace('{n}', bonus) + '</span>' : '') + '<br>' +
         '<span class="lc-meta">' + lv.avi + ' &middot; ' + L(story.title) + ' &middot; ' +
           story.questions.length + ' ' + t('questionsShort') + '</span><br>' +
-        '<span class="lc-desc">' + (window.LANG === 'nl' ? lv.descNl : lv.descEn) + '</span></span>' +
-        '<span class="lc-right">' + (b
-          ? '<span class="lc-done">' + t('bestScore') + ' ' + b.correct + '/' + b.total + '</span>'
-          : (open ? t('notYet') : t('storyLocked'))) + '</span>';
+        '<span class="lc-desc">' + (grad ? t('gradCardDesc') : (window.LANG === 'nl' ? lv.descNl : lv.descEn)) + '</span></span>' +
+        '<span class="lc-right">' + (grad
+          ? '<span class="lc-dip">🎓 ' + t('gradCardRight') + '</span>' + (b ? '<span class="lc-done">' + starsHtml + '</span>' : '')
+          : b
+            ? '<span class="lc-done">' + t('bestScore') + ' ' + b.correct + '/' + b.total + '</span>'
+            : (open ? t('notYet') : t('storyLocked'))) + '</span>';
 
       if (!open) {
         card.style.opacity = '.55';
         card.addEventListener('click', function () { FX.toast(t('storyLocked')); Sound.wrong(); });
+      } else if (locked) {
+        card.addEventListener('click', function () { gradNudge(t('gradToast')); });
       } else {
         card.addEventListener('click', function () { Sound.click(); openStory(story); });
       }
       grid.appendChild(card);
     });
   });
+}
+
+/* een tik op een niveau met diploma: vriendelijk wijzen naar het volgende */
+function gradNudge(msg) {
+  Sound.star();
+  FX.toast(msg, 3400);
+  const target = $$('#screen-' + S.screen + ' .next-dip, #screen-' + S.screen + ' .level-card:not(.graduated):not(.locked-card)')
+    .filter(function (c) { return c.style.opacity !== '.55'; })[0];
+  if (!target) return;
+  target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  target.classList.remove('pulse');
+  void target.offsetWidth;
+  target.classList.add('pulse');
+}
+
+/* de leesladder boven de niveaus: 🎓 gehaald, 🎯 volgende diploma, 🔒 dicht */
+function renderLadder(tp, next) {
+  const box = $('level-ladder');
+  if (!box) return;
+  box.innerHTML = '';
+  const top = Ladder.readTop(tp.id);
+  const steps = document.createElement('div');
+  steps.className = 'ladder-steps';
+  window.LEVELS.forEach(function (lv) {
+    if (!storiesOf(tp.id, lv.level).length) return;
+    const grad = Ladder.readGraduated(tp.id, lv.level);
+    const open = levelUnlocked(tp.id, lv.level);
+    const st = document.createElement('span');
+    st.className = 'ladder-step' + (grad ? ' grad' : lv.level === next ? ' here' : open ? ' open' : ' shut');
+    st.innerHTML = '<b>' + (grad ? '🎓' : lv.level === next ? '🎯' : open ? (lv.level === top ? '👑' : '⭐') : '🔒') + '</b>' +
+      '<small>' + (window.LANG === 'nl' ? lv.nl : lv.en) + '</small>';
+    steps.appendChild(st);
+  });
+  box.appendChild(steps);
+  const note = document.createElement('p');
+  note.className = 'ladder-note';
+  if (next) {
+    const lv = window.LEVELS.filter(function (l) { return l.level === next; })[0];
+    const need = Ladder.readStatus(tp.id, next).need;
+    note.textContent = t('ladderNext').replace('{lv}', lv.stars + ' ' + (window.LANG === 'nl' ? lv.nl : lv.en)).replace('{n}', need);
+  } else {
+    const allGrad = window.LEVELS.every(function (lv) { return lv.level >= top || !storiesOf(tp.id, lv.level).length || Ladder.readGraduated(tp.id, lv.level); });
+    note.textContent = allGrad ? t('ladderAll') : t('ladderStart');
+  }
+  box.appendChild(note);
 }
 
 /* =====================================================================
@@ -678,8 +765,21 @@ function renderStory() {
   const lv = window.LEVELS.filter(function (l) { return l.level === st.level; })[0];
   $('story-emoji').textContent = st.emoji;
   $('story-title').textContent = L(st.title);
-  $('story-meta').textContent = lv.avi + ' · ' + (window.LANG === 'nl' ? lv.nl : lv.en) +
+  $('story-meta').textContent = (st.series
+    ? t('bookChapterOf').replace('{n}', st.chapter).replace('{total}', Ladder.chapters(Ladder.seriesById(st.series)).length) +
+      ' · ' + Books.gradeLabel(st.level) + ' · ' + lv.avi
+    : lv.avi + ' · ' + (window.LANG === 'nl' ? lv.nl : lv.en)) +
     ' · ' + wordCount(st) + ' ' + t('words');
+
+  /* hoofdstuk 2 en 3: eerst even terugblikken op wat er eerder gebeurde */
+  const recap = $('story-recap');
+  if (st.recap) {
+    recap.innerHTML = '<b>📜 ' + t('bookRecapHead') + '</b> ' + escHtml(L(st.recap));
+    recap.classList.remove('hidden');
+  } else {
+    recap.innerHTML = '';
+    recap.classList.add('hidden');
+  }
 
   /* tekst in woorden opdelen, zodat meelezen kan markeren */
   const box = $('story-text');
@@ -1535,9 +1635,11 @@ function finishStory() {
   const totalMs = Date.now() - S.storyStart;
   const wpm = S.lastWpm || 0;
 
-  const xpGain = stars * 15 + correct * 2;
+  /* hoger niveau = meer XP en een muntje extra: doorgaan loont */
+  const bonus = stars >= 1 ? levelBonus(S.level) : 0;
+  const xpGain = stars * 15 + correct * 2 + bonus;
   addXP(xpGain);
-  addCoins(stars * 4, 'story:' + S.story.id);
+  addCoins(stars * 4 + (stars >= 1 ? Math.floor((S.level - 1) / 2) : 0), 'story:' + S.story.id);
   const coinsGain = (Store.player.coins || 0) - (S.coinsBefore || 0);
 
   /* beste score bewaren */
@@ -1567,15 +1669,20 @@ function finishStory() {
     totalMs: totalMs, readMs: S.readMs, wpm: wpm, lang: window.LANG
   });
 
+  /* een diploma voor dit niveau (of voor het hele boek)? */
+  const diplomas = Ladder.checkStory(S.story);
+  if (diplomas.some(function (k) { return k.indexOf('book:') === 0; })) Rewards.grantChest('book');
+  else if (diplomas.length) Rewards.grantChest('diploma');
   const newBadges = checkBadges({ perfect: ratio === 1, level: S.level, stars: stars, wpm: wpm });
 
-  S.lastResult = { correct: correct, total: total, stars: stars, xp: xpGain, coins: coinsGain, tickets: earned.tickets, wpm: wpm, totalMs: totalMs, badges: newBadges };
+  S.lastResult = { correct: correct, total: total, stars: stars, xp: xpGain, bonus: bonus, coins: coinsGain, tickets: earned.tickets, wpm: wpm, totalMs: totalMs, badges: newBadges, diplomas: diplomas };
   S.lastResult.fact = Rewards.factFor(S.topic);
   renderResult();
   show('result');
 
   if (stars === 3) { FX.burst(200); Sound.finish(); }
   else if (stars >= 1) { FX.burst(90); Sound.star(); }
+  Ladder.present(diplomas);
 }
 
 function renderResult() {
@@ -1609,7 +1716,30 @@ function renderResultTexts() {
   $('result-sub').textContent = t('res' + r.stars + 'sub');
   $('btn-again').textContent = t('tryAgain');
   $('btn-bonus').textContent = t('bonusRound');
-  $('btn-continue').textContent = t('keepGoing');
+  /* een niveau met diploma speel je niet nog eens: dan liever verder */
+  $('btn-again').classList.toggle('hidden', Ladder.storyLocked(S.story));
+  const nextCh = S.story.series ? Books.nextChapter(S.story) : null;
+  $('btn-continue').textContent = nextCh && Ladder.chapterUnlocked(nextCh)
+    ? t('bookReadNext').replace('{n}', nextCh.chapter)
+    : (S.story.series && !nextCh ? t('bookPickNew') : t('keepGoing'));
+
+  /* hoe ver is het volgende diploma, of het vervolg van het boek? */
+  const lad = $('result-ladder');
+  let line = '';
+  if (r.bonus) line += '<span>' + t('resLevelBonus').replace('{n}', r.bonus) + '</span>';
+  if (r.diplomas && r.diplomas.length) line += '<span>🎓 ' + t('resDiploma') + '</span>';
+  else if (S.story.series) {
+    if (nextCh && !Ladder.chapterUnlocked(nextCh)) line += '<span>' + t('bookNeedStar') + '</span>';
+  } else if (S.level >= Ladder.readTop(S.topic)) line += '<span>' + t('resLadderTop') + '</span>';
+  else if (!Ladder.readGraduated(S.topic, S.level)) {
+    line += '<span>' + t('resLadderNeed').replace('{n}', Ladder.readStatus(S.topic, S.level).need) + '</span>';
+  }
+  lad.innerHTML = line;
+  lad.classList.toggle('hidden', !line);
+  const teaser = $('result-teaser');
+  const tz = S.story.series && S.story.teaser ? L(S.story.teaser) : '';
+  teaser.innerHTML = tz ? '<b>📖 ' + t('bookTeaserHead') + '</b> ' + escHtml(tz) : '';
+  teaser.classList.toggle('hidden', !tz);
 
   /* per vaardigheid van dit verhaal */
   const sk = $('result-skills');
@@ -1641,6 +1771,14 @@ function renderResultTexts() {
 function nextStory() {
   const best = Store.player.best || {};
   const top = window.LEVELS.length;
+  /* een vervolgverhaal: door naar het volgende hoofdstuk, of een nieuw boek */
+  if (S.story && S.story.series) {
+    const nx = Books.nextChapter(S.story);
+    if (nx && Ladder.chapterUnlocked(nx)) { openStory(nx); return; }
+    if (nx) { Books.openBook(S.story.series); return; }
+    Books.openShelf();
+    return;
+  }
   const firstUndone = function (list) {
     const open = list.filter(function (s) { return !best[s.id]; });
     return open.length ? open[0] : list[0];
@@ -1651,7 +1789,7 @@ function nextStory() {
   if (here.length) { openStory(here[0]); return; }
   for (let lv = S.level + 1; lv <= top; lv++) {
     const list = storiesOf(S.topic, lv);
-    if (list.length && levelUnlocked(S.topic, lv)) { openStory(firstUndone(list)); return; }
+    if (list.length && levelUnlocked(S.topic, lv) && !Ladder.readLocked(S.topic, lv)) { openStory(firstUndone(list)); return; }
   }
   /* anders: eerste wereld met een verhaal dat nog niet af is */
   const order = shuffle(window.TOPICS.slice());
@@ -2018,6 +2156,8 @@ function renderParent() {
   $('p-gifts').textContent = ((Store.player.owned || {}).gift || []).length;
   $('p-arcade').textContent = Store.player.arcadePlays || 0;
   $('p-kist').textContent = Woordkist.known();
+  $('p-diplomas').textContent = Ladder.count();
+  $('p-lock-easy').checked = Ladder.lockOn();
   const owned = Store.player.owned || {};
   $('p-owned').textContent = Object.keys(owned).reduce(function (n, k) { return n + (owned[k] || []).length; }, 0);
 

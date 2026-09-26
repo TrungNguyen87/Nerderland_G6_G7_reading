@@ -542,7 +542,7 @@ const Exporter = (function () {
       const arcade = e.t === 'arcade_done';
       rows.push([
         localDay(e.ts), d.toTimeString().slice(0, 8), e.player || '', e.session || '',
-        arcade ? 'speelhal:' + (e.game || '') : 'woordkist', e.deck || '',
+        arcade ? 'speelhal:' + (e.game || '') : 'woordkist', (e.deck || '') + (arcade && e.level ? ' · level ' + e.level : ''),
         e.correct || 0, arcade ? (e.total || 0) : (e.cards || 0), arcade ? (e.score || 0) : '',
         arcade ? (e.missed || '') : ''
       ].map(esc).join(','));
@@ -689,6 +689,18 @@ const Exporter = (function () {
       '</p><p style="color:#666;font-size:13px">' +
       (nl ? 'Een spel in de speelhal kost een kaartje; kaartjes verdient uw kind alleen met lezen, spelling en de Woordkist.'
           : 'A game in the arcade costs a ticket; your child only earns tickets through reading, spelling and the Word box.') + '</p>' +
+      /* diploma's: welke niveaus heeft uw kind afgerond (en staan nu op slot) */
+      (function () {
+        const keys = (typeof Ladder !== 'undefined') ? Ladder.list() : [];
+        const books = keys.filter(function (k) { return k.indexOf('book:') === 0; }).length;
+        const names = keys.slice(-12).map(function (k) { const d = Ladder.describe(k); return d ? escHtml(d.label + ': ' + d.title + ' (' + d.sub + ')') : ''; })
+          .filter(Boolean);
+        return '<h2>' + (nl ? '🎓 Diploma’s' : '🎓 Diplomas') + '</h2><p>' +
+          (nl ? 'Behaald: ' : 'Earned: ') + keys.length + ' &middot; ' + (nl ? 'vervolgverhalen uitgelezen: ' : 'serial stories finished: ') + books +
+          ' &middot; ' + (nl ? 'afgeronde niveaus op slot: ' : 'finished levels closed: ') +
+          ((typeof Ladder !== 'undefined' && Ladder.lockOn()) ? (nl ? 'ja' : 'yes') : (nl ? 'nee' : 'no')) + '</p>' +
+          (names.length ? '<ul><li>' + names.join('</li><li>') + '</li></ul>' : '');
+      })() +
       '<p style="margin-top:36px;color:#888;font-size:12px">Leeskampioen &middot; ' +
       (nl ? 'feedback of vragen: ' : 'feedback or questions: ') + FEEDBACK_EMAIL + '</p>' +
       '</body></html>';
