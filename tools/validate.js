@@ -50,6 +50,7 @@ dataFiles.forEach(function (rel) {
   /* the story files call the global addStories(); mirror what the browser does */
   if (sandbox.window.addStories && !sandbox.addStories) sandbox.addStories = sandbox.window.addStories;
   if (sandbox.window.addSpelling && !sandbox.addSpelling) sandbox.addSpelling = sandbox.window.addSpelling;
+  if (sandbox.window.addSeries && !sandbox.addSeries) sandbox.addSeries = sandbox.window.addSeries;
 });
 
 const W = sandbox.window;
@@ -256,12 +257,50 @@ STORIES.forEach(function (s) {
   });
 });
 
-/* every topic should offer every level, otherwise the ladder has a hole */
+/* every topic should offer every level, otherwise the ladder has a hole
+   (serial-story chapters live in the book shelf, not in the worlds) */
 TOPICS.forEach(function (t) {
   LEVELS.forEach(function (l) {
-    const n = STORIES.filter(function (s) { return s.topic === t.id && s.level === l.level; }).length;
+    const n = STORIES.filter(function (s) { return !s.series && s.topic === t.id && s.level === l.level; }).length;
     if (!n) err('topic ' + t.id, 'has no story at level ' + l.level + ' (' + l.avi + ')');
   });
+});
+
+/* ---------------------------------------------------------------------
+   4b. Vervolgverhalen (data/series.*.js): drie hoofdstukken per boek,
+   steeds moeilijker, met een terugblik en een "hoe gaat het verder?"
+   --------------------------------------------------------------------- */
+const SERIES = W.SERIES || [];
+const seriesIds = {};
+SERIES.forEach(function (ser) {
+  const where = 'series ' + (ser.id || '(no id)');
+  if (!ser.id) { err(where, 'missing id'); return; }
+  if (seriesIds[ser.id]) err(where, 'duplicate series id');
+  if (topicIds[ser.id]) err(where, 'a series id cannot be the same as a world id');
+  seriesIds[ser.id] = true;
+  if (!topicIds[ser.topic]) err(where, 'unknown topic "' + ser.topic + '"');
+  if (!ser.emoji) err(where, 'missing emoji');
+  bilingual(where, ser.title, 'title');
+  bilingual(where, ser.blurb, 'blurb');
+  const chs = STORIES.filter(function (s) { return s.series === ser.id; })
+    .sort(function (a, b) { return a.chapter - b.chapter; });
+  if (chs.length < 2) err(where, 'a series needs at least two chapters');
+  chs.forEach(function (ch, i) {
+    const cw = where + ' / chapter ' + ch.chapter;
+    if (ch.chapter !== i + 1) err(cw, 'chapters must be numbered 1, 2, 3, ...');
+    if (ch.id !== ser.id + '-' + ch.chapter) err(cw, 'the id should be "' + ser.id + '-' + ch.chapter + '"');
+    if (i > 0 && ch.level <= chs[i - 1].level) err(cw, 'every chapter must be harder than the one before');
+    if (i > 0) bilingual(cw, ch.recap, 'recap');
+    else if (ch.recap) err(cw, 'the first chapter has nothing to look back on (remove recap)');
+    if (i < chs.length - 1) bilingual(cw, ch.teaser, 'teaser');
+  });
+  const want = [2, 4, 6];
+  if (chs.length === 3 && chs.some(function (ch, i) { return ch.level !== want[i]; })) {
+    warn(where, 'the chapters are usually at levels 2, 4 and 6 (groep 6, 7 and 8)');
+  }
+});
+STORIES.forEach(function (s) {
+  if (s.series && !seriesIds[s.series]) err('story ' + s.id, 'belongs to unknown series "' + s.series + '"');
 });
 
 /* ---------------------------------------------------------------------
@@ -501,7 +540,9 @@ try {
 
 const usedKeys = new Set();
 html.replace(/data-i18n="([^"]+)"/g, function (_, k) { usedKeys.add(k); return _; });
-['js/app.js', 'js/spelling.js', 'js/log.js', 'js/rewards.js', 'js/arcade.js', 'js/woordkist.js'].forEach(function (f) {
+/* every script under js/ that index.html loads (the games in js/games/ too) */
+scriptSrcs.filter(function (src) { return src.indexOf('js/') === 0 && src !== 'js/i18n.js'; }).forEach(function (f) {
+  if (!fs.existsSync(path.join(ROOT, f))) return;
   const code = fs.readFileSync(path.join(ROOT, f), 'utf8');
   code.replace(/\bt\('([A-Za-z0-9]+)'\)/g, function (_, k) { usedKeys.add(k); return _; });
   code.replace(/\btRandom\('([A-Za-z0-9]+)'\)/g, function (_, k) { usedKeys.add(k); return _; });
@@ -576,6 +617,7 @@ console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins
             SHOP.filter(function (it) { return it.kind === 'gift'; }).length + ' chest-only gifts)');
 console.log('  fun facts     : ' + FACTS.length);
 console.log('  idioms        : ' + IDIOMS.length);
+console.log('  serial stories: ' + SERIES.length + ' books, ' + STORIES.filter(function (s) { return s.series; }).length + ' chapters');
 console.log('  groep 8       : ' + STORIES.filter(function (s) { return s.level === 6; }).length + ' stories, ' +
             CATS.filter(function (c) { return c.grade === 8; }).length + ' new spelling rules, ' +
             SETS.filter(function (s) { return s.grade === 8; }).length + ' spelling sets');

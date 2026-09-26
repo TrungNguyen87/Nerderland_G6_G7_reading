@@ -931,3 +931,210 @@ button:focus-visible,a:focus-visible,.text-input:focus-visible{outline:3px solid
 @media (prefers-reduced-motion:reduce){
   .pet-emoji,.game-card .wc-emoji,.arc-go,.arr-emoji{animation:none}
 }
+
+/* =====================================================================
+   DE DIPLOMALADDER (js/ladder.js)
+   ===================================================================== */
+.ladder{padding:14px 16px;margin-bottom:14px}
+.ladder-steps{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.ladder-step{
+  flex:1;min-width:58px;display:grid;justify-items:center;gap:2px;padding:8px 4px;border-radius:14px;
+  background:#f3f3fa;font-weight:800;position:relative;
+}
+.ladder-step b{font-size:1.25rem;line-height:1}
+.ladder-step small{font-size:.66rem;color:var(--ink-soft);text-align:center;line-height:1.2}
+.ladder-step.grad{background:linear-gradient(160deg,#fff3c4,#ffd966)}
+.ladder-step.here{background:hsl(var(--hue) 90% 92%);box-shadow:0 0 0 3px var(--brand)}
+.ladder-step.shut{opacity:.55}
+.ladder-step:not(:last-child)::after{content:'›';position:absolute;right:-6px;top:50%;transform:translateY(-50%);color:#b9b9cc;font-weight:800}
+.ladder-note{margin:10px 0 0;font-weight:800;font-size:.9rem;color:var(--ink-soft);text-align:center}
+.level-card.graduated{background:linear-gradient(160deg,#fffdf2,#fff1bf);box-shadow:0 0 0 2px #f3cf5a,var(--shadow)}
+.level-card.graduated .lc-stars{font-size:2rem;letter-spacing:0}
+.level-card.graduated:hover{transform:none}
+.level-card.next-dip{box-shadow:0 0 0 3px var(--brand),var(--shadow)}
+.level-card.pulse,.game-card.pulse{animation:dipPulse 1.1s ease-in-out 2}
+@keyframes dipPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035);box-shadow:0 0 0 6px var(--gold),var(--shadow-lg)}}
+.lc-bonus{display:inline-block;font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:99px;background:#fff3d6;color:#8a5a00;vertical-align:middle}
+.lc-dip{display:block;color:#a16207;font-size:.85rem}
+.result-ladder{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 0}
+.result-ladder span{
+  display:inline-block;padding:7px 12px;border-radius:12px;background:#fff7dc;font-weight:800;font-size:.9rem;color:#7a4d00;
+}
+.result-teaser{margin:12px auto 0;max-width:560px;padding:12px 16px;border-radius:16px;background:#eef3ff;font-weight:700;line-height:1.5;color:#26306b}
+.today-btns{display:flex;flex-direction:column;gap:6px;margin-left:auto}
+.dip-btn{background:#fff3c4;color:#7a4d00}
+.setting-row{display:flex;align-items:flex-start;gap:10px;font-weight:800;cursor:pointer;margin:6px 0}
+.setting-row input{width:22px;height:22px;flex:none;accent-color:var(--brand)}
+
+/* het diploma dat verschijnt */
+.dip-overlay{z-index:67}
+.dip-card{
+  position:relative;overflow:hidden;width:min(440px,100%);text-align:center;border-radius:26px;padding:26px 22px 22px;
+  background:#fffdf5;box-shadow:0 30px 80px rgba(0,0,0,.4);animation:pop .5s cubic-bezier(.2,1.4,.4,1);
+  border:6px double #d4a72c;
+}
+.dip-card .chest-rays{opacity:1;top:30%}
+.dip-card > *:not(.chest-rays){position:relative}
+.dip-kind{margin:0;font-family:var(--font-head);font-size:1.05rem;letter-spacing:1.5px;text-transform:uppercase;color:#a16207}
+.dip-emoji{display:block;font-size:4.4rem;line-height:1.15;animation:bob 2.4s ease-in-out infinite}
+.dip-card h2{margin:4px 0 2px;font-size:1.6rem}
+.dip-sub{margin:0;font-weight:800;color:var(--ink-soft)}
+.dip-name{margin:12px 0 0;font-family:var(--font-head);font-size:1.25rem;font-style:italic;border-top:2px dashed #e7cf86;padding-top:10px}
+.dip-date{margin:0;font-size:.8rem;color:var(--ink-soft);font-weight:700}
+.dip-msg{margin:12px 0 16px;font-weight:700;line-height:1.5}
+.dip-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* de diplomamap */
+.dip-count{text-align:center;color:#fff;font-weight:800;margin:0 0 12px}
+.dip-grid{display:grid;gap:14px}
+.dip-next-card h3{margin-bottom:8px}
+.dip-next{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 12px;border-radius:14px;
+  background:#f6f6fc;margin-top:8px;transition:transform .15s;
+}
+.dip-next:hover{transform:translateX(5px)}
+.dip-next-emoji{font-size:1.8rem}
+.dip-next b{display:block}
+.dip-next small{color:var(--ink-soft);font-weight:700}
+.dip-next-go{margin-left:auto;font-weight:800;color:var(--brand-dark);font-size:1.2rem}
+.dip-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.dip-tile{
+  position:relative;display:grid;justify-items:center;gap:2px;text-align:center;padding:16px 10px 12px;border-radius:18px;
+  background:linear-gradient(170deg,#fffdf2,#fff0b8);box-shadow:var(--shadow);border:3px double #e0b94a;
+}
+.dip-seal{position:absolute;top:6px;right:8px;font-size:1rem}
+.dip-tile-emoji{font-size:2rem}
+.dip-tile b{font-size:.9rem;line-height:1.2}
+.dip-tile small{font-size:.72rem;color:var(--ink-soft);font-weight:700}
+.dip-empty{text-align:center;color:#fff;font-size:1rem}
+
+/* =====================================================================
+   VERVOLGVERHALEN (js/books.js)
+   ===================================================================== */
+.series-shelf{margin-bottom:18px}
+.shelf-head{text-align:center;color:#fff}
+.shelf-head h3{font-size:1.4rem;margin:0;text-shadow:0 2px 0 rgba(0,0,0,.14)}
+.shelf-head p{margin:2px 0 10px;font-weight:700;font-size:.9rem;opacity:.95}
+.book-row{display:flex;gap:12px;overflow-x:auto;padding:6px 4px 12px;scroll-snap-type:x mandatory}
+.book-card{
+  position:relative;flex:0 0 150px;scroll-snap-align:start;display:grid;justify-items:center;gap:5px;text-align:center;
+  padding:18px 10px 12px 16px;border-radius:10px 18px 18px 10px;min-height:190px;
+  background:linear-gradient(160deg,hsl(var(--wh) 85% 72%),hsl(var(--wh) 70% 52%));color:#fff;
+  box-shadow:inset 8px 0 0 rgba(0,0,0,.18),var(--shadow);transition:transform .2s;
+}
+.book-card:hover{transform:translateY(-6px) rotate(-1deg)}
+.book-card.done{box-shadow:inset 8px 0 0 rgba(0,0,0,.18),0 0 0 3px var(--gold),var(--shadow)}
+.book-emoji{font-size:2.6rem;filter:drop-shadow(0 4px 6px rgba(0,0,0,.2))}
+.book-title{font-family:var(--font-head);font-size:1rem;line-height:1.15;text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.book-dots{font-size:.85rem;letter-spacing:1px}
+.book-prog{font-weight:800;font-size:.72rem;background:rgba(0,0,0,.18);padding:3px 8px;border-radius:99px}
+.book-ribbon{
+  position:absolute;top:8px;right:-4px;font-size:.62rem;font-weight:800;padding:3px 8px;border-radius:6px 0 0 6px;
+  background:var(--gold);color:#3a2600;animation:pulse 1.4s ease-in-out infinite;
+}
+.chapter-card .g8-pill{vertical-align:middle}
+.book-end{text-align:center;font-weight:800;background:linear-gradient(160deg,#fffdf2,#fff1bf)}
+.story-recap{
+  margin:0 0 14px;padding:12px 16px;border-radius:16px;background:#f3efe2;color:#4a3b17;font-weight:600;
+  line-height:1.55;font-size:.95rem;border-left:5px solid #d4a72c;
+}
+
+/* =====================================================================
+   DE SPEELHAL: LEVELS, HET PANEEL EN DE PUZZELS
+   ===================================================================== */
+.lv-chips{display:flex;gap:6px;margin:0 0 8px}
+.lv-chip{
+  min-width:44px;padding:5px 8px;border-radius:12px;font-size:.8rem;font-weight:800;background:#f1f1f8;
+  border:2px solid transparent;transition:transform .15s;
+}
+.lv-chip:hover{transform:translateY(-2px)}
+.lv-chip.sel{border-color:var(--brand);background:var(--brand-light)}
+.lv-chip.grad{background:linear-gradient(160deg,#fff3c4,#ffd966)}
+.lv-chip.shut{opacity:.5}
+.lv-how{font-size:.8rem !important;color:#8a5a00 !important}
+.play-grid .grid-heading{margin:8px 0 -4px}
+.arc-lv{background:#fff3d6;color:#8a5a00}
+.arc-play{position:relative;border-radius:18px;overflow:hidden}
+.arc-dom{min-height:300px;padding:10px;border-radius:18px;background:#f5f5fc;box-shadow:inset 0 0 0 3px rgba(0,0,0,.05)}
+.arc-start-level{font-weight:800;font-size:.9rem;padding:3px 12px;border-radius:99px;background:rgba(255,255,255,.2)}
+.arr-stars{margin-bottom:4px;font-size:2.2rem}
+.arr-level{margin:0;font-weight:800;color:var(--ink-soft)}
+
+/* 🧠 memory */
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mem-grid.mem-20{grid-template-columns:repeat(5,1fr)}
+.mem-card{
+  position:relative;min-height:88px;border-radius:14px;perspective:600px;padding:0;
+  -webkit-user-select:none;user-select:none;
+}
+.mem-back,.mem-front{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  border-radius:14px;backface-visibility:hidden;transition:transform .35s;padding:6px;
+}
+.mem-back{
+  font-size:1.6rem;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.12);
+  background:repeating-linear-gradient(45deg,hsl(var(--hue) 70% 58%) 0 10px,hsl(var(--hue) 70% 52%) 10px 20px);
+}
+.mem-front{background:#fff;transform:rotateY(180deg);box-shadow:0 4px 0 rgba(0,0,0,.08);border:2px solid #e3e3ef}
+.mem-card.open .mem-back,.mem-card.found .mem-back{transform:rotateY(180deg)}
+.mem-card.open .mem-front,.mem-card.found .mem-front{transform:none}
+.mem-card.def .mem-front{background:#fffbea}
+.mem-card.found .mem-front{border-color:var(--ok);background:var(--ok-light)}
+.mem-card.wrong .mem-front{border-color:var(--no);background:var(--no-light);animation:shake .4s}
+.mem-front small{font-size:.8rem}
+.mem-text{font-weight:800;font-size:.86rem;line-height:1.25;text-align:center;overflow-wrap:anywhere}
+.mem-card.def .mem-text,.mem-card.idiom .mem-text{font-size:.74rem;font-weight:700}
+
+/* 🔎 woordzoeker */
+.ws-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px;align-items:start}
+.ws-grid{
+  display:grid;gap:3px;touch-action:none;-webkit-user-select:none;user-select:none;max-width:440px;width:100%;
+  padding:6px;border-radius:14px;background:#fff;box-shadow:var(--shadow);
+}
+.ws-cell{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#f3f3fa;
+  font-family:var(--font-head);font-weight:800;font-size:clamp(.8rem,3.4vw,1.15rem);cursor:pointer;
+}
+.ws-cell.sel{background:var(--brand);color:#fff}
+.ws-cell.bad{background:var(--no-light);color:#a32b23}
+.ws-cell.hint{box-shadow:0 0 0 3px var(--gold);animation:pulse 1.2s ease-in-out infinite}
+.ws-cell.found.f0{background:#bbf7d0}.ws-cell.found.f1{background:#bfdbfe}.ws-cell.found.f2{background:#fde68a}
+.ws-cell.found.f3{background:#fbcfe8}.ws-cell.found.f4{background:#ddd6fe}.ws-cell.found.f5{background:#fed7aa}
+.ws-clues{margin:0;padding:0 0 0 20px;display:grid;gap:8px}
+.ws-clue{font-weight:700;font-size:.88rem;line-height:1.35}
+.ws-clue small{color:var(--ink-soft);font-weight:800}
+.ws-clue.done{color:#136e45}
+.ws-hint{margin-top:10px}
+
+/* 🏰 kasteelverdediging */
+.arc-panel{margin-top:10px}
+.td-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.td-gold{font-family:var(--font-head);font-size:1.2rem;font-weight:800;padding:4px 12px;border-radius:12px;background:#fff3d6;color:#8a5a00}
+.td-tower{padding:7px 12px;border-radius:12px;background:#f1f1f8;font-size:1.1rem;border:2px solid transparent;font-weight:800}
+.td-tower small{font-size:.75rem}
+.td-tower.on{border-color:var(--brand);background:var(--brand-light)}
+.td-tower.poor{opacity:.55}
+.td-wave{margin-left:auto;padding:9px 16px;width:auto}
+.td-wave:disabled{opacity:.55;cursor:default}
+.td-q{margin-top:10px;padding:10px 12px;border-radius:14px;background:#fffbe8}
+.td-qtext{margin:0 0 8px;font-weight:800;text-align:center}
+.td-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.td-opt{margin:0}
+.td-qnote{display:block;text-align:center;margin-top:6px;color:var(--ink-soft);font-weight:700}
+.td-help{margin:8px 0 0;text-align:center}
+
+@media (max-width:640px){
+  .ws-wrap{grid-template-columns:1fr}
+  .mem-grid,.mem-grid.mem-20{grid-template-columns:repeat(4,1fr);gap:6px}
+  .mem-card{min-height:78px}
+  .mem-text{font-size:.76rem}
+  .mem-card.def .mem-text,.mem-card.idiom .mem-text{font-size:.66rem}
+  .td-opts{grid-template-columns:1fr}
+  .td-wave{margin-left:0;flex:1}
+  .today-btns{width:100%;margin-left:0}
+  .ladder-step{min-width:50px}
+  .book-card{flex-basis:132px}
+}
+@media (prefers-reduced-motion:reduce){
+  .book-ribbon,.dip-emoji,.ws-cell.hint{animation:none}
+}

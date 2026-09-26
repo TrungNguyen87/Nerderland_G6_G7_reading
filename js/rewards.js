@@ -55,6 +55,8 @@ const Rewards = (function () {
     if (src === 'streak') return heading ? t('chestFromStreak') : t('chestEarnedStreak');
     if (src === 'level') return heading ? t('chestFromLevel') : t('chestEarnedLevel');
     if (src === 'pet') return heading ? t('chestFromPet') : t('chestEarnedPet');
+    if (src === 'diploma') return heading ? t('chestFromDiploma') : t('chestEarnedDiploma');
+    if (src === 'book') return heading ? t('chestFromBook') : t('chestEarnedBook');
     return heading ? t('chestFromStar') : t('chestEarnedStar');
   }
 
@@ -498,6 +500,7 @@ const Rewards = (function () {
       : '🎁 ' + t('questsReward').replace('{n}', 3 - doneN);
 
     renderPet();
+    $('btn-diplomas').textContent = t('dipBtn').replace('{n}', Ladder.count());
     const tk = $('btn-today-tickets');
     if (tk) tk.textContent = '🎟️ ' + t('ticketsButton').replace('{n}', tickets());
 

@@ -10,6 +10,29 @@ window.addStories = function (list) {
   list.forEach(function (s) { window.STORY_DB.push(s); });
 };
 
+/* Vervolgverhalen: één boek in drie hoofdstukken die steeds moeilijker
+   worden (groep 6 → 7 → 8). Elk hoofdstuk is een gewoon verhaal; addSeries
+   zet er het boek (series), het hoofdstuknummer (chapter), de wereld en een
+   id als <boek>-<n> bij en zet het in STORY_DB. De boeken zelf staan in
+   window.SERIES. Zie data/series.*.js en js/books.js. */
+window.SERIES = [];
+window.addSeries = function (book) {
+  const chapters = book.chapters || [];
+  const topic = (window.TOPICS || []).filter(function (t) { return t.id === book.topic; })[0];
+  window.SERIES.push({
+    id: book.id, topic: book.topic, emoji: book.emoji,
+    hue: typeof book.hue === 'number' ? book.hue : (topic ? topic.hue : 255),
+    title: book.title, blurb: book.blurb, chapters: chapters.length
+  });
+  chapters.forEach(function (ch, i) {
+    ch.series = book.id;
+    ch.chapter = i + 1;
+    if (!ch.topic) ch.topic = book.topic;
+    if (!ch.id) ch.id = book.id + '-' + (i + 1);
+    window.STORY_DB.push(ch);
+  });
+};
+
 /* The ten worlds the child can choose from.
    `hue` drives the colour theme of every card / screen for that world. */
 window.TOPICS = [

@@ -93,7 +93,10 @@
         <h3 id="today-hello">Hoi!</h3>
         <p id="today-streak" class="today-streak"></p>
       </div>
-      <button id="btn-album" class="ghost-btn album-btn" data-i18n="albumBtn">🎁 Mijn album</button>
+      <div class="today-btns">
+        <button id="btn-album" class="ghost-btn album-btn" data-i18n="albumBtn">🎁 Mijn album</button>
+        <button id="btn-diplomas" class="ghost-btn album-btn dip-btn">🎓 Diploma's</button>
+      </div>
     </div>
     <div id="pet-box" class="pet-box">
       <button id="pet-emoji" class="pet-emoji" title="Aai je draak" aria-label="Leesdraak">🥚</button>
@@ -123,6 +126,7 @@
   </div>
   <h2 id="worlds-title" class="screen-title">Kies een wereld</h2>
   <p id="worlds-sub" class="screen-sub">Waar wil je vandaag over lezen?</p>
+  <div id="series-shelf" class="series-shelf"></div>
   <div id="world-grid" class="world-grid"></div>
   <div id="spell-grid" class="world-grid hidden"></div>
   <div id="play-grid" class="play-grid hidden"></div>
@@ -135,12 +139,31 @@
   <button class="back-btn" data-back="worlds">← <span data-i18n="back">Terug</span></button>
   <h2 id="level-title" class="screen-title">Wereld</h2>
   <p class="screen-sub" data-i18n="chooseLevel">Kies hoe moeilijk je het wilt.</p>
+  <div id="level-ladder" class="card ladder"></div>
   <div id="level-grid" class="level-grid"></div>
+</section>
+
+<!-- ============ BOEK (VERVOLGVERHAAL) ============ -->
+<section id="screen-book" class="screen">
+  <button class="back-btn" data-back="worlds">← <span data-i18n="back">Terug</span></button>
+  <h2 id="book-title" class="screen-title">📚</h2>
+  <p id="book-blurb" class="screen-sub"></p>
+  <div id="book-grid" class="level-grid"></div>
+  <p id="book-end" class="card book-end hidden"></p>
+</section>
+
+<!-- ============ DIPLOMA'S ============ -->
+<section id="screen-diplomas" class="screen">
+  <button class="back-btn" data-back="worlds">← <span data-i18n="back">Terug</span></button>
+  <h2 class="screen-title" data-i18n="dipTitle">🎓 Mijn diploma's</h2>
+  <p class="screen-sub" data-i18n="dipSub">Elk diploma betekent: dit kun je al!</p>
+  <p id="dip-count" class="dip-count"></p>
+  <div id="dip-grid" class="dip-grid"></div>
 </section>
 
 <!-- ============ READING ============ -->
 <section id="screen-read" class="screen">
-  <button class="back-btn" data-back="levels">← <span data-i18n="back">Terug</span></button>
+  <button class="back-btn" data-back="story">← <span data-i18n="back">Terug</span></button>
 
   <div class="read-toolbar">
     <button id="btn-speak" class="tool-btn" title="Voorlezen">🔈 <span data-i18n="readAloud">Voorlezen</span></button>
@@ -158,6 +181,7 @@
         <p id="story-meta" class="story-meta"></p>
       </div>
     </div>
+    <p id="story-recap" class="story-recap hidden"></p>
     <div id="story-text" class="story-text"></div>
     <div id="word-help" class="word-help"></div>
   </article>
@@ -223,6 +247,8 @@
       <div class="result-tile"><span class="rt-icon">⏱</span><b id="rt-time">0:00</b><small data-i18n="timeLabel">tijd</small></div>
     </div>
 
+    <p id="result-ladder" class="result-ladder hidden"></p>
+    <p id="result-teaser" class="result-teaser hidden"></p>
     <div id="result-skills" class="result-skills"></div>
     <div id="result-new-badges" class="new-badges"></div>
     <div id="result-quests" class="quest-strip"></div>
@@ -304,6 +330,7 @@
       <div class="result-tile"><span class="rt-icon">⏱</span><b id="spt-time">0:00</b><small data-i18n="timeLabel">tijd</small></div>
     </div>
 
+    <p id="sp-result-ladder" class="result-ladder hidden"></p>
     <div id="sp-wordlist" class="sp-wordlist"></div>
     <div id="sp-new-badges" class="new-badges"></div>
     <div id="sp-result-quests" class="quest-strip"></div>
@@ -319,9 +346,10 @@
 
 <!-- ============ SPEELHAL: EEN SPEL ============ -->
 <section id="screen-arcade" class="screen">
-  <div class="card arc-card">
+  <div id="arc-card" class="card arc-card">
     <div class="arc-head">
       <h2 id="arc-title" class="arc-title">🎮</h2>
+      <span id="arc-level" class="arc-pill arc-lv">⭐</span>
       <span id="arc-count" class="arc-pill">1/15</span>
       <span id="arc-hearts" class="arc-hearts">❤️❤️❤️</span>
       <span class="arc-pill arc-score">⭐ <b id="arc-score">0</b></span>
@@ -329,15 +357,20 @@
     </div>
     <p id="arc-goal" class="arc-goal"></p>
     <div id="arc-prompt" class="arc-prompt"></div>
-    <div class="arc-stage">
-      <canvas id="arc-canvas" class="arc-canvas" aria-label="Spel"></canvas>
+    <div class="arc-play">
+      <div id="arc-stage" class="arc-stage">
+        <canvas id="arc-canvas" class="arc-canvas" aria-label="Spel"></canvas>
+      </div>
+      <div id="arc-dom" class="arc-dom hidden"></div>
       <div id="arc-feedback" class="arc-feedback"></div>
       <button id="arc-start" class="arc-start">
         <b id="arc-start-title">🎮</b>
+        <small id="arc-start-level" class="arc-start-level"></small>
         <span id="arc-start-how"></span>
         <span id="arc-start-go" class="arc-go">Tik om te starten ▶</span>
       </button>
     </div>
+    <div id="arc-panel" class="arc-panel hidden"></div>
   </div>
 </section>
 
@@ -345,7 +378,9 @@
 <section id="screen-arcade-result" class="screen">
   <div class="card result-card">
     <div id="arr-emoji" class="arr-emoji">🏆</div>
+    <div id="arr-stars" class="result-stars arr-stars"></div>
     <h2 id="arr-title">Goed gedaan!</h2>
+    <p id="arr-level" class="arr-level"></p>
     <p id="arr-sub" class="screen-sub"></p>
     <div class="result-grid">
       <div class="result-tile"><span class="rt-icon">⭐</span><b id="arr-score">0</b><small data-i18n="arcadeScore">punten</small></div>
@@ -360,6 +395,7 @@
     <div class="result-actions">
       <button id="btn-arc-menu" class="ghost-btn">← Speelhal</button>
       <button id="btn-arc-again" class="big-btn alt">Nog een keer</button>
+      <button id="btn-arc-next" class="big-btn hidden">Level 2 ▶</button>
     </div>
   </div>
 </section>
@@ -432,6 +468,13 @@
       <div class="result-tile"><span class="rt-icon">🎁</span><b id="p-gifts">0</b><small data-i18n="pGifts">cadeaus</small></div>
       <div class="result-tile"><span class="rt-icon">🎮</span><b id="p-arcade">0</b><small data-i18n="pArcade">spellen gespeeld</small></div>
       <div class="result-tile"><span class="rt-icon">🗃️</span><b id="p-kist">0</b><small data-i18n="pKist">woorden gekend</small></div>
+      <div class="result-tile"><span class="rt-icon">🎓</span><b id="p-diplomas">0</b><small data-i18n="pDiplomas">diploma's</small></div>
+    </div>
+
+    <div class="card">
+      <h3 data-i18n="pSettings">⚙️ Instellingen</h3>
+      <label class="setting-row"><input type="checkbox" id="p-lock-easy" checked> <span data-i18n="pLockEasy">Afgeronde makkelijke niveaus op slot (aanbevolen)</span></label>
+      <p class="mini-note" data-i18n="pLockEasyNote">Uitleg</p>
     </div>
 
     <div class="card">
@@ -509,6 +552,24 @@
   </div>
 </div>
 
+<!-- ============ DIPLOMA ============ -->
+<div id="diploma-overlay" class="chest-overlay dip-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="dip-title">
+  <div class="dip-card">
+    <div class="chest-rays" aria-hidden="true"></div>
+    <p id="dip-kind" class="dip-kind">🎓</p>
+    <span id="dip-emoji" class="dip-emoji">📖</span>
+    <h2 id="dip-title">Diploma</h2>
+    <p id="dip-sub" class="dip-sub"></p>
+    <p id="dip-name" class="dip-name"></p>
+    <p id="dip-date" class="dip-date"></p>
+    <p id="dip-msg" class="dip-msg"></p>
+    <div class="dip-actions">
+      <button id="dip-close" class="ghost-btn">Mooi! 🎉</button>
+      <button id="dip-go" class="big-btn">Verder →</button>
+    </div>
+  </div>
+</div>
+
 <script src="data/bootstrap.js"></script>
 <script src="data/stories.dieren.js"></script>
 <script src="data/stories.ruimte.js"></script>
@@ -526,14 +587,32 @@
 <script src="data/shop.js"></script>
 <script src="data/facts.js"></script>
 <script src="data/idioms.js"></script>
+<script src="data/series.vuurtoren.js"></script>
+<script src="data/series.wolf.js"></script>
+<script src="data/series.maanbasis.js"></script>
+<script src="data/series.keeper.js"></script>
+<script src="data/series.tijdsleutel.js"></script>
+<script src="data/series.robotrik.js"></script>
+<script src="data/series.recept.js"></script>
+<script src="data/series.musical.js"></script>
+<script src="data/series.brieven.js"></script>
+<script src="data/series.gips.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/audio.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/log.js"></script>
 <script src="js/rewards.js"></script>
+<script src="js/ladder.js"></script>
 <script src="js/app.js"></script>
+<script src="js/books.js"></script>
 <script src="js/spelling.js"></script>
 <script src="js/arcade.js"></script>
+<script src="js/games/obby.js"></script>
+<script src="js/games/bonk.js"></script>
+<script src="js/games/race.js"></script>
+<script src="js/games/memory.js"></script>
+<script src="js/games/wordsearch.js"></script>
+<script src="js/games/castle.js"></script>
 <script src="js/woordkist.js"></script>
 </body>
 </html>

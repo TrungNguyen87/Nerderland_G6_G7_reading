@@ -16,9 +16,10 @@ you can download a report at the end of the day.
 
 | | |
 |---|---|
-| 📖 **Lezen** | 120 stories · 830 questions · 10 worlds · 6 difficulty levels, up to groep 8 |
+| 📖 **Lezen** | 150 stories · 1070 questions · 10 worlds · 6 difficulty levels, up to groep 8 · 10 serial stories whose three chapters climb from groep 6 to groep 8 |
 | ✍️ **Spelling** | 503 exercises · 20 spelling rules (5 of them new in groep 8) · 75 sets |
-| 🎮 **Spellen** | Three arcade games (Flappy Uil, Springheld, Woordregen) that practise spelling and word meaning, plus the 🗃️ Woordkist for daily spaced-repetition micro-learning |
+| 🎮 **Spellen** | Nine games in four kinds — arcade, adventure & platform (an obby tower, a Mario-style block bonker), puzzles and strategy (a castle defence) — each with three levels (groep 6, 7, 8), plus the 🗃️ Woordkist for daily spaced-repetition micro-learning |
+| 🎓 **Diploma's** | Mastered an easy level? It closes with a diploma, and the button goes straight to the next level up |
 | 🪙 **Winkel** | Spend earned coins on stickers, avatars, characters and tools |
 | 🎁 **Beloningen** | Daily quests, a day streak, a reading dragon that grows, gift boxes and a collector's album of 26 chest-only gifts |
 
@@ -52,6 +53,60 @@ detective (mystery), a burger from the lab (food), goosebumps from music
 (music), rights for every child (world) and stress: your body on alert
 (body).
 
+## 📚 Serial stories
+
+Below the worlds is a bookshelf with ten **vervolgverhalen**: one story in
+three chapters, where every chapter is harder than the one before, so the
+child grows with the story. Chapter 1 is groep 6 (Doorzetter level, 6
+questions), chapter 2 groep 7 (Expert level, 8 questions) and chapter 3
+groep 8 (Eindbaas level, 10 questions, with "find the proof" questions).
+Each chapter ends on a cliffhanger ("how does it end?") and the next one
+opens with a short recap. A chapter opens once the previous one has at
+least ⭐; reading the last chapter earns the book diploma and a gift box.
+
+| Book | World | The story |
+|---|---|---|
+| 🔦 Het licht in de vuurtoren | Mystery | Every night a light flashes SOS in a lighthouse that has been locked for twenty years |
+| 🐺 Sporen in de sneeuw | Animals | At the edge of the Veluwe, Noor finds tracks that cannot belong to a dog. Is the wolf back? |
+| 🌕 Een jaar op de Maan | Space | In 2045 Sem moves to a Moon base with his mum — great for jumping, until the solar storm comes |
+| 🧤 De keeper die niet durfde | Sport | Mo is scared of hard balls, and he is the one who has to become the new goalkeeper |
+| 🗝️ De sleutel van de tijd | History | An old key from grandma's attic fits a little door that leads to the year 1370 |
+| 🤖 Robot Rik | Tech | Twins build a robot that sorts rubbish — only Rik thinks a banana is a newspaper |
+| 🥧 Het geheime recept van oma | Food | Yusuf has to bake grandma's famous apple pie, but the secret has been torn off the page |
+| 🎭 De stem achter het gordijn | Music | Sara sings beautifully, but only when nobody is listening — from groep 6 to the groep 8 musical |
+| ✉️ Brieven uit Tanzania | World | Ruben gets a pen pal, Amani, in Tanzania; they draw a comic together and Ruben finds out how much he did not know |
+| 🦴 Zes weken gips | Body | A somersault on the trampoline, a strange sound, and Bram is in plaster for six weeks. How do you get strong again? |
+
+The chapters are ordinary stories in `data/series.*.js` (see *Adding your
+own stories*); they do not count towards a world's levels.
+
+## 🎓 Diplomas: finished levels close
+
+A child who has done everything once tends to keep replaying the easy
+stories for quick stars. So a level that has been mastered **closes with a
+diploma** instead:
+
+- **Reading** — all stories of a level in a world read with at least ⭐⭐ →
+  the reading diploma for that level, and that level closes.
+- **Spelling** — an exercise with ⭐⭐ or more closes.
+- **Games** — ⭐ opens the next game level, ⭐⭐ earns that level's diploma.
+- **Serial stories** — chapters 1 and 2 close with ⭐⭐; the last chapter
+  earns the book diploma.
+
+The highest level of a world, a spelling rule or a game never closes, so
+there is always something to play. A diploma is a celebration, not a
+punishment: a full-screen certificate with the child's name, +20 XP (and a
+gift box for a reading or book diploma), the level's card turning gold
+with 🎓, and one button that goes straight to the next level — where
+the stories and exercises give more XP (the ⚡ bonus on each card). The
+world screen always says what the next diploma is and how many stories are
+still needed; the 🎓 button shows all diplomas earned. Players who had
+already mastered levels before this update get their diplomas the first
+time they open the game.
+
+A parent can switch the closing off per child in the parent area
+(*Afgeronde makkelijke niveaus op slot*); diplomas are still awarded.
+
 ## Six difficulty levels
 
 Every world has at least two stories at levels 1–5 (and three at the
@@ -67,7 +122,8 @@ hole in it.
 | ⭐⭐⭐⭐⭐ Cito-meester | AVI Plus | ± 360 words | Fact or opinion, the writer's purpose, 9 questions |
 | 👑 Eindbaas | Groep 8 · 2F | ± 390 words | Informative and argumentative texts like the groep 8 *doorstroomtoets*; "find the proof" questions, 10 questions |
 
-A level only unlocks once the previous one has been played.
+A level only unlocks once the previous one has been played, and a level
+the child has mastered closes with a diploma (see *Diplomas* above).
 
 ## Eight kinds of questions
 
@@ -174,19 +230,33 @@ the round, with their rule, so you can go through them together.
 
 # 🎮 The arcade and the Woordkist
 
-The third tab, **Spellen**, is where the practice turns into a game. Each
-arcade round is 15 "duels" — one right and one wrong word — taken from the
+The third tab, **Spellen**, is where the practice turns into a game. Most
+rounds are 15 "duels" — one right and one wrong word — taken from the
 spelling exercises (words the child got wrong before come up more often) or
-from the vocabulary of the stories:
+from the vocabulary of the stories. Nine games in four kinds:
 
-| Game | How it plays |
-|---|---|
-| 🦉 **Flappy Uil** | Tap (or space) to flap and fly through the gate with the right word. Forgiving on purpose: wide gates and a soft flap |
-| 🏃 **Springheld** | A platform runner: if the right word is on the high block, jump; if it is on the ground, keep running. Jump over the snails |
-| ☔ **Woordregen** | Slide the bucket (finger, mouse or arrow keys) and catch only the right words |
+| Game | Kind | How it plays |
+|---|---|---|
+| 🦉 **Flappy Uil** | Arcade | Tap (or space) to flap and fly through the gate with the right word. Forgiving on purpose: wide gates and a soft flap |
+| ☔ **Woordregen** | Arcade | Slide the bucket (finger, mouse or arrow keys) and catch only the right words |
+| 🏎️ **Woordrace** | Arcade | A kart race: change lanes and drive through the right word for a turbo, dodge the oil, overtake the other karts and finish as high as you can |
+| 🏃 **Springheld** | Adventure | A platform runner: if the right word is on the high block, jump; if it is on the ground, keep running. Jump over the snails |
+| 🧗 **Obby-toren** | Adventure | A Roblox-style obby: jump left or right to the platform with the right word (the wrong one is a trap block) before the lava catches up, with a checkpoint 🚩 every five floors |
+| 🍄 **Blokbonk** | Adventure | Mario-style: a sentence on ?-blocks, one word misspelled — jump and bonk exactly that block for a coin, and stomp the beetles for bonus points |
+| 🧠 **Woordmemory** | Puzzle | Turn over two cards and match every word (or saying) to its meaning |
+| 🔎 **Woordzoeker** | Puzzle | A word search where the clue is the meaning, or the word spelled wrong — work out the word first, then find it in the grid |
+| 🏰 **Kasteelverdediging** | Strategy | Tower defence: answer questions to earn gold, choose where to build 🏹 and 🔮 towers and upgrade them, then start the wave. Spelling bugs must not reach the castle |
 
-Three hearts, combo points and a record per game; the result screen lists
-every missed word with the rule that explains it.
+**Every game has three levels**: ⭐ groep 6, ⭐⭐ groep 7 and 👑 groep 8.
+A higher level takes its words from harder exercises and stories, is a
+little faster and gives more points. ⭐ on a level opens the next one;
+⭐⭐ earns that level's diploma, after which it closes and the game starts
+at the next level (see *Diplomas*). Stars come from how many duels were
+right, so hurrying through does not pay.
+
+Hearts, combo points and a record per game and level; the result screen
+lists every missed word with the rule that explains it, and has a button
+straight to the next level once it is open.
 
 **🎟️ Game tickets** keep reading the main thing: every game costs one
 ticket, and tickets are only earned by finishing a story (+2), a spelling
@@ -231,7 +301,12 @@ The Woordkist is free and earns a ticket.
   stage brings a gift box
 - 🔥 **Combo pop-ups** — "3× OP EEN RIJ!", "5× SUPERREEKS!" — and a
   "better than last time" message when a replay beats the old score
-- 🎉 Confetti, stars, sound effects and **26 collectable badges**
+- 🎓 **Diplomas** — a certificate with the child's name for every mastered
+  level, a "next diploma" goal on the world screen, and more XP (⚡) the
+  higher the level
+- 📚 **Cliffhangers** — every serial-story chapter ends with "how does it
+  end?", and the next chapter is one tap away
+- 🎉 Confetti, stars, sound effects and **30 collectable badges**
 - ⚡ **Flash-words bonus round** — a word flashes briefly; which word was it?
 
 ## 🪙 The rewards shop
@@ -315,6 +390,9 @@ Behind a small multiplication sum, so he cannot wander in:
 - **Arcade games played and Woordkist words known** — games cost tickets
   that are only earned by reading, and the daily log shows games and
   reviewed cards per day, so you can see the balance
+- **Diplomas earned** and a switch, *Afgeronde makkelijke niveaus op
+  slot*, to turn off the closing of mastered levels for this child
+  (on by default); the HTML report lists the latest diplomas
 - **A daily activity log** — sessions, time played, stories, questions,
   accuracy, spelling and coins earned, one row per day for at least the
   last three weeks. It is stored separately from the detailed answer log,
@@ -367,6 +445,29 @@ Skills are `letterlijk`, `gevolgtrekking`, `woordenschat`, `volgorde`,
 `hoofdgedachte`, `verwijswoorden`, `structuur`, `doel`, `feitmening` and
 `samenvatten`. A new world goes into `data/bootstrap.js` plus one `<script>`
 line in `index.html`.
+
+A serial story is one `addSeries({...})` call in its own
+`data/series.<id>.js` file, plus a `<script>` line in `index.html` (the
+validator reads the same script list, so it picks the file up by itself):
+
+```js
+addSeries({
+  id: 'vuurtoren', topic: 'mysterie', emoji: '🔦',
+  title: { nl: '...', en: '...' }, blurb: { nl: '...', en: '...' },
+  chapters: [
+    { level: 2, emoji: '🔦', scene: 'night', title: {...}, text: {...}, words: [...], questions: [...],
+      teaser: { nl: 'Hoe loopt het af?', en: 'How does it end?' } },
+    { level: 4, ..., recap: { nl: 'Wat eraan voorafging...', en: 'Previously...' }, teaser: {...} },
+    { level: 6, ..., recap: {...} }
+  ]
+})
+```
+
+Each chapter is an ordinary story (same fields as above) without an `id`
+or `topic`: `addSeries` fills in `vuurtoren-1`, `-2`, `-3` and the world.
+The validator requires every chapter to be harder than the one before, a
+`recap` on every chapter after the first and a `teaser` on every chapter
+before the last (and warns if three chapters are not at levels 2, 4 and 6).
 
 A spelling exercise goes into `data/spelling.sets.js`:
 
@@ -438,12 +539,25 @@ node tools/smoke.mjs       # plays the game in a real browser
 
 This serves the folder over plain HTTP exactly like GitHub Pages does, then
 reads a story, answers every question type, plays a spelling round, a groep 8
-story and a groep 8 spelling set, the three arcade games (one with real
-physics) and a Woordkist round, switches language mid-question, opens the
-parent dashboard, downloads all three reports and reloads to check the
-progress was saved. Any console error, failed request
-or wrongly graded answer fails the run. If Chromium is already on the machine,
-point at it with `PLAYWRIGHT_CHROMIUM=/path/to/chromium`.
+story and a groep 8 spelling set, all nine games (each with real input at
+least once, plus a full round to the result screen) and a Woordkist round,
+reads a whole serial story chapter by chapter, earns and checks diplomas
+and the closed levels (and the parent switch that opens them again),
+switches language mid-question, opens the parent dashboard, downloads all
+three reports and reloads to check the progress was saved. Any console
+error, failed request or wrongly graded answer fails the run. If Chromium
+is already on the machine, point at it with
+`PLAYWRIGHT_CHROMIUM=/path/to/chromium`.
+
+```bash
+node tools/autopilot.mjs [width] [games] [levels]
+# e.g. node tools/autopilot.mjs 390 obby,bonk,race 1,2,3
+```
+
+Optional, not part of CI: plays full rounds of the action games with real
+physics and a simple "bot" that always aims for the right word; every
+round must end 15/15. Run it after changing anything about game speed,
+gravity or sizes.
 
 Both also run automatically on GitHub for every push and pull request
 (`.github/workflows/check.yml`), and the Pages deploy refuses to publish if
@@ -462,12 +576,16 @@ js/audio.js             sound effects (WebAudio) and read-aloud (SpeechSynthesis
 js/fx.js                confetti, background, the owl
 js/log.js               storage, statistics and the export buttons
 js/rewards.js           daily quests, day streak, gift boxes, the album, fun facts, tickets, the reading dragon
-js/arcade.js            the arcade: Flappy Uil, Springheld and Woordregen on one canvas
+js/arcade.js            the arcade engine (levels, duels, hearts, results, menu) plus Flappy Uil, Springheld and Woordregen
+js/games/*.js           the other six games, each registered with Arcade.register()
+js/ladder.js            the diploma ladder: which levels are mastered, closed or next
+js/books.js             the serial-story bookshelf and book screen
 js/woordkist.js         the Woordkist: spaced-repetition flash cards
 js/app.js               reading game: screens, questions, scoring, dashboard, shop, coins, joker
 js/spelling.js          spelling game: rules, exercises, scoring, joker
 data/bootstrap.js       worlds, levels and reading skills
 data/stories.*.js       the stories, one file per world
+data/series.*.js        the serial stories, one book (three chapters) per file
 data/spelling.js        the fifteen group 6-7 spelling rules, their meta-category and explanation
 data/spelling.sets.js   the spelling exercises
 data/shop.js            the stickers, icons, characters and tools in the coin shop, plus the chest-only gifts
