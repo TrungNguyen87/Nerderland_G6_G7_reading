@@ -43,6 +43,15 @@ window.addSeries = function (book) {
   });
 };
 
+/* Ontsnappingskamers (data/escape.*.js, js/games/escape.js): een zaak is een
+   klein vervolgverhaal van kamers. Elke kamer hoort bij een level (1 = groep 6,
+   2 = groep 7, 3 = groep 8); een zaak mag meer dan één kamer per level hebben:
+   het kind speelt de eerstvolgende die nog niet opgelost is. Een kamer erbij
+   zetten = één object achteraan `rooms` zetten, zie het begin van
+   js/games/escape.js voor het formaat. */
+window.ESCAPES = [];
+window.addEscape = function (def) { window.ESCAPES.push(def); };
+
 /* The ten worlds the child can choose from.
    `hue` drives the colour theme of every card / screen for that world. */
 window.TOPICS = [

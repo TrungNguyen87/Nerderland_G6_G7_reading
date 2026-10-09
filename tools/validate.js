@@ -51,6 +51,7 @@ dataFiles.forEach(function (rel) {
   if (sandbox.window.addStories && !sandbox.addStories) sandbox.addStories = sandbox.window.addStories;
   if (sandbox.window.addSpelling && !sandbox.addSpelling) sandbox.addSpelling = sandbox.window.addSpelling;
   if (sandbox.window.addSeries && !sandbox.addSeries) sandbox.addSeries = sandbox.window.addSeries;
+  if (sandbox.window.addEscape && !sandbox.addEscape) sandbox.addEscape = sandbox.window.addEscape;
 });
 
 const W = sandbox.window;
@@ -563,6 +564,123 @@ RIDDLES.length && [1, 2, 3].forEach(function (lv) {
   if (riddlesPerLevel[lv] < 20) err('data/riddles.js', 'level ' + lv + ' has only ' + riddlesPerLevel[lv] + ' riddles (need at least 20 so a round never repeats)');
 });
 
+/* ---------------------------------------------------------------------
+   5f. Ontsnappingskamers (data/escape.*.js): elke kamer moet op te lossen zijn
+   --------------------------------------------------------------------- */
+const ESCAPES = W.ESCAPES || [];
+const escapeIds = {};
+let escapeRooms = 0;
+/* speelt een kamer na (dezelfde regels als solvable() in js/games/escape.js):
+   een slot gaat open als je het antwoord weet, een voorwerp-slot pas als je het voorwerp hebt */
+function escapeSolvable(room) {
+  const visible = {}, open = {}, items = {};
+  room.objects.forEach(function (o) { visible[o.id] = !o.hidden; });
+  let progress = true, exitOpen = false;
+  while (progress && !exitOpen) {
+    progress = false;
+    room.objects.forEach(function (o) {
+      if (!visible[o.id] || open[o.id]) return;
+      const need = o.lock && o.lock.kind === 'item' ? [].concat(o.lock.item || o.lock.items || []) : [];
+      if (!need.every(function (it) { return items[it]; })) return;
+      open[o.id] = true;
+      [].concat(o.gives || []).forEach(function (it) { items[it] = true; });
+      [].concat(o.reveals || []).forEach(function (id) { visible[id] = true; });
+      if (o.exit) exitOpen = true;
+      progress = true;
+    });
+  }
+  return exitOpen;
+}
+ESCAPES.forEach(function (def) {
+  const where = 'escape case ' + (def.id || '(no id)');
+  if (!def.id) { err(where, 'missing id'); return; }
+  if (escapeIds[def.id]) err(where, 'duplicate id');
+  escapeIds[def.id] = true;
+  if (!def.emoji) err(where, 'missing emoji');
+  if (typeof def.hue !== 'number') err(where, 'hue must be a number');
+  bilingual(where, def.title, 'title');
+  bilingual(where, def.blurb, 'blurb');
+  const rooms = def.rooms || [];
+  [1, 2, 3].forEach(function (lv) {
+    if (!rooms.some(function (r) { return r.lv === lv; })) err(where, 'has no room for level ' + lv + ' (every case needs rooms for groep 6, 7 and 8)');
+  });
+  const roomIds = {};
+  rooms.forEach(function (room) {
+    escapeRooms++;
+    const rw = where + ' / room ' + (room.id || '(no id)');
+    if (!room.id) err(rw, 'missing id');
+    if (roomIds[room.id]) err(rw, 'duplicate room id');
+    roomIds[room.id] = true;
+    if ([1, 2, 3].indexOf(room.lv) === -1) err(rw, 'lv must be 1, 2 or 3');
+    bilingual(rw, room.title, 'title');
+    bilingual(rw, room.intro, 'intro');
+    bilingual(rw, room.outro, 'outro');
+    const items = room.items || {};
+    Object.keys(items).forEach(function (id) {
+      if (!items[id].emoji) err(rw, 'item ' + id + ' needs an emoji');
+      ['nl', 'en'].forEach(function (k) { if (!items[id][k]) err(rw, 'item ' + id + ' is missing ' + k); });
+    });
+    const objs = room.objects || [];
+    if (objs.length < 5 || objs.length > 12) warn(rw, 'a room usually has 5 to 12 things to look at (has ' + objs.length + ')');
+    const ids = {};
+    objs.forEach(function (o) { ids[o.id] = o; });
+    let exits = 0;
+    const text = [];
+    objs.forEach(function (o) {
+      const ow = rw + ' / ' + (o.id || '?');
+      if (!o.id) err(ow, 'missing id');
+      if (objs.filter(function (x) { return x.id === o.id; }).length > 1) err(ow, 'duplicate object id');
+      if (!o.emoji) err(ow, 'missing emoji');
+      bilingual(ow, o.name, 'name');
+      bilingual(ow, o.text, 'text');
+      text.push(o.text && o.text.nl || '');
+      if (o.exit) exits++;
+      [].concat(o.gives || []).forEach(function (it) { if (!items[it]) err(ow, 'gives unknown item "' + it + '"'); });
+      [].concat(o.reveals || []).forEach(function (id) {
+        if (!ids[id]) err(ow, 'reveals unknown object "' + id + '"');
+        else if (!ids[id].hidden) err(ow, 'reveals "' + id + '" which is not hidden');
+      });
+      const lk = o.lock;
+      if (!lk) { if (o.opened) warn(ow, 'has an opened text but no lock'); return; }
+      if (['code', 'choice', 'seq', 'item'].indexOf(lk.kind) === -1) { err(ow, 'unknown lock kind "' + lk.kind + '"'); return; }
+      bilingual(ow, o.opened, 'opened');
+      if (lk.kind === 'item') {
+        [].concat(lk.item || lk.items || []).forEach(function (it) { if (!items[it]) err(ow, 'lock needs unknown item "' + it + '"'); });
+        if (![].concat(lk.item || lk.items || []).length) err(ow, 'an item lock needs an item');
+        bilingual(ow, lk.need, 'lock.need');
+      } else {
+        bilingual(ow, lk.ask, 'lock.ask');
+        bilingual(ow, lk.hint, 'lock.hint');
+        if (lk.fail) bilingual(ow, lk.fail, 'lock.fail');
+      }
+      if (lk.kind === 'code') {
+        if (typeof lk.answer !== 'string' || !lk.answer) err(ow, 'a code lock needs a text answer');
+        else text.forEach(function () {});
+      }
+      if (lk.kind === 'choice' || lk.kind === 'seq') {
+        const opts = lk.options || [];
+        if (opts.length < 2) err(ow, 'needs at least two options');
+        opts.forEach(function (op, i) { ['nl', 'en'].forEach(function (k) { if (!op[k]) err(ow, 'option ' + (i + 1) + ' is missing ' + k); }); });
+        if (lk.kind === 'choice' && !(Number.isInteger(lk.answer) && lk.answer >= 0 && lk.answer < opts.length)) err(ow, 'choice answer must be an index of an option');
+        if (lk.kind === 'seq') {
+          if (!Array.isArray(lk.answer) || lk.answer.length < 2 || lk.answer.some(function (v) { return !(Number.isInteger(v) && v >= 0 && v < opts.length); })) {
+            err(ow, 'a sequence answer needs a list of at least two option indexes');
+          }
+        }
+      }
+    });
+    if (exits !== 1) err(rw, 'needs exactly one exit object (has ' + exits + ')');
+    if (!escapeSolvable(room)) err(rw, 'cannot be solved: the exit never opens (check items, reveals and hidden objects)');
+    /* a code that is printed in a text is not a puzzle */
+    objs.forEach(function (o) {
+      if (o.lock && o.lock.kind === 'code' && typeof o.lock.answer === 'string') {
+        const re = new RegExp('(^|[^0-9a-zà-ÿ])' + o.lock.answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^0-9a-zà-ÿ]|$)', 'i');
+        if (text.some(function (tx) { return re.test(tx); })) warn(rw + ' / ' + o.id, 'the answer "' + o.lock.answer + '" appears as a word in a text: a puzzle should make the reader work it out');
+      }
+    });
+  });
+});
+
 /* the same emoji twice in the collectable parts of the shop is confusing */
 const seenEmoji = {};
 SHOP.forEach(function (it) {
@@ -667,6 +785,7 @@ console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins
             SHOP.filter(function (it) { return it.kind === 'gift'; }).length + ' chest-only gifts)');
 console.log('  fun facts     : ' + FACTS.length);
 console.log('  idioms        : ' + IDIOMS.length);
+console.log('  escape rooms  : ' + ESCAPES.length + ' cases, ' + escapeRooms + ' rooms');
 console.log('  riddles       : ' + RIDDLES.length + ' (' + [1, 2, 3].map(function (lv) { return 'lv' + lv + ' ' + riddlesPerLevel[lv]; }).join(', ') + ')');
 console.log('  serial stories: ' + SERIES.length + ' books, ' + STORIES.filter(function (s) { return s.series; }).length + ' chapters');
 console.log('  groep 8       : ' + STORIES.filter(function (s) { return s.level === 6; }).length + ' stories, ' +
