@@ -16,9 +16,9 @@ you can download a report at the end of the day.
 
 | | |
 |---|---|
-| 📖 **Lezen** | 150 stories · 1070 questions · 10 worlds · 6 difficulty levels, up to groep 8 · 10 serial stories whose three chapters climb from groep 6 to groep 8 |
+| 📖 **Lezen** | 162 stories · 1163 questions · 10 worlds · 6 difficulty levels, up to groep 8 · 13 serial stories: ten books whose three chapters climb from groep 6 to groep 8, and three four-chapter sagas that are *still going* (“wordt vervolgd”) — and a finished book lets the child write the next chapter themselves |
 | ✍️ **Spelling** | 503 exercises · 20 spelling rules (5 of them new in groep 8) · 75 sets |
-| 🎮 **Spellen** | Nine games in four kinds — arcade, adventure & platform (an obby tower, a Mario-style block bonker), puzzles and strategy (a castle defence) — each with three levels (groep 6, 7, 8), plus the 🗃️ Woordkist for daily spaced-repetition micro-learning |
+| 🎮 **Spellen** | Fourteen games in five kinds — arcade, adventure & platform, **reading puzzles** (a detective logic puzzle, a treasure map you follow from a text, a story you put back in order), strategy (castle defence, Connect Four against a computer) and **escape rooms** — each with three levels (groep 6, 7, 8), a deck of 90 riddles, plus the 🗃️ Woordkist for daily spaced-repetition micro-learning |
 | 🎓 **Diploma's** | Mastered an easy level? It closes with a diploma, and the button goes straight to the next level up |
 | 🪙 **Winkel** | Spend earned coins on stickers, avatars, characters and tools |
 | 🎁 **Beloningen** | Daily quests, a day streak, a reading dragon that grows, gift boxes and a collector's album of 26 chest-only gifts |
@@ -55,14 +55,26 @@ detective (mystery), a burger from the lab (food), goosebumps from music
 
 ## 📚 Serial stories
 
-Below the worlds is a bookshelf with ten **vervolgverhalen**: one story in
-three chapters, where every chapter is harder than the one before, so the
-child grows with the story. Chapter 1 is groep 6 (Doorzetter level, 6
-questions), chapter 2 groep 7 (Expert level, 8 questions) and chapter 3
-groep 8 (Eindbaas level, 10 questions, with "find the proof" questions).
-Each chapter ends on a cliffhanger ("how does it end?") and the next one
-opens with a short recap. A chapter opens once the previous one has at
-least ⭐; reading the last chapter earns the book diploma and a gift box.
+Below the worlds is a bookshelf with thirteen **vervolgverhalen**: one story
+in chapters, where no chapter is easier than the one before, so the child
+grows with the story. In the ten original books chapter 1 is groep 6
+(Doorzetter level, 6 questions), chapter 2 groep 7 (Expert level, 8
+questions) and chapter 3 groep 8 (Eindbaas level, 10 questions, with "find
+the proof" questions). Each chapter ends on a cliffhanger ("how does it
+end?") and the next one opens with a short recap. A chapter opens once the
+previous one has at least ⭐; reading the last chapter earns the book diploma
+and a gift box.
+
+**A story does not have to stop.** The three newest books are *sagas* of four
+chapters (levels 2, 3, 4 and 6) marked `more: true`: after the last chapter
+the bookshelf shows a dashed "Wordt vervolgd…" card, and a fifth chapter is
+one more object in the book's data file (see *Adding your own stories*).
+Once a book is finished the child can also **write the next chapter
+themselves**: a panel with three writing ideas (book-specific ones first),
+a title and a text box. It is saved on the device (a draft survives a page
+refresh and a language switch), earns +15 XP and the ✍️ *Schrijver* badge, can
+be edited or deleted, and the parent report shows every chapter the child
+wrote (escaped, so nothing a child types can break the page).
 
 | Book | World | The story |
 |---|---|---|
@@ -76,6 +88,9 @@ least ⭐; reading the last chapter earns the book diploma and a gift box.
 | 🎭 De stem achter het gordijn | Music | Sara sings beautifully, but only when nobody is listening — from groep 6 to the groep 8 musical |
 | ✉️ Brieven uit Tanzania | World | Ruben gets a pen pal, Amani, in Tanzania; they draw a comic together and Ruben finds out how much he did not know |
 | 🦴 Zes weken gips | Body | A somersault on the trampoline, a strange sound, and Bram is in plaster for six weeks. How do you get strong again? |
+| 🕵️ Detectivebureau Kruimel ✨ | Mystery | Fenna, Yassin and little Pepijn solve everything from a garden shed — until a riddle-writer who calls themselves De Raadselaar starts sending them clues. 4 chapters, still going |
+| 🦦 Een otter in de gracht ✨ | Animals | Sanne finds out who is stealing grandpa's fish from his houseboat: a young otter that cannot reach its mother. Real otter facts, a neighbourhood meeting and a plank over a lock. 4 chapters, still going |
+| 🐉 De wachters van de Dom ✨ | History | A little gargoyle on the Dom Tower in Utrecht is afraid of heights and needs Lotte to find the tower's lost Heart before the storm — with the real 1674 tornado behind it. 4 chapters, still going |
 
 The chapters are ordinary stories in `data/series.*.js` (see *Adding your
 own stories*); they do not count towards a world's levels.
@@ -233,7 +248,10 @@ the round, with their rule, so you can go through them together.
 The third tab, **Spellen**, is where the practice turns into a game. Most
 rounds are 15 "duels" — one right and one wrong word — taken from the
 spelling exercises (words the child got wrong before come up more often) or
-from the vocabulary of the stories. Nine games in four kinds:
+from the vocabulary of the stories, or — new — from a deck of **90 riddles**
+(🧩 *Raadsels*, three levels): the riddle sits in the bar above the game and
+the answer is the word you have to pick. Pick the pile (spelling, word
+meaning, sayings or riddles) in the menu. Fourteen games in five kinds:
 
 | Game | Kind | How it plays |
 |---|---|---|
@@ -246,6 +264,15 @@ from the vocabulary of the stories. Nine games in four kinds:
 | 🧠 **Woordmemory** | Puzzle | Turn over two cards and match every word (or saying) to its meaning |
 | 🔎 **Woordzoeker** | Puzzle | A word search where the clue is the meaning, or the word spelled wrong — work out the word first, then find it in the grid |
 | 🏰 **Kasteelverdediging** | Strategy | Tower defence: answer questions to earn gold, choose where to build 🏹 and 🔮 towers and upgrade them, then start the wave. Spelling bugs must not reach the castle |
+| ♟️ **Woordvier** | Strategy | Connect Four against the computer, but you only get to drop a disc after answering a question right (spelling, word meaning, sayings or riddles). A wrong answer skips your turn. The computer looks 2, 4 or 6 moves ahead at levels 1, 2 and 3 (minimax with alpha-beta) |
+| 🕵️ **Speurneus** | Reading puzzle | A crime, a line of suspects and clues in words only: "The culprit is not standing next to someone with glasses", "If the culprit wears a cap, the culprit also has an umbrella". Rule suspects out and accuse the one who is left. Every case is generated and has exactly one solution in which every clue is needed |
+| 🗺️ **Schatkaart** | Reading puzzle | A treasure map with no arrow, only a text to follow. Level 1: compass directions. Level 2: left/right like programming a robot, with a river and "cross the bridge". Level 3: *first, then, finally*, walking backwards and a hidden key. The generator re-executes its own text to prove the treasure is where the text says |
+| 🧩 **Verhaalpuzzel** | Reading puzzle | Sentences of a real story from the reading tab, jumbled (NL and EN aligned per sentence). Swap them into order; "Check" turns the right ones green and locks them (Mastermind-style). Look for *then, after that* and for *he, she, it* |
+| 🔐 **Ontsnappingskamers** | Escape room | Two cases (📚 *De bibliotheek van professor Plof*, 🏴‍☠️ *Het schip van kapitein Kluif*), three rooms each: a story room you read your way out of. Tap the things in the room, combine the clues in their texts (digits on three labels, a poem whose first letters spell a word, a liar puzzle, a word written backwards, a price-list sum, alibis from three notes, a letter-shift cipher) and open codes, choices, sequences and item locks. A notebook collects what you read |
+
+The reading puzzles and the escape rooms are **free** (no ticket): they *are*
+reading practice, like the Woordkist. A 💡 hint in an escape room costs a
+star; a wrong accusation, dig or code costs a heart.
 
 **Every game has three levels**: ⭐ groep 6, ⭐⭐ groep 7 and 👑 groep 8.
 A higher level takes its words from harder exercises and stories, is a
@@ -465,9 +492,31 @@ addSeries({
 
 Each chapter is an ordinary story (same fields as above) without an `id`
 or `topic`: `addSeries` fills in `vuurtoren-1`, `-2`, `-3` and the world.
-The validator requires every chapter to be harder than the one before, a
-`recap` on every chapter after the first and a `teaser` on every chapter
-before the last (and warns if three chapters are not at levels 2, 4 and 6).
+The validator requires that no chapter is easier than the one before (after
+group 8 a book simply carries on at level 6), a `recap` on every chapter after
+the first and a `teaser` on every chapter before the last (and warns if a
+three-chapter book is not at levels 2, 4 and 6).
+
+**Continuing a story** (a fifth chapter, a sixth…): add one more object to the
+end of `chapters`, at level 6, with a `recap`, and put a `teaser` on the
+chapter before it. A saga that is not finished has `more: true` on the book —
+the bookshelf then shows "Wordt vervolgd…" and the validator insists that the
+last chapter ends on a cliffhanger. `ideas: [{ nl, en }, …]` (at least three)
+are writing prompts for children who want to write the next chapter
+themselves. Children who already finished the book get the new chapter as a
+"NIEUW hoofdstuk!" ribbon; their old diploma stays.
+
+An **escape room** is data too (`data/escape.<case>.js`, one `addEscape({...})`
+per case, rooms per level — the format is documented at the top of
+`js/games/escape.js`). A room is a list of things to tap, some with a lock
+(`code`, `choice`, `seq` or `item`), hidden things that appear after another
+lock opens, items in a bag and one exit. `node tools/validate.js` plays every
+room: it fails if the exit can never open, if an answer is out of range or if a
+code is simply printed in a text. A case can have more than one room per level;
+the child gets the next one they have not solved yet, so adding a room needs no
+code. **Riddles** go into `data/riddles.js` (`lv`, `answer`, a few `wrongs`,
+`nl`, `en`); the validator checks that the riddle does not contain its own
+answer.
 
 A spelling exercise goes into `data/spelling.sets.js`:
 
@@ -539,7 +588,7 @@ node tools/smoke.mjs       # plays the game in a real browser
 
 This serves the folder over plain HTTP exactly like GitHub Pages does, then
 reads a story, answers every question type, plays a spelling round, a groep 8
-story and a groep 8 spelling set, all nine games (each with real input at
+story and a groep 8 spelling set, all fourteen games (the first nine with real input at
 least once, plus a full round to the result screen) and a Woordkist round,
 reads a whole serial story chapter by chapter, earns and checks diplomas
 and the closed levels (and the parent switch that opens them again),
@@ -559,7 +608,19 @@ physics and a simple "bot" that always aims for the right word; every
 round must end 15/15. Run it after changing anything about game speed,
 gravity or sizes.
 
-Both also run automatically on GitHub for every push and pull request
+```bash
+node tools/puzzles.mjs     # needs playwright, like smoke.mjs
+```
+
+Plays the reading puzzles, Woordvier, the escape rooms and a four-chapter saga
+in depth: it generates hundreds of detective cases (exactly one culprit, every
+clue needed), treasure maps (the text really leads to the treasure) and story
+puzzles, checks that the computer in Woordvier gets stronger per level, plays
+each game with real clicks (right and wrong), solves all three escape rooms by
+reading the data, reads a whole saga chapter by chapter, writes a chapter of
+its own, checks the parent report and the phone layout.
+
+These also run automatically on GitHub for every push and pull request
 (`.github/workflows/check.yml`), and the Pages deploy refuses to publish if
 `validate.js` fails.
 
@@ -577,7 +638,7 @@ js/fx.js                confetti, background, the owl
 js/log.js               storage, statistics and the export buttons
 js/rewards.js           daily quests, day streak, gift boxes, the album, fun facts, tickets, the reading dragon
 js/arcade.js            the arcade engine (levels, duels, hearts, results, menu) plus Flappy Uil, Springheld and Woordregen
-js/games/*.js           the other six games, each registered with Arcade.register()
+js/games/*.js           the other eleven games (obby, bonk, race, memory, wordsearch, castle, detective, treasure, storypuzzle, fourrow, escape), each registered with Arcade.register()
 js/ladder.js            the diploma ladder: which levels are mastered, closed or next
 js/books.js             the serial-story bookshelf and book screen
 js/woordkist.js         the Woordkist: spaced-repetition flash cards
@@ -585,7 +646,10 @@ js/app.js               reading game: screens, questions, scoring, dashboard, sh
 js/spelling.js          spelling game: rules, exercises, scoring, joker
 data/bootstrap.js       worlds, levels and reading skills
 data/stories.*.js       the stories, one file per world
-data/series.*.js        the serial stories, one book (three chapters) per file
+data/series.*.js        the serial stories, one book (3 or more chapters) per file
+data/riddles.js         the 90 riddles of the riddle deck
+data/escape.*.js        the escape-room cases, one per file (rooms per level)
+css/puzzles.css         styles of the reading puzzles, Woordvier and the escape rooms
 data/spelling.js        the fifteen group 6-7 spelling rules, their meta-category and explanation
 data/spelling.sets.js   the spelling exercises
 data/shop.js            the stickers, icons, characters and tools in the coin shop, plus the chest-only gifts
@@ -595,6 +659,7 @@ data/idioms.js          the groep 8 sayings for the Woordkist
 tools/validate.js       checks the data (no dependencies)
 tools/autopilot.mjs     optional: plays a full round of every arcade game with real physics
 tools/smoke.mjs         plays the game in a browser (needs playwright)
+tools/puzzles.mjs       plays the new puzzles, strategy game, escape rooms and a saga in depth (needs playwright)
 ```
 
 The in-game language stays Dutch by default; these docs are in English.

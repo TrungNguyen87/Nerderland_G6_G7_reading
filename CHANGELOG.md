@@ -5,6 +5,67 @@ All notable changes to Leeskampioen are recorded here. Format loosely follows
 
 ## Unreleased
 
+### Added — reading puzzles, a strategy game, escape rooms and stories that can go on (2026-10-09)
+Prompted by: "think about more creative games such as puzzles or strategy
+games that are more interesting — solving a puzzle on reading — and add more
+interesting stories with the possibility to add a continuation chapter."
+
+**Three reading puzzles** (new group in the Spellen tab, free: no ticket)
+- **🕵️ Speurneus** — a detective logic puzzle in words only. Clues like "the
+  culprit is not standing next to someone with glasses" or "if the culprit
+  wears a cap, the culprit also has an umbrella"; rule suspects out, accuse the
+  last one. Cases are generated with exactly one solution in which every clue
+  is needed (4/5/6 suspects, 3/4/5 clues); a wrong accusation names the clue
+  that does not fit.
+- **🗺️ Schatkaart** — follow a written route on a map. Level 1 compass
+  directions, level 2 left/right like programming a robot plus a river and a
+  bridge, level 3 first/then/finally, walking backwards and a hidden key. The
+  generator executes its own text to prove the treasure is where it says.
+- **🧩 Verhaalpuzzel** — put the jumbled sentences of a real story back in order
+  with Mastermind-style feedback (right ones turn green and lock), one hint per
+  puzzle. NL and EN are aligned per sentence.
+
+**♟️ Woordvier** (strategy) — Connect Four against the computer (minimax with
+alpha-beta, 2/4/6 moves deep). You may only drop a disc after answering a
+question right; a wrong answer skips your turn.
+
+**🔐 Escape rooms** — data-driven story rooms (`data/escape.*.js`) with code,
+choice, sequence and item locks, hidden clues, a notebook and hints. Two cases with one room per
+level: "De bibliotheek van professor Plof" (digits from three labels; an acrostic
+poem, glasses to read the tiny print and an age sum; a liar puzzle, a word
+written backwards and a price-list sum) and "Het schip van kapitein Kluif"
+(compass and parrot; a logbook sum and barrels to roll in order; alibis from
+three notes and a letter-shift cipher). `validate.js` plays every
+room and fails when the exit cannot be reached. A case can hold more than one
+room per level, so adding rooms needs no code.
+
+**🧩 Riddle deck** — 90 bilingual riddles in three levels as a new "Raadsels"
+pile for the duel games, the castle, Woordvier and the word search.
+
+**📚 Stories that can go on**
+- Books may have more than three chapters (levels never go down; after groep 8 a
+  book carries on at level 6). `more: true` shows a dashed "Wordt vervolgd…"
+  card; `ideas` are writing prompts.
+- Three new sagas of four chapters (12 chapters, 87 questions): 🕵️ *Detectivebureau
+  Kruimel*, 🦦 *Een otter in de gracht* and 🐉 *De wachters van de Dom*, each ending
+  on a cliffhanger.
+- A finished book lets the child **write the next chapter** (title, text, three
+  ideas, draft saved, edit/delete). +15 XP, the ✍️ *Schrijver* badge, shown in the
+  parent report.
+
+**Under the hood**
+- `Arcade.register()` accepts `free`, the `read` deck and the `escape` category;
+  results can carry `xpMul`; `relang()` translates a running puzzle when the
+  language is switched; `Arcade.module(id)` exposes a game for tests.
+- The "all-round gamer" badge no longer counts escape rooms (cases keep being
+  added; a badge must not get harder when content is added).
+- `css/puzzles.css`, `tools/puzzles.mjs` (also in CI).
+
+**Checks**
+- `node tools/validate.js` now checks riddles, escape rooms (solvability) and
+  4+ chapter books; `node tools/puzzles.mjs` generates and replays hundreds of
+  cases, maps and story puzzles and plays every new game with real clicks.
+
 ### Added — six new games, game levels, diplomas and serial stories (2026-09-26)
 Prompted by: "add more kinds of interactive games (Roblox, Mario, arcade,
 puzzle, strategy…), with micro-learning; make playing feel more

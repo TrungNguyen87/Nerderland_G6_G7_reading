@@ -15,6 +15,9 @@
        (woorden uit verhalen die het kind gelezen heeft, gaan voor)
      - Spreekwoorden: data/idioms.js (alleen voor spellen met veel ruimte
        voor tekst, zoals de puzzels en de kasteelverdediging)
+     - Raadsels: data/riddles.js. Het raadsel staat in de balk boven het
+       spel, het antwoord is het woord dat je moet kiezen. Lezen en
+       nadenken in één: dit is de "puzzel op leesniveau" voor alle spellen.
 
    Elk spel heeft drie levels: groep 6, groep 7 en groep 8. Een hoger level
    neemt moeilijkere woorden (uit de moeilijkere spellingsets en verhalen),
@@ -50,21 +53,22 @@ const Arcade = (function () {
     { id: 'arcade',    emoji: '🕹️', nl: 'Arcade',              en: 'Arcade' },
     { id: 'adventure', emoji: '🧗', nl: 'Avontuur & platform', en: 'Adventure & platform' },
     { id: 'puzzle',    emoji: '🧩', nl: 'Puzzels',             en: 'Puzzles' },
-    { id: 'strategy',  emoji: '♟️', nl: 'Strategie',           en: 'Strategy' }
+    { id: 'strategy',  emoji: '♟️', nl: 'Strategie',           en: 'Strategy' },
+    { id: 'escape',    emoji: '🔐', nl: 'Ontsnappingskamers',  en: 'Escape rooms' }
   ];
 
   const GAMES = [
-    { id: 'flappy', emoji: '🦉', hue: 200, nl: 'Flappy Uil', en: 'Flappy Owl', cat: 'arcade', kind: 'canvas', decks: ['spell', 'words'],
+    { id: 'flappy', emoji: '🦉', hue: 200, nl: 'Flappy Uil', en: 'Flappy Owl', cat: 'arcade', kind: 'canvas', decks: ['spell', 'words', 'riddle'],
       descNl: 'Tik om te fladderen. Vlieg door het poortje met het goede woord!',
       descEn: 'Tap to flap. Fly through the gate with the right word!',
       howNl: 'Tik, klik of druk op spatie om omhoog te fladderen. Vlieg door het poortje met het goede woord. Een muur of de grond kost een hartje.',
       howEn: 'Tap, click or press space to flap up. Fly through the gate with the right word. A wall or the ground costs a heart.' },
-    { id: 'runner', emoji: '🏃', hue: 130, nl: 'Springheld', en: 'Jump Hero', cat: 'adventure', kind: 'canvas', decks: ['spell', 'words'],
+    { id: 'runner', emoji: '🏃', hue: 130, nl: 'Springheld', en: 'Jump Hero', cat: 'adventure', kind: 'canvas', decks: ['spell', 'words', 'riddle'],
       descNl: 'Spring naar het hoge blok of blijf laag. Pak het goede woord!',
       descEn: 'Jump to the high block or stay low. Grab the right word!',
       howNl: 'Je held rent vanzelf. Tik of druk op spatie om te springen. Staat het goede woord hoog? Spring! Staat het laag? Blijf rennen. Spring over de slakken!',
       howEn: 'Your hero runs by itself. Tap or press space to jump. Is the right word up high? Jump! Is it low? Keep running. Jump over the snails!' },
-    { id: 'rain', emoji: '☔', hue: 265, nl: 'Woordregen', en: 'Word Rain', cat: 'arcade', kind: 'canvas', decks: ['spell', 'words'],
+    { id: 'rain', emoji: '☔', hue: 265, nl: 'Woordregen', en: 'Word Rain', cat: 'arcade', kind: 'canvas', decks: ['spell', 'words', 'riddle'],
       descNl: 'Schuif je emmer en vang alleen de goede woorden.',
       descEn: 'Slide your bucket and catch only the right words.',
       howNl: 'Schuif met je vinger of muis, of gebruik de pijltjestoetsen. Vang het goede woord. Een fout woord in je emmer kost een hartje.',
@@ -73,7 +77,11 @@ const Arcade = (function () {
   const DECKS = [
     { id: 'spell', emoji: '✍️', nl: 'Spelling', en: 'Spelling' },
     { id: 'words', emoji: '📖', nl: 'Woordbetekenis', en: 'Word meaning' },
-    { id: 'idiom', emoji: '💬', nl: 'Spreekwoorden', en: 'Sayings' }
+    { id: 'idiom', emoji: '💬', nl: 'Spreekwoorden', en: 'Sayings' },
+    { id: 'riddle', emoji: '🧩', nl: 'Raadsels', en: 'Riddles' },
+    /* geen woordenstapel maar een tekst om te lezen: de leespuzzels hebben
+       dit stapeltje en laten de keuze van het kind links liggen */
+    { id: 'read', emoji: '📚', nl: 'Lezen', en: 'Reading', fixed: true }
   ];
 
   function gameById(id) { return GAMES.filter(function (g) { return g.id === id; })[0]; }
@@ -227,8 +235,21 @@ const Arcade = (function () {
     });
   }
 
+  /* raadsels: het antwoord is een woord, de andere keuze past er niet bij */
+  let riddleCache = null;
+  function riddlePool() {
+    if (riddleCache) return riddleCache;
+    riddleCache = (window.RIDDLES || []).filter(function (r) {
+      return fits(r.answer) && r.wrongs && r.wrongs.length;
+    }).map(function (r) {
+      return { right: r.answer, wrongs: r.wrongs.filter(fits), prompt: { nl: r.nl, en: r.en },
+        why: r.whyNl ? { nl: r.whyNl, en: r.whyEn || r.whyNl } : null, vocab: true, riddle: true, lv: r.lv };
+    });
+    return riddleCache;
+  }
+
   function mk(d) {
-    return { right: d.right, wrong: pick(d.wrongs), prompt: d.prompt, why: d.why, vocab: !!d.vocab, idiom: !!d.idiom,
+    return { right: d.right, wrong: pick(d.wrongs), prompt: d.prompt, why: d.why, vocab: !!d.vocab, idiom: !!d.idiom, riddle: !!d.riddle,
       words: d.words, err: d.err, fixShown: d.fixShown, sentence: !!d.sentence, done: false, how: null };
   }
 
@@ -237,6 +258,12 @@ const Arcade = (function () {
     let list = [];
     if (deck === 'idiom') {
       list = shuffle(idiomDuels()).slice(0, n);
+    } else if (deck === 'riddle') {
+      /* niet twee keer hetzelfde raadsel in één ronde; eerst dit level, dan aanvullen */
+      const seen = {};
+      shuffle(atLevel(riddlePool(), lv, n)).forEach(function (d) {
+        if (list.length < n && !seen[d.right]) { seen[d.right] = 1; list.push(d); }
+      });
     } else if (deck === 'words') {
       const all = wordPool();
       const pool = atLevel(all, lv, n);
@@ -298,6 +325,12 @@ const Arcade = (function () {
         seen[w.toLowerCase()] = 1;
         out.push({ word: w, clue: { nl: '✗ ' + wrong, en: '✗ ' + wrong }, wrong: wrong, why: d.why, spell: true });
       });
+    } else if (deck === 'riddle') {
+      shuffle(atLevel(riddlePool(), lv, 40)).forEach(function (d) {
+        if (out.length >= n || !ok(d.right) || seen[d.right.toLowerCase()]) return;
+        seen[d.right.toLowerCase()] = 1;
+        out.push({ word: d.right, clue: d.prompt, why: d.why, riddle: true });
+      });
     } else {
       shuffle(atLevel(wordPool(), lv, 40)).forEach(function (w) {
         if (out.length >= n || !ok(w.word) || seen[w.word.toLowerCase()]) return;
@@ -314,7 +347,7 @@ const Arcade = (function () {
   const G = {
     id: null, lv: 1, deck: 'spell', duels: [], di: 0, score: 0, correct: 0, hearts: HEARTS, maxHearts: HEARTS, combo: 0,
     mistakes: [], state: 'idle', frames: 0, t: 0, raf: 0, last: 0,
-    W: 600, H: 360, dpr: 1, game: null, pops: [], shake: 0, last_result: null, asked: 0, best0: 0, recordPopped: false
+    W: 600, H: 360, dpr: 1, game: null, pops: [], shake: 0, last_result: null, asked: 0, best0: 0, recordPopped: false, paid: true
   };
   let canvas = null, ctx = null;
   const keys = { left: false, right: false };
@@ -911,6 +944,7 @@ const Arcade = (function () {
 
   function promptText(d) {
     if (!d) return '';
+    if (d.riddle) return '🧩 ' + L(d.prompt);
     if (d.idiom) return t('arcadeMeansIdiom') + ' “' + L(d.prompt) + '”';
     if (d.vocab) return t('arcadeMeans') + ' “' + L(d.prompt) + '”';
     if (d.prompt) return plain(L(d.prompt));
@@ -921,6 +955,8 @@ const Arcade = (function () {
     const g = gameById(G.id);
     if (!g) return;
     const m = G.game || {};
+    /* taalwissel midden in een puzzel: de teksten in het veld opnieuw zetten */
+    if (m.relang && G.lang !== window.LANG) { G.lang = window.LANG; m.relang(); }
     $('arc-title').textContent = g.emoji + ' ' + L(g);
     $('arc-level').textContent = levelDef(G.lv).stars + ' ' + t('arcadeLevel') + ' ' + G.lv;
     $('arc-hearts').textContent = m.status ? m.status()
@@ -985,12 +1021,15 @@ const Arcade = (function () {
     const lv = lvWanted || selectedLevel(id);
     if (!Ladder.gameUnlocked(id, lv)) { FX.toast(t('arcadeLevelShut').replace('{n}', lv - 1), 3000); Sound.wrong(); return; }
     if (Ladder.gameLocked(id, lv)) { FX.toast(t('arcadeLevelDone').replace('{n}', lv), 3200); Sound.star(); return; }
-    if (!Rewards.spendTicket()) {
+    /* leespuzzels zijn zelf lezen: die kosten geen kaartje (net als de Woordkist) */
+    if (!g.free && !Rewards.spendTicket()) {
       FX.toast(t('arcadeNoTickets'), 3600);
       Sound.wrong();
       return;
     }
     const p = Store.player;
+    G.paid = !g.free;
+    G.lang = window.LANG;
     G.id = id;
     G.lv = lv;
     G.deck = deckFor(g);
@@ -1062,7 +1101,7 @@ const Arcade = (function () {
 
   function complete(r) {
     const p = Store.player;
-    const xp = r.correct * (2 + r.lv);
+    const xp = Math.round(r.correct * (2 + r.lv) * (r.xpMul || 1));
     const coinsBefore = p.coins || 0;
     if (xp) addXP(xp);
     addCoins(Math.floor(r.correct / 5) + (r.win ? r.lv - 1 : 0), 'arcade:' + r.id);
@@ -1106,7 +1145,7 @@ const Arcade = (function () {
     if (G.state === 'ready' && G.di === 0 && !G.asked) {
       /* nog niet begonnen: kaartje terug */
       stopLoop();
-      Rewards.addTickets(1, 'refund', true);
+      if (G.paid) Rewards.addTickets(1, 'refund', true);
       G.state = 'idle';
       G.game = null;
       backToMenu();
@@ -1156,7 +1195,8 @@ const Arcade = (function () {
         const row = document.createElement('div');
         row.className = 'sp-missed';
         row.innerHTML = '<b>' + escHtml(d.right) + '</b>' + (d.wrong ? ' <s class="arr-wrong">' + escHtml(d.wrong) + '</s>' : '') +
-          (d.vocab ? '<small>' + escHtml(L(d.prompt)) + '</small>' : (d.why ? '<small>' + L(d.why) + '</small>' : ''));
+          (d.riddle ? '<small>🧩 ' + escHtml(L(d.prompt)) + '</small>' + (d.why ? '<small>' + escHtml(L(d.why)) + '</small>' : '')
+            : d.vocab ? '<small>' + escHtml(L(d.prompt)) + '</small>' : (d.why ? '<small>' + L(d.why) + '</small>' : ''));
         list.appendChild(row);
       });
     }
@@ -1171,9 +1211,10 @@ const Arcade = (function () {
     /* level met diploma? dan geen "nog een keer" maar meteen het volgende */
     const lockedNow = Ladder.gameLocked(r.id, r.lv);
     const nextOk = r.lv < TOP && Ladder.gameUnlocked(r.id, r.lv + 1) && !Ladder.gameLocked(r.id, r.lv + 1);
-    $('btn-arc-again').textContent = t('arcadeAgain') + ' (🎟️ 1)';
+    const cost = G.paid ? ' (🎟️ 1)' : '';
+    $('btn-arc-again').textContent = t('arcadeAgain') + cost;
     $('btn-arc-again').classList.toggle('hidden', lockedNow);
-    $('btn-arc-next').textContent = t('arcadeNextLevel').replace('{n}', r.lv + 1) + ' (🎟️ 1)';
+    $('btn-arc-next').textContent = t('arcadeNextLevel').replace('{n}', r.lv + 1) + cost;
     $('btn-arc-next').classList.toggle('hidden', !nextOk);
     $('btn-arc-menu').textContent = t('arcadeMenu');
     Rewards.renderQuestStrip($('arr-quests'));
@@ -1231,13 +1272,13 @@ const Arcade = (function () {
     const deck = deckById(deckFor(g));
     const lv = selectedLevel(g.id);
     const card = document.createElement('div');
-    card.className = 'world-card game-card' + (tk < 1 ? ' no-ticket' : '');
+    card.className = 'world-card game-card' + (tk < 1 && !g.free ? ' no-ticket' : '');
     card.dataset.game = g.id;
     card.setAttribute('role', 'button');
     card.tabIndex = 0;
     card.style.setProperty('--wh', g.hue);
     card.innerHTML =
-      '<span class="game-cost">🎟️ 1</span>' +
+      (g.free ? '<span class="game-cost free">' + t('puzzleFree') + '</span>' : '<span class="game-cost">🎟️ 1</span>') +
       '<span class="wc-emoji">' + g.emoji + '</span>' +
       '<h3 class="wc-title">' + L(g) + '</h3>' +
       '<p class="wc-sub">' + (window.LANG === 'nl' ? g.descNl : g.descEn) + '</p>' +
@@ -1276,7 +1317,7 @@ const Arcade = (function () {
     deckRow.className = 'deck-row';
     deckRow.innerHTML = '<span class="deck-label">' + t('arcadeDeck') + '</span>';
     const deck = DECKS.some(function (d) { return d.id === p.arcadeDeck; }) ? p.arcadeDeck : 'spell';
-    DECKS.forEach(function (d) {
+    DECKS.filter(function (d) { return !d.fixed; }).forEach(function (d) {
       const b = document.createElement('button');
       b.className = 'deck-btn' + (d.id === deck ? ' on' : '');
       b.dataset.deck = d.id;
@@ -1432,6 +1473,8 @@ const Arcade = (function () {
     start: start,
     quit: quit,
     selectedLevel: selectedLevel,
+    /* een spelmodule (voor de tests van de puzzelgeneratoren) */
+    module: function (id) { return MODULES[id]; },
     /* voor de browsertest: de stand bekijken en een duel beslissen zonder
        dat een test pixelprecies hoeft te springen */
     state: function () { return G; },
@@ -1450,7 +1493,7 @@ const Arcade = (function () {
       for (let i = 0; i < steps && (G.state === 'play'); i++) { G.t += 1 / 30; m.update(1 / 30); }
     },
     pools: function () {
-      return { spell: spellPool().length, words: wordPool().length, sentences: sentencePool().length,
+      return { spell: spellPool().length, words: wordPool().length, sentences: sentencePool().length, riddles: riddlePool().length,
         byLevel: [1, 2, 3].map(function (lv) {
           return { spell: spellPool().filter(function (d) { return d.lv === lv; }).length,
             words: wordPool().filter(function (d) { return d.lv === lv; }).length,

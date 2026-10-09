@@ -51,6 +51,7 @@ dataFiles.forEach(function (rel) {
   if (sandbox.window.addStories && !sandbox.addStories) sandbox.addStories = sandbox.window.addStories;
   if (sandbox.window.addSpelling && !sandbox.addSpelling) sandbox.addSpelling = sandbox.window.addSpelling;
   if (sandbox.window.addSeries && !sandbox.addSeries) sandbox.addSeries = sandbox.window.addSeries;
+  if (sandbox.window.addEscape && !sandbox.addEscape) sandbox.addEscape = sandbox.window.addEscape;
 });
 
 const W = sandbox.window;
@@ -285,19 +286,32 @@ SERIES.forEach(function (ser) {
   const chs = STORIES.filter(function (s) { return s.series === ser.id; })
     .sort(function (a, b) { return a.chapter - b.chapter; });
   if (chs.length < 2) err(where, 'a series needs at least two chapters');
+  if (chs.length > 12) err(where, 'a series can have at most 12 chapters');
   chs.forEach(function (ch, i) {
     const cw = where + ' / chapter ' + ch.chapter;
     if (ch.chapter !== i + 1) err(cw, 'chapters must be numbered 1, 2, 3, ...');
     if (ch.id !== ser.id + '-' + ch.chapter) err(cw, 'the id should be "' + ser.id + '-' + ch.chapter + '"');
-    if (i > 0 && ch.level <= chs[i - 1].level) err(cw, 'every chapter must be harder than the one before');
+    /* the reader grows with the book: a chapter is never easier than the
+       one before it. After group 8 (level 6) a book can simply carry on at
+       level 6, so continuation chapters can be added without limit. */
+    if (i > 0 && ch.level < chs[i - 1].level) err(cw, 'a chapter can never be easier than the one before');
     if (i > 0) bilingual(cw, ch.recap, 'recap');
     else if (ch.recap) err(cw, 'the first chapter has nothing to look back on (remove recap)');
     if (i < chs.length - 1) bilingual(cw, ch.teaser, 'teaser');
   });
+  /* an unfinished saga ends on a cliffhanger; a finished book may too */
+  if (ser.more && chs.length && !(chs[chs.length - 1].teaser && chs[chs.length - 1].teaser.nl)) {
+    err(where, 'a book marked more: true must end its last chapter with a teaser (the cliffhanger)');
+  }
+  if (ser.ideas) {
+    if (!Array.isArray(ser.ideas) || ser.ideas.length < 3) err(where, 'ideas needs at least three writing prompts');
+    else ser.ideas.forEach(function (idea, k) { bilingual(where + ' / idea ' + (k + 1), idea, 'idea'); });
+  }
   const want = [2, 4, 6];
   if (chs.length === 3 && chs.some(function (ch, i) { return ch.level !== want[i]; })) {
     warn(where, 'the chapters are usually at levels 2, 4 and 6 (groep 6, 7 and 8)');
   }
+  if (chs.length > 3 && chs[0].level > 2) warn(where, 'a saga normally starts at level 2 (group 6)');
 });
 STORIES.forEach(function (s) {
   if (s.series && !seriesIds[s.series]) err('story ' + s.id, 'belongs to unknown series "' + s.series + '"');
@@ -513,6 +527,160 @@ IDIOMS.forEach(function (it, i) {
   idiomMeanings[it.meaningNl] = it.id;
 });
 
+/* ---------------------------------------------------------------------
+   5e. Raadsels (the riddle deck for the arcade games)
+   --------------------------------------------------------------------- */
+const RIDDLES = W.RIDDLES || [];
+if (!RIDDLES.length) warn('data/riddles.js', 'no riddles defined');
+const riddleAnswers = {};
+const riddlesPerLevel = { 1: 0, 2: 0, 3: 0 };
+RIDDLES.forEach(function (r, i) {
+  const where = 'riddle #' + (i + 1) + ' (' + (r.answer || '?') + ')';
+  if ([1, 2, 3].indexOf(r.lv) === -1) err(where, 'lv must be 1, 2 or 3');
+  else riddlesPerLevel[r.lv]++;
+  ['answer', 'nl', 'en'].forEach(function (k) {
+    if (typeof r[k] !== 'string' || !r[k].trim()) err(where, 'missing ' + k);
+  });
+  if (!Array.isArray(r.wrongs) || r.wrongs.length < 2) err(where, 'needs at least two wrong answers');
+  if (typeof r.answer === 'string') {
+    if (r.answer.length > 18) err(where, 'the answer is too long for a game gate (max 18 letters)');
+    if (riddleAnswers[r.answer.toLowerCase()]) err(where, 'duplicate answer');
+    riddleAnswers[r.answer.toLowerCase()] = true;
+    if (Array.isArray(r.wrongs) && r.wrongs.indexOf(r.answer) !== -1) err(where, 'the answer is also listed as a wrong answer');
+    /* the riddle must not give its own answer away */
+    const ans = r.answer.toLowerCase();
+    const wordsIn = (r.nl || '').toLowerCase().match(/[a-zà-ÿ]+/g) || [];
+    if (wordsIn.indexOf(ans) !== -1 || (ans.length >= 6 && (r.nl || '').toLowerCase().indexOf(ans) !== -1)) {
+      err(where, 'the riddle text contains the answer');
+    }
+  }
+  if (Array.isArray(r.wrongs)) r.wrongs.forEach(function (w) {
+    if (typeof w !== 'string' || !w.trim() || w.length > 18) err(where, 'a wrong answer is empty or too long: ' + w);
+  });
+  if (r.whyNl && !r.whyEn) err(where, 'whyNl needs a whyEn');
+  if ((r.nl || '').indexOf('?') === -1) warn(where, 'a riddle normally ends on a question');
+});
+RIDDLES.length && [1, 2, 3].forEach(function (lv) {
+  if (riddlesPerLevel[lv] < 20) err('data/riddles.js', 'level ' + lv + ' has only ' + riddlesPerLevel[lv] + ' riddles (need at least 20 so a round never repeats)');
+});
+
+/* ---------------------------------------------------------------------
+   5f. Ontsnappingskamers (data/escape.*.js): elke kamer moet op te lossen zijn
+   --------------------------------------------------------------------- */
+const ESCAPES = W.ESCAPES || [];
+const escapeIds = {};
+let escapeRooms = 0;
+/* speelt een kamer na (dezelfde regels als solvable() in js/games/escape.js):
+   een slot gaat open als je het antwoord weet, een voorwerp-slot pas als je het voorwerp hebt */
+function escapeSolvable(room) {
+  const visible = {}, open = {}, items = {};
+  room.objects.forEach(function (o) { visible[o.id] = !o.hidden; });
+  let progress = true, exitOpen = false;
+  while (progress && !exitOpen) {
+    progress = false;
+    room.objects.forEach(function (o) {
+      if (!visible[o.id] || open[o.id]) return;
+      const need = o.lock && o.lock.kind === 'item' ? [].concat(o.lock.item || o.lock.items || []) : [];
+      if (!need.every(function (it) { return items[it]; })) return;
+      open[o.id] = true;
+      [].concat(o.gives || []).forEach(function (it) { items[it] = true; });
+      [].concat(o.reveals || []).forEach(function (id) { visible[id] = true; });
+      if (o.exit) exitOpen = true;
+      progress = true;
+    });
+  }
+  return exitOpen;
+}
+ESCAPES.forEach(function (def) {
+  const where = 'escape case ' + (def.id || '(no id)');
+  if (!def.id) { err(where, 'missing id'); return; }
+  if (escapeIds[def.id]) err(where, 'duplicate id');
+  escapeIds[def.id] = true;
+  if (!def.emoji) err(where, 'missing emoji');
+  if (typeof def.hue !== 'number') err(where, 'hue must be a number');
+  bilingual(where, def.title, 'title');
+  bilingual(where, def.blurb, 'blurb');
+  const rooms = def.rooms || [];
+  [1, 2, 3].forEach(function (lv) {
+    if (!rooms.some(function (r) { return r.lv === lv; })) err(where, 'has no room for level ' + lv + ' (every case needs rooms for groep 6, 7 and 8)');
+  });
+  const roomIds = {};
+  rooms.forEach(function (room) {
+    escapeRooms++;
+    const rw = where + ' / room ' + (room.id || '(no id)');
+    if (!room.id) err(rw, 'missing id');
+    if (roomIds[room.id]) err(rw, 'duplicate room id');
+    roomIds[room.id] = true;
+    if ([1, 2, 3].indexOf(room.lv) === -1) err(rw, 'lv must be 1, 2 or 3');
+    bilingual(rw, room.title, 'title');
+    bilingual(rw, room.intro, 'intro');
+    bilingual(rw, room.outro, 'outro');
+    const items = room.items || {};
+    Object.keys(items).forEach(function (id) {
+      if (!items[id].emoji) err(rw, 'item ' + id + ' needs an emoji');
+      ['nl', 'en'].forEach(function (k) { if (!items[id][k]) err(rw, 'item ' + id + ' is missing ' + k); });
+    });
+    const objs = room.objects || [];
+    if (objs.length < 5 || objs.length > 12) warn(rw, 'a room usually has 5 to 12 things to look at (has ' + objs.length + ')');
+    const ids = {};
+    objs.forEach(function (o) { ids[o.id] = o; });
+    let exits = 0;
+    const text = [];
+    objs.forEach(function (o) {
+      const ow = rw + ' / ' + (o.id || '?');
+      if (!o.id) err(ow, 'missing id');
+      if (objs.filter(function (x) { return x.id === o.id; }).length > 1) err(ow, 'duplicate object id');
+      if (!o.emoji) err(ow, 'missing emoji');
+      bilingual(ow, o.name, 'name');
+      bilingual(ow, o.text, 'text');
+      text.push(o.text && o.text.nl || '');
+      if (o.exit) exits++;
+      [].concat(o.gives || []).forEach(function (it) { if (!items[it]) err(ow, 'gives unknown item "' + it + '"'); });
+      [].concat(o.reveals || []).forEach(function (id) {
+        if (!ids[id]) err(ow, 'reveals unknown object "' + id + '"');
+        else if (!ids[id].hidden) err(ow, 'reveals "' + id + '" which is not hidden');
+      });
+      const lk = o.lock;
+      if (!lk) { if (o.opened) warn(ow, 'has an opened text but no lock'); return; }
+      if (['code', 'choice', 'seq', 'item'].indexOf(lk.kind) === -1) { err(ow, 'unknown lock kind "' + lk.kind + '"'); return; }
+      bilingual(ow, o.opened, 'opened');
+      if (lk.kind === 'item') {
+        [].concat(lk.item || lk.items || []).forEach(function (it) { if (!items[it]) err(ow, 'lock needs unknown item "' + it + '"'); });
+        if (![].concat(lk.item || lk.items || []).length) err(ow, 'an item lock needs an item');
+        bilingual(ow, lk.need, 'lock.need');
+      } else {
+        bilingual(ow, lk.ask, 'lock.ask');
+        bilingual(ow, lk.hint, 'lock.hint');
+        if (lk.fail) bilingual(ow, lk.fail, 'lock.fail');
+      }
+      if (lk.kind === 'code') {
+        if (typeof lk.answer !== 'string' || !lk.answer) err(ow, 'a code lock needs a text answer');
+        else text.forEach(function () {});
+      }
+      if (lk.kind === 'choice' || lk.kind === 'seq') {
+        const opts = lk.options || [];
+        if (opts.length < 2) err(ow, 'needs at least two options');
+        opts.forEach(function (op, i) { ['nl', 'en'].forEach(function (k) { if (!op[k]) err(ow, 'option ' + (i + 1) + ' is missing ' + k); }); });
+        if (lk.kind === 'choice' && !(Number.isInteger(lk.answer) && lk.answer >= 0 && lk.answer < opts.length)) err(ow, 'choice answer must be an index of an option');
+        if (lk.kind === 'seq') {
+          if (!Array.isArray(lk.answer) || lk.answer.length < 2 || lk.answer.some(function (v) { return !(Number.isInteger(v) && v >= 0 && v < opts.length); })) {
+            err(ow, 'a sequence answer needs a list of at least two option indexes');
+          }
+        }
+      }
+    });
+    if (exits !== 1) err(rw, 'needs exactly one exit object (has ' + exits + ')');
+    if (!escapeSolvable(room)) err(rw, 'cannot be solved: the exit never opens (check items, reveals and hidden objects)');
+    /* a code that is printed in a text is not a puzzle */
+    objs.forEach(function (o) {
+      if (o.lock && o.lock.kind === 'code' && typeof o.lock.answer === 'string') {
+        const re = new RegExp('(^|[^0-9a-zà-ÿ])' + o.lock.answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^0-9a-zà-ÿ]|$)', 'i');
+        if (text.some(function (tx) { return re.test(tx); })) warn(rw + ' / ' + o.id, 'the answer "' + o.lock.answer + '" appears as a word in a text: a puzzle should make the reader work it out');
+      }
+    });
+  });
+});
+
 /* the same emoji twice in the collectable parts of the shop is confusing */
 const seenEmoji = {};
 SHOP.forEach(function (it) {
@@ -617,6 +785,8 @@ console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins
             SHOP.filter(function (it) { return it.kind === 'gift'; }).length + ' chest-only gifts)');
 console.log('  fun facts     : ' + FACTS.length);
 console.log('  idioms        : ' + IDIOMS.length);
+console.log('  escape rooms  : ' + ESCAPES.length + ' cases, ' + escapeRooms + ' rooms');
+console.log('  riddles       : ' + RIDDLES.length + ' (' + [1, 2, 3].map(function (lv) { return 'lv' + lv + ' ' + riddlesPerLevel[lv]; }).join(', ') + ')');
 console.log('  serial stories: ' + SERIES.length + ' books, ' + STORIES.filter(function (s) { return s.series; }).length + ' chapters');
 console.log('  groep 8       : ' + STORIES.filter(function (s) { return s.level === 6; }).length + ' stories, ' +
             CATS.filter(function (c) { return c.grade === 8; }).length + ' new spelling rules, ' +

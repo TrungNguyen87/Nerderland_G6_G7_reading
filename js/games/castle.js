@@ -465,7 +465,7 @@
 
   Arcade.register({
     id: 'castle', emoji: '🏰', hue: 120, nl: 'Kasteelverdediging', en: 'Castle Defence', cat: 'strategy', panel: true, noPrompt: true, hearts: 5,
-    decks: ['spell', 'words', 'idiom'],
+    decks: ['spell', 'words', 'idiom', 'riddle'],
     descNl: 'Spelfoutjes bestormen je kasteel! Verdien goud met goede antwoorden en bouw slim je torens.',
     descEn: 'Spelling bugs are storming your castle! Earn gold with right answers and place your towers wisely.',
     howNl: 'Beantwoord de vragen onder het veld: elk goed antwoord geeft goud. Kies 🏹 of 🔮 en tik op een ⊕-plek om een toren te bouwen; tik op een toren om hem sterker te maken. Klaar? Start de golf ▶. Laat geen monstertje bij je kasteel komen!',

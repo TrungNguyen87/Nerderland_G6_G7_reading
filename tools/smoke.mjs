@@ -982,6 +982,23 @@ try {
     await sel('#btn-arc-menu').click();
     await page.waitForSelector('#screen-worlds.active');
   }
+  /* the reading puzzles, Woordvier and the escape rooms are tested in depth by
+     tools/puzzles.mjs; here each one just has to start and end a round, so
+     that "played every game" can be earned */
+  const rest = await page.evaluate(() => Arcade.games.filter((g) => g.cat !== 'escape' && !(Store.player.games || {})[g.id]).map((g) => g.id));
+  for (const g of rest) {
+    await page.evaluate((id) => { Store.player.tickets = Math.max(Store.player.tickets, 3); Arcade.start(id); }, g);
+    await page.waitForSelector('#screen-arcade.active');
+    await sel('#arc-start').click();
+    await page.evaluate(() => { for (let i = 0; i < 3; i++) Arcade.debugResolve(true); });
+    await page.evaluate(() => Arcade.quit());
+    await page.waitForSelector('#screen-arcade-result.active', { timeout: 8000 });
+    await closeDiplomas();
+    await sel('#btn-arc-menu').click();
+    await page.waitForSelector('#screen-worlds.active');
+  }
+  ok(`${rest.length} more games (${rest.join(', ')}) start and end a round`);
+
   /* level chips: a level with a diploma cannot be chosen again while locked */
   await sel('#play-grid .game-card[data-game="flappy"] .lv-chip[data-lv="1"]').click();
   const chip = await page.evaluate(() => ({ screen: S.screen, sel: Arcade.selectedLevel('flappy'),

@@ -1,5 +1,7 @@
-# Controleert elke push en elke pull request: de data (tools/validate.js) en
-# een volledige speelronde in een echte browser (tools/smoke.mjs).
+# Controleert elke push en elke pull request: de data (tools/validate.js),
+# een volledige speelronde in een echte browser (tools/smoke.mjs) en de
+# leespuzzels, Woordvier, de ontsnappingskamers en de vervolgverhalen met
+# vier hoofdstukken (tools/puzzles.mjs).
 # Dit publiceert niets; dat doet deploy.yml.
 name: Check
 
@@ -28,3 +30,5 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Play the whole game in a browser
         run: node tools/smoke.mjs
+      - name: Play the puzzles, strategy game, escape rooms and sagas
+        run: node tools/puzzles.mjs
