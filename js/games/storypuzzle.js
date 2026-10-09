@@ -117,7 +117,7 @@
       const used = {};
       const list = [];
       for (let i = 0; i < PUZZLES; i++) {
-        const p = pickPuzzle(lv, used);
+        const p = pickPuzzle(lv, used) || pickPuzzle(lv, {});
         used[p.story.id] = 1;
         list.push({ right: L(p.story.title), wrong: '', prompt: null,
           why: { nl: 'Let op tijdwoorden (eerst, toen, daarna) en op hij, zij en het: die wijzen terug naar de zin ervoor.',
@@ -381,6 +381,8 @@
 
     /* voor de test: oplossen (goed) of alle pogingen opmaken (fout) */
     debugResolve: function (ok) {
+      if (G.state !== 'play') return;
+      if (this.over && this.pi < G.duels.length - 1) this.load(this.pi + 1);
       if (!this.canPlay()) return;
       if (ok) {
         for (let i = 0; i < this.n; i++) this.order[i] = i;

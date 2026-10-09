@@ -371,7 +371,7 @@
       const list = [];
       for (let i = 0; i < MAPS; i++) {
         let map = generate(lv);
-        if (!map) map = generate(lv);
+        while (!map) map = generate(lv);       /* lukt vrijwel altijd; nooit een lege kaart tonen */
         list.push({ right: t('tmMap') + ' ' + (i + 1), wrong: '', prompt: null, why: { nl: 'Lees elke zin apart en streep af wat je gedaan hebt.', en: 'Read every sentence on its own and tick off what you have done.' },
           map: map, done: false, how: null });
       }
@@ -734,6 +734,8 @@
 
     /* voor de test: de schat vinden (goed) of op een verkeerde plek graven (fout) */
     debugResolve: function (ok) {
+      if (G.state !== 'play') return;
+      if (this.waiting && this.mi < G.duels.length - 1) this.load(this.mi + 1);
       if (!this.can()) return;
       const m = this.map;
       if (ok) {

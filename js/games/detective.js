@@ -375,7 +375,7 @@
 
   function generate(lv) {
     const cfg = CFG[lv];
-    for (let attempt = 0; attempt < 60; attempt++) {
+    for (let attempt = 0; attempt < 400; attempt++) {
       const S = makeSuspects(cfg.n);
       if (!S) continue;
       const c = Math.floor(Math.random() * cfg.n);
@@ -397,7 +397,7 @@
       for (let i = 0; i < CASES; i++) {
         let cs = generate(lv);
         for (let tries = 0; cs && seenFrame[cs.frame.emoji] && tries < 12; tries++) cs = generate(lv);
-        if (!cs) cs = generate(lv);
+        while (!cs) cs = generate(lv);       /* generate() lukt vrijwel altijd; nooit een lege zaak tonen */
         seenFrame[cs.frame.emoji] = 1;
         list.push({ right: cs.suspects[cs.culprit].name, wrong: '', prompt: cs.frame.ask, why: null, case: cs, done: false, how: null });
       }
@@ -641,7 +641,9 @@
 
     /* voor de test: goed beschuldigen, of iemand die het niet is */
     debugResolve: function (ok) {
-      if (G.state !== 'play' || this.waiting) return;
+      if (G.state !== 'play') return;
+      if (this.waiting && this.ci < G.duels.length - 1) this.loadCase(this.ci + 1);
+      if (this.waiting) return;
       const cs = this.cs;
       let i = cs.culprit;
       if (!ok) i = cs.suspects.map(function (s, k) { return k; }).filter(function (k) { return k !== cs.culprit; })[0];

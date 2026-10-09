@@ -17,6 +17,7 @@ that content here — this file is for things a session needs to know
 ```bash
 node tools/validate.js     # checks data/*.js and js/i18n.js, no dependencies, seconds
 node tools/smoke.mjs       # plays the whole game in a real browser via Playwright
+node tools/puzzles.mjs     # the reading puzzles, Woordvier, escape rooms and the 4-chapter sagas, in depth
 ```
 
 `smoke.mjs` needs the `playwright` npm package (`npm install --no-save
@@ -25,7 +26,7 @@ intentionally has none). Browsers are pre-installed in this environment at
 `/opt/pw-browsers`; if `chromium.launch()` can't find a matching build, run
 it with `PLAYWRIGHT_CHROMIUM=/opt/pw-browsers/chromium-<version>/chrome-linux/chrome
 node tools/smoke.mjs` rather than letting Playwright try to download a new one.
-Both must be clean before pushing — this is the project's entire CI.
+All three must be clean before pushing — this is the project's entire CI (`.github/workflows/check.yml`).
 
 ## Architecture facts worth knowing up front
 
@@ -125,6 +126,45 @@ Both must be clean before pushing — this is the project's entire CI.
     validate's topic×level check). `js/books.js` (`Books`) renders the
     shelf and book screen. Chapters are levels 2/4/6 with `recap` (ch 2+)
     and `teaser` (all but last); `find` options must be verbatim, as usual.
+- **Reading puzzles, Woordvier, escape rooms, sagas** (added 2026-10-09):
+  - Games in `js/games/`: `detective.js` (Speurneus), `treasure.js`
+    (Schatkaart), `storypuzzle.js` (Verhaalpuzzel), `fourrow.js` (Woordvier),
+    `escape.js` (all escape-room cases). Styles live in `css/puzzles.css`.
+    They are `kind: 'dom'` games on the same `Arcade.register()` engine.
+  - `meta.free: true` = no ticket (reading puzzles *are* reading, like the
+    Woordkist); `decks: ['read']` is a fixed, non-selectable deck; `cat:
+    'escape'` has its own heading. Results may return `xpMul`; a module may
+    define `relang()` (called by `Arcade.renderHud` when the language flips
+    mid-game) and `status()` (the HUD text, must return a string — don't reuse
+    that name for internal helpers). `Arcade.module(id)` returns a game's module
+    for tests. Test hooks `debugResolve` must advance to the next puzzle by
+    themselves when the current one is solved (they silently did nothing before).
+  - The three generators are *verified generators*: Speurneus builds a case and
+    proves exactly one suspect fits and every clue is needed (pruned DFS over
+    bitmasks in `findSet`); Schatkaart re-executes its own text on the real grid
+    (`follow`); Verhaalpuzzel cuts sentences with a lookahead-only regex (no
+    lookbehind: older iPads). Keep that property when adding clue/op types, and
+    never ship a generator that can return `null` into `makeDuels` (loop until it
+    doesn't). `tools/puzzles.mjs` stress-tests all of it.
+  - Riddles (`data/riddles.js`) are a *deck* ('riddle') for every duel game:
+    duel = `{right: answer, wrongs, prompt: riddle}`; `d.riddle` makes
+    `promptText()` show it in the bar above the game. The validator rejects a
+    riddle whose text contains its answer.
+  - Escape rooms are data (`data/escape.*.js`, `addEscape`, format documented at
+    the top of `js/games/escape.js`). `validate.js` replays each room
+    (`escapeSolvable`) and fails if the exit can't open or a code is printed in a
+    text. A case may hold several rooms per level: the child gets the next
+    unsolved one (`Store.player.escape[case][room] = stars`). Puzzles that depend
+    on Dutch spelling (acrostic, letter shift) show the Dutch text in English
+    mode too, with an English instruction.
+  - Books may have more than 3 chapters: the validator only forbids a chapter
+    being *easier* than the previous one (after groep 8, carry on at level 6).
+    `more: true` → "Wordt vervolgd…" card, last chapter must have a teaser;
+    `ideas` = writing prompts. A finished book lets the child write the next
+    chapter (`Store.player.myChapters[bookId]`, drafts in `chapterDraft`),
+    rendered in `js/books.js`, +15 XP, badge `writer`, and in the HTML report.
+    The three sagas (`kruimel`, `otter`, `dom`) are 4 chapters at levels 2/3/4/6.
+  - The `allgames` badge ignores escape rooms on purpose (cases keep being added).
 - Shared helpers in `js/i18n.js`: `localDay(ts)` (use this, never
   `toISOString().slice(0,10)`, which is UTC), `escHtml()` for anything a
   child typed, and `FEEDBACK_EMAIL`.
@@ -367,3 +407,44 @@ for groep 8+), letting the child choose a spelling rule to practise in the
 arcade, a parent setting to switch the arcade off, and the multiplayer plan
 (`docs/plans/multiplayer-mode.md`, still unstarted — the duel-based games
 and levels would suit a hot-seat mode).
+
+### 2026-10-09 — reading puzzles, Woordvier, escape rooms, riddles and sagas
+Prompted by: "think about more creative games such as puzzles or strategy
+games — solving a puzzle on reading — and add more interesting stories with the
+possibility to add a continuation chapter."
+
+- Built (all by me, no subagents — not requested): Speurneus, Schatkaart,
+  Verhaalpuzzel, Woordvier (Connect Four vs a minimax AI, 2/4/6 plies), the
+  escape-room engine with two cases (6 rooms), a 90-riddle deck usable in every
+  duel game, series with 4+ chapters plus "to be continued", the
+  write-your-own-chapter panel, and three new 4-chapter sagas (12 chapters).
+  User-facing summary in `CHANGELOG.md`.
+- Decisions worth knowing: the reading puzzles and escape rooms are **free** (no
+  ticket) — one flag (`free: true` in each `Arcade.register`) flips that back if
+  the parent wants them gated. Escape rooms don't count for the "all-round gamer"
+  badge. Book diplomas stay when a chapter is added to a finished book.
+- Lessons:
+  - My first Speurneus generator picked clues greedily in random order and
+    succeeded 6% of the time at level 2 and 0.5% at level 3 (and was slow). A
+    pruned DFS over clue bitmasks (each clue must remove a suspect *in any
+    order*, enough must remain for the clues still to come) makes it ~100%
+    and 4 ms.
+  - Test hooks that returned silently while a game was waiting for "next" made a
+    test pass for the wrong reason; every `debugResolve` now advances first.
+  - A smoke test that hard-codes "play every game" breaks when games are added;
+    the generic loop at the end of section 7d plays whatever is registered.
+  - `find` questions: the option must be a sentence that appears *verbatim with
+    its final punctuation inside the text*; a quoted sentence ("Otters zijn
+    schuw”, zei ze.) does not count. The validator catches it.
+  - Level word bands (`validate.js` prints them): trim or extend a chapter until
+    the averages stay in range (L2 184–273, L3 223–316, L4 291–352, L6 359–395).
+- Checks: `node tools/validate.js`, `node tools/smoke.mjs` and `node
+  tools/puzzles.mjs` all clean before the final push.
+
+**Next likely steps:** more escape cases (one room per level is enough to start;
+the format supports more per level), a "Dorpsplanner" placement puzzle (the
+generator pattern of Speurneus fits: wishes in words, brute-force solver), a
+fifth chapter for each saga (`kruimel`: who is the second Riddler? `otter`:
+whose paw prints lead to the park? `dom`: the note from the guardian in the
+north), and the hot-seat multiplayer plan (`docs/plans/multiplayer-mode.md`,
+still unstarted — Woordvier is already a two-sided board game).

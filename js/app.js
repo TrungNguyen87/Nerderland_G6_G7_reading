@@ -525,7 +525,10 @@ function checkBadges(ctx) {
   if (dips >= 10) push('diploma10');
   if (Ladder.list().some(function (k) { return k.indexOf('book:') === 0; })) push('book1');
   if (typeof Books !== 'undefined' && Books.writtenCount() >= 1) push('writer');
-  if (typeof Arcade !== 'undefined' && Arcade.games.every(function (g) { return (p.games || {})[g.id]; })) push('allgames');
+  /* de ontsnappingskamers tellen niet mee: er komen steeds nieuwe zaken bij, en
+     een badge die moeilijker wordt als er content bijkomt is niet eerlijk */
+  if (typeof Arcade !== 'undefined' && Arcade.games.filter(function (g) { return g.cat !== 'escape'; })
+      .every(function (g) { return (p.games || {})[g.id]; })) push('allgames');
 
   return got;
 }
