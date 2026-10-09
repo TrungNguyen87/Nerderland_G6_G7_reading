@@ -1034,6 +1034,32 @@ button:focus-visible,a:focus-visible,.text-input:focus-visible{outline:3px solid
 }
 .chapter-card .g8-pill{vertical-align:middle}
 .book-end{text-align:center;font-weight:800;background:linear-gradient(160deg,#fffdf2,#fff1bf)}
+.chapter-card.tbc{
+  cursor:default;border:3px dashed rgba(0,0,0,.18);background:repeating-linear-gradient(135deg,#fffdf4,#fffdf4 12px,#fff7dc 12px,#fff7dc 24px);
+}
+.chapter-card.tbc .lc-name{font-weight:800}
+.book-write{margin-top:14px;display:grid;gap:10px;background:linear-gradient(170deg,#fffef8,#fff6dd)}
+.book-write.locked{text-align:center;font-weight:700;color:var(--ink-soft)}
+.book-write h3,.book-write h4{margin:0}
+.bw-sub{margin:0;font-weight:700;color:var(--ink-soft)}
+.bw-stop{margin:0;padding:10px 14px;border-radius:14px;background:#f3efe2;color:#4a3b17;font-weight:600;border-left:5px solid #d4a72c}
+.bw-ideas-head{margin:2px 0 -4px;font-weight:800;font-size:.9rem}
+.bw-chips{display:flex;flex-wrap:wrap;gap:8px}
+.bw-chip{padding:7px 12px;border-radius:99px;background:#fff;border:2px dashed #e1c46a;font-weight:700;font-size:.86rem}
+.bw-title,.bw-text{
+  width:100%;box-sizing:border-box;font:inherit;font-weight:600;padding:11px 14px;border-radius:14px;border:2px solid #e3e3ef;
+  background:#fff;color:var(--ink);
+}
+.bw-text{min-height:170px;line-height:1.55;resize:vertical}
+.bw-title:focus,.bw-text:focus{outline:none;border-color:var(--brand)}
+.bw-count{font-weight:800;color:var(--ink-soft)}
+.bw-actions{display:flex;flex-wrap:wrap;gap:8px}
+.bw-note{color:var(--ink-soft);font-weight:700}
+.bw-mine{padding:12px 14px;border-radius:16px;background:#fff;border:2px solid #efe6c8;display:grid;gap:6px}
+.bw-mine.editing{border-color:var(--brand)}
+.bw-mine-head{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.bw-mine-head small{color:var(--ink-soft);font-weight:800}
+.bw-body{margin:0;white-space:pre-wrap;line-height:1.55;max-height:9.5em;overflow:auto}
 .story-recap{
   margin:0 0 14px;padding:12px 16px;border-radius:16px;background:#f3efe2;color:#4a3b17;font-weight:600;
   line-height:1.55;font-size:.95rem;border-left:5px solid #d4a72c;

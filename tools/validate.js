@@ -285,19 +285,32 @@ SERIES.forEach(function (ser) {
   const chs = STORIES.filter(function (s) { return s.series === ser.id; })
     .sort(function (a, b) { return a.chapter - b.chapter; });
   if (chs.length < 2) err(where, 'a series needs at least two chapters');
+  if (chs.length > 12) err(where, 'a series can have at most 12 chapters');
   chs.forEach(function (ch, i) {
     const cw = where + ' / chapter ' + ch.chapter;
     if (ch.chapter !== i + 1) err(cw, 'chapters must be numbered 1, 2, 3, ...');
     if (ch.id !== ser.id + '-' + ch.chapter) err(cw, 'the id should be "' + ser.id + '-' + ch.chapter + '"');
-    if (i > 0 && ch.level <= chs[i - 1].level) err(cw, 'every chapter must be harder than the one before');
+    /* the reader grows with the book: a chapter is never easier than the
+       one before it. After group 8 (level 6) a book can simply carry on at
+       level 6, so continuation chapters can be added without limit. */
+    if (i > 0 && ch.level < chs[i - 1].level) err(cw, 'a chapter can never be easier than the one before');
     if (i > 0) bilingual(cw, ch.recap, 'recap');
     else if (ch.recap) err(cw, 'the first chapter has nothing to look back on (remove recap)');
     if (i < chs.length - 1) bilingual(cw, ch.teaser, 'teaser');
   });
+  /* an unfinished saga ends on a cliffhanger; a finished book may too */
+  if (ser.more && chs.length && !(chs[chs.length - 1].teaser && chs[chs.length - 1].teaser.nl)) {
+    err(where, 'a book marked more: true must end its last chapter with a teaser (the cliffhanger)');
+  }
+  if (ser.ideas) {
+    if (!Array.isArray(ser.ideas) || ser.ideas.length < 3) err(where, 'ideas needs at least three writing prompts');
+    else ser.ideas.forEach(function (idea, k) { bilingual(where + ' / idea ' + (k + 1), idea, 'idea'); });
+  }
   const want = [2, 4, 6];
   if (chs.length === 3 && chs.some(function (ch, i) { return ch.level !== want[i]; })) {
     warn(where, 'the chapters are usually at levels 2, 4 and 6 (groep 6, 7 and 8)');
   }
+  if (chs.length > 3 && chs[0].level > 2) warn(where, 'a saga normally starts at level 2 (group 6)');
 });
 STORIES.forEach(function (s) {
   if (s.series && !seriesIds[s.series]) err('story ' + s.id, 'belongs to unknown series "' + s.series + '"');
@@ -513,6 +526,43 @@ IDIOMS.forEach(function (it, i) {
   idiomMeanings[it.meaningNl] = it.id;
 });
 
+/* ---------------------------------------------------------------------
+   5e. Raadsels (the riddle deck for the arcade games)
+   --------------------------------------------------------------------- */
+const RIDDLES = W.RIDDLES || [];
+if (!RIDDLES.length) warn('data/riddles.js', 'no riddles defined');
+const riddleAnswers = {};
+const riddlesPerLevel = { 1: 0, 2: 0, 3: 0 };
+RIDDLES.forEach(function (r, i) {
+  const where = 'riddle #' + (i + 1) + ' (' + (r.answer || '?') + ')';
+  if ([1, 2, 3].indexOf(r.lv) === -1) err(where, 'lv must be 1, 2 or 3');
+  else riddlesPerLevel[r.lv]++;
+  ['answer', 'nl', 'en'].forEach(function (k) {
+    if (typeof r[k] !== 'string' || !r[k].trim()) err(where, 'missing ' + k);
+  });
+  if (!Array.isArray(r.wrongs) || r.wrongs.length < 2) err(where, 'needs at least two wrong answers');
+  if (typeof r.answer === 'string') {
+    if (r.answer.length > 18) err(where, 'the answer is too long for a game gate (max 18 letters)');
+    if (riddleAnswers[r.answer.toLowerCase()]) err(where, 'duplicate answer');
+    riddleAnswers[r.answer.toLowerCase()] = true;
+    if (Array.isArray(r.wrongs) && r.wrongs.indexOf(r.answer) !== -1) err(where, 'the answer is also listed as a wrong answer');
+    /* the riddle must not give its own answer away */
+    const ans = r.answer.toLowerCase();
+    const wordsIn = (r.nl || '').toLowerCase().match(/[a-zà-ÿ]+/g) || [];
+    if (wordsIn.indexOf(ans) !== -1 || (ans.length >= 6 && (r.nl || '').toLowerCase().indexOf(ans) !== -1)) {
+      err(where, 'the riddle text contains the answer');
+    }
+  }
+  if (Array.isArray(r.wrongs)) r.wrongs.forEach(function (w) {
+    if (typeof w !== 'string' || !w.trim() || w.length > 18) err(where, 'a wrong answer is empty or too long: ' + w);
+  });
+  if (r.whyNl && !r.whyEn) err(where, 'whyNl needs a whyEn');
+  if ((r.nl || '').indexOf('?') === -1) warn(where, 'a riddle normally ends on a question');
+});
+RIDDLES.length && [1, 2, 3].forEach(function (lv) {
+  if (riddlesPerLevel[lv] < 20) err('data/riddles.js', 'level ' + lv + ' has only ' + riddlesPerLevel[lv] + ' riddles (need at least 20 so a round never repeats)');
+});
+
 /* the same emoji twice in the collectable parts of the shop is confusing */
 const seenEmoji = {};
 SHOP.forEach(function (it) {
@@ -617,6 +667,7 @@ console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins
             SHOP.filter(function (it) { return it.kind === 'gift'; }).length + ' chest-only gifts)');
 console.log('  fun facts     : ' + FACTS.length);
 console.log('  idioms        : ' + IDIOMS.length);
+console.log('  riddles       : ' + RIDDLES.length + ' (' + [1, 2, 3].map(function (lv) { return 'lv' + lv + ' ' + riddlesPerLevel[lv]; }).join(', ') + ')');
 console.log('  serial stories: ' + SERIES.length + ' books, ' + STORIES.filter(function (s) { return s.series; }).length + ' chapters');
 console.log('  groep 8       : ' + STORIES.filter(function (s) { return s.level === 6; }).length + ' stories, ' +
             CATS.filter(function (c) { return c.grade === 8; }).length + ' new spelling rules, ' +

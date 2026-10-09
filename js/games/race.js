@@ -237,7 +237,7 @@
   };
 
   Arcade.register({
-    id: 'race', emoji: '🏎️', hue: 350, nl: 'Woordrace', en: 'Word Race', cat: 'arcade', decks: ['spell', 'words'],
+    id: 'race', emoji: '🏎️', hue: 350, nl: 'Woordrace', en: 'Word Race', cat: 'arcade', decks: ['spell', 'words', 'riddle'],
     descNl: 'Kartrace! Stuur door het poortje met het goede woord voor een turbo en haal iedereen in.',
     descEn: 'Kart race! Steer through the gate with the right word for a turbo and overtake everyone.',
     howNl: 'Tik links of rechts (of ← →) om van baan te wisselen. Rijd door het goede woord: turbo 🔥! Het foute woord of de olievlek laat je slippen. Hoe meer goed, hoe hoger je eindigt.',

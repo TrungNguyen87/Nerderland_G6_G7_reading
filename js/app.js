@@ -296,6 +296,13 @@ function bindGlobal() {
   /* resultaat */
   $('btn-again').addEventListener('click', function () { Sound.click(); openStory(S.story); });
   $('btn-continue').addEventListener('click', function () { Sound.click(); nextStory(); });
+  /* boek uit? Dan mag het kind zelf het vervolg schrijven */
+  $('btn-write-next').addEventListener('click', function () {
+    Sound.click();
+    if (!S.story || !S.story.series) return;
+    Books.openBook(S.story.series);
+    setTimeout(function () { const w = $('book-write'); if (w) w.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
+  });
   $('btn-bonus').addEventListener('click', startFlash);
 
   /* ouders */
@@ -517,6 +524,7 @@ function checkBadges(ctx) {
   if (dips >= 1) push('diploma1');
   if (dips >= 10) push('diploma10');
   if (Ladder.list().some(function (k) { return k.indexOf('book:') === 0; })) push('book1');
+  if (typeof Books !== 'undefined' && Books.writtenCount() >= 1) push('writer');
   if (typeof Arcade !== 'undefined' && Arcade.games.every(function (g) { return (p.games || {})[g.id]; })) push('allgames');
 
   return got;
@@ -1722,6 +1730,11 @@ function renderResultTexts() {
   $('btn-continue').textContent = nextCh && Ladder.chapterUnlocked(nextCh)
     ? t('bookReadNext').replace('{n}', nextCh.chapter)
     : (S.story.series && !nextCh ? t('bookPickNew') : t('keepGoing'));
+
+  const wser = S.story.series ? Ladder.seriesById(S.story.series) : null;
+  const canWrite = !!(wser && !nextCh && Ladder.bookDone(wser));
+  $('btn-write-next').classList.toggle('hidden', !canWrite);
+  $('btn-write-next').textContent = '✍️ ' + t('bookWriteBtn');
 
   /* hoe ver is het volgende diploma, of het vervolg van het boek? */
   const lad = $('result-ladder');

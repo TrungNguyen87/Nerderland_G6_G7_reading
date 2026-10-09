@@ -701,6 +701,21 @@ const Exporter = (function () {
           ((typeof Ladder !== 'undefined' && Ladder.lockOn()) ? (nl ? 'ja' : 'yes') : (nl ? 'nee' : 'no')) + '</p>' +
           (names.length ? '<ul><li>' + names.join('</li><li>') + '</li></ul>' : '');
       })() +
+      /* eigen hoofdstukken die het kind bij een vervolgverhaal schreef */
+      (function () {
+        const all = Store.player.myChapters || {};
+        let html = '';
+        Object.keys(all).forEach(function (id) {
+          const ser = (window.SERIES || []).filter(function (x) { return x.id === id; })[0];
+          const base = ser ? (window.STORY_DB || []).filter(function (x) { return x.series === id; }).length : 0;
+          (all[id] || []).forEach(function (c, i) {
+            html += '<h3 style="margin-bottom:2px">' + escHtml((ser ? ser.emoji + ' ' + L(ser.title) : id) + ' - ' +
+              (nl ? 'hoofdstuk ' : 'chapter ') + (base + i + 1) + (c.title ? ': ' + c.title : '')) + '</h3>' +
+              '<p style="white-space:pre-wrap;margin-top:4px">' + escHtml(c.text) + '</p>';
+          });
+        });
+        return html ? '<h2>' + (nl ? '✍️ Eigen hoofdstukken' : '✍️ Chapters written by your child') + '</h2>' + html : '';
+      })() +
       '<p style="margin-top:36px;color:#888;font-size:12px">Leeskampioen &middot; ' +
       (nl ? 'feedback of vragen: ' : 'feedback or questions: ') + FEEDBACK_EMAIL + '</p>' +
       '</body></html>';

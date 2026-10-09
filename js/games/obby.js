@@ -317,7 +317,7 @@
   };
 
   Arcade.register({
-    id: 'obby', emoji: '🧗', hue: 285, nl: 'Obby-toren', en: 'Obby Tower', cat: 'adventure', decks: ['spell', 'words'],
+    id: 'obby', emoji: '🧗', hue: 285, nl: 'Obby-toren', en: 'Obby Tower', cat: 'adventure', decks: ['spell', 'words', 'riddle'],
     descNl: 'Klim de toren op zoals in een obby. Spring naar het platform met het goede woord, voordat de lava je inhaalt!',
     descEn: 'Climb the tower like in an obby. Jump to the platform with the right word before the lava catches up!',
     howNl: 'Tik links of rechts (of gebruik ← →) om naar dat platform te springen. Het goede woord houdt je vast; het foute is een valblok. Om de 5 verdiepingen een checkpoint 🚩. Treuzel niet te lang: de lava stijgt!',

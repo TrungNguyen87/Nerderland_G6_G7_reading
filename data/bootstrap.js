@@ -10,11 +10,20 @@ window.addStories = function (list) {
   list.forEach(function (s) { window.STORY_DB.push(s); });
 };
 
-/* Vervolgverhalen: één boek in drie hoofdstukken die steeds moeilijker
-   worden (groep 6 → 7 → 8). Elk hoofdstuk is een gewoon verhaal; addSeries
-   zet er het boek (series), het hoofdstuknummer (chapter), de wereld en een
-   id als <boek>-<n> bij en zet het in STORY_DB. De boeken zelf staan in
-   window.SERIES. Zie data/series.*.js en js/books.js. */
+/* Vervolgverhalen: één boek in hoofdstukken die steeds moeilijker worden
+   (groep 6 → 7 → 8). Elk hoofdstuk is een gewoon verhaal; addSeries zet er
+   het boek (series), het hoofdstuknummer (chapter), de wereld en een id als
+   <boek>-<n> bij en zet het in STORY_DB. De boeken zelf staan in
+   window.SERIES. Zie data/series.*.js en js/books.js.
+
+   Een boek hoeft niet bij drie hoofdstukken te stoppen:
+     - Een nieuw hoofdstuk toevoegen = één object achteraan `chapters`
+       zetten (niveau gelijk aan of hoger dan het vorige hoofdstuk, een
+       `recap` erbij, en een `teaser` op het hoofdstuk daarvoor).
+     - `more: true` zegt dat het verhaal nog doorgaat: de boekenkast
+       laat dan "wordt vervolgd…" zien na het laatste hoofdstuk.
+     - `ideas` (optioneel) zijn schrijfvragen voor kinderen die zelf het
+       volgende hoofdstuk willen bedenken (js/books.js). */
 window.SERIES = [];
 window.addSeries = function (book) {
   const chapters = book.chapters || [];
@@ -22,7 +31,8 @@ window.addSeries = function (book) {
   window.SERIES.push({
     id: book.id, topic: book.topic, emoji: book.emoji,
     hue: typeof book.hue === 'number' ? book.hue : (topic ? topic.hue : 255),
-    title: book.title, blurb: book.blurb, chapters: chapters.length
+    title: book.title, blurb: book.blurb, chapters: chapters.length,
+    more: !!book.more, ideas: book.ideas || null
   });
   chapters.forEach(function (ch, i) {
     ch.series = book.id;

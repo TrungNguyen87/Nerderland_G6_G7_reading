@@ -73,7 +73,7 @@
       this.placed = res.placed;
       return res.placed.map(function (p) {
         return { right: p.w.word, wrong: p.w.wrong || '', prompt: p.w.clue, why: p.w.why || null,
-          vocab: !p.w.spell, spell: !!p.w.spell, cells: p.cells, done: false, how: null };
+          vocab: !p.w.spell, spell: !!p.w.spell, riddle: !!p.w.riddle, cells: p.cells, done: false, how: null };
       });
     },
     init: function (dom) {
@@ -171,7 +171,7 @@
         li.className = 'ws-clue' + (d.done ? ' done' : '');
         const clue = d.spell ? L(d.prompt) + ' → ?' : L(d.prompt);
         li.innerHTML = '<span class="ws-clue-text"></span> <small></small>';
-        li.querySelector('.ws-clue-text').textContent = d.done ? '✅ ' + d.right.toUpperCase() + ' · ' + clue : (d.spell ? '✍️ ' : '📖 ') + clue;
+        li.querySelector('.ws-clue-text').textContent = d.done ? '✅ ' + d.right.toUpperCase() + ' · ' + clue : (d.spell ? '✍️ ' : d.riddle ? '🧩 ' : '📖 ') + clue;
         li.querySelector('small').textContent = d.done ? '' : t('wsLetters').replace('{n}', d.right.length) + (self.hinted[G.duels.indexOf(d)] ? ' · ' + d.right[0].toUpperCase() + '…' : '');
       });
     },
@@ -235,7 +235,7 @@
     },
     status: function () { return '💡 ' + this.hints + ' · ❌ ' + this.misses; },
     countText: function () { return '🔎 ' + G.di + '/' + G.duels.length; },
-    promptText: function () { return G.deck === 'spell' ? t('wsPromptSpell') : t('wsPromptWords'); },
+    promptText: function () { return G.deck === 'spell' ? t('wsPromptSpell') : G.deck === 'riddle' ? t('wsPromptRiddle') : t('wsPromptWords'); },
     result: function () {
       const n = G.duels.length;
       const win = G.di >= n;
@@ -260,7 +260,7 @@
 
   Arcade.register({
     id: 'wordsearch', emoji: '🔎', hue: 205, nl: 'Woordzoeker', en: 'Word Search', cat: 'puzzle', kind: 'dom', hearts: 0,
-    decks: ['words', 'spell'],
+    decks: ['words', 'spell', 'riddle'],
     descNl: 'Zoek de verstopte woorden. De aanwijzing is de betekenis, of het woord fout gespeld!',
     descEn: 'Find the hidden words. The clue is the meaning, or the word spelled wrong!',
     howNl: 'Bedenk bij elke aanwijzing welk woord het is, en zoek het in het letterveld. Veeg over de letters of tik op de eerste en de laatste letter. Vast? Een 💡 hint laat de eerste letter zien.',
