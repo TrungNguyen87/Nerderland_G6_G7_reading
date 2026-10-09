@@ -1,0 +1,167 @@
+/* =====================================================================
+   Leespuzzels: Speurneus, Schatkaart, Verhaalpuzzel, Woordvier,
+   Dorpsplanner en de ontsnappingskamers. Dezelfde kleuren als style.css.
+   ===================================================================== */
+
+/* ---------- 🕵️ Speurneus ---------- */
+.dt-wrap{display:grid;gap:10px}
+.dt-case{display:flex;gap:12px;align-items:center;padding:10px 14px;border-radius:16px;background:#fff7e0}
+.dt-case-emoji{font-size:2.3rem;line-height:1}
+.dt-crime{display:block;font-size:1.02rem;line-height:1.3}
+.dt-where{display:block;color:var(--ink-soft);font-weight:700;font-size:.88rem}
+.dt-line{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:6px}
+.dt-card{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:16px 2px 8px;
+  border-radius:14px;border:3px solid #e3e3ef;background:#fff;cursor:pointer;font:inherit;color:var(--ink);
+  transition:transform .15s,opacity .2s,border-color .15s;min-width:0;
+}
+.dt-card:hover{transform:translateY(-2px)}
+.dt-card.sel{border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-light)}
+.dt-card.crossed{opacity:.45;filter:grayscale(.9)}
+.dt-card.guilty{border-color:var(--ok);background:var(--ok-light);box-shadow:0 0 0 4px rgba(34,168,107,.25);animation:dtJump .6s ease}
+.dt-card.dim{opacity:.4}
+@keyframes dtJump{40%{transform:translateY(-10px) scale(1.04)}}
+.dt-x{position:absolute;top:2px;right:3px;font-size:.85rem;opacity:0}
+.dt-card.crossed .dt-x{opacity:1}
+.dt-pos{position:absolute;top:3px;left:6px;font-size:.62rem;font-weight:800;color:var(--ink-soft)}
+.dt-face{font-size:clamp(1.5rem,5.2vw,2.4rem);line-height:1}
+.dt-name{font-size:clamp(.62rem,2.5vw,.92rem);max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.dt-attrs{display:flex;flex-wrap:wrap;gap:1px 2px;justify-content:center;font-size:clamp(.82rem,3vw,1.15rem);min-height:1.35em;line-height:1.1}
+.dt-shirt{
+  display:block;width:88%;border-radius:7px;background:var(--c);padding:1px 2px;
+  font-weight:800;font-size:clamp(.5rem,1.9vw,.72rem);line-height:1.35;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.35);
+}
+.dt-shirt i{font-style:normal}
+.dt-axis{display:flex;justify-content:space-between;font-size:.74rem;font-weight:800;color:var(--ink-soft);margin-top:-4px}
+.dt-legend{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:.78rem;font-weight:700;color:var(--ink-soft)}
+.dt-chip{display:inline-block;width:.8em;height:.8em;border-radius:3px;vertical-align:-1px}
+.dt-clues-head{margin:4px 0 0;font-size:.95rem}
+.dt-clues{margin:0;padding:0 0 0 24px;display:grid;gap:7px}
+.dt-clue{
+  padding:8px 12px;border-radius:12px;background:#fffbe8;font-weight:700;line-height:1.4;cursor:pointer;
+  border:2px solid transparent;
+}
+.dt-clue::marker{font-weight:800;color:var(--brand-dark)}
+.dt-clue.used{text-decoration:line-through;opacity:.5}
+.dt-clue.hit{border-color:var(--no);background:var(--no-light);opacity:1;text-decoration:none}
+.dt-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;min-height:50px;align-items:center}
+.dt-bar .big-btn,.dt-bar .ghost-btn{flex:1 1 170px;margin:0}
+.dt-hint{margin:0;font-weight:800;color:var(--ink-soft);text-align:center}
+.dt-msg{margin:0;min-height:1.3em;font-weight:800;text-align:center}
+.dt-msg.good{color:#136e45}
+.dt-msg.bad{color:#a32b23}
+@media (max-width:520px){
+  .dt-line{gap:4px}
+  .dt-card{padding:15px 1px 6px;border-width:2px}
+  .dt-clues{padding-left:20px}
+}
+@media (prefers-reduced-motion:reduce){.dt-card.guilty{animation:none}}
+
+/* ---------- 🗺️ Schatkaart ---------- */
+.tm-wrap{display:grid;gap:10px}
+.tm-body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;align-items:start}
+.tm-left{display:grid;gap:8px;justify-items:center;align-content:start}
+.tm-left .tm-pad{width:100%}
+.tm-board{
+  position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);width:100%;max-width:440px;aspect-ratio:1;
+  border-radius:16px;overflow:hidden;box-shadow:0 0 0 4px #7a5a2b,0 6px 18px rgba(0,0,0,.2);background:#bfeaa7;
+}
+.tm-cell{
+  position:relative;display:flex;align-items:center;justify-content:center;font-size:clamp(14px,4.6vw,28px);line-height:1;
+  background:#cdf2b6;user-select:none;
+}
+.tm-cell.alt{background:#c1ebaa}
+.tm-cell.w{background:#8fd6ff}
+.tm-cell.b{background:#c9a36a}
+.tm-cell.t{background:#a8dd8c}
+.tm-cell.trail::after{
+  content:'';position:absolute;width:22%;height:22%;border-radius:50%;background:rgba(122,90,43,.45);bottom:10%;right:10%;
+}
+.tm-cell.dug{background:#d8c19b}
+.tm-cell.treasure{background:#ffe9a6;animation:dtJump .7s ease}
+.tm-cell.route{box-shadow:inset 0 0 0 3px #ff8a00;background:#ffe7bd}
+.tm-hero{position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2}
+.tm-hero-face{font-size:clamp(16px,5vw,30px);line-height:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+.tm-arrow{
+  position:absolute;inset:0;
+}
+.tm-arrow::before{
+  content:'';position:absolute;left:50%;top:2%;width:0;height:0;margin-left:-.42em;
+  border-left:.42em solid transparent;border-right:.42em solid transparent;border-bottom:.7em solid #e4483f;
+  font-size:clamp(9px,2.6vw,14px);filter:drop-shadow(0 1px 1px rgba(0,0,0,.35));
+}
+.tm-hero.bump{animation:shake .3s}
+.tm-under{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-weight:800;font-size:.8rem;color:var(--ink-soft)}
+.tm-keyflag{padding:2px 10px;border-radius:99px;background:var(--no-light);color:#a32b23}
+.tm-keyflag.got{background:var(--ok-light);color:#136e45}
+.tm-head{margin:0 0 6px;font-size:.95rem}
+.tm-steps{display:grid;gap:6px}
+.tm-note{margin:0;font-weight:700;color:var(--ink-soft);line-height:1.4}
+.tm-step{
+  display:flex;gap:9px;align-items:flex-start;text-align:left;padding:8px 11px;border-radius:12px;border:2px solid transparent;
+  background:#fffbe8;font:inherit;font-weight:700;line-height:1.4;color:var(--ink);cursor:pointer;
+}
+.tm-step i{
+  flex:none;width:1.5em;height:1.5em;border-radius:50%;background:var(--brand-light);color:var(--brand-dark);
+  font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.85rem;
+}
+.tm-step.used{text-decoration:line-through;opacity:.5}
+.tm-steps.revealed .tm-step{border-color:#ff8a00}
+.tm-pad{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.tm-dirs{display:grid;grid-template-columns:repeat(3,56px);grid-template-areas:". n ." "w . e" ". s .";gap:4px}
+.tm-dirs .tm-N{grid-area:n}.tm-dirs .tm-S{grid-area:s}.tm-dirs .tm-W{grid-area:w}.tm-dirs .tm-E{grid-area:e}
+.tm-turtle{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.tm-btn{
+  min-width:56px;min-height:56px;padding:4px 8px;border-radius:14px;border:3px solid #e3e3ef;background:#fff;font:inherit;
+  font-size:1.35rem;font-weight:800;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;line-height:1.1;box-shadow:0 4px 0 rgba(0,0,0,.08);
+}
+.tm-btn small{font-size:.62rem;font-weight:800;color:var(--ink-soft)}
+.tm-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.tm-side-btns{display:flex;gap:8px;flex-wrap:wrap}
+.tm-side-btns .big-btn,.tm-side-btns .ghost-btn{margin:0;width:auto}
+.tm-dig:disabled{opacity:.5;cursor:default}
+.tm-next{margin:0;width:auto}
+.tm-msg{margin:0;min-height:1.3em;font-weight:800;text-align:center}
+.tm-msg.good{color:#136e45}
+.tm-msg.bad{color:#a32b23}
+@media (max-width:640px){
+  .tm-body{grid-template-columns:1fr}
+  .tm-board{max-width:min(100%,380px)}
+}
+
+/* ---------- 🧩 Verhaalpuzzel ---------- */
+.sp-wrap{display:grid;gap:10px}
+.sp-head{display:flex;gap:12px;align-items:center;padding:10px 14px;border-radius:16px;background:#fff0f7}
+.sp-emoji{font-size:2.1rem;line-height:1}
+.sp-title{display:block;font-size:1.05rem;line-height:1.25}
+.sp-sub{display:block;color:var(--ink-soft);font-weight:700;font-size:.82rem}
+.sp-help{margin:0;font-weight:800;font-size:.9rem;color:var(--ink-soft)}
+.sp-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sp-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:stretch}
+.sp-tile{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;width:100%;
+  padding:11px 12px;border-radius:14px;border:3px solid #e3e3ef;background:#fff;font:inherit;font-weight:700;line-height:1.45;
+  color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s,transform .15s;
+}
+.sp-tile i{
+  width:1.7em;height:1.7em;border-radius:50%;background:var(--brand-light);color:var(--brand-dark);font-style:normal;
+  font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.85rem;
+}
+.sp-tile em{font-style:normal}
+.sp-tile:hover{transform:translateY(-1px)}
+.sp-tile.sel{border-color:var(--brand);background:var(--brand-light);box-shadow:0 0 0 4px var(--brand-light)}
+.sp-tile.locked{border-color:var(--ok);background:var(--ok-light);cursor:default}
+.sp-tile.fixed{border-style:dashed}
+.sp-tile.wrong{border-color:var(--no);background:var(--no-light);animation:shake .4s}
+.sp-move{display:flex;flex-direction:column;gap:4px;justify-content:center}
+.sp-arrow{
+  width:44px;height:44px;border-radius:12px;border:3px solid var(--brand);background:#fff;color:var(--brand-dark);
+  font-size:1rem;font-weight:800;cursor:pointer;
+}
+.sp-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.sp-bar .big-btn,.sp-bar .ghost-btn{margin:0;width:auto;flex:1 1 170px}
+.sp-hint:disabled{opacity:.5;cursor:default}
+.sp-msg{margin:0;min-height:1.3em;font-weight:800;text-align:center}
+.sp-msg.good{color:#136e45}
+.sp-msg.bad{color:#a32b23}

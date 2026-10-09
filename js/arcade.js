@@ -955,6 +955,8 @@ const Arcade = (function () {
     const g = gameById(G.id);
     if (!g) return;
     const m = G.game || {};
+    /* taalwissel midden in een puzzel: de teksten in het veld opnieuw zetten */
+    if (m.relang && G.lang !== window.LANG) { G.lang = window.LANG; m.relang(); }
     $('arc-title').textContent = g.emoji + ' ' + L(g);
     $('arc-level').textContent = levelDef(G.lv).stars + ' ' + t('arcadeLevel') + ' ' + G.lv;
     $('arc-hearts').textContent = m.status ? m.status()
@@ -1027,6 +1029,7 @@ const Arcade = (function () {
     }
     const p = Store.player;
     G.paid = !g.free;
+    G.lang = window.LANG;
     G.id = id;
     G.lv = lv;
     G.deck = deckFor(g);
@@ -1098,7 +1101,7 @@ const Arcade = (function () {
 
   function complete(r) {
     const p = Store.player;
-    const xp = r.correct * (2 + r.lv);
+    const xp = Math.round(r.correct * (2 + r.lv) * (r.xpMul || 1));
     const coinsBefore = p.coins || 0;
     if (xp) addXP(xp);
     addCoins(Math.floor(r.correct / 5) + (r.win ? r.lv - 1 : 0), 'arcade:' + r.id);
@@ -1470,6 +1473,8 @@ const Arcade = (function () {
     start: start,
     quit: quit,
     selectedLevel: selectedLevel,
+    /* een spelmodule (voor de tests van de puzzelgeneratoren) */
+    module: function (id) { return MODULES[id]; },
     /* voor de browsertest: de stand bekijken en een duel beslissen zonder
        dat een test pixelprecies hoeft te springen */
     state: function () { return G; },
