@@ -39,6 +39,11 @@ const Spell = (function () {
     if (level <= 1) return true;
     return setsOf(catId).some(function (s) { return s.level === level - 1 && bestOf(s.id); });
   }
+  /* de regel van een opdracht: in het dagdictee en de werkwoordtrainer
+     (virtuele oefeningen, zie js/dictee.js) draagt elke opdracht zijn
+     eigen regel mee */
+  function catOf(it) { return catById((it && it.cat) || SP.cat); }
+  function virtual() { return !!(SP.set && SP.set.virtual); }
   /* het hele woord dat bij een opdracht hoort - ook voor het logboek */
   function wordOf(it) {
     if (it.type === 'type' || it.type === 'build') return it.word;
@@ -49,7 +54,8 @@ const Spell = (function () {
     return '';
   }
   function sentenceWith(it, word) {
-    const s = it.sentence ? (it.sentence.nl || '') : '';
+    /* de hint met het hele werkwoord, "(worden)", lees je niet voor */
+    const s = it.sentence ? (it.sentence.nl || '').replace(/\s*\([^()]*\)\s*$/, '') : '';
     return s ? s.replace('___', word) : word;
   }
 
@@ -79,12 +85,25 @@ const Spell = (function () {
     grid.innerHTML = '';
     let g8Head = false;
 
-    window.SPELL_CATS.forEach(function (c) {
+    /* bovenaan: het dagdictee en de werkwoordtrainer, die raken nooit op */
+    if (typeof Dictee !== 'undefined') {
+      Dictee.renderCards(grid);
+      const h = document.createElement('h3');
+      h.className = 'grid-heading';
+      h.textContent = '📏 ' + t('spellRulesHead');
+      grid.appendChild(h);
+    }
+
+    /* eerst de regels van groep 6 en 7, dan die van groep 8 (nieuwe regels
+       worden achteraan SPELL_CATS toegevoegd, ook die voor groep 6 en 7) */
+    const ordered = window.SPELL_CATS.filter(function (c) { return c.grade !== 8; })
+      .concat(window.SPELL_CATS.filter(function (c) { return c.grade === 8; }));
+    ordered.forEach(function (c) {
       /* de regels die pas in groep 8 aan bod komen krijgen een eigen kopje */
       if (c.grade === 8 && !g8Head) {
         g8Head = true;
         const h = document.createElement('h3');
-        h.className = 'grid-heading';
+        h.className = 'grid-heading g8-head';
         h.textContent = '🎓 ' + t('grade8Rules');
         grid.appendChild(h);
       }
@@ -101,6 +120,7 @@ const Spell = (function () {
       card.style.setProperty('--wh', c.hue);
       card.innerHTML =
         '<span class="wc-emoji">' + c.emoji + '</span>' +
+        (c.fresh && !doneN ? '<span class="q-skill fresh-pill">🆕 ' + t('freshPill') + '</span>' : '') +
         (meta ? '<span class="q-skill">' + meta.emoji + ' ' + (window.LANG === 'nl' ? meta.nl : meta.en) + '</span>' : '') +
         (c.grade === 8 ? '<span class="q-skill g8-pill">🎓 ' + t('grade8') + '</span>' : '') +
         (hasG8 ? '<span class="q-skill g8-pill">+ 🎓 ' + t('grade8') + '</span>' : '') +
@@ -125,7 +145,7 @@ const Spell = (function () {
      ===================================================================== */
   function renderSets() {
     const c = catById(SP.cat);
-    if (!c) return;
+    if (!c) return false;
     const meta = c.meta && window.SPELL_META && window.SPELL_META[c.meta];
     $('spell-cat-title').innerHTML = c.emoji + ' ' + (window.LANG === 'nl' ? c.nl : c.en) +
       (meta ? ' <span class="q-skill">' + meta.emoji + ' ' + (window.LANG === 'nl' ? meta.nl : meta.en) + '</span>' : '');
@@ -175,6 +195,7 @@ const Spell = (function () {
       }
       grid.appendChild(card);
     });
+    return true;
   }
 
   /* =====================================================================
@@ -182,7 +203,11 @@ const Spell = (function () {
      ===================================================================== */
   function openSet(set) {
     SP.set = set;
-    SP.cat = set.cat;
+    /* een virtuele oefening hoort niet bij één regel: "terug" gaat dan
+       naar het overzicht, en elke opdracht kent zijn eigen regel */
+    SP.cat = set.virtual ? null : set.cat;
+    SP.ruleOpen = false;
+    $('sp-rule-panel').classList.add('hidden');
     SP.i = 0;
     SP.results = [];
     SP.wrong = [];
@@ -203,10 +228,10 @@ const Spell = (function () {
     });
 
     const c = catById(SP.cat);
-    setHue(c ? c.hue : 255, 'school');
+    setHue(set.hue || (c ? c.hue : 255), 'school');
     Store.log('spell_start', {
-      session: S.sessionId, set: set.id, cat: set.cat, level: set.level,
-      items: set.items.length, lang: window.LANG
+      session: S.sessionId, set: set.id, cat: set.cat || set.virtual, level: set.level,
+      items: set.items.length, lang: window.LANG, virtual: set.virtual || ''
     });
     show('spell');
     renderItem();
@@ -229,7 +254,7 @@ const Spell = (function () {
     if (!SP.set) return;
     const it = current();
     const v = SP.views[SP.i];
-    const c = catById(SP.cat);
+    const c = catOf(it);
 
     SP.selected = null;
     SP.sortPick = null;
@@ -239,8 +264,11 @@ const Spell = (function () {
     SP.itemStart = Date.now();
 
     renderProgress();
-    $('sp-cat').textContent = c.emoji + ' ' + (window.LANG === 'nl' ? c.nl : c.en) +
-      ' · ' + t('question') + ' ' + (SP.i + 1) + ' ' + t('of') + ' ' + SP.items.length;
+    const head = virtual() ? SP.set.emoji + ' ' + L(SP.set.title)
+      : c.emoji + ' ' + (window.LANG === 'nl' ? c.nl : c.en);
+    $('sp-cat').textContent = head + ' · ' + t('question') + ' ' + (SP.i + 1) + ' ' + t('of') + ' ' + SP.items.length;
+    /* staat de regel open in een gemengd dictee, laat dan de regel van déze opdracht zien */
+    if (SP.ruleOpen && virtual()) showRule();
 
     const fb = $('sp-feedback');
     fb.className = 'q-feedback';
@@ -575,7 +603,7 @@ const Spell = (function () {
     verdict(it, ok);
 
     Store.log('spell_item', {
-      session: S.sessionId, set: SP.set.id, cat: SP.cat, level: SP.set.level,
+      session: S.sessionId, set: SP.set.id, cat: it.cat || SP.cat, level: SP.set.level,
       itype: it.type, word: wordOf(it), given: given(it), correct: ok,
       ms: ms, joker: SP.jokerUsed, lang: window.LANG
     });
@@ -702,14 +730,17 @@ const Spell = (function () {
     const xp = stars * 12 + correct * 2 + (stars >= 1 ? spellBonus(SP.set.level) : 0);
     addXP(xp);
     addCoins(stars * 3, 'spell:' + SP.set.id);
-    const coinsGain = (Store.player.coins || 0) - (SP.coinsBefore || 0);
 
     const p = Store.player;
     if (!p.spellBest) p.spellBest = {};
-    const prev = p.spellBest[SP.set.id];
-    if (!prev || correct > prev.correct) {
+    /* het dagdictee en de werkwoordtrainer houden hun eigen stand bij
+       (js/dictee.js): ze tellen niet mee voor "alle oefeningen gedaan" */
+    const prev = virtual() ? null : p.spellBest[SP.set.id];
+    if (!virtual() && (!prev || correct > prev.correct)) {
       p.spellBest[SP.set.id] = { stars: stars, correct: correct, total: total, at: Date.now() };
     }
+    const extra = virtual() && SP.set.onFinish ? (SP.set.onFinish({ correct: correct, total: total, stars: stars }) || {}) : {};
+    const coinsGain = (Store.player.coins || 0) - (SP.coinsBefore || 0);
     Store.save();
 
     Rewards.markPlayedToday();
@@ -718,13 +749,13 @@ const Spell = (function () {
     if (prev && correct > prev.correct) FX.toast('📈 ' + t('improved').replace('{a}', prev.correct).replace('{b}', correct), 3000);
 
     Store.log('spell_done', {
-      session: S.sessionId, set: SP.set.id, cat: SP.cat, level: SP.set.level,
-      correct: correct, total: total, stars: stars, xp: xp, ms: ms, lang: window.LANG
+      session: S.sessionId, set: SP.set.id, cat: SP.cat || SP.set.virtual, level: SP.set.level,
+      correct: correct, total: total, stars: stars, xp: xp, ms: ms, lang: window.LANG, virtual: SP.set.virtual || ''
     });
 
-    const diplomas = Ladder.checkSpell(SP.set);
-    const badges = checkBadges({ spellPerfect: ratio === 1, spellG8: SP.set.grade === 8 && stars >= 2 });
-    SP.last = { correct: correct, total: total, stars: stars, xp: xp, coins: coinsGain, tickets: earned.tickets, ms: ms, badges: badges, wrong: SP.wrong.slice(), diplomas: diplomas };
+    const diplomas = virtual() ? [] : Ladder.checkSpell(SP.set);
+    const badges = checkBadges({ spellPerfect: ratio === 1, spellG8: SP.set.grade === 8 && stars >= 2, verbs8: !!extra.verbs8 });
+    SP.last = { correct: correct, total: total, stars: stars, xp: xp, coins: coinsGain, tickets: earned.tickets, ms: ms, badges: badges, wrong: SP.wrong.slice(), diplomas: diplomas, note: extra.note || '' };
 
     renderResult();
     show('spell-result');
@@ -777,11 +808,13 @@ const Spell = (function () {
       nb.appendChild(d);
     });
 
-    $('btn-sp-again').textContent = t('spellAgain');
-    $('btn-sp-again').classList.toggle('hidden', !!SP.set && Ladder.spellLocked(SP.set));
-    $('btn-sp-continue').textContent = t('spellNextSet');
+    const vt = SP.set && SP.set.virtual;
+    $('btn-sp-again').textContent = vt === 'verbs' ? t('verbNewRound') : t('spellAgain');
+    $('btn-sp-again').classList.toggle('hidden', !vt && !!SP.set && Ladder.spellLocked(SP.set));
+    $('btn-sp-continue').textContent = vt ? t('spellToOverview') : t('spellNextSet');
     const lad = $('sp-result-ladder');
-    const ladText = r.diplomas && r.diplomas.length ? '🎓 ' + t('resDiploma')
+    const ladText = vt ? (r.note || '')
+      : r.diplomas && r.diplomas.length ? '🎓 ' + t('resDiploma')
       : (SP.set && !Ladder.spellGraduated(SP.set) && r.stars < 2 && setsOf(SP.set.cat).some(function (x) { return x.level > SP.set.level; }))
         ? t('resSpellNeed') : '';
     lad.innerHTML = ladText ? '<span>' + escHtml(ladText) + '</span>' : '';
@@ -809,6 +842,22 @@ const Spell = (function () {
     show('worlds');
   }
 
+  /* de regel van de opdracht die nu op het scherm staat */
+  function showRule() {
+    const c = catOf(current());
+    const panel = $('sp-rule-panel');
+    if (!c) { panel.classList.add('hidden'); return; }
+    panel.innerHTML = '<b>💡 ' + c.emoji + ' ' + (window.LANG === 'nl' ? c.nl : c.en) + '</b>' + (window.LANG === 'nl' ? c.ruleNl : c.ruleEn);
+    panel.classList.toggle('hidden', !SP.ruleOpen);
+  }
+
+  function toOverview() {
+    setHue(defaultHue(), 'default');
+    S.mode = 'spell';
+    renderWorlds();
+    show('worlds');
+  }
+
   /* =====================================================================
      6. Knoppen
      ===================================================================== */
@@ -820,13 +869,16 @@ const Spell = (function () {
     $('btn-sp-rule').addEventListener('click', function () {
       Sound.click();
       SP.ruleOpen = !SP.ruleOpen;
-      const c = catById(SP.cat);
-      const panel = $('sp-rule-panel');
-      panel.innerHTML = '<b>💡 ' + t('spellRule') + '</b>' + (window.LANG === 'nl' ? c.ruleNl : c.ruleEn);
-      panel.classList.toggle('hidden', !SP.ruleOpen);
+      showRule();
     });
-    $('btn-sp-again').addEventListener('click', function () { Sound.click(); openSet(SP.set); });
-    $('btn-sp-continue').addEventListener('click', function () { Sound.click(); nextSet(); });
+    $('btn-sp-again').addEventListener('click', function () {
+      Sound.click();
+      if (SP.set && SP.set.again) SP.set.again(); else openSet(SP.set);
+    });
+    $('btn-sp-continue').addEventListener('click', function () {
+      Sound.click();
+      if (virtual()) toOverview(); else nextSet();
+    });
 
     /* toetsenbord: 1-9 kiest, Enter controleert of gaat verder */
     document.addEventListener('keydown', function (e) {
@@ -867,6 +919,9 @@ const Spell = (function () {
     /* de huidige stand van de oefening, zoals S dat doet voor het leesspel.
        Handig om in de console mee te kijken en om mee te testen. */
     state: function () { return SP; },
-    current: current
+    current: current,
+    /* voor js/dictee.js */
+    wordOf: wordOf,
+    isOpen: function (set) { return setUnlocked(set.cat, set.level); }
   };
 })();

@@ -17,7 +17,7 @@ you can download a report at the end of the day.
 | | |
 |---|---|
 | 📖 **Lezen** | 162 stories · 1163 questions · 10 worlds · 6 difficulty levels, up to groep 8 · 13 serial stories: ten books whose three chapters climb from groep 6 to groep 8, and three four-chapter sagas that are *still going* (“wordt vervolgd”) — and a finished book lets the child write the next chapter themselves |
-| ✍️ **Spelling** | 503 exercises · 20 spelling rules (5 of them new in groep 8) · 75 sets |
+| ✍️ **Spelling** | 767 exercises · 29 spelling rules (8 of them new in groep 8) · 108 sets — plus a 📅 **daily dictation** that is different every day (with a 30-day calendar) and an endless ⚡ **verb trainer** for d, t or dt |
 | 🎮 **Spellen** | Fourteen games in five kinds — arcade, adventure & platform, **reading puzzles** (a detective logic puzzle, a treasure map you follow from a text, a story you put back in order), strategy (castle defence, Connect Four against a computer) and **escape rooms** — each with three levels (groep 6, 7, 8), a deck of 90 riddles, plus the 🗃️ Woordkist for daily spaced-repetition micro-learning |
 | 🎓 **Diploma's** | Mastered an easy level? It closes with a diploma, and the button goes straight to the next level up |
 | 🪙 **Winkel** | Spend earned coins on stickers, avatars, characters and tools |
@@ -173,7 +173,7 @@ back to again and again.
 
 # ✍️ The spelling game
 
-Twenty spelling rules from group 6, 7 and 8, matching the **spellingcategorieën**
+Twenty-nine spelling rules from group 6, 7 and 8, matching the **spellingcategorieën**
 Dutch schools actually use (Cito, Staal, Taal actief). Every rule has a
 plain-language explanation that stays one tap away while he works, and three
 exercises that get harder.
@@ -225,6 +225,51 @@ each, under their own "🎓 Nieuw in groep 8" heading:
 | 🗼 **Leenwoorden** | weet | cadeau, bureau, chauffeur, garage, trottoir, portemonnee, computer |
 | 🔢 **Getallen in letters** | regel | veertig, achttien, tachtig, tweeëntwintig, achtste, twintigste |
 | ➖ **Het koppelteken** | regel | zee-egel, auto-ongeluk, na-apen, Noord-Holland, tv-programma, privé-eigendom |
+
+In October 2026 nine more rules were added (`data/spelling.extra.js`), marked
+🆕 *Nieuw* on their card until the first exercise is done. Six belong with the
+groep 6–7 rules (three exercises plus a groep 8 one each):
+
+| Rule | Meta | What it practises |
+|---|---|---|
+| 🐺 **Meervoud: wolven en huizen** | regel | f → v and s → z in the plural (brieven, rozen) — and when they stay (flessen, kousen, fotografen); stad → steden, gat → gaten, cadeaus |
+| 🚪 **Voorvoegsels** | regel | be-, ge-, ver-, ont-, her-: verrassing, ontdooien, beëindigen — and no extra ge- (betaald, ontdekt, verbouwd) |
+| 🌬️ **Lucht of ligt: ch of g?** | regel | nacht, lucht vs het ligt, hij zegt; berg/bergen vs lach/lachen; bracht, dacht, mocht vs vroeg |
+| 🏃 **Sterke werkwoorden** | weet | liep, zwom, schreef, kocht — and never a t after them: hij werd, zij vond |
+| 👯 **Zelfde klank, andere betekenis** | weet | zij/zei, hart/hard, lied/liet, reist/rijst, peil/pijl, houdt/hout, raad/raat |
+| ☕ **Chef, thee en pony** | weet | ch as sj (chef, douche), th as t (thee, apotheek, thuis), y as ie (pony, systeem) — and the traps atleet, ritme, piramide |
+
+and three are new groep 8 rules:
+
+| Rule | Meta | What it practises |
+|---|---|---|
+| ✂️ **Afkortingen** | regel | a.u.b., bijv., d.w.z., km, NOS, cd's, sms'je, tv'tje, wc-rol |
+| 🧀 **Gouden, Goudse en iets moois** | regel | gouden/houten/wollen, Goudse kaas, een Frans woord vs de Franse kaas, iets moois, niets nieuws |
+| 🧷 **Aan elkaar of los?** | weet | te veel, op tijd, in plaats van vs erop, daarmee, misschien, opeens; 's avonds, zo'n |
+
+## Spelling that never runs out
+
+Two cards sit above the rules:
+
+- **📅 Dagdictee** — ten words a day, mixed from every rule that is open. Words
+  he got wrong the last time come back first, the weakest rules come up more,
+  and there are always two verbs. The same day gives the same dictation (also
+  after a reload), so it is a real "word of the day" set, not a slot machine.
+  Each finished dictation stamps a 30-day **spelling calendar**; stamps 7, 14,
+  21 and 30 bring a gift box, and a full calendar earns the 📆 *Spellingmaand*
+  badge. Missing a day costs nothing: the calendar counts days played, not
+  days in a row.
+- **⚡ Werkwoordtrainer** — endless d/t/dt practice. Every round builds ten new
+  sentences from 84 verbs (`data/verbs.js`): groep 6 is the present tense (ik
+  word, hij wordt, word jij?), groep 7 adds 't kofschip in the past tense and
+  the past participle (werkte, verhuisde, gestopt, hij werd), groep 8 adds the
+  traps (het gebeurt vs het is gebeurd, wordt u?, vandaag word jij,
+  beantwoordde, geen ge- bij verbouwd). Every item explains its own rule; a
+  flawless groep 8 round earns the 🏋️ *Werkwoordheld* badge.
+
+Neither counts as one of the 108 fixed exercises (no diploma, no "all spelling
+done"), but every word is logged under its own rule, so the parent dashboard's
+bars per rule and the list of misspelled words include them.
 
 ## Six kinds of exercises
 
@@ -333,7 +378,7 @@ The Woordkist is free and earns a ticket.
   higher the level
 - 📚 **Cliffhangers** — every serial-story chapter ends with "how does it
   end?", and the next chapter is one tap away
-- 🎉 Confetti, stars, sound effects and **30 collectable badges**
+- 🎉 Confetti, stars, sound effects and **33 collectable badges**
 - ⚡ **Flash-words bonus round** — a word flashes briefly; which word was it?
 
 ## 🪙 The rewards shop
@@ -538,8 +583,17 @@ A word-builder exercise lists the pieces in order (`tiles`) and a few decoys
 A new rule (category) goes into `window.SPELL_CATS` in `data/spelling.js`,
 tagged with a `meta` of `'klank'`, `'regel'` or `'weet'` so it gets the right
 badge on its card (and `grade: 8` for a groep 8 rule). The groep 8 rules and
-sets live in `data/spelling.groep8.js`; sayings for the Woordkist in
-`data/idioms.js`.
+sets live in `data/spelling.groep8.js`, the rules added in October 2026 in
+`data/spelling.extra.js`; sayings for the Woordkist in `data/idioms.js`.
+
+A verb for the verb trainer goes into `data/verbs.js`, with every form written
+out (the trainer never invents a form) and complements that fit any subject and
+tense; the validator checks the forms against 't kofschip and the ge- rule:
+
+```js
+{ inf: 'verhuizen', stem: 'verhuis', past: 'verhuisde', pp: 'verhuisd', aux: 'z', lv: 3, en: 'to move house', pre: 'ver',
+  c: [{ nl: 'naar Utrecht', en: 'to Utrecht' }] }
+```
 
 A shop item goes into `window.SHOP_ITEMS` in `data/shop.js`:
 
@@ -588,7 +642,8 @@ node tools/smoke.mjs       # plays the game in a real browser
 
 This serves the folder over plain HTTP exactly like GitHub Pages does, then
 reads a story, answers every question type, plays a spelling round, a groep 8
-story and a groep 8 spelling set, all fourteen games (the first nine with real input at
+story and a groep 8 spelling set, the daily dictation (and its calendar) and
+the verb trainer, answers every one of the fixed spelling items, all fourteen games (the first nine with real input at
 least once, plus a full round to the result screen) and a Woordkist round,
 reads a whole serial story chapter by chapter, earns and checks diplomas
 and the closed levels (and the parent switch that opens them again),
@@ -644,6 +699,7 @@ js/books.js             the serial-story bookshelf and book screen
 js/woordkist.js         the Woordkist: spaced-repetition flash cards
 js/app.js               reading game: screens, questions, scoring, dashboard, shop, coins, joker
 js/spelling.js          spelling game: rules, exercises, scoring, joker
+js/dictee.js            the daily dictation (30-day calendar) and the endless verb trainer
 data/bootstrap.js       worlds, levels and reading skills
 data/stories.*.js       the stories, one file per world
 data/series.*.js        the serial stories, one book (3 or more chapters) per file
@@ -654,6 +710,8 @@ data/spelling.js        the fifteen group 6-7 spelling rules, their meta-categor
 data/spelling.sets.js   the spelling exercises
 data/shop.js            the stickers, icons, characters and tools in the coin shop, plus the chest-only gifts
 data/spelling.groep8.js the groep 8 exercise for every rule, plus the five groep 8 rules
+data/spelling.extra.js  nine more rules (six for groep 6-7, three for groep 8)
+data/verbs.js           the 84 verbs the verb trainer builds its sentences from
 data/facts.js           Oscar's "did you know?" facts, five per world
 data/idioms.js          the groep 8 sayings for the Woordkist
 tools/validate.js       checks the data (no dependencies)

@@ -5,6 +5,64 @@ All notable changes to Leeskampioen are recorded here. Format loosely follows
 
 ## Unreleased
 
+### Added — a month of new spelling: nine rules, a daily dictation and an endless verb trainer (2026-10-12)
+Prompted by: "My son had finished all the spelling games and exercises. Could
+you please add more, to at least keep him busy for a month."
+
+**Nine new spelling rules, 33 exercises, 264 items** (`data/spelling.extra.js`)
+- For groep 6–7, each with three exercises and a groep 8 one: 🐺 *Meervoud:
+  wolven en huizen* (f/v and s/z, and when they stay), 🚪 *Voorvoegsels* (be-,
+  ge-, ver-, ont-, her-; verrassing, ontdooien; no extra ge-), 🌬️ *Lucht of
+  ligt: ch of g?*, 🏃 *Sterke werkwoorden* (liep, kocht, hij werd without a
+  t), 👯 *Zelfde klank, andere betekenis* (zij/zei, hart/hard, lied/liet,
+  houdt/hout) and ☕ *Chef, thee en pony* (ch, th and y in loanwords).
+- New in groep 8, three exercises each: ✂️ *Afkortingen* (a.u.b., km, NOS,
+  cd's, sms'je, wc-rol), 🧀 *Gouden, Goudse en iets moois* and 🧷 *Aan elkaar
+  of los?* (te veel, erop, 's avonds, zo'n).
+- New rules carry a 🆕 *Nieuw* label until their first exercise is done. The
+  spelling tab now lists all groep 6–7 rules first and the groep 8 rules under
+  their own heading, however the data files are ordered.
+- In total: 29 rules, 108 exercises, 767 items (was 20 / 75 / 503). The new
+  words also feed the arcade's spelling piles.
+
+**📅 Dagdictee with a 30-day spelling calendar** (`js/dictee.js`)
+- Ten mixed words every day from the rules that are open: words that went
+  wrong last time come back first, the weakest rules come up more often, and
+  two verbs are always included. Groep 8 rules only join once the child plays
+  groep 8 spelling. The same day and player always give the same dictation.
+- Every finished dictation stamps the calendar (+10 coins); stamps 7, 14, 21
+  and 30 bring a gift box, and a full calendar earns the 📆 *Spellingmaand*
+  badge. The calendar counts days played, not days in a row.
+
+**⚡ Werkwoordtrainer** (`js/dictee.js`, `data/verbs.js`)
+- Endless d/t/dt practice on three levels: groep 6 present tense (ik word,
+  hij wordt, word jij?), groep 7 past tense and past participle with
+  't kofschip and strong verbs, groep 8 the traps (het gebeurt / is gebeurd,
+  wordt u?, vandaag word jij, beantwoordde, verbouwd without ge-).
+- Ten new sentences per round from 84 verbs whose forms are all written out;
+  pick, type and find-the-mistake items, each with its own explanation. A
+  flawless groep 8 round earns the 🏋️ *Werkwoordheld* badge.
+
+**Under the hood**
+- `Spell.openSet()` plays "virtual" exercises (`set.virtual`): they skip
+  `spellBest`, diplomas and the "all spelling done" count, report back through
+  `set.onFinish`, and every item carries its own rule in `cat` (logged under
+  that rule; "De regel" shows that rule). "Back" from one returns to the
+  overview. Read-aloud skips the "(worden)" hint at the end of a sentence.
+- Parent dashboard: two new tiles, daily dictations and verb rounds.
+- `Rewards.seeded` is exported; chests can come from `'dictee'`.
+
+**Checks**
+- `validate.js` checks every verb in `data/verbs.js`: weak verbs must follow
+  't kofschip (looking at the z/v of the infinitive), past participles get
+  ge- unless the verb has a prefix and never end in dt, strong forms need
+  wrong forms to offer.
+- `smoke.mjs` plays the daily dictation (with a mistake), checks it stays the
+  same all day and stamps once, reaches stamp 7 for the gift box, plays a
+  flawless groep 8 verb round and a fresh one, generates 4,500 verb items
+  and checks every one, and — in a separate browser context — answers all
+  767 fixed spelling items from the data.
+
 ### Added — reading puzzles, a strategy game, escape rooms and stories that can go on (2026-10-09)
 Prompted by: "think about more creative games such as puzzles or strategy
 games that are more interesting — solving a puzzle on reading — and add more
