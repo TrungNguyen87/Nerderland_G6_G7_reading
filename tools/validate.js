@@ -435,6 +435,59 @@ CATS.forEach(function (c) {
 });
 
 /* ---------------------------------------------------------------------
+   5a. Werkwoordtrainer (data/verbs.js)
+   js/dictee.js bouwt hier eindeloos opdrachten van, dus elke vorm moet
+   kloppen: een fout hier wordt een fout "goed antwoord" in het spel.
+   --------------------------------------------------------------------- */
+const VERBS = W.VERBS || [];
+const verbIds = {};
+const verbLv = { 1: 0, 2: 0, 3: 0 };
+const KOF = ['t', 'k', 'f', 's', 'ch', 'p', 'x'];
+VERBS.forEach(function (v, i) {
+  const where = 'verb ' + (v.inf || '#' + i);
+  ['inf', 'stem', 'past', 'pp', 'en'].forEach(function (k) {
+    if (typeof v[k] !== 'string' || !v[k]) err(where, 'missing ' + k);
+  });
+  if (!v.inf || !v.stem || !v.past || !v.pp) return;
+  if (verbIds[v.inf]) err(where, 'duplicate verb');
+  verbIds[v.inf] = true;
+  if (!/en$/.test(v.inf)) err(where, 'the infinitive should end in -en');
+  if (v.aux !== 'h' && v.aux !== 'z') err(where, 'aux must be "h" (heeft) or "z" (is)');
+  if ([1, 2, 3].indexOf(v.lv) === -1) err(where, 'lv must be 1, 2 or 3');
+  else verbLv[v.lv]++;
+  if (!Array.isArray(v.c) || !v.c.length) err(where, 'needs at least one complement in c');
+  else v.c.forEach(function (c, n) {
+    if (typeof c.nl !== 'string' || !c.nl.trim() || typeof c.en !== 'string') err(where, 'c[' + n + '] needs nl (and en, which may be empty)');
+    (c.subj || []).forEach(function (s) { bilingual(where, s, 'c[' + n + '].subj'); });
+  });
+  (v.subj || []).forEach(function (s) { bilingual(where, s, 'subj'); });
+  if (v.pre && v.inf.indexOf(v.pre) !== 0) err(where, 'pre "' + v.pre + '" is not how the verb starts');
+  if (v.pre && v.pp.indexOf(v.pre) !== 0) err(where, 'a verb with ' + v.pre + '- gets no extra ge-: "' + v.pp + '"');
+
+  /* 't kofschip kijkt naar het hele werkwoord: verhuizen → verhuisde */
+  const root = v.inf.replace(/en$/, '');
+  const last = /[zv]$/.test(root) ? root.slice(-1) : /ch$/.test(v.stem) ? 'ch' : v.stem.slice(-1);
+  const kof = KOF.indexOf(last) !== -1;
+  if (!v.sp) {
+    const want = v.stem + (kof ? 'te' : 'de');
+    if (v.past !== want) err(where, 'past should be "' + want + '" (\'t kofschip), found "' + v.past + '"');
+    if (v.pastPl && v.pastPl !== v.past + 'n') err(where, 'pastPl of a weak verb is past + n');
+  } else {
+    if (!v.bad || !Array.isArray(v.bad.past) || !v.bad.past.length) err(where, 'a strong past needs wrong forms in bad.past');
+    else if (v.bad.past.indexOf(v.past) !== -1) err(where, 'bad.past contains the right form');
+    if (!v.pastPl) err(where, 'a strong verb needs pastPl');
+  }
+  if (!v.spp) {
+    const end = kof ? 't' : 'd';
+    const want = (v.pre ? '' : 'ge') + v.stem + (v.stem.slice(-1) === end ? '' : end);
+    if (v.pp !== want) err(where, 'pp should be "' + want + '", found "' + v.pp + '"');
+  } else if (!v.bad || !Array.isArray(v.bad.pp) || !v.bad.pp.length) err(where, 'a strong past participle needs wrong forms in bad.pp');
+  else if (v.bad.pp.indexOf(v.pp) !== -1) err(where, 'bad.pp contains the right form');
+  if (/dt$/.test(v.pp)) err(where, 'a past participle never ends in dt');
+});
+if (W.VERBS && VERBS.length < 30) err('data/verbs.js', 'the verb trainer needs at least 30 verbs');
+
+/* ---------------------------------------------------------------------
    5b. Shop
    --------------------------------------------------------------------- */
 const SHOP = W.SHOP_ITEMS || [];
@@ -780,6 +833,7 @@ console.log('  spelling rules: ' + CATS.length);
 console.log('  spelling sets : ' + SETS.length);
 console.log('  spelling items: ' + spellItemTotal);
 console.log('  exercise types: ' + Object.keys(spellTypeCount).sort().map(function (k) { return k + ' ' + spellTypeCount[k]; }).join(', '));
+console.log('  verb trainer  : ' + VERBS.length + ' verbs (groep 6 ' + verbLv[1] + ', groep 7 ' + verbLv[2] + ', groep 8 ' + verbLv[3] + ')');
 console.log('');
 console.log('  shop items    : ' + SHOP.length + '  (' + shopCoinTotal + ' coins to unlock everything once, ' +
             SHOP.filter(function (it) { return it.kind === 'gift'; }).length + ' chest-only gifts)');

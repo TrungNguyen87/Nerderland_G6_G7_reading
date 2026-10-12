@@ -132,6 +132,40 @@ async function answerStory(label) {
   await page.waitForSelector('#screen-result.active');
 }
 
+/* play the spelling exercise that is open right now, answering from the
+   data; from item number `wrongAt` on, the first item that can be answered
+   wrongly (not a sort or build item) is answered wrongly on purpose.
+   Returns how many items there were. */
+async function playSpellRound(label, wrongAt = -1) {
+  const n = await page.evaluate(() => Spell.state().items.length);
+  let mistakeMade = false;
+  for (let i = 0; i < n; i++) {
+    const it = await page.evaluate(() => {
+      const SP = Spell.state(); const x = Spell.current();
+      return { type: x.type, answer: x.answer, word: x.word, tiles: x.tiles ? x.tiles.length : 0,
+        opts: x.options ? x.options.length : 0, words: x.words ? x.words.length : 0, gaps: x.gap ? x.gap.length : 0,
+        bins: x.type === 'sort' ? SP.views[SP.i].words.map((w) => w.bin) : null };
+    });
+    const wrong = wrongAt >= 0 && i >= wrongAt && !mistakeMade && it.type !== 'sort' && it.type !== 'build';
+    if (wrong) mistakeMade = true;
+    if (it.type === 'build') { for (let k = 0; k < it.tiles; k++) await sel(`#sp-body .sp-tile[data-k="t${k}"]`).first().click(); }
+    else if (it.type === 'type') await sel('#sp-input').fill(wrong ? 'xyz' : it.word);
+    else if (it.type === 'fill') await sel(`#sp-body .sp-piece[data-orig="${wrong ? (it.answer + 1) % it.gaps : it.answer}"]`).click();
+    else if (it.type === 'pick') await sel(`#sp-body .opt[data-orig="${wrong ? (it.answer + 1) % it.opts : it.answer}"]`).click();
+    else if (it.type === 'error') await sel(`#sp-body .sp-chip[data-orig="${wrong ? (it.answer + 1) % it.words : it.answer}"]`).click();
+    else if (it.type === 'sort') {
+      for (let r = 0; r < it.bins.length; r++) await sel('#sp-body .sort-row').nth(r).locator('.sort-bin').nth(it.bins[r]).click();
+    }
+    await sel('#btn-sp-check').click();
+    await page.waitForSelector('#sp-feedback.show');
+    const verdict = await page.evaluate(() => { const SP = Spell.state(); return SP.results[SP.i]; });
+    if (verdict !== !wrong) bad(`${label}: item ${i + 1} (${it.type}) was marked ${verdict ? 'right' : 'wrong'} although it was answered ${wrong ? 'wrongly' : 'from the data'}`);
+    await sel('#btn-sp-next').click();
+  }
+  await page.waitForSelector('#screen-spell-result.active');
+  return n;
+}
+
 try {
   /* =================================================================
      1. Loading
@@ -596,7 +630,7 @@ try {
   await sel('#btn-home').click();
   await page.waitForSelector('#screen-worlds.active');
   await sel('.mode-tab[data-mode="spell"]').click();
-  const g8Head = await sel('#spell-grid .grid-heading').count();
+  const g8Head = await sel('#spell-grid .grid-heading.g8-head').count();
   if (g8Head !== 1) bad('the spelling tab has no "groep 8" heading for the new rules');
   await page.evaluate(() => Spell.openSet(window.SPELL_SETS.find((s) => s.id === 'getal-2')));
   await page.waitForSelector('#screen-spell.active');
@@ -645,6 +679,121 @@ try {
   await page.waitForSelector('#sp-feedback.show');
   if (await page.evaluate(() => { const SP = Spell.state(); return SP.results[SP.i]; }) !== false) bad('a wrongly built word was accepted');
   else ok('a wrongly built word is marked wrong and the right word is shown');
+
+  /* =================================================================
+     7c-2. The daily dictation, its 30-day calendar and the endless
+     verb trainer (js/dictee.js, data/verbs.js)
+     ================================================================= */
+  await sel('#btn-home').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await sel('.mode-tab[data-mode="spell"]').click();
+  const grid = await page.evaluate(() => {
+    const kids = [...document.getElementById('spell-grid').children];
+    const g8At = kids.findIndex((el) => el.classList.contains('g8-head'));
+    return {
+      daily: !!document.getElementById('daily-card'), verbLv: document.querySelectorAll('#verb-card .verb-lv').length,
+      fresh: document.querySelectorAll('#spell-grid .fresh-pill').length,
+      after: kids.slice(g8At + 1).filter((el) => el.classList.contains('world-card')).length,
+      g8: window.SPELL_CATS.filter((c) => c.grade === 8).length
+    };
+  });
+  if (!grid.daily || grid.verbLv !== 3) bad(`the spelling tab misses the daily dictation or the verb trainer (${JSON.stringify(grid)})`);
+  else if (grid.after !== grid.g8) bad(`the "groep 8" heading is followed by ${grid.after} rules instead of the ${grid.g8} groep 8 rules`);
+  else if (grid.fresh < 1) bad('the new spelling rules carry no "new" label');
+  else ok(`the spelling tab starts with the daily dictation and the verb trainer; ${grid.fresh} new rules say "new", groep 8 rules are grouped last`);
+
+  await sel('#daily-card').click();
+  await page.waitForSelector('#screen-spell.active');
+  const daily1 = await page.evaluate(() => Spell.state().items.map((x) => x.cat + ':' + Spell.wordOf(x)).sort());
+  const dailyN = await playSpellRound('daily dictation', 1);
+  const day1 = await page.evaluate(() => {
+    const SP = Spell.state();
+    const cats = window.SPELL_CATS.map((c) => c.id);
+    const logged = Store.events.filter((e) => e.t === 'spell_item' && /^daily-/.test(e.set));
+    return { correct: SP.last.correct, total: SP.last.total, count: Store.player.dictee.count,
+      note: document.getElementById('sp-result-ladder').innerText,
+      best: Object.keys(Store.player.spellBest || {}).filter((k) => /^daily-/.test(k)).length,
+      badCat: logged.filter((e) => cats.indexOf(e.cat) === -1).length, verbs: SP.items.filter((x) => x.verb).length };
+  });
+  if (dailyN !== 10 || day1.verbs < 2) bad(`the daily dictation has ${dailyN} items and ${day1.verbs} verb items (expected 10 and at least 2)`);
+  else if (day1.correct !== day1.total - 1) bad(`one mistake in the daily dictation scored ${day1.correct}/${day1.total}`);
+  else if (day1.count !== 1 || !/1/.test(day1.note)) bad(`finishing the daily dictation did not put a stamp on the calendar (${JSON.stringify(day1)})`);
+  else if (day1.best) bad('the daily dictation was stored as if it were a fixed spelling exercise');
+  else if (day1.badCat) bad(`${day1.badCat} daily dictation words were logged without their own spelling rule`);
+  else ok(`played the daily dictation (10 mixed words, ${day1.verbs} verbs): stamp 1 of 30, every word logged under its own rule`);
+
+  await sel('#btn-sp-again').click();
+  const daily2 = await page.evaluate(() => Spell.state().items.map((x) => x.cat + ':' + Spell.wordOf(x)).sort());
+  await playSpellRound('daily dictation again');
+  const day2 = await page.evaluate(() => Store.player.dictee.count);
+  if (JSON.stringify(daily1) !== JSON.stringify(daily2)) bad('the daily dictation changed within the same day');
+  else if (day2 !== 1) bad(`playing the daily dictation twice gave ${day2} stamps`);
+  else ok('the daily dictation stays the same all day and gives one stamp per day');
+  await sel('#btn-sp-continue').click();
+  await page.waitForSelector('#screen-worlds.active');
+  if (!(await sel('#daily-card.done').count())) bad('the daily dictation card does not show that today is done');
+
+  /* stamp 7 of the month comes with a gift box */
+  const chests0 = await page.evaluate(() => {
+    const d = Store.player.dictee; delete d.days[localDay()]; d.count = 6; Store.save();
+    Dictee.openDaily();
+    return (Store.player.chests || []).length;
+  });
+  await page.waitForSelector('#screen-spell.active');
+  await playSpellRound('daily dictation, day 7');
+  const chests1 = await page.evaluate(() => (Store.player.chests || []).filter((c) => c.src === 'dictee').length);
+  if (chests1 < 1 || await page.evaluate(() => Store.player.dictee.count) !== 7) bad(`stamp 7 of the spelling month gave no gift box (${chests0} → ${chests1})`);
+  else ok('stamp 7 of the spelling month comes with a gift box');
+
+  /* the verb trainer: a flawless groep 8 round, then a fresh one */
+  await sel('#btn-sp-continue').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await sel('#verb-card .verb-lv[data-lv="3"]').click();
+  await page.waitForSelector('#screen-spell.active');
+  const round1 = await page.evaluate(() => Spell.state().items.map((x) => Spell.wordOf(x)).join('|'));
+  await playSpellRound('verb trainer');
+  const vt = await page.evaluate(() => ({ stars: Spell.state().last.stars, badge: (Store.player.badges || []).indexOf('verbhero') !== -1,
+    again: document.getElementById('btn-sp-again').innerText, best: Object.keys(Store.player.spellBest || {}).filter((k) => /^verbs-/.test(k)).length }));
+  await sel('#btn-sp-again').click();
+  const round2 = await page.evaluate(() => Spell.state().items.map((x) => Spell.wordOf(x)).join('|'));
+  await playSpellRound('verb trainer, second round', 0);
+  if (vt.stars !== 3 || !vt.badge) bad(`a flawless groep 8 verb round gave ${vt.stars} stars / badge ${vt.badge}`);
+  else if (round1 === round2) bad('"new round" in the verb trainer gave the same sentences again');
+  else if (vt.best) bad('the verb trainer was stored as if it were a fixed spelling exercise');
+  else ok('the verb trainer plays a flawless groep 8 round (Verb hero badge), then a fresh round with a mistake marked wrong');
+
+  /* "back" from a generated exercise goes to the spelling overview */
+  await sel('#btn-sp-continue').click();
+  await page.waitForSelector('#screen-worlds.active');
+  await sel('#verb-card .verb-lv[data-lv="1"]').click();
+  await page.waitForSelector('#screen-spell.active');
+  await sel('#screen-spell .back-btn').click();
+  await page.waitForSelector('#screen-worlds.active');
+  ok('"back" from the verb trainer returns to the spelling overview');
+
+  /* the generator itself, many rounds on every level */
+  const gen = await page.evaluate(() => {
+    const out = { n: 0, bad: [] };
+    for (let lv = 1; lv <= 3; lv++) {
+      for (let r = 0; r < 150; r++) {
+        Dictee.verbItems(lv, 10).forEach((it) => {
+          out.n++;
+          const why = it.why && it.why.nl && it.why.en;
+          let okIt = !!why && it.cat === 'dt';
+          if (it.type === 'pick') okIt = okIt && it.options.length >= 2 && new Set(it.options).size === it.options.length &&
+            it.answer === 0 && /___/.test(it.sentence.nl) && /\(\w+\)$/.test(it.sentence.nl);
+          else if (it.type === 'type') okIt = okIt && !!it.word && /___/.test(it.sentence.nl);
+          else if (it.type === 'error') okIt = okIt && it.fix !== it.words[it.answer] && it.words.every((w) => w.indexOf('___') === -1);
+          else okIt = false;
+          if (!okIt && out.bad.length < 3) out.bad.push(JSON.stringify(it));
+          if (/undefined|null|\s\s/.test(JSON.stringify(it)) && out.bad.length < 3) out.bad.push(JSON.stringify(it));
+        });
+      }
+    }
+    return out;
+  });
+  if (gen.bad.length) bad(`the verb trainer made a broken item: ${gen.bad.join(' / ')}`);
+  else ok(`the verb trainer generated ${gen.n} items on three levels, all well-formed`);
 
   /* the arcade: three games and the Woordkist in a third tab */
   await sel('#btn-home').click();
@@ -1040,6 +1189,8 @@ try {
     adviceRows: document.querySelectorAll('#p-advice li').length,
     logRows: document.querySelectorAll('#p-log tr').length,
     arcade: document.getElementById('p-arcade').textContent,
+    dictee: document.getElementById('p-dictee').textContent,
+    verbs: document.getElementById('p-verbs').textContent,
     kist: document.getElementById('p-kist').textContent,
     dailyCols: document.querySelectorAll('#p-daily-log tr:first-child th').length,
     dailyGames: document.querySelector('#p-daily-log tr:nth-child(2) td:nth-child(10)')?.textContent
@@ -1055,6 +1206,8 @@ try {
   if (pDip.tile < 5 || !pDip.lock) bad(`the dashboard does not show the diplomas or the lock setting (${JSON.stringify(pDip)})`);
   else if (lockOff || !lockOn) bad('the parent setting "close finished easy levels" does not switch');
   else ok(`the parent dashboard shows ${pDip.tile} diplomas and a working "close finished easy levels" switch`);
+  if (Number(stats.dictee) < 7 || Number(stats.verbs) < 2) bad(`the dashboard shows ${stats.dictee} daily dictations and ${stats.verbs} verb rounds (expected 7 and 2)`);
+  else ok(`the parent dashboard counts daily dictations (${stats.dictee}) and verb trainer rounds (${stats.verbs})`);
   if (Number(stats.questions) < 5) bad('the dashboard logged no questions');
   if (Number(stats.spellWords) < 3) bad('the dashboard logged no spelling words');
   if (stats.skillRows < 10) bad(`only ${stats.skillRows} reading-skill bars (expected 10)`);
@@ -1178,6 +1331,43 @@ try {
     if (fit.overflow > 2 || fit.board > fit.view) bad(`${g} does not fit on a phone (${JSON.stringify(fit)})`);
   }
   ok('the memory game, the word search and the castle defence fit on a phone too');
+
+  /* =================================================================
+     12b. Every fixed spelling item can be answered correctly
+     (a fresh browser context, so the main player is not touched)
+     ================================================================= */
+  const ctx2 = await browser.newContext({ viewport: { width: 1000, height: 800 } });
+  const page2 = await ctx2.newPage();
+  page2.on('pageerror', (e) => bad('uncaught exception (all spelling sets): ' + e.message));
+  await page2.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle' });
+  await page2.locator('#input-name').fill('Alles');
+  await page2.locator('#btn-start').click();
+  await page2.waitForSelector('#screen-worlds.active');
+  const allSets = await page2.evaluate(() => {
+    const out = { sets: 0, items: 0, fail: [] };
+    for (const set of window.SPELL_SETS) {
+      Spell.openSet(set);
+      out.sets++;
+      const SP = Spell.state();
+      for (let i = 0; i < SP.items.length; i++) {
+        const it = Spell.current(); const v = SP.views[SP.i];
+        if (it.type === 'type') { const el = document.getElementById('sp-input'); el.value = it.word; el.dispatchEvent(new Event('input')); }
+        else if (it.type === 'pick') document.querySelector(`#sp-body .opt[data-orig="${it.answer}"]`).click();
+        else if (it.type === 'fill') document.querySelector(`#sp-body .sp-piece[data-orig="${it.answer}"]`).click();
+        else if (it.type === 'error') document.querySelector(`#sp-body .sp-chip[data-orig="${it.answer}"]`).click();
+        else if (it.type === 'build') it.tiles.forEach((tl, k) => document.querySelector(`#sp-body .sp-tile[data-k="t${k}"]:not(.used)`).click());
+        else if (it.type === 'sort') document.querySelectorAll('#sp-body .sort-row').forEach((row, r) => row.querySelectorAll('.sort-bin')[v.words[r].bin].click());
+        document.getElementById('btn-sp-check').click();
+        out.items++;
+        if (SP.results[SP.i] !== true && out.fail.length < 5) out.fail.push(set.id + ' item ' + (i + 1) + ' (' + it.type + ')');
+        document.getElementById('btn-sp-next').click();
+      }
+    }
+    return out;
+  });
+  await ctx2.close();
+  if (allSets.fail.length) bad(`spelling items marked wrong although answered from the data: ${allSets.fail.join(', ')}`);
+  else ok(`all ${allSets.sets} spelling exercises (${allSets.items} items) accept their own right answer`);
 
   /* =================================================================
      13. Everything index.html asks for actually exists

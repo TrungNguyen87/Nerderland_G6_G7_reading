@@ -759,6 +759,41 @@ button:focus-visible,a:focus-visible,.text-input:focus-visible{outline:3px solid
 .find-opt.sel{border-left-color:var(--brand)}
 
 .g8-pill{background:linear-gradient(120deg,#ffe28a,#ffb703);color:#5a3a00;margin-left:4px}
+.fresh-pill{background:linear-gradient(120deg,#b8f5c8,#4cc38a);color:#0c4a2a;margin-right:4px}
+
+/* ---------- dagdictee en werkwoordtrainer (js/dictee.js) ---------- */
+.daily-card{
+  grid-column:1/-1;position:relative;text-align:left;padding:18px 20px;border-radius:var(--radius);
+  background:#fff;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;
+  border:0;font:inherit;color:inherit;transition:transform .2s cubic-bezier(.2,.9,.3,1), box-shadow .2s;
+}
+button.daily-card{cursor:pointer}
+button.daily-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.daily-card::before{content:'';position:absolute;inset:0 0 auto;height:7px;border-radius:var(--radius) var(--radius) 0 0;
+  background:linear-gradient(90deg,#4cc9f0,#4361ee)}
+.verb-card::before{background:linear-gradient(90deg,#ff8fa3,#e63946)}
+.daily-card.done::before{background:linear-gradient(90deg,#80ed99,#38b000)}
+.dc-emoji{font-size:2.4rem;line-height:1;flex:none}
+.dc-body{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.dc-title{font-family:var(--font-head);font-size:1.2rem;font-weight:800}
+.dc-sub{font-size:.85rem;color:var(--ink-soft);line-height:1.4}
+.dc-status{font-size:.78rem;font-weight:800;color:var(--ink-soft)}
+.cal{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-top:6px;max-width:330px}
+.cal-cell{
+  font-style:normal;font-size:.62rem;font-weight:800;text-align:center;line-height:22px;height:22px;
+  border-radius:7px;background:#eeeef7;color:#9a9cb8;
+}
+.cal-cell.gift{background:#fff3c4}
+.cal-cell.on{background:#38b000;color:#fff}
+.cal-cell.today{box-shadow:0 0 0 2px #ffb703}
+.verb-lvs{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.verb-lv{
+  border:0;border-radius:14px;padding:9px 14px;font:inherit;font-weight:800;font-size:.9rem;cursor:pointer;
+  background:#ffe5ea;color:#8a1c2b;display:flex;flex-direction:column;align-items:flex-start;min-width:92px;
+  transition:transform .15s;
+}
+.verb-lv:hover{transform:translateY(-2px)}
+.verb-lv small{font-size:.7rem;font-weight:700;color:#a14a57}
 .grid-heading{grid-column:1/-1;color:#fff;font-size:1.3rem;margin:14px 0 -4px;text-shadow:0 2px 0 rgba(0,0,0,.14)}
 
 .sp-build{

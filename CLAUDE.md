@@ -165,6 +165,30 @@ All three must be clean before pushing — this is the project's entire CI (`.gi
     rendered in `js/books.js`, +15 XP, badge `writer`, and in the HTML report.
     The three sagas (`kruimel`, `otter`, `dom`) are 4 chapters at levels 2/3/4/6.
   - The `allgames` badge ignores escape rooms on purpose (cases keep being added).
+- **More spelling, a daily dictation, a verb trainer** (added 2026-10-12):
+  - Nine more rules live in `data/spelling.extra.js` (loaded after the groep 8
+    file), each with `fresh: true` (a "Nieuw" pill until the first set is
+    done). `Spell.renderCats` puts non-groep-8 rules first and groep 8 rules
+    after the `.g8-head` heading, so new groep 6–7 rules may be appended to
+    `SPELL_CATS` anywhere.
+  - `js/dictee.js` (`Dictee`) builds *virtual* sets and plays them through
+    `Spell.openSet()`: `set.virtual` ('daily' | 'verbs') skips `spellBest`,
+    Ladder and the legendary count; `set.onFinish(r)` returns `{note,
+    verbs8}`; `set.again()` replaces "practise again". Each item carries its
+    own `cat` — always set it on generated items, Stats and "De regel" rely on
+    it. `Spell.wordOf` / `Spell.isOpen` are exported for Dictee.
+  - The daily set is frozen per day in `Store.player.dictee.cur` (`{day,
+    items}`), seeded with `Rewards.seeded`; `dictee.count` is days played
+    (not a streak), stamps 7/14/21/30 grant a `'dictee'` chest, 30 gives the
+    `spellmonth` badge. `Store.player.verbs = {best, rounds}`; badge
+    `verbhero` = flawless level-3 round. Both are lazily initialised (don't
+    put nested objects in `blankPlayer`: it is shallow-merged).
+  - `data/verbs.js`: every form is explicit. Complements in `c` must fit ik,
+    jij, u, hij and wij in present, past and perfect; verbs with a fixed
+    subject (`subj`: het sneeuwt, het vliegtuig landt) only get hij-forms.
+    `noIk` skips forms with two correct spellings (ik houd/hou). Generated
+    pick sentences end in "(infinitive)"; `sentenceWith` strips that for
+    read-aloud. `validate.js` re-derives past and pp of every weak verb.
 - Shared helpers in `js/i18n.js`: `localDay(ts)` (use this, never
   `toISOString().slice(0,10)`, which is UTC), `escHtml()` for anything a
   child typed, and `FEEDBACK_EMAIL`.
@@ -448,3 +472,31 @@ fifth chapter for each saga (`kruimel`: who is the second Riddler? `otter`:
 whose paw prints lead to the park? `dom`: the note from the guardian in the
 north), and the hot-seat multiplayer plan (`docs/plans/multiplayer-mode.md`,
 still unstarted — Woordvier is already a two-sided board game).
+
+### 2026-10-12 — nine spelling rules, a daily dictation and an endless verb trainer
+Prompted by: "My son had finished all the spelling games and exercises. Could
+you please add more, to at least keep him busy for a month."
+
+- He had done all 75 sets (in roughly two to three weeks), so new sets alone
+  would run out again; this session added both content and things that do not
+  run out. Written by me, no subagents (not requested).
+  - Content: 9 rules × 3–4 sets = 33 sets, 264 items (`data/spelling.extra.js`).
+    Rules were chosen from the Staal/Taal actief categories that were missing
+    (meervoud v/z, voorvoegsels, ch/g, sterke werkwoorden, homofonen,
+    ch/th/y; groep 8: afkortingen, bijvoeglijke naamwoorden, aan elkaar of
+    los). Avoided items with two accepted spellings (museums/musea, elfen,
+    ik hou/houd) and checked de/het-agreement in every adjective sentence.
+  - Daily dictation with a 30-day calendar (the "month" the parent asked for)
+    and an endless verb trainer, both in `js/dictee.js` (see the architecture
+    notes above).
+- Checks: `node tools/validate.js` (now also every verb form),
+  `node tools/smoke.mjs` (~5 min now; new section 7c-2 and 12b) and
+  `node tools/puzzles.mjs`, all clean. Playwright 1.56 matched the
+  pre-installed chromium-1194 again.
+
+**Next likely steps:** watch which rules he gets wrong in the parent
+dashboard and add a fourth/fifth set where it hurts; more verbs (separable
+verbs like opbellen would need their own sentence frames); a "dictation of
+the week" for parents built from the misspelled-words table; the multiplayer
+plan (`docs/plans/multiplayer-mode.md`) is still unstarted — the verb trainer
+would make a natural hot-seat race.

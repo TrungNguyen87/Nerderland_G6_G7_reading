@@ -57,6 +57,7 @@ const Rewards = (function () {
     if (src === 'pet') return heading ? t('chestFromPet') : t('chestEarnedPet');
     if (src === 'diploma') return heading ? t('chestFromDiploma') : t('chestEarnedDiploma');
     if (src === 'book') return heading ? t('chestFromBook') : t('chestEarnedBook');
+    if (src === 'dictee') return heading ? t('chestFromDictee') : t('chestEarnedDictee');
     return heading ? t('chestFromStar') : t('chestEarnedStar');
   }
 
@@ -601,6 +602,8 @@ const Rewards = (function () {
     petStages: PET_STAGES,
     renderPet: renderPet,
     quests: QUESTS,
+    /* het dagdictee gebruikt hetzelfde dobbelsteentje (js/dictee.js) */
+    seeded: seeded,
     today: function () { return active() ? today() : null; }
   };
 })();

@@ -267,7 +267,11 @@ function bindGlobal() {
       if (to === 'worlds') { setHue(defaultHue(), 'default'); renderWorlds(); show('worlds'); }
       else if (to === 'levels') { renderLevels(); show('levels'); }
       else if (to === 'spell-cats') { setHue(defaultHue(), 'default'); S.mode = 'spell'; renderWorlds(); show('worlds'); }
-      else if (to === 'spell-sets') { Spell.renderSets(); show('spell-sets'); }
+      else if (to === 'spell-sets') {
+        /* uit het dagdictee of de werkwoordtrainer: terug naar het overzicht */
+        if (Spell.renderSets()) show('spell-sets');
+        else { setHue(defaultHue(), 'default'); S.mode = 'spell'; renderWorlds(); show('worlds'); }
+      }
       else if (to === 'play') { setHue(defaultHue(), 'default'); S.mode = 'play'; renderWorlds(); show('worlds'); }
       else if (to === 'story') {
         /* terug vanaf het leesscherm: naar het boek of naar de niveaus van de wereld */
@@ -513,6 +517,9 @@ function checkBadges(ctx) {
   /* groep 8, de speelhal, de Woordkist en de leesdraak */
   if (ctx && ctx.level === 6 && ctx.stars >= 2) push('g8');
   if (ctx && ctx.spellG8) push('spell8');
+  /* het dagdictee en de werkwoordtrainer (js/dictee.js) */
+  if (typeof Dictee !== 'undefined' && Dictee.daysDone() >= 30) push('spellmonth');
+  if (ctx && ctx.verbs8) push('verbhero');
   if ((p.arcadeTop || 0) >= 12) push('arcade');
   /* Woordkist is een const uit een ander script en staat dus niet op window:
      "window.Woordkist" was altijd leeg, waardoor deze badge nooit kwam */
@@ -2171,6 +2178,8 @@ function renderParent() {
   $('p-streak').textContent = ((Store.player.dayStreak || {}).best || 0);
   $('p-gifts').textContent = ((Store.player.owned || {}).gift || []).length;
   $('p-arcade').textContent = Store.player.arcadePlays || 0;
+  $('p-dictee').textContent = Dictee.daysDone();
+  $('p-verbs').textContent = Dictee.rounds();
   $('p-kist').textContent = Woordkist.known();
   $('p-diplomas').textContent = Ladder.count();
   $('p-lock-easy').checked = Ladder.lockOn();
