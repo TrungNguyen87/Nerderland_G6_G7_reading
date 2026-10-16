@@ -500,3 +500,19 @@ verbs like opbellen would need their own sentence frames); a "dictation of
 the week" for parents built from the misspelled-words table; the multiplayer
 plan (`docs/plans/multiplayer-mode.md`) is still unstarted — the verb trainer
 would make a natural hot-seat race.
+
+### 2026-10-16 — a 1001-nights style saga for 9–10-year-olds
+Prompted by: "add more reading stories similar to the 1001 nights, add
+continuation chapters to the library later, make it easier for age 9–10."
+
+- Added saga `nachten` ("Zadi en de duizend verhalen", `data/series.nachten.js`,
+  world `wereld`, 4 chapters at levels 2/3/4/6, `more: true`) and its
+  `<script>` tag in `index.html` (after `series.dom.js`). Frame story: grumpy
+  sultan Karim, Zadi (10) stops each tale at its most exciting point. The
+  original's violent frame (the sultan executes his brides) is left out on
+  purpose; the cliffhanger mechanic is kept.
+- Next chapter = one more object at the end of `chapters` (level 6, `recap`,
+  and a `teaser` on chapter 4 — it already has one: the stranger at the gate
+  with a story of his own). Chapter 4 reads at the low end of level 6 on purpose.
+- Docs updated: README (14 books, 4 sagas), CHANGELOG.
+- Checks: `validate.js`, `puzzles.mjs`, `smoke.mjs` all clean (validate, puzzles, smoke).

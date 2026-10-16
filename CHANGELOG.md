@@ -5,6 +5,20 @@ All notable changes to Leeskampioen are recorded here. Format loosely follows
 
 ## Unreleased
 
+### Added — a 1001-nights style saga: "Zadi en de duizend verhalen" (2026-10-16)
+Prompted by: "Add more reading stories, similar to the 1001 nights story, with
+continuation chapters added to the library later. Make it easier for 9–10
+year-olds."
+
+- New saga 🪔 *Zadi en de duizend verhalen* (`data/series.nachten.js`, world
+  Wereld & Culturen): a sultan who cannot laugh, ten-year-old Zadi who tells
+  him a story every evening and stops at the most exciting moment, and tales
+  inside the tale (a parrot that knows secrets, a carpet that flies on
+  laughter). Four chapters at levels 2/3/4/6, 28 questions, `more: true` with a
+  cliffhanger and three writing ideas, so the child can write the next night.
+- Much simpler than the original: no dark frame story, short sentences, every
+  chapter explains its hard words, and one clear lesson per tale.
+
 ### Added — a month of new spelling: nine rules, a daily dictation and an endless verb trainer (2026-10-12)
 Prompted by: "My son had finished all the spelling games and exercises. Could
 you please add more, to at least keep him busy for a month."

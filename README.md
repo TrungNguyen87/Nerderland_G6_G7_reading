@@ -16,7 +16,7 @@ you can download a report at the end of the day.
 
 | | |
 |---|---|
-| 📖 **Lezen** | 162 stories · 1163 questions · 10 worlds · 6 difficulty levels, up to groep 8 · 13 serial stories: ten books whose three chapters climb from groep 6 to groep 8, and three four-chapter sagas that are *still going* (“wordt vervolgd”) — and a finished book lets the child write the next chapter themselves |
+| 📖 **Lezen** | 166 stories · 1193 questions · 10 worlds · 6 difficulty levels, up to groep 8 · 14 serial stories: ten books whose three chapters climb from groep 6 to groep 8, and four four-chapter sagas that are *still going* (“wordt vervolgd”) — and a finished book lets the child write the next chapter themselves |
 | ✍️ **Spelling** | 767 exercises · 29 spelling rules (8 of them new in groep 8) · 108 sets — plus a 📅 **daily dictation** that is different every day (with a 30-day calendar) and an endless ⚡ **verb trainer** for d, t or dt |
 | 🎮 **Spellen** | Fourteen games in five kinds — arcade, adventure & platform, **reading puzzles** (a detective logic puzzle, a treasure map you follow from a text, a story you put back in order), strategy (castle defence, Connect Four against a computer) and **escape rooms** — each with three levels (groep 6, 7, 8), a deck of 90 riddles, plus the 🗃️ Woordkist for daily spaced-repetition micro-learning |
 | 🎓 **Diploma's** | Mastered an easy level? It closes with a diploma, and the button goes straight to the next level up |
@@ -55,7 +55,7 @@ detective (mystery), a burger from the lab (food), goosebumps from music
 
 ## 📚 Serial stories
 
-Below the worlds is a bookshelf with thirteen **vervolgverhalen**: one story
+Below the worlds is a bookshelf with fourteen **vervolgverhalen**: one story
 in chapters, where no chapter is easier than the one before, so the child
 grows with the story. In the ten original books chapter 1 is groep 6
 (Doorzetter level, 6 questions), chapter 2 groep 7 (Expert level, 8
@@ -65,7 +65,7 @@ end?") and the next one opens with a short recap. A chapter opens once the
 previous one has at least ⭐; reading the last chapter earns the book diploma
 and a gift box.
 
-**A story does not have to stop.** The three newest books are *sagas* of four
+**A story does not have to stop.** The four newest books are *sagas* of four
 chapters (levels 2, 3, 4 and 6) marked `more: true`: after the last chapter
 the bookshelf shows a dashed "Wordt vervolgd…" card, and a fifth chapter is
 one more object in the book's data file (see *Adding your own stories*).
@@ -91,6 +91,7 @@ wrote (escaped, so nothing a child types can break the page).
 | 🕵️ Detectivebureau Kruimel ✨ | Mystery | Fenna, Yassin and little Pepijn solve everything from a garden shed — until a riddle-writer who calls themselves De Raadselaar starts sending them clues. 4 chapters, still going |
 | 🦦 Een otter in de gracht ✨ | Animals | Sanne finds out who is stealing grandpa's fish from his houseboat: a young otter that cannot reach its mother. Real otter facts, a neighbourhood meeting and a plank over a lock. 4 chapters, still going |
 | 🐉 De wachters van de Dom ✨ | History | A little gargoyle on the Dom Tower in Utrecht is afraid of heights and needs Lotte to find the tower's lost Heart before the storm — with the real 1674 tornado behind it. 4 chapters, still going |
+| 🪔 Zadi en de duizend verhalen ✨ | World | Inspired by *One Thousand and One Nights*, but short and simple: sultan Karim has not laughed for years, until ten-year-old Zadi tells him a story that stops at the most exciting moment — so he has to come back tomorrow. A parrot, a flying carpet and a hidden letter. 4 chapters, still going |
 
 The chapters are ordinary stories in `data/series.*.js` (see *Adding your
 own stories*); they do not count towards a world's levels.
